@@ -439,9 +439,11 @@ Ext.apply(Zarafa, {
 	/**
 	 * Hide the loading mask which is shown before the {@link Ext.Viewport} is being rendered.
 	 * The loadmask is marked with the element classname 'loading' and the background 'loading-mask'.
+	 * @param {Function} callback An optional callback function that will be called when the the
+	 * loading mask is completely hidden.
 	 * @private
 	 */
-	hideLoadingMask : function()
+	hideLoadingMask : function(callback)
 	{
 		var loadingMask = Ext.get('loading-mask');
 
@@ -449,7 +451,8 @@ Ext.apply(Zarafa, {
 			// Hide loading mask
 			loadingMask.fadeOut({
 				duration: 1,
-				remove: true
+				remove: true,
+				callback: Ext.isFunction(callback) ? callback : Ext.EmptyFn
 			});
 		}
 	},
@@ -607,7 +610,9 @@ Ext.apply(Zarafa, {
 			// Remove loading mask, we might still be busy loading the data for the
 			// store of the user, but the context will have its own loadmask for that.
 			// The user is at least allowed to see the Hierarchy and press buttons.
-			this.hideLoadingMask();
+			this.hideLoadingMask(function(){
+				container.fireEvent('webapploaded');
+			});
 
 			// Remove resize event listener of loading page
 			window.removeEventListener('resize', onResize);
