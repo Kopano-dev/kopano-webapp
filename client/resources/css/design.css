@@ -4026,21 +4026,33 @@ body.Safari input[type="radio"] {
   border-color: #b6b6b6;
 }
 
-/* line 83, ../scss/components/_formelements.scss */
-.x-combo-list-item {
+/* line 84, ../scss/components/_formelements.scss */
+.x-combo-list-inner {
+  padding: 3px 0;
+}
+/* line 87, ../scss/components/_formelements.scss */
+.x-combo-list-inner .x-combo-list-item {
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  line-height: 18px;
+  padding: 6px 9px;
+  margin: 0 3px;
+  border: none !important;
+}
+/* line 98, ../scss/components/_formelements.scss */
+.x-combo-list-inner .x-combo-list-item:hover {
+  background-color: #f2f2f2;
 }
 
-/* line 89, ../scss/components/_formelements.scss */
+/* line 103, ../scss/components/_formelements.scss */
 .x-combo-list-item.k-combo-list-item-header {
   font-weight: bold;
   font-style: italic;
 }
 
-/* line 93, ../scss/components/_formelements.scss */
+/* line 107, ../scss/components/_formelements.scss */
 .x-combo-list-item.x-combo-selected.k-combo-list-item-header {
   background: transparent;
   border-color: transparent !important;
@@ -4048,77 +4060,77 @@ body.Safari input[type="radio"] {
 }
 
 /* fieldsets */
-/* line 100, ../scss/components/_formelements.scss */
+/* line 114, ../scss/components/_formelements.scss */
 .x-fieldset {
   border-radius: 0;
   border: 1px solid #e6e6e6;
   padding: 9px 6px;
   margin: 0;
 }
-/* line 106, ../scss/components/_formelements.scss */
+/* line 120, ../scss/components/_formelements.scss */
 .x-fieldset legend {
   font-weight: normal;
   color: black;
 }
 
 /* checkbox */
-/* line 113, ../scss/components/_formelements.scss */
+/* line 127, ../scss/components/_formelements.scss */
 .x-form-check-wrap input {
   vertical-align: text-bottom;
 }
 
-/* line 116, ../scss/components/_formelements.scss */
+/* line 130, ../scss/components/_formelements.scss */
 .x-form-item .x-form-cb-label {
   top: 0;
   margin-left: 3px;
 }
 
-/* line 121, ../scss/components/_formelements.scss */
+/* line 135, ../scss/components/_formelements.scss */
 .zarafa-delayeddelivery-invalid-date {
   color: #FF0000;
 }
 
-/* line 125, ../scss/components/_formelements.scss */
+/* line 139, ../scss/components/_formelements.scss */
 .zarafa-radiodatetime-datetimefield {
   background-position-y: 24px;
 }
 
-/* line 130, ../scss/components/_formelements.scss */
+/* line 144, ../scss/components/_formelements.scss */
 .zarafa-delayeddeliverypanel .x-panel-body {
   padding: 15px !important;
 }
 
-/* line 135, ../scss/components/_formelements.scss */
+/* line 149, ../scss/components/_formelements.scss */
 .zarafa-delayeddeliverypanel-fields, .zarafa-delayeddeliverypanel-radiospinnerfield, .zarafa-delayeddeliverypanel-radiodatetimefield, .zarafa-delayeddeliverypanel-displayfield, .ext-gecko3.ext-linux .zarafa-delayeddeliverypanel-displayfield {
   margin: 0 0 10px 5px !important;
 }
 
-/* line 141, ../scss/components/_formelements.scss */
+/* line 155, ../scss/components/_formelements.scss */
 .zarafa-delayeddeliverypanel-radiospinnerfield .x-form-display-field {
   top: 2px !important;
 }
-/* line 144, ../scss/components/_formelements.scss */
+/* line 158, ../scss/components/_formelements.scss */
 .zarafa-delayeddeliverypanel-radiospinnerfield .x-form-check-wrap {
   top: 3px !important;
   -webkit-padding-before: 1px !important;
 }
-/* line 147, ../scss/components/_formelements.scss */
+/* line 161, ../scss/components/_formelements.scss */
 .zarafa-delayeddeliverypanel-radiospinnerfield .x-form-check-wrap label {
   margin-left: 10px !important;
 }
 
-/* line 155, ../scss/components/_formelements.scss */
+/* line 169, ../scss/components/_formelements.scss */
 .zarafa-delayeddeliverypanel-radiodatetimefield .x-form-check-wrap {
   top: 3px !important;
   -webkit-padding-before: 3px !important;
 }
 
-/* line 161, ../scss/components/_formelements.scss */
+/* line 175, ../scss/components/_formelements.scss */
 .zarafa-delayeddeliverypanel-displayfield {
   margin-left: 28px !important;
 }
 
-/* line 166, ../scss/components/_formelements.scss */
+/* line 180, ../scss/components/_formelements.scss */
 .ext-gecko3.ext-linux .zarafa-delayeddeliverypanel-displayfield {
   margin-left: 32px !important;
 }
@@ -11642,19 +11654,19 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .zarafa-searchgrid
 }
 
 /* line 300, ../scss/components/_search.scss */
-.zarafa-search-combobox-menu-sep {
-  margin: 2px 0 !important;
+.k-search-combobox-menu-sep-parent {
+  margin: 3px 0;
+}
+/* line 303, ../scss/components/_search.scss */
+.k-search-combobox-menu-sep-parent .k-search-combobox-menu-sep {
+  margin: 0 !important;
+  height: 0 !important;
   background-color: #e6e6e6 !important;
   border-bottom-color: #e6e6e6 !important;
 }
 
-/* line 306, ../scss/components/_search.scss */
-.zarafa-search-combobox-item {
-  padding: 2px 10px !important;
-}
-
-/* line 310, ../scss/components/_search.scss */
-.zarafa-search-node-owner {
+/* line 311, ../scss/components/_search.scss */
+.k-search-node-owner {
   font-weight: normal;
   color: #777777 !important;
 }
