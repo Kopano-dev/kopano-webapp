@@ -15,12 +15,12 @@
 /* triggers of comboboxes and up-down inputs */
 /* settings */
 /* The font */
-/* 
+/*
  * Remember, !important is very fugly! But in this case it is used because we want to force only one font accross the WebApp
  * and this is a very easy way to overwrite all those font-settings that Ext does.
  */
 @import url(../../tinymce/skins/white/skin.min.css);
-/* line 22, ../scss/base/_fonts.scss */
+/* line 25, ../scss/base/_fonts.scss */
 body * :not(.mce-ico) {
   font-family: arial, tahoma, helvetica, sans-serif !important;
   font-size: 13px !important;
@@ -2598,6 +2598,7 @@ ul.x-tab-strip-top {
 /* line 44, ../scss/components/_buttons.scss */
 .buttons-arrow_left_l,
 .arrow_left_l,
+.x-toolbar .x-btn.x-btn-icon .x-btn-small button.arrow_left_l,
 .zarafa-calendar-container-tabarea .zarafa-calendar-tab-contents .zarafa-calendar-tab-icon-merge {
   /* need to use !important because Ext also uses it here and there! */
   background-image: url('../images/buttons-s56773aac24.png') !important;
@@ -2626,6 +2627,7 @@ ul.x-tab-strip-top {
 /* line 44, ../scss/components/_buttons.scss */
 .buttons-arrow_right_l,
 .arrow_right_l,
+.x-toolbar .x-btn.x-btn-icon .x-btn-small button.arrow_right_l,
 .zarafa-calendar-container-tabarea .zarafa-calendar-tab-contents .zarafa-calendar-tab-icon-separate {
   /* need to use !important because Ext also uses it here and there! */
   background-image: url('../images/buttons-s56773aac24.png') !important;
@@ -4897,6 +4899,8 @@ td.x-grid3-hd-menu-open .x-grid3-hd-inner {
   /* complete task button */
   /* complete task button */
   /* more button */
+  /* arrow left button */
+  /* arrow right button */
 }
 /* line 144, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-icon .x-btn-small button.x-tbar-page-first {
@@ -5042,30 +5046,38 @@ td.x-grid3-hd-menu-open .x-grid3-hd-inner {
 .x-toolbar .x-btn.x-btn-icon .x-btn-small button.icon_more {
   background-position: 3px -1645px;
 }
-/* line 316, ../scss/components/_toolbars.scss */
+/* line 313, ../scss/components/_toolbars.scss */
+.x-toolbar .x-btn.x-btn-icon .x-btn-small button.arrow_left_l, .x-toolbar .x-btn.x-btn-icon .x-btn-small .zarafa-calendar-container-tabarea .zarafa-calendar-tab-contents button.zarafa-calendar-tab-icon-merge, .zarafa-calendar-container-tabarea .zarafa-calendar-tab-contents .x-toolbar .x-btn.x-btn-icon .x-btn-small button.zarafa-calendar-tab-icon-merge {
+  background-position: 9px -58px;
+}
+/* line 319, ../scss/components/_toolbars.scss */
+.x-toolbar .x-btn.x-btn-icon .x-btn-small button.arrow_right_l, .x-toolbar .x-btn.x-btn-icon .x-btn-small .zarafa-calendar-container-tabarea .zarafa-calendar-tab-contents button.zarafa-calendar-tab-icon-separate, .zarafa-calendar-container-tabarea .zarafa-calendar-tab-contents .x-toolbar .x-btn.x-btn-icon .x-btn-small button.zarafa-calendar-tab-icon-separate {
+  background-position: 11px -172px;
+}
+/* line 328, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-icon.x-item-disabled .x-btn-small {
   /* first page button */
   /* previous page button */
   /* last page button */
   /* next page button */
 }
-/* line 318, ../scss/components/_toolbars.scss */
+/* line 330, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-icon.x-item-disabled .x-btn-small button.x-tbar-page-first {
   background-position: -2px -3194px;
 }
-/* line 324, ../scss/components/_toolbars.scss */
+/* line 336, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-icon.x-item-disabled .x-btn-small button.x-tbar-page-prev {
   background-position: -2px -3094px;
 }
-/* line 330, ../scss/components/_toolbars.scss */
+/* line 342, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-icon.x-item-disabled .x-btn-small button.x-tbar-page-last {
   background-position: -2px -3394px;
 }
-/* line 336, ../scss/components/_toolbars.scss */
+/* line 348, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-icon.x-item-disabled .x-btn-small button.x-tbar-page-next {
   background-position: -1px -3294px;
 }
-/* line 345, ../scss/components/_toolbars.scss */
+/* line 357, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-text-icon .x-btn-small {
   /* Restored items restore item */
   /* Restored items delete button */
@@ -5086,134 +5098,134 @@ td.x-grid3-hd-menu-open .x-grid3-hd-inner {
   /* View all Proposals button */
   /* Restore delelted items button */
 }
-/* line 347, ../scss/components/_toolbars.scss */
+/* line 359, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_restore {
   background-position: 2px -4456px;
 }
-/* line 353, ../scss/components/_toolbars.scss */
+/* line 365, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_delete {
   background-position: 2px -667px;
 }
-/* line 359, ../scss/components/_toolbars.scss */
+/* line 371, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_replyEmail {
   background-position: 6px -2151px;
   padding-left: 32px;
 }
-/* line 366, ../scss/components/_toolbars.scss */
+/* line 378, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_replyAllEmail {
   background-position: 6px -2199px;
   padding-left: 32px;
 }
-/* line 373, ../scss/components/_toolbars.scss */
+/* line 385, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_forwardEmail {
   background-position: 6px -856px;
   padding-left: 32px;
 }
-/* line 380, ../scss/components/_toolbars.scss */
+/* line 392, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_editAsNewEmail {
   background-position: 6px -712px;
   padding-left: 32px;
 }
-/* line 387, ../scss/components/_toolbars.scss */
+/* line 399, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_recurrence {
   background-position: 6px -2102px;
 }
-/* line 392, ../scss/components/_toolbars.scss */
+/* line 404, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_invite_attendees {
   background-position: 6px -903px;
 }
-/* line 397, ../scss/components/_toolbars.scss */
+/* line 409, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_cancel_meeting_request {
   background-position: 6px -854px;
 }
-/* line 403, ../scss/components/_toolbars.scss */
+/* line 415, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_no_response_required {
   background-position: 5px -1686px;
   padding-left: 26px;
 }
-/* line 410, ../scss/components/_toolbars.scss */
+/* line 422, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_calendar, .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_calendar_view {
   background-position: 6px -1075px;
   padding-left: 27px;
 }
-/* line 417, ../scss/components/_toolbars.scss */
+/* line 429, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_appt_meeting_accept, .x-toolbar .x-btn.x-btn-text-icon .x-btn-small .x-panel:not(.zarafa-searchgrid) > .x-panel-bwrap > .x-panel-body > .x-grid3 .x-grid3-row button.icon_appt_meeting_accept, .x-panel:not(.zarafa-searchgrid) > .x-panel-bwrap > .x-panel-body > .x-grid3 .x-grid3-row .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_appt_meeting_accept, .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_calendar_appt_accept {
   background-position: 6px -790px;
   padding-left: 27px;
 }
-/* line 424, ../scss/components/_toolbars.scss */
+/* line 436, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_appt_meeting_tentative, .x-toolbar .x-btn.x-btn-text-icon .x-btn-small .x-panel:not(.zarafa-searchgrid) > .x-panel-bwrap > .x-panel-body > .x-grid3 .x-grid3-row button.icon_appt_meeting_tentative, .x-panel:not(.zarafa-searchgrid) > .x-panel-bwrap > .x-panel-body > .x-grid3 .x-grid3-row .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_appt_meeting_tentative, .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_calendar_appt_tentative {
   background-position: 6px -1035px;
   padding-left: 27px;
 }
-/* line 431, ../scss/components/_toolbars.scss */
+/* line 443, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_appt_meeting_decline, .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_cancel_meeting_request, .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_calendar_appt_cancelled {
   background-position: 6px -854px;
   padding-left: 27px;
 }
-/* line 438, ../scss/components/_toolbars.scss */
+/* line 450, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_calendar_view {
   background-position: 6px -756px;
   padding-left: 27px;
 }
-/* line 445, ../scss/components/_toolbars.scss */
+/* line 457, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_appt_meeting_newtime, .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_calendar_appt_newtime, .x-toolbar .x-btn.x-btn-text-icon .x-btn-small .x-panel:not(.zarafa-searchgrid) > .x-panel-bwrap > .x-panel-body > .x-grid3 .x-grid3-row button.icon_appt_meeting_newtime, .x-panel:not(.zarafa-searchgrid) > .x-panel-bwrap > .x-panel-body > .x-grid3 .x-grid3-row .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_appt_meeting_newtime, .x-panel:not(.zarafa-searchgrid) > .x-panel-bwrap > .x-panel-body > .x-grid3 .x-grid3-row .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_calendar_appt_newtime, .x-toolbar .x-btn.x-btn-text-icon .x-btn-small .x-panel:not(.zarafa-searchgrid) > .x-panel-bwrap > .x-panel-body > .x-grid3 .x-grid3-row button.icon_calendar_appt_newtime, .x-toolbar .x-btn.x-btn-text-icon .x-btn-small ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner button.icon_appt_meeting_newtime, ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_appt_meeting_newtime, ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_calendar_appt_newtime, .x-toolbar .x-btn.x-btn-text-icon .x-btn-small ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner button.icon_calendar_appt_newtime {
   background-position: 6px -890px;
   padding-left: 27px;
 }
-/* line 452, ../scss/components/_toolbars.scss */
+/* line 464, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_calendar_appt_proposals {
   background-position: 6px -962px;
   padding-left: 27px;
 }
-/* line 459, ../scss/components/_toolbars.scss */
+/* line 471, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.icon_restore {
   background-position: 6px -4454px;
   padding-left: 27px;
 }
-/* line 464, ../scss/components/_toolbars.scss */
+/* line 476, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.buttons_icon_send_later_black {
   background-position: 6px -2419px;
 }
-/* line 472, ../scss/components/_toolbars.scss */
+/* line 484, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-text-icon.zarafa-action .x-btn-small {
   /* reply button */
   /* save button */
   /* save button */
   /* View in calendar button */
 }
-/* line 475, ../scss/components/_toolbars.scss */
+/* line 487, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-text-icon.zarafa-action .x-btn-small button.icon_replyEmail {
   background-position: 6px -2246px;
 }
-/* line 481, ../scss/components/_toolbars.scss */
+/* line 493, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-text-icon.zarafa-action .x-btn-small button.buttons-icon_save_white {
   background-position: 6px -2287px;
 }
-/* line 487, ../scss/components/_toolbars.scss */
+/* line 499, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-text-icon.zarafa-action .x-btn-small button.icon_appt_meeting_accept, .x-toolbar .x-btn.x-btn-text-icon.zarafa-action .x-btn-small .x-panel:not(.zarafa-searchgrid) > .x-panel-bwrap > .x-panel-body > .x-grid3 .x-grid3-row button.icon_appt_meeting_accept, .x-panel:not(.zarafa-searchgrid) > .x-panel-bwrap > .x-panel-body > .x-grid3 .x-grid3-row .x-toolbar .x-btn.x-btn-text-icon.zarafa-action .x-btn-small button.icon_appt_meeting_accept, .x-toolbar .x-btn.x-btn-text-icon.zarafa-action .x-btn-small button.icon_calendar_appt_accept {
   background-position: 6px -820px;
 }
-/* line 493, ../scss/components/_toolbars.scss */
+/* line 505, ../scss/components/_toolbars.scss */
 .x-toolbar .x-btn.x-btn-text-icon.zarafa-action .x-btn-small button.icon_calendar_view {
   background-position: 6px -1144px;
   padding-left: 27px;
 }
 
 /* Paging toolbar */
-/* line 505, ../scss/components/_toolbars.scss */
+/* line 517, ../scss/components/_toolbars.scss */
 .x-toolbar.zarafa-paging-toolbar .x-btn .x-btn-small {
   background-color: transparent !important;
 }
-/* line 508, ../scss/components/_toolbars.scss */
+/* line 520, ../scss/components/_toolbars.scss */
 .x-toolbar.zarafa-paging-toolbar .x-btn .x-btn-small button.x-btn-text {
   width: 18px;
 }
-/* line 515, ../scss/components/_toolbars.scss */
+/* line 527, ../scss/components/_toolbars.scss */
 .x-toolbar.zarafa-paging-toolbar .x-btn.x-btn-over.x-btn-click .x-btn-small button.x-btn-text {
   background-color: #f8f8f8;
 }
-/* line 521, ../scss/components/_toolbars.scss */
+/* line 533, ../scss/components/_toolbars.scss */
 .x-toolbar.zarafa-paging-toolbar .x-btn-page-next {
   margin-left: 3px;
 }
@@ -9524,45 +9536,56 @@ div.zarafa-contact-cardview-selected {
 .x-window .x-window-bl,
 .x-panel-ghost .x-window-bl {
   background: none;
+  padding-left: 0;
 }
-/* line 172, ../scss/components/_popups.scss */
+/* line 173, ../scss/components/_popups.scss */
 .x-window .x-window-bl .x-window-br,
 .x-panel-ghost .x-window-bl .x-window-br {
   background: none;
 }
-/* line 175, ../scss/components/_popups.scss */
+/* line 176, ../scss/components/_popups.scss */
 .x-window .x-window-bl .x-window-br .x-window-bc,
 .x-panel-ghost .x-window-bl .x-window-br .x-window-bc {
   background: none;
 }
+/* line 182, ../scss/components/_popups.scss */
+.x-window .x-panel-nofooter .x-window-bc,
+.x-panel-ghost .x-panel-nofooter .x-window-bc {
+  display: none;
+}
 /* line 187, ../scss/components/_popups.scss */
+.x-window .x-window-bbar .x-toolbar,
+.x-panel-ghost .x-window-bbar .x-toolbar {
+  border-top-color: #e6e6e6;
+}
+/* line 198, ../scss/components/_popups.scss */
 .x-window .copymove-panel .copymove-tree-panel .x-form-item,
 .x-panel-ghost .copymove-panel .copymove-tree-panel .x-form-item {
   margin-bottom: 0;
 }
-/* line 193, ../scss/components/_popups.scss */
+/* line 204, ../scss/components/_popups.scss */
 .x-window .x-form-display-field.tree-header,
 .x-panel-ghost .x-form-display-field.tree-header {
   line-height: 20px;
   padding: 2px 0 2px;
 }
-/* line 198, ../scss/components/_popups.scss */
+/* line 209, ../scss/components/_popups.scss */
 .x-window .x-tree-node.zarafa-tree-root-container .x-tree-node-el,
 .x-panel-ghost .x-tree-node.zarafa-tree-root-container .x-tree-node-el {
   padding-left: 6px;
 }
-/* line 207, ../scss/components/_popups.scss */
+/* line 218, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container {
   /* General tab */
   /* Permissions tab */
 }
-/* line 209, ../scss/components/_popups.scss */
+/* line 220, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container > .x-panel-bwrap > .x-panel-body,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container > .x-panel-bwrap > .x-panel-body {
   padding: 0;
 }
-/* line 214, ../scss/components/_popups.scss */
+/* line 225, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container > .x-panel-bwrap > .x-panel-body > .x-tab-panel > .x-tab-panel-bwrap > .x-tab-panel-body,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container > .x-panel-bwrap > .x-panel-body > .x-tab-panel > .x-tab-panel-bwrap > .x-tab-panel-body {
   /* Set the padding not on this panel because it contains lines
@@ -9571,24 +9594,24 @@ div.zarafa-contact-cardview-selected {
   padding-right: 0;
   padding: 0;
 }
-/* line 229, ../scss/components/_popups.scss */
+/* line 240, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general form > .x-panel > .x-panel-bwrap > .x-panel-body,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general form > .x-panel > .x-panel-bwrap > .x-panel-body {
   padding: 0 9px;
 }
-/* line 233, ../scss/components/_popups.scss */
+/* line 244, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general form .x-form-item-label,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general form .x-form-item-label {
   padding: 0 5px 0 0;
 }
-/* line 237, ../scss/components/_popups.scss */
+/* line 248, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general form .x-form-item,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general form .x-form-item {
   margin: 0;
   padding: 0;
   line-height: 20px;
 }
-/* line 244, ../scss/components/_popups.scss */
+/* line 255, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name {
   padding-top: 7.5px;
@@ -9600,7 +9623,7 @@ div.zarafa-contact-cardview-selected {
   font-weight: bold;
   font-size: 15px !important;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.arrow_down_l, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-grid3-hd-row td.sort-desc .display-name.x-grid3-sort-icon, .x-grid3-hd-row td.sort-desc .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.x-grid3-sort-icon, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.preview-header-collapse-plus,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.arrow_down_l,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-grid3-hd-row td.sort-desc .display-name.x-grid3-sort-icon,
@@ -9610,14 +9633,14 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 10px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.arrow_down_s,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.arrow_down_s {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -15px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.arrow_up_l, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-grid3-hd-row td.sort-asc .display-name.x-grid3-sort-icon, .x-grid3-hd-row td.sort-asc .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.x-grid3-sort-icon, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.preview-header-collapse-minus,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.arrow_up_l,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-grid3-hd-row td.sort-asc .display-name.x-grid3-sort-icon,
@@ -9627,49 +9650,49 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -38px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.arrow_up_s,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.arrow_up_s {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -63px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.delegates_l,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.delegates_l {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -86px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.delegates_s,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.delegates_s {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -138px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.drop-add,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.drop-add {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -178px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.drop-no,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.drop-no {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -214px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.drop-yes,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.drop-yes {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -250px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.folder, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder,
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_note,
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_folder,
@@ -9693,7 +9716,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -286px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.folder_bw, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_open, .x-menu .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_open,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.folder_bw,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_open,
@@ -9702,7 +9725,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -321px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.folder_public, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-tree-node-el .display-name.x-tree-node-icon.icon_folder_shared_store, .x-tree-node-el .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.x-tree-node-icon.icon_folder_shared_store,
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-tree-node-el .display-name.x-tree-node-icon.icon_folder_public_store,
 .x-tree-node-el .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.x-tree-node-icon.icon_folder_public_store,
@@ -9719,7 +9742,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -357px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_addressbook, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-zarafa-boxfield ul .x-zarafa-boxfield-recipient-item-ambiguous .display-name.x-zarafa-boxfield-item-icon, .x-zarafa-boxfield ul .x-zarafa-boxfield-recipient-item-ambiguous .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.x-zarafa-boxfield-item-icon,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_addressbook,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-zarafa-boxfield ul .x-zarafa-boxfield-recipient-item-ambiguous .display-name.x-zarafa-boxfield-item-icon,
@@ -9728,7 +9751,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -392px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_all_day, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-grid3-hd-row td.zarafa-icon-column .x-grid3-hd-inner p.display-name.icon_complete, .x-grid3-hd-row td.zarafa-icon-column .x-grid3-hd-inner .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general p.display-name.icon_complete,
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-grid3-hd-row td.zarafa-icon-column .x-grid3-hd-inner p.display-name.icon_allday,
 .x-grid3-hd-row td.zarafa-icon-column .x-grid3-hd-inner .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general p.display-name.icon_allday, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .x-menu-check-item .x-menu-item-text p.display-name.icon_complete, .x-menu .x-menu-check-item .x-menu-item-text .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general p.display-name.icon_complete,
@@ -9747,7 +9770,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -426px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_appt_meeting_cancel, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-panel:not(.zarafa-searchgrid) > .x-panel-bwrap > .x-panel-body > .x-grid3 .x-grid3-row .display-name.icon_appt_meeting_decline, .x-panel:not(.zarafa-searchgrid) > .x-panel-bwrap > .x-panel-body > .x-grid3 .x-grid3-row .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_appt_meeting_decline, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .zarafa-searchgrid .x-grid3-row table.messageclass-data .display-name.icon_appt_meeting_decline, .zarafa-searchgrid .x-grid3-row table.messageclass-data .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_appt_meeting_decline,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_appt_meeting_cancel,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-panel:not(.zarafa-searchgrid) > .x-panel-bwrap > .x-panel-body > .x-grid3 .x-grid3-row .display-name.icon_appt_meeting_decline,
@@ -9758,56 +9781,56 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -460px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_attachment_preview,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_attachment_preview {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -495px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_busystatus,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_busystatus {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -535px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_busystatus_busy,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_busystatus_busy {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -571px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_busystatus_free,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_busystatus_free {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -607px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_busystatus_outofoffice,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_busystatus_outofoffice {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -643px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_busystatus_tentative,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_busystatus_tentative {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -679px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_busystatus_unknown,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_busystatus_unknown {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -715px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.display-name.icon_calendar_view, .x-toolbar .x-btn.x-btn-text-icon .x-btn-small .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general button.display-name.icon_calendar_view, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_calendar_view, .x-menu .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar_view,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.display-name.icon_calendar_view,
@@ -9818,7 +9841,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -751px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar_appt_accept, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_appt_meeting_accept,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar_appt_accept,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_appt_meeting_accept {
@@ -9826,7 +9849,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -784px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar_appt_accept_white, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-toolbar .x-btn.x-btn-text-icon.zarafa-action .x-btn-small button.display-name.icon_appt_meeting_accept, .x-toolbar .x-btn.x-btn-text-icon.zarafa-action .x-btn-small .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general button.display-name.icon_appt_meeting_accept, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-toolbar .x-btn.x-btn-text-icon.zarafa-action .x-btn-small button.display-name.icon_calendar_appt_accept, .x-toolbar .x-btn.x-btn-text-icon.zarafa-action .x-btn-small .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general button.display-name.icon_calendar_appt_accept,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar_appt_accept_white,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-toolbar .x-btn.x-btn-text-icon.zarafa-action .x-btn-small button.display-name.icon_appt_meeting_accept,
@@ -9837,7 +9860,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -816px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar_appt_cancelled, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_appt_meeting_decline, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.display-name.icon_cancel_meeting_request, .x-toolbar .x-btn.x-btn-text-icon .x-btn-small .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general button.display-name.icon_cancel_meeting_request, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_cancel_meeting_request, .x-menu .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_cancel_meeting_request,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar_appt_cancelled,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_appt_meeting_decline,
@@ -9849,7 +9872,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -848px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar_appt_newtime, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_appt_meeting_newtime,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar_appt_newtime,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_appt_meeting_newtime {
@@ -9857,7 +9880,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -884px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar_appt_outofdate, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_appt_meeting_outofdate,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar_appt_outofdate,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_appt_meeting_outofdate {
@@ -9865,14 +9888,14 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -921px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar_appt_proposals,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar_appt_proposals {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -956px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar_appt_recurring, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_appt_meeting_recurring,
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_appt_recurring,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar_appt_recurring,
@@ -9882,7 +9905,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -994px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar_appt_tentative, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_appt_meeting_tentative,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar_appt_tentative,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_appt_meeting_tentative {
@@ -9890,7 +9913,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -1029px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar_blue, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_appt_appointment, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.display-name.icon_calendar, .x-toolbar .x-btn.x-btn-text-icon .x-btn-small .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general button.display-name.icon_calendar, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.display-name.icon_calendar_view, .x-toolbar .x-btn.x-btn-text-icon .x-btn-small .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general button.display-name.icon_calendar_view, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_calendar, .x-menu .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_calendar_view, .x-menu .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar_view,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar_blue,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_appt_appointment,
@@ -9906,7 +9929,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -1069px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar_mr, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_appt_meeting_single,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar_mr,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_appt_meeting_single {
@@ -9914,7 +9937,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -1104px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar_white, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-toolbar .x-btn.x-btn-text-icon.zarafa-action .x-btn-small button.display-name.icon_calendar_view, .x-toolbar .x-btn.x-btn-text-icon.zarafa-action .x-btn-small .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general button.display-name.icon_calendar_view,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_calendar_white,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-toolbar .x-btn.x-btn-text-icon.zarafa-action .x-btn-small button.display-name.icon_calendar_view,
@@ -9923,7 +9946,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -1139px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_categories_bw, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-toolbar .x-btn.x-btn-icon .x-btn-small button.display-name.icon_categories, .x-toolbar .x-btn.x-btn-icon .x-btn-small .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general button.display-name.icon_categories, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_categories, .x-menu .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_categories,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_categories_bw,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-toolbar .x-btn.x-btn-icon .x-btn-small button.display-name.icon_categories,
@@ -9934,21 +9957,21 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -1172px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_change_picture,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_change_picture {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -1207px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_checked,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_checked {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -1247px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_cogwheel_s, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-grid3-hd-row td .x-grid3-hd-inner .display-name.x-grid3-hd-btn, .x-grid3-hd-row td .x-grid3-hd-inner .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.x-grid3-hd-btn,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_cogwheel_s,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-grid3-hd-row td .x-grid3-hd-inner .display-name.x-grid3-hd-btn,
@@ -9957,21 +9980,21 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -1283px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_columns,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_columns {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -1313px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_contact,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_contact {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -1349px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_contact_card, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_contact_user,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_contact_card,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_contact_user {
@@ -9979,42 +10002,42 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -1389px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_contact_card_view,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_contact_card_view {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -1424px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_contact_company,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_contact_company {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -1454px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_contact_equipment,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_contact_equipment {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -1490px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_contact_list,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_contact_list {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -1524px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_contact_room,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_contact_room {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -1556px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_contact_smtp, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_contact_gab_user,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_contact_smtp,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_contact_gab_user {
@@ -10022,7 +10045,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -1590px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_distlist, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_contact_distlist,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_distlist,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_contact_distlist {
@@ -10030,7 +10053,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -1625px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_download, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_saveaseml, .x-menu .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_saveaseml,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_download,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_saveaseml,
@@ -10039,7 +10062,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -1660px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_download_zip, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_saveemlaszip, .x-menu .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_saveemlaszip,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_download_zip,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_saveemlaszip,
@@ -10048,14 +10071,14 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -1694px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_edit_recipient,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_edit_recipient {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -1727px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_favorites, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_folder_favorites, .x-menu .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_favorites, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-tree-node-el .display-name.x-tree-node-icon.icon_folder_favorites, .x-tree-node-el .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.x-tree-node-icon.icon_folder_favorites,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_favorites,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_folder_favorites,
@@ -10066,7 +10089,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -1767px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_flag, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_flag,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_flag,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_flag {
@@ -10074,7 +10097,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -1802px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_flag_blue, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_flag_blue,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_flag_blue,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_flag_blue {
@@ -10082,7 +10105,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -1834px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_flag_complete, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_completed,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_flag_complete,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_completed {
@@ -10090,7 +10113,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -1866px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_flag_green, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_flag_green,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_flag_green,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_flag_green {
@@ -10098,7 +10121,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -1897px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_flag_orange, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_flag_orange,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_flag_orange,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_flag_orange {
@@ -10106,7 +10129,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -1929px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_flag_purple, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_flag_purple,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_flag_purple,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_flag_purple {
@@ -10114,14 +10137,14 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -1961px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_flag_red,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_flag_red {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -1993px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_flag_yellow, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_flag_yellow,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_flag_yellow,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_flag_yellow {
@@ -10129,7 +10152,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -2025px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_calendar, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-tree-node-el .display-name.x-tree-node-icon.icon_folder_appointment, .x-tree-node-el .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.x-tree-node-icon.icon_folder_appointment,
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-tree-node-el .display-name.x-tree-node-icon.icon_folder_default_calendar,
 .x-tree-node-el .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.x-tree-node-icon.icon_folder_default_calendar,
@@ -10146,7 +10169,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -2057px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_contact, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_default_contact,
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_shared_contact,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_contact,
@@ -10156,7 +10179,7 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -2092px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_create, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_createFolderColor, .x-menu .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_createFolderColor,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_create,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_createFolderColor,
@@ -10165,21 +10188,21 @@ div.zarafa-contact-cardview-selected {
   background-repeat: no-repeat;
   background-position: 0 -2127px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_default_drafts,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_default_drafts {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -2162px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_default_favorites,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_default_favorites {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -2197px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_default_inbox,
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .display-name.icon_folder_shared_inbox,
 ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_shared_inbox, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-tree-node-el .display-name.x-tree-node-icon.icon_folder_shared_inbox, .x-tree-node-el .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.x-tree-node-icon.icon_folder_shared_inbox,
@@ -10192,7 +10215,7 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -2232px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_default_journal,
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .display-name.icon_folder_journal,
 ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_journal, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-tree-node-el .display-name.x-tree-node-icon.icon_folder_journal, .x-tree-node-el .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.x-tree-node-icon.icon_folder_journal,
@@ -10205,7 +10228,7 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -2267px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_default_junk, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_junk,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_default_junk,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_junk {
@@ -10213,49 +10236,49 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -2302px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_default_outbox,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_default_outbox {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -2337px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_default_sent,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_default_sent {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -2372px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_rename,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_rename {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -2407px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_rename_bw,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_rename_bw {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -2442px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_rss,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_rss {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -2477px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_store,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_store {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -2512px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_task,
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-tree-node-el .display-name.x-tree-node-icon.icon_folder_default_task,
 .x-tree-node-el .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.x-tree-node-icon.icon_folder_default_task,
@@ -10270,21 +10293,21 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -2547px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_funnel,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_funnel {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -2583px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_importance,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_importance {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -2623px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_inbox, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-tree-node-el .display-name.x-tree-node-icon.icon_folder_store, .x-tree-node-el .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.x-tree-node-icon.icon_folder_store,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_inbox,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-tree-node-el .display-name.x-tree-node-icon.icon_folder_store,
@@ -10293,28 +10316,28 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -2654px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_index,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_index {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -2686px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_forwarded,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_forwarded {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -2719px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_oof,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_oof {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -2754px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_read, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_message,
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_message_read, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_mark_all_read, .x-menu .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mark_all_read,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_read,
@@ -10326,14 +10349,14 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -2790px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_replied,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_replied {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -2825px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_report_accept, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_read_receipt,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_report_accept,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_read_receipt {
@@ -10341,7 +10364,7 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -2860px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_report_decline, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_nonread_receipt,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_report_decline,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_nonread_receipt {
@@ -10349,7 +10372,7 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -2894px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_report_ndr, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_nondelivery_receipt,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_report_ndr,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_nondelivery_receipt {
@@ -10357,21 +10380,21 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -2927px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_send,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_send {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -2961px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_stubbed,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_stubbed {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -3001px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_unread, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_message_unread,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_mail_unread,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_message_unread {
@@ -10379,7 +10402,7 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -3036px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_meetingrequest_optionalattendee, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.x-freebusy-userlist-recipienttype-optional, .x-menu .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.x-freebusy-userlist-recipienttype-optional,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_meetingrequest_optionalattendee,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.x-freebusy-userlist-recipienttype-optional,
@@ -10388,14 +10411,14 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -3065px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_meetingrequest_organizer,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_meetingrequest_organizer {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -3096px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_meetingrequest_requiredattendee, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.x-freebusy-userlist-recipienttype-required, .x-menu .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.x-freebusy-userlist-recipienttype-required,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_meetingrequest_requiredattendee,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.x-freebusy-userlist-recipienttype-required,
@@ -10404,7 +10427,7 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -3127px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_meetingrequest_resource, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.x-freebusy-userlist-recipienttype-resource, .x-menu .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.x-freebusy-userlist-recipienttype-resource,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_meetingrequest_resource,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.x-freebusy-userlist-recipienttype-resource,
@@ -10413,7 +10436,7 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -3158px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_new-task_request, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_createTaskRequest, .x-menu .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_createTaskRequest,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_new-task_request,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_createTaskRequest,
@@ -10422,7 +10445,7 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -3189px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_new_appointment, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_create_appointment, .x-menu .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_create_appointment,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_new_appointment,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_create_appointment,
@@ -10431,7 +10454,7 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -3227px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_new_contact, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_createContact, .x-menu .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_createContact,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_new_contact,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_createContact,
@@ -10440,7 +10463,7 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -3267px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_new_distlist, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_createDistributionList, .x-menu .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_createDistributionList,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_new_distlist,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_createDistributionList,
@@ -10449,7 +10472,7 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -3307px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_new_email, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-toolbar .x-btn.x-btn-icon .x-btn-small button.display-name.icon_send_email_to_recipient, .x-toolbar .x-btn.x-btn-icon .x-btn-small .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general button.display-name.icon_send_email_to_recipient, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_createEmailMessage, .x-menu .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_createEmailMessage, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_send_email_to_recipient, .x-menu .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_send_email_to_recipient,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_new_email,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-toolbar .x-btn.x-btn-icon .x-btn-small button.display-name.icon_send_email_to_recipient,
@@ -10462,7 +10485,7 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -3347px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_new_meeting_request, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_create_meeting_request, .x-menu .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_create_meeting_request,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_new_meeting_request,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_create_meeting_request,
@@ -10471,7 +10494,7 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -3387px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_new_note, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_createNote, .x-menu .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_createNote,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_new_note,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_createNote,
@@ -10480,7 +10503,7 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -3427px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_new_task, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_createTask, .x-menu .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_createTask,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_new_task,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_createTask,
@@ -10489,7 +10512,7 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -3467px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_not_current, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.display-name.icon_no_response_required, .x-toolbar .x-btn.x-btn-text-icon .x-btn-small .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general button.display-name.icon_no_response_required,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_not_current,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-toolbar .x-btn.x-btn-text-icon .x-btn-small button.display-name.icon_no_response_required,
@@ -10498,70 +10521,70 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -3505px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_note_blue,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_note_blue {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -3541px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_note_blue_large,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_note_blue_large {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -3576px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_note_green,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_note_green {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -3622px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_note_green_large,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_note_green_large {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -3657px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_note_icon_view,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_note_icon_view {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -3703px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_note_pink,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_note_pink {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -3738px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_note_pink_large,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_note_pink_large {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -3773px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_note_white,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_note_white {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -3819px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_note_white_large,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_note_white_large {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -3854px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_note_yellow, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_stickynote,
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_default_note,
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_shared_note,
@@ -10573,49 +10596,49 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -3900px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_note_yellow_large,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_note_yellow_large {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -3935px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_notification_error,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_notification_error {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -3981px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_notification_info,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_notification_info {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -4025px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_notification_warning,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_notification_warning {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -4069px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_oof,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_oof {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -4113px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_plug,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_plug {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -4153px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_plus, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-zarafa-boxfield ul .display-name.x-zarafa-boxfield-item-expand, .x-zarafa-boxfield ul .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.x-zarafa-boxfield-item-expand,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_plus,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-zarafa-boxfield ul .display-name.x-zarafa-boxfield-item-expand,
@@ -10624,98 +10647,98 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -4193px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_previewpanel_bottom,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_previewpanel_bottom {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -4221px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_previewpanel_off,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_previewpanel_off {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -4261px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_previewpanel_right,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_previewpanel_right {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -4301px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_refresh,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_refresh {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -4341px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_reminder,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_reminder {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -4381px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_remove_favorites,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_remove_favorites {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -4413px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_restore,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_restore {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -4448px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_seal,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_seal {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -4482px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_sendas,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_sendas {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -4522px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_shortcuts,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_shortcuts {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -4562px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_sort_ascending,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_sort_ascending {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -4602px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_sort_descending,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_sort_descending {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -4637px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_spanner,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_spanner {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -4672px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_task, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_default_task,
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_shared_task, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_task_normal,
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_task_recurring,
@@ -10732,21 +10755,21 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -4712px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_task_accepted,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_task_accepted {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -4748px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_task_active,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_task_active {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -4784px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_task_assigned, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_task_assignee,
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_task_assigner,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_task_assigned,
@@ -10756,56 +10779,56 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -4824px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_task_completed,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_task_completed {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -4860px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_task_declined,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_task_declined {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -4900px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_task_overdue,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_task_overdue {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -4936px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_task_request,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_task_request {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -4976px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_task_seven_days,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_task_seven_days {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -5013px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_task_simple,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_task_simple {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -5053px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_unchecked,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_unchecked {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -5093px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.menu_arrow_right_l, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .x-menu-list li.x-menu-list-item a.display-name.x-menu-item-arrow, .x-menu .x-menu-list li.x-menu-list-item .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general a.display-name.x-menu-item-arrow,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.menu_arrow_right_l,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .x-menu-list li.x-menu-list-item a.display-name.x-menu-item-arrow,
@@ -10814,14 +10837,14 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: -42px -5129px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.new_folder,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.new_folder {
   background-image: url('../images/icons-s5e994f76c8.png');
   background-repeat: no-repeat;
   background-position: 0 -5158px;
 }
-/* line 256, ../scss/components/_popups.scss */
+/* line 267, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.trash, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_default_wastebasket,
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_folder_delete,
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_empty_trash, .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .x-menu .display-name.icon_delete, .x-menu .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .display-name.icon_delete,
@@ -10835,49 +10858,49 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-repeat: no-repeat;
   background-position: 0 -5198px;
 }
-/* line 264, ../scss/components/_popups.scss */
+/* line 275, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .description-panel > .x-panel-bwrap > .x-panel-body,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .description-panel > .x-panel-bwrap > .x-panel-body {
   padding-top: 12px !important;
   padding-bottom: 9px !important;
 }
-/* line 270, ../scss/components/_popups.scss */
+/* line 281, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .content-info-panel > .x-panel-bwrap > .x-panel-body,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-general .content-info-panel > .x-panel-bwrap > .x-panel-body {
   padding-top: 12px !important;
   padding-bottom: 6px !important;
 }
-/* line 279, ../scss/components/_popups.scss */
+/* line 290, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-permissions .userlist-panel,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-permissions .userlist-panel {
   border-bottom: 1px solid #e6e6e6;
 }
-/* line 283, ../scss/components/_popups.scss */
+/* line 294, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-permissions .userlist-panel > .x-panel-bwrap .x-panel-body,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-permissions .userlist-panel > .x-panel-bwrap .x-panel-body {
   padding: 9px 9px 0;
 }
-/* line 289, ../scss/components/_popups.scss */
+/* line 300, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-permissions .profile-panel,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-permissions .profile-panel {
   padding: 6px 9px;
 }
-/* line 292, ../scss/components/_popups.scss */
+/* line 303, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-permissions .permissions-panel,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-permissions .permissions-panel {
   padding: 0 9px;
 }
-/* line 295, ../scss/components/_popups.scss */
+/* line 306, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-permissions .permissions-panel fieldset,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-permissions .permissions-panel fieldset {
   padding-bottom: 6px;
 }
-/* line 298, ../scss/components/_popups.scss */
+/* line 309, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-permissions .permissions-panel fieldset .x-column .x-column,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-permissions .permissions-panel fieldset .x-column .x-column {
   padding-bottom: 18px;
 }
-/* line 302, ../scss/components/_popups.scss */
+/* line 313, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-permissions .permissions-panel fieldset fieldset,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-permissions .permissions-panel fieldset fieldset {
   position: relative;
@@ -10886,54 +10909,54 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   padding-bottom: 3px;
   overflow: visible;
 }
-/* line 309, ../scss/components/_popups.scss */
+/* line 320, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-permissions .permissions-panel fieldset fieldset legend,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-permissions .permissions-panel fieldset fieldset legend {
   position: absolute;
   top: -23px;
   left: 6px;
 }
-/* line 315, ../scss/components/_popups.scss */
+/* line 326, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-permissions .permissions-panel fieldset fieldset .x-column,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-permissions .permissions-panel fieldset fieldset .x-column {
   padding-bottom: 0 !important;
 }
-/* line 318, ../scss/components/_popups.scss */
+/* line 329, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-permissions .permissions-panel fieldset fieldset .x-column .x-form-item,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-permissions .permissions-panel fieldset fieldset .x-column .x-form-item {
   margin-bottom: 0;
 }
-/* line 321, ../scss/components/_popups.scss */
+/* line 332, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-permissions .permissions-panel fieldset fieldset .x-column .x-form-item .x-form-item .x-form-item,
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-permissions .permissions-panel fieldset fieldset .x-column .x-form-item .x-form-item .x-form-item {
   padding-bottom: 3px;
 }
-/* line 327, ../scss/components/_popups.scss */
+/* line 338, ../scss/components/_popups.scss */
 .x-window .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-permissions .permissions-panel fieldset fieldset:nth-last-child(0n+2),
 .x-panel-ghost .x-window-bwrap .x-window-body > div .zarafa-folderproperties.x-panel.tabpanel-container .tab-permissions .permissions-panel fieldset fieldset:nth-last-child(0n+2) {
   margin-right: 0;
 }
 
 /* Reminder dialog */
-/* line 341, ../scss/components/_popups.scss */
+/* line 352, ../scss/components/_popups.scss */
 .zarafa-reminder-dialog-active-reminder-icon {
   width: 24px;
   height: 25px;
   float: left;
 }
 
-/* line 347, ../scss/components/_popups.scss */
+/* line 358, ../scss/components/_popups.scss */
 .zarafa-reminder-dialog-active-reminder-subject {
   font-weight: bold;
 }
 
-/* line 351, ../scss/components/_popups.scss */
+/* line 362, ../scss/components/_popups.scss */
 .zarafa-reminder-dialog-snooze, .zarafa-reminder-dialog-active-reminder {
   padding: 8px;
 }
 
 /* Address book dialog */
-/* line 360, ../scss/components/_popups.scss */
+/* line 371, ../scss/components/_popups.scss */
 .k-abuserselectionpanel > .x-panel-bwrap > .x-panel-body,
 .k-abmultiuserselectionpanel > .x-panel-bwrap > .x-panel-body,
 .k-addressbookpanel > .x-panel-bwrap > .x-panel-body {
@@ -10941,7 +10964,7 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
-/* line 365, ../scss/components/_popups.scss */
+/* line 376, ../scss/components/_popups.scss */
 .k-abuserselectionpanel .k-addressbookmainpanel-header,
 .k-abuserselectionpanel .k-addressbookmainpanel-grid,
 .k-abmultiuserselectionpanel .k-addressbookmainpanel-header,
@@ -10951,7 +10974,7 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   padding-left: 9px !important;
   padding-right: 9px !important;
 }
-/* line 371, ../scss/components/_popups.scss */
+/* line 382, ../scss/components/_popups.scss */
 .k-abuserselectionpanel .k-addressbookmainpanel-header,
 .k-abmultiuserselectionpanel .k-addressbookmainpanel-header,
 .k-addressbookpanel .k-addressbookmainpanel-header {
@@ -10959,13 +10982,13 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   border-bottom: 1px solid #e6e6e6;
   /* search button */
 }
-/* line 375, ../scss/components/_popups.scss */
+/* line 386, ../scss/components/_popups.scss */
 .k-abuserselectionpanel .k-addressbookmainpanel-header label.x-form-item-label,
 .k-abmultiuserselectionpanel .k-addressbookmainpanel-header label.x-form-item-label,
 .k-addressbookpanel .k-addressbookmainpanel-header label.x-form-item-label {
   text-align: right;
 }
-/* line 380, ../scss/components/_popups.scss */
+/* line 391, ../scss/components/_popups.scss */
 .k-abuserselectionpanel .k-addressbookmainpanel-header .icon_search,
 .k-abmultiuserselectionpanel .k-addressbookmainpanel-header .icon_search,
 .k-addressbookpanel .k-addressbookmainpanel-header .icon_search {
@@ -10976,27 +10999,27 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .x-panel-ghost .x-
   background-position: 4px -1552px !important;
 }
 
-/* line 390, ../scss/components/_popups.scss */
+/* line 401, ../scss/components/_popups.scss */
 .k-addressbookpanel {
   padding-bottom: 3px;
 }
 
-/* line 395, ../scss/components/_popups.scss */
+/* line 406, ../scss/components/_popups.scss */
 .k-abmultiuserselectionpanel > .x-panel-bwrap > .x-panel-body {
   padding-bottom: 3px !important;
 }
-/* line 399, ../scss/components/_popups.scss */
+/* line 410, ../scss/components/_popups.scss */
 .k-abmultiuserselectionpanel .k-addressbookmainpanel {
   padding-bottom: 9px;
 }
-/* line 402, ../scss/components/_popups.scss */
+/* line 413, ../scss/components/_popups.scss */
 .k-abmultiuserselectionpanel .zarafa-addressbook-dialog-compositefield {
   padding-left: 9px;
   padding-right: 9px;
 }
 
 /* Task send conformation dialog */
-/* line 410, ../scss/components/_popups.scss */
+/* line 421, ../scss/components/_popups.scss */
 .k-send-taskrequest-confirmation-panel .x-form-display-field {
   padding-bottom: 10px;
 }
@@ -12721,6 +12744,53 @@ ul.x-tab-strip li .x-tab-right .x-tab-left .x-tab-strip-inner .zarafa-searchgrid
 /* line 24, ../scss/components/_presence.scss */
 .preview-recipient-data .zarafa-recipient-link:not(:first-child) .zarafa-presence-status-icon {
   margin-left: 3px;
+}
+
+/* line 2, ../scss/components/_whatsnew.scss */
+#k-whatsnew-window .k-whatsnew-feature-number {
+  padding: 1px 9px 0;
+}
+/* line 6, ../scss/components/_whatsnew.scss */
+#k-whatsnew-window .k-whatsnew-feature-text {
+  padding: 12px 12px 0;
+}
+/* line 9, ../scss/components/_whatsnew.scss */
+#k-whatsnew-window .k-whatsnew-feature-text .k-whatsnew-feature-icon {
+  margin-bottom: 12px;
+  max-height: 100px;
+  max-width: 200px;
+}
+/* line 15, ../scss/components/_whatsnew.scss */
+#k-whatsnew-window .k-whatsnew-feature-text h2.k-whatsnew-text-title {
+  font-size: 18px !important;
+  margin-bottom: 9px;
+}
+/* line 20, ../scss/components/_whatsnew.scss */
+#k-whatsnew-window .k-whatsnew-feature-text .k-whatsnew-text-description {
+  line-height: 18px;
+}
+/* line 24, ../scss/components/_whatsnew.scss */
+#k-whatsnew-window .k-whatsnew-feature-image {
+  padding: 12px 0 0;
+  text-align: center;
+}
+/* line 28, ../scss/components/_whatsnew.scss */
+#k-whatsnew-window .k-whatsnew-feature-image img {
+  max-width: 420px;
+  max-height: 275px;
+}
+/* line 34, ../scss/components/_whatsnew.scss */
+#k-whatsnew-window .k-whatsnew-navbar {
+  border: none;
+}
+/* line 37, ../scss/components/_whatsnew.scss */
+#k-whatsnew-window .k-whatsnew-navbar .x-item-disabled {
+  visibility: hidden;
+}
+/* line 43, ../scss/components/_whatsnew.scss */
+#k-whatsnew-window .k-whatsnew-checkbox label {
+  line-height: 100%;
+  margin-left: 9px;
 }
 
 /*
