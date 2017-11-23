@@ -111,10 +111,17 @@ Zarafa.common.rules.data.ConditionFlags = Zarafa.core.Enum.create({
 	 */
 	RECEIVED_AFTER: 14,
 
+        /**
+        * Indicates that the condition checks which words are in the message-transport-header
+        * @property
+        * @type Number
+        */
+	TRANSPORTHEADER_WORDS: 15,
+
 	/**
 	 * Indicates that no condition will be applied. The rule always matches.
 	 * @property
 	 * @type Number
 	 */
-	NONE: 15
+	NONE: 16
 });
