@@ -2706,7 +2706,7 @@
 					}
 
 					// save changes to new message created in outbox
-					mapi_message_savechanges($newmessage);
+					mapi_savechanges($newmessage);
 
 					// Save the new message properties
 					$message = $this->saveMessage($store, $entryid, $storeprops[PR_IPM_OUTBOX_ENTRYID], $props, $messageProps, $recipients, $attachments, array(), $copyFromMessage, $copyAttachments, $copyRecipients, $copyInlineAttachmentsOnly, true, true);
