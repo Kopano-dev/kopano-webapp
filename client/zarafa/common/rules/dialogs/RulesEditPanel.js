@@ -76,11 +76,17 @@ Zarafa.common.rules.dialogs.RulesEditPanel = Ext.extend(Ext.form.FormPanel, {
 			height : 15
 		}, {
 			xtype : 'checkbox',
-			ref : 'stopProcessingCheckbox',
-			boxLabel : _('Stop processing more rules'),
-			handler : this.onToggleStopProcessing,
+                        ref : 'onlyIfOOFCheckbox',
+                        boxLabel : _('Applies only, when Out-Of-Office'),
+                        handler : this.onToggleIfOOF,
 			scope : this
-		}];
+		}, {
+                        xtype : 'checkbox',
+                        ref : 'stopProcessingCheckbox',
+                        boxLabel : _('Stop processing more rules'),
+                        handler : this.onToggleStopProcessing,
+			scope : this
+                }];
 	},
 
 	/**
@@ -115,6 +121,27 @@ Zarafa.common.rules.dialogs.RulesEditPanel = Ext.extend(Ext.form.FormPanel, {
 	},
 
 	/**
+          * Function will be called when user toggles state of checkbox to indicate that
+          * this will be last rule to be executed after that no rules should be executed.
+          * @param {Ext.form.Checkbox} checkbox The Checkbox being toggled.
+          * @param {Boolean} checked The new checked state of the checkbox.
+          * @private
+          */
+        onToggleIfOOF : function(checkbox, checked)
+	{
+                var state = this.record.get('rule_state');
+
+                if (checked) {
+                        state |= Zarafa.core.mapi.RuleStates.ST_ONLY_WHEN_OOF;
+                } else {
+                        state &= ~Zarafa.core.mapi.RuleStates.ST_ONLY_WHEN_OOF;
+                }
+
+                this.record.set('rule_state', state);
+        },
+
+
+	/**
 	 * Updates the panel by loading data from the record into the form panel.
 	 * @param {Zarafa.rules.delegates.data.RulesRecord} record The record update the panel with.
 	 * @param {Boolean} contentReset force the component to perform a full update of the data.
@@ -129,7 +156,8 @@ Zarafa.common.rules.dialogs.RulesEditPanel = Ext.extend(Ext.form.FormPanel, {
 		var state = record.get('rule_state');
 
 		this.stopProcessingCheckbox.setValue((state & RuleStates.ST_EXIT_LEVEL) === RuleStates.ST_EXIT_LEVEL);
-	},
+       		this.onlyIfOOFCheckbox.setValue((state & RuleStates.ST_ONLY_WHEN_OOF) === RuleStates.ST_ONLY_WHEN_OOF);
+        },
 
 	/**
 	 * Update the given {@link Zarafa.core.data.IPMRecord record} with
@@ -148,6 +176,13 @@ Zarafa.common.rules.dialogs.RulesEditPanel = Ext.extend(Ext.form.FormPanel, {
 		} else {
 			state &= ~Zarafa.core.mapi.RuleStates.ST_EXIT_LEVEL;
 		}
+                
+		if (this.onlyIfOOFCheckbox.getValue()) {
+                        state |= Zarafa.core.mapi.RuleStates.ST_ONLY_WHEN_OOF;
+                } else {
+                        state &= ~Zarafa.core.mapi.RuleStates.ST_ONLY_WHEN_OOF;
+                }
+
 		this.record.set('rule_state', state);
 
 		record.endEdit();
