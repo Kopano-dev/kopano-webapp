@@ -381,7 +381,8 @@ Zarafa.mail.MailStore = Ext.extend(Zarafa.core.data.ListModuleStore, {
 	 */
 	getStoreLength : function()
 	{
-		if (this.containsConversations()) {
+		// Get all items count when 'Unread' filtered has been applied.
+		if (this.containsConversations() && !this.hasFilterApplied) {
 			var count = 0;
 			var items = this.snapshot ? this.snapshot.items : this.getRange();
 			items.forEach(function(item) {
@@ -432,25 +433,27 @@ Zarafa.mail.MailStore = Ext.extend(Zarafa.core.data.ListModuleStore, {
 				Zarafa.core.mapi.MessageFlags.MSGFLAG_READ);
 
 			var model = container.getCurrentContext().getModel();
-			var previewedRecord = model.getPreviewRecord();
+			if (model) {
+				var previewedRecord = model.getPreviewRecord();
 
-			// Add preview record in filter restriction so we can
-			// make it remains preview in preview panel.
-			if(!Ext.isEmpty(previewedRecord) && this.hasFilterApplied) {
-				return Zarafa.core.data.RestrictionFactory.createResOr([
-					Zarafa.core.data.RestrictionFactory.dataResProperty(
-						'entryid',
-						Zarafa.core.mapi.Restrictions.RELOP_EQ,
-						previewedRecord.get('entryid')
-					),
-					unreadFilterRestriction
-				]);
+				// Add preview record in filter restriction so we can
+				// make it remains preview in preview panel.
+				if(!Ext.isEmpty(previewedRecord) && this.hasFilterApplied) {
+					return Zarafa.core.data.RestrictionFactory.createResOr([
+						Zarafa.core.data.RestrictionFactory.dataResProperty(
+							'entryid',
+							Zarafa.core.mapi.Restrictions.RELOP_EQ,
+							previewedRecord.get('entryid')
+						),
+						unreadFilterRestriction
+					]);
+				}
 			}
 
 			return unreadFilterRestriction;
 		}
 		return false;
-	},
+	}
 });
 
 Ext.reg('zarafa.mailstore', Zarafa.mail.MailStore);

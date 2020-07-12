@@ -212,7 +212,68 @@
 				return parent::messageList($store, $entryid, $action, $actionType);
 			}
 
+			if (isset($action['restriction']['filter']) && $action['restriction']['filter'] !== false) {
+				return $this->prepareFilteredData($store, $action, $actionType);
+			}
+
 			return $this->conversationList($store, $entryid, $action, $actionType);
+		}
+
+		/**
+		 * Function will prepare filtered data in the list form by applying restriction on search folder
+		 * of the conversation data.
+		 * @param object $store MAPI Message Store Object
+		 * @param array $action the action data, sent by the client
+		 * @param string $actionType the action type, sent by the client
+		 * @return boolean true on success or false on failure
+		 */
+		function prepareFilteredData($store, $action, $actionType) 
+		{
+			$searchFolder = $this->getConversationSearchFolder($this->currentActionData['store']);
+			if (!$searchFolder) {
+				// TODO: Improve error logging
+				error_log('no search folder found');
+				return [];
+			}
+			
+			$entryid = mapi_getprops($searchFolder, array(PR_ENTRYID))[PR_ENTRYID];
+			$this->parseRestriction($action);
+
+			// Sort
+			$this->parseSortOrder($action, null, true);
+
+			$limit = false;
+			if(isset($action['restriction']['limit'])){
+				$limit = $action['restriction']['limit'];
+			} else {
+				$limit = $GLOBALS['settings']->get('zarafa/v1/main/page_size', 50);
+			}
+
+			// Get the table and merge the arrays
+			$data = $GLOBALS["operations"]->getTable($store, $entryid, $this->properties, $this->sort, $this->start, $limit, $this->restriction);
+
+			$data = $this->filterPrivateItems($data);
+			
+			// Allowing to hook in just before the data sent away to be sent to the client
+			$GLOBALS['PluginManager']->triggerHook('server.module.listmodule.list.after', array(
+				'moduleObject' =>& $this,
+				'store' => $store,
+				'entryid' => $entryid,
+				'action' => $action,
+				'data' =>& $data,
+			));
+
+			foreach ($data["item"] as $key => $itemData) {
+				$itemData['props']['folder_name'] = $GLOBALS['entryid']->compareEntryIds($itemData['parent_entryid'], $this->_inboxEntryId) ? 'inbox' : 'sent_items';
+				$data["item"][$key] = $itemData;
+			}
+
+			// unset will remove the value but will not regenerate array keys, so we need to
+			// do it here
+			$data["item"] = array_values($data["item"]);
+
+			$this->addActionData($actionType, $data);
+			$GLOBALS["bus"]->addData($this->getResponseData());
 		}
 
 		/**

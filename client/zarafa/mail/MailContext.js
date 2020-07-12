@@ -538,7 +538,6 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 			text: _('No preview'),
 			valueView : Zarafa.mail.data.Views.LIST,
 			valueViewMode : Zarafa.mail.data.ViewModes.NO_PREVIEW,
-			valueDataMode : Zarafa.mail.data.DataModes.ALL,
 			handler: this.onContextSelectView,
 			scope: this
 		},{
@@ -548,7 +547,6 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 			text: _('Right preview'),
 			valueView : Zarafa.mail.data.Views.LIST,
 			valueViewMode : Zarafa.mail.data.ViewModes.RIGHT_PREVIEW,
-			valueDataMode : Zarafa.mail.data.DataModes.ALL,
 			handler: this.onContextSelectView,
 			scope: this
 		},{
@@ -558,7 +556,6 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 			text: _('Bottom preview'),
 			valueView : Zarafa.mail.data.Views.LIST,
 			valueViewMode : Zarafa.mail.data.ViewModes.BOTTOM_PREVIEW,
-			valueDataMode : Zarafa.mail.data.DataModes.ALL,
 			handler: this.onContextSelectView,
 			scope: this
 		}];
@@ -575,7 +572,8 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 	 */
 	onContextSelectView : function(button)
 	{
-		this.getModel().setDataMode(button.valueDataMode);
+		var model = this.getModel();
+		this.getModel().setDataMode(model.getCurrentDataMode());
 		this.switchView(button.valueView, button.valueViewMode);
 	},
 
@@ -641,12 +639,11 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 	 */
 	createFilterButton : function(insertionPoint, currentContext)
 	{
-		var showConversations = container.getSettingsModel().get('zarafa/v1/contexts/mail/enable_conversation_view');
 		var hidden = true;
-		if (!showConversations && Ext.isDefined(currentContext)) {
+		if (Ext.isDefined(currentContext)) {
 			hidden = currentContext.getName() !== 'mail';
 		}
-
+		var isCurrDataModeUnread = this.model.getCurrentDataMode() === Zarafa.mail.data.DataModes.UNREAD;
 		return {
 			xtype: 'splitbutton',
 			cls: 'k-filter-options-btn',
@@ -664,9 +661,11 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 					model: this.model,
 					cls : 'k-unread-filter-btn',
 					ref : '../unreadBtn',
-					iconCls : 'k-hide-img',
+					iconCls : isCurrDataModeUnread ? 'x-menu-item-icon' : 'k-hide-img',
+					valueDataMode : Zarafa.mail.data.DataModes.UNREAD,
+					checked : isCurrDataModeUnread,
 					checkHandler : this.onUnreadToggle,
-					scope : this
+					scope: this
 				}]
 			},
 			handler: function() {
@@ -675,17 +674,14 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 				}
 			},
 			listeners : {
-				menushow : function () {
-					var store = this.model.getStore();
-					var imgEl = this.unreadBtn.el.child('img');
-					if (store.hasFilterApplied) {
-						imgEl.addClass('x-menu-item-icon');
-						imgEl.removeClass('k-hide-img');
-						this.unreadBtn.checked = true;
-					} else if (imgEl.hasClass('x-menu-item-icon')) {
-						imgEl.removeClass('x-menu-item-icon');
-						this.unreadBtn.checked = false;
-					}
+				afterrender : function(button) {
+					// Add selection class on main filter button 
+					// and avoid this when filter button is included in more menu.
+					if (Ext.isDefined(button.unreadBtn) && isCurrDataModeUnread) {
+						button.btnEl.addClass('k-selection');
+						button.pressed = true;
+						this.model.getStore().hasFilterApplied = true;
+					}	
 				}
 			}
 		};
@@ -704,27 +700,18 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 		var imgTag = menuItem.el.child('img');
 		var model = menuItem.model;
 		var store = model.getStore();
-		var options = {
-			restriction: {}
-		};
 		if(checked) {
 			imgTag.addClass('x-menu-item-icon');
 			imgTag.removeClass('k-hide-img');
 			filterBtn.btnEl.addClass('k-selection');
-
-			// Add unread filter restriction.
-			options.restriction['filter'] = model.getFilterRestriction(Zarafa.common.data.Filters.UNREAD);
 			store.hasFilterApplied = true;
+			model.setDataMode(menuItem.valueDataMode);
 		} else {
 			imgTag.removeClass('x-menu-item-icon');
 			filterBtn.btnEl.removeClass('k-selection');
 			store.stopFilter();
+			model.setDataMode(Zarafa.mail.data.DataModes.ALL);
 		}
-
-		store.load({
-			folder:[menuItem.model.getDefaultFolder()],
-			params : options
-		});
 	}
 });
 
