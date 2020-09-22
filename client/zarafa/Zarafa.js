@@ -438,7 +438,7 @@ Ext.apply(Zarafa, {
 			case Zarafa.core.data.ParalyzeReason.SESSION_EXPIRED:
 				message = _('The session has expired, reauthentication is required.');
 				// When logging out, we preserve the username for convenience.
-				logoutFn = container.logout.createDelegate(container, [ true ], false);
+				logoutFn = container.logout.createDelegate(container, [ true, false, container.isOIDCEnabled() ], false);
 				break;
 			case Zarafa.core.data.ParalyzeReason.SESSION_INVALID:
 				message = _('The session in the current browser window has been closed from another browser window or tab.');

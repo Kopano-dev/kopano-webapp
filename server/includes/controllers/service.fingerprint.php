@@ -57,7 +57,7 @@
 	
 	// Single sign on will never go through the login page. So we cannot check
 	// the fingerprint there!
-	if ( !WebAppAuthentication::isUsingSingleSignOn() && (!isset($_SESSION['frontend-fingerprint']) || $_POST['fingerprint'] !== $_SESSION['frontend-fingerprint']) ){
+	if ( empty(OIDC_ISS) && !WebAppAuthentication::isUsingSingleSignOn() && (!isset($_SESSION['frontend-fingerprint']) || $_POST['fingerprint'] !== $_SESSION['frontend-fingerprint']) ){
 		error_log('frontend-fingerprint did not match. Session terminated. ' . WebAppAuthentication::getUserName());
 		$phpSession->destroy();
 		Response::unAuthorized();
