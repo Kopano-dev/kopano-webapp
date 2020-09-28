@@ -45,6 +45,11 @@
 		return $favicon;
 	}
 
+	if (isset($_GET['deskapp'])) {
+		include('server/includes/templates/deskapp.php');
+		die();
+	}
+
 	if (isset($_GET['oidc-silent-refresh'])) {
 		include('server/includes/templates/oidc-silent-refresh.php');
 		die();
