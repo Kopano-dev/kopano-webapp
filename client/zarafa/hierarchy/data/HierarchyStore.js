@@ -379,10 +379,36 @@ Zarafa.hierarchy.data.HierarchyStore = Ext.extend(Zarafa.core.data.IPFStore, {
 				}
 			}
 			var folder = this.getFolder((records[0].get('default_folder_'+folder_type)));
+			
 			if (Ext.isDefined(folder)) {
-				Zarafa.hierarchy.Actions.openFolder(folder);
-			}
-
+				// If a user is trying to open a shared calendar folder, we need to check
+				// whether there was any previously opened calender or not. If yes, we open
+				// that too instead of the previous one getting closed.
+                if (folder_type === "calendar") {
+                    var context = container.getContextByFolder(folder);
+                    var state = context.getModel().getState();
+                    var lastUsedFolders = state.last_used_folders;
+                    var foldersToOpen = [folder];
+                    if (!Ext.isEmpty(lastUsedFolders)) {
+                        for (var storeEntryID in lastUsedFolders) {
+							var lastUsedStore = this.getById(storeEntryID);
+							if (lastUsedStore) {
+								var folders = lastUsedStore.getSubStore('folders');
+								var folderEntryIDs = lastUsedFolders[storeEntryID];
+								for (var i = 0; i < folderEntryIDs.length; i++) {
+									var lastUsedFolder = folders.getById(folderEntryIDs[i]);
+									if (lastUsedFolder && lastUsedFolder.get('access') !== 0) {
+										foldersToOpen.push(lastUsedFolder);
+									}
+								}
+							}
+                        }
+                    }
+                    Zarafa.hierarchy.Actions.openFolder(foldersToOpen);
+                } else {
+					Zarafa.hierarchy.Actions.openFolder(folder);
+				}
+            }
 		}
 
 		// Add event handlers which are registered so we can listen for

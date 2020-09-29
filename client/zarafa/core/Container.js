@@ -674,11 +674,12 @@ Zarafa.core.Container = Ext.extend(Ext.util.Observable, {
 	 * Select a specific folder in the UI. The container will start a bidding round to determine which context should be chosen to
 	 * display the given folder. The current context is then disabled and switched out, and the newly chosen context is enabled and
 	 * switched in. Fires the 'folderselect' event.
-	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder folder to select.
+	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord[]} folder folder to select either as an array of
+	 * {@link Zarafa.hierarchy.data.MAPIFolderRecord MAPIFolder} objects or a single object.
 	 */
 	selectFolder : function(folder)
 	{
-		var selectedContext = this.getContextByFolder(folder);
+		var selectedContext = this.getContextByFolder(Ext.isArray(folder) ? folder[0] : folder);
 
 		// Check if a new context has been selected, if we can
 		// stay with the current context, then simply update
