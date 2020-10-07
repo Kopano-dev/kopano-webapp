@@ -50,6 +50,11 @@
 		die();
 	}
 
+	// Add extra header for deskapp to indicate that OIDC settings are configured.
+	if (defined("OIDC_ISS") && !empty(OIDC_ISS)) {
+		header("X-Kopano-OIDCAuth:true");
+	}
+
 	// If the user wants to logout (and is not using single-signon)
 	// then destroy the session and redirect to this page, so the login page
 	// will be shown
