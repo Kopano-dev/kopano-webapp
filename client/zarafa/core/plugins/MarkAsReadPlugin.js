@@ -228,7 +228,7 @@ Zarafa.core.plugins.MarkAsReadPlugin = Ext.extend(Object, {
 	 */
 	markAsRead : function()
 	{
-		if (this.record) {
+		if (this.record && !Ext.isEmpty(this.record.getStore())) {
 			Zarafa.common.Actions.markAsRead(this.record);
 		}
 		delete this.readFlagTimer;
