@@ -795,6 +795,7 @@
 				$properties["department_name"] = PR_DEPARTMENT_NAME;
 				$properties["normalized_subject"] = PR_NORMALIZED_SUBJECT;
 				$properties["original_display_name"] = PR_ORIGINAL_DISPLAY_NAME;
+				$properties["private"] = "PT_BOOLEAN:PSETID_Common:0x8506";
 
 				$this->mapping[$this->storeMapping]['addressbook'] = getPropIdsFromStrings($this->store, $properties);
 			}
