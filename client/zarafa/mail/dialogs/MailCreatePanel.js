@@ -279,7 +279,14 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 			if(contentReset) {
 				this.editorField.setHtmlEditor(this.useHtml, false);
 				this.editorField.bindRecord(record);
-				this.editorField.setValue(record.getBody(this.editorField.isHtmlEditor()));
+
+				// We get whole HTML page as a body when Dompurify is enabled.
+				// So, we need to remove extra tags before setting it into the editor.
+				var body = record.getBody(this.editorField.isHtmlEditor());
+				if (container.getServerConfig().getDOMPurifyEnabled()) { 
+					body = DOMPurify.sanitize(body); 
+				}
+				this.editorField.setValue(body);
 			}
 		}
 
