@@ -15,6 +15,7 @@ define('PSETID_Log',                            makeguid("{0006200A-0000-0000-C0
 define('PSETID_Note',                           makeguid("{0006200E-0000-0000-C000-000000000046}"));
 define('PSETID_Meeting',                        makeguid("{6ED8DA90-450B-101B-98DA-00AA003F1305}"));
 define('PSETID_Archive',                        makeguid("{72E98EBC-57D2-4AB5-B0AA-D50A7B531CB9}"));
+define('PSETID_KC',                             makeguid("{63AED8C8-4049-4B75-BC88-96DF9D723F2F}"));
 
 define('PS_MAPI',                               makeguid("{00020328-0000-0000-C000-000000000046}"));
 define('PS_PUBLIC_STRINGS',                     makeguid("{00020329-0000-0000-C000-000000000046}"));
