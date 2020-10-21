@@ -632,11 +632,16 @@ Zarafa.core.Util =
 	 * and {@link window.Zarafa.core.Util#disableLeaveRequester disable Leave Requester}
 	 * 
 	 * @param {Object} options The options object which used to construct the {@link Ext.MessageBox}.
+	 * @param {boolean} custom True to show {@link Zarafa.common.dialogs.MessageBox.addCustomButtons messageBox}.
 	 */
-	showMessageBox : function(options)
+	showMessageBox : function(options, custom)
 	{
 		Zarafa.core.Util.disableLeaveRequester();
-		Ext.MessageBox.show(options);
+		if (custom){
+			Zarafa.common.dialogs.MessageBox.addCustomButtons(options);
+		} else {
+			Ext.MessageBox.show(options);
+		}
 	},
 
 	/**

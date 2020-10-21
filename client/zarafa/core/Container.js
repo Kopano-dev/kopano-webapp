@@ -126,11 +126,11 @@ Zarafa.core.Container = Ext.extend(Ext.util.Observable, {
 	 * @param {Boolean} preserveSession True to preserve the existing session
 	 * on the server and only redirect the user to the logon page.
 	 */
-	logout : function(preserveUser, preserveSession)
+	logout : function(preserveUser, preserveSession, reauthenticate)
 	{
 		if (this.fireEvent('beforelogout') !== false) {
 			this.fireEvent('logout');
-			this.doLogout(preserveUser, preserveSession);
+			this.doLogout(preserveUser, preserveSession, reauthenticate);
 		}
 	},
 
@@ -143,14 +143,18 @@ Zarafa.core.Container = Ext.extend(Ext.util.Observable, {
 	 * on the server and only redirect the user to the logon page.
 	 * @protected
 	 */
-	doLogout : function(preserveUser, preserveSession)
+	doLogout : function(preserveUser, preserveSession, reauthenticate)
 	{
 		var user = ((preserveUser === true) ? ('&user=' + this.getUser().getUserName())  : '');
 
 		Zarafa.core.Util.disableLeaveRequester();
 		// OIDC is enabled, signout via oidc-client.
-		if (container.getServerConfig().getOIDCEnabled()) {
-			userManager.signOut();
+		if (container.isOIDCEnabled()) {
+			if (reauthenticate) {
+				userManager.reauthenticateWithRedirect();
+			} else {
+				userManager.signOut();
+			}
 		} else {
 			if (preserveSession !== true) {
 				window.location = 'index.php?logout' + user;
@@ -822,5 +826,13 @@ Zarafa.core.Container = Ext.extend(Ext.util.Observable, {
 		var checkEnableConversationView = this.getSettingsModel().get("zarafa/v1/contexts/mail/enable_conversation_view", false);
 
 		return enabledConversationView && checkEnableConversationView;
+	},
+
+	/**
+	 * @return {Boolean} true if OIDC is configured and enabled else false.
+	 */
+	isOIDCEnabled : function ()
+	{
+		return !Ext.isEmpty(container.getServerConfig().getOIDCEnabled());
 	}
 });
