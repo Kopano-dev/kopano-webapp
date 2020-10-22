@@ -12,10 +12,12 @@ Zarafa.hierarchy.Actions = {
 	 * the given folder, and will call {@link Zarafa.core.Container#selectFolder}
 	 * if that is the case. Otherwise if this is a shared store, it will ask
 	 * if the store can be closed.
-	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder The folder to open
+	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord[]} folders folders to open either as an array of
+	 * {@link Zarafa.hierarchy.data.MAPIFolderRecord MAPIFolder} objects or a single object.
 	 */
-	openFolder : function(folder)
+	openFolder : function(folders)
 	{
+		var folder = Ext.isArray(folders) ? folders[0] : folders;
 		// FIXME: We should determine which accessflag we exactly need
 		// and check for that flag.
 		if (folder.get('access') !== 0) {
@@ -26,7 +28,7 @@ Zarafa.hierarchy.Actions = {
 					'title' : folder.get("display_name")
 				});
 			} else {
-				container.selectFolder(folder);
+				container.selectFolder(folders);
 			}
 		} else if (folder.isIPMSubTree() || folder.isSharedFolder()) {
 			Ext.MessageBox.show({
