@@ -342,15 +342,29 @@ Zarafa.addressbook.ui.AddressBookMainPanel = Ext.extend(Ext.Panel, {
 
 		this.viewPanel.getView().emptyText = '<div class="emptytext">' + this.noResultsGridText + '</div>';
 
+		var params = {
+			subActionType : Zarafa.core.Actions['globaladdressbook'],
+			entryid : selectedFolder.get('entryid'),
+			store_entryid : selectedFolder.get('store_entryid'),
+			restriction : Ext.applyIf({searchstring : searchText}, this.listRestriction),
+			folderType: folderType
+		};
+
+		if (folderType === 'contacts') {
+			var unwrappedEntryID = Zarafa.core.EntryId.unwrapContactProviderEntryId(selectedFolder.get("entryid"));
+			var folder = container.getHierarchyStore().getFolder(unwrappedEntryID);
+			var isSharedStore = folder.getMAPIStore().isSharedStore();
+			if (isSharedStore) {
+				params["isSharedFolder"] = isSharedStore;
+				params["sharedFolder"] = {
+					store_entryid: folder.get("store_entryid")
+				};
+			}
+		}
+
 		this.addressBookStore.load({
 			actionType : Zarafa.core.Actions['list'],
-			params: {
-				subActionType : Zarafa.core.Actions['globaladdressbook'],
-				entryid : selectedFolder.get('entryid'),
-				store_entryid : selectedFolder.get('store_entryid'),
-				restriction : Ext.applyIf({searchstring : searchText}, this.listRestriction),
-				folderType: folderType
-			}
+			params: params
 		});
 	},
 

@@ -274,22 +274,44 @@
 					$rows = mapi_table_queryallrows($table, $this->properties);
 				}
 
+				$sharedStore = null;
+				if (isset($action["isSharedFolder"]) && $action["isSharedFolder"] === true) {
+					if(isset($action["sharedFolder"]) && !empty($action["sharedFolder"])) {
+						$sharedStoreEntryID = $action["sharedFolder"]["store_entryid"];
+						$sharedStore = $GLOBALS["mapisession"]->openMessageStore(hex2bin($sharedStoreEntryID));
+					}
+				}
+
 				for ($i = 0, $len = $rowCount; $i < $len; $i++) {
 					// Use array_shift to so we won't double memory usage!
 					$user_data = array_shift($rows);
 					$item = array();
 					$item['entryid'] = bin2hex($user_data[$this->properties['entryid']]);
-					$item['display_name'] = $user_data[$this->properties['display_name']];
-					$item['object_type'] = $user_data[$this->properties['object_type']];
-					$item['display_type'] = $user_data[PR_DISPLAY_TYPE];
-					$item['title'] = $user_data[PR_TITLE];
-					$item['company_name'] = $user_data[PR_COMPANY_NAME];
+					$item['display_name'] = isset($user_data[$this->properties['display_name']]) ? $user_data[$this->properties['display_name']] : "";
+					$item['object_type'] = isset($user_data[$this->properties['object_type']]) ? $user_data[$this->properties['object_type']] : "";
+					$item['display_type'] = isset($user_data[PR_DISPLAY_TYPE]) ? $user_data[PR_DISPLAY_TYPE] : "";
+					$item['title'] = isset($user_data[PR_TITLE]) ? $user_data[PR_TITLE] : "";
+					$item['company_name'] = isset($user_data[PR_COMPANY_NAME]) ? $user_data[PR_COMPANY_NAME] : "";
 
 					// Test whether the GUID in the entryid is from the Contact Provider
 					if($GLOBALS['entryid']->hasContactProviderGUID( bin2hex($user_data[$this->properties['entryid']]) )){
 						// Use the original_display_name property to fill in the fileas column
 						$item['fileas'] = $user_data[$this->properties['original_display_name']];
 						$item['address_type'] = isset($user_data[$this->properties['address_type']]) ? $user_data[$this->properties['address_type']] : 'SMTP';
+
+						if (isset($action["isSharedFolder"]) && $action["isSharedFolder"] === true) {
+							if(isset($action["sharedFolder"]) && !empty($action["sharedFolder"])) {
+								$sharedContactEntryID = $GLOBALS['entryid']->unwrapABEntryIdObj(bin2hex($user_data[$this->properties['entryid']]));
+								// Address book record does not have 'private' property so we need to open shared contact to
+								// get the value of 'private'  property.
+								$contact = $GLOBALS['operations']->openMessage($sharedStore, hex2bin($sharedContactEntryID));
+								$sharedContactProps = mapi_getprops($contact, array($this->properties['private']));
+								// Don't show the private contact.
+								if (isset($sharedContactProps[$this->properties['private']]) && $sharedContactProps[$this->properties['private']] === true) {
+									continue;
+								}
+							}
+						}
 
 						switch($user_data[PR_DISPLAY_TYPE]){
 							case DT_PRIVATE_DISTLIST:
