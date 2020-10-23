@@ -51,7 +51,7 @@
 	}
 
 	// Add extra header for deskapp to indicate that OIDC settings are configured.
-	if (defined("OIDC_ISS") && !empty(OIDC_ISS)) {
+	if (OIDC_ISS !== "") {
 		header("X-Kopano-OIDCAuth:true");
 	}
 

@@ -35,7 +35,7 @@
 	header("Pragma: no-cache");
 
 	// Add extra header for DeskApp to indicate that OIDC settings are configured.
-	if (defined("OIDC_ISS") && !empty(OIDC_ISS)) {
+	if (OIDC_ISS !== "") {
 		header("X-Kopano-OIDCAuth:true");
 	}
 
