@@ -627,7 +627,7 @@ If it is the first time this attendee has proposed a new date/time, increment th
 		 *	if this function is called automatically with meeting request object then there will be
 		 *	two possibilitites
 		 *	1) meeting request is opened first time, in this case make a tentative appointment in
-				recipient's calendar
+		 *		recipient's calendar
 		 *	2) after this every subsequest request to open meeting request will not do any processing
 		 */
 		if($this->isMeetingRequest($messageprops[PR_MESSAGE_CLASS]) && $userAction == false) {
@@ -823,14 +823,14 @@ If it is the first time this attendee has proposed a new date/time, increment th
 					$this->applyLocalCategories($calendarItem, $store, $localCategories);
 				}
 
+				$entryid = $props[PR_ENTRYID];				
 				if ($move) {
 					// open wastebasket of currently logged in user and move the meeting request to it
 					// for delegates this will be delegate's wastebasket folder
 					$wastebasket = $this->openDefaultWastebasket($this->openDefaultStore());
 					mapi_folder_copymessages($calFolder, Array($props[PR_ENTRYID]), $wastebasket, MESSAGE_MOVE);
 				}
-
-				$entryid = $props[PR_ENTRYID];
+				
 			} else {
 				/**
 				 * This meeting request is not recurring, so can be an exception or normal meeting.
@@ -1335,8 +1335,15 @@ If it is the first time this attendee has proposed a new date/time, increment th
 		$highdatetime = $time >> 32;
 		$lowdatetime = $time & 0xffffffff;
 		$goid .= pack('II', $lowdatetime, $highdatetime);
+		
 		// 8 Zeros
-		$goid .= pack('P', 0);
+		if(version_compare(PHP_VERSION, '5.6.3', '<')) {
+			$goid .= pack('V', 0);
+			$goid .= pack('V', 0);
+		} else {
+			$goid .= pack('P', 0);
+		}
+
 		// Length of the random data
 		$goid .= pack('V', 16);
 		// Random data.

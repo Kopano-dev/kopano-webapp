@@ -1172,8 +1172,8 @@
 		/**
 		 * Function returns basedates of all changed occurrences
 		 *@return array array(
-							0 => 123459321
-						)
+		 *					0 => 123459321
+		 *				)
 		 */
 		function getAllExceptions()
 		{
