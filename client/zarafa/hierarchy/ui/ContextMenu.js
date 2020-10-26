@@ -533,6 +533,10 @@ Zarafa.hierarchy.ui.ContextMenu = Ext.extend(Zarafa.core.ui.menu.ConditionalMenu
 						record.moveTo(container.getHierarchyStore().getDefaultFolder('wastebasket'));
 						// Set selection to the appropriate folder after the record has been moved.
 						this.setFolderSelection(record);
+
+						// To close the deleted calendar folder from calendar tab we need to remove folder from
+						// context model. which further update the state settings etc.
+						this.contextTree.model.removeFolder(record);
 					}
 
 					store.save(record);
