@@ -43,9 +43,9 @@ if(!defined("ENABLE_SHARED_RULES")) define("ENABLE_SHARED_RULES", false);
 if(!defined("ENABLE_RESPONSE_COMPRESSION")) define("ENABLE_RESPONSE_COMPRESSION", true);
 
 /**
- * When set to true this disables the fitlering of the HTML body.
+ * When set to false this disables the filtering of the HTML body.
  */
-if(!defined("DISABLE_HTMLBODY_FILTER")) define("DISABLE_HTMLBODY_FILTER", false);
+if(!defined("ENABLE_HTMLBODY_FILTER")) define("ENABLE_HTMLBODY_FILTER", true);
 
 /**
  * When set to true this enable the fitlering of the HTML body using DOMPurify.
@@ -53,25 +53,25 @@ if(!defined("DISABLE_HTMLBODY_FILTER")) define("DISABLE_HTMLBODY_FILTER", false)
 if(!defined("ENABLE_DOMPURIFY_FILTER")) define("ENABLE_DOMPURIFY_FILTER", true);
 
 /**
- * Set to true to disable login with Single Sign-On (SSO) on SSO environments.
+ * Set to false to enable login with Single Sign-On (SSO) on SSO environments.
  */
-if(!defined("DISABLE_REMOTE_USER_LOGIN")) define("DISABLE_REMOTE_USER_LOGIN", false);
+if(!defined("ENABLE_REMOTE_USER_LOGIN")) define("ENABLE_REMOTE_USER_LOGIN", true);
 
 /**
- * When set to true this disables the welcome screen to be shown for first time users.
+ * When set to false this disables the welcome screen shown to new users.
  */
-if(!defined("DISABLE_WELCOME_SCREEN")) define("DISABLE_WELCOME_SCREEN", false);
+if(!defined("ENABLE_WELCOME_SCREEN")) define("ENABLE_WELCOME_SCREEN", true);
 
 /**
  * Set to true to disable the "What's new dialog" that will be shown to users to introduce new features.
  */
-if(!defined("DISABLE_WHATS_NEW_DIALOG")) define("DISABLE_WHATS_NEW_DIALOG", false);
+if(!defined("ENABLE_WHATS_NEW_DIALOG")) define("ENABLE_WHATS_NEW_DIALOG", true);
 
 /**
  * By default we won't disable the FULL GAB, as it is a performance option
  * which, when enabled, prevents the full GAB to be loaded'
  */
-if(!defined("DISABLE_FULL_GAB")) define("DISABLE_FULL_GAB", false);
+if(!defined("ENABLE_FULL_GAB")) define("ENABLE_FULL_GAB", true);
 
 /**
  * Set a maximum number of (search) results for the addressbook
@@ -81,16 +81,16 @@ if(!defined("DISABLE_FULL_GAB")) define("DISABLE_FULL_GAB", false);
 if(!defined("MAX_GAB_RESULTS")) define("MAX_GAB_RESULTS", 0);
 
 /**
- * By default we disable the public contact folders, as it is a performance option
- * which, when enabled, may cause delay in loading of address-book
+ * By default we disable the public contact folders,
+ * as it may increase address-book loading time.
  */
-if(!defined("DISABLE_PUBLIC_CONTACT_FOLDERS")) define("DISABLE_PUBLIC_CONTACT_FOLDERS", true);
+if(!defined("ENABLE_PUBLIC_CONTACT_FOLDERS")) define("ENABLE_PUBLIC_CONTACT_FOLDERS", false);
 
 /**
  * By default we disable the shared contact folders, as it is a performance option
  * which, when enabled, may cause delay in loading of address-book
  */
-if(!defined("DISABLE_SHARED_CONTACT_FOLDERS")) define("DISABLE_SHARED_CONTACT_FOLDERS", true);
+if(!defined("ENABLE_SHARED_CONTACT_FOLDERS")) define("ENABLE_SHARED_CONTACT_FOLDERS", false);
 
 /**
  * Limit the amount of members shown in the addressbook details dialog for a distlist. If the list

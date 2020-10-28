@@ -336,12 +336,12 @@
 				$sysadminSettings = $this->getDefaultSysAdminSettings();
 				$settings = array_replace_recursive($sysadminSettings, $settings['settings']);
 				$this->settings = array_replace_recursive($settings, $this->settings);
-			} elseif (DISABLE_WELCOME_SCREEN) {
+			} elseif (!ENABLE_WELCOME_SCREEN) {
 				/*
-				 * if DISABLE_WELCOME_SCREEN is true and PR_EC_WEBACCESS_SETTINGS_JSON is not exists at that time, We
+				 * if ENABLE_WELCOME_SCREEN is false and PR_EC_WEBACCESS_SETTINGS_JSON does not exist at that time, we
 				 * just append the admin settings to settings array. Normally system admin settings
 				 * contains plugin default enable/disable and other plugins related settings information which required
-				 * while webapp loading time.
+				 * while webapp loads.
 				 */
 				$sysadminSettings = $this->getDefaultSysAdminSettings();
 				$this->settings = array_replace_recursive($sysadminSettings, $settings['settings']);

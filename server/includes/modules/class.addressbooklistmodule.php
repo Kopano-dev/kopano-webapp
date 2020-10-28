@@ -134,7 +134,7 @@
 
 			$folderType = $action['folderType'];
 
-			if (($folderType!=='gab' || !DISABLE_FULL_GAB) || !empty($searchstring)) {
+			if (($folderType!=='gab' || ENABLE_FULL_GAB) || !empty($searchstring)) {
 				$ab = $GLOBALS['mapisession']->getAddressbook(false, true);
 
 				if (!empty($action['entryid'])) {
@@ -431,7 +431,7 @@
 				$data = array_merge($data, array('item'=>$items));
 			} else {
 				// Provide clue that full GAB is disabled.
-				$data = array_merge($data, array('disable_full_gab' => DISABLE_FULL_GAB));
+				$data = array_merge($data, array('disable_full_gab' => !ENABLE_FULL_GAB));
 			}
 
 			$this->addActionData('list', $data);

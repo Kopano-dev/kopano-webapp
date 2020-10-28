@@ -21,13 +21,13 @@
 	//           define("DEFAULT_SERVER", "file:///var/run/kopano/server.sock");
 	define("DEFAULT_SERVER", "default:");
 
-	// When using a single-signon system on your webserver, but Kopano Core is on another server
+	// When using a Single-Sign-On (SSO) system on your webserver and Kopano Core is on another server
 	// you can use https to access the Kopano server, and authenticate using an SSL certificate.
 	define("SSLCERT_FILE", NULL);
 	define("SSLCERT_PASS", NULL);
 
-	// Set to true to disable login with Single Sign-On (SSO) on SSO environments.
-	define("DISABLE_REMOTE_USER_LOGIN", false);
+	// Set to false to disable login with Single Sign-On (SSO) on SSO environments.
+	define("ENABLE_REMOTE_USER_LOGIN", true);
 
 	// OIDC Server Configuration, introduced in Kopano Core 8.7.0
 	define("OIDC_ISS", "");
@@ -40,8 +40,8 @@
 	// Name of the cookie that is used for the session
 	define("COOKIE_NAME", "KOPANO_WEBAPP");
 
-	// Set to 'true' to disable secure session cookies and to allow log-in without HTTPS.
-	define("INSECURE_COOKIES", false);
+	// Set to 'false' to disable secure session cookies and to allow log-in without HTTPS.
+	define("SECURE_COOKIES", true);
 
 	// Use DOMPurify to filter HTML
 	define("ENABLE_DOMPURIFY_FILTER", true);
@@ -107,24 +107,24 @@
 	// The base URL where the User Manual for WebApp can be found
 	define("PLUGIN_WEBAPPMANUAL_URL", "https://documentation.kopano.io/user_manual_webapp/");
 
-	// Set addressbook for GAB not to show any users unless searching for a specific user
-	define("DISABLE_FULL_GAB", false);
+	// When set to false, GAB does not show any user, unless searched for.
+	define("ENABLE_FULL_GAB", true);
 
 	// Set a maximum number of (search) results for the addressbook
 	// When more results are found no results will be displayed in the client.
 	// Set to 0 to disable this feature and show all results.
 	define("MAX_GAB_RESULTS", 0);
 
-	// Set true to hide public contact folders in address-book folder list,
-	// false will show public contact folders in address-book folder list.
-	define("DISABLE_PUBLIC_CONTACT_FOLDERS", true);
+	// Set to true to show public contact folders in address-book folder list,
+	// false will hide public contact folders in address-book folder list.
+	define("ENABLE_PUBLIC_CONTACT_FOLDERS", false);
 
 	// Set true to show public folders in hierarchy, false will disable public folders in hierarchy.
 	define("ENABLE_PUBLIC_FOLDERS", true);
 
 	// Set true to hide shared contact folders in address-book folder list,
 	// false will show shared contact folders in address-book folder list.
-	define("DISABLE_SHARED_CONTACT_FOLDERS", true);
+	define("ENABLE_SHARED_CONTACT_FOLDERS", false);
 
 	// Set to true to give users the option to enable conversation view in their settings
 	// Set to false to hide the setting and disable conversation view for all users
@@ -144,11 +144,11 @@
 	// Enable GZIP compression for responses
 	define("ENABLE_RESPONSE_COMPRESSION", true);
 
-	// When set to true this disables the welcome screen to be shown for first time users.
-	define("DISABLE_WELCOME_SCREEN", false);
+	// When set to false this disables the welcome screen shown to new users.
+	define("ENABLE_WELCOME_SCREEN", true);
 
-	// Set to true to disable the "What's new dialog" that will be shown to users to introduce new features.
-	define("DISABLE_WHATS_NEW_DIALOG", false);
+	// Set to false to disable the "What's new dialog" that will be shown to users to introduce new features.
+	define("ENABLE_WHATS_NEW_DIALOG", true);
 
 	// When set to false it will disable showing of advanced settings.
 	define("ENABLE_ADVANCED_SETTINGS", false);

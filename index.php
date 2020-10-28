@@ -117,7 +117,7 @@
 			if(empty($error) && useSecureCookies() && getRequestProtocol() == 'http') {
 				header("HTTP/1.0 400 Bad Request");
 				include(BASE_PATH . 'server/includes/templates/BadRequest.php');
-				error_log("Rejected insecure request as configuration for 'INSECURE_COOKIES' is false.");
+				error_log("Rejected insecure request as configuration for 'SECURE_COOKIES' is true.");
 				die();
 			}
 		}
@@ -264,7 +264,7 @@
 		die();
 	}
 
-	if (!DISABLE_WELCOME_SCREEN && $GLOBALS["settings"]->get("zarafa/v1/main/show_welcome") !== false) {
+	if (ENABLE_WELCOME_SCREEN && $GLOBALS["settings"]->get("zarafa/v1/main/show_welcome") !== false) {
 
 		// These hooks are defined twice (also when there is a "load" argument supplied)
 		$GLOBALS['PluginManager']->triggerHook("server.index.load.welcome.before");
@@ -272,8 +272,8 @@
 		$GLOBALS['PluginManager']->triggerHook("server.index.load.welcome.after");
 	} else {
 
-		// Set the show_welcome to true, so that when the admin is changing the
-		// DISABLE_WELCOME_SCREEN option to false after some time, the users who are already
+		// Set the show_welcome to false, so that when the admin is changing the
+		// ENABLE_WELCOME_SCREEN option to false after some time, the users who are already
 		// using the WebApp are not bothered with the Welcome Screen.
 		$GLOBALS["settings"]->set("zarafa/v1/main/show_welcome", false);
 

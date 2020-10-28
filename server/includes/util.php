@@ -716,15 +716,15 @@
 	/**
 	 * Helper function which defines that webapp has to use secure cookies
 	 * or not. by default webapp always use secure cookies whether or not
-	 * 'INSECURE_COOKIES' defined. webapp only use insecure cookies
-	 * where a user has explicitly set true to 'INSECURE_COOKIES' configuration.
+	 * 'SECURE_COOKIES' defined. webapp only use insecure cookies
+	 * where a user has explicitly set 'SECURE_COOKIES' to false.
 	 *
 	 * @return Boolean return false only when a user has explicitly set
-	 * 'INSECURE_COOKIES' to true else returns true.
+	 * 'SECURE_COOKIES' to false else returns true.
 	 */
 	function useSecureCookies()
 	{
-		return !defined('INSECURE_COOKIES') || INSECURE_COOKIES !== true;
+		return !defined('SECURE_COOKIES') || SECURE_COOKIES !== false;
 	}
 
 	/**
