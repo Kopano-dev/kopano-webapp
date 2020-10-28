@@ -706,7 +706,7 @@
 				}
 
 				// if item has some changes made before choosing different calendar from create-in dropdown
-				if (isset($action["props"])) {
+				if (isset($action["props"]) && !empty($action["props"])) {
 					$copyProps = Conversion::mapXML2MAPI($this->properties, $action["props"]);
 				}
 
