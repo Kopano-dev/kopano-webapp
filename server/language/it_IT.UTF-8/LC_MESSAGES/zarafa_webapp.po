@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: Kopano Webapp Italian (Italy)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-25 14:32+0200\n"
-"PO-Revision-Date: 2018-05-08 15:53+0000\n"
-"Last-Translator: Marco <MARCO@COSTANTINO.CO.UK>\n"
-"Language-Team: Italian (Italy) <http://translate.kopano.io/projects/kopano/"
-"kopano-webapp/it/>\n"
+"PO-Revision-Date: 2020-10-28 11:02+0000\n"
+"Last-Translator: Luca <luca.delcarlo@welcomeitalia.it>\n"
+"Language-Team: Italian <http://translate.kopano.io/projects/kopano/kopano-"
+"webapp/it/>\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.4\n"
 
 #. TRANSLATORS: This message is used as label for the column which indicates the week number of the month in date picker. and 'Wk' stands for week
 msgid "Wk"
@@ -331,11 +331,9 @@ msgstr "Questo campo può contenere solo lettere e _"
 msgid "This field should only contain letters, numbers and _"
 msgstr "Questo campo può contenere solo lettere, numeri e _"
 
-#, fuzzy
 msgid "Email Addresses"
 msgstr "Indirizzi e-mail"
 
-#, fuzzy
 msgid "Email addresses"
 msgstr "Indirizzi e-mail"
 
@@ -460,9 +458,8 @@ msgstr "Cercapersone"
 
 # 75%
 # 100%
-#, fuzzy
 msgid "No user selected"
-msgstr "Nessuna nota selezionata"
+msgstr "Nessun utente selezionato"
 
 msgid "You must select one or more users."
 msgstr "Devi selezionare uno o più utenti."
@@ -477,10 +474,10 @@ msgid "Show Details"
 msgstr "Mostra dettagli"
 
 msgid "Copy contact"
-msgstr ""
+msgstr "Copia contatto"
 
 msgid "Copy contacts"
-msgstr ""
+msgstr "Copia contatti"
 
 msgid ""
 "Showing only the first {0} names. Use search to find more specific results."
@@ -630,9 +627,8 @@ msgstr "Aggiungi ai favoriti"
 msgid "Add"
 msgstr "Aggiungi"
 
-#, fuzzy
 msgid "Empty folder name"
-msgstr "Importa nella cartella"
+msgstr "Nome cartella vuota"
 
 msgid "You must specify a name."
 msgstr "Devi specificare un nome."
@@ -643,9 +639,8 @@ msgstr "Aggiungi una cartella ai favoriti basata sulla query di ricerca"
 msgid "Folder name"
 msgstr "Nome della cartella"
 
-#, fuzzy
 msgid "Select Category"
-msgstr "Imposta categoria"
+msgstr "Seleziona categoria"
 
 msgid "Apply"
 msgstr "Applica"
@@ -711,9 +706,8 @@ msgctxt "search.date"
 msgid "To"
 msgstr "A"
 
-#, fuzzy
 msgid "Filter category.."
-msgstr "Elimina Categoria"
+msgstr "Filtra categoria.."
 
 msgid "Search.."
 msgstr "Ricerca in..."
@@ -1040,16 +1034,14 @@ msgstr "Nessun appuntamento selezionato"
 msgid "Print overview"
 msgstr "Stampa panoramica"
 
-#, fuzzy
 msgid "Create Appointment"
-msgstr "Appuntamento privato"
+msgstr "Crea appuntamento"
 
 msgid "Calendar"
 msgstr "Calendario"
 
-#, fuzzy
 msgid "Create in other calendar"
-msgstr "Visualizza nel calendario"
+msgstr "Crea in un altro calendario"
 
 msgid ""
 "The selected calendar has \"read-only\" permissions. Instead you can create "
@@ -1059,9 +1051,8 @@ msgstr ""
 msgid "What would you like?"
 msgstr ""
 
-#, fuzzy
 msgid "Own calendar"
-msgstr "Visualizza nel calendario"
+msgstr "Calendario personale"
 
 msgid "F Y"
 msgstr "F Y"
@@ -1085,14 +1076,12 @@ msgstr "A o Cc"
 msgid "Meeting"
 msgstr "Appuntamento"
 
-#, fuzzy
 msgctxt "calendar.dialog"
 msgid "Resources have been planned"
-msgstr "Le risorse sono state pianificate."
+msgstr "Le risorse sono state pianificate"
 
-#, fuzzy
 msgid "Send update"
-msgstr "Programma"
+msgstr "Invia aggiornamento"
 
 msgid "Do you want to send an update to all recipients?"
 msgstr ""
@@ -1110,13 +1099,11 @@ msgstr "Invia aggiornamenti solamente ai partecipanti aggiunti o eliminati."
 msgid "Send updates to all attendees."
 msgstr "Invia aggiornamenti a tutti i partecipanti."
 
-#, fuzzy
 msgid "Busy attendees"
-msgstr "Invita partecipanti"
+msgstr "Partecipanti impegnati"
 
-#, fuzzy
 msgid "One or more attendees are busy. Are you sure to invite?"
-msgstr "Uno o più partecipanti invitati sono occupati. Continuare?"
+msgstr "Uno o più partecipanti sono occupati. Sei sicuro di invitare?"
 
 msgid "Scheduling"
 msgstr "Pianificazione"
@@ -1223,9 +1210,8 @@ msgstr "Gli allegati non possono essere modificati singolarmente"
 msgid "Type your message here..."
 msgstr "Scrivi qui il tuo messaggio…"
 
-#, fuzzy
 msgid "Update location"
-msgstr "Aggiorna lista"
+msgstr "Aggiorna posizione"
 
 msgid ""
 "Do you want to update the location \"{0}\" with the new location \"{1}\"?"
@@ -1339,21 +1325,19 @@ msgstr "Inviare la cancellazione ora."
 msgid "Send Meeting Request Confirmation"
 msgstr "Invia conferma richiesta riunione"
 
-#, fuzzy
 msgid ""
 "This meeting will be accepted and moved to your calendar. Do you want to "
 "include comments with your response?"
 msgstr ""
-"Questa riunione è stata accettata e verrà spostata nel tuo calendario. Vuoi "
-"includere un commento insieme alla tua risposta?"
+"Questa riunione verrà accettata e spostata nel tuo calendario. Vuoi "
+"includere commenti nella tua risposta?"
 
-#, fuzzy
 msgid ""
 "This meeting will be tentatively accepted and moved to your calendar. Do you "
 "want to include comments with your response?"
 msgstr ""
-"Questa riunione è stata provvisoriamente accettata e verrà spostata nel tuo "
-"calendario. Vuoi includere un commento insieme alla tua risposta?"
+"Questa riunione sarà provvisoriamente accettata e spostata nel tuo "
+"calendario. Vuoi includere commenti nella tua risposta?"
 
 #, fuzzy
 msgid ""
@@ -1493,7 +1477,7 @@ msgid "Duration must be between 1 and 120 minutes."
 msgstr "Il valore deve essere compreso tra 1 e 120 minuti."
 
 msgid "Default status for all day appointment"
-msgstr ""
+msgstr "Stato predefinito per appuntamento tutto il giorno"
 
 msgid "Working days"
 msgstr "Giorni lavorativi"
@@ -2167,7 +2151,7 @@ msgid "Create New Category"
 msgstr "Crea Nuova Categoria"
 
 msgid "Pin to quick access"
-msgstr ""
+msgstr "Blocca per l'accesso rapido"
 
 msgid "Create"
 msgstr "Crea"
@@ -2506,9 +2490,8 @@ msgstr ""
 "Elimina l'elemento selezionato e spostalo nel cestino. L'elemento eliminato "
 "puo` essere ripristinato."
 
-#, fuzzy
 msgid "Add/Edit Cc recipient"
-msgstr "Modifica destinatario"
+msgstr "Aggiungi/Modifica destinatario Cc"
 
 #, fuzzy
 msgid "Duplicate recipient"
@@ -2518,9 +2501,8 @@ msgstr "Modifica destinatario"
 msgid "Recipient already exists."
 msgstr "L'utente esiste già"
 
-#, fuzzy
 msgid "No Cc recipient configured"
-msgstr "Nessuna fima configurata"
+msgstr "Nessun destinatario Cc configurato"
 
 #, fuzzy
 msgid "Loading Cc recipients"
@@ -2528,7 +2510,6 @@ msgstr "Modifica destinatario"
 
 # 88%
 # 100%
-#, fuzzy
 msgid "Reply Mail"
 msgstr "Rispondi a tutti"
 
@@ -2548,6 +2529,8 @@ msgid ""
 "Cc recipients can be used to set a default Cc user in new mail, replies or "
 "both."
 msgstr ""
+"I destinatari Cc possono essere utilizzati per impostare un utente Cc "
+"predefinito nella nuova posta, nelle risposte o in entrambi"
 
 #, fuzzy
 msgid "Following recipients are already exists"
@@ -3109,6 +3092,8 @@ msgid ""
 "Manage the email addresses you can use as sender address when sending an "
 "email."
 msgstr ""
+"Gestisci gli indirizzi e-mail che puoi utilizzare come indirizzo del "
+"mittente quando invii una e-mail."
 
 msgid "View"
 msgstr "Visualizza"
@@ -3124,10 +3109,11 @@ msgid "Delegate settings"
 msgstr "Gestione delegati"
 
 msgid "Desktop Notifications Settings"
-msgstr ""
+msgstr "Impostazioni delle notifiche sul desktop"
 
 msgid "We need permissions to enable desktop notifications."
 msgstr ""
+"Abbiamo bisogno delle autorizzazioni per abilitare le notifiche desktop."
 
 msgid "Request Permissions"
 msgstr ""
@@ -3136,13 +3122,13 @@ msgid "Enable desktop notifications for new mail"
 msgstr ""
 
 msgid "Enable desktop notifications for reminders"
-msgstr ""
+msgstr "Abilita notifiche desktop per i pro-memoria"
 
 msgid "{A} Auto hide desktop notification after second(s) {B}"
-msgstr ""
+msgstr "{A} Nascondi automaticamente notifica desktop dopo secondi {B}"
 
 msgid "Disable sound"
-msgstr ""
+msgstr "Disabilita il suono"
 
 msgid "Notifications"
 msgstr ""
@@ -4975,13 +4961,13 @@ msgid "Signatures"
 msgstr "Firme"
 
 msgid "New messages"
-msgstr ""
+msgstr "Nuovo messaggio"
 
 msgid "Replies/forwards"
-msgstr ""
+msgstr "Risposte/inoltri"
 
 msgid "Signature name:"
-msgstr ""
+msgstr "Nome firma:"
 
 #, fuzzy
 msgid "Save Signature"
@@ -5205,40 +5191,38 @@ msgid "Long"
 msgstr ""
 
 msgid "Time format:"
-msgstr ""
+msgstr "Formato ora:"
 
 msgid "12h clock"
-msgstr ""
+msgstr "12 ore"
 
 msgid "24h clock"
-msgstr ""
+msgstr "24 ore"
 
 # 88%
-#, fuzzy
 msgid "Favorite settings"
-msgstr "Gestione delegati"
+msgstr "Impostazioni preferite"
 
-#, fuzzy
 msgid "Hide favorites"
-msgstr "Aggiungi ai favoriti"
+msgstr "Nascondi preferiti"
 
 msgid "Unpin favorites from top"
-msgstr ""
+msgstr "Sblocca i preferiti dall'alto"
 
 msgid "Give unread items a colored border"
 msgstr ""
 
 msgid "Show 'help' button in top-right corner"
-msgstr ""
+msgstr "Mostra il pulsante 'aiuto' nell'angolo in alto a destra"
 
 msgid "Show unread mail counter in application title"
-msgstr ""
+msgstr "Mostra il contatore della posta non letta nel titolo dell'applicazione"
 
 msgid "File previewing"
-msgstr ""
+msgstr "Anteprima file"
 
 msgid "Attachment preview (PDF, Open formats and images)"
-msgstr ""
+msgstr "Anteprima degli allegati (PDF, formati aperti e immagini)"
 
 msgid "Inbox navigation"
 msgstr "Navigazione inbox"
@@ -5591,7 +5575,7 @@ msgid "Create task"
 msgstr "Crea attività"
 
 msgid "Upcoming"
-msgstr ""
+msgstr "In arrivo"
 
 msgid "Overdue"
 msgstr ""
