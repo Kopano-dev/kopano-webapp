@@ -380,14 +380,18 @@
 		 public function __call($methodName, $arguments)
 		 {
 		 	if ( !preg_match('/^get(.+)$/', $methodName, $matches) ){
-		 		// We don't know this function, so let's throw an error
-		 		throw new Exception('Method ' . $methodName . ' does not exist');
+		 		// This function is unknown. log the error and return an empty string as a value.
+				error_log('Method ' . $methodName . ' does not exist');
+				Log::Write(LOGLEVEL_ERROR, 'Method ' . $methodName . ' does not exist');
+				return "";
 		 	}else{
 		 		$this->retrieveUserData();
 		 		$propertyName = strtolower(preg_replace('/([^A-Z])([A-Z])/', '$1_$2', $matches[1]));
 				if ( !array_key_exists($propertyName, $this->session_info) ){
-			 		// We don't know this function, so let's throw an error
-			 		throw new Exception('Method ' . $methodName . ' does not exist '.$propertyName);
+					// This function is unknown. log the error and return an empty string as a value.
+					error_log('Method ' . $methodName . ' does not exist '.$propertyName);
+					Log::Write(LOGLEVEL_ERROR, 'Method ' . $methodName . ' does not exist '.$propertyName);
+					return "";
 				}else{
 					return $this->session_info[$propertyName];
 				}
