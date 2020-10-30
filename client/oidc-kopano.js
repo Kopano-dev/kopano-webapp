@@ -410,7 +410,7 @@ const userManager = (function(){
 				}).then(function (user){
 					remove_hash_from_url();
 					if (!user) {
-						var message = (err && err.message) || "User authorization failed."
+						var message = (error && error.message) || "User authorization failed."
 						showMessageBox({
 							title : 'Login failed',
 							message: message,
