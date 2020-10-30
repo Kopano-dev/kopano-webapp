@@ -150,12 +150,6 @@ Zarafa.mail.MailStore = Ext.extend(Zarafa.core.data.ListModuleStore, {
 	 * @return {Boolean} True if the store contains conversations, or false otherwise.
 	 */
 	containsConversations: function() {
-		// First check if the admin has not disabled conversation view
-		var conversationsAdminEnabled = container.getServerConfig().isConversationViewEnabled();
-		if (!conversationsAdminEnabled) {
-			return false;
-		}
-
 		// Check if the user enabled conversation view in his settings
 		var conversationsUserEnabled = container.getSettingsModel().get('zarafa/v1/contexts/mail/enable_conversation_view');
 		if (!conversationsUserEnabled) {

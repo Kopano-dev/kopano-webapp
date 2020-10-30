@@ -21,7 +21,6 @@ Zarafa.mail.settings.SettingsConversationWidget = Ext.extend(Zarafa.settings.ui.
 		Ext.applyIf(config, {
 			title : _('Conversation view settings'),
 			layout : 'form',
-			hidden : !container.getServerConfig().isConversationViewEnabled(),
 			items : [{
 				xtype : 'checkbox',
 				name : 'zarafa/v1/contexts/mail/enable_conversation_view',
