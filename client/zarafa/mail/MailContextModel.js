@@ -715,19 +715,34 @@ Zarafa.mail.MailContextModel = Ext.extend(Zarafa.core.ContextModel, {
 		// on context witch if filter is enabled then clear the filter.
 		if (this.suspended && store.hasFilterApplied) {
 			store.stopFilter();
-		} else if(store.hasFilterApplied) {
-			// If user switch folder within the context we have to
-			// persist the filter so, set the filter restriction
+		} else {
+			// If user switch folder within the context and Datamode is {@link Zarafa.mail.data.DataModes.UNREAD UNREAD}
+			// then we have to persist the filter so, set the filter restriction
 			// in restriction/params object.
-			options = Ext.apply(options || {}, {
+			options = Ext.applyIf(options || {}, {
 				params : {
 					restriction: {
-						filter: this.getFilterRestriction(Zarafa.common.data.Filters.UNREAD)
+						filter: this.getFilterRestriction(this.getFilterTypeFromDataMode())
 					}
 				}
 			});
 		}
 		Zarafa.mail.MailContextModel.superclass.load.call(this, options);
+	},
+
+	/**
+	 * Function will provide the filter type based on the {@link #this.current_data_mode current_data_mode}
+	 * when {@link #this.current_data_mode current_data_mode} is available.
+	 * 
+	 * @return {Zarafa.common.data.Filters} filterType to get the restriction.
+	 */
+	getFilterTypeFromDataMode : function()
+	{
+		if (Ext.isDefined(this.current_data_mode)) {
+			if (this.current_data_mode === Zarafa.mail.data.DataModes.UNREAD) {
+				return Zarafa.common.data.Filters.UNREAD;
+			}
+		}
 	},
 
 	/**
@@ -761,7 +776,6 @@ Zarafa.mail.MailContextModel = Ext.extend(Zarafa.core.ContextModel, {
 			// stop the live scroll after the search gets stopped.
 			this.stopLiveScroll();
 		}
-
 		switch (newMode) {
 			case Zarafa.mail.data.DataModes.SEARCH:
 			case Zarafa.mail.data.DataModes.LIVESCROLL:
@@ -769,6 +783,16 @@ Zarafa.mail.MailContextModel = Ext.extend(Zarafa.core.ContextModel, {
 			case Zarafa.mail.data.DataModes.ALL:
 				this.load();
 				break;
+			case Zarafa.mail.data.DataModes.UNREAD:
+				this.load({
+					params : {
+						restriction : {
+							filter: this.getFilterRestriction(Zarafa.common.data.Filters.UNREAD)
+						}
+					}
+				});
+				break;
+			default: break;	
 		}
 	},
 

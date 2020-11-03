@@ -475,8 +475,9 @@ Zarafa.common.ui.grid.Renderers = {
 			return '';
 		}
 
+		var isConversationEnabled = container.isEnabledConversation();
 		// TODO: Ugly hack. We shouldn't use the css property for this
-		if (meta && meta.css === 'mail-received' && record.get('depth') > 0 && record.get('folder_name') !== 'inbox') {
+		if (meta && meta.css === 'mail-received' && isConversationEnabled && record.get('folder_name') === 'sent_items') {
 			p.css += ' k-from-other-folder';
 
 			// TODO: Above condition should only true when conversation is enabled and record is not belongs to the
