@@ -13,7 +13,14 @@ Zarafa.common.delegates.dialogs.DelegatePermissionPanel = Ext.extend(Ext.form.Fo
 	 * @cfg {Array} folderTypes array of folder type that will be used
 	 * generate permissions combo box field
 	 */
-	folderTypes : ['calendar','tasks', 'inbox', 'contacts', 'notes','journal'],
+	folderTypes : {
+		'calendar': _('Calendar'),
+		'tasks': _('Tasks'),
+		'inbox': _('Inbox'),
+		'contacts' : _('Contacts'),
+		'notes': _('Notes'),
+		'journal':_('Journal')
+	},
 
 	/**
 	 * @constructor
@@ -100,8 +107,8 @@ Zarafa.common.delegates.dialogs.DelegatePermissionPanel = Ext.extend(Ext.form.Fo
 	createFieldItems : function(folderTypes)
 	{
 		var items = [];
-		for(var i =0; i < folderTypes.length; i++) {
 
+		Ext.iterate(folderTypes, function(key, value){
 			var profileStore = {
 				xtype : 'jsonstore',
 				fields : ['name', 'value'],
@@ -110,10 +117,10 @@ Zarafa.common.delegates.dialogs.DelegatePermissionPanel = Ext.extend(Ext.form.Fo
 
 			var item = {
 				xtype : 'combo',
-				name : 'rights_' + folderTypes[i],
+				name : 'rights_' + key,
 				boxMinWidth : 200,
 				anchor : '100%',
-				fieldLabel : Ext.util.Format.capitalize(folderTypes[i]),
+				fieldLabel : value,
 				store : profileStore,
 				mode : 'local',
 				triggerAction : 'all',
@@ -133,11 +140,11 @@ Zarafa.common.delegates.dialogs.DelegatePermissionPanel = Ext.extend(Ext.form.Fo
 			};
 			items.push(item);
 
-			if(folderTypes[i] === 'calendar') {
+			if(key === 'calendar') {
 				items.push(this.createDelegateMeetingRuleCheck());
 			}
-			
-		}
+		}, this);
+
 		return items;
 	},
 
