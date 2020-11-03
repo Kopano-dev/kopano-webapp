@@ -218,7 +218,6 @@ Zarafa.common.categories.dialogs.RenameCategoryPanel = Ext.extend(Zarafa.core.ui
 		Zarafa.common.dialogs.MessageBox.addCustomButtons({
 			title : _('Categories'),
 			msg : msg,
-			icon: Ext.MessageBox.QUESTION,
 			fn : function(button) {
 				if (button === 'merge') {
 					this.onMergeCategory();

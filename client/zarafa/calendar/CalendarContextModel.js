@@ -160,7 +160,6 @@ Zarafa.calendar.CalendarContextModel = Ext.extend(Zarafa.core.MultiFolderContext
 				width: 400,
 				title: _('Create in other calendar'),
 				msg : _('The selected calendar has \"read-only\" permissions. Instead you can create an item in your own calendar.') + '<br><br>' + _('What would you like?'),
-				icon: Ext.MessageBox.QUESTION,
 				fn : function(buttonName){
 					if ( buttonName === 'own' ){
 						this.createRecord(callback, this.defaultFolder, dateRange);

@@ -432,7 +432,6 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 			width: 400,
 			title: _('Delete Category'),
 			msg : String.format(_('Are you sure you want to delete the category "{0}"? Items already assigned this category won\'t be affected.'), categoryName),
-			icon: Ext.MessageBox.QUESTION,
 			fn : function(buttonName){
 				if ( buttonName === 'delete' ){
 					var categoryStore = this.categoriesGrid.getStore();
