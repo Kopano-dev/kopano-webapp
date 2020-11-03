@@ -1,11 +1,13 @@
 # Usage: 
 #
 # make update 
-# make update TAG=tags/2.1.1
+# make update TAG=2.1.1
 #
 TAG ?= latest
 
-URL = $(shell curl -sq https://api.github.com/repos/cure53/DOMPurify/releases/$(TAG)|jq -r .tarball_url)
+RELEASE_URL = $(shell curl -sq https://api.github.com/repos/cure53/DOMPurify/releases/$(TAG)|jq -r .tarball_url)
+TAG_URL = $(shell curl -sq https://api.github.com/repos/cure53/DOMPurify/tags|jq '.[]|select(.name == "$(TAG)")|.tarball_url')
+URL ?= $(if $(filter latest, $(TAG)), $(RELEASE_URL), $(TAG_URL))
 VERSION = $(shell basename $(URL))
 
 all:
