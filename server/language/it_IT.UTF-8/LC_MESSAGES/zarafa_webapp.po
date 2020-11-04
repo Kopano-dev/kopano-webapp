@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Kopano Webapp Italian (Italy)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-25 14:32+0200\n"
-"PO-Revision-Date: 2020-10-28 11:02+0000\n"
+"PO-Revision-Date: 2020-11-04 11:47+0000\n"
 "Last-Translator: Luca <luca.delcarlo@welcomeitalia.it>\n"
 "Language-Team: Italian <http://translate.kopano.io/projects/kopano/kopano-"
 "webapp/it/>\n"
@@ -1247,7 +1247,7 @@ msgid "Addressbook"
 msgstr ""
 
 msgid "Open addressbook"
-msgstr ""
+msgstr "Apri rubrica"
 
 msgid "Invite attendees"
 msgstr "Invita partecipanti"
@@ -1682,11 +1682,17 @@ msgid ""
 "You have insufficient privileges to move and copy this item. Ask the folder "
 "owner to grant you permissions or contact your system administrator."
 msgstr ""
+"Non disponi di privilegi sufficienti per spostare e copiare questo elemento. "
+"Chiedi al proprietario della cartella di concederti le autorizzazioni o "
+"contatta l'amministratore di sistema."
 
 msgid ""
 "You have insufficient privileges to copy this item. Ask the folder owner to "
 "grant you permissions or contact your system administrator."
 msgstr ""
+"Non disponi di privilegi sufficienti per spostare e copiare questo elemento. "
+"Chiedi al proprietario della cartella di concederti le autorizzazioni o "
+"contatta l'amministratore di sistema."
 
 msgid "Insufficient privileges"
 msgstr "Permessi insufficienti"
@@ -2521,9 +2527,8 @@ msgstr "Nuovo messaggio"
 msgid "Please select a Cc recipient record."
 msgstr "Specificare un destinatario"
 
-#, fuzzy
 msgid "Manage Cc recipients"
-msgstr "Modifica destinatario"
+msgstr "Gestisci destinatari Cc"
 
 msgid ""
 "Cc recipients can be used to set a default Cc user in new mail, replies or "
@@ -2828,69 +2833,55 @@ msgstr "Dimensione"
 msgid "Sort by: Size"
 msgstr "Ordina per: Dimensione"
 
-#, fuzzy
 msgid "Move the message to folder..."
 msgstr "Sposta il messaggio nella cartella ..."
 
-#, fuzzy
 msgid "Copy the message to folder..."
 msgstr "Copia il messaggio nella cartella ..."
 
 msgid "Delete the message"
 msgstr "Elimina il messaggio"
 
-#, fuzzy
 msgid "Redirect the message to..."
 msgstr "Reindirizza il messaggio a ..."
 
-#, fuzzy
 msgid "Forward the message to..."
 msgstr "Inoltra il messaggio a ..."
 
-#, fuzzy
 msgid "Forward the message as attachment to..."
 msgstr "Inoltra il messaggio come allegato a ..."
 
-#, fuzzy
 msgid "Mark the message as read..."
-msgstr "Inoltra il messaggio a ..."
+msgstr "Contrassegna il messaggio come letto ..."
 
-#, fuzzy
 msgid "is received from..."
 msgstr "ricevuto da ..."
 
-#, fuzzy
 msgid "includes these words in the sender's address..."
 msgstr "include le seguenti parole nell'indirizzo del mittente ..."
 
-#, fuzzy
 msgid "includes these words in the recipient's address..."
 msgstr "include le seguenti parole nell'indirizzo del mittente ..."
 
-#, fuzzy
 msgid "includes these words in the subject..."
 msgstr "include le seguenti parole nell'oggetto ..."
 
 # 84%
 # 100%
-#, fuzzy
 msgid "includes these words in the body..."
 msgstr "include le seguenti parole nel corpo del messaggio ..."
 
 # 84%
 # 100%
-#, fuzzy
 msgid "includes these words in the transport-headers..."
 msgstr "include le seguenti parole nel transport-headers..."
 
-#, fuzzy
 msgid "has importance..."
 msgstr "ha importanza ..."
 
 msgid "has an attachment"
 msgstr "ha un allegato"
 
-#, fuzzy
 msgid "is sent to..."
 msgstr "inviato a ..."
 
@@ -2900,30 +2891,26 @@ msgstr "inviato solo a me"
 msgid "has my name in the Cc field"
 msgstr "ha il mio nome nel campo Cc"
 
-#, fuzzy
 msgid "does not have my name in the To or Cc field"
-msgstr "ha il mion nome nel campo A o Cc"
+msgstr "non ha il mio nome nel campo A o Cc"
 
 msgid "has my name in the To or Cc field"
 msgstr "ha il mion nome nel campo A o Cc"
 
-#, fuzzy
 msgid "has sensitivity..."
-msgstr "ha sensibilità"
+msgstr "ha sensibilità..."
 
-#, fuzzy
 msgid "is received after..."
 msgstr "è ricevuto dopo"
 
-#, fuzzy
 msgid "is received before..."
 msgstr "è ricevuto prima"
 
 msgid "size is at least..."
-msgstr ""
+msgstr "la dimensione è almeno..."
 
 msgid "size is at most..."
-msgstr ""
+msgstr "la dimensione è al massimo ..."
 
 msgid "has my name in the To field"
 msgstr "ha il mio nome nel campo A"
@@ -2977,11 +2964,9 @@ msgstr ""
 msgid "Stop processing more rules"
 msgstr "Non processare ulteriori regole"
 
-#, fuzzy
 msgid "Add exception"
 msgstr "Aggiungi azione"
 
-#, fuzzy
 msgid "Remove exception"
 msgstr "Rimuovi azione"
 
@@ -3033,16 +3018,16 @@ msgid "Rule already has lowest priority."
 msgstr "La regola ha già la minima priorità."
 
 msgid "Always move messages from {0}"
-msgstr ""
+msgstr "Sposta sempre i messaggi da {0}"
 
 msgid "Always move messages that are sent to <recipients>"
-msgstr ""
+msgstr "Sposta sempre i messaggi inviati a <destinatari>"
 
 msgid "Always move messages with this subject"
 msgstr ""
 
 msgid "Create rule..."
-msgstr ""
+msgstr "Crea regola ..."
 
 msgid "myself"
 msgstr "io"
@@ -3065,9 +3050,8 @@ msgstr "Altro..."
 msgid "Search in.."
 msgstr "Ricerca in.."
 
-#, fuzzy
 msgid "Folder does not exist"
-msgstr "La cartella contiene"
+msgstr "La cartella non esiste"
 
 msgid ""
 "The folder you are searching through no longer exists. Please select another "
@@ -3119,7 +3103,7 @@ msgid "Request Permissions"
 msgstr ""
 
 msgid "Enable desktop notifications for new mail"
-msgstr ""
+msgstr "Abilita le notifiche desktop per la nuove email"
 
 msgid "Enable desktop notifications for reminders"
 msgstr "Abilita notifiche desktop per i pro-memoria"
@@ -3131,7 +3115,7 @@ msgid "Disable sound"
 msgstr "Disabilita il suono"
 
 msgid "Notifications"
-msgstr ""
+msgstr "Notifiche Desktop"
 
 # 80%
 msgid "Rules"
@@ -3443,11 +3427,9 @@ msgstr "Nessuno"
 msgid "Pop-out"
 msgstr "Dividi"
 
-#, fuzzy
 msgid "Mark as read"
-msgstr "Segna come non letto"
+msgstr "Segna come letto"
 
-#, fuzzy
 msgid "Mark as unread"
 msgstr "Segna come non letto"
 
@@ -3720,28 +3702,23 @@ msgid "Add Attachment"
 msgstr "Inserisci allegato"
 
 # 81%
-#, fuzzy
 msgid "Add attachments to this contact"
 msgstr "Aggiungi allegati a questo contatto."
 
 # 75%
-#, fuzzy
 msgid "Mark this contact as private"
-msgstr "Contrassegna questo contatto come privato."
+msgstr "Contrassegna questo contatto come privato"
 
 # 94%
 msgid "Distribution List"
 msgstr "Lista di distribuzione"
 
-#, fuzzy
 msgid "Mark this Distribution list as private"
-msgstr "Segna questa lista di distribuzione come privata."
+msgstr "Segna questa lista di distribuzione come privata"
 
-#, fuzzy
 msgid "New email address"
 msgstr "Nuovo indirizzo e-mail"
 
-#, fuzzy
 msgid "Please enter a valid email address"
 msgstr "Inserire un indirizzo email valido!"
 
@@ -4565,16 +4542,14 @@ msgstr "Nuovo appuntamento"
 msgid "Import contacts"
 msgstr ""
 
-#, fuzzy
 msgid "Properties of {0}"
-msgstr "Proprietà"
+msgstr "Proprietà di {0}"
 
 msgid "Share {0} with..."
 msgstr ""
 
-#, fuzzy
 msgid "Properties of {0} - {1}"
-msgstr "Proprietà"
+msgstr "Proprietà di {0} - {1}"
 
 msgid ""
 "Are you sure you want to permanently delete all the items and subfolders in "
@@ -4918,7 +4893,7 @@ msgid "Browser window"
 msgstr "Finestra del browser"
 
 msgid "Update Out of Office settings for"
-msgstr ""
+msgstr "Aggiorna le impostazioni Fuori Sede per"
 
 msgid "I am currently in the office"
 msgstr "In sede"
@@ -4930,7 +4905,7 @@ msgid "I will be back on"
 msgstr "Rientrerò il"
 
 msgid "I am out of office"
-msgstr ""
+msgstr "Sono fuori ufficio"
 
 #, fuzzy
 msgid "Automatically reply once per day, per sender with the following text"
@@ -5066,7 +5041,6 @@ msgstr "Messaggio non letto"
 msgid "Quick Mail"
 msgstr "E-Mail veloce"
 
-#, fuzzy
 msgid "Print note"
 msgstr "Stampa nota"
 
@@ -5558,9 +5532,8 @@ msgstr ""
 msgid "Detailed view"
 msgstr ""
 
-#, fuzzy
 msgid "Task request"
-msgstr "Richiesta attività"
+msgstr "Richiesta di attività"
 
 msgid "Print selected task"
 msgstr "Stampa attività selezionata"
@@ -5578,21 +5551,19 @@ msgid "Upcoming"
 msgstr "In arrivo"
 
 msgid "Overdue"
-msgstr ""
+msgstr "Scaduti"
 
 msgid "Mark Complete"
 msgstr ""
 
 msgid "Mark Incomplete"
-msgstr ""
+msgstr "Segna come non completata"
 
-#, fuzzy
 msgid "Remove from To-Do List"
-msgstr "Rimuovi dai Preferiti"
+msgstr "Rimuovi dalla lista To-Do"
 
-#, fuzzy
 msgid "Changes to assigned task"
-msgstr "Invia attività ad assegnatario"
+msgstr "Modifiche all'attività assegnata"
 
 #, fuzzy
 msgid ""
