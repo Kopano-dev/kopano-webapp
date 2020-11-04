@@ -75,7 +75,7 @@ class FilterTest extends KopanoTest {
 		$this->assertNotFalse(stripos($result, '<style type="text/css">testCSSStyle { font-family: Arial; }</style>'), 'Test that the custom STYLE-tag is preserved');
 
 		// Only when the HTMLBODY filter is enabled then tags like HTML, HEAD and BODY are filtered out
-		if(!DISABLE_HTMLBODY_FILTER){
+		if(ENABLE_HTMLBODY_FILTER){
 			$this->assertFalse(stripos($result, '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">'), 'Test that the DOCTYPE is removed');
 
 			$this->assertFalse(stripos($result, '<html>'), 'Test that the HTML-tag is removed');

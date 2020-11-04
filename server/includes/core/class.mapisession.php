@@ -885,8 +885,8 @@
 				$defaultStore = $this->getDefaultMessageStore();
 				$contactFolders = $this->getContactFoldersForABContactProvider($defaultStore);
 
-				// include shared contact folders in addressbook if shared contact folders are not disabled
-				if (!DISABLE_SHARED_CONTACT_FOLDERS && $loadSharedContactsProvider) {
+				// include shared contact folders in addressbook if shared contact folders are enabled
+				if (ENABLE_SHARED_CONTACT_FOLDERS && $loadSharedContactsProvider) {
 					if (empty($this->userstores)) {
 						$this->getOtherUserStore();
 					}
@@ -938,8 +938,8 @@
 					}
 				}
 
-				// include public contact folders in addressbook if public folders are enabled, and Public contact folders is not disabled
-				if (!DISABLE_PUBLIC_CONTACT_FOLDERS && ENABLE_PUBLIC_FOLDERS) {
+				// Include public contact folders in addressbook if public folders and public contacts folders are enabled
+				if (ENABLE_PUBLIC_CONTACT_FOLDERS && ENABLE_PUBLIC_FOLDERS) {
 					$publicStore = $this->getPublicMessageStore();
 					if($publicStore !== false) {
 						$contactFolders = array_merge($contactFolders, $this->getContactFoldersForABContactProvider($publicStore));

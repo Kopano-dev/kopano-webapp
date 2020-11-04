@@ -243,7 +243,7 @@ class WebAppAuthentication
 	 */
 	public static function isUsingSingleSignOn() {
 		// First check if the admin disabled using SSO on SSO systems
-		if ( DISABLE_REMOTE_USER_LOGIN ){
+		if (!ENABLE_REMOTE_USER_LOGIN){
 			return false;
 		}
 

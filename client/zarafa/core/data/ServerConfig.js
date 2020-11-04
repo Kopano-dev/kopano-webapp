@@ -98,7 +98,7 @@ Zarafa.core.data.ServerConfig = Ext.extend(Object, {
 	 */
 	isWhatsNewDialogDisabled : function()
 	{
-		return this.meta.disable_whats_new_dialog === true;
+		return this.meta.enable_whats_new_dialog === false;
 	},
 
 	/**

@@ -33,7 +33,7 @@ define('LANGUAGE_DIR', BASE_PATH . 'server/language/');
 define('TMP_PATH', sys_get_temp_dir() . '/webapp-phptests');
 
 // Defines the shared contact folders will be shown in address-book folder list
-define('DISABLE_SHARED_CONTACT_FOLDERS', false);
+define('ENABLE_SHARED_CONTACT_FOLDERS', true);
 
 // Expand the existing include path with all the new stuff.
 set_include_path(BASE_PATH . PATH_SEPARATOR . get_include_path());

@@ -31,7 +31,7 @@
 			// Save all "<" symbols
 			$html = preg_replace("/<(?=[^a-zA-Z\/\!\?\%])/", "&lt;", $html);
 
-			if(!DISABLE_HTMLBODY_FILTER && (!ENABLE_DOMPURIFY_FILTER || $this->forceFilterHTML)) {
+			if(ENABLE_HTMLBODY_FILTER && (!ENABLE_DOMPURIFY_FILTER || $this->forceFilterHTML)) {
 				// Filter '<script>'
 				$html = magicHTML($html);
 			}

@@ -35,7 +35,7 @@ Zarafa.addressbook.ui.AddressBookMainPanel = Ext.extend(Ext.Panel, {
 
 	/**
 	 * The text that will be shown in the grid when the user has to do a search before
-	 * results are shown. (for the GAB when the admin has set DISABLE_FULL_GAB to true)
+	 * results are shown. (for the GAB when the admin has set ENABLE_FULL_GAB to false)
 	 * @property
 	 * @type {String}
 	 */
