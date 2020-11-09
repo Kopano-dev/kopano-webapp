@@ -143,6 +143,17 @@ Zarafa.settings.ui.SettingsDisplayWidget = Ext.extend(Zarafa.settings.ui.Setting
 					change : this.onFieldChange,
 					scope : this
 				}
+			},{
+				xtype : 'checkbox',
+				name : 'zarafa/v1/widgets/sidebar/hide_widgetpanel',
+				ref : 'hideWidgetpanel',
+				hideLabel : true,
+				requiresReload : true,
+				boxLabel : _('Hide widget panel'),
+				listeners : {
+					change : this.onFieldChange,
+					scope : this
+				}
 			},
 
 			// Insertion point at the end of the display widget
@@ -167,6 +178,7 @@ Zarafa.settings.ui.SettingsDisplayWidget = Ext.extend(Zarafa.settings.ui.Setting
 		this.hideFavorites.setValue(settingsModel.get(this.hideFavorites.name));
 		this.scrollFavorites.setValue(settingsModel.get(this.scrollFavorites.name));
 		this.unreadBorders.setValue(settingsModel.get(this.unreadBorders.name));
+		this.hideWidgetpanel.setValue(settingsModel.get(this.hideWidgetpanel.name));
 
 		// Check if help manual plugin's settings available else check main settings.
 		var helpManualPluginSetting = settingsModel.get(this.helpManual.pluginSettingPath);
@@ -194,6 +206,7 @@ Zarafa.settings.ui.SettingsDisplayWidget = Ext.extend(Zarafa.settings.ui.Setting
 		settingsModel.set(this.hideFavorites.name, this.hideFavorites.getValue());
 		settingsModel.set(this.scrollFavorites.name, this.scrollFavorites.getValue());
 		settingsModel.set(this.unreadBorders.name, this.unreadBorders.getValue());
+		settingsModel.set(this.hideWidgetpanel.name, this.hideWidgetpanel.getValue());
 		
 		// Remove webapp manual plugin settings.
 		if (this.helpManual.appliedPluginSetting) {
