@@ -655,7 +655,7 @@ Zarafa.core.BrowserWindowMgr = Ext.extend(Ext.util.Observable, {
 				title : _("Open in new browser window"),
 				msg : _("Your browser seems to have blocked one or more pop-ups. Please change your browser's settings to always allow pop-ups from WebApp."),
 				buttons: Ext.Msg.OK,
-				icon: Ext.MessageBox.WARNING
+				cls: Ext.MessageBox.WARNING_CLS
 			});
 
 			Zarafa.core.BrowserWindowMgr.isPopupsBlocked = false;

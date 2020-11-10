@@ -575,7 +575,7 @@ Zarafa.calendar.dialogs.AppointmentTab = Ext.extend(Ext.form.FormPanel, {
 						title : _('Warning'),
 						msg : _('Attachments cannot be modified for a single occurence'),
 						buttons: Ext.Msg.OK,
-						icon: Ext.MessageBox.WARNING
+						cls: Ext.MessageBox.WARNING_CLS
 					});
 				}
 			},{

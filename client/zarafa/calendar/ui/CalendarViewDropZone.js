@@ -379,7 +379,7 @@ Zarafa.calendar.ui.CalendarViewDropZone = Ext.extend(Ext.dd.DropZone, {
 			width: 400,
 			title: _('Kopano Webapp'),
 			msg : _('Please note that any changes you make will be overwritten when this meeting request is updated by the organizer. Would you like to move this meeting?'),
-			icon: Ext.MessageBox.WARNING,
+			cls: Ext.MessageBox.WARNING_CLS,
 			fn : function(buttonName) {
 				if (buttonName === 'move') {
 					switch (action) {

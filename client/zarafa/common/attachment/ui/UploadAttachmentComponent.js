@@ -132,7 +132,7 @@ Zarafa.common.attachment.ui.UploadAttachmentComponent = Ext.extend(Ext.Component
 		Ext.MessageBox.show({
 			title: _('Attachment Error'),
 			msg : message,
-			icon: Ext.MessageBox.ERROR,
+			cls: Ext.MessageBox.ERROR_CLS,
 			buttons: Ext.MessageBox.OK
 		});
 	},
