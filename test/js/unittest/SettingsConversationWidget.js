@@ -3,11 +3,10 @@ describe('SettingsConversationWidget', function() {
 	var widget;
 
 	beforeEach(function() {
-        container.setServerConfig({'enable_conversation_view': true});
 		widget = new Zarafa.mail.settings.SettingsConversationWidget();
-        settingsModel = container.getSettingsModel();
-        settingsModel.initialize(settingsModel.defaults);
-        widget.update(settingsModel);
+	        settingsModel = container.getSettingsModel();
+        	settingsModel.initialize(settingsModel.defaults);
+	        widget.update(settingsModel);
 	});
 
 	afterEach(function() {

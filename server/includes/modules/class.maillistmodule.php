@@ -42,12 +42,11 @@
 
 		/**
 		 * Checks if the list should be returned as conversations or as a plain list.
-		 *
 		 * @return Boolean True if the list should be returned as conversations, false otherwise
 		 */
 		function useConversationView() {
+		// We also check if live scroll is enabled. Ref KW-3391.
 			return
-				ENABLE_CONVERSATION_VIEW === true &&
 				$GLOBALS['settings']->get('zarafa/v1/contexts/mail/enable_conversation_view') === true &&
 				$GLOBALS['settings']->get('zarafa/v1/contexts/mail/enable_live_scroll') !== false;
 		}

@@ -51,15 +51,6 @@ Zarafa.core.data.ServerConfig = Ext.extend(Object, {
 	},
 
 	/**
-	 * @return {Boolean} True if it should be possible to enable the conversation view
-	 * by user else false.
-	 */
-	isConversationViewEnabled : function()
-	{
-		return this.meta.enable_conversation_view === true;
-	},
-
-	/**
 	 * @return {Boolean} True if it should be possible to set rules on the store
 	 * of other users.
 	 */
@@ -357,14 +348,6 @@ Zarafa.core.data.ServerConfig = Ext.extend(Object, {
 	getOIDCEnabled : function()
 	{
 		return this.meta.oidc_enabled;
-	},
-
-	/**
-	 * @returns {Boolean} True if conversation is enabled by admin(from config.php) else false.
-	 */
-	getConversationViewCfg : function ()
-	{
-		return this.meta.enable_conversation_view;
 	},
 
 	/**

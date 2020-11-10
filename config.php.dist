@@ -126,10 +126,6 @@
 	// false will show shared contact folders in address-book folder list.
 	define("ENABLE_SHARED_CONTACT_FOLDERS", false);
 
-	// Set to true to give users the option to enable conversation view in their settings
-	// Set to false to hide the setting and disable conversation view for all users
-	define("ENABLE_CONVERSATION_VIEW", false);
-
 	// Set to true to give users the option to enable file previewer in their settings
 	// Set to false to hide the setting and disable file previewer for all users
 	define("ENABLE_FILE_PREVIEWER", true);
