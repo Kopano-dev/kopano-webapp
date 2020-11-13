@@ -78,7 +78,7 @@ class suggestEmailAddressModule extends Module
 	/**
 	 * Function is used to delete a recipient entry from already stored recipient history
 	 * in mapi property. it searches for deleteRecipients key in the action array which will
-	 * contain email addresses of recipients that should be deleted in semicolon seperated format.
+	 * contain email addresses of recipients that should be deleted in semicolon separated format.
 	 * @param {Array} $action action data in associative array format.
 	 * @param {Array} $recipient_history recipient history stored in mapi proeprty.
 	 */

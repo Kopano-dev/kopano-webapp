@@ -92,7 +92,7 @@
 
         /**
          * Function returns array of user stores who has given 'Owner' permission to logged in user.
-         * Internal function to retrieve the shared stores whith 'owner' permission.
+         * Internal function to retrieve the shared stores with 'owner' permission.
          * @access private
          * @return {Array} array of user stores who has given 'owner' permission.
          */

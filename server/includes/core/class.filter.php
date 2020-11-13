@@ -10,7 +10,7 @@
 	{
 
 		/**
-		 * A boolean value set true to Filter html content forcefuly default is false.
+		 * A boolean value set true to Filter html content forcefully default is false.
 		 * @var bool
 		 */
 		private $forceFilterHTML;

@@ -111,7 +111,7 @@
 				$rows = mapi_ab_resolvename($ab, array ( array(PR_DISPLAY_NAME => $searchstr) ) , $flags);
 			} catch (MAPIException $e) {
 				if ($e->getCode() == MAPI_E_AMBIGUOUS_RECIP) {
-					// Ambiguous, show possiblities:
+					// Ambiguous, show possibilities:
 					$table = mapi_folder_getcontentstable($ab_dir, MAPI_DEFERRED_ERRORS);
 					$restriction = $this->getAmbigiousContactRestriction($searchstr, $excludeGABGroups, PR_ACCOUNT);
 

@@ -356,7 +356,7 @@
 		}
 
 		/**
-		 * Will iterate to retreive the requested number of conversations (or whatever is left)
+		 * Will iterate to retrieve the requested number of conversations (or whatever is left)
 		 *
 		 * @param Integer $count Number of conversations to fetch
 		 * @return Array Array of item objects grouped by conversation (together with headers)
@@ -872,7 +872,7 @@
 		}
 
 		/**
-		 * Helper function which determins whether the conversation search folder already exist.
+		 * Helper function which determines whether the conversation search folder already exist.
 		 *
 		 * @param Resource $searchRoot FINDER_ROOT folder of the store in which we need to find conversation search folder.
 		 * @return Boolean true if conversation search folder already exist else false.

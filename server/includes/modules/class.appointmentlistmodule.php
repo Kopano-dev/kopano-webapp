@@ -155,7 +155,7 @@
 			$restriction =
 				// OR
 				//  - Either we want all appointments which fall within the given range
-				//	- Or we want all recurring items which we manually check if an occurence
+				//	- Or we want all recurring items which we manually check if an occurrence
 				//	  exists which will fall inside the range
 				Array(RES_OR,
 					Array(
@@ -257,7 +257,7 @@
 					{
 						$item = Conversion::mapMAPI2XML($this->properties, $recuritem);
 
-						// Single occurences are never recurring
+						// Single occurrences are never recurring
 						$item['props']['recurring'] = false;
 
 						if(isset($recuritem["exception"])) {
