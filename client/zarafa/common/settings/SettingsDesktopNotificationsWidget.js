@@ -259,7 +259,7 @@ Zarafa.common.settings.SettingsDesktopNotificationsWidget = Ext.extend(Zarafa.se
 		settingsModel.set(this.autoHideTimeSpinner.name, spinnerValue);
 		
 		// Note: Need to remove unnecessary plugin's settings and save the current settings in webapp main settings 
-		// so that there will not be any dependancy of plugin settings.
+		// so that there will not be any dependency of plugin settings.
 		// And this will only run once to convert plugin's settings into main settings.
 		if (this.pluginSettingsApplied) {
 			settingsModel.remove('zarafa/v1/plugins/desktopnotifications', {type : 'deprecated'});

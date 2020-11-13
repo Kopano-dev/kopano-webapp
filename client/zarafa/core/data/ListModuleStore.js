@@ -88,7 +88,7 @@ Zarafa.core.data.ListModuleStore = Ext.extend(Zarafa.core.data.IPMStore, {
 	preferredMessageClass : 'IPM.Note',
 
 	/**
-	 * @cfg {Object} defaultSortInfo When no sorting is explicitely provided by the user.
+	 * @cfg {Object} defaultSortInfo When no sorting is explicitly provided by the user.
 	 * See {@link #sortInfo}.
 	 */
 	defaultSortInfo : undefined,
@@ -492,7 +492,7 @@ myStore.reload(lastOptions);
 
 	/**
 	 * Helper function to detect if {@link #this} is the {@link Zarafa.advancesearch.AdvanceSearchStore AdvanceSearchStore} or not.
-	 * @return {Boolean} True if this is refered to an instance of {@link Zarafa.advancesearch.AdvanceSearchStore AdvanceSearchStore}, false otherwise.
+	 * @return {Boolean} True if this is referred to an instance of {@link Zarafa.advancesearch.AdvanceSearchStore AdvanceSearchStore}, false otherwise.
 	 */
 	isAdvanceSearchStore : function()
 	{
@@ -706,7 +706,7 @@ myStore.reload(lastOptions);
 	},
 
 	/**
-	 * Function is used as a callback for 'read' action, we have overriden it to
+	 * Function is used as a callback for 'read' action, we have overridden it to
 	 * support search also using same 'read' action instead of creating new action.
 	 * this will check that if action type is list then will do normal processing and
 	 * add {@link Zarafa.core.data.IPMRecords[] records} to {@link Zarafa.core.data.ListModuleStore store}
@@ -764,7 +764,7 @@ myStore.reload(lastOptions);
 
 				// If the response contained an error, set it on the store
 				// Note: This is not a PHP error. The response was a normal status 200
-				// But the request could not be fullfilled and an error message was
+				// But the request could not be fulfilled and an error message was
 				// sent with the response (listexceed error).
 				if (metaData.error) {
 					this.error = metaData.error;

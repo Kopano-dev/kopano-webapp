@@ -88,7 +88,7 @@ Zarafa.core.ui.RecordContentPanel = Ext.extend(Zarafa.core.ui.ContentPanel, {
 	/**
 	 * When {@link #showInfoMask} is true, then we should check if any save request
 	 * is fired internally and we should not show {@link #savingText} and {@link #savingDoneText}. This is handled by
-	 * maintaing an array of {@link Zarafa.core.data.MAPIRecord#actions message actions} that will be matched with message action
+	 * maintaining an array of {@link Zarafa.core.data.MAPIRecord#actions message actions} that will be matched with message action
 	 * actually set on record to show or not show info mask.
 	 * @property
 	 * @type Array
@@ -112,7 +112,7 @@ Zarafa.core.ui.RecordContentPanel = Ext.extend(Zarafa.core.ui.ContentPanel, {
 	savingEl : undefined,
 
 	/**
-	 * @cfg {Boolean} closeOnSave Config option to close the panel when client recieves confirmation of message is saved.
+	 * @cfg {Boolean} closeOnSave Config option to close the panel when client receives confirmation of message is saved.
 	 */
 	closeOnSave : false,
 
@@ -131,7 +131,7 @@ Zarafa.core.ui.RecordContentPanel = Ext.extend(Zarafa.core.ui.ContentPanel, {
 	removeRecordOnCancel : false,
 
 	/**
-	 * If set to true when the component is layed out, the loading mask will be displayed
+	 * If set to true when the component is laid out, the loading mask will be displayed
 	 * @property
 	 * @type Boolean
 	 */
@@ -317,7 +317,7 @@ Zarafa.core.ui.RecordContentPanel = Ext.extend(Zarafa.core.ui.ContentPanel, {
 
 	/**
 	 * If {@link #showInfoMask} is enabled, and {@link #displayInfoMask} has been called, this
-	 * will remove the notification again. When saving has been successfull, a new notification
+	 * will remove the notification again. When saving has been successful, a new notification
 	 * will be shown to display the {@link #savingDoneText}.
 	 * @param {Boolean} success false to disable the display of {@link #savingDoneText}.
 	 * @protected
@@ -372,7 +372,7 @@ Zarafa.core.ui.RecordContentPanel = Ext.extend(Zarafa.core.ui.ContentPanel, {
 				// (The store_entryid must be checked because the jasmine tests create filled in phantom records
 				// that are not being saved. But these records don't have a store_entryid)
 				if ( record.phantom === true && Ext.isDefined(record.store) && record.store.isSaving ){
-					// Show a loading mask either immediately or when the panel has been layed out)
+					// Show a loading mask either immediately or when the panel has been laid out)
 					if ( this.el ){
 						this.displayLoadMask();
 					}else {
@@ -605,7 +605,7 @@ Zarafa.core.ui.RecordContentPanel = Ext.extend(Zarafa.core.ui.ContentPanel, {
 	 * this will display the {@link #savingText} to indicate the saving is in progress.
 	 *
 	 * @param {Zarafa.core.ui.RecordContentPanel} contentpanel The record which fired the event
-	 * @param {String} action write Action that ocurred. Can be one of
+	 * @param {String} action write Action that occurred. Can be one of
 	 * {@link Ext.data.Record.EDIT EDIT}, {@link Ext.data.Record.REJECT REJECT} or
 	 * {@link Ext.data.Record.COMMIT COMMIT}
 	 * @param {Zarafa.core.data.IPMRecord} record The record which was updated

@@ -66,7 +66,7 @@ Zarafa.core.mapi.Restrictions = Zarafa.core.Enum.create({
 	RES_SIZE : 0x00000007,
 
 	/**
-	 * Denotes restriction type that is used for checking existance of a property.
+	 * Denotes restriction type that is used for checking existence of a property.
 	 * @property
 	 * @type Number
 	 */

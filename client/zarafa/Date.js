@@ -213,7 +213,7 @@ Ext.apply(Date.prototype, {
 	{
 		var utc = new Date(this.getTime() + (this.getTimezoneOffset() * 60000));
 
-		// Obtain the DST difference which might have occured during conversion,
+		// Obtain the DST difference which might have occurred during conversion,
 		// if there was a difference it must be applied to the utc date accordingly.
 		utc.setMilliseconds(utc.getMilliseconds() + Date.getDSTDiff(utc, this));
 

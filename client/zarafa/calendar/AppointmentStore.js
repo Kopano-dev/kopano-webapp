@@ -34,7 +34,7 @@ Zarafa.calendar.AppointmentStore = Ext.extend(Zarafa.core.data.ListModuleStore, 
 	},
 
 	/**
-	 * With recurring appointments, each occurence has the same entryid.
+	 * With recurring appointments, each occurrence has the same entryid.
 	 * For those cases, we cannot use the entryid as unique property, instead
 	 * we combine it with the basedate.
 	 * @param {Ext.data.Record} record The record for which the key is requested
@@ -56,8 +56,8 @@ Zarafa.calendar.AppointmentStore = Ext.extend(Zarafa.core.data.ListModuleStore, 
 	 * Event handler fired by the {@link Ext.data.Store} when a record is being removed
 	 * from the store. This adds a special case to the default behavior of the {@link Ext.data.Store#destroyRecord}
 	 * especially for recurring appointments. When the appointment is recurring, and no basedate is provided, we
-	 * manually fire a {@link Ext.data.Store#remove} event for each occurence which is currently loaded. This will
-	 * ensure that the UI can remove every occurence from the UI while we send a single record to the server to
+	 * manually fire a {@link Ext.data.Store#remove} event for each occurrence which is currently loaded. This will
+	 * ensure that the UI can remove every occurrence from the UI while we send a single record to the server to
 	 * remove the entire series from the server.
 	 * 
 	 * @param {Ext.data.Store} store The store from where the record is removed
@@ -74,7 +74,7 @@ Zarafa.calendar.AppointmentStore = Ext.extend(Zarafa.core.data.ListModuleStore, 
 
 		// Special case for deleting recurrences
 		if (record.isRecurring && record.isRecurring()) {
-			// Search for all occurences which belong to this recurrence.
+			// Search for all occurrences which belong to this recurrence.
 			// Note that 'record' is already removed from the store,
 			// so we don't risk of adding it again into the array.
 			var deleteOccurences = [];
@@ -84,7 +84,7 @@ Zarafa.calendar.AppointmentStore = Ext.extend(Zarafa.core.data.ListModuleStore, 
 				}
 			});
 
-			// Now remove every occurence from the store, before removing we
+			// Now remove every occurrence from the store, before removing we
 			// push it into the 'removed' array to make sure that when we arrive
 			// inside this function again, the first if-statement will return.
 			for (var i = 0, len = deleteOccurences.length; i < len; i++) {
@@ -94,7 +94,7 @@ Zarafa.calendar.AppointmentStore = Ext.extend(Zarafa.core.data.ListModuleStore, 
 				this.removed.remove(occur);
 			}
 
-			// All occurences have been deleted. Continue as usual...
+			// All occurrences have been deleted. Continue as usual...
 		}
 
 		Zarafa.calendar.AppointmentStore.superclass.destroyRecord.call(this, store, record, index);
@@ -136,8 +136,8 @@ Zarafa.calendar.AppointmentStore = Ext.extend(Zarafa.core.data.ListModuleStore, 
 			if (!record.isMessageClass('IPM.Appointment') && !record.isMessageClass('IPM.OLE.CLASS.{00061055-0000-0000-C000-000000000046}')) {
 				continue;
 			} else if (record.isRecurringOccurence()) {
-				// The appointment is an occurence, this means we are
-				// updating an exception. Find the exact occurence which
+				// The appointment is an occurrence, this means we are
+				// updating an exception. Find the exact occurrence which
 				// was changed.
 				var index = this.findBy(function(rec) {
 					return Zarafa.core.EntryId.compareEntryIds(record.get('entryid'), rec.get('entryid')) &&
@@ -146,7 +146,7 @@ Zarafa.calendar.AppointmentStore = Ext.extend(Zarafa.core.data.ListModuleStore, 
 				});
 
 				if (index >= 0) {
-					// The update is for an occurence, make sure we add
+					// The update is for an occurrence, make sure we add
 					// the 'basedate' as identifier.
 					results.records.push(this.getAt(index));
 					results.updatedRecords.push(record);
@@ -154,7 +154,7 @@ Zarafa.calendar.AppointmentStore = Ext.extend(Zarafa.core.data.ListModuleStore, 
 
 			} else if (record.isRecurring()) {
 				// if the record is a series, we must search for
-				// the occurences (except for exceptions).
+				// the occurrences (except for exceptions).
 				var index = -1;
 				do {
 					index = this.findBy(function(rec) {
@@ -167,13 +167,13 @@ Zarafa.calendar.AppointmentStore = Ext.extend(Zarafa.core.data.ListModuleStore, 
 						var clonedRec = record.copy();
 
 						// The 'basedate' property must not be altered by the series,
-						// as this value will the different for each occurence.
+						// as this value will the different for each occurrence.
 						var basedate = update.get('basedate');
 						if (Ext.isDate(basedate)) {
 							clonedRec.set('basedate', basedate.clone());
 						}
 						// The 'recurrence' property must not be altered by the series,
-						// as occurences have a different value for this property.
+						// as occurrences have a different value for this property.
 						clonedRec.set('recurrence', update.get('recurrence'));
 
 						// Update time and duration properties correctly according to the series information.
@@ -205,16 +205,16 @@ Zarafa.calendar.AppointmentStore = Ext.extend(Zarafa.core.data.ListModuleStore, 
 	/**
 	 * Notification handler called by {@link #onNotify} when
 	 * a {@link Zarafa.core.data.Notifications#objectDeleted objectDeleted}
-	 * notification has been recieved. This will remove the 
+	 * notification has been received. This will remove the 
 	 * {@link Zarafa.calendar.AppointmentRecord appointment} Or  {@link Zarafa.calendar.MeetingRequestRecord meeting}from the
 	 * {@link Zarafa.calendar.AppointmentStore store} and after removing store gets reload.
 	 * 
 	 * @param {Zarafa.core.data.Notifications} action The notification action
 	 * @param {Ext.data.Record/Array} records The record or records which have been affected by the notification.
-	 * @param {Object} data The data which has been recieved from the PHP-side which must be applied
+	 * @param {Object} data The data which has been received from the PHP-side which must be applied
 	 * to the given records.
 	 * @param {Number} timestamp The {@link Date#getTime timestamp} on which the notification was received
-	 * @param {Boolean} success The success status, True if the notification was successfully recieved.
+	 * @param {Boolean} success The success status, True if the notification was successfully received.
 	 * @private
 	 */
 	onNotifyObjectdeleted : function(action, records, data, timestamp, success)
@@ -229,7 +229,7 @@ Zarafa.calendar.AppointmentStore = Ext.extend(Zarafa.core.data.ListModuleStore, 
 	 *
 	 * @param {Zarafa.calendar.AppointmentStore} store which gets updated.
 	 * @param {Zarafa.calendar.AppointmentRecord} record which is created in store.
-	 * @param {string} operation write Action that ocurred. Can be one of
+	 * @param {string} operation write Action that occurred. Can be one of
 	 * {@link Ext.data.Record.EDIT EDIT}, {@link Ext.data.Record.REJECT REJECT} or
 	 * {@link Ext.data.Record.COMMIT COMMIT}
 	 */

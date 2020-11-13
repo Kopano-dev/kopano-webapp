@@ -117,7 +117,7 @@ Zarafa.common.ui.messagepanel.ExtraInfoLinks = Ext.extend(Ext.Container, {
 
 	/**
 	 * @cfg {String} meetingOutDatedInfoString string which must be displayed in the {@link #header}
-	 * if meeting has occured in the past or expired {@link Zarafa.core.data.IPMRecord record}
+	 * if meeting has occurred in the past or expired {@link Zarafa.core.data.IPMRecord record}
 	 */
 	meetingOutDatedInfoString: pgettext('mail.previewpanel', 'This meeting request was updated after this message was sent. You should open the latest update or open the item from the calendar.'),
 
@@ -438,7 +438,7 @@ Zarafa.common.ui.messagepanel.ExtraInfoLinks = Ext.extend(Ext.Container, {
 	/**
 	 * Set task request information from {@link Zarafa.core.data.IPMRecord record} data.
 	 *
-	 * @param {Ext.Element/HTMLElement} el The target element which is being layed out
+	 * @param {Ext.Element/HTMLElement} el The target element which is being laid out
 	 * @return {Boolean} true if function added any info to {@link Zarafa.common.ui.messagepanel.ExtraInfoLinks ExtraInfoLinks}
 	 * and it should be made visible else false.
 	 * @private
@@ -509,7 +509,7 @@ Zarafa.common.ui.messagepanel.ExtraInfoLinks = Ext.extend(Ext.Container, {
 	 * Set meeting information from {@link Zarafa.core.data.IPMRecord record} data
 	 * and if found will update the panel by loading data from the record data into the template
 	 *
-	 * @param {Ext.Element/HTMLElement} el The target element which is being layed out
+	 * @param {Ext.Element/HTMLElement} el The target element which is being laid out
 	 * @return {Boolean} true if {@link Zarafa.core.data.IPMRecord IPMRecord} contains any meeting info
 	 * @private
 	 */
@@ -540,7 +540,7 @@ Zarafa.common.ui.messagepanel.ExtraInfoLinks = Ext.extend(Ext.Container, {
 	/**
 	 * Set delegator info if the meeting request is forwarded by delegate meeting rule,
 	 * get info from {@link Zarafa.core.data.IPMRecord record} data.
-	 * @param {Ext.Element/HTMLElement} el The target element which is being layed out
+	 * @param {Ext.Element/HTMLElement} el The target element which is being laid out
 	 * @return {Boolean} true if function added any info to {@link Zarafa.common.ui.messagepanel.ExtraInfoLinks ExtraInfoLinks}
 	 * and it should be made visible else false.
 	 * @private
@@ -562,7 +562,7 @@ Zarafa.common.ui.messagepanel.ExtraInfoLinks = Ext.extend(Ext.Container, {
 
 	/**
 	 * Set meeting request information from {@link Zarafa.core.data.IPMRecord record} data.
-	 * @param {Ext.Element/HTMLElement} el The target element which is being layed out
+	 * @param {Ext.Element/HTMLElement} el The target element which is being laid out
 	 * @return {Boolean} true if function added any info to {@link Zarafa.common.ui.messagepanel.ExtraInfoLinks ExtraInfoLinks}
 	 * and it should be made visible else false.
 	 * @private
@@ -617,7 +617,7 @@ Zarafa.common.ui.messagepanel.ExtraInfoLinks = Ext.extend(Ext.Container, {
 	/**
 	 * Set meeting response information from {@link Zarafa.core.data.IPMRecord record} data
 	 * and if found will update the panel by loading data from the record data into the template
-	 * @param {Ext.Element/HTMLElement} el The target element which is being layed out
+	 * @param {Ext.Element/HTMLElement} el The target element which is being laid out
 	 * @return {Boolean} true if function added any info to {@link Zarafa.common.ui.messagepanel.ExtraInfoLinks ExtraInfoLinks}
 	 * and it should be made visible else false.
 	 * @private
@@ -706,7 +706,7 @@ Zarafa.common.ui.messagepanel.ExtraInfoLinks = Ext.extend(Ext.Container, {
 	/**
 	 * Set meeting not found information if meeting is not found in the calendar,
 	 * get info from {@link Zarafa.core.data.IPMRecord record} data
-	 * @param {Ext.Element/HTMLElement} el The target element which is being layed out
+	 * @param {Ext.Element/HTMLElement} el The target element which is being laid out
 	 * @return {Boolean} true if function added any info to {@link Zarafa.common.ui.messagepanel.ExtraInfoLinks ExtraInfoLinks}
 	 * and it should be made visible else false.
 	 * @private
@@ -726,7 +726,7 @@ Zarafa.common.ui.messagepanel.ExtraInfoLinks = Ext.extend(Ext.Container, {
 
 	/**
 	 * Set recurring meeting request information from {@link Zarafa.core.data.IPMRecord record} data.
-	 * @param {Ext.Element/HTMLElement} el The target element which is being layed out
+	 * @param {Ext.Element/HTMLElement} el The target element which is being laid out
 	 * @return {Boolean} true if function added any info to {@link Zarafa.common.ui.messagepanel.ExtraInfoLinks ExtraInfoLinks}
 	 * and it should be made visible else false.
 	 * @private

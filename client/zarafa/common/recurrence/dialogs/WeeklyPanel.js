@@ -299,7 +299,7 @@ Zarafa.common.recurrence.dialogs.WeeklyPanel = Ext.extend(Zarafa.common.recurren
 	 */
 	updateDaySelectionValues : function(record, useDefaultValues)
 	{
-		// Detect the start of the occurence
+		// Detect the start of the occurrence
 		var startdate = record.get('startdate') || new Date();
 		var weekdays = useDefaultValues ? Math.pow(2, startdate.getDay()) : record.get('recurrence_weekdays');
 		this.weeklyDaySelect.items.each(function(radio) {

@@ -135,7 +135,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 			}
 		}
 
-		// If not explicitely configured, the workingHours and days are determined
+		// If not explicitly configured, the workingHours and days are determined
 		// by the Settings option.
 		if (!Ext.isDefined(config.firstWorkingHour)) {
 			config.firstWorkingHour = container.getSettingsModel().get('zarafa/v1/main/start_working_hour');
@@ -902,7 +902,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	},
 
 	/**
-	 * Called just after this Calendar multiview has been {@link #layout layed out}.
+	 * Called just after this Calendar multiview has been {@link #layout laid out}.
 	 * @protected
 	 */
 	onAfterLayout : function()

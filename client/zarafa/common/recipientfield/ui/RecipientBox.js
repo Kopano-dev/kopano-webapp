@@ -23,7 +23,7 @@ Zarafa.common.recipientfield.ui.RecipientBox = Ext.extend(Zarafa.common.ui.Box, 
 	ambiguousCls : 'x-zarafa-boxfield-recipient-item-ambiguous',
 
 	/**
-	 * @cfg {String} pendingCls The CSS clas which must be applied on {@link #el}
+	 * @cfg {String} pendingCls The CSS class which must be applied on {@link #el}
 	 * when the recipient is pending resolving.
 	 */
 	pendingCls: 'x-zarafa-boxfield-recipient-item-pending',
@@ -168,7 +168,7 @@ Zarafa.common.recipientfield.ui.RecipientBox = Ext.extend(Zarafa.common.ui.Box, 
 	},
 
 	/**
-	 * Function which can be overriden to provide custom formatting for the given {@link Ext.data.Record}
+	 * Function which can be overridden to provide custom formatting for the given {@link Ext.data.Record}
 	 * to the {@link #update} function. The data object returned here is used by the {@link #textTpl template}
 	 * to render the contents of the box.
 	 * @param {Ext.data.Record} record The record which is going to be rendered
@@ -188,7 +188,7 @@ Zarafa.common.recipientfield.ui.RecipientBox = Ext.extend(Zarafa.common.ui.Box, 
 	},
 
 	/**
-	 * Function which can be overriden to provide custom icon rendering for the given {@link Ext.data.Record}
+	 * Function which can be overridden to provide custom icon rendering for the given {@link Ext.data.Record}
 	 * to the {@link #iconEl} element. The string returned here is the CSS class which will be set on the
 	 * {@link #iconEl}.
 	 * @param {Ext.data.Record} record The record which is going to be rendered

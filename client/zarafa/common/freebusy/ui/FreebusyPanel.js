@@ -329,7 +329,7 @@ Zarafa.common.freebusy.ui.FreebusyPanel = Ext.extend(Ext.Panel, {
 	onAfterLayout: function(container)
 	{
 		// Calculate the desired header size, we have the configured header size, but we need
-		// to substract any padding/borders and margins which are applied to the header.
+		// to subtract any padding/borders and margins which are applied to the header.
 		if (this.userListView) {
 			var height = this.headerHeight;
 

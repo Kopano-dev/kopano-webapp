@@ -145,7 +145,7 @@ Zarafa.common.ui.messagepanel.AttachmentLinks = Ext.extend(Ext.DataView, {
 	},
 
 	/**
-	 * overriden to get the viewIndex from an HTML element's attribute
+	 * overridden to get the viewIndex from an HTML element's attribute
 	 * by default the index is taken from the element's position within the group;
 	 * however if there are more than one groups, the indexes are wrong
 	 * @private
@@ -161,7 +161,7 @@ Zarafa.common.ui.messagepanel.AttachmentLinks = Ext.extend(Ext.DataView, {
 	},
 
 	/**
-	 * overriden to provide the correct index to {@link Ext.DataView#getRecord}
+	 * overridden to provide the correct index to {@link Ext.DataView#getRecord}
 	 * otherwise behaviour breaks when there is more than one group in the records (e.g. CC, BCC, etc.)
 	 * @param {Zarafa.core.data.IPMRecipientRecord} data The recipient record to be prepared
 	 * @param {Number} index

@@ -28,7 +28,7 @@ Zarafa.calendar.ui.html.AppointmentProxy = Ext.extend(Zarafa.calendar.ui.Appoint
 	/**
 	 * The CSS class which must be applied to the {@link #header} element.
 	 * This class can be set using {@link #setHeaderClass}.
-	 * FIXME: This class doesn't work, as it is overriden by the subclass...
+	 * FIXME: This class doesn't work, as it is overridden by the subclass...
 	 * @property
 	 * @type String
 	 */
@@ -37,7 +37,7 @@ Zarafa.calendar.ui.html.AppointmentProxy = Ext.extend(Zarafa.calendar.ui.Appoint
 	/**
 	 * The CSS class which must be applied to the {@link #body} element.
 	 * This class can be set using {@link #setBodyClass}.
-	 * FIXME: This class doesn't work, as it is overriden by the subclass...
+	 * FIXME: This class doesn't work, as it is overridden by the subclass...
 	 * @property
 	 * @type String
 	 */

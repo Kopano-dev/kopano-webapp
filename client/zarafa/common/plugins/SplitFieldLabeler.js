@@ -90,7 +90,7 @@ Zarafa.common.plugins.SplitFieldLabeler = Ext.extend(Ext.util.Observable, {
 
 	/**
 	 * Create a list of all sub-labels which can be constructed from the given label.
-	 * This will return a list of all sub-labels, including the seperator string which
+	 * This will return a list of all sub-labels, including the separator string which
 	 * indicates the correct position of an item.
 	 *
 	 * @param {Array/MixedCollection} items The items for which the label distribution
@@ -185,7 +185,7 @@ Zarafa.common.plugins.SplitFieldLabeler = Ext.extend(Ext.util.Observable, {
 	/**
 	 * Calculate the {@link Ext.form.Label.width labelWidths} which
 	 * must be applied to each individual component which doesn't have the
-	 * {@link Ext.form.Label.width labelWidth} set explicitely.
+	 * {@link Ext.form.Label.width labelWidth} set explicitly.
 	 *
 	 * @param {Number} totalWidth The total width which can be used to
 	 * for all the labels combined.

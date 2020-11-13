@@ -1144,7 +1144,7 @@ Zarafa.common.freebusy.ui.TimelineView = Ext.extend(Ext.BoxComponent,
 	 *
 	 * Renders the sum blocks that show the cumulative freebusy information for all the recipients.
 	 * The data from the blocks is combined into cumulative blocks for all recipients. When this
-	 * calculation is done it does it seperately for the different busy statuses. So you will get a
+	 * calculation is done it does it separately for the different busy statuses. So you will get a
 	 * different track for tentative, busy and outofoffice. By displaying them on top of eachother
 	 * the outofoffice is more important than busy and busy more important than tentative.
 	 *
@@ -1505,7 +1505,7 @@ Zarafa.common.freebusy.ui.TimelineView = Ext.extend(Ext.BoxComponent,
 		var secondsSinceFirstHour = secondsSinceStartDay - firstHourStartDayOffsetSecs;
 		/**
 		 * Use the secondsSinceFirstHour:numVisibleSeconds ratio to turn the number of seconds since
-		 * the start of the first hour into the ammount of pixels since the start of the first hour.
+		 * the start of the first hour into the amount of pixels since the start of the first hour.
 		 */
 		var pixelOffset = (secondsSinceFirstHour / numVisibleSeconds) * this.dayWidth;
 		pixelOffset = Math.round(pixelOffset);
@@ -1574,7 +1574,7 @@ Zarafa.common.freebusy.ui.TimelineView = Ext.extend(Ext.BoxComponent,
 			timeSinceStartOfDay = this.hoursEachDayMap[ this.hoursEachDayMap.length-1 ].startDayOffset + this.slotDuration;
 		}
 		/* Use timestamp of the start of the day to make an date object that we can add the hour and
-		 * minutes to. We devide the number of seconds since the start of the day to get the hour
+		 * minutes to. We divide the number of seconds since the start of the day to get the hour
 		 * and minutes. This we will add to the Date object by using the setHours and setMinutes
 		 * methods. This will prevent problems after Daylight Saving Time.
 		 */

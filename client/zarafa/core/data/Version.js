@@ -62,8 +62,8 @@ Zarafa.core.data.Version = Ext.extend(Object, {
 	
 	/**
 	 * Compares two version strings.
-	 * @param {String} version1 The first version string for the comparision
-	 * @param {String} version2 The second version string for the comparision
+	 * @param {String} version1 The first version string for the comparison
+	 * @param {String} version2 The second version string for the comparison
 	 * @return {Integer} -1 if version1 is lower than version2, 
 	 * 1 if version2 is lower, 0 if the versions are equal.
 	 */

@@ -32,7 +32,7 @@ Zarafa.core.data.IPFStoreMgr = Ext.extend(Ext.util.Observable, {
 				/**
 				 * @event storeexception
 				 * Fires when the {@link Zarafa.core.data.IPFStore IPFStore} fired an {@link Zarafa.core.data.IPFStore#exception exception}.
-				 * @param {Zarafa.core.data.IPFStore} store The store on which the exception occured
+				 * @param {Zarafa.core.data.IPFStore} store The store on which the exception occurred
 				 * @param {Ext.data.DataProxy} proxy The proxy from where the exception event originated
 				 * @param {String} type The value of this parameter will be either 'response' or 'remote'.
 				 * @param {String} action Name of the action.
@@ -246,7 +246,7 @@ Zarafa.core.data.IPFStoreMgr = Ext.extend(Ext.util.Observable, {
 		},
 
 		/**
-		 * Event handler will be called on successfull completion of any CRUD operation,
+		 * Event handler will be called on successful completion of any CRUD operation,
 		 * the difference between this event and {@link #save} event is that {@link #save}
 		 * event will pass only data set that is modified not the record that is modified.
 		 * so this event removes burden of finding record from the record set.

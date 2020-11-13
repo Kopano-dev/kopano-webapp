@@ -168,7 +168,7 @@ Zarafa.core.plugins.MarkAsReadPlugin = Ext.extend(Object, {
 	 */
 	onStoreRemove : function(store, record)
 	{
-		// Check if the removed record is the one which refered by the markAsRead plugin
+		// Check if the removed record is the one which referred by the markAsRead plugin
 		if (this.record === record) {
 			this.resetReadFlagTimer();
 		}

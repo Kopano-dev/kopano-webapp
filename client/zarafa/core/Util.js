@@ -411,7 +411,7 @@ Zarafa.core.Util =
 		}
 
 		// Technically we could have moved the boxed
-		// beyond our minumum top-left position. Fix
+		// beyond our minimum top-left position. Fix
 		// that here, and just accept that we will
 		// overflow...
 		box.x = Math.max(container.x, box.x);

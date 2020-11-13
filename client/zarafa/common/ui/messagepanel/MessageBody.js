@@ -269,7 +269,7 @@ Zarafa.common.ui.messagepanel.MessageBody = Ext.extend(Ext.Container, {
 	},
 
 	/**
-	 * Funtion recursively scans dom to get text nodes which contain email addresses or URLs so we can
+	 * Function recursively scans dom to get text nodes which contain email addresses or URLs so we can
 	 * replace them with an anchor tag.
 	 * @param {HTMLElement} node The parent node that will be examined to find the child text nodes
 	 * @private

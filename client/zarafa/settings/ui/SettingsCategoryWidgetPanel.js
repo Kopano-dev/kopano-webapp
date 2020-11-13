@@ -52,7 +52,7 @@ Zarafa.settings.ui.SettingsCategoryWidgetPanel = Ext.extend(Ext.Container, {
 	},
 
 	/**
-	 * Event handler fired when this component is being {@link #doLayout layed out} for the
+	 * Event handler fired when this component is being {@link #doLayout laid out} for the
 	 * first time. This will activate the first registered category.
 	 * @private
 	 */

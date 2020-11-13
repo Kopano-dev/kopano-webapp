@@ -130,7 +130,7 @@ Zarafa.advancesearch.AdvanceSearchContextModel = Ext.extend(Zarafa.core.ContextM
 
 	/**
 	 * Function is call the {@link Zarafa.mail.MailContextModel#createResponseRecord} to create 
-	 * a new {@link Zarafa.core.data.IPMRecord IPMRecord} for responsing to an original
+	 * a new {@link Zarafa.core.data.IPMRecord IPMRecord} for responding to an original
 	 * {@link Zarafa.core.data.IPMRecord IPMRecord}. This will also set subject, body, attachment, recipient
 	 * properties based on {@link Zarafa.mail.data.ActionTypes ActionType} provided.
 	 * 

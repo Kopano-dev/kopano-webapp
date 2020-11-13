@@ -416,7 +416,7 @@ Zarafa.mail.settings.SettingsSignaturesWidget = Ext.extend(Zarafa.settings.ui.Se
 		}
 
 		// If all signatures are removed, remove the full setting path. Otherwise the empty JavaScript object {}
-		// will be interperted by PHP as an object and cause 4 empty signatures
+		// will be interpreted by PHP as an object and cause 4 empty signatures
 		if (signatures.length !== 0) {
 			settingsModel.set(this.signaturesGrid.name, signaturesData);
 		} else {

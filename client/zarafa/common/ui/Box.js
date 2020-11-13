@@ -7,7 +7,7 @@ Ext.namespace('Zarafa.common.ui');
  *
  * The Box which is used by {@link Zarafa.common.ui.BoxField} components
  * to display the boxes inside itself. This box is dediciated to the BoxField
- * and cannot be used seperately.
+ * and cannot be used separately.
  */
 Zarafa.common.ui.Box = Ext.extend(Ext.BoxComponent, {
 	/**
@@ -357,7 +357,7 @@ Zarafa.common.ui.Box = Ext.extend(Ext.BoxComponent, {
 	},
 
 	/**
-	 * Function which can be overriden to provide custom formatting for the given {@link Ext.data.Record}
+	 * Function which can be overridden to provide custom formatting for the given {@link Ext.data.Record}
 	 * to the {@link #update} function. The data object returned here is used by the {@link #textTpl template}
 	 * to render the contents of the box.
 	 * @param {Ext.data.Record} record The record which is going to be rendered
@@ -370,7 +370,7 @@ Zarafa.common.ui.Box = Ext.extend(Ext.BoxComponent, {
 	},
 
 	/**
-	 * Function which can be overriden to provide custom icon rendering for the given {@link Ext.data.Record}
+	 * Function which can be overridden to provide custom icon rendering for the given {@link Ext.data.Record}
 	 * to the {@link #iconEl} element. The string returned here is the CSS class which will be set on the
 	 * {@link #iconEl}.
 	 * @param {Ext.data.Record} record The record which is going to be rendered

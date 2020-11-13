@@ -11,7 +11,7 @@ Ext.namespace('Zarafa.core.plugins');
 Zarafa.core.plugins.InputAutoFocusPlugin = Ext.extend(Object, {
 	/**
 	 * @cfg {Ext.Component} autoFocus The component which should
-	 * be focused when the {@link #field} has been {@link Ext.Container#afterlayout layed out}
+	 * be focused when the {@link #field} has been {@link Ext.Container#afterlayout laid out}
 	 * or {@link Ext.Container#activate activated}.
 	 */
 	autoFocus : undefined,
@@ -51,7 +51,7 @@ Zarafa.core.plugins.InputAutoFocusPlugin = Ext.extend(Object, {
 	},
 
 	/**
-	 * Called by the {@link Ext.Container} when the plugin is being registerd.
+	 * Called by the {@link Ext.Container} when the plugin is being registered.
 	 * @param {Ext.Container} field The field into which this plugin is installed
 	 */
 	init : function(field)
@@ -97,7 +97,7 @@ Zarafa.core.plugins.InputAutoFocusPlugin = Ext.extend(Object, {
 	},
 
 	/**
-	 * Event hander which is fired after the {@link #field} has been {@link Ext.Container#afterlayout layed out}.
+	 * Event hander which is fired after the {@link #field} has been {@link Ext.Container#afterlayout laid out}.
 	 * This will check if the {@link #field} is a tab in a {@link Ext.TabPanel} or a normal {@link Ext.Container}.
 	 * When it is a tab, it will wait for the {@link Ext.Container#activate tab-activation}, otherwise it will
 	 * start the {@link #doAutoFocus}.

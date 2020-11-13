@@ -487,7 +487,7 @@ Zarafa.core.DateRange = Ext.extend(Ext.util.Observable, {
 	 * Undefined dates will be considered as zero and compared.
 	 * 
 	 * @param {Zarafa.core.DateRange} otherRange Date range to compare with.
-	 * @return {Number} If this range 'comes before' otherRange, the funtion returns -1. If this range 'comes
+	 * @return {Number} If this range 'comes before' otherRange, the function returns -1. If this range 'comes
 	 * after' otherRange, return 1. Otherwise return 0.
 	 *   
 	 */

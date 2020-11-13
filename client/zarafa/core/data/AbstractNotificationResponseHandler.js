@@ -4,7 +4,7 @@ Ext.namespace('Zarafa.core.data');
  * @class Zarafa.core.data.AbstractNotificationResponseHandler
  * @extends Zarafa.core.data.AbstractResponseHandler
  *
- * This class specializes in handling notifications recieved by the PHP-side,
+ * This class specializes in handling notifications received by the PHP-side,
  * and is to be used by the {@link Zarafa.core.ResponseRouter ResponseRouter} to
  * process these notifications.
  */
@@ -23,15 +23,15 @@ Zarafa.core.data.AbstractNotificationResponseHandler = Ext.extend(Zarafa.core.da
 	reader: undefined,
 
 	/**
-	 * @cfg {Object} notifyObject The object which must be called when notifications have been recieved.
+	 * @cfg {Object} notifyObject The object which must be called when notifications have been received.
 	 * This object must contain the function 'onNotify' which accepts the following arguments:
 	 * <div class="mdetail-params"><ul>
 	 * <li><b>action</b> : Zarafa.core.data.Notifications<p class="sub-desc">The notification action</p></li>
 	 * <li><b>records</b> : Ext.data.Record/Array<p class="sub-desc">The record or records which have been
 	 * affected by the notification</p></li>
-	 * <li><b>data</b> : Object <p class="sub-desc">The data which has been recieved from the PHP-side which must be applied
+	 * <li><b>data</b> : Object <p class="sub-desc">The data which has been received from the PHP-side which must be applied
 	 * to the given records.</p></li>
-	 * <li><b>success</b> : Boolean<p class="sub-desc">The success status, True if the notification was successfully recieved</p></li>
+	 * <li><b>success</b> : Boolean<p class="sub-desc">The success status, True if the notification was successfully received</p></li>
 	 * </ul></div>
 	 */
 	notifyObject : undefined,
@@ -42,7 +42,7 @@ Zarafa.core.data.AbstractNotificationResponseHandler = Ext.extend(Zarafa.core.da
 	 * as key on the 'notifications' object, and the notification is either an object
 	 * or an array of objects which have been collected for the given action. Each
 	 * object contains the records with all the {@link Ext.data.Record records} which
-	 * is being affected by this notification, and the data which has been recieved
+	 * is being affected by this notification, and the data which has been received
 	 * from the PHP-side.
 	 *
 	 * Adding new notifications can be done using the {@link #addNotification} function.

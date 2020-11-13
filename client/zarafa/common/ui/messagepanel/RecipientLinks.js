@@ -138,7 +138,7 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 	},
 
 	/**
-	 * overriden to get the viewIndex from an HTML element's attribute
+	 * overridden to get the viewIndex from an HTML element's attribute
 	 * by default the index is taken from the element's position within the group;
 	 * however if there are more than one groups, the indexes are wrong
 	 * @private
@@ -179,7 +179,7 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 	},
 
 	/**
-	 * overriden to provide the correct index to {@link Ext.DataView#getRecord}
+	 * overridden to provide the correct index to {@link Ext.DataView#getRecord}
 	 * otherwise behaviour breaks when there is more than one group in the records (e.g. CC, BCC, etc.)
 	 * @param {Zarafa.core.data.IPMRecipientRecord} data The recipient record to be prepared
 	 * @param {Number} index
@@ -288,7 +288,7 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 
 	/**
 	 * Refreshes the view by reloading the data from the store and re-rendering the template.
-	 * Overriden in order to hide this component also if *filtered* records are empty
+	 * Overridden in order to hide this component also if *filtered* records are empty
 	 * @override
 	 */
 	refresh : function()
@@ -361,7 +361,7 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 	},
 
 	/**
-	 * Function will get recipient record from node and will remove some properties which are not usefull,
+	 * Function will get recipient record from node and will remove some properties which are not useful,
 	 * because we are sending a new mail, so we don't want to copy all the properties from original recipient record.
 	 * @param {Ext.Element} node data view element which is attached to the store record
 	 * @return {Zarafa.core.data.IPMRecipientRecord} recipient record that will be used for sending the mail

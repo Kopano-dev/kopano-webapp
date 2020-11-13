@@ -53,7 +53,7 @@ Zarafa.common.recipientfield.ui.RecipientDropZone = Ext.extend(Zarafa.common.ui.
 	/**
 	 * Called while the DropZone determines that a {@link Ext.dd.DragSource} is over a drop node
 	 * that has either been registered or detected by a configured implementation of {@link #getTargetFromEvent}.
-	 * Overriden to use {@link #isValidDropPoint}
+	 * Overridden to use {@link #isValidDropPoint}
 	 * 
 	 * @param {Object} nodeData The custom data associated with the drop node (this is the same value returned from
 	 * {@link #getTargetFromEvent} for this node)

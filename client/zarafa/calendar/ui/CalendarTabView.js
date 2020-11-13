@@ -434,7 +434,7 @@ Zarafa.calendar.ui.CalendarTabView = Ext.extend(Zarafa.core.ui.View, {
 		// contents of the tabText.
 		this.tabText.textMetrics = Ext.util.TextMetrics.createInstance(this.tabText);
 
-		// Apply CSS to all created elements, this will guarentee that we can request
+		// Apply CSS to all created elements, this will guarantee that we can request
 		// styles from the elements like getWidth() and getMargins().
 		this.applyCSSClassNames();
 

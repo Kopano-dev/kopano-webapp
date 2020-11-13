@@ -29,7 +29,7 @@ Zarafa.common.ui.grid.ColumnModel = Ext.extend(Ext.grid.ColumnModel, {
 			 * the event handler to update the configuration if needed.
 			 *
 			 * @param {Ext.grid.ColumnModel} columnModel The column model which is being reconfigured
-			 * @param {Object} The configruation object which is used to reconfigure the model
+			 * @param {Object} The configurations object which is used to reconfigure the model
 			 * @return (optional) if false the {@link #setConfig} call will be aborted and the column
 			 * model will not be reconfigured.
 			 */
@@ -55,7 +55,7 @@ Zarafa.common.ui.grid.ColumnModel = Ext.extend(Ext.grid.ColumnModel, {
 	{
 		// Make a fresh copy of the configuration array. The 'beforeconfigchange' allows for
 		// modifications on the argument we pass it. So we need a copy to prevent the default
-		// values to be overridden accidentely.
+		// values to be overridden accidently.
 		var newConfig = [];
 		for (var i = 0, len = config.length; i < len; i++) {
 			newConfig.push(Ext.apply({}, config[i]));

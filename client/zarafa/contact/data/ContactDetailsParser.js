@@ -240,7 +240,7 @@ Zarafa.contact.data.ContactDetailsParser = Ext.extend(Object, {
 				// remove extension from phone number
 				data = data.replace(result['extension'], '');
 
-				// remove seperator character from extension
+				// remove separator character from extension
 				result['extension'] = result['extension'].replace(ext, '').trim();
 
 				// Only one extension can be allowed

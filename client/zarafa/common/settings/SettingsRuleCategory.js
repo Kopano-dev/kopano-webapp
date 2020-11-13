@@ -87,7 +87,7 @@ Zarafa.common.settings.SettingsRuleCategory = Ext.extend(Zarafa.settings.ui.Sett
 
 	/**
 	 * Event handler which is fired when the {@link Zarafa.common.rules.data.RulesStore Rules Store}
-	 * fires the 'save' event indicating the successfull save of the rules. This will
+	 * fires the 'save' event indicating the successful save of the rules. This will
 	 * {@link #hideSavingMask hide the notification}.
 	 * @private
 	 */

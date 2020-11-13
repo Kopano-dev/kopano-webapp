@@ -95,7 +95,7 @@ Zarafa.mail.MailContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	},
 
 	/**
-	 * Function will create a new {@link Zarafa.core.data.IPMRecord IPMRecord} for responsing to an original
+	 * Function will create a new {@link Zarafa.core.data.IPMRecord IPMRecord} for responding to an original
 	 * {@link Zarafa.core.data.IPMRecord IPMRecord}. This will also set subject, body, attachment, recipient
 	 * properties based on {@link Zarafa.mail.data.ActionTypes ActionType} provided.
 	 *
@@ -515,7 +515,7 @@ Zarafa.mail.MailContextModel = Ext.extend(Zarafa.core.ContextModel, {
 
 	/**
 	 * Initialize the {@link Zarafa.core.data.IPMRecord record} with attachments
-	 * in case of foward it the attachments will be copied to the  record.
+	 * in case of forward it the attachments will be copied to the  record.
 	 * For reply it will be added if it is a inline image.
 	 *
 	 * @param {Zarafa.core.data.IPMRecord} record The record to initialize
@@ -578,7 +578,7 @@ Zarafa.mail.MailContextModel = Ext.extend(Zarafa.core.ContextModel, {
 
 	/**
 	 * Function is used to get signature data based on passed signature id
-	 * from {@link Zarafa.settings.SettingsModel SettingsModel}. It also does convertion of signature data
+	 * from {@link Zarafa.settings.SettingsModel SettingsModel}. It also does conversion of signature data
 	 * when it needs to be converted from plain to html or vice versa.
 	 * @param {Boolean} preferHTML True if the signature should be returned in HTML format else in plain format.
 	 * @param {Number} signatureId id of the signature to get the data, this id can be get using {@link #getSignatureId}.

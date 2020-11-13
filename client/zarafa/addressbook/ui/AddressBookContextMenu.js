@@ -185,7 +185,7 @@ Zarafa.addressbook.ui.AddressBookContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 
 			// Required to set the message action to update some of the props
 			// from server side because when unopened address book record has
-			// limited information so copied contact does not have all the infomation.
+			// limited information so copied contact does not have all the information.
 			contactRecord.addMessageAction("action_type", "copyToContact");
 			contactRecord.addMessageAction("source_entryid", record.get("entryid"));
 			contactRecord.updateAddressbookProps();

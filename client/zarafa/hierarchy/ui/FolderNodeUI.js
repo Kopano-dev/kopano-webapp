@@ -23,7 +23,7 @@ Ext.namespace('Zarafa.hierarchy.ui');
  		</a>
  	 </div>
   </code></pre>
- *  but for our custom needs we need to chagne that layout to accomodate counters also
+ *  but for our custom needs we need to chagne that layout to accommodate counters also
   <pre><code>
  	<div unselectable="on" class="x-tree-node-el x-tree-node-leaf x-unselectable" >	// element node
  		<span class="x-tree-node-indent">		// for indentation

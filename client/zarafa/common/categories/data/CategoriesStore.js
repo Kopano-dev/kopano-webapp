@@ -37,7 +37,7 @@ Zarafa.common.categories.data.CategoriesStore = Ext.extend(Ext.data.ArrayStore, 
 		}
 		categories = categories.concat(container.populateInsertionPoint('main.categories'));
 
-		// Add additonal categories defined by the admin. They are already defined by the default
+		// Add additional categories defined by the admin. They are already defined by the default
 		// persistent settings, but the user might have removed/changed them and since KW-2841 we
 		// always want to have those categories available
 		var additionalCategories = container.getServerConfig().getAdditionalDefaultCategories() || [];
@@ -47,7 +47,7 @@ Zarafa.common.categories.data.CategoriesStore = Ext.extend(Ext.data.ArrayStore, 
 			});
 		});
 
-		// Remove stored additional categories that are not present in the configured addtional categories
+		// Remove stored additional categories that are not present in the configured additional categories
 		categories = categories.filter(function(category) {
 			return !category.additional ||
 					additionalCategories.some(function(additionalCategory) {

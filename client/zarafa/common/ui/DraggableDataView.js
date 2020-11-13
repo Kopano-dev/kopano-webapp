@@ -76,7 +76,7 @@ Zarafa.common.ui.DraggableDataView = Ext.extend(Ext.DataView, {
 
 	/**
 	 * Called during rendering of the DataView. When {@link #enableDD Drag & Drop} has
-	 * been enabled. This will initalize the {@link #dropZone} and {@link #dragZone}
+	 * been enabled. This will initialize the {@link #dropZone} and {@link #dragZone}
 	 * to enable drag & drop for this view.
 	 * @private
 	 */

@@ -228,7 +228,7 @@ Zarafa.calendar.dialogs.FreebusyTab = Ext.extend(Ext.form.FormPanel, {
 		}
 
 		// For all day events we store the due date as 00:00 on the day after
-		// it ends. For the UI, this means we have to substract 1 day to get
+		// it ends. For the UI, this means we have to subtract 1 day to get
 		// the date on which the appointment actually ends for the user.
 		if (record.get('alldayevent')) {
 			startDate.clearTime();

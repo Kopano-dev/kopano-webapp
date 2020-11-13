@@ -173,8 +173,8 @@ Zarafa.core.data.RestrictionFactory = {
 	},
 
 	/**
-	 * creates RES_EXIST restriction which is used to check existance of a property.
-	 * @param {String} propTag property tag of property whose existance should be checked.
+	 * creates RES_EXIST restriction which is used to check existence of a property.
+	 * @param {String} propTag property tag of property whose existence should be checked.
 	 * @return {Array} RES_EXIST restriction.
 	 */
 	dataResExist : function(propTag) {

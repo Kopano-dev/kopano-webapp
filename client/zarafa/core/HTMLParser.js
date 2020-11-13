@@ -149,7 +149,7 @@ Zarafa.core.HTMLParser = (function() {
 			// remove comments
 			content = content.replace(/<!--[\s\S]*?-->/gim, '');
 
-			// we have processed tags which are usefull for plain text conversion so now remove all remaining tags
+			// we have processed tags which are useful for plain text conversion so now remove all remaining tags
 			content = Zarafa.core.HTMLParser.stripUnwantedTags(content, ['br']);
 
 			// decode html entities

@@ -61,7 +61,7 @@ Zarafa.common.ui.layout.SwitchBorderLayout = Ext.extend(Ext.layout.BorderLayout,
 	 * it will allocate the {@link Zarafa.common.ui.layout.SwitchBorderLayout.SwitchRegion Region}
 	 * or {@link Zarafa.common.ui.layout.SwitchBorderLayout.SwitchSplitRegion SplitRegion} depending
 	 * on the {@link #split} configuration option on the panel.
-	 * @param {Ext.Container} ct The component which is being layed out
+	 * @param {Ext.Container} ct The component which is being laid out
 	 * @param {Ext.Element} target The target Element in which the layout occurs
 	 * @private
 	 */
@@ -140,7 +140,7 @@ Zarafa.common.ui.layout.SwitchBorderLayout = Ext.extend(Ext.layout.BorderLayout,
 		this.orientation = orientation;
 
 		// Don't continue if we are not yet rendered,
-		// we must wait until the parent is being layed out
+		// we must wait until the parent is being laid out
 		// by Extjs for the first time.
 		if (!this.rendered) {
 			return;
@@ -182,7 +182,7 @@ Zarafa.common.ui.layout.SwitchBorderLayout = Ext.extend(Ext.layout.BorderLayout,
 				horizontalRegion.setVisible(true);
 				verticalRegion.setVisible(false);
 
-				// Only show the horizontal seperator
+				// Only show the horizontal separator
 				if (horizontalRegion.split) {
 					horizontalRegion.splitEl.setVisible(true);
 				}
@@ -200,7 +200,7 @@ Zarafa.common.ui.layout.SwitchBorderLayout = Ext.extend(Ext.layout.BorderLayout,
 				horizontalRegion.setVisible(false);
 				verticalRegion.setVisible(true);
 
-				// Only show the vertical seperator
+				// Only show the vertical separator
 				if (horizontalRegion.split) {
 					horizontalRegion.splitEl.setVisible(false);
 				}
@@ -212,7 +212,7 @@ Zarafa.common.ui.layout.SwitchBorderLayout = Ext.extend(Ext.layout.BorderLayout,
 
 		// Call the doLayout on the container,
 		// this enforced all child elements
-		// to be layed out as well.
+		// to be laid out as well.
 		this.container.doLayout();
 	}
 });

@@ -64,7 +64,7 @@ Zarafa.core.ui.SwitchViewContentContainer = Ext.extend(Ext.Container, {
 	},
 
 	/**
-	 * Called by Extjs when the container is being {@link #doLayout layed out}. This will obtain
+	 * Called by Extjs when the container is being {@link #doLayout laid out}. This will obtain
 	 * the {@link Ext.layout.CardLayout#activeItem} and {@link Ext.Panel#doLayout update the layout}
 	 * on that component as well.
 	 * @private
@@ -73,7 +73,7 @@ Zarafa.core.ui.SwitchViewContentContainer = Ext.extend(Ext.Container, {
 	{
 		Zarafa.core.ui.SwitchViewContentContainer.superclass.onLayout.apply(this, arguments);
 
-		// If the activeItem contains a layout, it should be layed out as well
+		// If the activeItem contains a layout, it should be laid out as well
 		var item = this.getActiveItem();
 		if (Ext.isFunction(item.doLayout)) {
 			item.doLayout();

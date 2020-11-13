@@ -40,10 +40,10 @@ Zarafa.core.data.IPFStore = Ext.extend(Zarafa.core.data.MAPIStore, {
 			 * @param {Zarafa.core.data.IPFStore} store The store which fired the event
 			 * @param {Zarafa.core.data.Notifications} notification The notification action
 			 * @param {Ext.data.Record/Array} records The record or records which have been affected by the notification.
-			 * @param {Object} data The data which has been recieved from the PHP-side which must be applied
+			 * @param {Object} data The data which has been received from the PHP-side which must be applied
 			 * to the given records.
 			 * @param {Number} timestamp The {@link Date#getTime timestamp} on which the notification was received
-			 * @param {Boolean} success The success status, True if the notification was successfully recieved.
+			 * @param {Boolean} success The success status, True if the notification was successfully received.
 			 * @return {Boolean} false to cancel the notification handling
 			 */
 			'beforenotify',
@@ -54,10 +54,10 @@ Zarafa.core.data.IPFStore = Ext.extend(Zarafa.core.data.MAPIStore, {
 			 * @param {Zarafa.core.data.IPFStore} store The store which fired the event
 			 * @param {Zarafa.core.data.Notifications} notification The notification action
 			 * @param {Ext.data.Record/Array} records The record or records which have been affected by the notification.
-			 * @param {Object} data The data which has been recieved from the PHP-side which must be applied
+			 * @param {Object} data The data which has been received from the PHP-side which must be applied
 			 * to the given records.
 			 * @param {Number} timestamp The {@link Date#getTime timestamp} on which the notification was received
-			 * @param {Boolean} success The success status, True if the notification was successfully recieved.
+			 * @param {Boolean} success The success status, True if the notification was successfully received.
 			 */
 			'notify'
 		);
@@ -246,14 +246,14 @@ Zarafa.core.data.IPFStore = Ext.extend(Zarafa.core.data.MAPIStore, {
 	/**
 	 * Notification handler which is called automatically by the
 	 * {@link Zarafa.hierarchy.data.HierarchyNotificationResponseHandler NotificationResponseHandler}
-	 * when a notification has been recieved for the hierarchy.
+	 * when a notification has been received for the hierarchy.
 	 *
 	 * @param {Zarafa.core.data.Notifications} action The notification action
 	 * @param {Ext.data.Record/Array} records The record or records which have been affected by the notification.
-	 * @param {Object} data The data which has been recieved from the PHP-side which must be applied
+	 * @param {Object} data The data which has been received from the PHP-side which must be applied
 	 * to the given records.
 	 * @param {Number} timestamp The {@link Date#getTime timestamp} on which the notification was received
-	 * @param {Boolean} success The success status, True if the notification was successfully recieved.
+	 * @param {Boolean} success The success status, True if the notification was successfully received.
 	 */
 	onNotify : function(action, records, data, timestamp, success)
 	{

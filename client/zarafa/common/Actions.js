@@ -529,7 +529,7 @@ Zarafa.common.Actions = {
 	 *
 	 * @param {Function} handler The handler which is invoked with the selected value
 	 * from the dialog. This function only takes one argument and is either 'recurrence_occurence'
-	 * when the single-occurence was selected or 'recurrence_series' when the series was selected.
+	 * when the single-occurrence was selected or 'recurrence_series' when the series was selected.
 	 * @param {Object} scope (optional) The scope on which the handler must be invoked.
 	 */
 	// TODO: Merge with deleteRecurringSelectionContentPanel
@@ -572,7 +572,7 @@ Zarafa.common.Actions = {
 	 *
 	 * @param {Function} handler The handler which is invoked with the selected value
 	 * from the dialog. This function only takes one argument and is either 'recurrence_occurence'
-	 * when the single-occurence was selected or 'recurrence_series' when the series was selected.
+	 * when the single-occurrence was selected or 'recurrence_series' when the series was selected.
 	 * @param {Object} scope (optional) The scope on which the handler must be invoked.
 	 */
 	copyRecurringSelectionContent : function(record, handler, scope)
@@ -620,7 +620,7 @@ Zarafa.common.Actions = {
 	 *
 	 * @param {Function} handler The handler which is invoked with the selected value
 	 * from the dialog. This function only takes one argument and is either 'recurrence_occurence'
-	 * when the single-occurence was selected or 'recurrence_series' when the series was selected.
+	 * when the single-occurrence was selected or 'recurrence_series' when the series was selected.
 	 * @param {Object} scope (optional) The scope on which the handler must be invoked.
 	 */
 	// TODO: Merge with openRecurringSelectionContentPanel
@@ -699,7 +699,7 @@ Zarafa.common.Actions = {
 	 * {@link Zarafa.task.Actions.deleteRecordsFromTodoList} otherwise it is delegated to {#doDeleteRecords}
 	 *
 	 * @param {Array} records The array of records which must be deleted.
-	 * @param {Boolean} askOcc (private) False to prevent a dialog to appear to ask if the occurence or series must
+	 * @param {Boolean} askOcc (private) False to prevent a dialog to appear to ask if the occurrence or series must
 	 * be deleted
 	 * @param {Boolean} softDelete (optional) true to directly soft delete record(s) skipping deleted-items
 	 * folder, false otherwise
@@ -731,12 +731,12 @@ Zarafa.common.Actions = {
 	 * Deletes all {@link Zarafa.core.data.IPMRecord records} from the {@link Zarafa.core.data.IPMStore store}.
 	 * If any of the given {@link Zarafa.core.data.IPMRecord records} is an recurring item, then
 	 * a {@link Zarafa.common.dialogs.MessageBox.select MessageBox} will be prompted which lets the user
-	 * select between the series or the single occurence.
+	 * select between the series or the single occurrence.
 	 * All given {@link Zarafa.core.data.IPMRecord records} must be located in the same
 	 * {@link Zarafa.core.data.IPMStore store}.
 	 *
 	 * @param {Array} records The array of records which must be deleted.
-	 * @param {Boolean} askOcc (private) False to prevent a dialog to appear to ask if the occurence or series must
+	 * @param {Boolean} askOcc (private) False to prevent a dialog to appear to ask if the occurrence or series must
 	 * be deleted
 	 * @param {Boolean} softDelete (optional) true to directly soft delete record(s) skipping deleted-items
 	 * folder, false otherwise
@@ -755,7 +755,7 @@ Zarafa.common.Actions = {
 			store = record.getStore();
 
 			// Check if the item is recurring, and if we need to ask the user
-			// if the occurence or series must be deleted
+			// if the occurrence or series must be deleted
 			var deleteRecurring = Ext.isFunction(record.isRecurringOccurence) && record.isRecurringOccurence() && askOcc !== false;
 
 			// Meeting and task requests are always deleted as normal,

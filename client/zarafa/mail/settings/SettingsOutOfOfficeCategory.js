@@ -69,7 +69,7 @@ Zarafa.mail.settings.SettingsOutOfOfficeCategory = Ext.extend(Zarafa.settings.ui
 
 	/**
 	 * Event handler which is fired when the {@link Zarafa.mail.settings.OofStore outofoffice Store}
-	 * fires the 'save' event indicating the successfull save of the out of office settings. This will
+	 * fires the 'save' event indicating the successful save of the out of office settings. This will
 	 * {@link #hideSavingMask hide the notification}.
 	 * @private
 	 */

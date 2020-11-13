@@ -127,7 +127,7 @@ Zarafa.core.ui.View = Ext.extend(Ext.util.Observable, {
 	/**
 	 * Returns the base className which must be applied to all {@link Ext.Element elements} within this
 	 * view. This will also be the prefix of any additional CSS classes which will be applied to those elements.
-	 * The exact base classname depends on the {@link #baseCls} and the availablity of the {@link #itemCls}.
+	 * The exact base classname depends on the {@link #baseCls} and the availability of the {@link #itemCls}.
 	 * @return {String} The base class. 
 	 * @private
 	 */
@@ -304,19 +304,19 @@ Zarafa.core.ui.View = Ext.extend(Ext.util.Observable, {
 	},
 
 	/**
-	 * Called just before this View will be {@link #layout layed out}.
+	 * Called just before this View will be {@link #layout laid out}.
 	 * @protected
 	 */
 	onBeforeLayout : Ext.emptyFn,
 
 	/**
-	 * Called when this view is being {@link #layout layed out}.
+	 * Called when this view is being {@link #layout laid out}.
 	 * @protected
 	 */
 	onLayout : Ext.emptyFn,
 
 	/**
-	 * Called just after this View has been {@link #layout layed out}.
+	 * Called just after this View has been {@link #layout laid out}.
 	 * @protected
 	 */
 	onAfterLayout : Ext.emptyFn,

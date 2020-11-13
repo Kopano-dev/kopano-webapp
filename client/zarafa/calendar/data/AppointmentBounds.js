@@ -55,7 +55,7 @@ Zarafa.calendar.data.AppointmentBounds = Ext.extend(Object, {
 	 * This indicates if this is the first {@link Zarafa.calendar.data.AppointmentBounds bound}
 	 * for an {@link Zarafa.calendar.ui.AppointmentView appointment}. This implies that _if_ this
 	 * is true, it will be the first element of an array, but at the same time it does not
-	 * guarentee that a bound is present in the array with the {@link #firstBox} is present.
+	 * guarantee that a bound is present in the array with the {@link #firstBox} is present.
 	 * This could occur when an appointment overlaps the start of the current view (in other words,
 	 * the start date of the appointment is _before_ the first visible day in our view).
 	 * @property
@@ -67,7 +67,7 @@ Zarafa.calendar.data.AppointmentBounds = Ext.extend(Object, {
 	 * This indicates if this is the last {@link Zarafa.calendar.data.AppointmentBounds bound}
 	 * for an {@link Zarafa.calendar.ui.AppointmentView appointment}. This implies that _if_ this
 	 * is true, it will be the last element of an array, but at the same time it does not
-	 * guarentee that a bound is present in the array with the {@link #lastBox} is present.
+	 * guarantee that a bound is present in the array with the {@link #lastBox} is present.
 	 * This could occur when an appointment overlaps the end of the current view (in other words,
 	 * the due date of the appointment is _after_ the last visible day in our view).
 	 * @property

@@ -452,7 +452,7 @@ Zarafa.core.data.IPMRecord = Ext.extend(Zarafa.core.data.MAPIRecord, {
 
 	/**
 	 * Helper function to return names of all attachments of message.
-	 * @return {String} comma seperated attachment names
+	 * @return {String} comma separated attachment names
 	 */
 	getAttachmentNames : function()
 	{

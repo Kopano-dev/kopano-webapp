@@ -252,7 +252,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 					items: [{
 						xtype: 'radio',
 						name: 'recurrence_term',
-						endTerm: Zarafa.common.recurrence.data.RecurrenceEnd.N_OCCURENCES,
+						endTerm: Zarafa.common.recurrence.data.RecurrenceEnd.N_OCCURRENCES,
 						hideLabel: true,
 						width: 25,
 						listeners : {
@@ -320,7 +320,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 
 	/**
 	 * Event handler which is fired when either the All Day checkbox has been
-	 * checked, or when the timeDuration field has been updated. In noth situations
+	 * checked, or when the timeDuration field has been updated. In both situations
 	 * the label belonging to the field will be updated to reflect the new duration.
 	 * @private
 	 */
@@ -450,7 +450,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 	onToggleAllDay : function(checkbox, checked)
 	{
 		// When the user already has an appointment that last a more then a day, we should
-		// round the end of the occurences up to a whole number of days.
+		// round the end of the occurrences up to a whole number of days.
 		var days = Math.ceil(this.timeperiodField.getValue().getDuration(Date.MINUTE) / 1440);
 
 		this.record.beginEdit();
@@ -531,7 +531,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 		var endOcc = record.get('recurrence_endocc');
 
 		// We construct a startTime based on the first day of the year,
-		// this guarentees that we are absolutely DST safe, and any time
+		// this guarantees that we are absolutely DST safe, and any time
 		// can be selected.
 		var startTime = new Date().clearTime();
 		startTime.setDate(1);
@@ -540,7 +540,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 		startTime.setMinutes(startOcc % 60);
 
 		// We construct a endTime based on the first day of the year,
-		// this guarentees that we are absolutely DST safe, and any time
+		// this guarantees that we are absolutely DST safe, and any time
 		// can be selected.
 		var endTime = new Date().clearTime();
 		endTime.setDate(1);
@@ -570,7 +570,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 					this.endOnDateField.setValue(startDate.clearTime(true));
 				}
 				break;
-			case Zarafa.common.recurrence.data.RecurrenceEnd.N_OCCURENCES:
+			case Zarafa.common.recurrence.data.RecurrenceEnd.N_OCCURRENCES:
 				// Only apply default values at the first update
 				if (contentReset === true || record.isModifiedSinceLastUpdate('recurrence_numoccur')) {
 					this.endOccurencesSpinner.setValue(record.get('recurrence_numoccur'));
@@ -629,7 +629,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 				// so convert it to local to get the time for the property
 				record.set('recurrence_end', new Date('Jan 01 4501').fromUTC());
 				break;
-			case Zarafa.common.recurrence.data.RecurrenceEnd.N_OCCURENCES:
+			case Zarafa.common.recurrence.data.RecurrenceEnd.N_OCCURRENCES:
 				record.set('recurrence_numoccur', this.endOccurencesSpinner.getValue());
 				// The end is represented in UTC time,
 				// so convert it to local to get the time for the property

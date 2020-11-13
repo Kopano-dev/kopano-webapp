@@ -158,7 +158,7 @@ Zarafa.calendar.ui.MeetingRequestButton = Ext.extend(Ext.Button, {
 				}
 				break;
 			case Zarafa.calendar.data.MeetingRequestButtonNames.PROPOSENEWTIME :
-				// A user can only propose a new time for non-recurring meetings, or occurences. For the rest,
+				// A user can only propose a new time for non-recurring meetings, or occurrences. For the rest,
 				// the same rules apply as for accepting.
 				this.visible = isMeeting && !isSubMessage && (!isMeetingRecurring || isMeetingOccurence) && !senderIsReceiver && !isMeetingOutOfDate && !isMeetingCanceled && !senderIsStoreOwner && requestReceived;
 				break;

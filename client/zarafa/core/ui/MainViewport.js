@@ -62,7 +62,7 @@ Zarafa.core.ui.MainViewport = Ext.extend(Ext.Viewport, {
 
 		// Activate global key events.
 		Zarafa.core.KeyMapMgr.activate(null, 'global', Ext.getBody());
-		// Don't allow propagation of all other key events which are registerd in KeyMapMgr.
+		// Don't allow propagation of all other key events which are registered in KeyMapMgr.
 		Zarafa.core.KeyMapMgr.activate(null, 'globaldisable', Ext.getBody());
 	},
 

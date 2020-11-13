@@ -31,7 +31,7 @@ Zarafa.task.TaskStore = Ext.extend(Zarafa.core.data.ListModuleStore, {
 	/**
 	 * Notification handler called by {@link #onNotify} when
 	 * a {@link Zarafa.core.data.Notifications#objectCreated objectCreated}
-	 * notification has been recieved.
+	 * notification has been received.
 	 *
 	 * Because it is unknown if the added record must be visible, or where
 	 * in the Store the record must be shown, we simply reload the entire

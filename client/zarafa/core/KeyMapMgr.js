@@ -57,7 +57,7 @@ Zarafa.core.KeyMapMgr = Ext.extend(Object, {
 	},
 
 	/**
-	 * Function will register all key bindings that are registerd in {@link Zarafa.core.KeyMapMgr this}
+	 * Function will register all key bindings that are registered in {@link Zarafa.core.KeyMapMgr this}
 	 * class to the 'globaldisable' mapid and assign stop event and empty hadler so that we can disable
 	 * default behaviour of browser when no component is focused and user tries to perform some
 	 * key-combinations which isn't available globally.
@@ -191,7 +191,7 @@ Zarafa.core.KeyMapMgr = Ext.extend(Object, {
 
 	/**
 	 * Function is used to get key bindings registered for a particular map id.
-	 * It will recursively get bindings for every string seperated using dot and then will
+	 * It will recursively get bindings for every string separated using dot and then will
 	 * combine and return the bindings.
 	 * @param {String} mapId map id for which we need to get bindings
 	 * @return {Array} array of key bindings that be added in keymap

@@ -81,7 +81,7 @@ Zarafa.common.ui.EditorField = Ext.extend(Ext.Container, {
 		this.addEvents(
 			/**
 			 * @event setAutoFocusCursor
-			 * Fires when text area gets the foucs.
+			 * Fires when text area gets the focus.
 			 */
 			'setAutoFocusCursor'
 		);
@@ -159,7 +159,7 @@ Zarafa.common.ui.EditorField = Ext.extend(Ext.Container, {
 	/**
 	 * Event handler which is raised just before the {@link Ext.Container container}
 	 * is being rendered. At this moment the Editor component is being initialized,
-	 * and if avaiable the configured events will be relayed from the Editor to
+	 * and if available the configured events will be relayed from the Editor to
 	 * this {@link Ext.Container container}.
 	 * @param {Ext.Container} container The container being rendered
 	 * @private
@@ -341,7 +341,7 @@ Zarafa.common.ui.EditorField = Ext.extend(Ext.Container, {
 
 	/**
 	 * bind a record to this component
-	 * overriden because a record is needed for the HTML editor when there are inline images
+	 * overridden because a record is needed for the HTML editor when there are inline images
 	 * @param {Zarafa.core.data.IPMRecord} record
 	 */
 	bindRecord : function(record)

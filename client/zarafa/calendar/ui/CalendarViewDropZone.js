@@ -326,7 +326,7 @@ Zarafa.calendar.ui.CalendarViewDropZone = Ext.extend(Ext.dd.DropZone, {
 
 	/**
 	 * Called when the DropZone determines that a item has been dropped.
-	 * This will determine what action has occured and call the appropriate
+	 * This will determine what action has occurred and call the appropriate
 	 * callback function on the {@link #calendar}.
 	 * @param {Ext.Element} target The custom data associated with the drop node (as returned from {@link #getTargetFromEvent}.
 	 * @param {Ext.dd.DragSource} The drag source that was dragged over this drop zone

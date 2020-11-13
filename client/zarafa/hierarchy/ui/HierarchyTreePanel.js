@@ -5,7 +5,7 @@ Ext.namespace('Zarafa.hierarchy.ui');
  * @extends Zarafa.hierarchy.ui.Tree
  * @xtype zarafa.hierarchytreepanel
  *
- * HierarchyTreePanel for hierachy list in the main window.
+ * HierarchyTreePanel for hierarchy list in the main window.
  */
 Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 	/**

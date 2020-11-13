@@ -89,7 +89,7 @@ Zarafa.common.settings.SettingsDelegateCategory = Ext.extend(Zarafa.settings.ui.
 
 	/**
 	 * Event handler which is fired when the {@link Zarafa.common.delegates.data.DelegateStore Delegate Store}
-	 * fires the 'save' event indicating the successfull save of the delegates. This will
+	 * fires the 'save' event indicating the successful save of the delegates. This will
 	 * {@link #hideSavingMask hide the notification}.
 	 * @private
 	 */

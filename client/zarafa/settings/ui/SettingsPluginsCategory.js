@@ -6,7 +6,7 @@ Ext.namespace('Zarafa.settings.ui');
  * @xtype zarafa.settingspluginscategory
  *
  * The default available category for users which will
- * load the miscelaneous settings for the plugins. If plugins
+ * load the miscellaneous settings for the plugins. If plugins
  * don't wish to create a separate category, then they can
  * decide to only register a single widget to this common
  * Plugins category.

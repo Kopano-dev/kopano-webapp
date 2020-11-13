@@ -10,7 +10,7 @@ Ext.namespace('Zarafa.task.data');
 Zarafa.task.data.TodoTaskListNotificationResponseHandler = Ext.extend(Zarafa.core.data.AbstractNotificationResponseHandler, {
 
 	/**
-	 * Handle the newtodotask action we recieve as notification.
+	 * Handle the newtodotask action we receive as notification.
 	 * This will contains to-do task list folder related information
 	 * which used to generate the correct notification.
 	 *

@@ -71,7 +71,7 @@ Zarafa.core.plugins.RecordComponentUpdaterPlugin = Ext.extend(Object, {
 		}
 
 		// If a layout is present on the component, then we must wait until the component
-		// has been layed out. Otherwise rendering will be sufficient.
+		// has been laid out. Otherwise rendering will be sufficient.
 		if (Ext.isDefined(this.field.layout)) {
 			this.field.on('afterlayout', this.onReadyComponent, this, { single : true });
 		} else if (this.field.rendered !== true) {
@@ -211,7 +211,7 @@ Zarafa.core.plugins.RecordComponentUpdaterPlugin = Ext.extend(Object, {
 	 * to update the {@link #field} to which this plugin is attached
 	 *
 	 * @param {Ext.Container} panel The panel to which the record belongs
-	 * @param {String} action write Action that ocurred. Can be one of
+	 * @param {String} action write Action that occurred. Can be one of
 	 * {@link Ext.data.Record.EDIT EDIT}, {@link Ext.data.Record.REJECT REJECT} or
 	 * {@link Ext.data.Record.COMMIT COMMIT}
 	 * @param {Zarafa.core.data.IPMRecord} record The record which was updated

@@ -80,7 +80,7 @@ Zarafa.settings.ui.QuotaBar = Ext.extend(Ext.BoxComponent, {
 				 * Just add necessary quota information in quota variable,
 				 * and remove inapropriate info like softQuota > hardQuota.
 				 * There might be the case where if hardQuota is not set
-				 * then in that case add soft quota to infromation variable.
+				 * then in that case add soft quota to information variable.
 				 */
 				var quota = [];
 				if(warnQuota && (!softQuota || warnQuota < softQuota) && (!hardQuota || warnQuota < hardQuota)) {

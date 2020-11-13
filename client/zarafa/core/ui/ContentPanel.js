@@ -152,7 +152,7 @@ Zarafa.core.ui.ContentPanel = Ext.extend(Ext.Container, {
 	/**
 	 * This will initialize the {@link Ext.Container container} which is
 	 * placed within the {@link Zarafa.core.ui.ContentPanel ContentPanel}. The
-	 * {@link Ext.Container container} will recieve a reference to the
+	 * {@link Ext.Container container} will receive a reference to the
 	 * {@link Zarafa.core.ui.ContentPanel ContentPanel} into which it has been embedded.
 	 * @param {Ext.Component} component The component which must be initialized
 	 * @private

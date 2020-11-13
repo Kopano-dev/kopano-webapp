@@ -63,7 +63,7 @@ Zarafa.common.rules.data.RulesProxy = Ext.extend(Zarafa.core.data.IPMProxy, {
 		if (Ext.isEmpty(records)) {
 			parameters = {store_entryid: parameters.jsonData.store_entryid};
 		} else {
-			// Unwrap the serialized data and pass it as paramters directly
+			// Unwrap the serialized data and pass it as parameters directly
 			parameters = parameters.jsonData[reader.meta.root];
 		}
 
@@ -88,7 +88,7 @@ Zarafa.common.rules.data.RulesProxy = Ext.extend(Zarafa.core.data.IPMProxy, {
 		Ext.applyIf(args, {
 			listRequest : true
 		});
-		// Unwrap the serialized data and pass it as paramters directly
+		// Unwrap the serialized data and pass it as parameters directly
 		parameters = parameters.jsonData[reader.meta.root];
 
 		Zarafa.common.rules.data.RulesProxy.superclass.destroyAction.apply(this, arguments);
@@ -112,7 +112,7 @@ Zarafa.common.rules.data.RulesProxy = Ext.extend(Zarafa.core.data.IPMProxy, {
 		Ext.applyIf(args, {
 			listRequest : true
 		});
-		// Unwrap the serialized data and pass it as paramters directly
+		// Unwrap the serialized data and pass it as parameters directly
 		parameters = parameters.jsonData[reader.meta.root];
 
 		Zarafa.common.rules.data.RulesProxy.superclass.openAction.apply(this, arguments);

@@ -25,7 +25,7 @@ Zarafa.common.reminder.data.ReminderStore = Ext.extend(Zarafa.core.data.ListModu
 
 	/**
 	 * Flag is used to indicate that we should reload the data in {@link Zarafa.common.reminder.data.ReminderStore ReminderStore}
-	 * after receiving response of snooze or dismiss actions, so we don't have to wait untill new polling request is sent to get reminder data
+	 * after receiving response of snooze or dismiss actions, so we don't have to wait until new polling request is sent to get reminder data
 	 * because it could happen that there are still some reminders pending for action and user has only selected some reminders
 	 * for snoozing or dismissing.
 	 * @property
@@ -121,11 +121,11 @@ Zarafa.common.reminder.data.ReminderStore = Ext.extend(Zarafa.core.data.ListModu
 	},
 
 	/**
-	 * Event handler will be called when an error/exception is occured at server side,
+	 * Event handler will be called when an error/exception is occurred at server side,
 	 * and error is returned. The notification method will be changed to avoid more errors.
 	 * @param {Zarafa.core.data.MAPIProxy} proxy object that received the error
 	 * and which fired exception event.
-	 * @param {String} type 'request' if an invalid response from server recieved,
+	 * @param {String} type 'request' if an invalid response from server received,
 	 * 'remote' if valid response received from server but with succuessProperty === false.
 	 * @param {String} action Name of the action {@link Ext.data.Api.actions}.
 	 * @param {Object} options The options for the action that were specified in the request.
@@ -201,7 +201,7 @@ Zarafa.common.reminder.data.ReminderStore = Ext.extend(Zarafa.core.data.ListModu
 	},
 
 	/**
-	 * Function is used as a callback for 'read' action, we have overriden it to
+	 * Function is used as a callback for 'read' action, we have overridden it to
 	 * support search also using same 'read' action instead of creating new action.
 	 * this will check that if action type is list then will do normal processing and
 	 * add {@link Zarafa.core.data.IPMRecords[] records} to {@link Zarafa.core.data.ListModuleStore store}

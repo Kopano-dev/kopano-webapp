@@ -108,7 +108,7 @@ Zarafa.contact.DistlistRecord = Ext.extend(Zarafa.core.data.IPMRecord, {
 
 	/**
 	 * Helper function to return names of all members of distribution list.
-	 * @return {String} comma seperated member names
+	 * @return {String} comma separated member names
 	 */
 	getMemberNames : function()
 	{

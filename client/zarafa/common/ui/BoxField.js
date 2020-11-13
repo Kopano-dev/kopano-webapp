@@ -336,7 +336,7 @@ Zarafa.common.ui.BoxField = Ext.extend(Ext.form.ComboBox, {
 
 		// Register event handler when listMode is enabled,
 		// this will force the boxes to be resized when the parent
-		// has been layed out.
+		// has been laid out.
 		if (this.listMode === true) {
 			this.mon(this.ownerCt, 'afterlayout', this.onParentLayout, this);
 		}
@@ -553,7 +553,7 @@ Zarafa.common.ui.BoxField = Ext.extend(Ext.form.ComboBox, {
 	 * This will show a {@link #loadingText} in the {@link #list.
 	 *
 	 * We make sure that we resize our {@link #list} here using {@link #getDesiredListWidth}
-	 * to guarentee that our {@link #loadingText} and loading image receive sufficient
+	 * to guarantee that our {@link #loadingText} and loading image receive sufficient
 	 * space.
 	 *
 	 * @private
@@ -833,7 +833,7 @@ Zarafa.common.ui.BoxField = Ext.extend(Ext.form.ComboBox, {
 	},
 
 	/**
-	 * Called when the {@link #ownerCt owner} has been layed out, this
+	 * Called when the {@link #ownerCt owner} has been laid out, this
 	 * will obtain the new desired {@link #getDesiredBoxWidth boxWidth}
 	 * and applies them to all available {@link #items boxes}.
 	 * @private

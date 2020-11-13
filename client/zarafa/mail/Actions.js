@@ -56,7 +56,7 @@ Zarafa.mail.Actions = {
 					* all the previously added task functions as well.
 					*/
 					fn : function(){
-						// This contactRecord becomes a private variable, not changable outside.
+						// This contactRecord becomes a private variable, not changeable outside.
 						var contactRecord = contact;
 						return function(panel, record, task, callback) {
 							var fn = function(store, record) {
@@ -255,7 +255,7 @@ Zarafa.mail.Actions = {
 
 	/**
 	 * Open a Panel in which the {@link Zarafa.core.data.IPMRecord record}
-	 * can be viewed, or further edited with pre-choosen layer as separateWindows..
+	 * can be viewed, or further edited with pre-chosen layer as separateWindows..
 	 * Prepare record instance based on original record.
 	 *
 	 * @param {Zarafa.core.data.IPMRecord} records The records to open

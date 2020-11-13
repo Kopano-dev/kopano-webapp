@@ -252,7 +252,7 @@ Zarafa.common.recipientfield.ui.RecipientField = Ext.extend(Zarafa.common.ui.Box
 
 	/**
 	 * Event handler for when the server returns a resolve response. It is also fired when the request for
-	 * resolving was not successfull. If the latter is the case the success parameter is set to false.
+	 * resolving was not successful. If the latter is the case the success parameter is set to false.
 	 * @param {Zarafa.core.data.IPMRecipientStore} store The store which fired the event
 	 * @param {Zarafa.core.data.IPMRecipientRecord[]} records The records that were sent in the resolve request.
 	 */

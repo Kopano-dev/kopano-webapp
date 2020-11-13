@@ -208,7 +208,7 @@ Zarafa.core.data.ProxyResponseHandler = Ext.extend(Zarafa.core.data.AbstractResp
 	/**
 	 * Reads all {@link Zarafa.core.data.MAPIRecord records} from the response data from the server,
 	 * and correlates them to the {@link #sendRecords} list.
-	 * @param {Object} response The reponse data from the server containing the
+	 * @param {Object} response The response data from the server containing the
 	 * {@link Zarafa.core.data.MAPIRecord records}
 	 * @private
 	 */
@@ -250,7 +250,7 @@ Zarafa.core.data.ProxyResponseHandler = Ext.extend(Zarafa.core.data.AbstractResp
 
 	/**
 	 * Reads all {@link Zarafa.core.data.MAPIRecord records} from the response data from the server.
-	 * @param {Object} response The reponse data from the server containing the
+	 * @param {Object} response The response data from the server containing the
 	 * {@link Zarafa.core.data.MAPIRecord records}
 	 * @param {String} field The fieldname of the array of items in the Response object which
 	 * must be converted into {@link Zarafa.core.data.MAPIRecord records}.

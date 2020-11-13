@@ -5,7 +5,7 @@ Ext.namespace('Zarafa.core.data');
  * @extends Ext.util.Observable
  *
  * The NotificationResolver is used when the {@link Zarafa.core.ResponseRouter ResponseRouter}
- * finds Responses which were not a reponse to a direct Request. This is usually the case,
+ * finds Responses which were not a response to a direct Request. This is usually the case,
  * when the PHP-side generated a Notification to update particular UI components based on
  * a server-side change.
  *

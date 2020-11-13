@@ -50,7 +50,7 @@ Zarafa.addressbook.ui.ABUserSelectionPanel = Ext.extend(Zarafa.addressbook.ui.Ad
 
 	/**
 	 * Calls callback function
-	 * @return {Boolean} true, if callback was successfull
+	 * @return {Boolean} true, if callback was successful
 	 */
 	doCallBack : function()
 	{
