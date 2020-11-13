@@ -155,7 +155,7 @@ class TestData {
 	/**
 	 * Returns the properties for a meeting request which will
 	 * start in 1 hour and has a duration of 30minutes. The meeting will
-	 * recur weekly every day for 10 occurences.
+	 * recur weekly every day for 10 occurrences.
 	 * @param Array $props The properties to be merged into the defaults
 	 * @return Array The Meeting request properties.
 	 */
@@ -206,7 +206,7 @@ class TestData {
 			'regen' => 0,
 			'weekdays' => pow(2, (int) date('w', $start)), // this weekday
 			'term' => 34, // End after
-			'numoccur' => 10, // 10 occurences
+			'numoccur' => 10, // 10 occurrences
 			'numexcept' => '',
 			'numexceptmod' => '',
 			'start' => $startRecur,
@@ -262,7 +262,7 @@ class TestData {
 	/**
 	 * Returns the properties for a recurring appointment which will start
 	 * start in 1 hour and has a duration of 30 minutes.  The appointment will
-	 * recur weekly every day for 10 occurences.
+	 * recur weekly every day for 10 occurrences.
 	 * @param Array $props The properties to be merged into the defaults
 	 * @return Array The appointment properties
 	 */
@@ -305,7 +305,7 @@ class TestData {
 			'regen' => 0,
 			'weekdays' => pow(2, (int) date('w', $start)), // this weekday
 			'term' => 34, // End after
-			'numoccur' => 10, // 10 occurences
+			'numoccur' => 10, // 10 occurrences
 			'numexcept' => '',
 			'numexceptmod' => '',
 			'start' => $startRecur,

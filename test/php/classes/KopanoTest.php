@@ -140,7 +140,7 @@ abstract class KopanoTest extends PHPUnit_Framework_TestCase {
 	private function cleanTemp()
 	{
 		// Clean tmp folder, we only clear state (session subfolder) and attachment folder
-		// explicitely. All subclasses are in chared of cleaning other files they created.
+		// explicitly. All subclasses are in chared of cleaning other files they created.
 		// To clean recently created files instantly we are passing -1
 		if(isset($GLOBALS['attachment_state'])) {
 			$GLOBALS['attachment_state']->clean(-1);
@@ -164,7 +164,7 @@ abstract class KopanoTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * Checks in the Plugin configuration directory (PATH_PLUGIN_CONFIG_DIR) to see
-	 * if there are any plugins not explicitely configured. If there are, those plugins
+	 * if there are any plugins not explicitly configured. If there are, those plugins
 	 * are configured using the default values from the main plugins directory (PATH_PLUGIN_DIR)
 	 * using a symlink to that folder.
 	 *

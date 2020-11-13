@@ -449,7 +449,7 @@
 		     * Get next item from now until forever, but max 1 item with reminder set
 		     * Note 0x7ff00000 instead of 0x7fffffff because of possible overflow failures when converting to GMT....
 			 * Here for getting next 10 occurrences assuming that next here we will be able to find 
-			 * nextreminder occurrence in 10 occureneces
+			 * nextreminder occurrence in 10 occurrences
 			 */
 			$items = $this->getItems($timestamp, 0x7ff00000, 10, true); 
 

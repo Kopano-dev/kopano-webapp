@@ -592,7 +592,7 @@ src="/foo/alt.jpg"
 			// IMG Embedded commands part II, can not be tested
 
 			// Cookie manipulation
-			/* Admittidly this is pretty obscure but I have seen a few examples where <META
+			/* Admittedly this is pretty obscure but I have seen a few examples where <META
 			 * is allowed and you can use it to overwrite cookies. There are other examples
 			 * of sites where instead of fetching the username from a database it is stored
 			 * inside of a cookie to be displayed only to the user who visits the page. With
@@ -643,7 +643,7 @@ src="/foo/alt.jpg"
 			 */
 			Array(
 				'<div id="testsafehtml"><SCRIPT "a=\'>\'" SRC="http://ha.ckers.org/xss.js"></SCRIPT></div>',
-				// Allthough it is not filtered out perfectly it should disable the XSS
+				// Although it is not filtered out perfectly it should disable the XSS
 				'<div id="testsafehtml">\'" SRC="http://ha.ckers.org/xss.js"></div>',
 			),
 			// XSS using HTML quote encapsulation #5

@@ -355,7 +355,7 @@ Zarafa.calendar.dialogs.AppointmentTab = Ext.extend(Ext.form.FormPanel, {
 				ref: '../comboCreateIn',
 				store: createInStore,
 				cls : 'k-createin-combo',
-				listClass : 'k-createinn-combo-list-svg',
+				listClass : 'k-createin-combo-list-svg',
 				mode: 'local',
 				triggerAction: 'all',
 				displayField: 'displayString',

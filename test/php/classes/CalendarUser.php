@@ -50,9 +50,9 @@ class CalendarUser extends IPMUser {
 	}
 
 	/**
-	 * Save an occurence into the calendar
+	 * Save an occurrence into the calendar
 	 * @param Array $appointment The appointment which should be saved
-	 * @param Number $basedate The basedate of the occurence which should be deleted
+	 * @param Number $basedate The basedate of the occurrence which should be deleted
 	 * @param Boolean $open True if the saved item should be opened, otherwise the
 	 * saved properties will be returned.
 	 * @return MAPI_MESSAGE The saved appointment
@@ -87,9 +87,9 @@ class CalendarUser extends IPMUser {
 	}
 
 	/**
-	 * Open the given occurence from the calendar folder.
+	 * Open the given occurrence from the calendar folder.
 	 * @param Binary $entryid The entryid of the item which should be opened
-	 * @param Number $basedate The basedate of the occurence which should be deleted
+	 * @param Number $basedate The basedate of the occurrence which should be deleted
 	 * @param Array $extraProps The array of extra properties which should be
 	 * send to the server together with this request
 	 * @return Array The response from the PHP
@@ -118,9 +118,9 @@ class CalendarUser extends IPMUser {
 	}
 
 	/**
-	 * Delete the occurence from the calendar folder.
+	 * Delete the occurrence from the calendar folder.
 	 * @param Binary $entryid The entryid of the item which should be deleted
-	 * @param Number $basedate The basedate of the occurence which should be deleted
+	 * @param Number $basedate The basedate of the occurrence which should be deleted
 	 * @param Array $extraProps The array of extra properties which should be
 	 * send to the server together with this request
 	 * @return Array The response from the PHP

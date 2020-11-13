@@ -80,7 +80,7 @@ class suggestEmailAddressModule extends Module
 	 * in mapi property. it searches for deleteRecipients key in the action array which will
 	 * contain email addresses of recipients that should be deleted in semicolon separated format.
 	 * @param {Array} $action action data in associative array format.
-	 * @param {Array} $recipient_history recipient history stored in mapi proeprty.
+	 * @param {Array} $recipient_history recipient history stored in mapi property.
 	 */
 	function deleteRecipient($action, $recipient_history) {
 		if(isset($action)  && !empty($recipient_history) && !empty($recipient_history['recipients'])) {
