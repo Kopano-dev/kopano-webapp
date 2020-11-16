@@ -162,7 +162,7 @@ Zarafa.core.ui.widget.Widget = Ext.extend(Ext.ux.Portlet, {
 	{
 		this.tools.splice(this.tools.length - 1, 0, {
 			id : 'help',
-			qtip: -('About this widget'),
+			qtip: _('About this widget'),
 			handler : this.showAbout,
 			scope : this,
 			title : title,
