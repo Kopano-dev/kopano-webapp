@@ -194,12 +194,13 @@ Zarafa.settings.ui.SettingsKeyShortcutCategory = Ext.extend(Zarafa.settings.ui.S
 				} else if (key === Ext.EventObject.END) {
 					keyCombination.push('END');
 				} else if (key === Ext.EventObject.DELETE) {
-					// check if we have a mac OS then show FN + DELETE as Mac don't have DELETE key
+					// Check if Mac OS is used, then show FN + BACKSPACE (Mac OS does not have a delete key)
 					if(Ext.isMac) {
 						keyCombination.push('FN');
+						keyCombination.push('BACKSPACE');
+					} else {
+						keyCombination.push('DELETE');
 					}
-
-					keyCombination.push('DELETE');
 				} else {
 					if(Ext.isNumber(key)) {
 						keyCombination.push(String.fromCharCode(key));
