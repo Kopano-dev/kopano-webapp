@@ -148,12 +148,12 @@ Zarafa.core.data.MessageRecord = Ext.extend(Zarafa.core.data.IPMRecord, {
 		// clean up some weird Outlook styling
 		const el = document.createElement('div');
 		el.innerHTML = body;
-		const paragraphs = el.querySelectorAll('p'); //MsoListParagraph
+		const paragraphs = el.querySelectorAll('p');
 		for (let i=0; i<paragraphs.length; i++) {
 			const p = Ext.fly(paragraphs[i]);
 
-			// First check for MsoListParagraph elements created by Outlook 2013
-			if (p.hasClass('MsoListParagraph')) {
+			// First check for MsoListParagraph and MsoListNumber elements created by Outlook
+			if (p.hasClass('MsoListParagraph') || p.hasClass('MsoListNumber')) {
 				p.setStyle({
 					'text-indent': 0
 				});
