@@ -154,13 +154,35 @@ Zarafa.core.data.MessageRecord = Ext.extend(Zarafa.core.data.IPMRecord, {
 
 			// First check for MsoListParagraph and MsoListNumber elements created by Outlook
 			if (p.hasClass('MsoListParagraph') || p.hasClass('MsoListNumber')) {
+
+				// Outlook uses negative indents for lists.
+				// WebApp displays the CSS correctly, but results in cut of text for users.
+				// If the paragraph has a negative text-indent, we replace it by a positive text-indent.
+				// If there is no negative text-indent, we set it to 0.
+				// We exclude items that have 'margin-left' and negative text-indent,
+				// as those items are indentified with multi-indent items
+				// and we can still use that CSS.
+				// Ref KW-3437
+				if (Ext.isEmpty(p.getStyle('margin-left'))) {
+					var textIndent = p.getStyle('text-indent').replace('-', '');
+					var newTextIndent = !Ext.isEmpty(textIndent) ? textIndent : 0;
+
+					p.setStyle({
+						'text-indent': newTextIndent
+					});
+				}
+				
+				// Remove generic browser margins from paragraphs,
+				// but leave 'margin-left' as is.
 				p.setStyle({
-					'text-indent': 0
+					'margin-right': 0,
+					'margin-top': 0,
+					'margin-bottom': 0
 				});
 			}
 
-			// Remove generic browser margins from paragraphs
-			if (!p.getStyle('margin')) {
+			// Remove generic browser margins from paragraphs, exclude 'MsoListParagraph' and 'MsoListNumber'
+			if (!p.getStyle('margin') && !p.hasClass('MsoListParagraph') && !p.hasClass('MsoListNumber')) {
 				p.setStyle({
 					margin: 0
 				});
