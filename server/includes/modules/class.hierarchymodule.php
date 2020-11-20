@@ -333,7 +333,7 @@
 								$this->sendFeedback(true);
 								break;
 							case "ensure":
-								$this->ensureLicense();
+								$this->ensureLicense($action);
 								break;
 							default:
 								$this->handleUnknownActionType($actionType);
@@ -1261,11 +1261,12 @@
 
 		/**
 		 * Function used to ensure the license claims for supported(kopano one) webapp.
+		 * @param array $action The action data sent by the client.
 		 */
-		function ensureLicense()
+		function ensureLicense($action)
 		{
 			$stateData = EnsureLicense::retrieveCache();
-			$allowUpdate = $this->isRequiredUpdate($stateData);
+			$allowUpdate = $this->isRequiredUpdate($stateData, $action);
 			$data = array();
 
 			// No need to update the cache just reuse the
@@ -1279,8 +1280,8 @@
 			}
 
 			try {
-				EnsureLicense::ensureOK("groupware");
-				$data["status"] = 0;
+				$ok = EnsureLicense::ensureOK("groupware");
+				$data["status"] = $ok !== false ? $ok["err"]: 0;
 			} catch (KUSTOMER\NumericException $e) {
 				error_log($e->getMessage());
 				$data["status"] = $e->getCode();
@@ -1299,11 +1300,12 @@
 		 * needs to update or not.
 		 *
 		 * @param array $stateData The cached data of ensured license.
+		 * @param array $action The action data sent by the client.
 		 * @return bool true to update the cache else false.
 		 */
-		function isRequiredUpdate($stateData)
+		function isRequiredUpdate($stateData, $action)
 		{
-			if ($stateData === false) {
+			if ($stateData === false || $action["init"] === true) {
 				return true;
 			}
 
