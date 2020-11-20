@@ -6,7 +6,7 @@ Ext.namespace('Zarafa.common.dialogs');
  * @xtype zarafa.copymovepanel
  *
  * Panel for users to copy or move the given {@link Zarafa.core.data.IPMRecord[] records}
- * to a differnt {@link Zarafa.hierarchy.data.MAPIFolderRecord folder}.
+ * to a different {@link Zarafa.hierarchy.data.MAPIFolderRecord folder}.
  */
 Zarafa.common.dialogs.CopyMovePanel = Ext.extend(Ext.Panel, {
 	/**
@@ -263,7 +263,7 @@ Zarafa.common.dialogs.CopyMovePanel = Ext.extend(Ext.Panel, {
 	/**
 	 * Fired when the {@link Zarafa.hierarchy.ui.Tree Tree} fires the {@link Zarafa.hierarchy.ui.Tree#load load}
 	 * event. This function will try to select the {@link Ext.tree.TreeNode TreeNode} in
-	 * {@link Zarafa.hierarchy.ui.Tree Tree} intially. When the given node is not loaded yet, it will try again
+	 * {@link Zarafa.hierarchy.ui.Tree Tree} initially. When the given node is not loaded yet, it will try again
 	 * later when the event is fired again.
 	 *
 	 * @private

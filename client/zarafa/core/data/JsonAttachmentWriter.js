@@ -11,7 +11,7 @@ Zarafa.core.data.JsonAttachmentWriter = Ext.extend(Zarafa.core.data.JsonWriter, 
 	 * Convert attachments into a hash. Attachments exists as
 	 * {@link Zarafa.core.data.IPMAttachmentRecord IPMAttachmentRecord} within
 	 * a {@link Zarafa.core.data.IPMRecord IPMRecord} and thus must be serialized
-	 * seperately into the hash object.
+	 * separately into the hash object.
 	 *
 	 * @param {Ext.data.Record} record The record to hash
 	 * @return {Object} The hashed object
@@ -28,7 +28,7 @@ Zarafa.core.data.JsonAttachmentWriter = Ext.extend(Zarafa.core.data.JsonWriter, 
 		}
 
 		// @FIXME currently only inline attachments are handled,
-		// normal attachments will be handled seperately
+		// normal attachments will be handled separately
 
 		// Overwrite previous definition to something we can work with.
 		hash.attachments = {};

@@ -110,7 +110,7 @@ Zarafa.advancesearch.KQLParser = Ext.extend(Object, {
 			// so we will test for that too.
 			try {
 				// The following lines might look strange, but they written like this to
-				// trick the closure compiler, because we can't seem to surpress the
+				// trick the closure compiler, because we can't seem to suppress the
 				// checkRegExp and suspiousCode warnings.
 				var f = 'ui';
 				f = f.substr(0,1);

@@ -407,7 +407,7 @@
 		/**
 		 *	Function will check for the status of the search on server
 		 *	and it will also send intermediate results of search, so we don't have to wait
-		 *	untill search is finished on server to send results
+		 *	until search is finished on server to send results
 		 *	@param		object		$store		MAPI Message Store Object
 		 *	@param		hexString	$entryid	entryid of the folder
 		 *	@param		object		$action		the action data, sent by the client
@@ -650,7 +650,7 @@
 
 				return $searchFolder;
 			} catch (MAPIException $e) {
-				// don't propogate the event to higher level exception handlers
+				// don't propagate the event to higher level exception handlers
 				$e->setHandled();
 			}
 
@@ -679,7 +679,7 @@
 			} catch (MAPIException $e) {
 				$msg ="Unable to open FINDER_ROOT for store: %s. Run kopano-search-upgrade-findroots.py to resolve the permission issue";
 				error_log(sprintf($msg, $storeProps[PR_DISPLAY_NAME]));
-				// don't propogate the event to higher level exception handlers
+				// don't propagate the event to higher level exception handlers
 				$e->setHandled();
 			}
 
@@ -687,7 +687,7 @@
 		}
 
 		/**
-		 *	Function will send error message to client if any error has occured in search
+		 *	Function will send error message to client if any error has occurred in search
 		 *	@param		object		$store		MAPI Message Store Object
 		 *	@param		hexString	$entryid	entryid of the folder
 		 *	@param		object		$action		the action data, sent by the client
@@ -862,7 +862,7 @@
 		 * Function will be used to process private items in a list response, modules can
 		 * can decide what to do with the private items, remove the entire row or just
 		 * hide the data. This function will entirely remove the private message but
-		 * if any child class needs different behavior then this can be overriden.
+		 * if any child class needs different behavior then this can be overridden.
 		 * @param {Object} $item item properties
 		 * @return {Object} item properties if its non private item otherwise empty array
 		 */

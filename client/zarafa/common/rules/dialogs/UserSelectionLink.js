@@ -391,7 +391,7 @@ Zarafa.common.rules.dialogs.UserSelectionLink = Ext.extend(Ext.BoxComponent, {
 	update : function(store)
 	{
 		var data = {
-			seperator : this.userStringSeparator,
+			separator : this.userStringSeparator,
 			list : Ext.pluck(store.getRange(), 'data')
 		};
 

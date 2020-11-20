@@ -17,12 +17,12 @@ Zarafa.common.recurrence.data.RecurrenceEnd = Zarafa.core.Enum.create({
 	 */
 	NEVER : 0x23,
     /**
-	 * Recurrence ends after N occurences
+	 * Recurrence ends after N occurrences
 	 *
 	 * @property
 	 * @type Object
 	 */
-	N_OCCURENCES : 0x22,
+	N_OCCURRENCES : 0x22,
     /**
 	 * Recurrence ends on date
 	 *

@@ -5,7 +5,7 @@ Ext.namespace('Zarafa.core.data');
  * @extends Object
  *
  * The main interface used by the {@link Zarafa.core.ResponseRouter ResponseRouter}
- * for handling responses recieved by the PHP-side.
+ * for handling responses received by the PHP-side.
  *
  * This class is used as 'scoped' object, containing all information for handling
  * a specific server-response or server-notification.

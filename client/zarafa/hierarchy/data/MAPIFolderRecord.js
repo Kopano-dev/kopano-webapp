@@ -316,7 +316,7 @@ Zarafa.hierarchy.data.MAPIFolderRecord = Ext.extend(Zarafa.core.data.IPFRecord, 
 				this.cacheParentFolder = this.getMAPIFolderStore().getById(parentEntryid);
 			}
 
-			// Guarentee that the parent folder knows it has children...
+			// Guarantee that the parent folder knows it has children...
 			// Don't use record::set() as we don't want to trigger updates.
 			if (this.cacheParentFolder) {
 				this.cacheParentFolder.data.has_subfolder = true;
@@ -339,7 +339,7 @@ Zarafa.hierarchy.data.MAPIFolderRecord = Ext.extend(Zarafa.core.data.IPFRecord, 
 				var parentFolder = this.getParentFolder();
 				if (!parentFolder || parentFolder.isIPMSubTree()) {
 					// If there is no parent folder, or the parent is the subtree,
-					// then the item is definately not in the deleted items.
+					// then the item is definitely not in the deleted items.
 					return false;
 				} else if (parentFolder.isSpecialFolder('wastebasket') || parentFolder.isSpecialFolder('junk')) {
 					// The item is in the wastebasker or junk folder.
@@ -451,7 +451,7 @@ Zarafa.hierarchy.data.MAPIFolderRecord = Ext.extend(Zarafa.core.data.IPFRecord, 
 	},
 
 	/**
-	 * Emtpy the {@link Zarafa.hierarchy.data.MAPIFolderRecord DeletedItems} folder
+	 * Empty the {@link Zarafa.hierarchy.data.MAPIFolderRecord DeletedItems} folder
 	 */
 	emptyFolder : function()
 	{
@@ -493,7 +493,7 @@ Zarafa.hierarchy.data.MAPIFolderRecord = Ext.extend(Zarafa.core.data.IPFRecord, 
 	 * {@link Zarafa.hierarchy.data.MAPIFolderRecord MAPIFolderRecord}. Which will be added to {@link Zarafa.hierarchy.ui.FolderNode FolderNode}.
 	 * Function will also check which counter should be shown based on extended_flags property, and it will also check
 	 * if the counter value is greater then zero or not if it is not then not logical to return counter type as it will
-	 * not be usefull.
+	 * not be useful.
 	 * @return {Zarafa.hierarchy.data.CounterTypes}	type of counter.
 	 */
 	getCounterType : function()

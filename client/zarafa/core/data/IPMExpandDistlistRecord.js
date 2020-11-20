@@ -7,7 +7,7 @@ Ext.namespace('Zarafa.core.data');
  * @class Zarafa.core.data.IPMExpandDistlistRecord
  * @extends Ext.data.Record
  *
- * Contains a description of what a single memeber of expanded distribution item looks like.
+ * Contains a description of what a single member of expanded distribution item looks like.
  * Is used by the JSON  reader in the {@link Zarafa.core.data.IPMRecipientStore#expandReader}.
  */
 Zarafa.core.data.IPMExpandDistlistRecord = Ext.data.Record.create([

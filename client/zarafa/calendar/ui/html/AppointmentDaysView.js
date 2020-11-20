@@ -32,7 +32,7 @@ Zarafa.calendar.ui.html.AppointmentDaysView = Ext.extend(Zarafa.calendar.ui.Appo
 	 */
 	layoutAppointment: function(bounds, layer, showStartTime) {
 		if ( this.appointmentBoxes && this.appointmentBoxes.length ) {
-			// We have already layed out the appointment. Let's remove it
+			// We have already laid out the appointment. Let's remove it
 			// before we lay out the updated appointment
 			this.appointmentBoxes.forEach(function(box) {
 				box.remove();
@@ -204,7 +204,7 @@ Zarafa.calendar.ui.html.AppointmentDaysView = Ext.extend(Zarafa.calendar.ui.Appo
 		if ( Ext.isEmpty(this.appointmentBoxes) ) {
 			// This appointment is not visible
 			// (in month view, appointments that don't fit in the day anymore
-			// will not be renderered)
+			// will not be rendered)
 			return false;
 		}
 

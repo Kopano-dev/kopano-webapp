@@ -73,7 +73,7 @@ Zarafa.hierarchy.data.HierarchyNotificationResponseHandler = Ext.extend(Zarafa.c
 	},
 
 	/**
-	 * Handle the stores action we recieve as notification.
+	 * Handle the stores action we receive as notification.
 	 * This will obtain the list of {@link Zarafa.hierarchy.data.MAPIStoreRecord MAPIStoreRecord}
 	 * which must be updated, and generate the Notification.
 	 * @param {Object} data The entire response object which will be processed during this transaction.

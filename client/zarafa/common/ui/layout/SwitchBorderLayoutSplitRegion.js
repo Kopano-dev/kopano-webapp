@@ -140,7 +140,7 @@ Zarafa.common.ui.layout.SwitchBorderLayout.SwitchSplitRegion = Ext.extend(Ext.la
 			this.state.width = newSize;
 		}
 		// Apply the doLayout on the container, this will
-		// ensure that all subchildren will also be layed
+		// ensure that all subchildren will also be laid
 		// out correctly again.
 		this.layout.container.doLayout();
 		this.panel.saveState();

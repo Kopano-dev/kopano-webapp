@@ -47,10 +47,10 @@ Zarafa.core.data.IPMStore = Ext.extend(Zarafa.core.data.MAPIStore, {
 			 * @param {Zarafa.core.data.IPMStore} store The store which fired the event
 			 * @param {Zarafa.core.data.Notifications} notification The notification action
 			 * @param {Ext.data.Record/Array} records The record or records which have been affected by the notification.
-			 * @param {Object} data The data which has been recieved from the PHP-side which must be applied
+			 * @param {Object} data The data which has been received from the PHP-side which must be applied
 			 * to the given records.
 			 * @param {Number} timestamp The {@link Date#getTime timestamp} on which the notification was received
-			 * @param {Boolean} success The success status, True if the notification was successfully recieved.
+			 * @param {Boolean} success The success status, True if the notification was successfully received.
 			 * @return {Boolean} false to cancel the notification handling
 			 */
 			'beforenotify',
@@ -61,10 +61,10 @@ Zarafa.core.data.IPMStore = Ext.extend(Zarafa.core.data.MAPIStore, {
 			 * @param {Zarafa.core.data.IPMStore} store The store which fired the event
 			 * @param {Zarafa.core.data.Notifications} notification The notification action
 			 * @param {Ext.data.Record/Array} records The record or records which have been affected by the notification.
-			 * @param {Object} data The data which has been recieved from the PHP-side which must be applied
+			 * @param {Object} data The data which has been received from the PHP-side which must be applied
 			 * to the given records.
 			 * @param {Number} timestamp The {@link Date#getTime timestamp} on which the notification was received
-			 * @param {Boolean} success The success status, True if the notification was successfully recieved.
+			 * @param {Boolean} success The success status, True if the notification was successfully received.
 			 */
 			'notify'
 		);
@@ -270,15 +270,15 @@ Zarafa.core.data.IPMStore = Ext.extend(Zarafa.core.data.MAPIStore, {
 	/**
 	 * Notification handler which is called automatically by the
 	 * {@link Zarafa.core.data.IPMNotificationResponseHandler NotificationResponseHandler}
-	 * when a notification has been recieved for a {@link Zarafa.core.data.IPMRecord record} which
+	 * when a notification has been received for a {@link Zarafa.core.data.IPMRecord record} which
 	 * has been loaded by this store.
 	 *
 	 * @param {Zarafa.core.data.Notifications} action The notification action
 	 * @param {Ext.data.Record/Array} records The record or records which have been affected by the notification.
-	 * @param {Object} data The data which has been recieved from the PHP-side which must be applied
+	 * @param {Object} data The data which has been received from the PHP-side which must be applied
 	 * to the given records.
 	 * @param {Number} timestamp The {@link Date#getTime timestamp} on which the notification was received
-	 * @param {Boolean} success The success status, True if the notification was successfully recieved.
+	 * @param {Boolean} success The success status, True if the notification was successfully received.
 	 */
 	onNotify : function(action, records, data, timestamp, success)
 	{
@@ -301,16 +301,16 @@ Zarafa.core.data.IPMStore = Ext.extend(Zarafa.core.data.MAPIStore, {
 	/**
 	 * Notification handler called by {@link #onNotify} when
 	 * a {@link Zarafa.core.data.Notifications#objectDeleted objectDeleted}
-	 * notification has been recieved.
+	 * notification has been received.
 	 *
 	 * This will remove the message from the store.
 	 *
 	 * @param {Zarafa.core.data.Notifications} action The notification action
 	 * @param {Ext.data.Record/Array} records The record or records which have been affected by the notification.
-	 * @param {Object} data The data which has been recieved from the PHP-side which must be applied
+	 * @param {Object} data The data which has been received from the PHP-side which must be applied
 	 * to the given records.
 	 * @param {Number} timestamp The {@link Date#getTime timestamp} on which the notification was received
-	 * @param {Boolean} success The success status, True if the notification was successfully recieved.
+	 * @param {Boolean} success The success status, True if the notification was successfully received.
 	 * @private
 	 */
 	onNotifyObjectdeleted : function(action, records, data, timestamp, success)
@@ -332,16 +332,16 @@ Zarafa.core.data.IPMStore = Ext.extend(Zarafa.core.data.MAPIStore, {
 	/**
 	 * Notification handler called by {@link #onNotify} when
 	 * a {@link Zarafa.core.data.Notifications#objectModified objectModified}
-	 * notification has been recieved.
+	 * notification has been received.
 	 *
 	 * This will update the message in the store.
 	 *
 	 * @param {Zarafa.core.data.Notifications} action The notification action
 	 * @param {Ext.data.Record/Array} records The record or records which have been affected by the notification.
-	 * @param {Object} data The data which has been recieved from the PHP-side which must be applied
+	 * @param {Object} data The data which has been received from the PHP-side which must be applied
 	 * to the given records.
 	 * @param {Number} timestamp The {@link Date#getTime timestamp} on which the notification was received
-	 * @param {Boolean} success The success status, True if the notification was successfully recieved.
+	 * @param {Boolean} success The success status, True if the notification was successfully received.
 	 * @private
 	 */
 	onNotifyObjectmodified : function(action, records, data, timestamp, success)
@@ -412,7 +412,7 @@ Zarafa.core.data.IPMStore = Ext.extend(Zarafa.core.data.MAPIStore, {
 	/**
 	 * Notification handler called by {@link #onNotify} when
 	 * a {@link Zarafa.core.data.Notifications#objectCreated objectCreated}
-	 * notification has been recieved.
+	 * notification has been received.
 	 *
 	 * Because it is unknown if the added record must be visible, or where
 	 * in the Store the record must be shown, we simply reload the entire
@@ -420,10 +420,10 @@ Zarafa.core.data.IPMStore = Ext.extend(Zarafa.core.data.MAPIStore, {
 	 *
 	 * @param {Zarafa.core.data.Notifications} action The notification action
 	 * @param {Ext.data.Record/Array} records The record or records which have been affected by the notification.
-	 * @param {Object} data The data which has been recieved from the PHP-side which must be applied
+	 * @param {Object} data The data which has been received from the PHP-side which must be applied
 	 * to the given records.
 	 * @param {Number} timestamp The {@link Date#getTime timestamp} on which the notification was received
-	 * @param {Boolean} success The success status, True if the notification was successfully recieved.
+	 * @param {Boolean} success The success status, True if the notification was successfully received.
 	 * @private
 	 */
 	onNotifyObjectcreated : function(action, records, data, timestamp, success)

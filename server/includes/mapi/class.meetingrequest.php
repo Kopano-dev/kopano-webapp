@@ -169,7 +169,7 @@ class Meetingrequest {
 
 	/**
 	 * Sets the direct booking property. This is an alternative to the setting of the direct booking
-	 * property through the constructor. However, setting it in the constructor is prefered.
+	 * property through the constructor. However, setting it in the constructor is preferred.
 	 * @param Boolean $directBookingSetting
 	 *
 	 */
@@ -648,7 +648,7 @@ If it is the first time this attendee has proposed a new date/time, increment th
 			}
 		}
 
-		// Retrieve basedate from globalID, if it is not recieved as argument
+		// Retrieve basedate from globalID, if it is not received as argument
 		if (!$basedate) {
 			$basedate = $this->getBasedateFromGlobalID($messageprops[$this->proptags['goid']]);
 		}
@@ -694,7 +694,7 @@ If it is the first time this attendee has proposed a new date/time, increment th
 
 		/**
 		 * Further processing depends on what user is receiving. User can receive recurring item, a single occurrence or a normal meeting.
-		 * 1) If meeting req is of recurrence then we find all the occurrence in calendar because in past user might have recieved one or few occurrences.
+		 * 1) If meeting req is of recurrence then we find all the occurrence in calendar because in past user might have received one or few occurrences.
 		 * 2) If single occurrence then find occurrence itself using globalID and if item is not found then use cleanGlobalID to find main recurring item
 		 * 3) Normal meeting req are handled normally as they were handled previously.
 		 *
@@ -1230,7 +1230,7 @@ If it is the first time this attendee has proposed a new date/time, increment th
 		} else {
 			// Here only properties are set on calendaritem, because user is responding from calendar.
 			if ($basedate) {
-				// remove the occurence
+				// remove the occurrence
 				$this->doRemoveExceptionFromCalendar($basedate, $this->message, $store);
 			} else {
 				// remove normal/recurring meeting item.
@@ -1243,7 +1243,7 @@ If it is the first time this attendee has proposed a new date/time, increment th
 	/**
 	 * Function can be used to cancel any existing meeting and send cancellation mails to attendees.
 	 * Should only be called from meeting object from calendar.
-	 * @param String $basedate (optional) basedate of occurence which should be cancelled.
+	 * @param String $basedate (optional) basedate of occurrence which should be cancelled.
 	 * @FIXME cancellation mail is also sent to attendee which has declined the meeting
 	 * @FIXME don't send canellation mail when cancelling meeting from past
 	 */
@@ -1263,10 +1263,10 @@ If it is the first time this attendee has proposed a new date/time, increment th
 		$messageProps = mapi_getprops($this->message, array(PR_ENTRYID, $this->proptags['recurring']));
 
 		if(isset($messageProps[$this->proptags['recurring']]) && $messageProps[$this->proptags['recurring']] === true) {
-			// cancellation of recurring series or one occurence
+			// cancellation of recurring series or one occurrence
 			$recurrence = new Recurrence($this->store, $this->message);
 
-			// if basedate is specified then we are cancelling only one occurence, so create exception for that occurence
+			// if basedate is specified then we are cancelling only one occurrence, so create exception for that occurrence
 			if($basedate) {
 				$recurrence->createException(array(), $basedate, true);
 			}
@@ -1546,8 +1546,8 @@ If it is the first time this attendee has proposed a new date/time, increment th
 			$calendarItem = $this->getCorrespondentCalendarItem(true);
 		}
 
-		// even if we have received request/response for exception/occurence then also
-		// we can check recurring series for organizer, no need to check with exception/occurence
+		// even if we have received request/response for exception/occurrence then also
+		// we can check recurring series for organizer, no need to check with exception/occurrence
 
 		if($calendarItem !== false) {
 			$messageProps = mapi_getprops($calendarItem, Array($this->proptags['responsestatus']));
@@ -1651,7 +1651,7 @@ If it is the first time this attendee has proposed a new date/time, increment th
 	}
 
 	/**
-	 * Function will return entryid of any default folder of store. This method is usefull when you want
+	 * Function will return entryid of any default folder of store. This method is useful when you want
 	 * to get entryid of folder which is stored as properties of inbox folder
 	 * (PR_IPM_APPOINTMENT_ENTRYID, PR_IPM_CONTACT_ENTRYID, PR_IPM_DRAFTS_ENTRYID, PR_IPM_JOURNAL_ENTRYID, PR_IPM_NOTE_ENTRYID, PR_IPM_TASK_ENTRYID).
 	 * @param PropTag $prop proptag of the folder for which we want to get entryid.
@@ -1669,7 +1669,7 @@ If it is the first time this attendee has proposed a new date/time, increment th
 		} catch (MAPIException $e) {
 			// public store doesn't support this method
 			if ($e->getCode() == MAPI_E_NO_SUPPORT) {
-				// don't propogate this error to parent handlers, if store doesn't support it
+				// don't propagate this error to parent handlers, if store doesn't support it
 				$e->setHandled();
 			}
 		}
@@ -1696,7 +1696,7 @@ If it is the first time this attendee has proposed a new date/time, increment th
 	}
 
 	/**
-	 * Function will return entryid of default folder from store. This method is usefull when you want
+	 * Function will return entryid of default folder from store. This method is useful when you want
 	 * to get entryid of folder which is stored as store properties
 	 * (PR_IPM_FAVORITES_ENTRYID, PR_IPM_OUTBOX_ENTRYID, PR_IPM_SENTMAIL_ENTRYID, PR_IPM_WASTEBASKET_ENTRYID).
 	 * @param PropTag $prop proptag of the folder whose entryid we want to get.
@@ -2214,7 +2214,7 @@ If it is the first time this attendee has proposed a new date/time, increment th
 	}
 
 	/**
-	 * Function which returns basedate of an changed occurrance from globalID of meeting request.
+	 * Function which returns basedate of an changed occurrence from globalID of meeting request.
 	 *@param binary $goid globalID
 	 *@return boolean true if basedate is found else false it not found
 	 */
@@ -2233,9 +2233,9 @@ If it is the first time this attendee has proposed a new date/time, increment th
 	}
 
 	/**
-	 * Function which sets basedate in globalID of changed occurrance which is to be send.
+	 * Function which sets basedate in globalID of changed occurrence which is to be send.
 	 *@param binary $goid globalID
-	 *@param string basedate of changed occurrance
+	 *@param string basedate of changed occurrence
 	 *@return binary globalID with basedate in it
 	 */
 	function setBasedateInGlobalID($goid, $basedate = false)
@@ -2608,7 +2608,7 @@ If it is the first time this attendee has proposed a new date/time, increment th
 				$this->includesResources = true;
 			}else{
 				/**
-				 * If no other errors occured and you have no access to the
+				 * If no other errors occurred and you have no access to the
 				 * folder of the resource, throw an error=1.
 				 */
 				if(!$this->errorSetResource){
@@ -2946,7 +2946,7 @@ If it is the first time this attendee has proposed a new date/time, increment th
 									);
 		}
 
-		// If no recipients were explicitely provided, we will send the update to all
+		// If no recipients were explicitly provided, we will send the update to all
 		// recipients from the meeting.
 		if ($modifiedRecips === false) {
 			$recipienttable = mapi_message_getrecipienttable($message);
@@ -3063,7 +3063,7 @@ If it is the first time this attendee has proposed a new date/time, increment th
 		$props[$this->proptags['meetingstatus']] = olMeeting;
 		$props[$this->proptags['responsestatus']] = olResponseOrganized;
 		// Only set the 'requestsent' property if it wasn't set previously yet,
-		// this ensures we will not accidently set it from true to false.
+		// this ensures we will not accidentally set it from true to false.
 		if (!isset($messageprops[$this->proptags['requestsent']]) || $messageprops[$this->proptags['requestsent']] !== true) {
 			$props[$this->proptags['requestsent']] = !empty($modifiedRecips) || ($this->includesResources && !$this->errorSetResource);
 		}
@@ -3080,11 +3080,11 @@ If it is the first time this attendee has proposed a new date/time, increment th
 		mapi_setprops($message, $props);
 
 		// saving of these properties on calendar item should be handled by caller function
-		// based on sending meeting request was successfull or not
+		// based on sending meeting request was successful or not
 	}
 
 	/**
-	 * OL2007 uses these 4 properties to specify occurence that should be updated.
+	 * OL2007 uses these 4 properties to specify occurrence that should be updated.
 	 * ical generates RECURRENCE-ID property based on exception's basedate (PidLidExceptionReplaceTime),
 	 * but OL07 doesn't send this property, so ical will generate RECURRENCE-ID property based on date
 	 * from GlobalObjId and time from StartRecurTime property, so we are sending basedate property and
@@ -3223,7 +3223,7 @@ If it is the first time this attendee has proposed a new date/time, increment th
 				// we are able to find the exception compare with it
 				$calendarItem = $exception;
 			} else {
-				// we are not able to find exception, could mean that a significant change has occured on series
+				// we are not able to find exception, could mean that a significant change has occurred on series
 				// and it deleted all exceptions, so compare with series
 				// $calendarItem already contains reference to series
 			}
@@ -3277,7 +3277,7 @@ If it is the first time this attendee has proposed a new date/time, increment th
 					// we are able to find the exception compare with it
 					$calendarItem = $exception;
 				} else {
-					// we are not able to find exception, could mean that a significant change has occured on series
+					// we are not able to find exception, could mean that a significant change has occurred on series
 					// and it deleted all exceptions, so compare with series
 					// $calendarItem already contains reference to series
 				}
@@ -3417,7 +3417,7 @@ If it is the first time this attendee has proposed a new date/time, increment th
 		/**
 		 * First search for any appointments which correspond to the $globalId,
 		 * this can be the entire series (if the Meeting Request refers to the
-		 * entire series), or an particular Occurence (if the meeting Request
+		 * entire series), or an particular Occurrence (if the meeting Request
 		 * contains a basedate).
 		 *
 		 * If we cannot find a corresponding item, and the $globalId contains

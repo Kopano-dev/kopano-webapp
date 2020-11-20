@@ -79,7 +79,7 @@ Zarafa.contact.attachitem.AttachDistlistRenderer = Ext.extend(Zarafa.common.atta
 
 	/**
 	 * Prepares data suitable for use in an XTemplate from the record.
-	 * @param {Zarafa.core.data.IPMRecord} record The record to aquire data from.
+	 * @param {Zarafa.core.data.IPMRecord} record The record to acquire data from.
 	 * @return {Array} An array of data which is customized for our purpose.
 	 */
 	prepareData : function(record, htmlFormat)

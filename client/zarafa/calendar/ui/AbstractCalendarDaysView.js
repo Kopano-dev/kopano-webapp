@@ -5,7 +5,7 @@ Ext.namespace('Zarafa.calendar.ui');
  * @extends Zarafa.calendar.ui.AbstractCalendarView
  *
  * The DaysView is used to display one or more days in columns next to eachother. This is usually limited to 7 days,
- * altough more days are supported. For an overview of a large number of days, the {@link Zarafa.calendar.ui.AbstractCalendarBoxView BoxView}
+ * although more days are supported. For an overview of a large number of days, the {@link Zarafa.calendar.ui.AbstractCalendarBoxView BoxView}
  * is however more recommended
  */
 Zarafa.calendar.ui.AbstractCalendarDaysView = Ext.extend(Zarafa.calendar.ui.AbstractCalendarView, {
@@ -694,7 +694,7 @@ Zarafa.calendar.ui.AbstractCalendarDaysView = Ext.extend(Zarafa.calendar.ui.Abst
 	},
 
 	/**
-	 * Called before the calendar will be layed out.
+	 * Called before the calendar will be laid out.
 	 * This will recalculate the {@link #calculateBodyOverlaps body} and {@link #calculateHeaderOverlaps header overlaps}.
 	 * @protected.
 	 */

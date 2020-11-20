@@ -213,7 +213,7 @@ Zarafa.common.attachment.dialogs.AttachItemContentPanel = Ext.extend(Zarafa.core
 
 		// we will get the instance but instead we need to create a new instance of the store
 		store = new store.constructor({
-			// make sure that store is not registered with IPMStoreMgr as we don't want to propogate updates from other stores
+			// make sure that store is not registered with IPMStoreMgr as we don't want to propagate updates from other stores
 			// because this store is used in a modal dialog
 			standalone : true,
 

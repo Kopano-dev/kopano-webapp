@@ -8,7 +8,7 @@
 Zarafa.hierarchy.ui.ContextMenu = Ext.extend(Zarafa.core.ui.menu.ConditionalMenu, {
 
 	/**
-	 * @cfg contextNode Holds {@link Zarafa.hierarchy.ui.FolderNode foldernode} on which 'contextmenu' event has occured
+	 * @cfg contextNode Holds {@link Zarafa.hierarchy.ui.FolderNode foldernode} on which 'contextmenu' event has occurred
 	 */
 	contextNode : undefined,
 

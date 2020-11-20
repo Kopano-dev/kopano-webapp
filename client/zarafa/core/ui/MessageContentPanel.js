@@ -45,7 +45,7 @@ Zarafa.core.ui.MessageContentPanel = Ext.extend(Zarafa.core.ui.RecordContentPane
 	isSending : false,
 
 	/**
-	 * @cfg {Boolean} closeOnSend Config option to close the panel when client recieves confirmation of message is sent.
+	 * @cfg {Boolean} closeOnSend Config option to close the panel when client receives confirmation of message is sent.
 	 */
 	closeOnSend : false,
 
@@ -205,7 +205,7 @@ Zarafa.core.ui.MessageContentPanel = Ext.extend(Zarafa.core.ui.RecordContentPane
 
 	/**
 	 * If {@link #showInfoMask} is enabled, and {@link #displayInfoMask} has been called, this
-	 * will remove the notification again. When saving has been successfull, a new notification
+	 * will remove the notification again. When saving has been successful, a new notification
 	 * will be shown to display the {@link #savingDoneText}.
 	 * @param {Boolean} success false to disable the display of {@link #savingDoneText}.
 	 * @protected
@@ -250,7 +250,7 @@ Zarafa.core.ui.MessageContentPanel = Ext.extend(Zarafa.core.ui.RecordContentPane
 	 * this will display the {@link #savingText to indicate the saving is in progress.
 	 *
 	 * @param {Zarafa.core.ui.RecordContentPanel} contentpanel The contentpanel which fired the event
-	 * @param {String} action write Action that ocurred. Can be one of
+	 * @param {String} action write Action that occurred. Can be one of
 	 * {@link Ext.data.Record.EDIT EDIT}, {@link Ext.data.Record.REJECT REJECT} or
 	 * {@link Ext.data.Record.COMMIT COMMIT}
 	 * @param {Zarafa.core.data.IPMRecord} record The record which was updated
@@ -324,7 +324,7 @@ Zarafa.core.ui.MessageContentPanel = Ext.extend(Zarafa.core.ui.RecordContentPane
 		this.isSending = true;
 
 		// Start the validation queue to determine if the record can be
-		// send to the recipients correctly. If successfull, onCompleteValidateSendRecord
+		// send to the recipients correctly. If successful, onCompleteValidateSendRecord
 		// is called to send the actual record.
 		this.sendValidationQueue.run(this.onCompleteValidateSendRecord, this);
 	},

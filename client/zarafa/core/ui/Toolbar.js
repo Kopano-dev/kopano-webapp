@@ -64,7 +64,7 @@ Zarafa.core.ui.Toolbar = Ext.extend(Ext.Toolbar, {
 	},
 
 	/**
-	 * When the toolbar is layed out the sizes for the different buttongroups may differ. When the
+	 * When the toolbar is laid out the sizes for the different buttongroups may differ. When the
 	 * afterlayout event is fired the heights are corrected to have all the buttongroups match in
 	 * height. This is only done the first time the toolbar is shown.
 	 * @private

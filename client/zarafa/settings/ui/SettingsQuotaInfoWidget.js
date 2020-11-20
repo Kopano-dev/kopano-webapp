@@ -115,16 +115,16 @@ Zarafa.settings.ui.SettingsQuotaInfoWidget = Ext.extend(Zarafa.settings.ui.Setti
 		 */
 		if (hardQuota && storeSize > hardQuota) {
 			// Case 3,5
-			return _('You have exceeded hard quota, you can not send or recieve mails.');
+			return _('You have exceeded hard quota, you can not send or receive mails.');
 		} else if (softQuota && storeSize < softQuota) {
 			// Case 1,6
 			return String.format(_("At {0} you won't be able to send mails."), Ext.util.Format.fileSize(softQuota * 1024));
 		} else if (softQuota && hardQuota && softQuota < storeSize && storeSize < hardQuota) {
 			// Case 2
-			return String.format(_("You can not send mails as you have exceeded soft quota, at {0} you won't be able to recieve mails."), Ext.util.Format.fileSize(hardQuota * 1024));
+			return String.format(_("You can not send mails as you have exceeded soft quota, at {0} you won't be able to receive mails."), Ext.util.Format.fileSize(hardQuota * 1024));
 		} else if (!softQuota && hardQuota && storeSize < hardQuota) {
 			// Case 4
-			return String.format(_("At {0} you won't be able to send or recieve mails."), Ext.util.Format.fileSize(hardQuota * 1024));
+			return String.format(_("At {0} you won't be able to send or receive mails."), Ext.util.Format.fileSize(hardQuota * 1024));
 		} else if (softQuota && !hardQuota && softQuota < storeSize) {
 			// Case 7
 			return _('You can not send mails as you have exceeded soft quota.');

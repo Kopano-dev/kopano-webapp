@@ -11,7 +11,7 @@ Ext.namespace('Zarafa.core.plugins');
  */
 Zarafa.core.plugins.TabCloseMenuPlugin = Ext.extend(Ext.ux.TabCloseMenu, {
 	/**
-	 * Overriden to add menu items from an insertion point
+	 * Overridden to add menu items from an insertion point
 	 * @override
 	 * @private
 	 */
@@ -49,7 +49,7 @@ Zarafa.core.plugins.TabCloseMenuPlugin = Ext.extend(Ext.ux.TabCloseMenu, {
 	},
 
 	/**
-	 * Overriden, because the original function calls remove() directly
+	 * Overridden, because the original function calls remove() directly
 	 * item.close() is better because it fires an event that notifies other components that the tab wants to close
 	 * @override
 	 * @private
@@ -59,7 +59,7 @@ Zarafa.core.plugins.TabCloseMenuPlugin = Ext.extend(Ext.ux.TabCloseMenu, {
 	},
 
 	/**
-	 * Overriden, because the original function calls remove() directly
+	 * Overridden, because the original function calls remove() directly
 	 * item.close() is better because it fires an event that notifies other components that the tab wants to close
 	 * @param {Boolean} excludeActive Flag for whether to close all tabs but preserve the currently active one
 	 * @override

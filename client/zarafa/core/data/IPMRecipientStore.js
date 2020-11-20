@@ -333,7 +333,7 @@ Zarafa.core.data.IPMRecipientStore = Ext.extend(Zarafa.core.data.MAPISubStore, {
 	 * are no results returned the user is notified of that fact.
 	 * @param {Ext.data.Record/Array} records The record or records which have been received from the server.
 	 * @param {Object} options The options object used for the request
-	 * @param {Boolean} success True if the request was successfull.
+	 * @param {Boolean} success True if the request was successful.
 	 * @private
 	 */
 	onCheckNamesResult: function(records, options, success)
@@ -405,7 +405,7 @@ Zarafa.core.data.IPMRecipientStore = Ext.extend(Zarafa.core.data.MAPISubStore, {
 	 * handled separately. Resulted member record(s) are converted to the recipient record and added to the recipient store.
 	 * @param {Ext.data.Record/Array} records The record or records which have been received from the server.
 	 * @param {Object} options The options object used for the request
-	 * @param {Boolean} success True if the request was successfull.
+	 * @param {Boolean} success True if the request was successful.
 	 * @private
 	 */
 	onExpandResult: function(records, options, success)

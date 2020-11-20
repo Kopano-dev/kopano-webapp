@@ -207,7 +207,7 @@ class WebAppAuthentication
 	/**
 	 * Restore a MAPISession from the serialized with kc_session_restore.
 	 *
-	 * @return boolean true if session has been restored succesfully
+	 * @return boolean true if session has been restored successfully
 	 */
 	private static function _restoreMAPISession() {
 		$encryptionStore = EncryptionStore::getInstance();
@@ -347,7 +347,7 @@ class WebAppAuthentication
 	/**
 	 * Logs the user in with a given username and token in $_POST and logs
 	 * in with the special flag for token authentication enabled. If $new
-	 * is true it's assumed that a session does not exists and there wille
+	 * is true it's assumed that a session does not exists and there will
 	 * be a new one generated and fingerprint stored in session which is
 	 * later compared after logon. After successful logon the session is stored.
 	 *

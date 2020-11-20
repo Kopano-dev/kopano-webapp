@@ -67,7 +67,7 @@
 
 		/**
 		 * Function will be used to process private items in a list response,
-		 * sticky notes doesn't have private items so function is overriden to not do 
+		 * sticky notes doesn't have private items so function is overridden to not do 
 		 * any processing.
 		 * @param {Object} $item item properties
 		 * @return {Object} item properties if its non private item otherwise empty array

@@ -56,17 +56,17 @@
 					$data['item'] = $GLOBALS['operations']->getMessageProps($store, $message, $this->properties, $this->plaintext);
 				}
 
-				// if appointment is recurring then only we should get properties of occurence if basedate is supplied
+				// if appointment is recurring then only we should get properties of occurrence if basedate is supplied
 				if($data['item']['props']['recurring'] === true) {
 					if(!empty($action['basedate'])) {
-						// check for occurence/exception
+						// check for occurrence/exception
 						$basedate = $action['basedate'];
 
 						$recur = new Recurrence($store, $message);
 
 						$exceptionatt = $recur->getExceptionAttachment($basedate);
 
-						// Single occurences are never recurring
+						// Single occurrences are never recurring
 						$data['item']['props']['recurring'] = false;
 
 						if($exceptionatt) {
@@ -136,7 +136,7 @@
 							);
 							return;
 						} else {
-							// opening an occurence of a recurring series (same as normal open, but add basedate, startdate and enddate)
+							// opening an occurrence of a recurring series (same as normal open, but add basedate, startdate and enddate)
 							$data['item']['props']['basedate'] = $basedate;
 							$data['item']['props']['startdate'] = $recur->getOccurrenceStart($basedate);
 							$data['item']['props']['duedate'] = $recur->getOccurrenceEnd($basedate);
@@ -250,7 +250,7 @@
 			}elseif(is_array($messageProps) && isset($messageProps['error'])){
 				switch($messageProps['error']){
 					case 1:
-						$errorMsg = sprintf(_('You marked \'%s\' as a resource. You cannot schedule a meeting with \'%s\' because you do not have the appropiate permissions for that account. Either enter the name as a required or optional attendee or talk to your administrator about giving you permission to schedule \'%s\'.'), $messageProps['displayname'], $messageProps['displayname'], $messageProps['displayname']);
+						$errorMsg = sprintf(_('You marked \'%s\' as a resource. You cannot schedule a meeting with \'%s\' because you do not have the appropriate permissions for that account. Either enter the name as a required or optional attendee or talk to your administrator about giving you permission to schedule \'%s\'.'), $messageProps['displayname'], $messageProps['displayname'], $messageProps['displayname']);
 						break;
 					case 2:
 						$errorMsg = sprintf(_('\'%s\' has declined your meeting because \'%s\' does not automatically accept meeting requests.'), $messageProps['displayname'], $messageProps['displayname']);

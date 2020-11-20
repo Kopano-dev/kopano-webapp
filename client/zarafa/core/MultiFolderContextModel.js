@@ -10,7 +10,7 @@ Ext.namespace('Zarafa.core');
  */
 Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	/**
-	 * @cfg {Object[]} colorScheme The color defintion objects which is applied within
+	 * @cfg {Object[]} colorScheme The color definition objects which is applied within
 	 * the context. Each folder will be assigned with an entry from this array to
 	 * define the colors applied to it.
 	 */
@@ -35,7 +35,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 
 	/**
 	 * The currently active grouping of all active {@link #folders}.
-	 * Each key inside this object refers to another object containting the
+	 * Each key inside this object refers to another object containing the
 	 * 'folders' properties which is the list of all entryids which are
 	 * grouped together into a single view. The 'active' property denotes which
 	 * folder is currently the active folder.
@@ -167,7 +167,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	},
 
 	/**
-	 * Overriden in order to assign colors to the loaded folders
+	 * Overridden in order to assign colors to the loaded folders
 	 *
  	 * Sets {@link #defaultFolder default folder} for the particular {@link Zarafa.core.Context context}.
 	 * This will help while opening new item dialog from other contexts

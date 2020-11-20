@@ -266,7 +266,7 @@ Ext.apply(Zarafa, {
 		// Register the State provider which uses the SettingsModel.
 		Ext.state.Manager.setProvider(new Zarafa.core.data.SettingsStateProvider());
 
-		// Disable contextmenu globaly
+		// Disable contextmenu globally
 		Ext.getBody().on('contextmenu', this.onBodyContextMenu, this);
 
 		// Disable default file drop behavior
@@ -955,13 +955,13 @@ Ext.apply(Zarafa, {
 		// Start an interval for sending keepalive requests
 		// We need this keepalive to keep the connection alive if the user has made an
 		// action in the WebApp without connecting to the server. (like mousemove, click, keydown)
-		// Substracting 5 seconds to account for latency
+		// Subtracting 5 seconds to account for latency
 		var interval = (clientTimeout-5)*1000;
 		if ( interval < 5000 ){
 			// This one is especially for Sean who was so smart to set a client timeout of 5 seconds
 			// causing keepalive requests to be sent constantly and thereby ddos'ing his own server :-)
 			// Let's never send keepalive requests with an interval lower than 5 seconds.
-			// Anyone who sets a timeout this low deserves to be logged out! (and punished severly)
+			// Anyone who sets a timeout this low deserves to be logged out! (and punished severely)
 			interval = 5000;
 		}
 

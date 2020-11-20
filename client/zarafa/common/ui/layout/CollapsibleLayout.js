@@ -94,12 +94,12 @@ Zarafa.common.ui.layout.CollapsibleLayout = Ext.extend(Ext.layout.FitLayout, {
 	},
 
 	/**
-	 * Called when the container is being layed out. This will first use the {@link Ext.layout.Fitlayout FitLayout}
+	 * Called when the container is being laid out. This will first use the {@link Ext.layout.Fitlayout FitLayout}
 	 * to resize the {@link #activeItem}, and based on the size the activeItem takes in, we can resize the
 	 * {@link #resizeitem} to fill the remaining space.
 	 *
-	 * @param {Ext.Container} ct The container which is being layed out
-	 * @param {Ext.Element} target The target element which is being layed out
+	 * @param {Ext.Container} ct The container which is being laid out
+	 * @param {Ext.Element} target The target element which is being laid out
 	 * @private
 	 */
 	onLayout : function(ct, target)

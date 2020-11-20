@@ -11,7 +11,7 @@ Zarafa.hierarchy.data.JsonPermissionsWriter = Ext.extend(Zarafa.core.data.JsonWr
 	 * Convert permissions into a hash. Permissions exists as
 	 * {@link Zarafa.hierarchy.data.UserPermissionsRecord UserPermissionsRecord} within
 	 * a {@link Zarafa.hierarchy.data.MAPIFolderRecord MAPIFolderRecord} and thus must be serialized
-	 * seperately into the hash object.
+	 * separately into the hash object.
 	 *
 	 * @param {Ext.data.Record} record The record to hash
 	 * @return {Object} The hashed object

@@ -34,12 +34,12 @@ Zarafa.core.ui.widget.AbstractQuickItemWidget = Ext.extend(Zarafa.core.ui.widget
 	wrap : undefined,
 
 	/**
-	 * @cfg {Boolean} resetOnSave {@link #reset} the widget when client recieves confirmation of message is saved.
+	 * @cfg {Boolean} resetOnSave {@link #reset} the widget when client receives confirmation of message is saved.
 	 */
 	resetOnSave : true,
 
 	/**
-	 * @cfg {Boolean} resetOnSend {@link #reset} the widget when client recieves confirmation of message is sent.
+	 * @cfg {Boolean} resetOnSend {@link #reset} the widget when client receives confirmation of message is sent.
 	 */
 	resetOnSend : true,
 

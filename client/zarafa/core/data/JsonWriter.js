@@ -220,7 +220,7 @@ Zarafa.core.data.JsonWriter = Ext.extend(Ext.data.JsonWriter, {
 	 * Add message actions into the hash. Message actions are not properties
 	 * which come from the server, but are used to add an additional action
 	 * instruction for the server to perform. As such the action needs to
-	 * be serialized seperately into the hash object.
+	 * be serialized separately into the hash object.
 	 *
 	 * @param {Object} hash The hash into which the message actions must be added
 	 * @param {Zarafa.core.data.IPMrecord} record The record to serialize from

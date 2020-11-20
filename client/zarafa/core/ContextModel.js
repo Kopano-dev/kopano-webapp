@@ -246,7 +246,7 @@ Zarafa.core.ContextModel = Ext.extend(Zarafa.core.data.StatefulObservable, {
 			 * Fired when the server encountered an exception during the search
 			 * @param {Zarafa.core.ContextModel} model The model which fired the event
 			 * @param {Zarafa.core.data.IPMProxy} proxy object that received the error.
-			 * @param {String} type 'request' if an invalid response from server recieved,
+			 * @param {String} type 'request' if an invalid response from server received,
 			 * 'remote' if valid response received from server but with succuessProperty === false.
 			 * @param {String} action Name of the action {@link Ext.data.Api.actions}.
 			 * @param {Object} options The options for the action that were specified in the request.
@@ -1050,7 +1050,7 @@ Zarafa.core.ContextModel = Ext.extend(Zarafa.core.data.StatefulObservable, {
 	 *
 	 * @param {Zarafa.core.data.IPMProxy} proxy object that received the error
 	 * and which fired exception event.
-	 * @param {String} type 'request' if an invalid response from server recieved,
+	 * @param {String} type 'request' if an invalid response from server received,
 	 * 'remote' if valid response received from server but with succuessProperty === false.
 	 * @param {String} action Name of the action {@link Ext.data.Api.actions}.
 	 * @param {Object} options The options for the action that were specified in the request.
@@ -1161,7 +1161,7 @@ Zarafa.core.ContextModel = Ext.extend(Zarafa.core.data.StatefulObservable, {
 	 *
 	 * @param {Zarafa.core.data.IPMProxy} proxy object that received the error
 	 * and which fired exception event.
-	 * @param {String} type 'request' if an invalid response from server recieved,
+	 * @param {String} type 'request' if an invalid response from server received,
 	 * 'remote' if valid response received from server but with succuessProperty === false.
 	 * @param {String} action Name of the action {@link Ext.data.Api.actions}.
 	 * @param {Object} options The options for the action that were specified in the request.

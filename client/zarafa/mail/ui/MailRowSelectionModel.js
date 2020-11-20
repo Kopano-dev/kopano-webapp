@@ -22,7 +22,7 @@ Zarafa.mail.ui.MailRowSelectionModel = Ext.extend(Ext.grid.RowSelectionModel, {
 	updatedLast : undefined,
 
 	/**
-	 * Overriden to test for custom columns.
+	 * Overridden to test for custom columns.
 	 * If one of the columns of interest is clicked, then the row should not be selected.
 	 * Otherwise call original handler.
 	 * 'cellmousedown' does not fire when drag&drop is installed on a component,
@@ -198,7 +198,7 @@ Zarafa.mail.ui.MailRowSelectionModel = Ext.extend(Ext.grid.RowSelectionModel, {
     },
 
 	/**
-	 * Helper function of {@link #onKeyPress} funciton.
+	 * Helper function of {@link #onKeyPress} function.
 	 * Which will update the end index for the selection range. It will also expand the conversation found at the endIndex.
 	 * This might also update {@link #updatedLast} as new rows would be added in the grid due to expansion of the conversations.
 	 * 

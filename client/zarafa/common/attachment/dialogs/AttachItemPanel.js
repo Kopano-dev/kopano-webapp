@@ -161,7 +161,7 @@ Zarafa.common.attachment.dialogs.AttachItemPanel = Ext.extend(Ext.Panel, {
 	/**
 	 * Fired when the {@link Zarafa.hierarchy.ui.Tree Tree} fires the {@link Zarafa.hierarchy.ui.Tree#load load}
 	 * event. This function will try to select the {@link Ext.tree.TreeNode TreeNode} in
-	 * {@link Zarafa.hierarchy.ui.Tree Tree} intially. When the given node is not loaded yet, it will try again
+	 * {@link Zarafa.hierarchy.ui.Tree Tree} initially. When the given node is not loaded yet, it will try again
 	 * later when the event is fired again.
 	 * @param {Ext.tree.TreeNode} node node that has been loaded
 	 * @private
@@ -178,7 +178,7 @@ Zarafa.common.attachment.dialogs.AttachItemPanel = Ext.extend(Ext.Panel, {
 
 	/**
 	 * Invoked when {@link Ext.form.RadioGroup RadioGroup} is rendered fully and {@link Ext.form.RadioGroup#afterrender} event is fired.
-	 * This function will try to select the {@link Ext.form.Radio Radio} in {@link Ext.form.RadioGroup RadioGroup} intially.
+	 * This function will try to select the {@link Ext.form.Radio Radio} in {@link Ext.form.RadioGroup RadioGroup} initially.
 	 * @param {Ext.form.RadioGroup} radioGroup radio group that has been rendered.
 	 * @private
 	 */

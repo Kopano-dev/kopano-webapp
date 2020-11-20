@@ -95,7 +95,7 @@ Zarafa.calendar.MeetingRequestRecord = Ext.extend(Zarafa.calendar.AppointmentRec
 
 	/**
 	 * @return {Boolean} Returns true if the {@link Zarafa.core.data.MeetingRequestRecord MeetingRequestRecord} is a
-	 * recurring occurence meeting.
+	 * recurring occurrence meeting.
 	 * @overridden
 	 */
 	isRecurringOccurence : function()
@@ -219,7 +219,7 @@ Zarafa.calendar.MeetingRequestRecord = Ext.extend(Zarafa.calendar.AppointmentRec
 	 * This will update the {@link Zarafa.calendar.AppointmentRecord AppointmentRecord} recipients
 	 * based on the current {@link Zarafa.core.mapi.MeetingStatus 'meeting' status}.
 	 * If this appointment is a {@link #isMeeting meeting} then the organizer will be added into
-	 * the recipients table otherwise all recipients will be removed. Overriden here by empty function
+	 * the recipients table otherwise all recipients will be removed. Overridden here by empty function
 	 * as we don't need this functionality in {@link Zarafa.calendar.MeetingRequestRecord MeetingRequestRecord}.
 	 * @hide
 	 */

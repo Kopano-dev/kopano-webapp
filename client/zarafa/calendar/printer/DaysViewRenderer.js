@@ -32,7 +32,7 @@ Zarafa.calendar.printer.DaysViewRenderer = Ext.extend(Zarafa.calendar.printer.Ab
 		startDate.setHours(12);
 		dueDate.setHours(12);
 
-		// Obtain the daterange information, substract 1 day from duedate
+		// Obtain the daterange information, subtract 1 day from duedate
 		// as it is set to 00:00 of the day _after_ the duedate.
 		data['currenttime'] = new Date();
 		data['startdate'] = startDate.clearTime();

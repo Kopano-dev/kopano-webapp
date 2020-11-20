@@ -41,7 +41,7 @@ Zarafa.common.attachment.ui.AttachmentDownloader = Ext.extend(Ext.Component, {
 
 	/**
 	 * Will get iframe element and set its src property to the supplied url.
-	 * After successfull response, iframe will pops up and ask user to start/cancel
+	 * After successful response, iframe will pops up and ask user to start/cancel
 	 * downloading of that particular message/attachment as file.
 	 * @param {String} url The url to download message/attachment, containing necessary parameters.
 	 */

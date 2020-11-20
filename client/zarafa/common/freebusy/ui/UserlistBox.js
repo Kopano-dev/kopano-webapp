@@ -29,7 +29,7 @@ Zarafa.common.freebusy.ui.UserlistBox = Ext.extend(Zarafa.common.recipientfield.
 	},
 
 	/**
-	 * Function which can be overriden to provide custom icon rendering for the given {@link Ext.data.Record}
+	 * Function which can be overridden to provide custom icon rendering for the given {@link Ext.data.Record}
 	 * to the {@link #iconEl} element. The string returned here is the CSS class which will be set on the
 	 * {@link #iconEl}.
 	 * @param {Ext.data.Record} record The record which is going to be rendered

@@ -18,7 +18,7 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 	openedTabs : new Ext.util.MixedCollection(),
 
 	/**
-	 * Overriden to modify the tab depending on whether the record has been edited or not
+	 * Overridden to modify the tab depending on whether the record has been edited or not
 	 * This method is called when a contained component fires the 'titlechange' event
 	 * @param {Component} item
 	 * @param {String} title
@@ -94,7 +94,7 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 	},
 
 	/**
-	 * Overriden in order to listen to close event of child component
+	 * Overridden in order to listen to close event of child component
 	 * @param {Component} item
 	 * @param {Number} index
 	 * @override
@@ -197,7 +197,7 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 	},
 
 	/**
-	 * Overriden in order to add the '+' button to the edge of the tabstrip
+	 * Overridden in order to add the '+' button to the edge of the tabstrip
 	 * @param {Ext.Element} ct Container in which the panel is created
 	 * @param {Element} position Element at which the panel is created (relative to its position)
 	 * @override
@@ -216,7 +216,7 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 	},
 
 	/**
-	 * Overriden in order to call close() on the item, instead of removing it immediately
+	 * Overridden in order to call close() on the item, instead of removing it immediately
 	 * This allows the contained panel to fire a confirmation dialog
 	 * @param {Ext.EventObjectImpl} e Event
 	 * @private
@@ -240,7 +240,7 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 	},
 
 	/**
-	 * Overriden so that '+' sign for adding tabs remains visible when there are scroll buttons
+	 * Overridden so that '+' sign for adding tabs remains visible when there are scroll buttons
 	 * @private
 	 * @override
 	 */
@@ -275,7 +275,7 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 
 	/**
 	 * Register a newly created tab with the {@link #openedTabs}.
-	 * If record is {@link Zarafa.core.data.AppointmentRecord AppointmentRecord} recurring occurence appointment then
+	 * If record is {@link Zarafa.core.data.AppointmentRecord AppointmentRecord} recurring occurrence appointment then
 	 * append basedate with entryid.
 	 *
 	 * @param {Ext.data.Record} record

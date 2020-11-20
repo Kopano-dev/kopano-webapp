@@ -204,7 +204,7 @@ Zarafa.task.TaskRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	},
 
 	/**
-	 * Function is used to determine that task in not yet accpeted or declined by
+	 * Function is used to determine that task in not yet accepted or declined by
 	 * assignee.
 	 *
 	 * @return {Boolean} true if user as an assignee yet not accepted or declined task

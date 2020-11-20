@@ -19,7 +19,7 @@ Zarafa.common.categories.ui.Tooltip = Ext.extend(Ext.ToolTip, {
 
 		Ext.applyIf(config, {
 			xtype: 'zarafa.categoriestooltip',
-			target: Ext.get(document.body), // Should be overriden when creating this component
+			target: Ext.get(document.body), // Should be overridden when creating this component
 			delegate: '.k-category-block',
 			dismissDelay: 0,
 			trackMouse: true,

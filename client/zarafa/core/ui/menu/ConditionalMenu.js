@@ -5,7 +5,7 @@ Ext.namespace('Zarafa.core.ui.menu');
  * @extends Ext.menu.Menu
  * @xtype zarafa.conditionalmenu
  *
- * Extends the {@link Ext.menu.Menu} class and allows menu options to determine whether to display themselfs.
+ * Extends the {@link Ext.menu.Menu} class and allows menu options to determine whether to display themselves.
  */
 Zarafa.core.ui.menu.ConditionalMenu = Ext.extend(Ext.menu.Menu, {
 	/**
@@ -65,7 +65,7 @@ Zarafa.core.ui.menu.ConditionalMenu = Ext.extend(Ext.menu.Menu, {
 				item.setVisible(allowSeparator === true);
 				allowSeparator = false;
 			} else {
-				// If the non-seperator item is visible,
+				// If the non-separator item is visible,
 				// we are allowed to display a separator when requested.
 				if (item.hidden === false) {
 					allowSeparator = true;

@@ -268,7 +268,7 @@
                                         break;
 
 									default:
-										// Deleting an occurence means that we have to save the message to
+										// Deleting an occurrence means that we have to save the message to
 										// generate an exception. So when the basedate is provided, we actually
 										// perform a save rather then delete.
 										if (isset($action['basedate']) && !empty($action['basedate'])) {

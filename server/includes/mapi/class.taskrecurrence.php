@@ -70,11 +70,11 @@
 			$this->recur = $recur;
 			$this->action =& $recur;
 
-			if(!isset($this->recur["changed_occurences"]))
-				$this->recur["changed_occurences"] = Array();
+			if(!isset($this->recur["changed_occurrences"]))
+				$this->recur["changed_occurrences"] = Array();
 
-			if(!isset($this->recur["deleted_occurences"]))
-				$this->recur["deleted_occurences"] = Array();
+			if(!isset($this->recur["deleted_occurrences"]))
+				$this->recur["deleted_occurrences"] = Array();
 
 			if (!isset($this->recur['startocc'])) $this->recur['startocc'] = 0;
 			if (!isset($this->recur['endocc'])) $this->recur['endocc'] = 0;
@@ -82,7 +82,7 @@
 			// Save recurrence because we need proper startrecurrdate and endrecurrdate
 			$this->saveRecurrence();
 
-			// Update $this->recur with proper startrecurrdate and endrecurrdate updated after saveing recurrence
+			// Update $this->recur with proper startrecurrdate and endrecurrdate updated after saving recurrence
 			$msgProps = mapi_getprops($this->message, array($this->proptags['recurring_data']));
 			$recurring_data = $this->parseRecurrence($msgProps[$this->proptags['recurring_data']]);
 			foreach($recurring_data as $key => $value) {

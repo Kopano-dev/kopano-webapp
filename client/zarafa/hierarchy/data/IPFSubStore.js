@@ -100,11 +100,11 @@ Zarafa.hierarchy.data.IPFSubStore = Ext.extend(Zarafa.core.data.IPFStore, {
 	},
 
 	/**
-	 * Event handler will be called when an error/exception is occured at server side,
+	 * Event handler will be called when an error/exception is occurred at server side,
 	 * and error is returned.
 	 * @param {Zarafa.core.data.MAPIProxy} proxy object that received the error
 	 * and which fired exception event.
-	 * @param {String} type 'request' if an invalid response from server recieved,
+	 * @param {String} type 'request' if an invalid response from server received,
 	 * 'remote' if valid response received from server but with succuessProperty === false.
 	 * @param {String} action Name of the action {@link Ext.data.Api.actions}.
 	 * @param {Object} options The options for the action that were specified in the request.
@@ -151,16 +151,16 @@ Zarafa.hierarchy.data.IPFSubStore = Ext.extend(Zarafa.core.data.IPFStore, {
 	/**
 	 * Notification handler called by {@link #onNotify} when
 	 * a {@link Zarafa.core.data.Notifications#objectDeleted objectDeleted}
-	 * notification has been recieved.
+	 * notification has been received.
 	 *
 	 * This will remove the folder from the store.
 	 *
 	 * @param {Zarafa.core.data.Notifications} action The notification action
 	 * @param {Ext.data.Record/Array} records The record or records which have been affected by the notification.
-	 * @param {Object} data The data which has been recieved from the PHP-side which must be applied
+	 * @param {Object} data The data which has been received from the PHP-side which must be applied
 	 * to the given records.
 	 * @param {Number} timestamp The {@link Date#getTime timestamp} on which the notification was received
-	 * @param {Boolean} success The success status, True if the notification was successfully recieved.
+	 * @param {Boolean} success The success status, True if the notification was successfully received.
 	 * @private
 	 */
 	onNotifyObjectdeleted : function(action, records, data, timestamp, success)
@@ -182,16 +182,16 @@ Zarafa.hierarchy.data.IPFSubStore = Ext.extend(Zarafa.core.data.IPFStore, {
 	/**
 	 * Notification handler called by {@link #onNotify} when
 	 * a {@link Zarafa.core.data.Notifications#objectModified objectModified}
-	 * notification has been recieved.
+	 * notification has been received.
 	 *
 	 * This will update the folder in the store.
 	 *
 	 * @param {Zarafa.core.data.Notifications} action The notification action
 	 * @param {Ext.data.Record/Array} records The record or records which have been affected by the notification.
-	 * @param {Object} data The data which has been recieved from the PHP-side which must be applied
+	 * @param {Object} data The data which has been received from the PHP-side which must be applied
 	 * to the given records.
 	 * @param {Number} timestamp The {@link Date#getTime timestamp} on which the notification was received
-	 * @param {Boolean} success The success status, True if the notification was successfully recieved.
+	 * @param {Boolean} success The success status, True if the notification was successfully received.
 	 * @private
 	 */
 	onNotifyObjectmodified : function(action, records, data, timestamp, success)
@@ -225,16 +225,16 @@ Zarafa.hierarchy.data.IPFSubStore = Ext.extend(Zarafa.core.data.IPFStore, {
 	/**
 	 * Notification handler called by {@link #onNotify} when
 	 * a {@link Zarafa.core.data.Notifications#objectCreated objectCreated}
-	 * notification has been recieved.
+	 * notification has been received.
 	 *
 	 * This will add the folder to the store.
 	 *
 	 * @param {Zarafa.core.data.Notifications} action The notification action
 	 * @param {Ext.data.Record/Array} records The record or records which have been affected by the notification.
-	 * @param {Object} data The data which has been recieved from the PHP-side which must be applied
+	 * @param {Object} data The data which has been received from the PHP-side which must be applied
 	 * to the given records.
 	 * @param {Number} timestamp The {@link Date#getTime timestamp} on which the notification was received
-	 * @param {Boolean} success The success status, True if the notification was successfully recieved.
+	 * @param {Boolean} success The success status, True if the notification was successfully received.
 	 * @private
 	 */
 	onNotifyObjectcreated : function(action, records, data, timestamp, success)

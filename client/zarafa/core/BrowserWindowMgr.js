@@ -119,7 +119,7 @@ Zarafa.core.BrowserWindowMgr = Ext.extend(Ext.util.Observable, {
 		browserWindowObject.addEventListener("focus", this.onSeparateWindowFocus.createDelegate(this, [ browserWindowObject.name ]));
 		browserWindowObject.addEventListener("unload", this.onSeparateWindowUnload.createDelegate(this, [ browserWindowObject, componentInstance, mainContainer ]));
 
-		// Disable contextmenu globaly in the separate browser window.
+		// Disable contextmenu globally in the separate browser window.
 		Ext.getBody().on('contextmenu', this.onBodyContextMenu, this);
 
 		browserWindowObject.onkeydown = this.preventWindowReload.createDelegate(this);

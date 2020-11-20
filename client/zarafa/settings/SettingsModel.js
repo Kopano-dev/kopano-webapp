@@ -118,7 +118,7 @@ Zarafa.settings.SettingsModel = Ext.extend(Ext.util.Observable, {
 			'remove',
 			/**
 			 * @event exception
-			 * Fires when a server-side error occured during updating the settings in the server.
+			 * Fires when a server-side error occurred during updating the settings in the server.
 			 * (See {@link Ext.data.DataStore#exception} for better exception argument documentation).
 			 * @param {Zarafa.settings.SettingsModel} model The model which fired the event.
 			 * @param {String} type The value of this parameter will be either 'response' or 'remote'. 
@@ -261,7 +261,7 @@ Zarafa.settings.SettingsModel = Ext.extend(Ext.util.Observable, {
 	 * in the {@link #modified}, {@link #deleted} and {@link #restored}
 	 * arrays.
 	 * @param {Object/String|Array} list The list which must be filtered
-	 * @param {String|Array} filter The list of paths which must be filterd
+	 * @param {String|Array} filter The list of paths which must be filtered
 	 * out of the list
 	 * @private
 	 */

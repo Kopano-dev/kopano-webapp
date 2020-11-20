@@ -33,7 +33,7 @@ Ext.namespace('Zarafa.core');
  */
 Zarafa.core.Request = Ext.extend(Ext.util.Observable, (function() {
 	/**
-	 * True if the conection has been {@link #paralyze}. This will
+	 * True if the connection has been {@link #paralyze}. This will
 	 * prevent any requests from being send to the server, or any responses
 	 * from being processed.
 	 * @property

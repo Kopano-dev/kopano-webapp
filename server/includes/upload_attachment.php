@@ -252,10 +252,10 @@ class UploadAttachment
 		fclose($handle);
 		unlink($filepath);
 
-		$extention = pathinfo($filename, PATHINFO_EXTENSION);
+		$extension = pathinfo($filename, PATHINFO_EXTENSION);
 
 		// Set the module id of the notifier according to the file type 
-		switch (strtoupper($extention)) {
+		switch (strtoupper($extension)) {
 			case 'EML':
 				$this->notifierModule = 'maillistnotifier';
 				return $this->importEMLFile($attachmentStream, $filename);

@@ -202,7 +202,7 @@ Zarafa.core.data.MAPIStore = Ext.extend(Ext.data.GroupingStore, {
 
 			if (this.removed.indexOf(record) >= 0) {
 				// Check for removed records first, a record located in this.removed is
-				// guarenteed to be a non-phantom. See store.remove().
+				// guaranteed to be a non-phantom. See store.remove().
 				destroyed.push(record);
 			} else if (this.modified.indexOf(record) >= 0) {
 				// Only accept valid records.

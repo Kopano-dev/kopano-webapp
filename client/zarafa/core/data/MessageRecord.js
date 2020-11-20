@@ -281,7 +281,7 @@ Zarafa.core.data.MessageRecord = Ext.extend(Zarafa.core.data.IPMRecord, {
 		body = Ext.isDefined(body) ? body : this.getBody();
 
 		if(Ext.isEmpty(body)) {
-			// no point of continueing with empty body
+			// no point of continuing with empty body
 			return false;
 		}
 
@@ -455,7 +455,7 @@ Zarafa.core.data.MessageRecord = Ext.extend(Zarafa.core.data.IPMRecord, {
 	},
 
 	/**
-	 * Function sets delegator infromation on the record.
+	 * Function sets delegator information on the record.
 	 * Function checks whether message record is in logged-in user's store or other store,
 	 * if it is in other's store then it sent sent_representing_* properties.
 	 * @param {Ext.data.Record} delegatorStore The delegator user store's record which we are looking for

@@ -208,7 +208,7 @@ Zarafa.core.data.MAPIRecord = Ext.extend(Ext.data.Record, {
 			}
 		}
 
-		// The actions are seperate from the 'data', so we must copy it
+		// The actions are separate from the 'data', so we must copy it
 		// separately. Note that we have no change or event mechanism for
 		// this field, so bluntly copying the object is sufficient.
 		this.actions = Ext.apply({}, record.actions);
@@ -229,7 +229,7 @@ Zarafa.core.data.MAPIRecord = Ext.extend(Ext.data.Record, {
 			// We are done with merging everything,
 			// call afterOpen() if needed to ensure the
 			// last initialization of the record occurs,
-			// and if record which refered by "this"
+			// and if record which referred by "this"
 			// is not opened.
 			if (record.isOpened() && !this.isOpened()) {
 				this.afterOpen();

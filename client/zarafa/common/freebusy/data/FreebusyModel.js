@@ -1110,7 +1110,7 @@ Zarafa.common.freebusy.data.FreebusyModel = Ext.extend(Ext.util.Observable,
 			var record = blockStore.getAt(index);
 
 			/*
-			 * First we need to remove appointments which are occuring extermely before/after our
+			 * First we need to remove appointments which are occurring extremely before/after our
 			 * selected time, because then we have only set of appointments which are overlapping/inside
 			 * our time slot.
 			 * For that to achieve we first need sort the records based on start time and then to find
@@ -1118,7 +1118,7 @@ Zarafa.common.freebusy.data.FreebusyModel = Ext.extend(Ext.util.Observable,
 			 * and start time is less then our selected end time then we can say that
 			 * the selected time is not proper for all the attendees.
 			 */
-			// remove appointments occuring extremely before our selected time
+			// remove appointments occurring extremely before our selected time
 			if (record.get('end') > periodStartTime) {
 				// check if we are really interested in this block
 				if (record.get('status') === Zarafa.core.mapi.BusyStatus.FREE || record.get('status') === Zarafa.core.mapi.BusyStatus.UNKNOWN) {

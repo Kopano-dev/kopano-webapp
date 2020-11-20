@@ -508,7 +508,7 @@
 				)
 			));
 
-			// CONVENIENT_DEPTH doesn't work on the IPM_SUBTREE, hence we will be recursivly
+			// CONVENIENT_DEPTH doesn't work on the IPM_SUBTREE, hence we will be recursively
 			// walking through the hierarchy. However, we have some special folders like the
 			// "Favorites" and "Public Folders" from where we can switch to using
 			// CONVENIENT_DEPTH. Obtain these special cases here.
@@ -2121,7 +2121,7 @@
 			$isExceptionAllowed = true;
 			$delete = $actionType == 'delete';	// Flag for MeetingRequest Class whether to send update or cancel mail.
 			$basedate = false;	// Flag for MeetingRequest Class whether to send an exception or not.
-			$isReminderTimeAllowed = true;	// Flag to check reminder minutes is in range of the occurences
+			$isReminderTimeAllowed = true;	// Flag to check reminder minutes is in range of the occurrences
 			$properties = $GLOBALS['properties']->getAppointmentProperties();
 			$send = false;
 			$oldProps = array();
@@ -2262,11 +2262,11 @@
 								 * Note : this is a special case of changing the time of
 								 * recurrence meeting from scheduling tab.
 								 */
-								$recurrance = $recur->getRecurrence();
-								if(isset($recurrance)) {
-									unset($recurrance['changed_occurences']);
-									unset($recurrance['deleted_occurences']);
-									foreach ($recurrance as $key => $value) {
+								$recurrence = $recur->getRecurrence();
+								if(isset($recurrence)) {
+									unset($recurrence['changed_occurrences']);
+									unset($recurrence['deleted_occurrences']);
+									foreach ($recurrence as $key => $value) {
 										if (!isset($action['props'][$key])) {
 											$action['props'][$key] = $value;
 										}
@@ -4500,7 +4500,7 @@
 			// in Chrome on Windows in combination with TinyMCE.
 			if (strpos($body, "img") !== false || strpos($body, "data:text/plain") !== false) {
 				$doc = new DOMDocument();
-				// TinyMCE does not generate valid HTML, so we must supress warnings.
+				// TinyMCE does not generate valid HTML, so we must suppress warnings.
 				@$doc->loadHTML($body);
 				$images = $doc->getElementsByTagName('img');
 				$saveChanges = false;

@@ -98,7 +98,7 @@ Zarafa.calendar.ui.AbstractCalendarView = Ext.extend(Zarafa.core.ui.View, {
 
 	/**
 	 * @cfg {Number} appointmentBodyLeftMargin The left margin which must be applied to
-	 * the {@link Zarafa.calendar.ui.AppointmentView appointments} which are renderd within this
+	 * the {@link Zarafa.calendar.ui.AppointmentView appointments} which are rendered within this
 	 * calendar when the 'useMargin' argument to {@link #dateRangeToBodyBounds} is true.
 	 */
 	appointmentBodyLeftMargin : 0,

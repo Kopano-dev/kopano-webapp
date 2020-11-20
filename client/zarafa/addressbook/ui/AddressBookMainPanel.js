@@ -54,7 +54,7 @@ Zarafa.addressbook.ui.AddressBookMainPanel = Ext.extend(Ext.Panel, {
 	 */
 	constructor : function(config)
 	{
-		// Let's remove the state settings of the addres book panel once so
+		// Let's remove the state settings of the address book panel once so
 		// everyone will start again with the new default settings (januari 2017)
 		var sm = container.getSettingsModel();
 		var stateUpdated = sm.get('zarafa/v1/contexts/addressbook/stateUpdated');
@@ -92,7 +92,7 @@ Zarafa.addressbook.ui.AddressBookMainPanel = Ext.extend(Ext.Panel, {
 		// Call parent constructor
 		Zarafa.addressbook.ui.AddressBookMainPanel.superclass.constructor.call(this, config);
 
-		// Load the addres book
+		// Load the address book
 		this.initDialog();
 
 		// When the MainPanel is destroyed, also destroy the store,

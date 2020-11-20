@@ -158,7 +158,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	equals : function(record)
 	{
 		if (Zarafa.calendar.AppointmentRecord.superclass.equals.apply(this, arguments) === true) {
-			// For recurring appointments we must also check if we have a match on the occurence (through the basedate).
+			// For recurring appointments we must also check if we have a match on the occurrence (through the basedate).
 			return (this.get('basedate') === record.get('basedate'));
 		}
 		return false;
@@ -269,21 +269,21 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 					pattern = String.format(_('Occurs every {0} {1} effective {2}.'), everyn, type, start);
 				}
 			}
-		} else if (term == Zarafa.common.recurrence.data.RecurrenceEnd.N_OCCURENCES) {
+		} else if (term == Zarafa.common.recurrence.data.RecurrenceEnd.N_OCCURRENCES) {
 			if (occTimeRange) {
 				if (occSingleDayRank) {
-					pattern = String.format(ngettext('Occurs every {0} effective {1} for {2} occurence from {3} to {4}.', 'Occurs every {0} effective {1} for {2} occurences from {3} to {4}.', numocc),
+					pattern = String.format(ngettext('Occurs every {0} effective {1} for {2} occurrence from {3} to {4}.', 'Occurs every {0} effective {1} for {2} occurrences from {3} to {4}.', numocc),
 								type, start, numocc, startocc, endocc);
 				} else {
-					pattern = String.format(ngettext('Occurs every {0} {1} effective {2} for {3} occurence from {4} to {5}.', 'Occurs every {0} {1} effective {2} for {3} occurences {4} to {5}.', numocc),
+					pattern = String.format(ngettext('Occurs every {0} {1} effective {2} for {3} occurrence from {4} to {5}.', 'Occurs every {0} {1} effective {2} for {3} occurrences {4} to {5}.', numocc),
 								everyn, type, start, numocc, startocc, endocc);
 				}
 			} else {
 				if (occSingleDayRank) {
-					pattern = String.format(ngettext('Occurs every {0} effective {1} for {2} occurence.', 'Occurs every {0} effective {1} for {2} occurences.', numocc),
+					pattern = String.format(ngettext('Occurs every {0} effective {1} for {2} occurrence.', 'Occurs every {0} effective {1} for {2} occurrences.', numocc),
 								type, start, numocc);
 				} else {
-					pattern = String.format(ngettext('Occurs every {0} {1} effective {2} for {3} occurence.', 'Occurs every {0} {1} effective {2} for {3} occurences.', numocc),
+					pattern = String.format(ngettext('Occurs every {0} {1} effective {2} for {3} occurrence.', 'Occurs every {0} {1} effective {2} for {3} occurrences.', numocc),
 								everyn, type, start, numocc);
 				}
 			}
@@ -542,7 +542,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 
 	/**
 	 * @return {Boolean} Returns true if the {@link Zarafa.core.data.AppointmentRecord AppointmentRecord} is
-	 * recurring occurence appointment.
+	 * recurring occurrence appointment.
 	 */
 	isRecurringOccurence : function()
 	{
@@ -551,7 +551,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 
 	/**
 	 * @return {Boolean} Returns true if the {@link Zarafa.core.data.AppointmentRecord AppointmentRecord} is
-	 * recurring occurence appointment.
+	 * recurring occurrence appointment.
 	 */
 	isRecurringException : function()
 	{
@@ -560,12 +560,12 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 
 	/**
 	 * Convenience method for determining if the message is a sub message of another message.
-	 * For appointment record we need to also check if message is not an exception/occurence of recurring appointment.
+	 * For appointment record we need to also check if message is not an exception/occurrence of recurring appointment.
 	 * @return {Boolean} True if this message is a sub message.
 	 */
 	isSubMessage : function()
 	{
-		// Recurring occurences can never be embedded message
+		// Recurring occurrences can never be embedded message
 		if(this.isRecurringOccurence()) {
 			return false;
 		}
@@ -583,7 +583,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 			return undefined;
 		}
 
-		// If the apointment is not recurring, or this is an occurence, there are no exceptions.
+		// If the apointment is not recurring, or this is an occurrence, there are no exceptions.
 		if (!this.isRecurring()) {
 			return false;
 		}
@@ -609,16 +609,16 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	afterOpen : function()
 	{
 		if (this.isRecurring()) {
-			// Recurring appointments can be opened as series or as occurence.
+			// Recurring appointments can be opened as series or as occurrence.
 			// When openening as a series, we actually have all the data for a single
-			// occurence (the one the user selected from the UI), which we are overriding
-			// with the data about the series. However, the occurence and series have
+			// occurrence (the one the user selected from the UI), which we are overriding
+			// with the data about the series. However, the occurrence and series have
 			// slight differences. The series doesn't have a basedate, and the startdate
-			// and duedate properties are the values from the first occurence.
+			// and duedate properties are the values from the first occurrence.
 			// When the record is being opened, it might already have been hooked to a
 			// UI componennt, which at this moment has been initialized with the data
-			// from the occurence. Force all fields which will likely to be different
-			// between the occurence and series to be marked as modified, forcing the
+			// from the occurrence. Force all fields which will likely to be different
+			// between the occurrence and series to be marked as modified, forcing the
 			// UI to reinitialize the components which belong to it.
 			this.modified = this.modified || {};
 			this.modified['startdate'] = this.get('startdate');
@@ -874,11 +874,11 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	},
 
 	/**
-	 * Function is used to convert a series record to an occurence record.
-	 * When we are opening a single occurence from series record then we need to modify some properties
-	 * that are different on occurence record and also need to add basedate as {@link #idProperties}.
-	 * so the record can be correctly identified as an occurence record.
-	 * @return {Zarafa.core.data.IPMRecord} record that can be used to open occurence of a series.
+	 * Function is used to convert a series record to an occurrence record.
+	 * When we are opening a single occurrence from series record then we need to modify some properties
+	 * that are different on occurrence record and also need to add basedate as {@link #idProperties}.
+	 * so the record can be correctly identified as an occurrence record.
+	 * @return {Zarafa.core.data.IPMRecord} record that can be used to open occurrence of a series.
 	 */
 	convertToOccurenceRecord : function()
 	{
@@ -886,11 +886,11 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 		if(this.hasIdProp('basedate') === false) {
 			var cloneRec = this.copy();
 
-			// For occurences the the 'recurring' property must
-			// always be false (as the occurence itself doesn't recur.
+			// For occurrences the the 'recurring' property must
+			// always be false (as the occurrence itself doesn't recur.
 			cloneRec.set('recurring', false);
 
-			// For occurences, the 'basedate' is part of the unique id
+			// For occurrences, the 'basedate' is part of the unique id
 			cloneRec.addIdProp('basedate');
 
 			// set delegate properties if needed
@@ -908,9 +908,9 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	},
 
 	/**
-	 * Function is used to convert an occurence record to a series record.
-	 * Series and occurence records has some silghtly differences in properties so we need to reset some
-	 * properties which are only valid for occurence record not for series record.
+	 * Function is used to convert an occurrence record to a series record.
+	 * Series and occurrence records has some silghtly differences in properties so we need to reset some
+	 * properties which are only valid for occurrence record not for series record.
 	 * Also we need to remove basedate property from {@link #idProperties} so record will be correctly identified
 	 * as a series record.
 	 * @return {Zarafa.core.data.IPMRecord} record that can be used to open whole series.
@@ -922,7 +922,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 			var cloneRec = this.copy();
 
 			// Series always have the 'recurring' property to true
-			// (occurences themselves have this property set to false
+			// (occurrences themselves have this property set to false
 			cloneRec.set('recurring', true);
 			// The 'basedate' is not used in series
 			cloneRec.set('basedate', '');

@@ -330,7 +330,7 @@
 			$result = Array();
 			// Convert the entryIds in an array of properties of the AB entryies
 			for($i = 0, $len = count($entryids); $i < $len; $i++){
-				// Get the properies from the AB entry
+				// Get the properties from the AB entry
 				$entry = mapi_ab_openentry($GLOBALS["mapisession"]->getAddressbook(), $entryids[$i]);
 				$props = mapi_getprops($entry, $this->abObjectDetailProperties);
 				// Convert the properties for each entry and put it in an array
@@ -356,7 +356,7 @@
 				$entryids = $messageprops[$this->userDetailProperties['ems_ab_is_member_of_dl']];
 				// Get the properties from every entryid in the memberOf list
 				for($i = 0, $len = count($entryids); $i < $len; $i++){
-					// Get the properies from the AB entry
+					// Get the properties from the AB entry
 					$entry = mapi_ab_openentry($GLOBALS["mapisession"]->getAddressbook(), $entryids[$i]);
 					$props = mapi_getprops($entry, $this->abObjectDetailProperties);
 					// Convert the properties for each entry and put it in an array

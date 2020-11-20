@@ -3,7 +3,7 @@ Ext.namespace('Zarafa.calendar.ui');
 * @class Zarafa.calendar.ui.DatePicker
 * @extends Ext.DatePicker
 * @xtype zarafa.datepicker
-* This overriden DatePicker takes the default calendar folder of the user, and displays days in which there are appointments differently.
+* This overridden DatePicker takes the default calendar folder of the user, and displays days in which there are appointments differently.
 * Currently the x-date-busy CSS class is applied to these days.
 */
 Zarafa.calendar.ui.DatePicker = Ext.extend(Ext.DatePicker, {

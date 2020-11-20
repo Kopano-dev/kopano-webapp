@@ -88,7 +88,7 @@ Zarafa.calendar.ui.AbstractCalendarBoxView = Ext.extend(Zarafa.calendar.ui.Abstr
 	{
 		config = config || {};
 
-		// If not explicitely configured, the firstDayOfWeek is determined
+		// If not explicitly configured, the firstDayOfWeek is determined
 		// by the Settings option.
 		if (!Ext.isDefined(config.firstDayOfWeek)) {
 			config.firstDayOfWeek = container.getSettingsModel().get('zarafa/v1/main/week_start');

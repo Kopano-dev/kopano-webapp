@@ -137,7 +137,7 @@ Zarafa.mail.dialogs.MailCreateContentPanel = Ext.extend(Zarafa.core.ui.MessageCo
 
 	/**
 	 * If {@link #showInfoMask} is enabled, and {@link #displayInfoMask} has been called, this
-	 * will remove the saving notification. When saving has been successfull, a new notification
+	 * will remove the saving notification. When saving has been successful, a new notification
 	 * will be shown to display the {@link #savingDoneText} with timestamp.
 	 * @param {Boolean} success false to disable the display of {@link #savingDoneText}.
 	 * @protected

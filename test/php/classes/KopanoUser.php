@@ -93,7 +93,7 @@ class KopanoUser {
 
 	/**
 	 * Function which can be overridden by subclasses to add some additional
-	 * initialization steps as preperation for the logon of the user.
+	 * initialization steps as preparation for the logon of the user.
 	 * @access protected
 	 */
 	protected function preLogon()
@@ -139,7 +139,7 @@ class KopanoUser {
 
 	/**
 	 * Function which can be overridden by subclasses to add some additional
-	 * initialization steps as preperation for the logout of the user.
+	 * initialization steps as preparation for the logout of the user.
 	 * @access protected
 	 */
 	protected function preLogout()

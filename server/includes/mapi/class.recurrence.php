@@ -188,10 +188,10 @@
                 }
 
                 // Add the changed occurrence to the list
-                array_push($this->recur["changed_occurences"], $changed_item);
+                array_push($this->recur["changed_occurrences"], $changed_item);
 			} else { 
 			    // Delete the occurrence by placing it in the deleted occurrences list
-			    array_push($this->recur["deleted_occurences"], $baseday);
+			    array_push($this->recur["deleted_occurrences"], $baseday);
 			}
 			
 			// Turn on hideattachments, because the attachments in this item are the exceptions
@@ -205,7 +205,7 @@
 		
 		/**
 		 * Modifies an existing exception, but only updates the given properties
-		 * NOTE: You can't remove properites from an exception, only add new ones
+		 * NOTE: You can't remove properties from an exception, only add new ones
 		 */
 		function modifyException($exception_props, $base_date, $exception_recips = array(), $copy_attach_from = false)
 		{
@@ -216,9 +216,9 @@
 			$baseday = $this->dayStartOf($base_date);
 			$extomodify = false;
 
-			for($i = 0, $len = count($this->recur["changed_occurences"]); $i < $len; $i++) {
-		    	if($this->isSameDay($this->recur["changed_occurences"][$i]["basedate"], $baseday))
-		    		$extomodify = &$this->recur["changed_occurences"][$i];
+			for($i = 0, $len = count($this->recur["changed_occurrences"]); $i < $len; $i++) {
+		    	if($this->isSameDay($this->recur["changed_occurrences"][$i]["basedate"], $baseday))
+		    		$extomodify = &$this->recur["changed_occurrences"][$i];
 		    }
 			
 			if(!$extomodify)
@@ -360,11 +360,11 @@
 		 */
 		function isValidReminderTime($basedate, $reminderminutes, $startdate)
 		{
-			// get all occurence items before the seleceted items occurence starttime
+			// get all occurrence items before the seleceted items occurrence starttime
 			$occitems = $this->getItems($this->messageprops[$this->proptags["startdate"]], $this->toGMT($this->tz, $basedate));
 			
 			if(!empty($occitems)) {
-				// as occitems array is sorted in ascending order of startdate, to get the previous occurence we take the last items in occitems .
+				// as occitems array is sorted in ascending order of startdate, to get the previous occurrence we take the last items in occitems .
 				$previousitem_startdate = $occitems[count($occitems) - 1][$this->proptags["startdate"]];
 
 				// if our reminder is set before or equal to the beginning of the previous occurrence, then that's not allowed
@@ -398,11 +398,11 @@
 				
 			$this->recur = $recur;
 			
-			if(!isset($this->recur["changed_occurences"]))
-				$this->recur["changed_occurences"] = Array();
+			if(!isset($this->recur["changed_occurrences"]))
+				$this->recur["changed_occurrences"] = Array();
 			
-			if(!isset($this->recur["deleted_occurences"]))
-				$this->recur["deleted_occurences"] = Array();
+			if(!isset($this->recur["deleted_occurrences"]))
+				$this->recur["deleted_occurrences"] = Array();
 			
 			$this->deleteAttachments();
 			$this->saveRecurrence();
@@ -448,8 +448,8 @@
 			/**
 		     * Get next item from now until forever, but max 1 item with reminder set
 		     * Note 0x7ff00000 instead of 0x7fffffff because of possible overflow failures when converting to GMT....
-			 * Here for getting next 10 occurences assuming that next here we will be able to find 
-			 * nextreminder occurence in 10 occureneces
+			 * Here for getting next 10 occurrences assuming that next here we will be able to find 
+			 * nextreminder occurrence in 10 occurrences
 			 */
 			$items = $this->getItems($timestamp, 0x7ff00000, 10, true); 
 
@@ -458,7 +458,7 @@
 			/**
 			 * Loop through all reminder which we get in items variable 
 			 * and check whether the remindertime is greater than timestamp.
-			 * On the first occurence of greater nextreminder break the loop
+			 * On the first occurrence of greater nextreminder break the loop
 			 * and return the value to calling function.
 			 */
 			for($i = 0, $len = count($items); $i < $len; $i++)
@@ -571,7 +571,7 @@
 					break;
 			}
 
-			// get timings of the first occurence
+			// get timings of the first occurrence
 			$firstoccstartdate = isset($startocc) ? $start + (((int) $startocc) * 60) : $start;
 			$firstoccenddate = isset($endocc) ? $end + (((int) $endocc) * 60) : $end;
 
@@ -606,19 +606,19 @@
 				// After a number of times
 				if ($occTimeRange) {
 					if ($occSingleDayRank) {
-						$pattern = sprintf(dngettext("zarafa","Occurs every %s effective %s for %s occurence from %s to %s.",
-													 "Occurs every %s effective %s for %s occurences from %s to %s.", $numocc), $type, $start, $numocc, $startocc, $endocc);
+						$pattern = sprintf(dngettext("zarafa","Occurs every %s effective %s for %s occurrence from %s to %s.",
+													 "Occurs every %s effective %s for %s occurrences from %s to %s.", $numocc), $type, $start, $numocc, $startocc, $endocc);
 					} else {
-						$pattern = sprintf(dngettext("zarafa","Occurs every %s %s effective %s for %s occurence from %s to %s.",
-													 "Occurs every %s %s effective %s for %s occurences %s to %s.", $numocc), $everyn, $type, $start, $numocc, $startocc, $endocc);
+						$pattern = sprintf(dngettext("zarafa","Occurs every %s %s effective %s for %s occurrence from %s to %s.",
+													 "Occurs every %s %s effective %s for %s occurrences %s to %s.", $numocc), $everyn, $type, $start, $numocc, $startocc, $endocc);
 					}
 				} else {
 					if ($occSingleDayRank) {
-						$pattern = sprintf(dngettext("zarafa","Occurs every %s effective %s for %s occurence.",
-													 "Occurs every %s effective %s for %s occurences.", $numocc), $type, $start, $numocc);
+						$pattern = sprintf(dngettext("zarafa","Occurs every %s effective %s for %s occurrence.",
+													 "Occurs every %s effective %s for %s occurrences.", $numocc), $type, $start, $numocc);
 					} else {
-						$pattern = sprintf(dngettext("zarafa","Occurs every %s %s effective %s for %s occurence.",
-													 "Occurs every %s %s effective %s for %s occurences.", $numocc), $everyn, $type, $start, $numocc);
+						$pattern = sprintf(dngettext("zarafa","Occurs every %s %s effective %s for %s occurrence.",
+													 "Occurs every %s %s effective %s for %s occurrences.", $numocc), $everyn, $type, $start, $numocc);
 					}
 				}
 			} else if ($term == 0x21) {
@@ -650,25 +650,25 @@
 		{
 		    // Remove all exceptions on $base_date from the deleted and changed occurrences lists
 
-		    // Remove all items in $todelete from deleted_occurences
+		    // Remove all items in $todelete from deleted_occurrences
 		    $new = Array();
 		    
-		    foreach($this->recur["deleted_occurences"] as $entry) {
+		    foreach($this->recur["deleted_occurrences"] as $entry) {
 		    	if($entry != $base_date)
 		    		$new[] = $entry;
 		    }
-		    $this->recur["deleted_occurences"] = $new;
+		    $this->recur["deleted_occurrences"] = $new;
 		    
 		    $new = Array();
 		    
-		    foreach($this->recur["changed_occurences"] as $entry) {
+		    foreach($this->recur["changed_occurrences"] as $entry) {
 		    	if(!$this->isSameDay($entry["basedate"], $base_date))
 		    		$new[] = $entry;
 		    	else
 		    		$this->deleteExceptionAttachment($this->toGMT($this->tz, $base_date + $this->recur["startocc"] * 60));
 		    }
 		    
-		    $this->recur["changed_occurences"] = $new;
+		    $this->recur["changed_occurrences"] = $new;
 		}
 		
 		/**
@@ -818,7 +818,7 @@
 		/**
 		 * processOccurrenceItem, adds an item to a list of occurrences, but only if the following criteria are met:
 		 * - The resulting occurrence (or exception) starts or ends in the interval <$start, $end>
-		 * - The ocurrence isn't specified as a deleted occurrence
+		 * - The occurrence isn't specified as a deleted occurrence
 		 * @param array $items reference to the array to be added to
 		 * @param date $start start of timeframe in GMT TIME
 		 * @param date $end end of timeframe in GMT TIME
@@ -845,7 +845,7 @@
 				 * FIRST PART : Check range criterium. Exact matches (eg when $occstart == $end), do NOT match since you cannot
 				 * see any part of the appointment. Partial overlaps DO match.
 				 *
-				 * SECOND PART : check if occurence is not a zero duration occurrence which
+				 * SECOND PART : check if occurrence is not a zero duration occurrence which
 				 * starts at 00:00 and ends on 00:00. if it is so, then process 
 				 * the occurrence and send it in response.
 				 */
@@ -878,7 +878,7 @@
 		function processExceptionItems(&$items, $start, $end)
 		{
 			$limit = 0;
-			foreach($this->recur["changed_occurences"] as $exception) {
+			foreach($this->recur["changed_occurrences"] as $exception) {
 					
 				// Convert to GMT
 				$occstart = $this->toGMT($this->tz, $exception["start"]);
@@ -917,7 +917,7 @@
         function isDeleteException($basedate)
         {
 		    // Check if the occurrence is deleted on the specified date
-			foreach($this->recur["deleted_occurences"] as $deleted)
+			foreach($this->recur["deleted_occurrences"] as $deleted)
 			{
 			    if($this->isSameDay($deleted, $basedate))
 			        return true;
@@ -932,7 +932,7 @@
         function getChangeException($basedate)
         {
             // Check if the occurrence is modified on the specified date
-			foreach($this->recur["changed_occurences"] as $changed)
+			foreach($this->recur["changed_occurrences"] as $changed)
 			{
                 if($this->isSameDay($changed["basedate"], $basedate))
                     return $changed;
@@ -1178,9 +1178,9 @@
 		function getAllExceptions()
 		{
 			$result = false;
-			if (!empty($this->recur["changed_occurences"])) {
+			if (!empty($this->recur["changed_occurrences"])) {
 				$result = array();
-				foreach($this->recur["changed_occurences"] as $exception) {
+				foreach($this->recur["changed_occurrences"] as $exception) {
 					$result[] = $exception["basedate"];
 				}
 				return $result;

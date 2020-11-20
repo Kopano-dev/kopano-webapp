@@ -43,7 +43,7 @@ Zarafa.core.plugins.RecordComponentPlugin = Ext.extend(Object, {
 	allowWrite : false,
 
 	/**
-	 * True when the {@link #field} has been layed out.
+	 * True when the {@link #field} has been laid out.
 	 * @property
 	 * @type Boolean
 	 */
@@ -233,7 +233,7 @@ Zarafa.core.plugins.RecordComponentPlugin = Ext.extend(Object, {
 			 * through a {@link Zarafa.core.data.MAPIStore store}.
 			 * No event handler may modify any properties inside the provided record.
 			 * @param {Ext.Container} panel The panel to which the record was set
-			 * @param {String} action write Action that ocurred. Can be one of
+			 * @param {String} action write Action that occurred. Can be one of
 			 * {@link Ext.data.Record.EDIT EDIT}, {@link Ext.data.Record.REJECT REJECT} or
 			 * {@link Ext.data.Record.COMMIT COMMIT}
 			 * @param {Zarafa.core.data.MAPIRecord} record The record which was updated
@@ -351,7 +351,7 @@ Zarafa.core.plugins.RecordComponentPlugin = Ext.extend(Object, {
 
 	/**
 	 * Set the {@link Zarafa.core.data.MAPIRecord record} which must be shown inside the {@link #field}
-	 * When the field has not yet {@link #isLayoutCalled layed out}, then the {@link #record} is
+	 * When the field has not yet {@link #isLayoutCalled laid out}, then the {@link #record} is
 	 * set, but all work is deferred to the first {@link #doLayout layout} action on this container.
 	 * Otherwise this function will call {@link #beforesetrecord} to check if the record should be
 	 * set on this field. Depending on the {@link Zarafa.core.data.MAPIRecord#isOpened opened} status
@@ -507,7 +507,7 @@ Zarafa.core.plugins.RecordComponentPlugin = Ext.extend(Object, {
 
 	/**
 	 * Event handler which is triggered after the {@link #field}
-	 * is first time layed out. This will reset the current {@link #record}
+	 * is first time laid out. This will reset the current {@link #record}
 	 * to trigger the {@link #setrecord} event for the initial Record.
 	 *
 	 * @param {Ext.Component} component This component
@@ -574,7 +574,7 @@ Zarafa.core.plugins.RecordComponentPlugin = Ext.extend(Object, {
 	},
 
 	/**
-	 * Execute a task as registerd in the {@link #loadTasks registered tasks}.
+	 * Execute a task as registered in the {@link #loadTasks registered tasks}.
 	 * @param {Zarafa.core.data.MAPIRecord} record The record to perform the action on
 	 * @param {Object} task The task object from {@link #loadTasks}
 	 * @private
@@ -784,7 +784,7 @@ Zarafa.core.plugins.RecordComponentPlugin = Ext.extend(Object, {
 			if (this.record === records[i]) {
 				if(action == Ext.data.Api.actions.destroy) {
 					// the record has been destroyed and removed from store
-					// so user made changes are not usefull anymore
+					// so user made changes are not useful anymore
 					this.resetUserChangeTracker();
 				}
 				this.field.fireEvent('writerecord', store, action, result, res, records[i]);
