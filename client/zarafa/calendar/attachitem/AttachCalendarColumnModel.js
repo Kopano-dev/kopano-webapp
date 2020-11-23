@@ -69,15 +69,15 @@ Zarafa.calendar.attachitem.AttachCalendarColumnModel = Ext.extend(Zarafa.common.
 			tooltip : _('Sort by: Subject'),
 			renderer : Zarafa.common.ui.grid.Renderers.subject
 		}, {
-			header : _('Startdate'),
+			header : _('Start Date'),
 			dataIndex : 'startdate',
-			tooltip : _('Sort by: Startdate'),
+			tooltip : _('Sort by: Start Date'),
 			width : 180,
 			renderer : Zarafa.common.ui.grid.Renderers.datetime
 		}, {
-			header : _('Enddate'),
+			header : _('End Date'),
 			dataIndex: 'duedate',
-			tooltip : _('Sort by: Enddate'),
+			tooltip : _('Sort by: End Date'),
 			width : 180,
 			renderer : Zarafa.common.ui.grid.Renderers.datetime
 		}];

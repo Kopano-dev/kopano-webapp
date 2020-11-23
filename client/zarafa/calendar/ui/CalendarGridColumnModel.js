@@ -68,15 +68,15 @@ Zarafa.calendar.ui.CalendarGridColumnModel = Ext.extend(Zarafa.common.ui.grid.Co
 			width: 200,
 			renderer : Zarafa.common.ui.grid.Renderers.subject
 		},{
-			header : _('Startdate'),
+			header : _('Start Date'),
 			dataIndex: 'startdate',
-			tooltip : _('Sort by: Startdate'),
+			tooltip : _('Sort by: Start Date'),
 			width: 160,
 			renderer : Zarafa.common.ui.grid.Renderers.datetime
 		},{
-			header : _('Enddate'),
+			header : _('End Date'),
 			dataIndex: 'duedate',
-			tooltip : _('Sort by: Enddate'),
+			tooltip : _('Sort by: End Date'),
 			width: 160,
 			renderer : Zarafa.common.ui.grid.Renderers.datetime
 		},{
@@ -156,16 +156,16 @@ Zarafa.calendar.ui.CalendarGridColumnModel = Ext.extend(Zarafa.common.ui.grid.Co
 			hidden: true,
 			renderer: Ext.util.Format.htmlEncode
 		},{
-			header: _('Recurring Startdate'),
+			header: _('Recurring Start Date'),
 			dataIndex: 'startdate_recurring',
-			tooltip : _('Sort by: Recurring Startdate'),
+			tooltip : _('Sort by: Recurring Start Date'),
 			width: 160,
 			renderer : Zarafa.common.ui.grid.Renderers.date,
 			hidden: true
 		},{
-			header: _('Recurring Enddate'),
+			header: _('Recurring End Date'),
 			dataIndex: 'enddate_recurring',
-			tooltip : _('Sort by: Recurring Enddate'),
+			tooltip : _('Sort by: Recurring End Date'),
 			width: 160,
 			renderer : Zarafa.common.ui.grid.Renderers.date,
 			hidden: true
