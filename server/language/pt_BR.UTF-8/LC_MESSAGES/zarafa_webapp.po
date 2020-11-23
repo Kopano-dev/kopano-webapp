@@ -847,45 +847,27 @@ msgstr "Ocorre cada {0} efetivamente {1}."
 msgid "Occurs every {0} {1} effective {2}."
 msgstr "Ocorre cada {0} {1} efetivamente {2}."
 
-# 77%
-# 76%
-# 75%
-msgid "Occurs every {0} effective {1} for {2} occurence from {3} to {4}."
+msgid "Occurs every {0} effective {1} for {2} occurrence from {3} to {4}."
 msgid_plural ""
-"Occurs every {0} effective {1} for {2} occurences from {3} to {4}."
+"Occurs every {0} effective {1} for {2} occurrences from {3} to {4}."
 msgstr[0] ""
-"Ocorre cada {0} efetivamente {1} para {2} ocorrência de {3} até {4}."
 msgstr[1] ""
-"Ocorre cada {0} efetivamente {1} para {2} ocorrências de {3} até {4}."
 
-# 77%
-# 76%
-# 80%
-# 78%
-msgid "Occurs every {0} {1} effective {2} for {3} occurence from {4} to {5}."
+msgid "Occurs every {0} {1} effective {2} for {3} occurrence from {4} to {5}."
 msgid_plural ""
-"Occurs every {0} {1} effective {2} for {3} occurences {4} to {5}."
+"Occurs every {0} {1} effective {2} for {3} occurrences {4} to {5}."
 msgstr[0] ""
-"Ocorre cada {0} {1} efetivamente {2} para {3} ocorrência de {4} até {5}."
 msgstr[1] ""
-"Ocorre cada {0} {1} efetivamente {2} para {3} ocorrências {4} até {5}."
 
-# 77%
-# 76%
-# 79%
-# 88%
-msgid "Occurs every {0} effective {1} for {2} occurence."
-msgid_plural "Occurs every {0} effective {1} for {2} occurences."
-msgstr[0] "Ocorre cada {0} efetivamente {1} para {2} ocorrência."
-msgstr[1] "Ocorre cada {0} efetivamente {1} para {2} ocorrências."
+msgid "Occurs every {0} effective {1} for {2} occurrence."
+msgid_plural "Occurs every {0} effective {1} for {2} occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
-# 77%
-# 76%
-# 79%
-msgid "Occurs every {0} {1} effective {2} for {3} occurence."
-msgid_plural "Occurs every {0} {1} effective {2} for {3} occurences."
-msgstr[0] "Ocorre cada {0} {1} efetivamente {2} para {3} ocorrência."
-msgstr[1] "Ocorre cada {0} {1} efetivamente {2} para {3} ocorrências."
+msgid "Occurs every {0} {1} effective {2} for {3} occurrence."
+msgid_plural "Occurs every {0} {1} effective {2} for {3} occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
 # 77%
 # 76%
@@ -4190,6 +4172,9 @@ msgstr "Não foi possível carregar a hierarquia."
 msgid "Expand widget"
 msgstr "Adicionar widgets"
 
+msgid "About this widget"
+msgstr ""
+
 #, fuzzy
 msgid "Add new widget"
 msgstr "Adicionar widgets"
@@ -5250,23 +5235,19 @@ msgstr ""
 msgid "{0} of mailbox space is used."
 msgstr "{0} do espaço da caixa está em uso."
 
-msgid "You have exceeded hard quota, you can not send or recieve mails."
+msgid "You have exceeded hard quota, you can not send or receive mails."
 msgstr ""
-"Você excedeu o limite total da sua quiota, não é possível enviar ou receber "
-"e-mails."
 
 msgid "At {0} you won't be able to send mails."
 msgstr "Ao alcançar {0} não será possível enviar novos e-mails."
 
 msgid ""
 "You can not send mails as you have exceeded soft quota, at {0} you won't be "
-"able to recieve mails."
+"able to receive mails."
 msgstr ""
-"Você não poderá enviar e-mails. Você excedeu o limite 'soft' da sua quota. "
-"Em {0} você não será capaz de receber e-mails."
 
-msgid "At {0} you won't be able to send or recieve mails."
-msgstr "Em {0} você não será capaz de enviar ou receber e-mails."
+msgid "At {0} you won't be able to send or receive mails."
+msgstr ""
 
 msgid "You can not send mails as you have exceeded soft quota."
 msgstr "Você não pode enviar e-mails. Você excedeu a sua quota 'soft'."
@@ -6117,45 +6098,29 @@ msgstr "Ocorre cada %s efetivamente %s."
 msgid "Occurs every %s %s effective %s."
 msgstr "Ocorre cada %s %s efetivamente %s."
 
-# 77%
-# 76%
-# 75%
 #, php-format
-msgid "Occurs every %s effective %s for %s occurence from %s to %s."
-msgid_plural "Occurs every %s effective %s for %s occurences from %s to %s."
-msgstr[0] "Ocorre cada %s efetivamente %s para %s ocorrência de %s até %s."
-msgstr[1] "Ocorre cada %s efetivamente %s para %s ocorrências de %s até %s."
+msgid "Occurs every %s effective %s for %s occurrence from %s to %s."
+msgid_plural "Occurs every %s effective %s for %s occurrences from %s to %s."
+msgstr[0] ""
+msgstr[1] ""
 
-# 77%
-# 76%
-# 75%
-# 95%
-#, fuzzy, php-format
-msgid "Occurs every %s %s effective %s for %s occurence from %s to %s."
-msgid_plural "Occurs every %s %s effective %s for %s occurences %s to %s."
-msgstr[0] "Ocorre cada %s efetivamente %s para %s ocorrência de %s até %s."
-msgstr[1] "Ocorre cada %s %s efetivamente %s para %s ocorrências de %s até %s."
-
-# 77%
-# 76%
-# 79%
-# 88%
-# 81%
 #, php-format
-msgid "Occurs every %s effective %s for %s occurence."
-msgid_plural "Occurs every %s effective %s for %s occurences."
-msgstr[0] "Ocorre cada %s efetivamente %s para %s ocorrência."
-msgstr[1] "Ocorre cada %s efetivamente %s para %s ocorrências."
+msgid "Occurs every %s %s effective %s for %s occurrence from %s to %s."
+msgid_plural "Occurs every %s %s effective %s for %s occurrences %s to %s."
+msgstr[0] ""
+msgstr[1] ""
 
-# 77%
-# 76%
-# 79%
-# 88%
 #, php-format
-msgid "Occurs every %s %s effective %s for %s occurence."
-msgid_plural "Occurs every %s %s effective %s for %s occurences."
-msgstr[0] "Ocorre cada %s %s efetivamente %s para %s ocorrência."
-msgstr[1] "Ocorre cada %s %s efetivamente %s para %s ocorrências."
+msgid "Occurs every %s effective %s for %s occurrence."
+msgid_plural "Occurs every %s effective %s for %s occurrences."
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "Occurs every %s %s effective %s for %s occurrence."
+msgid_plural "Occurs every %s %s effective %s for %s occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
 # 77%
 # 76%
@@ -6252,14 +6217,10 @@ msgstr "Duas ocorrências não podem acontecer no mesmo dia"
 #, php-format
 msgid ""
 "You marked '%s' as a resource. You cannot schedule a meeting with '%s' "
-"because you do not have the appropiate permissions for that account. Either "
+"because you do not have the appropriate permissions for that account. Either "
 "enter the name as a required or optional attendee or talk to your "
 "administrator about giving you permission to schedule '%s'."
 msgstr ""
-"Você marcou '%s' como recurso. Você não pode agendar uma reunião com '%s' "
-"porque você não dispõe as permissões apropriadas para essa conta. Entre com "
-"o nome como participante obrigatório ou opcional ou fale com seu "
-"administrador para te conceder permissão para agendar uma reunião com '%s'."
 
 #, php-format
 msgid ""

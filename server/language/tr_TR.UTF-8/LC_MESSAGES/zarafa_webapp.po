@@ -848,37 +848,27 @@ msgstr "Her {0} gerçekleşir, başlangıç: {1}"
 msgid "Occurs every {0} {1} effective {2}."
 msgstr "Her {0} {1} gerçekleşir, başlangıç: {2}"
 
-# 78%
-# 76%
-msgid "Occurs every {0} effective {1} for {2} occurence from {3} to {4}."
+msgid "Occurs every {0} effective {1} for {2} occurrence from {3} to {4}."
 msgid_plural ""
-"Occurs every {0} effective {1} for {2} occurences from {3} to {4}."
+"Occurs every {0} effective {1} for {2} occurrences from {3} to {4}."
 msgstr[0] ""
-"Her {0} gerçekleşir, başlangıç: {1} {2} oluşum var, saat {3} - {4} arası."
 msgstr[1] ""
-"Her {0} gerçekleşir, başlangıç: {1} {2} oluşum var, saat {3} - {4} arası."
 
-# 80%
-# 78%
-msgid "Occurs every {0} {1} effective {2} for {3} occurence from {4} to {5}."
+msgid "Occurs every {0} {1} effective {2} for {3} occurrence from {4} to {5}."
 msgid_plural ""
-"Occurs every {0} {1} effective {2} for {3} occurences {4} to {5}."
+"Occurs every {0} {1} effective {2} for {3} occurrences {4} to {5}."
 msgstr[0] ""
-"Her {0} {1} gerçekleşir, başlangıç: {2} {3} oluşum var, saat {4} - {5} arası."
 msgstr[1] ""
-"Her {0} {1} gerçekleşir, başlangıç: {2} {3} oluşum var, saat {4} - {5} arası."
 
-# 77%
-msgid "Occurs every {0} effective {1} for {2} occurence."
-msgid_plural "Occurs every {0} effective {1} for {2} occurences."
-msgstr[0] "Her {0} gerçekleşir, başlangıç: {1} {2} oluşum var."
-msgstr[1] "Her {0} gerçekleşir, başlangıç: {1} {2} oluşum var."
+msgid "Occurs every {0} effective {1} for {2} occurrence."
+msgid_plural "Occurs every {0} effective {1} for {2} occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
-# 79%
-msgid "Occurs every {0} {1} effective {2} for {3} occurence."
-msgid_plural "Occurs every {0} {1} effective {2} for {3} occurences."
-msgstr[0] "Her {0} {1} gerçekleşir, başlangıç: {2} {3} oluşum var"
-msgstr[1] "Her {0} {1} gerçekleşir, başlangıç: {2} {3} oluşum var"
+msgid "Occurs every {0} {1} effective {2} for {3} occurrence."
+msgid_plural "Occurs every {0} {1} effective {2} for {3} occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
 # 78%
 msgid "Occurs every {0} effective {1} until {2} from {3} to {4}."
@@ -4253,6 +4243,9 @@ msgstr "widget panosunu daralt"
 msgid "Expand widget"
 msgstr "widget panosunu genişlet"
 
+msgid "About this widget"
+msgstr ""
+
 #, fuzzy
 msgid "Add new widget"
 msgstr "Parçacık ekle"
@@ -5307,21 +5300,19 @@ msgstr ""
 msgid "{0} of mailbox space is used."
 msgstr "Posta kutusu alanının {0} kadarı kullanıldı."
 
-msgid "You have exceeded hard quota, you can not send or recieve mails."
-msgstr "Sabit kotayı aştınız, posta gönderemezsiniz ve alamazsınız."
+msgid "You have exceeded hard quota, you can not send or receive mails."
+msgstr ""
 
 msgid "At {0} you won't be able to send mails."
 msgstr "{0}'den sonra postalar göndermek mümkün olmayacaktır."
 
 msgid ""
 "You can not send mails as you have exceeded soft quota, at {0} you won't be "
-"able to recieve mails."
+"able to receive mails."
 msgstr ""
-"Posta göndermek artik mümkün deyil cünkü yumuşak kotanızı aştınız, {0}'de "
-"ileti alamayacaksınız."
 
-msgid "At {0} you won't be able to send or recieve mails."
-msgstr "{0}'de ileti gönderemeyecek ve de alamayacaksınız"
+msgid "At {0} you won't be able to send or receive mails."
+msgstr ""
 
 msgid "You can not send mails as you have exceeded soft quota."
 msgstr "Ileti gönderilmiyor çünkü yumuşak kutunuzu aştınız"
@@ -6183,39 +6174,29 @@ msgstr "Her %s gerçekleşir, efektif %s."
 msgid "Occurs every %s %s effective %s."
 msgstr "Her %s %s gerçekleşir, efektif %s."
 
-# 78%
-# 76%
-#, fuzzy, php-format
-msgid "Occurs every %s effective %s for %s occurence from %s to %s."
-msgid_plural "Occurs every %s effective %s for %s occurences from %s to %s."
+#, php-format
+msgid "Occurs every %s effective %s for %s occurrence from %s to %s."
+msgid_plural "Occurs every %s effective %s for %s occurrences from %s to %s."
 msgstr[0] ""
-"Her {0} gerçekleşir, başlangıç: {1} {2} oluşum var, saat {3} - {4} arası."
 msgstr[1] ""
 
-# 78%
-# 76%
-# 95%
-#, fuzzy, php-format
-msgid "Occurs every %s %s effective %s for %s occurence from %s to %s."
-msgid_plural "Occurs every %s %s effective %s for %s occurences %s to %s."
+#, php-format
+msgid "Occurs every %s %s effective %s for %s occurrence from %s to %s."
+msgid_plural "Occurs every %s %s effective %s for %s occurrences %s to %s."
 msgstr[0] ""
-"Her {0} gerçekleşir, başlangıç: {1} {2} oluşum var, saat {3} - {4} arası."
 msgstr[1] ""
 
-# 77%
-# 81%
-#, fuzzy, php-format
-msgid "Occurs every %s effective %s for %s occurence."
-msgid_plural "Occurs every %s effective %s for %s occurences."
-msgstr[0] "Her {0} gerçekleşir, başlangıç: {1} {2} oluşum var."
-msgstr[1] "Her {0} gerçekleşir, başlangıç: {1} {2} oluşum var."
+#, php-format
+msgid "Occurs every %s effective %s for %s occurrence."
+msgid_plural "Occurs every %s effective %s for %s occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
-# 77%
-#, fuzzy, php-format
-msgid "Occurs every %s %s effective %s for %s occurence."
-msgid_plural "Occurs every %s %s effective %s for %s occurences."
-msgstr[0] "Her {0} gerçekleşir, başlangıç: {1} {2} oluşum var."
-msgstr[1] "Her {0} gerçekleşir, başlangıç: {1} {2} oluşum var."
+#, php-format
+msgid "Occurs every %s %s effective %s for %s occurrence."
+msgid_plural "Occurs every %s %s effective %s for %s occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
 # 78%
 # 76%
@@ -6307,14 +6288,10 @@ msgstr "İki oluşumlar aynı gün oluşamaz"
 #, php-format
 msgid ""
 "You marked '%s' as a resource. You cannot schedule a meeting with '%s' "
-"because you do not have the appropiate permissions for that account. Either "
+"because you do not have the appropriate permissions for that account. Either "
 "enter the name as a required or optional attendee or talk to your "
 "administrator about giving you permission to schedule '%s'."
 msgstr ""
-"Bir kaynak olarak '% s' işaretlenmiş. Bu hesap için uygun olanı izinlere "
-"sahip değilsiniz, çünkü '% s' ile bir toplantı zamanlama olamaz. Ya zorunlu "
-"veya isteğe bağlı katılımcı olarak adını girin veya program '% s' için izin "
-"verme konusunda yöneticinizle konuşun."
 
 #, php-format
 msgid ""

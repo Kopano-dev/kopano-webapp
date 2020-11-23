@@ -871,29 +871,27 @@ msgstr "Elke {0} met ingang van {1}."
 msgid "Occurs every {0} {1} effective {2}."
 msgstr "Elke {0} {1} met ingang van {2}."
 
-# 96%
-msgid "Occurs every {0} effective {1} for {2} occurence from {3} to {4}."
+msgid "Occurs every {0} effective {1} for {2} occurrence from {3} to {4}."
 msgid_plural ""
-"Occurs every {0} effective {1} for {2} occurences from {3} to {4}."
-msgstr[0] "Elke {0} met ingang van {1}, {2} keer van {3} tot {4}."
-msgstr[1] "Elke {0} met ingang van {1}, {2} keer van {3} tot {4}."
+"Occurs every {0} effective {1} for {2} occurrences from {3} to {4}."
+msgstr[0] ""
+msgstr[1] ""
 
-# 88%
-msgid "Occurs every {0} {1} effective {2} for {3} occurence from {4} to {5}."
+msgid "Occurs every {0} {1} effective {2} for {3} occurrence from {4} to {5}."
 msgid_plural ""
-"Occurs every {0} {1} effective {2} for {3} occurences {4} to {5}."
-msgstr[0] "Elke {0} {1} met ingang van {2}, {3} keer van {4} tot {5}."
-msgstr[1] "Elke {0} {1} met ingang van {2}, {3} keer van {4} tot {5}."
+"Occurs every {0} {1} effective {2} for {3} occurrences {4} to {5}."
+msgstr[0] ""
+msgstr[1] ""
 
-msgid "Occurs every {0} effective {1} for {2} occurence."
-msgid_plural "Occurs every {0} effective {1} for {2} occurences."
-msgstr[0] "Elke {0} met ingang van {1}, {2} keer."
-msgstr[1] "Elke {0} met ingang van {1}, {2} keer."
+msgid "Occurs every {0} effective {1} for {2} occurrence."
+msgid_plural "Occurs every {0} effective {1} for {2} occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
-msgid "Occurs every {0} {1} effective {2} for {3} occurence."
-msgid_plural "Occurs every {0} {1} effective {2} for {3} occurences."
-msgstr[0] "Elke {0} {1} met ingang van {2}, {3} keer."
-msgstr[1] "Elke {0} {1} met ingang van {2}, {3} keer."
+msgid "Occurs every {0} {1} effective {2} for {3} occurrence."
+msgid_plural "Occurs every {0} {1} effective {2} for {3} occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Occurs every {0} effective {1} until {2} from {3} to {4}."
 msgstr "Elke {0} met ingang van {1} tot en met {2}, van {3} tot {4}."
@@ -4257,6 +4255,9 @@ msgstr "Widget inklappen"
 msgid "Expand widget"
 msgstr "Widget uitklappen"
 
+msgid "About this widget"
+msgstr ""
+
 msgid "Add new widget"
 msgstr "Widget toevoegen"
 
@@ -5292,23 +5293,19 @@ msgstr "Er is geen quota gezet op je store."
 msgid "{0} of mailbox space is used."
 msgstr "{0} van de postvakruimte is in gebruik."
 
-msgid "You have exceeded hard quota, you can not send or recieve mails."
+msgid "You have exceeded hard quota, you can not send or receive mails."
 msgstr ""
-"U heeft meer gebruikt dan de harde quota, u kunt geen e-mail verzenden of "
-"ontvangen."
 
 msgid "At {0} you won't be able to send mails."
 msgstr "Bij {0} kunt u geen e-mails verzenden."
 
 msgid ""
 "You can not send mails as you have exceeded soft quota, at {0} you won't be "
-"able to recieve mails."
+"able to receive mails."
 msgstr ""
-"U kunt geen e-mail verzenden omdat u de zachte quota heeft overschreden, bij "
-"{0} kunt u geen e-mails ontvangen."
 
-msgid "At {0} you won't be able to send or recieve mails."
-msgstr "Bij {0} kunt u geen e-mails verzenden of ontvangen."
+msgid "At {0} you won't be able to send or receive mails."
+msgstr ""
 
 msgid "You can not send mails as you have exceeded soft quota."
 msgstr ""
@@ -6171,36 +6168,29 @@ msgstr "Vind plaats elke %s vanaf %s."
 msgid "Occurs every %s %s effective %s."
 msgstr "Vind plaats elke %s %s vanaf %s."
 
-# 96%
-# 76%
 #, php-format
-msgid "Occurs every %s effective %s for %s occurence from %s to %s."
-msgid_plural "Occurs every %s effective %s for %s occurences from %s to %s."
-msgstr[0] "Vind elke %s plaats vanaf %s voor %s herhaling van %s tot %s."
-msgstr[1] "Vind elke %s plaats vanaf %s voor %s herhalingen van %s tot %s."
+msgid "Occurs every %s effective %s for %s occurrence from %s to %s."
+msgid_plural "Occurs every %s effective %s for %s occurrences from %s to %s."
+msgstr[0] ""
+msgstr[1] ""
 
-# 96%
-# 76%
-# 95%
 #, php-format
-msgid "Occurs every %s %s effective %s for %s occurence from %s to %s."
-msgid_plural "Occurs every %s %s effective %s for %s occurences %s to %s."
-msgstr[0] "Vind elke %s %s plaats vanaf %s voor %s herhaling van %s tot %s."
-msgstr[1] "Vind elke %s %s plaats vanaf %s voor %s herhalingen van %s tot %s."
+msgid "Occurs every %s %s effective %s for %s occurrence from %s to %s."
+msgid_plural "Occurs every %s %s effective %s for %s occurrences %s to %s."
+msgstr[0] ""
+msgstr[1] ""
 
-# 81%
 #, php-format
-msgid "Occurs every %s effective %s for %s occurence."
-msgid_plural "Occurs every %s effective %s for %s occurences."
-msgstr[0] "Vind elke %s plaats vanaf %s voor %s herhaling."
-msgstr[1] "Vind elke %s plaats vanaf %s voor %s herhalingen."
+msgid "Occurs every %s effective %s for %s occurrence."
+msgid_plural "Occurs every %s effective %s for %s occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
-# 77%
 #, php-format
-msgid "Occurs every %s %s effective %s for %s occurence."
-msgid_plural "Occurs every %s %s effective %s for %s occurences."
-msgstr[0] "Vind elke %s %s plaats vanaf %s voor %s herhaling."
-msgstr[1] "Vind elke %s %s plaats vanaf %s voor %s herhalingen."
+msgid "Occurs every %s %s effective %s for %s occurrence."
+msgid_plural "Occurs every %s %s effective %s for %s occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
 # 96%
 # 76%
@@ -6295,14 +6285,10 @@ msgstr "Twee herhalingen kunnen niet op dezelfde dag worden gegeven"
 #, php-format
 msgid ""
 "You marked '%s' as a resource. You cannot schedule a meeting with '%s' "
-"because you do not have the appropiate permissions for that account. Either "
+"because you do not have the appropriate permissions for that account. Either "
 "enter the name as a required or optional attendee or talk to your "
 "administrator about giving you permission to schedule '%s'."
 msgstr ""
-"U heeft '%s' als resource gemarkeerd. U kunt geen vergadering plannen met "
-"'%s' omdat u de juiste permissies op dat account niet heeft. Ofwel geef de "
-"naam op als optionele genodigde of praat met uw beheerder om u permissies te "
-"geven om '%s' in te plannen."
 
 #, php-format
 msgid ""

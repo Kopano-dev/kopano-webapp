@@ -862,36 +862,27 @@ msgstr "Előfordulás minden {0} érvényes {1}."
 msgid "Occurs every {0} {1} effective {2}."
 msgstr "Ismétlődik minden {0} {1} érvényes {2}."
 
-# Have to look at it in action.
-msgid "Occurs every {0} effective {1} for {2} occurence from {3} to {4}."
+msgid "Occurs every {0} effective {1} for {2} occurrence from {3} to {4}."
 msgid_plural ""
-"Occurs every {0} effective {1} for {2} occurences from {3} to {4}."
-msgstr[0] "Ismétlődés minden {0} érvényes {1} {2}-tól/től {3}-ig."
-msgstr[1] "Ismétlődés minden {0} érvényes {1} {2}-tól/től {3}-ig."
-
-# Have to look at it in action.
-# 88%
-msgid "Occurs every {0} {1} effective {2} for {3} occurence from {4} to {5}."
-msgid_plural ""
-"Occurs every {0} {1} effective {2} for {3} occurences {4} to {5}."
-msgstr[0] "Ismétlődés minden {0} érvényes {1} {2}-tól/től {3}-ig."
+"Occurs every {0} effective {1} for {2} occurrences from {3} to {4}."
+msgstr[0] ""
 msgstr[1] ""
-"Ismétlődés minden {0} érvényes {1} {2} előfordulásokon {3}-tól {4}-ig."
 
-# Have to look at it in action.
-# 77%
-msgid "Occurs every {0} effective {1} for {2} occurence."
-msgid_plural "Occurs every {0} effective {1} for {2} occurences."
-msgstr[0] "Ismétlődés minden {0} érvényes {1} {2}-tól/től {3}-ig."
-msgstr[1] "Ismétlődés minden {0} érvényes {1} {2}-tól/től {3}-ig."
+msgid "Occurs every {0} {1} effective {2} for {3} occurrence from {4} to {5}."
+msgid_plural ""
+"Occurs every {0} {1} effective {2} for {3} occurrences {4} to {5}."
+msgstr[0] ""
+msgstr[1] ""
 
-# Have to look at it in action.
-# 77%
-# 88%
-msgid "Occurs every {0} {1} effective {2} for {3} occurence."
-msgid_plural "Occurs every {0} {1} effective {2} for {3} occurences."
-msgstr[0] "Ismétlődés minden {0} érvényes {1} {2}-tól/től {3}-ig."
-msgstr[1] "Ismétlődés minden {0} érvényes {1} {2}-tól/től {3}-ig."
+msgid "Occurs every {0} effective {1} for {2} occurrence."
+msgid_plural "Occurs every {0} effective {1} for {2} occurrences."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Occurs every {0} {1} effective {2} for {3} occurrence."
+msgid_plural "Occurs every {0} {1} effective {2} for {3} occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
 # Have to look at it in action.
 # 78%
@@ -4251,6 +4242,9 @@ msgstr "Beépülő modul panel összezárása"
 msgid "Expand widget"
 msgstr "Beépülő modul panel szétnyitása"
 
+msgid "About this widget"
+msgstr ""
+
 # There's no synonim for Widget in Hungarian language.
 #, fuzzy
 msgid "Add new widget"
@@ -5304,23 +5298,19 @@ msgstr ""
 msgid "{0} of mailbox space is used."
 msgstr "{0} felhasznált postafiók tárterület."
 
-msgid "You have exceeded hard quota, you can not send or recieve mails."
+msgid "You have exceeded hard quota, you can not send or receive mails."
 msgstr ""
-"Ön elérte a felső kvótát, a továbbiakban nem küldhet, vagy fogadhat "
-"leveleket."
 
 msgid "At {0} you won't be able to send mails."
 msgstr "{0}-kor nem fog tudni leveleket küldeni."
 
 msgid ""
 "You can not send mails as you have exceeded soft quota, at {0} you won't be "
-"able to recieve mails."
+"able to receive mails."
 msgstr ""
-"Nem küldhet leveleket, mert elérte az alsó kvótát, {0} -tól nem fog "
-"leveleket kapni."
 
-msgid "At {0} you won't be able to send or recieve mails."
-msgstr "{0} -tól nem fog tudni leveleket küldeni, vagy fogadni."
+msgid "At {0} you won't be able to send or receive mails."
+msgstr ""
 
 msgid "You can not send mails as you have exceeded soft quota."
 msgstr "Nem tud leveleket küldeni, mert elérte az alsó kvóta határt."
@@ -6163,40 +6153,29 @@ msgstr "Előfordulása %s, kezdete: %s."
 msgid "Occurs every %s %s effective %s."
 msgstr ""
 
-# Have to look at it in action.
-# 76%
 #, php-format
-msgid "Occurs every %s effective %s for %s occurence from %s to %s."
-msgid_plural "Occurs every %s effective %s for %s occurences from %s to %s."
-msgstr[0] "Ismétlődés minden %s érvényes %s %s-tól/től %s-ig."
-msgstr[1] "Ismétlődés minden %s érvényes %s %s-tól/től %s-ig/%s-ig."
-
-# Have to look at it in action.
-# 76%
-# 95%
-#, fuzzy, php-format
-msgid "Occurs every %s %s effective %s for %s occurence from %s to %s."
-msgid_plural "Occurs every %s %s effective %s for %s occurences %s to %s."
+msgid "Occurs every %s effective %s for %s occurrence from %s to %s."
+msgid_plural "Occurs every %s effective %s for %s occurrences from %s to %s."
 msgstr[0] ""
-"Ismétlődés minden %s %s, érvényes %s %s előfordulásra %s-tól/től %s-ig."
-msgstr[1] "Ismétlődés minden %s érvényes %s %s-tól/től %s-ig/%s-ig."
+msgstr[1] ""
 
-# Have to look at it in action.
-# 77%
-# 81%
-#, fuzzy, php-format
-msgid "Occurs every %s effective %s for %s occurence."
-msgid_plural "Occurs every %s effective %s for %s occurences."
-msgstr[0] "Ismétlődés minden {0} érvényes {1} {2}-tól/től {3}-ig."
-msgstr[1] "Ismétlődés minden {0} érvényes {1} {2}-tól/től {3}-ig."
+#, php-format
+msgid "Occurs every %s %s effective %s for %s occurrence from %s to %s."
+msgid_plural "Occurs every %s %s effective %s for %s occurrences %s to %s."
+msgstr[0] ""
+msgstr[1] ""
 
-# Have to look at it in action.
-# 77%
-#, fuzzy, php-format
-msgid "Occurs every %s %s effective %s for %s occurence."
-msgid_plural "Occurs every %s %s effective %s for %s occurences."
-msgstr[0] "Ismétlődés minden {0} érvényes {1} {2}-tól/től {3}-ig."
-msgstr[1] "Ismétlődés minden {0} érvényes {1} {2}-tól/től {3}-ig."
+#, php-format
+msgid "Occurs every %s effective %s for %s occurrence."
+msgid_plural "Occurs every %s effective %s for %s occurrences."
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "Occurs every %s %s effective %s for %s occurrence."
+msgid_plural "Occurs every %s %s effective %s for %s occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
 # Have to look at it in action.
 # 76%
@@ -6294,14 +6273,10 @@ msgstr "Két ismétlődés nem történhet ugyanazon a napon"
 #, php-format
 msgid ""
 "You marked '%s' as a resource. You cannot schedule a meeting with '%s' "
-"because you do not have the appropiate permissions for that account. Either "
+"because you do not have the appropriate permissions for that account. Either "
 "enter the name as a required or optional attendee or talk to your "
 "administrator about giving you permission to schedule '%s'."
 msgstr ""
-"'%s' erőforrásként lett megjelölve. Nem tud '%s' megadásával értekezletet "
-"szervezni, mert ehhez nincs meg a jogosultsága ezzel a fiókkal. Adja meg a "
-"nevet kötelező, vagy opcionális résztvevőként, vagy lépjen kapcsolatba "
-"adminisztrátorával, hogy megadja Önnek a megfelelő jogosultságokat '%s'."
 
 #, php-format
 msgid ""

@@ -834,33 +834,27 @@ msgstr "Se répète tous les {0} effectif le {1}."
 msgid "Occurs every {0} {1} effective {2}."
 msgstr "Se répète tous les {0} {1} effectif le {2}."
 
-# 76%
-msgid "Occurs every {0} effective {1} for {2} occurence from {3} to {4}."
+msgid "Occurs every {0} effective {1} for {2} occurrence from {3} to {4}."
 msgid_plural ""
-"Occurs every {0} effective {1} for {2} occurences from {3} to {4}."
+"Occurs every {0} effective {1} for {2} occurrences from {3} to {4}."
 msgstr[0] ""
-"Se répète tous les {0} effectif le {1} pour {2} occurrence de {3} à {4}."
 msgstr[1] ""
-"Se répète tous les {0} effectif le {1} pour {2} occurrences de {3} à {4}."
 
-# 78%
-msgid "Occurs every {0} {1} effective {2} for {3} occurence from {4} to {5}."
+msgid "Occurs every {0} {1} effective {2} for {3} occurrence from {4} to {5}."
 msgid_plural ""
-"Occurs every {0} {1} effective {2} for {3} occurences {4} to {5}."
+"Occurs every {0} {1} effective {2} for {3} occurrences {4} to {5}."
 msgstr[0] ""
-"Se répète tous les {0} {1} effectif le {2} pour {3} occurrence de {4} à {5}."
 msgstr[1] ""
-"Se répète tous les {0} {1} effectif le {2} pour {3} occurrences {4} à {5}."
 
-msgid "Occurs every {0} effective {1} for {2} occurence."
-msgid_plural "Occurs every {0} effective {1} for {2} occurences."
-msgstr[0] "Se répète tous les {0} effectif le {1} pour {2} occurrence."
-msgstr[1] "Se répète tous les {0} effectif le {1} pour {2} occurrences."
+msgid "Occurs every {0} effective {1} for {2} occurrence."
+msgid_plural "Occurs every {0} effective {1} for {2} occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
-msgid "Occurs every {0} {1} effective {2} for {3} occurence."
-msgid_plural "Occurs every {0} {1} effective {2} for {3} occurences."
-msgstr[0] "Se répète tous les {0} {1} effectif le {2} pour {3} occurrence."
-msgstr[1] "Se répète tous les {0} {1} effectif le {2} pour {3} occurrences."
+msgid "Occurs every {0} {1} effective {2} for {3} occurrence."
+msgid_plural "Occurs every {0} {1} effective {2} for {3} occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Occurs every {0} effective {1} until {2} from {3} to {4}."
 msgstr "Se répète tous les {0} effectif le {1} jusqu'au {2} de {3} à {4}."
@@ -4243,6 +4237,9 @@ msgstr "Réduire les fenêtres"
 msgid "Expand widget"
 msgstr "Ouvrir les fenêtres"
 
+msgid "About this widget"
+msgstr ""
+
 #, fuzzy
 msgid "Add new widget"
 msgstr "Ajouter des widgets"
@@ -5303,23 +5300,19 @@ msgstr ""
 msgid "{0} of mailbox space is used."
 msgstr "{0} de l'espace courrier est utilisé."
 
-msgid "You have exceeded hard quota, you can not send or recieve mails."
+msgid "You have exceeded hard quota, you can not send or receive mails."
 msgstr ""
-"Vous avez dépassé votre quota, vous ne pouvez pas envoyer ni recevoir de "
-"messages."
 
 msgid "At {0} you won't be able to send mails."
 msgstr "À {0}, vous ne pourrez pas envoyer de courrier."
 
 msgid ""
 "You can not send mails as you have exceeded soft quota, at {0} you won't be "
-"able to recieve mails."
+"able to receive mails."
 msgstr ""
-"Vous ne pouvez pas envoyer de courrier lorsque vous avez dépassé le quota, à "
-"{0} vous ne pourrez pas recevoir de courrier."
 
-msgid "At {0} you won't be able to send or recieve mails."
-msgstr "À {0}, vous ne pourrez pas envoyer ni recevoir de courrier."
+msgid "At {0} you won't be able to send or receive mails."
+msgstr ""
 
 msgid "You can not send mails as you have exceeded soft quota."
 msgstr ""
@@ -6194,37 +6187,29 @@ msgstr "Se répète tous les %s effectif au %s."
 msgid "Occurs every %s %s effective %s."
 msgstr "Se répète tous les %s %s effectif au %s."
 
-# 76%
 #, php-format
-msgid "Occurs every %s effective %s for %s occurence from %s to %s."
-msgid_plural "Occurs every %s effective %s for %s occurences from %s to %s."
-msgstr[0] "Se répète tous les %s effectif au %s pour %s occurrence de %s à %s."
-msgstr[1] ""
-"Se répète tous les %s effectif au %s pour %s occurrences de %s à %s."
-
-# 76%
-# 95%
-#, php-format
-msgid "Occurs every %s %s effective %s for %s occurence from %s to %s."
-msgid_plural "Occurs every %s %s effective %s for %s occurences %s to %s."
+msgid "Occurs every %s effective %s for %s occurrence from %s to %s."
+msgid_plural "Occurs every %s effective %s for %s occurrences from %s to %s."
 msgstr[0] ""
-"Se répète tous les %s %s effectif au %s pour %s occurrence de %s à %s."
 msgstr[1] ""
-"Se répète tous les %s %s effectif au %s pour %s occurrences de %s à %s."
 
-# 81%
 #, php-format
-msgid "Occurs every %s effective %s for %s occurence."
-msgid_plural "Occurs every %s effective %s for %s occurences."
-msgstr[0] "Se répète tous les %s effectif au %s pour %s occurrence."
-msgstr[1] "Se répète tous les %s effectif au %s pour %s occurrences."
+msgid "Occurs every %s %s effective %s for %s occurrence from %s to %s."
+msgid_plural "Occurs every %s %s effective %s for %s occurrences %s to %s."
+msgstr[0] ""
+msgstr[1] ""
 
-# 77%
 #, php-format
-msgid "Occurs every %s %s effective %s for %s occurence."
-msgid_plural "Occurs every %s %s effective %s for %s occurences."
-msgstr[0] "Se répète tous les %s %s effectif au %s pour %s occurrence."
-msgstr[1] "Se répète tous les %s %s effectif au %s pour %s occurrenceS."
+msgid "Occurs every %s effective %s for %s occurrence."
+msgid_plural "Occurs every %s effective %s for %s occurrences."
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "Occurs every %s %s effective %s for %s occurrence."
+msgid_plural "Occurs every %s %s effective %s for %s occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
 # 76%
 # 75%
@@ -6310,16 +6295,10 @@ msgstr "Deux occurrences ne peuvent avoir lieu le même jour"
 #, php-format
 msgid ""
 "You marked '%s' as a resource. You cannot schedule a meeting with '%s' "
-"because you do not have the appropiate permissions for that account. Either "
+"because you do not have the appropriate permissions for that account. Either "
 "enter the name as a required or optional attendee or talk to your "
 "administrator about giving you permission to schedule '%s'."
 msgstr ""
-"Vous avez désigné '%s' comme ressource. Vous ne pouvez pas organiser de "
-"réunion avec '%s' parce que vous ne disposez pas des droits d'accès "
-"nécessaires sur ce compte.  Vous devez soit saisir le nom en tant que "
-"participant requis ou en tant que participant optionnel, soit contacter "
-"votre administrateur afin qu'il vous accorde l'autorisation de gérer "
-"l'emploi du temps de '%s'."
 
 #, php-format
 msgid ""

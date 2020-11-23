@@ -853,38 +853,27 @@ msgstr "Findet jeden {0} statt, beginnend am {1}."
 msgid "Occurs every {0} {1} effective {2}."
 msgstr "Findet jeden {0} {1} statt, beginnend am {2}."
 
-# 96%
-msgid "Occurs every {0} effective {1} for {2} occurence from {3} to {4}."
+msgid "Occurs every {0} effective {1} for {2} occurrence from {3} to {4}."
 msgid_plural ""
-"Occurs every {0} effective {1} for {2} occurences from {3} to {4}."
+"Occurs every {0} effective {1} for {2} occurrences from {3} to {4}."
 msgstr[0] ""
-"Findet jeden {0} statt, beginnend am {1} für {2} Wiederholung von {2} bis "
-"{3}."
 msgstr[1] ""
-"Findet jeden {0} statt, beginnend am {1} für {2} Wiederholungen von {2} bis "
-"{3}."
 
-# 88%
-msgid "Occurs every {0} {1} effective {2} for {3} occurence from {4} to {5}."
+msgid "Occurs every {0} {1} effective {2} for {3} occurrence from {4} to {5}."
 msgid_plural ""
-"Occurs every {0} {1} effective {2} for {3} occurences {4} to {5}."
+"Occurs every {0} {1} effective {2} for {3} occurrences {4} to {5}."
 msgstr[0] ""
-"Findet jeden {0} statt, beginnend am {1} für {2} Wiederholung von {2} bis "
-"{3}."
 msgstr[1] ""
-"Findet jeden {0} statt, beginnend am {1} für {2} Wiederholungen von {2} bis "
-"{3}."
 
-msgid "Occurs every {0} effective {1} for {2} occurence."
-msgid_plural "Occurs every {0} effective {1} for {2} occurences."
-msgstr[0] "Findet jeden {0} statt, beginnend am {1} für {2} Wiederholung."
-msgstr[1] "Findet jeden {0} statt, beginnend am {1} für {2} Wiederholungen."
-
-msgid "Occurs every {0} {1} effective {2} for {3} occurence."
-msgid_plural "Occurs every {0} {1} effective {2} for {3} occurences."
-msgstr[0] "Findet jeden {0} {1} statt, beginnend am {2} für {3} Wiederholung."
+msgid "Occurs every {0} effective {1} for {2} occurrence."
+msgid_plural "Occurs every {0} effective {1} for {2} occurrences."
+msgstr[0] ""
 msgstr[1] ""
-"Findet jeden {0} {1} statt, beginnend am {2} für {2} Wiederholungen."
+
+msgid "Occurs every {0} {1} effective {2} for {3} occurrence."
+msgid_plural "Occurs every {0} {1} effective {2} for {3} occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Occurs every {0} effective {1} until {2} from {3} to {4}."
 msgstr "Findet jeden {0} statt, beginnend am {1} bis {2} von {3} bis {4}."
@@ -4218,6 +4207,9 @@ msgstr "Widgets minimieren"
 msgid "Expand widget"
 msgstr "Widget erweitern"
 
+msgid "About this widget"
+msgstr ""
+
 msgid "Add new widget"
 msgstr "Widgets hinzufügen"
 
@@ -5263,23 +5255,19 @@ msgstr "Für Ihr Postfach ist kein Kontingent festgelegt."
 msgid "{0} of mailbox space is used."
 msgstr "{0} des Postfachs sind belegt."
 
-msgid "You have exceeded hard quota, you can not send or recieve mails."
+msgid "You have exceeded hard quota, you can not send or receive mails."
 msgstr ""
-"Sie haben die Hard-Quota überschritten und können keine E-Mails mehr "
-"empfangen oder verschicken."
 
 msgid "At {0} you won't be able to send mails."
 msgstr "Ab {0} können Sie keine E-Mails mehr senden."
 
 msgid ""
 "You can not send mails as you have exceeded soft quota, at {0} you won't be "
-"able to recieve mails."
+"able to receive mails."
 msgstr ""
-"Sie haben die Soft-Quota überschritten und können keine E-Mails mehr "
-"versenden. Ab {0} können Sie auch keine E-Mails mehr empfangen."
 
-msgid "At {0} you won't be able to send or recieve mails."
-msgstr "Ab {0} können Sie keine E-Mails mehr versenden oder empfangen."
+msgid "At {0} you won't be able to send or receive mails."
+msgstr ""
 
 msgid "You can not send mails as you have exceeded soft quota."
 msgstr ""
@@ -6153,41 +6141,29 @@ msgstr "Findet jeden %s statt, beginnend am %s."
 msgid "Occurs every %s %s effective %s."
 msgstr "Findet jeden %s %s statt, beginnend am %s."
 
-# 96%
-# 76%
 #, php-format
-msgid "Occurs every %s effective %s for %s occurence from %s to %s."
-msgid_plural "Occurs every %s effective %s for %s occurences from %s to %s."
+msgid "Occurs every %s effective %s for %s occurrence from %s to %s."
+msgid_plural "Occurs every %s effective %s for %s occurrences from %s to %s."
 msgstr[0] ""
-"Findet jeden %s statt, beginnend am %s für %s Wiederholung von %s bis %s."
 msgstr[1] ""
-"Findet jeden %s statt, beginnend am %s für %s Wiederholungen von %s bis %s."
 
-# 96%
-# 76%
-# 95%
 #, php-format
-msgid "Occurs every %s %s effective %s for %s occurence from %s to %s."
-msgid_plural "Occurs every %s %s effective %s for %s occurences %s to %s."
+msgid "Occurs every %s %s effective %s for %s occurrence from %s to %s."
+msgid_plural "Occurs every %s %s effective %s for %s occurrences %s to %s."
 msgstr[0] ""
-"Findet jeden %s %s statt, beginnend am %s für %s Wiederholung von %s bis %s."
 msgstr[1] ""
-"Findet jeden %s %s statt, beginnend am %s für %s Wiederholungen von %s bis "
-"%s."
 
-# 81%
 #, php-format
-msgid "Occurs every %s effective %s for %s occurence."
-msgid_plural "Occurs every %s effective %s for %s occurences."
-msgstr[0] "Findet jeden %s statt, beginnend am %s für %s Wiederholung."
-msgstr[1] "Findet jeden %s statt, beginnend am %s für %s Wiederholungen."
+msgid "Occurs every %s effective %s for %s occurrence."
+msgid_plural "Occurs every %s effective %s for %s occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
-# 77%
 #, php-format
-msgid "Occurs every %s %s effective %s for %s occurence."
-msgid_plural "Occurs every %s %s effective %s for %s occurences."
-msgstr[0] "Findet jeden %s %s statt, beginnend am %s für %s Wiederholung."
-msgstr[1] "Findet jeden %s %s statt, beginnend am %s für %s Wiederholungen."
+msgid "Occurs every %s %s effective %s for %s occurrence."
+msgid_plural "Occurs every %s %s effective %s for %s occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
 # 96%
 # 76%
@@ -6280,15 +6256,10 @@ msgstr "Eine Wiederholung kann nicht zweimal am selben Tag gesetzt werden"
 #, php-format
 msgid ""
 "You marked '%s' as a resource. You cannot schedule a meeting with '%s' "
-"because you do not have the appropiate permissions for that account. Either "
+"because you do not have the appropriate permissions for that account. Either "
 "enter the name as a required or optional attendee or talk to your "
 "administrator about giving you permission to schedule '%s'."
 msgstr ""
-"Sie haben \"%s\" als Ressource markiert. Sie können kein Meeting mit \"%s\" "
-"planen, da Sie nicht über die nötigen Berechtigungen für dieses Konto "
-"verfügen. Geben Sie den Namen entweder als erforderlichen oder optionalen "
-"Teilnehmer an, oder wenden Sie sich an ihren Administrator, um die "
-"Berechtigung zu erhalten, \"%s\" einzuplanen."
 
 #, php-format
 msgid ""
