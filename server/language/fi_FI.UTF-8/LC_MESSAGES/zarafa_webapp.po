@@ -854,35 +854,27 @@ msgstr "Tapahtuu joka {0} voimassa {1}."
 msgid "Occurs every {0} {1} effective {2}."
 msgstr "Tapahtuu joka {0} {1} voimassa {2}."
 
-# 78%
-# 76%
-msgid "Occurs every {0} effective {1} for {2} occurence from {3} to {4}."
+msgid "Occurs every {0} effective {1} for {2} occurrence from {3} to {4}."
 msgid_plural ""
-"Occurs every {0} effective {1} for {2} occurences from {3} to {4}."
-msgstr[0] "Tapahtuu joka {0} voimassa  {1} alkaen {2} asti {3}."
-msgstr[1] "Tapahtuu joka {0} voimassa  {1} alkaen {2} asti {3}."
-
-# 80%
-# 78%
-msgid "Occurs every {0} {1} effective {2} for {3} occurence from {4} to {5}."
-msgid_plural ""
-"Occurs every {0} {1} effective {2} for {3} occurences {4} to {5}."
+"Occurs every {0} effective {1} for {2} occurrences from {3} to {4}."
 msgstr[0] ""
-"Tapahtuu joka {0} {1} voimassa {2} {3} tapahtumalle alkaen {4} ja {5} asti."
 msgstr[1] ""
-"Tapahtuu joka {0} {1} voimassa {2} {3} tapahtumalle alkaen {4} ja {5} asti."
 
-# 77%
-msgid "Occurs every {0} effective {1} for {2} occurence."
-msgid_plural "Occurs every {0} effective {1} for {2} occurences."
-msgstr[0] "Tapahtuu joka {0} voimassa {1} koskien {2} tapahtumaa."
-msgstr[1] "Tapahtuu joka {0} voimassa {1} koskien {2} tapahtumaa."
+msgid "Occurs every {0} {1} effective {2} for {3} occurrence from {4} to {5}."
+msgid_plural ""
+"Occurs every {0} {1} effective {2} for {3} occurrences {4} to {5}."
+msgstr[0] ""
+msgstr[1] ""
 
-# 79%
-msgid "Occurs every {0} {1} effective {2} for {3} occurence."
-msgid_plural "Occurs every {0} {1} effective {2} for {3} occurences."
-msgstr[0] "Tapahtuu joka {0} {1} voimassa {2} {3} tapahtumalle."
-msgstr[1] "Tapahtuu joka {0} {1} voimassa {2} {3} tapahtumalle."
+msgid "Occurs every {0} effective {1} for {2} occurrence."
+msgid_plural "Occurs every {0} effective {1} for {2} occurrences."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Occurs every {0} {1} effective {2} for {3} occurrence."
+msgid_plural "Occurs every {0} {1} effective {2} for {3} occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
 # 78%
 msgid "Occurs every {0} effective {1} until {2} from {3} to {4}."
@@ -4207,6 +4199,9 @@ msgstr "Hierarkiaa ei voitu ladata."
 msgid "Expand widget"
 msgstr "Lisää pienoisohjelmia"
 
+msgid "About this widget"
+msgstr ""
+
 #, fuzzy
 msgid "Add new widget"
 msgstr "Lisää pienoisohjelmia"
@@ -5263,23 +5258,19 @@ msgstr ""
 msgid "{0} of mailbox space is used."
 msgstr "{0} postilaatikosta on käytössä."
 
-msgid "You have exceeded hard quota, you can not send or recieve mails."
+msgid "You have exceeded hard quota, you can not send or receive mails."
 msgstr ""
-"Sähköpostisi kokoraja on ylittynyt, et voi lähettää tai vastaanottaa "
-"viestejä."
 
 msgid "At {0} you won't be able to send mails."
 msgstr "Et voi lähettää viestejä, kun laatikon koko on {0}."
 
 msgid ""
 "You can not send mails as you have exceeded soft quota, at {0} you won't be "
-"able to recieve mails."
+"able to receive mails."
 msgstr ""
-"Sähköpostisi kokoraja on ylittynyt, joten et voi lähettää viestejä. Kun koko "
-"on {0}, et myöskään voi vastaanottaa viestejä."
 
-msgid "At {0} you won't be able to send or recieve mails."
-msgstr "Et voi lähettää tai vastaanottaa viestejä, kun laatikon koko on {0}."
+msgid "At {0} you won't be able to send or receive mails."
+msgstr ""
 
 msgid "You can not send mails as you have exceeded soft quota."
 msgstr "Sähköpostisi kokoraja on ylittynyt, et voi lähettää viestejä."
@@ -6134,41 +6125,29 @@ msgstr "Tapahtuu joka %s voimassa %s."
 msgid "Occurs every %s %s effective %s."
 msgstr "Tapahtuu joka %s %s voimassa %s."
 
-# 78%
-# 76%
 #, php-format
-msgid "Occurs every %s effective %s for %s occurence from %s to %s."
-msgid_plural "Occurs every %s effective %s for %s occurences from %s to %s."
+msgid "Occurs every %s effective %s for %s occurrence from %s to %s."
+msgid_plural "Occurs every %s effective %s for %s occurrences from %s to %s."
 msgstr[0] ""
-"Tapahtuu joka %s voimassa %s koskien %s tapahtumaa alkaen %s päättyen %s."
 msgstr[1] ""
-"Tapahtuu joka %s voimassa %s koskien %s tapahtumaa alkaen %s päättyen %s."
 
-# 78%
-# 76%
-# 95%
 #, php-format
-msgid "Occurs every %s %s effective %s for %s occurence from %s to %s."
-msgid_plural "Occurs every %s %s effective %s for %s occurences %s to %s."
+msgid "Occurs every %s %s effective %s for %s occurrence from %s to %s."
+msgid_plural "Occurs every %s %s effective %s for %s occurrences %s to %s."
 msgstr[0] ""
-"Tapahtuu joka %s %s voimassa %s koskien %s tapahtuma alkaen %s päättyen %s."
 msgstr[1] ""
-"Tapahtuu joka %s %s voimassa %s koskien %s tapahtuma alkaen %s päättyen %s."
 
-# 77%
-# 81%
 #, php-format
-msgid "Occurs every %s effective %s for %s occurence."
-msgid_plural "Occurs every %s effective %s for %s occurences."
-msgstr[0] "Tapahtuu joka %s voimassa %s koskien %s tapahtumaa."
-msgstr[1] "Tapahtuu joka %s voimassa %s koskien %s tapahtumaa."
+msgid "Occurs every %s effective %s for %s occurrence."
+msgid_plural "Occurs every %s effective %s for %s occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
-# 77%
 #, php-format
-msgid "Occurs every %s %s effective %s for %s occurence."
-msgid_plural "Occurs every %s %s effective %s for %s occurences."
-msgstr[0] "Tapahtuu joka %s %s voimassa %s koskien %s tapahtumaa."
-msgstr[1] "Tapahtuu joka %s %s voimassa %s koskien %s tapahtumaa."
+msgid "Occurs every %s %s effective %s for %s occurrence."
+msgid_plural "Occurs every %s %s effective %s for %s occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
 # 78%
 # 76%
@@ -6267,14 +6246,10 @@ msgstr "Kaksi toistumista ei voi tapahtua samana päivänä"
 #, php-format
 msgid ""
 "You marked '%s' as a resource. You cannot schedule a meeting with '%s' "
-"because you do not have the appropiate permissions for that account. Either "
+"because you do not have the appropriate permissions for that account. Either "
 "enter the name as a required or optional attendee or talk to your "
 "administrator about giving you permission to schedule '%s'."
 msgstr ""
-"Merkitsit kohteen '%s' resurssiksi. Et voi sopia kokousta käyttäjän '%s' "
-"kanssa, koska sinulle ei ole tarvittavia oikeuksia tilille. Syötä nimi joko "
-"pakollisena tai valinnaisena osallistujana, tai keskustele ylläpitäjän "
-"kanssa oikeuksien saamiseksi aikatauluun '%s'."
 
 #, php-format
 msgid ""

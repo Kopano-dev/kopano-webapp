@@ -807,23 +807,23 @@ msgstr "每个{0}有效的{1}均发生。"
 msgid "Occurs every {0} {1} effective {2}."
 msgstr "每个{0}{1}有效的{2}均发生。"
 
-msgid "Occurs every {0} effective {1} for {2} occurence from {3} to {4}."
+msgid "Occurs every {0} effective {1} for {2} occurrence from {3} to {4}."
 msgid_plural ""
-"Occurs every {0} effective {1} for {2} occurences from {3} to {4}."
-msgstr[0] "对于从{3}到{4}发生的{2}事件，每个{0}有效的{1}均发生。"
+"Occurs every {0} effective {1} for {2} occurrences from {3} to {4}."
+msgstr[0] ""
 
-msgid "Occurs every {0} {1} effective {2} for {3} occurence from {4} to {5}."
+msgid "Occurs every {0} {1} effective {2} for {3} occurrence from {4} to {5}."
 msgid_plural ""
-"Occurs every {0} {1} effective {2} for {3} occurences {4} to {5}."
-msgstr[0] "对于从{4}到{5}发生的{3}事件，每个{0}{1}有效的{2}均发生。"
+"Occurs every {0} {1} effective {2} for {3} occurrences {4} to {5}."
+msgstr[0] ""
 
-msgid "Occurs every {0} effective {1} for {2} occurence."
-msgid_plural "Occurs every {0} effective {1} for {2} occurences."
-msgstr[0] "对于发生的{2}事件，每个{0}有效的{1}均发生。"
+msgid "Occurs every {0} effective {1} for {2} occurrence."
+msgid_plural "Occurs every {0} effective {1} for {2} occurrences."
+msgstr[0] ""
 
-msgid "Occurs every {0} {1} effective {2} for {3} occurence."
-msgid_plural "Occurs every {0} {1} effective {2} for {3} occurences."
-msgstr[0] "对于发生的{3}事件，每个{0}{1}有效的{2}均发生。"
+msgid "Occurs every {0} {1} effective {2} for {3} occurrence."
+msgid_plural "Occurs every {0} {1} effective {2} for {3} occurrences."
+msgstr[0] ""
 
 msgid "Occurs every {0} effective {1} until {2} from {3} to {4}."
 msgstr "从{3}至{4}，每个{0}有效的{1}均发生，直至{2}。"
@@ -3918,6 +3918,9 @@ msgstr "收缩小部件"
 msgid "Expand widget"
 msgstr "展开小部件"
 
+msgid "About this widget"
+msgstr ""
+
 msgid "Add new widget"
 msgstr "添加新的小部件"
 
@@ -4890,19 +4893,19 @@ msgstr "您的存储器未设置配额。"
 msgid "{0} of mailbox space is used."
 msgstr "使用了邮箱空间的{0}。"
 
-msgid "You have exceeded hard quota, you can not send or recieve mails."
-msgstr "您已超过了硬配额，您无法发送或接收邮件。"
+msgid "You have exceeded hard quota, you can not send or receive mails."
+msgstr ""
 
 msgid "At {0} you won't be able to send mails."
 msgstr "当{0}时，您将无法发送邮件。"
 
 msgid ""
 "You can not send mails as you have exceeded soft quota, at {0} you won't be "
-"able to recieve mails."
-msgstr "您已超过软配额，因此您无法发送邮件，当{0}时，您将无法接收邮件。"
+"able to receive mails."
+msgstr ""
 
-msgid "At {0} you won't be able to send or recieve mails."
-msgstr "当{0}时，您将无法发送或接收邮件。"
+msgid "At {0} you won't be able to send or receive mails."
+msgstr ""
 
 msgid "You can not send mails as you have exceeded soft quota."
 msgstr "您已超过软配额，因此您无法发送邮件。"
@@ -5691,24 +5694,24 @@ msgid "Occurs every %s %s effective %s."
 msgstr "每个%s%s有效的%s均发生。"
 
 #, php-format
-msgid "Occurs every %s effective %s for %s occurence from %s to %s."
-msgid_plural "Occurs every %s effective %s for %s occurences from %s to %s."
-msgstr[0] "对于从%s至%s发生的%s事件，每个%s有效的%s均发生。"
+msgid "Occurs every %s effective %s for %s occurrence from %s to %s."
+msgid_plural "Occurs every %s effective %s for %s occurrences from %s to %s."
+msgstr[0] ""
 
 #, php-format
-msgid "Occurs every %s %s effective %s for %s occurence from %s to %s."
-msgid_plural "Occurs every %s %s effective %s for %s occurences %s to %s."
-msgstr[0] "对于从%s至%s发生的%s事件，每个%s%s有效的%s均发生。"
+msgid "Occurs every %s %s effective %s for %s occurrence from %s to %s."
+msgid_plural "Occurs every %s %s effective %s for %s occurrences %s to %s."
+msgstr[0] ""
 
 #, php-format
-msgid "Occurs every %s effective %s for %s occurence."
-msgid_plural "Occurs every %s effective %s for %s occurences."
-msgstr[0] "对于发生的%s事件，每个%s有效的%s均发生。"
+msgid "Occurs every %s effective %s for %s occurrence."
+msgid_plural "Occurs every %s effective %s for %s occurrences."
+msgstr[0] ""
 
 #, php-format
-msgid "Occurs every %s %s effective %s for %s occurence."
-msgid_plural "Occurs every %s %s effective %s for %s occurences."
-msgstr[0] "对于发生的%s事件，每个%s%s有效的%s均发生。"
+msgid "Occurs every %s %s effective %s for %s occurrence."
+msgid_plural "Occurs every %s %s effective %s for %s occurrences."
+msgstr[0] ""
 
 #, php-format
 msgid "Occurs every %s effective %s until %s from %s to %s."
@@ -5778,13 +5781,10 @@ msgstr "不能在同一天发生两次事件"
 #, php-format
 msgid ""
 "You marked '%s' as a resource. You cannot schedule a meeting with '%s' "
-"because you do not have the appropiate permissions for that account. Either "
+"because you do not have the appropriate permissions for that account. Either "
 "enter the name as a required or optional attendee or talk to your "
 "administrator about giving you permission to schedule '%s'."
 msgstr ""
-"您将‘%s’标记为资源。您无法用‘%s’安排会议，因为您不具备该账户的相应权限。请输"
-"入必要与会者或可选与会者的名称，或与您的管理员联系，请管理员为您开通安"
-"排‘%s’的权限。"
 
 #, php-format
 msgid ""
