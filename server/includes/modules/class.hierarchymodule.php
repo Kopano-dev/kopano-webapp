@@ -1180,7 +1180,7 @@
 				// Update subfolders of copy/move folder
 				$folder = mapi_msgstore_openentry($deststore, $destfolderentryid);
 				$hierarchyTable = mapi_folder_gethierarchytable($folder, CONVENIENT_DEPTH | MAPI_DEFERRED_ERRORS);
-				mapi_table_sort($hierarchyTable, array(PR_DISPLAY_NAME => TABLE_SORT_ASCEND), TBL_BATCH);
+				mapi_table_sort($hierarchyTable, array(PR_CREATION_TIME => TABLE_SORT_ASCEND), TBL_BATCH);
 
 				/**
 				 * remove hidden folders, folders with PR_ATTR_HIDDEN property set

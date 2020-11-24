@@ -54,6 +54,13 @@ Zarafa.hierarchy.data.HierarchyTreeLoader = Ext.extend(Ext.tree.TreeLoader, {
 	isDeferred : false,
 
 	/**
+	 * This will be used in {@link #directFn} to determine whether to set defer or not when expanding a node.
+	 * For normal expansion its set to true to avoid browser crash while loding larger hierarchy.
+	 * It will be set to false in function {@link #onHierarchyAddFolder} to add nested folders in proper order.
+	 */
+	deferExpandNode : true,
+
+	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
@@ -313,6 +320,7 @@ Zarafa.hierarchy.data.HierarchyTreeLoader = Ext.extend(Ext.tree.TreeLoader, {
 					var newNode = this.createNode(Ext.apply({ nodeType : nodeType, folder: record }, this.nodeConfig));
 					parentNode.appendChild(newNode);
 					parentNode.expand();
+					this.deferExpandNode = false;
 				}
 			}
 		}
@@ -467,10 +475,20 @@ Zarafa.hierarchy.data.HierarchyTreeLoader = Ext.extend(Ext.tree.TreeLoader, {
 			// try to load the entire tree in a single thread which might take so long
 			// that the browser will kill it.
 			/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "defer" }]*/
-			var defer = function(node, fn) {
-				data = this.getFilteredChildNodes(treeNode.getFolder(), 'folder');
+			
+			// Note: Adding a defer while adding folders into hierarchy makes problem in finding parent node.
+			// And because of this nodes gets attached to its grand parent node and so on.
+			// So, only do defer while doing normal expand of a node.
+			// Ref: KW-1494.
+			data = this.getFilteredChildNodes(treeNode.getFolder(), 'folder');
+			if (this.deferExpandNode) {
+				var defer = function(node, fn, data) {
+					fn(data, { status: true });
+				}.defer(1, this, [node, fn, data]);
+			} else {
+				this.deferExpandNode = true;
 				fn(data, { status: true });
-			}.defer(1, this, [node, fn]);
+			}
 		}
 	},
 
@@ -551,23 +569,23 @@ Zarafa.hierarchy.data.HierarchyTreeLoader = Ext.extend(Ext.tree.TreeLoader, {
 		var folder = attr.folder;
 
 		if (folder) {
-		if (attr.nodeType === 'rootfolder') {
-			attr.extendedDisplayName = this.tree.hasFilter();
-		}
+			if (attr.nodeType === 'rootfolder') {
+				attr.extendedDisplayName = this.tree.hasFilter();
+			}
 
-		// To uniquely identify the favorites tree nodes we append the "favorites-" key word with node id
-		// when the node is created.
-		attr.id = folder.isFavoritesFolder() ? "favorites-" + folder.get('entryid') : folder.get('entryid');
-		if (folder.isFavoritesRootFolder()) {
-			attr.leaf = folder.get('assoc_content_count') === 0;
-		} else {
-			attr.leaf = !folder.get('has_subfolder');
-		}
+			// To uniquely identify the favorites tree nodes we append the "favorites-" key word with node id
+			// when the node is created.
+			attr.id = folder.isFavoritesFolder() ? "favorites-" + folder.get('entryid') : folder.get('entryid');
+			if (folder.isFavoritesRootFolder()) {
+				attr.leaf = folder.get('assoc_content_count') === 0;
+			} else {
+				attr.leaf = !folder.get('has_subfolder');
+			}
 
-		attr.uiProvider = Zarafa.hierarchy.ui.FolderNodeUI;
-		attr.expanded = this.tree.isFolderOpened(folder);
-		attr.allowDrag = !folder.isDefaultFolder() && !folder.isSearchFolder();
-	}
+			attr.uiProvider = Zarafa.hierarchy.ui.FolderNodeUI;
+			attr.expanded = this.tree.isFolderOpened(folder);
+			attr.allowDrag = !folder.isDefaultFolder() && !folder.isSearchFolder();
+		}
 
 		return Zarafa.hierarchy.data.HierarchyTreeLoader.superclass.createNode.apply(this, arguments);
 	},

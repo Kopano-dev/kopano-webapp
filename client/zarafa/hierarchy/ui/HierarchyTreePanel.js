@@ -291,7 +291,8 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 	 */
 	onFolderDrop : function(dropEvent)
 	{
-		if (Ext.isDefined(dropEvent.dropNode)) {
+		var dropNode = dropEvent.dropNode;
+		if (Ext.isDefined(dropNode)) {
 			var targetNode = dropEvent.target;
 
 			switch (dropEvent.point) {
@@ -305,14 +306,15 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 					break;
 			}
 
-			var sourceFolder = dropEvent.dropNode.getFolder();
+			var sourceFolder = dropNode.getFolder();
 			var targetFolder = targetNode.getFolder();
 
 			var hasAccess = targetFolder.get('access') & Zarafa.core.mapi.Access.ACCESS_CREATE_HIERARCHY;
 			var hasCtrlKeyPressed = dropEvent.rawEvent.ctrlKey;
 
+			var msg;
 			if (!hasAccess) {
-				var msg = hasCtrlKeyPressed ? _("You have insufficient privileges to copy this folder. Ask the folder owner to grant you permissions or contact your system administrator."):
+				msg = hasCtrlKeyPressed ? _("You have insufficient privileges to copy this folder. Ask the folder owner to grant you permissions or contact your system administrator."):
 					_("You have insufficient privileges to move this folder. Ask the folder owner to grant you permissions or contact your system administrator.");
 				container.getNotifier().notify('error', _("Insufficient privileges"), msg);
 				return false;
@@ -321,6 +323,12 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 			if (hasCtrlKeyPressed) {
 				sourceFolder.copyTo(targetFolder);
 			} else {
+				// Can not perform move operation, so suggest user a copy operation.
+				if (!sourceFolder.hasDeleteOwnRights()) {
+					msg = _("You have insufficient privileges to move this folder. Would you like to copy instead?");
+					Zarafa.common.Actions.showMessageBox(sourceFolder, targetFolder, sourceFolder.getMAPIFolderStore(), msg, this);
+					return false;
+				}	
 				sourceFolder.moveTo(targetFolder);
 			}
 

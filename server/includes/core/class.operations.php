@@ -1430,7 +1430,7 @@
 		 			 */
 					if($moveFolder) {
 						mapi_folder_copyfolder($sourceparentfolder, $sourcefolderentryid, $destfolder, $props[PR_DISPLAY_NAME], FOLDER_MOVE);
-						$folderProps = mapi_getprops($folder, array(PR_ENTRYID, PR_STORE_ENTRYID));
+						$folderProps = mapi_getprops($folder, array(PR_ENTRYID, PR_STORE_ENTRYID, PR_PARENT_ENTRYID));
 						$result = true;
 					} else {
 						mapi_folder_copyfolder($sourceparentfolder, $sourcefolderentryid, $destfolder, $props[PR_DISPLAY_NAME], COPY_SUBFOLDERS);
