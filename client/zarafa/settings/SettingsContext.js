@@ -140,9 +140,12 @@ Zarafa.settings.SettingsContext = Ext.extend(Zarafa.core.Context, {
 	 */
 	disable : function()
 	{
-		// Get the state of the navigation panel so we know if we must expand it again
+		// Get the state of the navigation panel so we know if we must expand it again.
+		// By default the navigation bar is expanded, but the state setting is not set (undefined).
+		// Expand the navigation bar when the state is 1) undefined, 2) true and collapsed.
+		// Ref KW-2961.
 		var navState = Ext.state.Manager.get(container.getNavigationBar().stateId);
-		if ( navState && !navState.collapsed ) {
+		if ((!Ext.isDefined(navState)) || (navState && !navState.collapsed)) {
 			container.getNavigationBar().expand();
 		}
 
