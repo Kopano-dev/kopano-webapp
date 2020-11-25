@@ -344,15 +344,21 @@ Zarafa.calendar.Actions = {
 			model.groupings[model.active_group] = { folders : [ folderEntryid ], active : folderEntryid };
 		}
 
-		// Enable the context, but keep is suspended to prevent loading data
+		// Enable the context, but keep it suspended to prevent loading data
 		container.switchContext(context, foldersToLoad, true);
 
-		// define which view to load
-		context.switchView(Zarafa.calendar.data.Views.BLOCKS, Zarafa.calendar.data.ViewModes.DAYS);
+		// If the view or viewmode is list, change it to blocks and day
+		if (context.getCurrentView() == Zarafa.calendar.data.Views.LIST || context.getCurrentViewMode() == Zarafa.calendar.data.ViewModes.LIST) {
+			context.switchView(Zarafa.calendar.data.Views.BLOCKS, Zarafa.calendar.data.ViewModes.DAYS);
+		}
 
-		// define which date range to load
+		// Define which date range to load
 		var appointmentDate = record.get('appointment_startdate') || record.get('appointment_basedate');
-		model.setDataMode(Zarafa.calendar.data.DataModes.DAY);
+		
+		// If the current data mode is all (list) change to day so the appointment will be visible
+		if (model.getCurrentDataMode() == Zarafa.calendar.data.DataModes.ALL) {
+			model.setDataMode(Zarafa.calendar.data.DataModes.DAY);
+		}
 		model.setDate(appointmentDate);
 
 		// Select the appointment
