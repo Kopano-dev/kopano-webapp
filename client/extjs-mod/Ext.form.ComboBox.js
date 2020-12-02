@@ -65,6 +65,18 @@
 			} else {
 				return document.body;
 			}
+		},
+
+		/**
+		 * Function disables/enables the label of a combobox
+		 * 
+		 * @param {Boolean} disabled true to disable the label
+		 */
+		disableLabel: function(disabled)
+		{
+			if (this.label) {
+				this.label.toggleClass('x-item-disabled');
+			}
 		}
 	});
 })();
