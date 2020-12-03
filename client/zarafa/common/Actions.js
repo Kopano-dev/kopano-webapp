@@ -309,7 +309,7 @@ Zarafa.common.Actions = {
 	openSendAsRecipientContent : function(record, config)
 	{
 		var componentType = Zarafa.core.data.SharedComponentType['common.managecc.dialog.managecceditcontentpanel'];
-		this.openEditRecipientContent(componentType, record);
+		this.openEditRecipientContent(componentType, record, config);
 	},
 
 	/**
@@ -984,6 +984,53 @@ Zarafa.common.Actions = {
 		});
 
 		Zarafa.core.data.UIFactory.openLayerComponent(componentType, undefined, config);
+	},
+
+	/**
+	 * Callback function for {@link Zarafa.addressbook.dialogs.ABUserSelectionContent AddressBook}
+	 * This callback is used in {@link Zarafa.common.sendas.ui.SendAsPanel SendAsPanel} 
+	 * and {@link Zarafa.common.manageCc.ui.ManageCcPanel ManageCcPanel} to display a message 
+	 * that recipeint already exists if selected recipeint from adressbook is already present in the store.
+	 * @param {Ext.data.Record} record user selected from AddressBook
+	 * @private
+	 */
+	abCallBack : function(records)
+	{
+		var store = this.getStore();
+		// find rowid value
+		var data = Ext.pluck(store.getRange(), 'data');
+		var rowId = Ext.max(Ext.pluck(data, 'rowid')) || 0;
+
+		var duplicate = [];
+		for (var i = 0; i < records.length; i++) {
+			var record = records[i];
+			if (store.isRecipientExists(record)) {
+				duplicate.push(record.get('display_name'));
+				continue;
+			}
+			
+			var recipientType;
+			if (store.customObjectType === Zarafa.core.data.RecordCustomObjectType.ZARAFA_CC_RECIPIENT) {
+				recipientType = Zarafa.core.mapi.RecipientType.MAPI_CC;
+			}
+			var recipientRecord = record.convertToRecipient(recipientType, store.customObjectType);
+			recipientRecord.set('rowid', ++rowId);
+
+			store.add(recipientRecord);
+		}
+
+		// Show warning message box.
+		if (!Ext.isEmpty(duplicate)) {
+			if (duplicate.length > 1) {
+				var msg = _('Following recipients are already exists');
+				msg += '<br>' + duplicate.map(function (item) {
+					return '<br>' + item;
+				});
+				
+				return Ext.Msg.alert(_('Duplicate recipients'), msg);
+			}			
+			Ext.Msg.alert(_('Duplicate recipient'), _('Recipient already exists.'));
+		}
 	},
 
 	/**

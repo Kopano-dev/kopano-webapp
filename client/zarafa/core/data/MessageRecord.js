@@ -520,6 +520,42 @@ Zarafa.core.data.MessageRecord = Ext.extend(Zarafa.core.data.IPMRecord, {
 	},
 
 	/**
+	 * Function will use 'sendas' data and set the default recipient in the from field, with respective action type value from 
+	 * {@link Zarafa.mail.data.ActionTypes ActionTypes} of {@link Zarafa.core.data.IPMRecord record}.
+	 * It will not set anything if the 'sendas' data is empty or no default recipient has been set for that action type
+	 * in 'sendas' settings widget.
+	 * @private
+	 */
+	setDefaultFromRecipeint: function()
+	{
+		var actionType = this.getMessageAction('action_type');
+		var isCreateAction = !this.hasMessageAction('action_type') && this.phantom;
+		var isReplyAction = actionType === Zarafa.mail.data.ActionTypes.REPLY || actionType === Zarafa.mail.data.ActionTypes.REPLYALL;
+		var isForwarsAction = actionType === Zarafa.mail.data.ActionTypes.FORWARD;
+		
+		// return if mail is not reply, new or forward mail.
+		if (isCreateAction === false && isReplyAction === false && isForwarsAction === false) {
+			return;
+		}
+
+		var settingsModel = container.getSettingsModel();
+		var defaultFromRecipients  = settingsModel.get('zarafa/v1/contexts/mail/sendas', []);
+		if (!Ext.isEmpty(defaultFromRecipients)) {
+			for (var i = 0; i < defaultFromRecipients.length; i++) {
+				var recipient = defaultFromRecipients[i];
+				if (isCreateAction && recipient['new_mail'] || isReplyAction && recipient['reply_mail'] || isForwarsAction && recipient['forward_mail']) {
+					this.set('sent_representing_name', recipient['display_name']);
+					this.set('sent_representing_email_address', recipient['email_address'] || recipient['smtp_address']);
+					this.set('sent_representing_address_type', recipient['address_type']);
+					this.set('sent_representing_entryid', recipient['entryid']);
+					this.set('sent_representing_search_key', recipient['search_key']);
+					break;
+				}
+			}
+		}
+	},
+
+	/**
 	 * Function is used to set the default Cc recipient in New or Reply mail as per the user
 	 * configured in settings.
 	 */

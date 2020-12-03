@@ -266,7 +266,7 @@ Zarafa.common.manageCc.ui.ManageCcPanel = Ext.extend(Ext.Panel, {
 	onClickAddressBookBtn : function()
 	{
 		Zarafa.common.Actions.openABUserSelectionContent({
-			callback : this.abCallBack,
+			callback : Zarafa.common.Actions.abCallBack,
 			scope : this,
 			singleSelect : false,
 			listRestriction : {
@@ -274,46 +274,6 @@ Zarafa.common.manageCc.ui.ManageCcPanel = Ext.extend(Ext.Panel, {
 				hide_companies : true
 			}
 		});
-	},
-
-	/**
-	 * Callback function for {@link Zarafa.addressbook.dialogs.ABUserSelectionContent AddressBook}
-	 * @param {Ext.data.Record} record user selected from AddressBook
-	 * @private
-	 */
-	abCallBack : function(records)
-	{
-		var store = this.getStore();
-		// find rowid value
-		var data = Ext.pluck(store.getRange(), 'data');
-		var rowId = Ext.max(Ext.pluck(data, 'rowid')) || 0;
-
-		var duplicate = [];
-		for (var i = 0; i < records.length; i++) {
-			var record = records[i];
-			if (store.isRecipientExists(record)) {
-				duplicate.push(record.get('display_name'));
-				continue;
-			}
-			var recipientRecord = record.convertToRecipient(Zarafa.core.mapi.RecipientType.MAPI_CC, store.customObjectType);
-			recipientRecord.set('rowid', ++rowId);
-
-			store.add(recipientRecord);
-		}
-
-		// Show warning message box.
-		if (!Ext.isEmpty(duplicate)) {
-			if (duplicate.length > 1) {
-				var msg = _('Following recipients are already exists');
-				msg += '<br>' + duplicate.map(function (item) {
-					return '<br>' + item;
-				});
-
-				return Ext.Msg.alert(_('Duplicate recipients'), msg);
-			} else {
-				Ext.Msg.alert(_('Duplicate recipient'), _('Recipient already exists.'));
-			}
-		}
 	}
 });
 Ext.reg('zarafa.manageccpanel', Zarafa.common.manageCc.ui.ManageCcPanel);

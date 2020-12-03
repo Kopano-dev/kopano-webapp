@@ -16,9 +16,16 @@ Zarafa.common.sendas.ui.SendAsGrid = Ext.extend(Ext.grid.GridPanel, {
 	constructor : function(config)
 	{
 		config = config || {};
-	
+		
+		var store = new Zarafa.core.data.IPMRecipientStore({
+			autoResolve : false,
+			autoDestroy : true,
+			customObjectType : Zarafa.core.data.RecordCustomObjectType.ZARAFA_FROM_RECIPIENT
+		});
+
 		Ext.applyIf(config, {
 			xtype : 'zarafa.sendasgrid',
+			store : store,
 			border : true,
 			viewConfig : {
 				forceFit : true,
@@ -57,14 +64,99 @@ Zarafa.common.sendas.ui.SendAsGrid = Ext.extend(Ext.grid.GridPanel, {
 			fixed : true,
 			renderer : Zarafa.common.ui.grid.Renderers.icon
 		},{
+			dataIndex : 'reply_mail',
+			header : _('Reply Mail'),
+			renderer : this.columnRenderer,
+			sortable : false,
+			menuDisabled :true,
+			fixed : true,
+			align  : "center",
+			width: 150,
+			listeners: {
+				click: this.onCellClick,
+				scope: this
+			}
+		},{
+			dataIndex : 'new_mail',
+			header : _('New Mail'),
+			renderer : this.columnRenderer,
+			sortable : false,
+			align  : "center",
+			menuDisabled :true,
+			fixed : true,
+			width: 150,
+			listeners: {
+				click: this.onCellClick,
+				scope: this
+			}
+		},{
+			dataIndex : 'forward_mail',
+			header : _('Forward Mail'),
+			renderer : this.columnRenderer,
+			sortable : false,
+			align  : "center",
+			menuDisabled :true,
+			fixed : true,
+			width: 150,
+			listeners: {
+				click: this.onCellClick,
+				scope: this
+			}
+		},{
 			dataIndex : 'display_name',
 			header : _('Name'),
-			renderer : Zarafa.common.ui.grid.Renderers.text
+			renderer : Zarafa.common.ui.grid.Renderers.text,
+			sortable : false,
+			menuDisabled :true,
+			width: 250
 		},{
 			dataIndex : 'smtp_address',
 			header : _('Email Address'),
-			renderer : Zarafa.common.ui.grid.Renderers.text
+			renderer : Zarafa.common.ui.grid.Renderers.text,
+			sortable : false,
+			menuDisabled :true,
+			width: 250
 		}];
+	},
+
+	/**
+	 * Render which shows cross or green right icon in grid column if From recipient is configured
+	 * for the 'New mail', 'Reply mail' or 'Forward mail'.
+	 *
+	 * @param {Object} value The data value for the cell.
+	 * @param {Object} p An object with metadata
+	 * @return {String} The formatted string
+	 */
+	columnRenderer : function (value, p)
+	{
+		p.css += 'zarafa-grid-empty-cell';
+		p.css += value === true ? ' icon_flag_complete' : ' icon_cross_red';
+		return '';
+	},
+
+	/**
+	 * Event handler triggered when the icon on the cell of "Reply Mail" or "New Mail" or "Forward mail" is clicked.
+	 *
+	 * @param {Object} item The item of {Ext.grid.ColumnModel columnModel} which was clicked.
+	 * @param {Ext.grid.GridPanel} grid the grid of which the row was clicked.
+	 * @param {Number} rowIndex number of the row clicked.
+	 */
+	onCellClick : function(item, grid, rowIndex)
+	{
+		var store = grid.getStore();
+		var record = store.getAt(rowIndex);
+		var recordProp = item.dataIndex;
+		var value = !record.get(recordProp);
+		
+		// Uncheck other true values while setting clicked cell's value as true.
+		if (value) {
+			store.getRange().forEach(function(record) {
+				if (record.get(recordProp)) {
+					record.set(recordProp, false);
+				}
+			});
+		}
+		record.set(item.dataIndex, value);
 	},
 
 	/**
@@ -135,7 +227,10 @@ Zarafa.common.sendas.ui.SendAsGrid = Ext.extend(Ext.grid.GridPanel, {
 	 */
 	editSendAsRecipient : function(record, removeOnCancel)
 	{
-		Zarafa.common.Actions.openSendAsRecipientContent(record, { removeOnCancel : removeOnCancel});
+		Zarafa.common.Actions.openSendAsRecipientContent(record, {
+			title: _('Add/Edit From recipient'),
+			removeOnCancel: removeOnCancel
+		});
 	},
 	
 	/**
