@@ -140,7 +140,7 @@ Zarafa.common.attachment.dialogs.AttachItemBaseRenderer = Ext.extend(Object, {
 		var html = '';
 
 		html += '<tpl if="!Ext.isEmpty(values.' + tag + ')">';
-		html += this.getLabel(tag) + ' : \t' + format + '\n';
+		html += this.getLabel(tag) + '\t' + format + '\n';
 		html += '</tpl>';
 
 		return html;

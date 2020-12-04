@@ -43,6 +43,8 @@ Zarafa.common.ui.messagepanel.SentInfoLinks = Ext.extend(Ext.Container, {
 				'</span>' +
 				/* # TRANSLATORS: check if the mail is send by some delegator or not. if then display "on behalf of". */
 				'<span>&nbsp;' + pgettext('mail.previewpanel', 'on behalf of') + '&nbsp;</span>' +
+				/* Display the initials of a sender */
+				'<span class="preview-header-sender-initial">{sender_initials}</span>' +
 				'<span class="zarafa-emailaddress-link zarafa-sentinfo-on-behalf">' +
 					'<span class="zarafa-presence-status {[Zarafa.core.data.PresenceStatus.getCssClass(values.sent_representing_presence_status)]}">'+
 						'<span class="zarafa-presence-status-icon"></span>' +
@@ -57,6 +59,8 @@ Zarafa.common.ui.messagepanel.SentInfoLinks = Ext.extend(Ext.Container, {
 		'<tpl if="Ext.isEmpty(values.sender_entryid) || Ext.isEmpty(values.sent_representing_entryid) || Zarafa.core.EntryId.compareABEntryIds(values.sent_representing_entryid, values.sender_entryid)">' +
 				'<span class="preview-from zarafa-presence-status {[Zarafa.core.data.PresenceStatus.getCssClass(values.sender_presence_status)]}">' +
 				'<span class="zarafa-presence-status-icon"></span>' +
+				/* Display the initials of a sender */
+				'<span class="preview-header-sender-initial">{sender_initials}</span>' +
 				'<span class="zarafa-emailaddress-link zarafa-sentinfo-link">' +
 					'{sender_name:htmlEncodeElide(this.ellipsisStringStartLength, this.ellipsisStringEndLength)}&nbsp;' +
 					'<tpl if="!Ext.isEmpty(values.sender_email_address)">' +
@@ -74,10 +78,15 @@ Zarafa.common.ui.messagepanel.SentInfoLinks = Ext.extend(Ext.Container, {
 		'</tpl>'+
 		'<tpl>'+
 			/* # TRANSLATORS: This message is used as label for the field which indicates the date/time on which the given message was sent. */
-			'<span class="preview-timestamp-title">' + pgettext('mail.previewpanel', 'Sent') + ':</span>' +
+			'<span class="preview-timestamp-title"></span>' +
 				'<tpl if="Ext.isDate(values.client_submit_time)">' +
+					'<tpl if="this.isShortDateFormat()">'+
+						'{client_submit_time:formatDefaultTimeString("' + _("D {0}") + '")}' +
+					'</tpl>' +
 					// # TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-					'{client_submit_time:formatDefaultTimeString("' + _("l jS F Y {0}") + '")}' +
+					'<tpl if="!this.isShortDateFormat()">'+
+						'{client_submit_time:formatDefaultTimeString("' + _("l d/m/Y {0}") + '")}' +
+					'</tpl>' +
 				'</tpl>' +
 				'<tpl if="!Ext.isDate(values.client_submit_time)">' +
 					/* # TRANSLATORS: This message is used to indicate that no sent date is available for the message (because it has not been sent yet). */
@@ -119,7 +128,16 @@ Zarafa.common.ui.messagepanel.SentInfoLinks = Ext.extend(Ext.Container, {
 				 */
 				isMeeting: function(messageClass) {
 					return (Zarafa.core.MessageClass.isClass(messageClass, 'ipm.schedule.meeting', true));
-				}
+				},
+
+				/**
+				 * Function is used to check the current datetime display format.
+				 * @private
+				 */
+				isShortDateFormat: function() {
+					var dateFormat = container.settingsModel.get('zarafa/v1/main/datetime_display_format');
+					return (dateFormat === 'short');
+				},
 			});
 		}
 	},
@@ -169,6 +187,10 @@ Zarafa.common.ui.messagepanel.SentInfoLinks = Ext.extend(Ext.Container, {
 				if (Ext.isFunction(record.getSentRepresenting)) {
 					user = Zarafa.core.data.UserIdObjectFactory.createFromRecord(record.getSentRepresenting());
 					record.data.sent_representing_presence_status = Zarafa.core.PresenceManager.getPresenceStatusForUser(user);
+				}
+
+				if (Ext.isFunction(record.getSenderInitials)) {
+					record.data.sender_initials = record.getSenderInitials();
 				}
 
 				this.senderTemplate.overwrite(senderElem, record.data);
@@ -228,11 +250,15 @@ Zarafa.common.ui.messagepanel.SentInfoLinks = Ext.extend(Ext.Container, {
 	convertSenderToRecord : function(elem)
 	{
 		var sender;
+		// Sometimes, the element clicked is the presence status of the user. 
+		// We need the email address link to check for the css classes - zarafa-sentinfo-link or zarafa-sentinfo-on-behalf.
+		// Hence we need the parent of zarafa-presence-status i.e. zarafa-emailaddress-link.
+		var element = Ext.get(elem).hasClass('zarafa-presence-status') ? Ext.get(elem.parentElement) : Ext.get(elem);
 
 		//depending on whether the user clicked on sender or 'on behalf of', choose appropriate fields
-		if(Ext.get(elem).hasClass('zarafa-sentinfo-link')) {
+		if(element.hasClass('zarafa-sentinfo-link')) {
 			sender = this.record.getSender();
-		} else if(Ext.get(elem).hasClass('zarafa-sentinfo-on-behalf')) {
+		} else if(element.hasClass('zarafa-sentinfo-on-behalf')) {
 			sender = this.record.getSentRepresenting();
 		}
 		return sender;

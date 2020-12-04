@@ -50,13 +50,14 @@ Zarafa.common.ui.messagepanel.AttachmentLinks = Ext.extend(Ext.DataView, {
 			border : false,
 			autoScroll:true,
 			anchor : '100%',
+			iconCls: 'icon_paperclip',
 			cls: 'preview-header-attachments',
 			multiSelect : false,
 			overClass: 'zarafa-attachment-link-over',
 			itemSelector: 'span.zarafa-attachment-link',
 			tpl : new Ext.XTemplate(
 				'<div class="preview-header-attachmentbox">' +
-					'<div class="preview-attachment-title">{this.fieldLabel}:</div>' +
+					'<div class="preview-attachment-title icon_paperclip"></div>' +
 					'<div class="preview-attachment-data" style="max-height: {this.maxHeight}px">' +
 						'<tpl for=".">' +
 							'<span class="zarafa-attachment-link x-zarafa-boxfield-item" viewIndex="{viewIndex}">' +
@@ -70,7 +71,6 @@ Zarafa.common.ui.messagepanel.AttachmentLinks = Ext.extend(Ext.DataView, {
 				'</div>',
 				{
 					compiled : true,
-					fieldLabel : config.fieldLabel || this.fieldLabel,
 					maxHeight : config.maxHeight || this.maxHeight,
 					ellipsisStringStartLength : config.ellipsisStringStartLength || this.ellipsisStringStartLength,
 					ellipsisStringEndLength : config.ellipsisStringEndLength || this.ellipsisStringEndLength

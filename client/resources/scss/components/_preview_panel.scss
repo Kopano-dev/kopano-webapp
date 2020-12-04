@@ -1,7 +1,19 @@
 .preview-header {
-	padding: 0 ($padding-large - 5px) 0 $padding-large;
 	border-bottom: 1px solid $grey;
 }
+
+.preview-header {
+	.preview-header-title,
+	.preview-header-sentinfo,
+	.preview-header-recipients,
+	.k-preview-header-categories,
+	.preview-header-meeting,
+	.preview-header-task,
+	.preview-header-attachmentbox {
+		padding: 0 ($padding-large - 5px) 0 $padding-large;
+	}
+}
+
 .preview-header .x-panel-body {
 	/* we cannot set this padding on the .preview-header because it will fuck up the collapse/expand animation */
 	padding-bottom: $padding-medium;
@@ -83,14 +95,15 @@
 /* the expand/collapse button */
 $preview-header-collapse-button-width	: $font-line-height-large;
 $preview-header-collapse-button-height	: $preview-header-collapse-button-width;
-$preview-header-collapse-icon-width		: 9;
+$preview-header-collapse-icon-width	: 9;
 $preview-header-collapse-icon-height	: 5;
 
 .preview-header-collapse {
 	float: right;
 	width: $preview-header-collapse-button-width;
 	height: $preview-header-collapse-button-height;
-	margin: (-$padding-large) (-$padding-large) 0 $padding-large; /* pulling it to the top and the right to be able to create a larger click area */
+	padding: $padding-small;
+	margin-top: (-$padding-small);
 	cursor: pointer;
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -121,29 +134,56 @@ $preview-header-collapse-icon-height	: 5;
 .preview-header-recipients, .preview-header-meeting, .preview-header-attachments {
 	display: block;
 	margin-top: $padding-medium;
-
 }
 
 .preview-header-recipients .preview-recipient-title,
 .preview-header-attachments .preview-attachment-title {
-	float:left;
+	float: left;
 }
 
+.preview-attachment-title.icon_paperclip {
+	width: 15px;
+	height: 17px;
+}
 
-.preview-header-sentinfo .preview-timestamp-title,
 .preview-header-recipients .preview-recipient-title,
 .preview-header-attachments .preview-attachment-title,
 .preview-header-meeting .preview-when .preview-when-title,
 .preview-header-meeting .preview-proposed .preview-proposed-title,
 .preview-header-meeting .preview-location .preview-location-title {
 	display: inline-block;
-	min-width: 36px;
-	font-weight: normal;
+	font-weight: bold;
 	padding-right: $padding-medium;
 }
 
-.preview-recipient-data{
-	line-height: 16px;
+.preview-header-sentinfo .preview-from {
+	font-size: 16px;
+}
+
+.preview-from .zarafa-emailaddress-link {
+	display: inline-block;
+	margin-top: 1px;
+}
+
+.preview-header-sentinfo .preview-timestamp {
+	font-size: $font-default-size;
+	color: $preview-panel-timestamp;
+}
+
+/* Todo sassify me */
+.preview-header-sender-initial {
+	border: 1px solid;
+	color: $kopano-blue;
+	border-radius: 50%;
+	-moz-border-radius: 50%;
+	display: inline-block;
+	line-height: 40px;
+	margin-right: 7px;
+	text-align: center;
+	width: 40px;
+	font-size: 18px !important;
+	@include basefont($font-size-extra-large);
+	float: left;
 }
 
 .preview-body {
@@ -171,8 +211,9 @@ $preview-header-collapse-icon-height	: 5;
 /* Top header infobox  */
 .preview-header-extrainfobox {
 	background-color: $light-blue;
-	margin-bottom: $padding-small;
+	margin-bottom: $padding-medium;
 	padding: $padding-medium $padding-large $padding-medium $padding-large;
+	margin-top: $padding-small;
 }
 
 /* Corrupt message case */
@@ -201,14 +242,11 @@ span.zarafa-emailaddress-link:hover {
 
 .preview-header-attachments .zarafa-attachment-link {
 	// FIXME: sassify
-	border-radius: 4px;
-	border: 1px solid #d3d2d2;
 	background-color: #ebeaeb;
-	color: #00a;
-	padding: 1px 5px;
+	padding: 2px 5px;
 	margin: 1px;
-	box-shadow: 0 0 1px #ddd inset;
 	cursor: pointer;
+	border-radius: 1px;
 }
 
 .preview-header-attachments .zarafa-attachment-link-over {

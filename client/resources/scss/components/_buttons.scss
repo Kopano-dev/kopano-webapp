@@ -1,13 +1,13 @@
 /* TODO: move colors to base/_color.scss for easy maintenance/theming */
 
 /* Action buttons: 'send' and 'save' */
-$action-bgcolor					: $green;
+$action-bgcolor				: $green;
 $action-bgcolor-hover			: $green-hover;
-$action-fontcolor				: $font-color-light;
+$action-fontcolor			: $font-color-light;
 
 /* Normal standard button */
 $normal-button-bgcolor			: $grey;
-$normal-button-bgcolor-hover	: $grey2;
+$normal-button-bgcolor-hover		: $grey2;
 
 /**************************************
  * General buttons
@@ -339,6 +339,7 @@ $normal-button-bgcolor-hover	: $grey2;
 
 
 .x-window {
+	
 	.k-recipient-hover-card-button {
 		.x-btn-small {
 			background-color: transparent !important;
@@ -350,6 +351,10 @@ $normal-button-bgcolor-hover	: $grey2;
 		.x-btn-small, .x-btn-medium, .x-btn-large {
 			border: 1px solid $grey2 !important;
 		}
+	}
+
+	.k-hover-card-recipient-detail-panel button {
+		margin-top: -2px;
 	}
 
 	.x-panel-footer, .x-window-footer {
@@ -366,6 +371,7 @@ $normal-button-bgcolor-hover	: $grey2;
 
 	.k-hover-card-email-text {
 		padding-right: $padding-medium !important;
+		margin-top: 2px;
 	}
 }
 
