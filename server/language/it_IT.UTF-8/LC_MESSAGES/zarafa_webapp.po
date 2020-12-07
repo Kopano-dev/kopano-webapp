@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Kopano Webapp Italian (Italy)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-25 14:32+0200\n"
-"PO-Revision-Date: 2020-11-04 11:47+0000\n"
+"PO-Revision-Date: 2020-12-07 16:28+0000\n"
 "Last-Translator: Luca <luca.delcarlo@welcomeitalia.it>\n"
 "Language-Team: Italian <http://translate.kopano.io/projects/kopano/kopano-"
 "webapp/it/>\n"
@@ -1091,6 +1091,7 @@ msgstr "Invia aggiornamento ai partecipanti"
 msgid ""
 "You have made changes to the list of attendees. What would you like to do?"
 msgstr ""
+"Hai apportato modifiche all'elenco dei partecipanti. Cosa ti piacerebbe fare?"
 
 msgid "Send updates to only added or deleted attendees."
 msgstr "Invia aggiornamenti solamente ai partecipanti aggiunti o eliminati."
@@ -1386,7 +1387,7 @@ msgid "Copy selected item"
 msgstr "Copia l'elemento selezionato"
 
 msgid "Paste selected item"
-msgstr "Incollat l'elemento selezionato"
+msgstr "Incolla l'elemento selezionato"
 
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "Start"
@@ -1555,9 +1556,8 @@ msgid "Copy/Move"
 msgstr "Copia/Sposta"
 
 # 75%
-#, fuzzy
 msgid "Send to..."
-msgstr "Invia"
+msgstr "Invia..."
 
 msgid "Export as"
 msgstr "Esporta come"
@@ -1701,7 +1701,7 @@ msgid "Update recipients"
 msgstr "Modifica destinatario"
 
 msgid "The time of the meeting has changed. What would you like to do?"
-msgstr ""
+msgstr "L'orario dell'appuntamento è cambiato. Cosa ti piacerebbe fare?"
 
 msgid "Save changes and send an update to all recipients"
 msgstr "Salva le modifiche e invia un aggiornamento a tutti i destinatari"
@@ -2384,22 +2384,18 @@ msgstr "la prossima settimana"
 msgid "Edit recipient"
 msgstr "Modifica destinatario"
 
-#, fuzzy
 msgid "Copy email address"
-msgstr "Copia l'indirizzo di e-mail"
+msgstr "Copia l'indirizzo e-mail"
 
-#, fuzzy
 msgid "Set as required"
-msgstr "Questo campo è richiesto"
+msgstr "Imposta come richiesto"
 
 # 75%
-#, fuzzy
 msgid "Set as optional"
-msgstr "Opzionale"
+msgstr "Imposta come opzionale"
 
-#, fuzzy
 msgid "Set as resource"
-msgstr "Ordina per: Risorse"
+msgstr "Imposta come risorsa"
 
 msgid "Select attendees"
 msgstr "Seleziona partecipanti"
@@ -2430,8 +2426,7 @@ msgid "No suggestions available"
 msgstr "Nessun suggerimento disponibile"
 
 msgid "Switch between different contexts e.g. inbox, calendar, etc."
-msgstr ""
-"Alterna tra contesti differenti (es. posta in arrivo, calendario, ecc.)."
+msgstr "Cambia contesto es. posta, calendario, etc."
 
 msgid "Basic navigation"
 msgstr "Navigazione base"
@@ -2458,7 +2453,7 @@ msgid "Save an item e.g. mail, contact, etc."
 msgstr "Salva un elemento (es. email, contatto, ecc.)."
 
 msgid "Send an item e.g. mail, meeting request, etc."
-msgstr "Invia un elemento (es. email, richiesta appuntamento, ecc.)."
+msgstr "Invia un elemento (es. email, richiesta appuntamento, etc.)."
 
 msgid "Select all items"
 msgstr "Selezione tutti gli elementi"
@@ -2587,9 +2582,8 @@ msgstr ""
 msgid "Edit Recipient"
 msgstr "Modifica destinatario"
 
-#, fuzzy
 msgid "Copy email addresses"
-msgstr "Copia l'indirizzo di e-mail"
+msgstr "Copia gli indirizzi e-mail"
 
 msgid "Send email"
 msgstr "Invia email"
@@ -4641,9 +4635,8 @@ msgstr "La tua email verrà inviata {0}{1}"
 msgid "Saving..."
 msgstr "Salvataggio in corso..."
 
-#, fuzzy
 msgid "Saved at {0}"
-msgstr "Messaggio salvato il {0}."
+msgstr "Messaggio salvato il {0}"
 
 #, fuzzy
 msgid "Saving failed"
@@ -4763,7 +4756,7 @@ msgid "Toggle red/complete flag"
 msgstr "Attiva/Disattiva bandierina rossa/completato"
 
 msgid "Close a conversation"
-msgstr ""
+msgstr "Chiudi la conversazione"
 
 # 86%
 # 78%
@@ -5027,7 +5020,6 @@ msgid "Move to Junk Folder"
 msgstr "Sposta nella cartella Posta Indesiderata"
 
 # 75%
-#, fuzzy
 msgid "Send to"
 msgstr "Invia"
 
