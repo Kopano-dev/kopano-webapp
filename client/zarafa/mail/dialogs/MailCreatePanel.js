@@ -294,6 +294,7 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 		}
 
 		if (contentReset) {
+			record.setDefaultFromRecipeint();
 			record.setDefaultCcRecipients();
 		}
 

@@ -24,7 +24,7 @@ Zarafa.common.sendas.ui.SendAsPanel = Ext.extend(Ext.Panel, {
 				align : 'stretch',
 				pack  : 'start'
 			},
-			items : this.createPanelItems(config.store)
+			items : this.createPanelItems()
 		});
 
 		Zarafa.common.sendas.ui.SendAsPanel.superclass.constructor.call(this, config);
@@ -32,15 +32,14 @@ Zarafa.common.sendas.ui.SendAsPanel = Ext.extend(Ext.Panel, {
 	
 	/**
 	 * Function will create panel items for {@link Zarafa.common.sendas.ui.SendAsPanel SendAsPanel}
-	 * @param {Zarafa.core.data.IPMRecipientStore} store store which configured in the grid
 	 * @return {Array} array of items that should be added to panel.
 	 * @private
 	 */
-	createPanelItems : function(store)
+	createPanelItems : function()
 	{
 		return [{
 			xtype: 'displayfield',
-			value: _('Manage the email addresses you can use as sender address when sending an email.'),
+			value: _("Manage the recipients used in the 'From' field"),
 			fieldClass: 'x-form-display-field zarafa-settings-widget-extrainfo'
 		}, {
 			xtype: 'container',
@@ -53,7 +52,6 @@ Zarafa.common.sendas.ui.SendAsPanel = Ext.extend(Ext.Panel, {
 			items: [{
 				xtype: 'zarafa.sendasgrid',
 				ref: '../sendasGrid',
-				store: store,
 				flex: 1
 			}, {
 				xtype: 'container',
@@ -124,6 +122,16 @@ Zarafa.common.sendas.ui.SendAsPanel = Ext.extend(Ext.Panel, {
 	},
 
 	/**
+	 * Returns the {@link Zarafa.core.data.IPMRecipientStore IPMRecipientStore} associated
+	 * with this panel.
+	 * @return {Zarafa.core.data.IPMRecipientStore} The store
+	 */
+	getStore : function()
+	{
+		return this.sendasGrid.getStore();
+	},
+
+	/**
 	 * Handler function will be called when user clicks on 'Add' button,
 	 * this will show addressbook dialog to select sendas user.
 	 * @private
@@ -131,17 +139,18 @@ Zarafa.common.sendas.ui.SendAsPanel = Ext.extend(Ext.Panel, {
 	onSendAsAdd : function()
 	{
 		// find rowid value
-		var data = Ext.pluck(this.store.getRange(), 'data');
+		var store = this.getStore();
+		var data = Ext.pluck(store.getRange(), 'data');
 		var rowId = Ext.max(Ext.pluck(data, 'rowid')) || 0;
 
-		var record = Zarafa.core.data.RecordFactory.createRecordObjectByCustomType(Zarafa.core.data.RecordCustomObjectType.ZARAFA_RECIPIENT, {
+		var record = Zarafa.core.data.RecordFactory.createRecordObjectByCustomType(Zarafa.core.data.RecordCustomObjectType.ZARAFA_FROM_RECIPIENT, {
 			// rowid is the {@link Ext.data.JsonReader#idProperty} in {@link Zarafa.core.data.IPMRecipientStore IPMRecipientStore}
 			// so we must have to configure the rowid properly.
 			rowid : rowId + 1,
 			display_type : Zarafa.core.mapi.DisplayType.DT_REMOTE_MAILUSER
 		});
 		
-		this.store.add(record);
+		store.add(record);
 
 		this.sendasGrid.editSendAsRecipient(record, true);
 	},
@@ -233,7 +242,7 @@ Zarafa.common.sendas.ui.SendAsPanel = Ext.extend(Ext.Panel, {
 	onSendAsAddressBook : function()
 	{
 		Zarafa.common.Actions.openABUserSelectionContent({
-			callback : this.abCallBack,
+			callback : Zarafa.common.Actions.abCallBack,
 			scope : this,
 			singleSelect : false,
 			listRestriction : {
@@ -241,27 +250,6 @@ Zarafa.common.sendas.ui.SendAsPanel = Ext.extend(Ext.Panel, {
 				hide_companies : true
 			}
 		});
-	},
-
-	/**
-	 * Callback function for {@link Zarafa.addressbook.dialogs.ABUserSelectionContent AddressBook}
-	 * @param {Ext.data.Record} record user selected from AddressBook
-	 * @private
-	 */
-	abCallBack : function(records)
-	{
-		// find rowid value
-		var data = Ext.pluck(this.store.getRange(), 'data');
-		var rowId = Ext.max(Ext.pluck(data, 'rowid')) || 0;
-
-		for (var i = 0; i < records.length; i++) {
-			var record = records[i];
-
-			record = record.convertToRecipient();
-			record.set('rowid', ++rowId);
-
-			this.store.add(record);
-		}
 	}
 });
 

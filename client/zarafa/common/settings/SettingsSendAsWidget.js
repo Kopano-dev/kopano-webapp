@@ -18,11 +18,6 @@ Zarafa.common.settings.SettingsSendAsWidget = Ext.extend(Zarafa.settings.ui.Sett
 	{
 		config = config || {};
 
-		var store = new Zarafa.core.data.IPMRecipientStore({
-			autoResolve : false,
-			autoDestroy : true
-		});
-
 		Ext.applyIf(config, {
 			height : 400,
 			title : _('From Addresses settings'),
@@ -33,7 +28,6 @@ Zarafa.common.settings.SettingsSendAsWidget = Ext.extend(Zarafa.settings.ui.Sett
 			},
 			items : [{
 				xtype : 'zarafa.sendaspanel',
-				store : store,
 				ref : 'sendasPanel'
 			}]
 		});
@@ -48,7 +42,7 @@ Zarafa.common.settings.SettingsSendAsWidget = Ext.extend(Zarafa.settings.ui.Sett
 	 */
 	getStore : function()
 	{
-		return this.sendasPanel.store;
+		return this.sendasPanel.getStore();
 	},
 
 	/**
