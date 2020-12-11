@@ -105,12 +105,11 @@ Zarafa.core.ui.MainViewport = Ext.extend(Ext.Viewport, {
 			region : 'east',
 			title : _('Widgets'),
 			numColumns : 1,
-
 			stateful : true,
 			statefulName : 'todaybar',
 			statefulRelativeDimensions : false,
 			settingsPath : 'zarafa/v1/contexts/today/sidebar',
-
+			hidden: container.getSettingsModel().get('zarafa/v1/widgets/sidebar/hide_widgetpanel', true, false),
 			collapsed : true
 		});
 		return this.widgetPanel;

@@ -349,7 +349,7 @@ Zarafa.settings.data.SettingsDefaultValue = function(){
 
 								}
 							},
-
+							
 							'reminder' : {
 								/**
 								 * zarafa/v1/main/reminder/polling_interval
@@ -846,10 +846,22 @@ Zarafa.settings.data.SettingsDefaultValue = function(){
 								 * @type Number
 								 */
 								'num_columns' : 3
+							},
+						},
+		
+						'widgets' : {
+
+							'sidebar' : {
+								/**
+								 * zarafa/v1/widgets/sidebar/hide_widgetpanel
+								 * @property
+								 * @type Boolean
+								 */
+								'hide_widgetpanel' : false
 							}
 						}
 					}
-				}
+				}	
 			};
 		}
 	};
