@@ -345,6 +345,23 @@ class WebAppAuthentication
 	}
 
 	/**
+	 * Function which try to open the default store using existing mapi session.
+	 * 
+	 * @return {Boolean} true if default store open else false.
+	 */
+	public static function isDefaultStoreAccessible(){
+		$mapiSession = WebAppAuthentication::getMapiSession();
+		$storeEntryID = $mapiSession->getDefaultMessageStoreEntryId();
+		try {
+			mapi_openmsgstore($mapiSession->getSession(), hex2bin($storeEntryID));
+		} catch (MAPIException $e) {
+			error_log('OIDC access token is expired therefore failed to open the default store with entryid ' . $storeEntryID);
+			return false;
+		}
+		return true;
+	} 
+
+	/**
 	 * Logs the user in with a given username and token in $_POST and logs
 	 * in with the special flag for token authentication enabled. If $new
 	 * is true it's assumed that a session does not exists and there will

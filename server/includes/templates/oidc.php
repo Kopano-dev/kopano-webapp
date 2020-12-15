@@ -12,14 +12,14 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<link rel="icon" href="<?php echo $favicon ?>" type="image/x-icon">
-		<link rel="shortcut icon" href="<?php echo $favicon ?>" type="image/x-icon">
+		<link rel="icon" href="<?php echo isset($favicon) ? $favicon : '' ?>" type="image/x-icon">
+		<link rel="shortcut icon" href="<?php echo isset($favicon) ? $favicon: '' ?>" type="image/x-icon">
 
 		<link rel="stylesheet" type="text/css" href="client/resources/css/external/login.css">
 
 		<?php
 			/* Add the styling of the theme */
-			echo Theming::getStyles($theme);
+			echo Theming::getStyles(isset($theme)? $theme : 'basic');
 
 			$oidcSettings = Array(
 				'authority' => OIDC_ISS,
@@ -36,6 +36,6 @@
 		<script type="text/javascript"><?php require(BASE_PATH . 'client/oidc/oidc-client.js'); ?></script>
 		<script type="text/javascript"><?php require(BASE_PATH . 'client/oidc-kopano.js'); ?></script>
 	</head>
-	<body class="login theme-<?php echo strtolower($theme ? $theme : 'basic') ?>">
+	<body class="login theme-<?php echo strtolower(isset($theme) ? $theme : 'basic') ?>">
 	</body>
 </html>
