@@ -83,10 +83,18 @@
 		$_SESSION['continue'] = $_GET['continue'];
 	}
 
+	$webappTitle = defined('WEBAPP_TITLE') && WEBAPP_TITLE ? WEBAPP_TITLE : 'Kopano WebApp';
+
+	if ( isset($_GET['oidclogin']) ) {
+		$theme = Theming::getActiveTheme();
+		$favicon = getFavicon($theme);
+		// Redirect to interactive sign in page.
+		include(BASE_PATH . 'server/includes/templates/oidc-login.php');
+		die();
+	}
+
 	// Try to authenticate the user
 	WebAppAuthentication::authenticate();
-
-	$webappTitle = defined('WEBAPP_TITLE') && WEBAPP_TITLE ? WEBAPP_TITLE : 'Kopano WebApp';
 
 	// If we could not authenticate the user, we will show the login page
 	if ( !WebAppAuthentication::isAuthenticated() ){
