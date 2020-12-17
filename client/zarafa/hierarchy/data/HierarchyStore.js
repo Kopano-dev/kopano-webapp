@@ -893,11 +893,12 @@ Zarafa.hierarchy.data.HierarchyStore = Ext.extend(Zarafa.core.data.IPFStore, {
 	 * wait for / handle a response.
 	 * @param {Zarafa.core.Actions} action The action type that will be send to the server
 	 * @param {Function} callback call back function to call when the request has finished successfully.
+	 * @param {Array} params The request params.
 	 */
-	sendSimpleActionToServer : function(action, callback)
+	sendSimpleActionToServer : function(action, callback, params)
 	{
 		var options = {
-			params : {},
+			params : Ext.isDefined(params)? params : {},
 			actionType : action
 		};
 
@@ -1079,7 +1080,7 @@ Zarafa.hierarchy.data.HierarchyStore = Ext.extend(Zarafa.core.data.IPFStore, {
 	 */
 	startEnsureLicense : function ()
 	{
-		this.ensureLicense();
+		this.ensureLicense(true);
 
 		this.lastEnsuredLicenseTime = new Date().getTime();
 		// Trigger callback function on interval of every 1 minute.
@@ -1088,7 +1089,7 @@ Zarafa.hierarchy.data.HierarchyStore = Ext.extend(Zarafa.core.data.IPFStore, {
 
 			// Ensure the license every 1 hour.
 			if (interval >= (60 * 60 * 1000)) {
-				scope.ensureLicense();
+				scope.ensureLicense(false);
 				scope.lastEnsuredLicenseTime = new Date().getTime();
 			}
 
@@ -1097,10 +1098,11 @@ Zarafa.hierarchy.data.HierarchyStore = Ext.extend(Zarafa.core.data.IPFStore, {
 
 	/**
 	 * Send a <b>ensure</b> request to make the backend check the license is valid or not.
+	 * @param {Boolean} init The init indicate request for ensuring license is initial request.
 	 */
-	ensureLicense : function ()
+	ensureLicense : function (init)
 	{
-		this.sendSimpleActionToServer(Zarafa.core.Actions['ensure'], this.ensureLicenseCallback);
+		this.sendSimpleActionToServer(Zarafa.core.Actions['ensure'], this.ensureLicenseCallback,{"init":init});
 	},
 
 	/**
