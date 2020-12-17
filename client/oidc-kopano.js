@@ -314,10 +314,14 @@ const userManager = (function(){
 
 		mgr.events.addUserSignedOut(function (){
 			console.debug('oidc user signed out at OP');
-			mgr.getUser().then(function (user){
-				if (!user) {
-					reauthenticateWithRedirect();
-				}
+			mgr.removeUser();
+
+			// clear php session and redirect to interactive sign in page.
+			clearSession(function (){
+				console.debug('webapp php session cleared.');
+
+				Zarafa.core.Util.disableLeaveRequester();
+				window.location = "?oidclogin";
 			});
 		});
 
@@ -487,6 +491,18 @@ const userManager = (function(){
 
 
 document.addEventListener('DOMContentLoaded', function() {
+	// Condition succeed when interactive signin page was show.
+	const metaEl = document.querySelector("meta[name='kopano:webapp-view']");
+	if (metaEl && metaEl.content === 'interactive-signin') {
+		var uri = [location.protocol, '//', location.host, location.pathname].join('');
+		window.history.replaceState({}, document.title, uri);
+
+		document.getElementById("signin-btn").addEventListener("click", function (){
+			window.location.reload();
+		});
+		return;
+	}
+
 	const elem = document.getElementById('oidc-settings');
 	if (!elem) {
 		return;
