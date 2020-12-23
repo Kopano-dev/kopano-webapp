@@ -68,4 +68,12 @@ Zarafa.core.HtmlEditorPlugin = Ext.extend(Zarafa.core.Plugin, {
 	 * @param {String} value The text which must be inserted at the cursor position
 	 */
 	insertAtCursor : Ext.emptyFn,
+
+	/**
+	 * Function select the text in editor by given selector.
+	 *
+	 * @param {String} selector The selector query which used to select the text in editor.
+	 * @return {boolean} return true if text is selected in editor else false.
+	 */
+	selectBySelector : Ext.emptyFn,
 });

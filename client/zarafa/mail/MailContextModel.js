@@ -624,12 +624,7 @@ Zarafa.mail.MailContextModel = Ext.extend(Zarafa.core.ContextModel, {
 
 			// Prefix the signature with two newlines
 			if ( withEmptyLines !== false ) {
-				var fontFamily = container.getSettingsModel().get('zarafa/v1/main/default_font');
-				var fontSize = Zarafa.common.ui.htmleditor.Fonts.getDefaultFontSize();
-				sigDetails['content'] =
-					'<p style="font-family:'+fontFamily+'; font-size:'+fontSize+'; padding: 0; margin: 0;"><br/></p>' +
-					'<p style="font-family:'+fontFamily+'; font-size:'+fontSize+'; padding: 0; margin: 0;"><br/></p>' +
-					sigDetails['content'];
+				sigDetails['content'] = this.wrapSignature(sigDetails['content']);
 			}
 		}
 
@@ -637,6 +632,23 @@ Zarafa.mail.MailContextModel = Ext.extend(Zarafa.core.ContextModel, {
 		sigDetails['content'] = this.replaceSignatureTemplates(sigDetails['content'], preferHtml);
 
 		return sigDetails['content'];
+	},
+
+	/**
+	 * Function is used to wrap the signature with div 'signature' which again wrapped wtith 'signatureContainer'
+	 * alogn with two empty lines.
+	 *
+	 * @param {String} signature The signature which is going to wrapped.
+	 * @return {String} Wrapped signature.
+	 */
+	wrapSignature : function(signature)
+	{
+		var fontFamily = container.getSettingsModel().get('zarafa/v1/main/default_font');
+		var fontSize = Zarafa.common.ui.htmleditor.Fonts.getDefaultFontSize();
+
+		return '<p style="font-family:'+fontFamily+'; font-size:'+fontSize+'; padding: 0; margin: 0;"><br/></p>' +
+			'<p style="font-family:'+fontFamily+'; font-size:'+fontSize+'; padding: 0; margin: 0;"><br/></p>' +
+			'<div class="signatureContainer"><div class="signature">'+signature+'</div></div>';
 	},
 
 	/**
