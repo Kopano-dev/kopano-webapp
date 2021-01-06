@@ -211,6 +211,17 @@
 	// Create global operations object
 	$GLOBALS["operations"] = new Operations();
 
+	// When OIDC is configured, check default store is
+	// accessible by the available session object. In case
+	// of failure redirect to oidc.php template page. for more
+	// refer KW-3598.
+	if (OIDC_ISS !== "") {
+		if (WebAppAuthentication::isDefaultStoreAccessible() === false) {
+			include(BASE_PATH . 'server/includes/templates/oidc.php');
+			die();
+		}
+	}
+
 	// If webapp feature is not enabled for the user,
 	// we will show the login page with appropriated error message.
 	if($GLOBALS['mapisession']->isWebappDisableAsFeature()) {
