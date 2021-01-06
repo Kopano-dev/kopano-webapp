@@ -29,7 +29,7 @@
 		/**
 		 * @var string The entryid (binary) of the default store
 		 */
-		private $defaultstore;
+		private $defaultStore;
 
 		/**
 		 * @var string The entryid (binary) of the public store
@@ -59,7 +59,7 @@
 		function __construct()
 		{
 			$this->stores = array();
-			$this->defaultstore = null;
+			$this->defaultStore = null;
 			$this->publicStore = null;
 			$this->session = false;
 			$this->ab = false;
@@ -479,8 +479,8 @@
 		function getDefaultMessageStore($reopen = False)
 		{
 			// Return cached default store if we have one
-			if (!$reopen && isset($this->defaultstore) && isset($this->stores[$this->defaultstore])) {
-				return $this->stores[$this->defaultstore];
+			if (!$reopen && isset($this->defaultStore) && isset($this->stores[$this->defaultStore])) {
+				return $this->stores[$this->defaultStore];
 			}
 
 			$this->loadMessageStoresFromSession();
