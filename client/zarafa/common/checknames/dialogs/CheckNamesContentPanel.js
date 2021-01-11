@@ -82,7 +82,29 @@ Zarafa.common.checknames.dialogs.CheckNamesContentPanel = Ext.extend(Zarafa.core
 	 */
 	onCancel : function()
 	{
+		this.markRecipientToInvalid();
 		this.dialog.close();
+	},
+
+	/**
+	 * Function used to mark the recipient to invalid.
+	 */
+	markRecipientToInvalid : function()
+	{
+		this.record.resolveAttemptAmbiguous = false;
+		this.record.resolveAttempted = true;
+		this.record.afterEdit();
+	},
+
+	/**
+	 * Function has been called when check name dialog closed by close button.
+	 * It will call {@link #markRecipientToInvalid} to mark the recipient to invalid.
+	 * @override
+	 */
+	close: function()
+	{
+		this.markRecipientToInvalid();
+		Zarafa.common.checknames.dialogs.CheckNamesContentPanel.superclass.close.apply(this, arguments);
 	}
 });
 
