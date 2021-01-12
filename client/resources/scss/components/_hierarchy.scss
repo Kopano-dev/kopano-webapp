@@ -136,6 +136,17 @@ Note: Does not work in IE11 */
 .zarafa-hierarchy-node-unread-count span.zarafa-hierarchy-node-counter {
 	color: $kopano-blue;
 }
+span.zarafa-hierarchy-node-counter {
+	padding-right: 0px !important;
+	padding-left: $padding-small !important;
+}
+span.zarafa-hierarchy-node-nopadding {
+	padding: 0 !important;
+}
+span.zarafa-hierarchy-node-foldername {
+	padding-right: 0px !important;
+}
+
 .zarafa-hierarchy-node-owner {
   font-weight: normal;
   color: $grey6 !important;

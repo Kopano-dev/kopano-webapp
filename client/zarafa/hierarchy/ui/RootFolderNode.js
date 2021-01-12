@@ -6,14 +6,7 @@ Ext.namespace('Zarafa.hierarchy.ui');
  * 
  * This will register itself as 'rootfolder' nodetype in the {@link Ext.tree.TreePanel#nodeTypes} object. 
  */
-Zarafa.hierarchy.ui.RootFolderNode = Ext.extend(Zarafa.hierarchy.ui.FolderNode, {
-	/**
-	 * @cfg {Boolean} extendedDisplayName True if the display name of the folder must
-	 * be extended with the ownership details of the store in which the folder is located.
-	 * See {@link #getTextFromFolder}.
-	 */
-	extendedDisplayName : false,
-	
+Zarafa.hierarchy.ui.RootFolderNode = Ext.extend(Zarafa.hierarchy.ui.FolderNode, {	
 	/*
 	 * @constructor
 	 * @param {Object} config configuration object
@@ -71,28 +64,6 @@ Zarafa.hierarchy.ui.RootFolderNode = Ext.extend(Zarafa.hierarchy.ui.FolderNode, 
 			return false;
 		} else if (folder && folder.isIPMSubTree()) {
 			return folder.getMAPIStore().isDefaultStore() || folder.get('is_unavailable') === true;
-		}
-	},
-
-	/**
-	 * Obtain the Display Name for the current {@link #folder}. When {@link #extendedDisplayName} is enabled,
-	 * and this folder is either a {@link Zarafa.hierarchy.data.MAPIStoreRecord#isPublicStore Public Store} or
-	 * {@link Zarafa.hierarchy.data.MAPIStoreRecord#isSharedStore Shared Store} then the display name will
-	 * be postixed with the ownername of the store to whom the folder belongs.
-	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder The folder for which the display name is requested
-	 * @return {String} The name of the folder which must be shown.
-	 * @protected
-	 */
-	getTextFromFolder : function(folder)
-	{
-		// For Subtree Folders which are located in the non-filtered hierarchy tree,
-		// the display name from the PHP is valid to be shown. However for filtered
-		// trees, we need to format the text for shared and public stores to ensure
-		// the user can see from which store a particular folder comes from.
-		if (this.attributes.extendedDisplayName) {
-			return folder.getFullyQualifiedDisplayName();
-		} else {
-			return Zarafa.hierarchy.ui.RootFolderNode.superclass.getTextFromFolder.call(this, folder);
 		}
 	}
 });
