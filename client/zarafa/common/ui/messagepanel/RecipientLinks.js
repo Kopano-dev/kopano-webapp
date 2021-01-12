@@ -27,7 +27,7 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 	 * @cfg {Number} maxHeight The maximum height the element which holds all
 	 * recipient is allowed to take before a scrollbar will be shown.
 	 */
-	maxHeight : 50,
+	maxHeight : 30,
 
 	/**
 	 * @cfg {String} fieldLabel The label which must be applied to template
@@ -63,25 +63,19 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 			tpl : new Ext.XTemplate(
 				'<tpl if="values.length &gt; 0">' +
 					'<div class="preview-header-recipientbox">' +
-						'<div class="preview-recipient-title">{this.fieldLabel}:</div>' +
+						'<div class="preview-recipient-title" style="min-width: {[this.getMinWidth(values)]}px">{this.fieldLabel}</div>' +
 						'<div class="preview-recipient-data" style="max-height: {this.maxHeight}px">' +
 							'<tpl for=".">' +
 								'<span viewIndex="{viewIndex}" class="zarafa-emailaddress-link zarafa-recipient-link">' +
 									'<span class="zarafa-presence-status {[Zarafa.core.data.PresenceStatus.getCssClass(values.presence_status)]}">'+
 										'<span class="zarafa-presence-status-icon"></span>' +
 										'<tpl if="!Ext.isEmpty(values.display_name)">' +
-											'{display_name:htmlEncodeElide(this.ellipsisStringStartLength, this.ellipsisStringEndLength)} ' +
-										'</tpl>' +
-										'<tpl if="!Ext.isEmpty(values.smtp_address)">' +
-											'&lt;{smtp_address:htmlEncode}&gt;' +
-										'</tpl>' +
-										'<tpl if="Ext.isEmpty(values.smtp_address) && !Ext.isEmpty(values.email_address)">' +
-											'&lt;{email_address:htmlEncode}&gt;' +
+											'{display_name:htmlEncodeElide(this.ellipsisStringStartLength, this.ellipsisStringEndLength)}' +
 										'</tpl>' +
 									'</span>' +
 								'</span>' +
 								'<tpl if="xindex &gt; 0 && xindex != xcount">' +
-									'<span>; </span>' +
+									'<span>, </span>' +
 								'</tpl>' +
 							'</tpl>' +
 						'</div>' +
@@ -92,11 +86,14 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 					fieldLabel : config.fieldLabel || this.fieldLabel,
 					maxHeight : config.maxHeight || this.maxHeight,
 					ellipsisStringStartLength : config.ellipsisStringStartLength || this.ellipsisStringStartLength,
-					ellipsisStringEndLength : config.ellipsisStringEndLength || this.ellipsisStringEndLength
+					ellipsisStringEndLength : config.ellipsisStringEndLength || this.ellipsisStringEndLength,
+					getMinWidth: function(values)
+					{
+						return values[0].hasBcc ? 25 : 17;
+					}
 				}
 			)
 		});
-
 		// The fieldLabel should not be sent to the superclass
 		this.fieldLabel = config.fieldLabel || this.fieldLabel;
 		delete config.fieldLabel;
@@ -189,7 +186,7 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 	 */
 	prepareData : function(data, index, record)
 	{
-		return Ext.apply({viewIndex: index}, data);
+		return Ext.apply({viewIndex: index, hasBcc: (record.store.find('recipient_type', 3) !== -1)}, data);
 	},
 
 	/**
@@ -258,32 +255,32 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 			return;
 		}
 
-        var index = this.store.indexOf(record);
+		var index = this.store.indexOf(record);
 
-        // Get the index when regarding only records with our recipientType
-        // This is the major difference from the original function. Because
-        // we do not render all recipients in the store but only those that
-        // have the same recipient_type as this DataView, we must calculate
-        // the index of the record a little differently.
-        var filteredIndex = -1;
-        Ext.each(this.store.getRange(), function(rec){
-        	if ( rec.get('recipient_type') === this.recipientType ){
-        		filteredIndex++;
-        	}
-        }, this);
+		// Get the index when regarding only records with our recipientType
+		// This is the major difference from the original function. Because
+		// we do not render all recipients in the store but only those that
+		// have the same recipient_type as this DataView, we must calculate
+		// the index of the record a little differently.
+		var filteredIndex = -1;
+		Ext.each(this.store.getRange(), function(rec){
+			if ( rec.get('recipient_type') === this.recipientType ){
+				filteredIndex++;
+			}
+		}, this);
 
-        if(index > -1){
-            var sel = this.isSelected(filteredIndex),
-                original = this.all.elements[filteredIndex],
-                node = this.bufferRender([record], index)[0];
+		if(index > -1){
+		    var sel = this.isSelected(filteredIndex),
+			original = this.all.elements[filteredIndex],
+			node = this.bufferRender([record], index)[0];
 
-            this.all.replaceElement(filteredIndex, node, true);
-            if(sel){
-                this.selected.replaceElement(original, node);
-                this.all.item(filteredIndex).addClass(this.selectedClass);
-            }
-            this.updateIndexes(filteredIndex, filteredIndex);
-        }
+		    this.all.replaceElement(filteredIndex, node, true);
+		    if(sel){
+				this.selected.replaceElement(original, node);
+				this.all.item(filteredIndex).addClass(this.selectedClass);
+		    }
+		    this.updateIndexes(filteredIndex, filteredIndex);
+		}
 	},
 
 	/**
@@ -293,7 +290,7 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 	 */
 	refresh : function()
 	{
-		if ( !this.getTemplateTarget().dom ) {
+		if (!this.getTemplateTarget().dom) {
 			return;
 		}
 
@@ -302,15 +299,15 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 			records = this.store.getRange();
 
 		el.update('');
-		if(records.length < 1){
-			if(!this.deferEmptyText || this.hasSkippedEmptyText){
+		if (records.length < 1) {
+			if (!this.deferEmptyText || this.hasSkippedEmptyText) {
 				el.update(this.emptyText);
 			}
 			this.all.clear();
 			this.setVisible(false);
-		}else{
+		} else {
 			var filteredRecords = this.collectData(records, 0);
-			Ext.each(filteredRecords, function(filteredRecord, index){
+			Ext.each(filteredRecords, function(filteredRecord, index) {
 				var user = Zarafa.core.data.UserIdObjectFactory.createFromRecord(new Ext.data.Record(filteredRecord));
 				filteredRecords[index].presence_status = Zarafa.core.PresenceManager.getPresenceStatusForUser(user);
 			});
@@ -352,7 +349,7 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 	 * @param {Number} index The index of the target node
 	 * @param {HTMLElement} node The target node
 	 * @param {Ext.EventObject} evt The mouse event
- 	 * @private
+	 * @private
 	 */
 	onRecipientDoubleClick : function(dataView, index, node, evt)
 	{
@@ -365,7 +362,7 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 	 * because we are sending a new mail, so we don't want to copy all the properties from original recipient record.
 	 * @param {Ext.Element} node data view element which is attached to the store record
 	 * @return {Zarafa.core.data.IPMRecipientRecord} recipient record that will be used for sending the mail
- 	 * @private
+	 * @private
 	 */
 	createRecipientFromNode : function(node)
 	{

@@ -145,7 +145,7 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 			autoHeight: false,
 			items: [{
 				xtype: 'button',
-				text: _('To') + ':',
+				text: _('To'),
 				autoHeight: true,
 				handler: function() {
 					Zarafa.mail.Actions.openRecipientSelectionContent(this.record, {
@@ -172,7 +172,7 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 			items: [{
 				xtype: 'button',
 				autoHeight: true,
-				text: _('Cc') + ':',
+				text: _('Cc'),
 				handler: function() {
 					Zarafa.mail.Actions.openRecipientSelectionContent(this.record, {
 						defaultRecipientType : Zarafa.core.mapi.RecipientType.MAPI_CC
@@ -198,7 +198,7 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 			items: [{
 				xtype: 'button',
 				autoHeight: true,
-				text: _('Bcc') + ':',
+				text: _('Bcc'),
 				handler: function() {
 					Zarafa.mail.Actions.openRecipientSelectionContent(this.record, {
 						defaultRecipientType : Zarafa.core.mapi.RecipientType.MAPI_BCC
@@ -236,7 +236,7 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 				xtype: 'zarafa.attachmentbutton',
 				autoHeight: true,
 				plugins : [ 'zarafa.recordcomponentupdaterplugin' ],
-				text: _('Attachments') + ':'
+				text: _('Attachments')
 			},{
 				xtype: 'zarafa.attachmentfield',
 				enableKeyEvents : true,

@@ -471,3 +471,7 @@ ul.x-tab-strip li .x-tab-right,
         border-left: 4px solid #b9dcf5 !important;
 }
 
+.preview-header-sender-initial {
+  color: #282c37;
+}
+

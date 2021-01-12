@@ -28,7 +28,7 @@ Zarafa.calendar.ui.MeetingInfo = Ext.extend(Ext.Container, {
 					'<tpl if="values.counter_proposal">' +
 						'<tr class="preview-proposed">' +
 	/* # TRANSLATORS: This message is used as label for the field which to indicates to whom the given mail was sent. */
-							'<td class="preview-proposed-title">' + pgettext('mail.previewpanel', 'Proposed') + ':</td>'+
+							'<td class="preview-proposed-title">' + pgettext('mail.previewpanel', 'Proposed') + '</td>'+
 							'<td>'+
 								'<tpl if="!Ext.isEmpty(values.proposed_start_date)">' +
 									// # TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
@@ -45,7 +45,7 @@ Zarafa.calendar.ui.MeetingInfo = Ext.extend(Ext.Container, {
 
 					'<tr class="preview-when">' +
 					/* # TRANSLATORS: This message is used as label for the field which to indicates to whom the given mail was sent */
-						'<td class="preview-when-title">' + pgettext('mail.previewpanel', 'When') + ':</td>' +
+						'<td class="preview-when-title">' + pgettext('mail.previewpanel', 'When') + '</td>' +
 						'<td>'+
 							'<tpl if="values.appointment_recurring === true">' +
 								'{appointment_recurring_pattern}' +
@@ -67,7 +67,7 @@ Zarafa.calendar.ui.MeetingInfo = Ext.extend(Ext.Container, {
 					'<tpl if="!Ext.isEmpty(values.appointment_location)">' +
 							'<tr class="preview-location">' +
 							/* # TRANSLATORS: This message is used as label for the field which to indicates to whom the given mail was sent */
-								'<td class="preview-location-title">' + pgettext('mail.previewpanel', 'Location') + ':</td>' +
+								'<td class="preview-location-title">' + pgettext('mail.previewpanel', 'Location') + '</td>' +
 								'<td>'+
 									'{appointment_location:htmlEncode}' +
 								'</td>'+

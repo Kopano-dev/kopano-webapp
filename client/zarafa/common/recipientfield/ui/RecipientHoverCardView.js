@@ -59,11 +59,11 @@ Zarafa.common.recipientfield.ui.RecipientHoverCardView = Ext.extend(Ext.Window, 
 			resizable: false,
 			cls: 'k-recipient-card-view',
 			layout: {
-				type: 'vbox',
+				type: 'hbox',
 				align: 'stretch'
 			},
-			width: 250,
-			height: 100,
+			width: 305,
+			height: 90,
 			border: false,
 			items: this.getHoverCardItems(config),
 			buttonAlign: 'left',
@@ -102,42 +102,52 @@ Zarafa.common.recipientfield.ui.RecipientHoverCardView = Ext.extend(Ext.Window, 
 		var toolTip = emailAddress.length > this.ellipsisStringEndLength ? emailAddress : '';
 		return [{
 			layout: {
-				type: 'hbox'
+				type: 'vbox'
+			},	
+			border: false,
+			width: 55,
+			items: [{
+				xtype: 'container',
+				html: this.getInitials(record)
+			}]
+		}, {
+			layout: {
+				type: 'vbox'
 			},
-			height: 25,
 			border: false,
 			items: [{
 				xtype: 'displayfield',
 				html: this.getDisplayName(record)
-			}]
-		}, {
-			layout: {
-				type: 'hbox',
-				align: 'middle'
-			},
-			height: 35,
-			border: false,
-			items: [{
-				xtype: 'displayfield',
-				value: Ext.util.Format.ellipsis(emailAddress, this.ellipsisStringEndLength),
-				cls: 'k-hover-card-email-text',
-				tooltip: toolTip,
-				plugins : 'zarafa.formfieldtooltipplugin'
 			}, {
-				xtype: 'zarafa.recipienthovercardbutton',
-				iconCls: 'icon_copy',
-				hidden: !record.isResolved(),
-				handler: this.copyEmail,
-				tooltip: _('Copy email address'),
-				scope: this
-			}, {
-				xtype: 'zarafa.recipienthovercardbutton',
-				iconCls: 'icon_copy_all',
-				hidden: this.hideButton(config.store, record),
-				handler: this.copyEmail,
-				name : 'copyEmailAddresses',
-				tooltip: _('Copy email addresses'),
-				scope: this
+				layout: {
+					type: 'hbox'
+				},
+				cls: 'k-hover-card-recipient-detail-panel',
+				width: 255,
+				height: 70,
+				border: false,
+				items: [{
+					xtype: 'displayfield',
+					value: Ext.util.Format.ellipsis(emailAddress, this.ellipsisStringEndLength),
+					cls: 'k-hover-card-email-text',
+					tooltip: toolTip,
+					plugins : 'zarafa.formfieldtooltipplugin'
+				}, {
+					xtype: 'zarafa.recipienthovercardbutton',
+					iconCls: 'icon_copy',
+					hidden: !record.isResolved(),
+					handler: this.copyEmail,
+					tooltip: _('Copy email address'),
+					scope: this
+				}, {
+					xtype: 'zarafa.recipienthovercardbutton',
+					iconCls: 'icon_copy_all',
+					hidden: this.hideButton(config.store, record),
+					handler: this.copyEmail,
+					name : 'copyEmailAddresses',
+					tooltip: _('Copy all email addresses'),
+					scope: this
+				}]
 			}]
 		}];
 	},
@@ -291,6 +301,17 @@ Zarafa.common.recipientfield.ui.RecipientHoverCardView = Ext.extend(Ext.Window, 
 	{
 		return '<span class="zarafa-presence-status ' + Zarafa.core.data.PresenceStatus.getCssClass(record.get('presence_status')) + '">' +
 			' <span class="zarafa-presence-status-icon"></span>' + Ext.util.Format.ellipsis(record.get('display_name'), 30) + '</span>';
+	},
+
+	/**
+	 * Function will return html template that contains the initials of a sender.
+	 * @param {Ext.data.Record} record which will show in hover card view.
+	 * @returns {string} html string which contains the initials of a sender.
+	 */
+	getInitials: function(record)
+	{
+		var senderInitials = record.getSenderInitials();
+		return '<span class="preview-header-sender-initial">'+ senderInitials +'</span>';
 	}
 });
 
