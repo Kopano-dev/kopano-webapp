@@ -414,17 +414,21 @@ const userManager = (function(){
 				}).then(function (user){
 					remove_hash_from_url();
 					if (!user) {
-						var message = (error && error.message) || "User authorization failed."
+						var msg = `Unable to complete the login. Please try again.
+						<br/><br/>
+						If this problem persists, contact your system administrator with the following details:<br/>
+						Error: ${(error && error.message) || "Unable to complete login."}`;
+
 						showMessageBox({
-							title : 'Login failed',
-							message: message,
+							title : 'Incomplete login',
+							message: msg,
 							buttons: [{
-								text : "OK",
-								id: "btnOk",
+								text : "Retry",
+								id: "btnRetry",
 								handler : function () {
 									remove_hash_from_url();
 									mgr.removeUser();
-									signinRedirect();
+									signinRedirect({"prompt" : "select_account"});
 								}
 							}]
 						});
