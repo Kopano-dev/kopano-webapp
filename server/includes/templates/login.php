@@ -55,18 +55,40 @@
 		</div>
 		<script type="text/javascript"><?php require(BASE_PATH . 'client/resize.js'); ?></script>
 		<script type="text/javascript">
+
 			// Set focus on the correct form element
 			function onLoad() {
-				if (document.getElementById("username").value == "") {
-					document.getElementById("username").focus();
-				} else if (document.getElementById("password").value == "") {
-					document.getElementById("password").focus();
-				} else {
-					document.getElementById("submitbutton").focus();
+
+				const elements = form.querySelectorAll("input");
+				let setFocus = false;
+
+				for (const el of elements) {
+					if (setFocus === false) {
+						if (el.value === "" || el.id === "submitbutton") {
+							el.focus();
+							setFocus = true;
+						}
+					}
+
+					// Inform the user if capslock is enabled in password field when typing
+					if (el.name === "password") {
+
+						password.addEventListener('keydown', function (event) {
+
+							const errorDiv = document.getElementById('error');
+							var caps = event.getModifierState && event.getModifierState('CapsLock');
+
+							if (caps) {
+								errorDiv.textContent = '<?php echo _("Caps lock is on") ?>';
+							} else {
+								errorDiv.textContent = '';
+							}
+						});
+					}
 				}
 			}
 			window.onload = onLoad;
-
+			
 			// Show a spinner when submitting
 			var form = document.getElementsByTagName('form')[0];
 			// Some browsers need some time to draw the spinner (MS Edge!),
