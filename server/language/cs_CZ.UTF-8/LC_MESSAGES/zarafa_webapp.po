@@ -913,18 +913,18 @@ msgstr "Třídit podle: Opakující se"
 msgid "Sort by: Subject"
 msgstr "Třídit podle: Předmět"
 
-msgid "Startdate"
+msgid "Start Date"
 msgstr "Počáteční datum"
 
-# 89%
-msgid "Sort by: Startdate"
+msgid "Sort by: Start Date"
 msgstr "Třídit podle: Počáteční datum"
 
-msgid "Enddate"
+# 87%
+msgid "End Date"
 msgstr "Konečné datum"
 
-msgid "Sort by: Enddate"
-msgstr "Třídit podle: Konečné datum"
+msgid "Sort by: End Date"
+msgstr ""
 
 msgid "Organizer"
 msgstr "Organizátor"
@@ -937,13 +937,6 @@ msgstr "Nepovinná účast"
 
 msgid "Show Time As"
 msgstr "Ukázat čas jako"
-
-msgid "Start Date"
-msgstr "Počáteční datum"
-
-# 87%
-msgid "End Date"
-msgstr "Konečné datum"
 
 msgid "Recurrence pattern"
 msgstr "Pravidla opakování"
@@ -1642,17 +1635,17 @@ msgstr "Třídit podle: Nepovinná účast"
 msgid "Sort by: Resources"
 msgstr "Třídit podle: Zdroje"
 
-msgid "Recurring Startdate"
-msgstr "Začátek opakování"
+msgid "Recurring Start Date"
+msgstr ""
 
-msgid "Sort by: Recurring Startdate"
-msgstr "Třídit podle: Začátek opakování"
+msgid "Sort by: Recurring Start Date"
+msgstr ""
 
-msgid "Recurring Enddate"
-msgstr "Konec opakování"
+msgid "Recurring End Date"
+msgstr ""
 
-msgid "Sort by: Recurring Enddate"
-msgstr "Třídit podle: Konec opakování"
+msgid "Sort by: Recurring End Date"
+msgstr ""
 
 msgid "Recurring Pattern"
 msgstr "Předloha opakování"
@@ -1974,6 +1967,22 @@ msgstr "Odmítnout žádost o schůzku"
 #, fuzzy
 msgid "Mark complete and delete"
 msgstr "Označit jako dokončené a odstranit"
+
+#, fuzzy
+msgid "Following recipients are already exists"
+msgstr "Nebyla doručena následujícímu příjemci/příjemcům"
+
+#, fuzzy
+msgid "Duplicate recipients"
+msgstr "Upravit příjemce"
+
+#, fuzzy
+msgid "Duplicate recipient"
+msgstr "Upravit příjemce"
+
+#, fuzzy
+msgid "Recipient already exists."
+msgstr "Uživatel již existuje"
 
 # 77%
 #, fuzzy
@@ -2501,14 +2510,6 @@ msgid "Add/Edit Cc recipient"
 msgstr "Upravit příjemce"
 
 #, fuzzy
-msgid "Duplicate recipient"
-msgstr "Upravit příjemce"
-
-#, fuzzy
-msgid "Recipient already exists."
-msgstr "Uživatel již existuje"
-
-#, fuzzy
 msgid "No Cc recipient configured"
 msgstr "Nejsou nastaveny podpisy"
 
@@ -2538,14 +2539,6 @@ msgid ""
 "Cc recipients can be used to set a default Cc user in new mail, replies or "
 "both."
 msgstr ""
-
-#, fuzzy
-msgid "Following recipients are already exists"
-msgstr "Nebyla doručena následujícímu příjemci/příjemcům"
-
-#, fuzzy
-msgid "Duplicate recipients"
-msgstr "Upravit příjemce"
 
 msgid "Help"
 msgstr "Nápověda"
@@ -2598,6 +2591,9 @@ msgstr "Odeslat zprávu"
 #, fuzzy
 msgid "Delete recipient from suggestion list"
 msgstr "Odstranit distribuční seznam."
+
+msgid "Copy all email addresses"
+msgstr ""
 
 msgid "View recipient"
 msgstr "Zobrazit příjemce"
@@ -3090,12 +3086,16 @@ msgstr ""
 msgid "Loading from addresses"
 msgstr ""
 
+msgid "Forward Mail"
+msgstr ""
+
 msgid "Please select a from address record."
 msgstr ""
 
-msgid ""
-"Manage the email addresses you can use as sender address when sending an "
-"email."
+msgid "Add/Edit From recipient"
+msgstr ""
+
+msgid "Manage the recipients used in the 'From' field"
 msgstr ""
 
 msgid "View"
@@ -3426,11 +3426,8 @@ msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr "v zastoupení za"
 
-# 100%
-#. TRANSLATORS: This message is used as label for the field which indicates the date/time on which the given message was sent.
-msgctxt "mail.previewpanel"
-msgid "Sent"
-msgstr "Odesláno"
+msgid "D {0}"
+msgstr ""
 
 # 100%
 #. TRANSLATORS: This message is used to indicate that no sent date is available for the message (because it has not been sent yet).
@@ -4234,9 +4231,6 @@ msgstr ""
 msgid "Your changes will be lost if you leave this page now."
 msgstr ""
 
-msgid "D {0}"
-msgstr ""
-
 #, fuzzy
 msgid "D d-m"
 msgstr "d-m-r"
@@ -4582,6 +4576,11 @@ msgstr "Opravdu chcete vyprázdnit {0}?"
 
 msgid "Show all folders"
 msgstr "Všechny složky"
+
+msgid ""
+"You have insufficient privileges to move this folder. Would you like to copy "
+"instead?"
+msgstr ""
 
 msgid "CC"
 msgstr "Kopie"
@@ -5201,6 +5200,9 @@ msgstr ""
 msgid "Show unread mail counter in application title"
 msgstr ""
 
+msgid "Hide widget panel"
+msgstr ""
+
 msgid "File previewing"
 msgstr ""
 
@@ -5589,9 +5591,6 @@ msgstr "Příděleno"
 
 msgid "Sort by: Assignee"
 msgstr "Třídit podle: Přidělení"
-
-msgid "Sort by: Start Date"
-msgstr "Třídit podle: Počáteční datum"
 
 msgid "Sort by: Owner"
 msgstr "Třídit podle: Vlastník"

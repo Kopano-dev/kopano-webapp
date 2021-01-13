@@ -880,17 +880,17 @@ msgstr "Sorter efter: Gentagelse"
 msgid "Sort by: Subject"
 msgstr "Sorter efter: Emne"
 
-msgid "Startdate"
+msgid "Start Date"
 msgstr "Startdato"
 
-msgid "Sort by: Startdate"
+msgid "Sort by: Start Date"
 msgstr "Sorter efter: Startdato"
 
-msgid "Enddate"
+msgid "End Date"
 msgstr "Slutdato"
 
-msgid "Sort by: Enddate"
-msgstr "Sorter efter: Slutdato"
+msgid "Sort by: End Date"
+msgstr ""
 
 msgid "Organizer"
 msgstr "Arrangør"
@@ -903,12 +903,6 @@ msgstr "Valgfri tilstedeværelse"
 
 msgid "Show Time As"
 msgstr "Vis tid som"
-
-msgid "Start Date"
-msgstr "Startdato"
-
-msgid "End Date"
-msgstr "Slutdato"
 
 msgid "Recurrence pattern"
 msgstr "Gentagelsesmønster"
@@ -1583,17 +1577,17 @@ msgstr "Sorter efter: Valgfrie deltagere"
 msgid "Sort by: Resources"
 msgstr "Sorter efter: Ressourcer"
 
-msgid "Recurring Startdate"
-msgstr "Tilbagevendende startdato"
+msgid "Recurring Start Date"
+msgstr ""
 
-msgid "Sort by: Recurring Startdate"
-msgstr "Sorter efter: Tilbagevendende startdato"
+msgid "Sort by: Recurring Start Date"
+msgstr ""
 
-msgid "Recurring Enddate"
-msgstr "Tilbagevendende slutdato"
+msgid "Recurring End Date"
+msgstr ""
 
-msgid "Sort by: Recurring Enddate"
-msgstr "Sorter efter: Tilbagevendende slutdato"
+msgid "Sort by: Recurring End Date"
+msgstr ""
 
 msgid "Recurring Pattern"
 msgstr "Gentagelsesmønster"
@@ -1911,6 +1905,21 @@ msgstr "Afslå og slet"
 
 msgid "Mark complete and delete"
 msgstr "Marker som fuldført og slet"
+
+msgid "Following recipients are already exists"
+msgstr ""
+
+#, fuzzy
+msgid "Duplicate recipients"
+msgstr "Ret modtager"
+
+#, fuzzy
+msgid "Duplicate recipient"
+msgstr "Ret modtager"
+
+#, fuzzy
+msgid "Recipient already exists."
+msgstr "Brugeren eksistere allerede"
 
 #, fuzzy
 msgid "Notify sender"
@@ -2405,14 +2414,6 @@ msgid "Add/Edit Cc recipient"
 msgstr "Ret modtager"
 
 #, fuzzy
-msgid "Duplicate recipient"
-msgstr "Ret modtager"
-
-#, fuzzy
-msgid "Recipient already exists."
-msgstr "Brugeren eksistere allerede"
-
-#, fuzzy
 msgid "No Cc recipient configured"
 msgstr "Ingen signatur er konfigureret"
 
@@ -2439,13 +2440,6 @@ msgid ""
 "Cc recipients can be used to set a default Cc user in new mail, replies or "
 "both."
 msgstr ""
-
-msgid "Following recipients are already exists"
-msgstr ""
-
-#, fuzzy
-msgid "Duplicate recipients"
-msgstr "Ret modtager"
 
 msgid "Help"
 msgstr "Hjælp"
@@ -2495,6 +2489,9 @@ msgstr "Send email"
 
 msgid "Delete recipient from suggestion list"
 msgstr "Slet modtageren fra forslagslisten"
+
+msgid "Copy all email addresses"
+msgstr ""
 
 msgid "View recipient"
 msgstr "Vis modtager"
@@ -2966,12 +2963,16 @@ msgstr "Ingen afsenderadresse er valgt"
 msgid "Loading from addresses"
 msgstr "Henter afsenderadresse"
 
+msgid "Forward Mail"
+msgstr ""
+
 msgid "Please select a from address record."
 msgstr "Vælg en afsenderadresse."
 
-msgid ""
-"Manage the email addresses you can use as sender address when sending an "
-"email."
+msgid "Add/Edit From recipient"
+msgstr ""
+
+msgid "Manage the recipients used in the 'From' field"
 msgstr ""
 
 msgid "View"
@@ -3280,10 +3281,8 @@ msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr "på vegne af"
 
-#. TRANSLATORS: This message is used as label for the field which indicates the date/time on which the given message was sent.
-msgctxt "mail.previewpanel"
-msgid "Sent"
-msgstr "Sendt"
+msgid "D {0}"
+msgstr ""
 
 #. TRANSLATORS: This message is used to indicate that no sent date is available for the message (because it has not been sent yet).
 msgctxt "mail.previewpanel"
@@ -4074,9 +4073,6 @@ msgstr "Udvid widget panel"
 msgid "Your changes will be lost if you leave this page now."
 msgstr "Dine ændringer vil gå tabt hvis du forlader siden nu."
 
-msgid "D {0}"
-msgstr ""
-
 #, fuzzy
 msgid "D d-m"
 msgstr "D, d.m.Y"
@@ -4412,6 +4408,11 @@ msgstr "Er du sikker på du vil tømme {0}?"
 
 msgid "Show all folders"
 msgstr "Vis alle mapper"
+
+msgid ""
+"You have insufficient privileges to move this folder. Would you like to copy "
+"instead?"
+msgstr ""
 
 msgid "CC"
 msgstr "CC"
@@ -5007,6 +5008,9 @@ msgstr ""
 msgid "Show unread mail counter in application title"
 msgstr ""
 
+msgid "Hide widget panel"
+msgstr ""
+
 msgid "File previewing"
 msgstr ""
 
@@ -5372,9 +5376,6 @@ msgstr "Tildelt til"
 
 msgid "Sort by: Assignee"
 msgstr "Sorter efter: Modtager"
-
-msgid "Sort by: Start Date"
-msgstr "Sorter efter: Startdato"
 
 msgid "Sort by: Owner"
 msgstr "Sorter efter: Ejer"

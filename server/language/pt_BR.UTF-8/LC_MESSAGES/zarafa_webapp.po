@@ -917,18 +917,17 @@ msgstr "Ordenar por: Evento recorrente"
 msgid "Sort by: Subject"
 msgstr "Ordenar por: Assunto"
 
-msgid "Startdate"
+msgid "Start Date"
 msgstr "Data de início"
 
-# 89%
-msgid "Sort by: Startdate"
+msgid "Sort by: Start Date"
 msgstr "Ordenar por: Data de Início"
 
-msgid "Enddate"
-msgstr "Data final"
+msgid "End Date"
+msgstr "Data Final"
 
-msgid "Sort by: Enddate"
-msgstr "Ordenar por: Data Final"
+msgid "Sort by: End Date"
+msgstr ""
 
 msgid "Organizer"
 msgstr "Organizador"
@@ -941,12 +940,6 @@ msgstr "Participante opcional"
 
 msgid "Show Time As"
 msgstr "Apresentar hora como"
-
-msgid "Start Date"
-msgstr "Data de início"
-
-msgid "End Date"
-msgstr "Data Final"
 
 msgid "Recurrence pattern"
 msgstr "Padrão de recorrência"
@@ -1642,17 +1635,17 @@ msgstr "Ordenar por: Participante Opcional"
 msgid "Sort by: Resources"
 msgstr "Ordenar por: Recursos"
 
-msgid "Recurring Startdate"
-msgstr "Data de início recorrente"
+msgid "Recurring Start Date"
+msgstr ""
 
-msgid "Sort by: Recurring Startdate"
-msgstr "Ordenar por: Data de Início Recorrente"
+msgid "Sort by: Recurring Start Date"
+msgstr ""
 
-msgid "Recurring Enddate"
-msgstr "Data final recorrente"
+msgid "Recurring End Date"
+msgstr ""
 
-msgid "Sort by: Recurring Enddate"
-msgstr "Ordenar por: Data Final Recorrente"
+msgid "Sort by: Recurring End Date"
+msgstr ""
 
 msgid "Recurring Pattern"
 msgstr "Padrão recorrente"
@@ -1973,6 +1966,22 @@ msgstr "Recusar pedido de reunião"
 #, fuzzy
 msgid "Mark complete and delete"
 msgstr "Marcar como concluído"
+
+#, fuzzy
+msgid "Following recipients are already exists"
+msgstr "Os seguintes destinatários não puderam ser localizados"
+
+#, fuzzy
+msgid "Duplicate recipients"
+msgstr "Editar destinatário"
+
+#, fuzzy
+msgid "Duplicate recipient"
+msgstr "Editar destinatário"
+
+#, fuzzy
+msgid "Recipient already exists."
+msgstr "Usuário já existe"
 
 # 77%
 #, fuzzy
@@ -2479,14 +2488,6 @@ msgid "Add/Edit Cc recipient"
 msgstr "Editar destinatário"
 
 #, fuzzy
-msgid "Duplicate recipient"
-msgstr "Editar destinatário"
-
-#, fuzzy
-msgid "Recipient already exists."
-msgstr "Usuário já existe"
-
-#, fuzzy
 msgid "No Cc recipient configured"
 msgstr "Nenhuma assinatura configurada"
 
@@ -2515,14 +2516,6 @@ msgid ""
 "Cc recipients can be used to set a default Cc user in new mail, replies or "
 "both."
 msgstr ""
-
-#, fuzzy
-msgid "Following recipients are already exists"
-msgstr "Os seguintes destinatários não puderam ser localizados"
-
-#, fuzzy
-msgid "Duplicate recipients"
-msgstr "Editar destinatário"
 
 msgid "Help"
 msgstr "Ajuda"
@@ -2573,6 +2566,9 @@ msgstr "Enviar E-Mail"
 #, fuzzy
 msgid "Delete recipient from suggestion list"
 msgstr "Remover a Lista de Distribuição."
+
+msgid "Copy all email addresses"
+msgstr ""
 
 msgid "View recipient"
 msgstr "Ver destinatário"
@@ -3062,12 +3058,16 @@ msgstr ""
 msgid "Loading from addresses"
 msgstr ""
 
+msgid "Forward Mail"
+msgstr ""
+
 msgid "Please select a from address record."
 msgstr ""
 
-msgid ""
-"Manage the email addresses you can use as sender address when sending an "
-"email."
+msgid "Add/Edit From recipient"
+msgstr ""
+
+msgid "Manage the recipients used in the 'From' field"
 msgstr ""
 
 msgid "View"
@@ -3391,10 +3391,8 @@ msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr "em nome de"
 
-#. TRANSLATORS: This message is used as label for the field which indicates the date/time on which the given message was sent.
-msgctxt "mail.previewpanel"
-msgid "Sent"
-msgstr "Enviado"
+msgid "D {0}"
+msgstr ""
 
 #. TRANSLATORS: This message is used to indicate that no sent date is available for the message (because it has not been sent yet).
 msgctxt "mail.previewpanel"
@@ -4188,9 +4186,6 @@ msgstr ""
 msgid "Your changes will be lost if you leave this page now."
 msgstr ""
 
-msgid "D {0}"
-msgstr ""
-
 #, fuzzy
 msgid "D d-m"
 msgstr "d/m/Y"
@@ -4535,6 +4530,11 @@ msgstr "Você tem certeza de que você quer esvaziar {0}?"
 
 msgid "Show all folders"
 msgstr "Todas as pastas"
+
+msgid ""
+"You have insufficient privileges to move this folder. Would you like to copy "
+"instead?"
+msgstr ""
 
 msgid "CC"
 msgstr "CC"
@@ -5153,6 +5153,9 @@ msgstr ""
 msgid "Show unread mail counter in application title"
 msgstr ""
 
+msgid "Hide widget panel"
+msgstr ""
+
 msgid "File previewing"
 msgstr ""
 
@@ -5539,9 +5542,6 @@ msgstr "Atribuir à"
 
 msgid "Sort by: Assignee"
 msgstr "Ordenar por: Atribuído"
-
-msgid "Sort by: Start Date"
-msgstr "Ordenar por: Data de Início"
 
 msgid "Sort by: Owner"
 msgstr "Ordenar por: Proprietário"

@@ -913,16 +913,16 @@ msgstr ""
 msgid "Sort by: Subject"
 msgstr "Sorteeri: pealkiri"
 
-msgid "Startdate"
+msgid "Start Date"
 msgstr ""
 
-msgid "Sort by: Startdate"
+msgid "Sort by: Start Date"
 msgstr ""
 
-msgid "Enddate"
+msgid "End Date"
 msgstr ""
 
-msgid "Sort by: Enddate"
+msgid "Sort by: End Date"
 msgstr ""
 
 msgid "Organizer"
@@ -935,12 +935,6 @@ msgid "Optional Attendee"
 msgstr ""
 
 msgid "Show Time As"
-msgstr ""
-
-msgid "Start Date"
-msgstr ""
-
-msgid "End Date"
 msgstr ""
 
 msgid "Recurrence pattern"
@@ -1624,16 +1618,16 @@ msgstr ""
 msgid "Sort by: Resources"
 msgstr ""
 
-msgid "Recurring Startdate"
+msgid "Recurring Start Date"
 msgstr ""
 
-msgid "Sort by: Recurring Startdate"
+msgid "Sort by: Recurring Start Date"
 msgstr ""
 
-msgid "Recurring Enddate"
+msgid "Recurring End Date"
 msgstr ""
 
-msgid "Sort by: Recurring Enddate"
+msgid "Sort by: Recurring End Date"
 msgstr ""
 
 msgid "Recurring Pattern"
@@ -1927,6 +1921,20 @@ msgid "Decline and delete"
 msgstr "Keeldutud"
 
 msgid "Mark complete and delete"
+msgstr ""
+
+msgid "Following recipients are already exists"
+msgstr ""
+
+#, fuzzy
+msgid "Duplicate recipients"
+msgstr "Keeldutud"
+
+#, fuzzy
+msgid "Duplicate recipient"
+msgstr "Keeldutud"
+
+msgid "Recipient already exists."
 msgstr ""
 
 msgid "Notify sender"
@@ -2421,13 +2429,6 @@ msgid "Add/Edit Cc recipient"
 msgstr "Vastus puudub"
 
 #, fuzzy
-msgid "Duplicate recipient"
-msgstr "Keeldutud"
-
-msgid "Recipient already exists."
-msgstr ""
-
-#, fuzzy
 msgid "No Cc recipient configured"
 msgstr "Kõiki saajaid ei suudetud tuvastada"
 
@@ -2455,13 +2456,6 @@ msgid ""
 "Cc recipients can be used to set a default Cc user in new mail, replies or "
 "both."
 msgstr ""
-
-msgid "Following recipients are already exists"
-msgstr ""
-
-#, fuzzy
-msgid "Duplicate recipients"
-msgstr "Keeldutud"
 
 msgid "Help"
 msgstr ""
@@ -2518,6 +2512,9 @@ msgid "Send email"
 msgstr ""
 
 msgid "Delete recipient from suggestion list"
+msgstr ""
+
+msgid "Copy all email addresses"
 msgstr ""
 
 msgid "View recipient"
@@ -2981,12 +2978,16 @@ msgstr ""
 msgid "Loading from addresses"
 msgstr ""
 
+msgid "Forward Mail"
+msgstr ""
+
 msgid "Please select a from address record."
 msgstr ""
 
-msgid ""
-"Manage the email addresses you can use as sender address when sending an "
-"email."
+msgid "Add/Edit From recipient"
+msgstr ""
+
+msgid "Manage the recipients used in the 'From' field"
 msgstr ""
 
 msgid "View"
@@ -3304,11 +3305,8 @@ msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr ""
 
-# 100%
-#. TRANSLATORS: This message is used as label for the field which indicates the date/time on which the given message was sent.
-msgctxt "mail.previewpanel"
-msgid "Sent"
-msgstr "Saadetud"
+msgid "D {0}"
+msgstr ""
 
 # 100%
 #. TRANSLATORS: This message is used to indicate that no sent date is available for the message (because it has not been sent yet).
@@ -4171,9 +4169,6 @@ msgstr ""
 msgid "Your changes will be lost if you leave this page now."
 msgstr ""
 
-msgid "D {0}"
-msgstr ""
-
 msgid "D d-m"
 msgstr ""
 
@@ -4493,6 +4488,11 @@ msgid "Are you sure you want to empty {0}?"
 msgstr ""
 
 msgid "Show all folders"
+msgstr ""
+
+msgid ""
+"You have insufficient privileges to move this folder. Would you like to copy "
+"instead?"
 msgstr ""
 
 msgid "CC"
@@ -5108,6 +5108,9 @@ msgstr ""
 msgid "Show unread mail counter in application title"
 msgstr ""
 
+msgid "Hide widget panel"
+msgstr ""
+
 msgid "File previewing"
 msgstr ""
 
@@ -5485,9 +5488,6 @@ msgid "Assigned To"
 msgstr ""
 
 msgid "Sort by: Assignee"
-msgstr ""
-
-msgid "Sort by: Start Date"
 msgstr ""
 
 # 76%

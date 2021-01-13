@@ -898,20 +898,18 @@ msgstr "開始日"
 msgid "Sort by: Subject"
 msgstr "並べ替え：件名"
 
-# 90%
-msgid "Startdate"
+msgid "Start Date"
 msgstr "開始日"
 
-# 89%
-msgid "Sort by: Startdate"
+msgid "Sort by: Start Date"
 msgstr "並べ替え：開始日"
 
 # 87%
-msgid "Enddate"
+msgid "End Date"
 msgstr "終了日"
 
-msgid "Sort by: Enddate"
-msgstr "並べ替え：終了日"
+msgid "Sort by: End Date"
+msgstr ""
 
 msgid "Organizer"
 msgstr "主催者"
@@ -924,13 +922,6 @@ msgstr "任意出席者"
 
 msgid "Show Time As"
 msgstr "時間表時"
-
-msgid "Start Date"
-msgstr "開始日"
-
-# 87%
-msgid "End Date"
-msgstr "終了日"
 
 msgid "Recurrence pattern"
 msgstr "繰り返しのパターン"
@@ -1614,17 +1605,17 @@ msgstr "並べ替え：任意出席者"
 msgid "Sort by: Resources"
 msgstr "並べ替え：リソース"
 
-msgid "Recurring Startdate"
-msgstr "定期的な予定の開始日"
+msgid "Recurring Start Date"
+msgstr ""
 
-msgid "Sort by: Recurring Startdate"
-msgstr "並べ替え：定期的な予定の開始日"
+msgid "Sort by: Recurring Start Date"
+msgstr ""
 
-msgid "Recurring Enddate"
-msgstr "定期的な予定の終了日"
+msgid "Recurring End Date"
+msgstr ""
 
-msgid "Sort by: Recurring Enddate"
-msgstr "並べ替え：定期的な予定の終了日"
+msgid "Sort by: Recurring End Date"
+msgstr ""
 
 # 77%
 msgid "Recurring Pattern"
@@ -1942,6 +1933,22 @@ msgstr "会議出席依頼を辞退する"
 #, fuzzy
 msgid "Mark complete and delete"
 msgstr "完成フラグを立てる"
+
+#, fuzzy
+msgid "Following recipients are already exists"
+msgstr "次の受信者に送信することができませんでした。"
+
+#, fuzzy
+msgid "Duplicate recipients"
+msgstr "受信者を編集します。"
+
+#, fuzzy
+msgid "Duplicate recipient"
+msgstr "受信者を編集します。"
+
+#, fuzzy
+msgid "Recipient already exists."
+msgstr "ユーザーは既に登録されています。"
 
 # 77%
 #, fuzzy
@@ -2442,14 +2449,6 @@ msgid "Add/Edit Cc recipient"
 msgstr "受信者を編集します。"
 
 #, fuzzy
-msgid "Duplicate recipient"
-msgstr "受信者を編集します。"
-
-#, fuzzy
-msgid "Recipient already exists."
-msgstr "ユーザーは既に登録されています。"
-
-#, fuzzy
 msgid "No Cc recipient configured"
 msgstr "署名が設定されていません。"
 
@@ -2479,14 +2478,6 @@ msgid ""
 "Cc recipients can be used to set a default Cc user in new mail, replies or "
 "both."
 msgstr ""
-
-#, fuzzy
-msgid "Following recipients are already exists"
-msgstr "次の受信者に送信することができませんでした。"
-
-#, fuzzy
-msgid "Duplicate recipients"
-msgstr "受信者を編集します。"
 
 msgid "Help"
 msgstr "ヘルプ"
@@ -2540,6 +2531,9 @@ msgstr "送信メール"
 #, fuzzy
 msgid "Delete recipient from suggestion list"
 msgstr "配布リストを削除"
+
+msgid "Copy all email addresses"
+msgstr ""
 
 msgid "View recipient"
 msgstr "受信者を表示します。"
@@ -3030,12 +3024,16 @@ msgstr ""
 msgid "Loading from addresses"
 msgstr ""
 
+msgid "Forward Mail"
+msgstr ""
+
 msgid "Please select a from address record."
 msgstr ""
 
-msgid ""
-"Manage the email addresses you can use as sender address when sending an "
-"email."
+msgid "Add/Edit From recipient"
+msgstr ""
+
+msgid "Manage the recipients used in the 'From' field"
 msgstr ""
 
 msgid "View"
@@ -3362,11 +3360,8 @@ msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr "代理人"
 
-# 100%
-#. TRANSLATORS: This message is used as label for the field which indicates the date/time on which the given message was sent.
-msgctxt "mail.previewpanel"
-msgid "Sent"
-msgstr "送信"
+msgid "D {0}"
+msgstr ""
 
 # 75%
 # 100%
@@ -4175,9 +4170,6 @@ msgstr ""
 msgid "Your changes will be lost if you leave this page now."
 msgstr ""
 
-msgid "D {0}"
-msgstr ""
-
 #, fuzzy
 msgid "D d-m"
 msgstr "Y/m/d"
@@ -4514,6 +4506,11 @@ msgstr "{0}を空にしますがよろしいですか？"
 
 msgid "Show all folders"
 msgstr "全フォルダを表示する"
+
+msgid ""
+"You have insufficient privileges to move this folder. Would you like to copy "
+"instead?"
+msgstr ""
 
 msgid "CC"
 msgstr "Cc"
@@ -5128,6 +5125,9 @@ msgstr ""
 msgid "Show unread mail counter in application title"
 msgstr ""
 
+msgid "Hide widget panel"
+msgstr ""
+
 msgid "File previewing"
 msgstr ""
 
@@ -5518,9 +5518,6 @@ msgstr "割り当て"
 
 msgid "Sort by: Assignee"
 msgstr "並べ替え：代理人"
-
-msgid "Sort by: Start Date"
-msgstr "並べ替え：開始日"
 
 msgid "Sort by: Owner"
 msgstr "並べ替え：オーナー"

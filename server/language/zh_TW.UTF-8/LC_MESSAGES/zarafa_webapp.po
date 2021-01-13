@@ -897,18 +897,19 @@ msgstr "依重覆事件排序"
 msgid "Sort by: Subject"
 msgstr "依主旨排序"
 
-msgid "Startdate"
+msgid "Start Date"
 msgstr "開始日期"
 
-# 89%
-msgid "Sort by: Startdate"
+msgid "Sort by: Start Date"
 msgstr "依開始日期排序"
 
-msgid "Enddate"
+# 87%
+#, fuzzy
+msgid "End Date"
 msgstr "結束日期"
 
-msgid "Sort by: Enddate"
-msgstr "依結束日期排序"
+msgid "Sort by: End Date"
+msgstr ""
 
 msgid "Organizer"
 msgstr "組織者"
@@ -921,14 +922,6 @@ msgstr "可選擇的與會者"
 
 msgid "Show Time As"
 msgstr "顯示時間為"
-
-msgid "Start Date"
-msgstr "開始日期"
-
-# 87%
-#, fuzzy
-msgid "End Date"
-msgstr "結束日期"
 
 msgid "Recurrence pattern"
 msgstr "循環模式"
@@ -1600,17 +1593,17 @@ msgstr "依選擇的與會者排序"
 msgid "Sort by: Resources"
 msgstr "依資源排序"
 
-msgid "Recurring Startdate"
-msgstr "週期性開始日期"
+msgid "Recurring Start Date"
+msgstr ""
 
-msgid "Sort by: Recurring Startdate"
-msgstr "依週期性開始日期排序"
+msgid "Sort by: Recurring Start Date"
+msgstr ""
 
-msgid "Recurring Enddate"
-msgstr "週期性結束日期"
+msgid "Recurring End Date"
+msgstr ""
 
-msgid "Sort by: Recurring Enddate"
-msgstr "依週期性結束日期排序"
+msgid "Sort by: Recurring End Date"
+msgstr ""
 
 msgid "Recurring Pattern"
 msgstr "循環模式"
@@ -1911,6 +1904,22 @@ msgstr "拒絕會議邀請"
 #, fuzzy
 msgid "Mark complete and delete"
 msgstr "標示已完成"
+
+#, fuzzy
+msgid "Following recipients are already exists"
+msgstr "The following recipient(s) could not be reached"
+
+#, fuzzy
+msgid "Duplicate recipients"
+msgstr "編輯收件者"
+
+#, fuzzy
+msgid "Duplicate recipient"
+msgstr "編輯收件者"
+
+#, fuzzy
+msgid "Recipient already exists."
+msgstr "使用者已存在"
 
 # 77%
 #, fuzzy
@@ -2414,14 +2423,6 @@ msgid "Add/Edit Cc recipient"
 msgstr "編輯收件者"
 
 #, fuzzy
-msgid "Duplicate recipient"
-msgstr "編輯收件者"
-
-#, fuzzy
-msgid "Recipient already exists."
-msgstr "使用者已存在"
-
-#, fuzzy
 msgid "No Cc recipient configured"
 msgstr "沒有設定簽名檔"
 
@@ -2451,14 +2452,6 @@ msgid ""
 "Cc recipients can be used to set a default Cc user in new mail, replies or "
 "both."
 msgstr ""
-
-#, fuzzy
-msgid "Following recipients are already exists"
-msgstr "The following recipient(s) could not be reached"
-
-#, fuzzy
-msgid "Duplicate recipients"
-msgstr "編輯收件者"
 
 msgid "Help"
 msgstr "說明"
@@ -2509,6 +2502,9 @@ msgstr "傳送郵件"
 #, fuzzy
 msgid "Delete recipient from suggestion list"
 msgstr "刪除此通訊群組"
+
+msgid "Copy all email addresses"
+msgstr ""
 
 msgid "View recipient"
 msgstr "瀏覽收件者"
@@ -2996,12 +2992,16 @@ msgstr ""
 msgid "Loading from addresses"
 msgstr ""
 
+msgid "Forward Mail"
+msgstr ""
+
 msgid "Please select a from address record."
 msgstr ""
 
-msgid ""
-"Manage the email addresses you can use as sender address when sending an "
-"email."
+msgid "Add/Edit From recipient"
+msgstr ""
+
+msgid "Manage the recipients used in the 'From' field"
 msgstr ""
 
 msgid "View"
@@ -3318,11 +3318,8 @@ msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr "代表人"
 
-# 100%
-#. TRANSLATORS: This message is used as label for the field which indicates the date/time on which the given message was sent.
-msgctxt "mail.previewpanel"
-msgid "Sent"
-msgstr "已傳送"
+msgid "D {0}"
+msgstr ""
 
 # 100%
 #. TRANSLATORS: This message is used to indicate that no sent date is available for the message (because it has not been sent yet).
@@ -4111,9 +4108,6 @@ msgstr ""
 msgid "Your changes will be lost if you leave this page now."
 msgstr ""
 
-msgid "D {0}"
-msgstr ""
-
 #, fuzzy
 msgid "D d-m"
 msgstr "d-m-Y"
@@ -4448,6 +4442,11 @@ msgstr "您確定要清空{0}?"
 
 msgid "Show all folders"
 msgstr "顯示所有資料夾"
+
+msgid ""
+"You have insufficient privileges to move this folder. Would you like to copy "
+"instead?"
+msgstr ""
 
 msgid "CC"
 msgstr "副本"
@@ -5059,6 +5058,9 @@ msgstr ""
 msgid "Show unread mail counter in application title"
 msgstr ""
 
+msgid "Hide widget panel"
+msgstr ""
+
 msgid "File previewing"
 msgstr ""
 
@@ -5438,9 +5440,6 @@ msgstr "指派給"
 
 msgid "Sort by: Assignee"
 msgstr "依委派者排序"
-
-msgid "Sort by: Start Date"
-msgstr "依開始日期排序"
 
 msgid "Sort by: Owner"
 msgstr "依擁有者排序"

@@ -888,17 +888,17 @@ msgstr "Sortuj według: Wzór seryjny"
 msgid "Sort by: Subject"
 msgstr "Sortuj według: Temat"
 
-msgid "Startdate"
+msgid "Start Date"
 msgstr "Data rozpoczęcia"
 
-msgid "Sort by: Startdate"
+msgid "Sort by: Start Date"
 msgstr "Sortuj według: Data rozpoczęcia"
 
-msgid "Enddate"
+msgid "End Date"
 msgstr "Data końcowa"
 
-msgid "Sort by: Enddate"
-msgstr "Sortuj według: Data końcowa"
+msgid "Sort by: End Date"
+msgstr ""
 
 msgid "Organizer"
 msgstr "Organizer"
@@ -911,12 +911,6 @@ msgstr "Opcjonalny uczestnik"
 
 msgid "Show Time As"
 msgstr "Pokaż czas jako"
-
-msgid "Start Date"
-msgstr "Data rozpoczęcia"
-
-msgid "End Date"
-msgstr "Data końcowa"
 
 msgid "Recurrence pattern"
 msgstr "Wzór seryjny"
@@ -1573,17 +1567,17 @@ msgstr "Sortuj według: Opcjonalni uczestnicy"
 msgid "Sort by: Resources"
 msgstr "Sortuj według: Zasoby"
 
-msgid "Recurring Startdate"
-msgstr "Data rozpoczęcia serii"
+msgid "Recurring Start Date"
+msgstr ""
 
-msgid "Sort by: Recurring Startdate"
-msgstr "Sortuj według: Początek serii"
+msgid "Sort by: Recurring Start Date"
+msgstr ""
 
-msgid "Recurring Enddate"
-msgstr "Data końcowa serii"
+msgid "Recurring End Date"
+msgstr ""
 
-msgid "Sort by: Recurring Enddate"
-msgstr "Sortuj według: Koniec serii"
+msgid "Sort by: Recurring End Date"
+msgstr ""
 
 msgid "Recurring Pattern"
 msgstr "Wzór serii"
@@ -1884,6 +1878,18 @@ msgstr "Odmów i usuń"
 
 msgid "Mark complete and delete"
 msgstr "Zaznacz jako gotowe i usuń"
+
+msgid "Following recipients are already exists"
+msgstr "Istnieją już następujący odbiorcy"
+
+msgid "Duplicate recipients"
+msgstr "Duplikaty odbiorców"
+
+msgid "Duplicate recipient"
+msgstr "Duplikat odbiorcy"
+
+msgid "Recipient already exists."
+msgstr "Odbiorca już istnieje."
 
 msgid "Notify sender"
 msgstr "Powiadomić nadawcę"
@@ -2386,12 +2392,6 @@ msgstr ""
 msgid "Add/Edit Cc recipient"
 msgstr "Cc Dodaj/edytuj odbiorcę"
 
-msgid "Duplicate recipient"
-msgstr "Duplikat odbiorcy"
-
-msgid "Recipient already exists."
-msgstr "Odbiorca już istnieje."
-
 msgid "No Cc recipient configured"
 msgstr "Nie skonfigurowano odbiornika Cc"
 
@@ -2416,12 +2416,6 @@ msgid ""
 msgstr ""
 "Odbiorcy Cc mogą zostać użyci do ustawienia domyślnego użytkownika Cc w "
 "nowej poczcie, odpowiedziach lub obu."
-
-msgid "Following recipients are already exists"
-msgstr "Istnieją już następujący odbiorcy"
-
-msgid "Duplicate recipients"
-msgstr "Duplikaty odbiorców"
 
 msgid "Help"
 msgstr "Pomoc"
@@ -2468,6 +2462,9 @@ msgstr "Wyślij e-mail"
 
 msgid "Delete recipient from suggestion list"
 msgstr "Usuń odbiorcę z listy zaleceń"
+
+msgid "Copy all email addresses"
+msgstr ""
 
 msgid "View recipient"
 msgstr "Pokaz odbiorcę"
@@ -2920,13 +2917,17 @@ msgstr "Nie z adresów skonfigurowanych"
 msgid "Loading from addresses"
 msgstr "Załadunek z adresów"
 
+msgid "Forward Mail"
+msgstr ""
+
 msgid "Please select a from address record."
 msgstr "Proszę wybrać adres zwrotny."
 
-msgid ""
-"Manage the email addresses you can use as sender address when sending an "
-"email."
-msgstr "Zarządzaj adresem, za pomocą którego możesz wysyłać e-maile."
+msgid "Add/Edit From recipient"
+msgstr ""
+
+msgid "Manage the recipients used in the 'From' field"
+msgstr ""
 
 msgid "View"
 msgstr "Widok"
@@ -3238,10 +3239,8 @@ msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr "w imieniu"
 
-#. TRANSLATORS: This message is used as label for the field which indicates the date/time on which the given message was sent.
-msgctxt "mail.previewpanel"
-msgid "Sent"
-msgstr "Wysłane"
+msgid "D {0}"
+msgstr "D {0}"
 
 #. TRANSLATORS: This message is used to indicate that no sent date is available for the message (because it has not been sent yet).
 msgctxt "mail.previewpanel"
@@ -3994,9 +3993,6 @@ msgstr "Pokaż widżety"
 msgid "Your changes will be lost if you leave this page now."
 msgstr "Twoje zmiany po zamknięciu tej strony nie zostaną zapisane."
 
-msgid "D {0}"
-msgstr "D {0}"
-
 msgid "D d-m"
 msgstr "D, d-m-r"
 
@@ -4313,6 +4309,11 @@ msgstr "Czy chcesz opróżnić {0} ?"
 
 msgid "Show all folders"
 msgstr "Pokaż wszystkie foldery"
+
+msgid ""
+"You have insufficient privileges to move this folder. Would you like to copy "
+"instead?"
+msgstr ""
 
 msgid "CC"
 msgstr "DW"
@@ -4893,6 +4894,9 @@ msgstr "Pokaż przycisk 'pomoc' w prawym górnym rogu"
 msgid "Show unread mail counter in application title"
 msgstr "Pokaż nieprzeczytany licznik poczty w tytule aplikacji"
 
+msgid "Hide widget panel"
+msgstr ""
+
 msgid "File previewing"
 msgstr ""
 
@@ -5259,9 +5263,6 @@ msgstr "Przydzielono"
 
 msgid "Sort by: Assignee"
 msgstr "Sortuj według: Pełnomocnik"
-
-msgid "Sort by: Start Date"
-msgstr "Sortuj według: Data rozpoczęcia"
 
 msgid "Sort by: Owner"
 msgstr "Sortuj według: Właściciel"

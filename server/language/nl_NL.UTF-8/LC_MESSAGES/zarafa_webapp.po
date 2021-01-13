@@ -934,20 +934,19 @@ msgstr "Sorteer op: Herhalend"
 msgid "Sort by: Subject"
 msgstr "Sorteer op: Onderwerp"
 
-# 80%
-msgid "Startdate"
+msgid "Start Date"
 msgstr "Begindatum"
 
 # 84%
-# 89%
-msgid "Sort by: Startdate"
+msgid "Sort by: Start Date"
 msgstr "Sorteer op: Startdatum"
 
-msgid "Enddate"
+# 87%
+msgid "End Date"
 msgstr "Einddatum"
 
-msgid "Sort by: Enddate"
-msgstr "Sorteer op: Einddatum"
+msgid "Sort by: End Date"
+msgstr ""
 
 msgid "Organizer"
 msgstr "Organisator"
@@ -960,13 +959,6 @@ msgstr "Optionele Deelnemer"
 
 msgid "Show Time As"
 msgstr "Toon Tijd Als"
-
-msgid "Start Date"
-msgstr "Begindatum"
-
-# 87%
-msgid "End Date"
-msgstr "Einddatum"
 
 # 77%
 msgid "Recurrence pattern"
@@ -1669,17 +1661,17 @@ msgstr "Sorteer op: Optionele Deelnemer"
 msgid "Sort by: Resources"
 msgstr "Sorteer op: Resources"
 
-msgid "Recurring Startdate"
-msgstr "Herhalende Startdatum"
+msgid "Recurring Start Date"
+msgstr ""
 
-msgid "Sort by: Recurring Startdate"
-msgstr "Sorteer op: Herhalende Startdatum"
+msgid "Sort by: Recurring Start Date"
+msgstr ""
 
-msgid "Recurring Enddate"
-msgstr "Herhalende Einddatum"
+msgid "Recurring End Date"
+msgstr ""
 
-msgid "Sort by: Recurring Enddate"
-msgstr "Sorteer op: Herhalende Einddatum"
+msgid "Sort by: Recurring End Date"
+msgstr ""
 
 msgid "Recurring Pattern"
 msgstr "Terugkeerpatroon"
@@ -2002,6 +1994,18 @@ msgstr "Afwijzen en verwijderen"
 
 msgid "Mark complete and delete"
 msgstr "Markeer als voltooid en verwijder"
+
+msgid "Following recipients are already exists"
+msgstr "De volgende geadresseerden bestaan al"
+
+msgid "Duplicate recipients"
+msgstr "Ontvanger bestaat al"
+
+msgid "Duplicate recipient"
+msgstr "Identieke ontvanger"
+
+msgid "Recipient already exists."
+msgstr "Ontvanger bestaat al."
 
 # 86%
 # 77%
@@ -2523,12 +2527,6 @@ msgstr ""
 msgid "Add/Edit Cc recipient"
 msgstr "Toevoegen/Wijzigen Cc ontvanger"
 
-msgid "Duplicate recipient"
-msgstr "Identieke ontvanger"
-
-msgid "Recipient already exists."
-msgstr "Ontvanger bestaat al."
-
 msgid "No Cc recipient configured"
 msgstr "Geen Cc ontvanger geconfigureerd"
 
@@ -2556,12 +2554,6 @@ msgid ""
 msgstr ""
 "Cc ontvangers kunnen gebruikt worden om een gebruiker toe te voegen in het "
 "Cc veld, in nieuwe mail, antwoorden of beide."
-
-msgid "Following recipients are already exists"
-msgstr "De volgende geadresseerden bestaan al"
-
-msgid "Duplicate recipients"
-msgstr "Ontvanger bestaat al"
 
 msgid "Help"
 msgstr "Hulp"
@@ -2614,6 +2606,9 @@ msgstr "Verzend e-mail"
 
 msgid "Delete recipient from suggestion list"
 msgstr "Verwijder de geadresseerde uit de suggestielijst"
+
+msgid "Copy all email addresses"
+msgstr ""
 
 msgid "View recipient"
 msgstr "Bekijk geadresseerde"
@@ -3076,13 +3071,17 @@ msgstr "Geen afzenders geconfigureerd"
 msgid "Loading from addresses"
 msgstr "Afzenders laden"
 
+msgid "Forward Mail"
+msgstr ""
+
 msgid "Please select a from address record."
 msgstr "Selecteer een afzender."
 
-msgid ""
-"Manage the email addresses you can use as sender address when sending an "
-"email."
-msgstr "Beheer de emailadressen die gebruikt kunnen worden als afzender."
+msgid "Add/Edit From recipient"
+msgstr ""
+
+msgid "Manage the recipients used in the 'From' field"
+msgstr ""
 
 msgid "View"
 msgstr "Bekijken"
@@ -3408,11 +3407,8 @@ msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr "namens"
 
-# 100%
-#. TRANSLATORS: This message is used as label for the field which indicates the date/time on which the given message was sent.
-msgctxt "mail.previewpanel"
-msgid "Sent"
-msgstr "Verstuurd"
+msgid "D {0}"
+msgstr ""
 
 # 75%
 # 100%
@@ -4270,9 +4266,6 @@ msgstr "Widget paneel uitklappen"
 msgid "Your changes will be lost if you leave this page now."
 msgstr "De wijzigingen worden niet opgeslagen wanneer u deze pagina verlaat."
 
-msgid "D {0}"
-msgstr ""
-
 msgid "D d-m"
 msgstr "D d-m"
 
@@ -4604,6 +4597,11 @@ msgstr "Weet u zeker dat u {0} wilt leegmaken?"
 # 75%
 msgid "Show all folders"
 msgstr "Toon alle mappen"
+
+msgid ""
+"You have insufficient privileges to move this folder. Would you like to copy "
+"instead?"
+msgstr ""
 
 msgid "CC"
 msgstr "CC"
@@ -5212,6 +5210,9 @@ msgstr "Laat 'Help' knop zien in de rechterbovenhoek"
 msgid "Show unread mail counter in application title"
 msgstr "Laat ongelezen email teller zien in applicatie titel"
 
+msgid "Hide widget panel"
+msgstr ""
+
 msgid "File previewing"
 msgstr "Voorbeeldweergave van bestanden"
 
@@ -5604,10 +5605,6 @@ msgstr "Toegewezen Aan"
 # 82%
 msgid "Sort by: Assignee"
 msgstr "Sorteer op: Toegewezene"
-
-# 84%
-msgid "Sort by: Start Date"
-msgstr "Sorteer op: Startdatum"
 
 # 78%
 msgid "Sort by: Owner"

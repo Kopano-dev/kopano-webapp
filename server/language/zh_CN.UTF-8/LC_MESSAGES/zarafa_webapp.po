@@ -862,18 +862,17 @@ msgstr "排序方式：重复发生"
 msgid "Sort by: Subject"
 msgstr "排序方式：主题"
 
-# 80%
-msgid "Startdate"
+msgid "Start Date"
 msgstr "开始日期"
 
-msgid "Sort by: Startdate"
+msgid "Sort by: Start Date"
 msgstr "排序方式：开始日期"
 
-msgid "Enddate"
+msgid "End Date"
 msgstr "结束日期"
 
-msgid "Sort by: Enddate"
-msgstr "排序方式：结束日期"
+msgid "Sort by: End Date"
+msgstr ""
 
 msgid "Organizer"
 msgstr "组织者"
@@ -886,12 +885,6 @@ msgstr "可选与会者"
 
 msgid "Show Time As"
 msgstr "时间显示为"
-
-msgid "Start Date"
-msgstr "开始日期"
-
-msgid "End Date"
-msgstr "结束日期"
 
 msgid "Recurrence pattern"
 msgstr "重复模式"
@@ -1550,17 +1543,17 @@ msgstr "排序方式：可选与会者"
 msgid "Sort by: Resources"
 msgstr "排序方式：资源"
 
-msgid "Recurring Startdate"
-msgstr "重复的开始日期"
+msgid "Recurring Start Date"
+msgstr ""
 
-msgid "Sort by: Recurring Startdate"
-msgstr "排序方式：重复的开始日期"
+msgid "Sort by: Recurring Start Date"
+msgstr ""
 
-msgid "Recurring Enddate"
-msgstr "重复的结束日期"
+msgid "Recurring End Date"
+msgstr ""
 
-msgid "Sort by: Recurring Enddate"
-msgstr "排序方式：重复的结束日期"
+msgid "Sort by: Recurring End Date"
+msgstr ""
 
 msgid "Recurring Pattern"
 msgstr "重复模式"
@@ -1853,6 +1846,18 @@ msgstr "拒绝并删除"
 
 msgid "Mark complete and delete"
 msgstr "标记为完成并删除"
+
+msgid "Following recipients are already exists"
+msgstr "下列收件人已存在"
+
+msgid "Duplicate recipients"
+msgstr "重复的收件人"
+
+msgid "Duplicate recipient"
+msgstr "重复的收件人"
+
+msgid "Recipient already exists."
+msgstr "收件人已存在。"
 
 msgid "Notify sender"
 msgstr "通知发件人"
@@ -2330,12 +2335,6 @@ msgstr "删除所选项目，而不将其移至“已删除项目”文件夹中
 msgid "Add/Edit Cc recipient"
 msgstr "添加/编辑抄送对象联系人"
 
-msgid "Duplicate recipient"
-msgstr "重复的收件人"
-
-msgid "Recipient already exists."
-msgstr "收件人已存在。"
-
 msgid "No Cc recipient configured"
 msgstr "无法配置作为抄送对象的收件人"
 
@@ -2361,12 +2360,6 @@ msgid ""
 "both."
 msgstr ""
 "抄送对象收件人可用于在新邮件、回复或新邮件及回复中设置默认抄送对象用户。"
-
-msgid "Following recipients are already exists"
-msgstr "下列收件人已存在"
-
-msgid "Duplicate recipients"
-msgstr "重复的收件人"
 
 msgid "Help"
 msgstr "帮助"
@@ -2411,6 +2404,9 @@ msgstr "发送电子邮件"
 
 msgid "Delete recipient from suggestion list"
 msgstr "从建议列表中删除收件人"
+
+msgid "Copy all email addresses"
+msgstr ""
 
 msgid "View recipient"
 msgstr "查看收件人"
@@ -2852,13 +2848,17 @@ msgstr "未配置地址来源"
 msgid "Loading from addresses"
 msgstr "从地址中加载"
 
+msgid "Forward Mail"
+msgstr ""
+
 msgid "Please select a from address record."
 msgstr "请从地址记录中选择一个地址。"
 
-msgid ""
-"Manage the email addresses you can use as sender address when sending an "
-"email."
-msgstr "管理发送电子邮件时可用作发件人地址的电子邮件地址。"
+msgid "Add/Edit From recipient"
+msgstr ""
+
+msgid "Manage the recipients used in the 'From' field"
+msgstr ""
 
 msgid "View"
 msgstr "查看"
@@ -3165,11 +3165,8 @@ msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr "代表"
 
-# 100%
-#. TRANSLATORS: This message is used as label for the field which indicates the date/time on which the given message was sent.
-msgctxt "mail.previewpanel"
-msgid "Sent"
-msgstr "已发送"
+msgid "D {0}"
+msgstr "D {0}"
 
 # 75%
 # 100%
@@ -3933,9 +3930,6 @@ msgstr "展开小部件面板"
 msgid "Your changes will be lost if you leave this page now."
 msgstr "如果您现在离开此页面，您的更改将丢失。"
 
-msgid "D {0}"
-msgstr "D {0}"
-
 msgid "D d-m"
 msgstr "D d-m"
 
@@ -4240,6 +4234,11 @@ msgstr "您是否确定清空{0}？"
 
 msgid "Show all folders"
 msgstr "显示所有文件夹"
+
+msgid ""
+"You have insufficient privileges to move this folder. Would you like to copy "
+"instead?"
+msgstr ""
 
 msgid "CC"
 msgstr "抄送对象"
@@ -4816,6 +4815,9 @@ msgstr "在右上角显示“帮助”按钮"
 msgid "Show unread mail counter in application title"
 msgstr "在应用程序标题中显示未读邮件计数器"
 
+msgid "Hide widget panel"
+msgstr ""
+
 msgid "File previewing"
 msgstr ""
 
@@ -5174,9 +5176,6 @@ msgstr "指定处理人"
 
 msgid "Sort by: Assignee"
 msgstr "排序方式：代理人"
-
-msgid "Sort by: Start Date"
-msgstr "排序方式：开始日期"
 
 msgid "Sort by: Owner"
 msgstr "排序方式：所有者"

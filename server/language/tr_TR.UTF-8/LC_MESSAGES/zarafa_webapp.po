@@ -911,19 +911,18 @@ msgstr "Sıralama: Tekrarlanan"
 msgid "Sort by: Subject"
 msgstr "Sıralama: Konu"
 
-# 80%
-msgid "Startdate"
-msgstr "Başlangıç ​​tarihi"
+msgid "Start Date"
+msgstr "Başlangıç ​​Tarihi"
 
-# 89%
-msgid "Sort by: Startdate"
+msgid "Sort by: Start Date"
 msgstr "Sıralama: Başlangıç Tarihi"
 
-msgid "Enddate"
-msgstr "Bitiş tarihi"
+# 87%
+msgid "End Date"
+msgstr "bitiş tarihi"
 
-msgid "Sort by: Enddate"
-msgstr "Sıralama: Bitiş Tarihi"
+msgid "Sort by: End Date"
+msgstr ""
 
 msgid "Organizer"
 msgstr "Düzenleyici"
@@ -936,13 +935,6 @@ msgstr "Seçimsel Katılımcı"
 
 msgid "Show Time As"
 msgstr "Zaman olarak göster"
-
-msgid "Start Date"
-msgstr "Başlangıç ​​Tarihi"
-
-# 87%
-msgid "End Date"
-msgstr "bitiş tarihi"
 
 msgid "Recurrence pattern"
 msgstr "Tekrarlama Düzeni"
@@ -1659,17 +1651,17 @@ msgstr "Sıralama: Seçimsel Katılımcı"
 msgid "Sort by: Resources"
 msgstr "Sıralama: Kaynak"
 
-msgid "Recurring Startdate"
-msgstr "Dönüşümlü Başlangıç Tarihi"
+msgid "Recurring Start Date"
+msgstr ""
 
-msgid "Sort by: Recurring Startdate"
-msgstr "Sıralama: Dönüşümlü Başlangıç Tarihi"
+msgid "Sort by: Recurring Start Date"
+msgstr ""
 
-msgid "Recurring Enddate"
-msgstr "Dönüşümlü Bitiş tarihi"
+msgid "Recurring End Date"
+msgstr ""
 
-msgid "Sort by: Recurring Enddate"
-msgstr "Sıralama: Dönüşümlü Bitiş tarihi"
+msgid "Sort by: Recurring End Date"
+msgstr ""
 
 msgid "Recurring Pattern"
 msgstr "Yineleme Düzeni"
@@ -1989,6 +1981,22 @@ msgstr "Toplanti isteği reddet"
 #, fuzzy
 msgid "Mark complete and delete"
 msgstr "Tamamlanmış İşaretle"
+
+#, fuzzy
+msgid "Following recipients are already exists"
+msgstr "Aşağıdaki alıcı (lar) ulaşılamadı"
+
+#, fuzzy
+msgid "Duplicate recipients"
+msgstr "Alıcı düzenle"
+
+#, fuzzy
+msgid "Duplicate recipient"
+msgstr "Alıcı düzenle"
+
+#, fuzzy
+msgid "Recipient already exists."
+msgstr "Kullanıcı zaten var"
 
 # 77%
 #, fuzzy
@@ -2496,14 +2504,6 @@ msgid "Add/Edit Cc recipient"
 msgstr "Alıcı düzenle"
 
 #, fuzzy
-msgid "Duplicate recipient"
-msgstr "Alıcı düzenle"
-
-#, fuzzy
-msgid "Recipient already exists."
-msgstr "Kullanıcı zaten var"
-
-#, fuzzy
 msgid "No Cc recipient configured"
 msgstr "Yapılandırılmış imzalar yok"
 
@@ -2533,14 +2533,6 @@ msgid ""
 "Cc recipients can be used to set a default Cc user in new mail, replies or "
 "both."
 msgstr ""
-
-#, fuzzy
-msgid "Following recipients are already exists"
-msgstr "Aşağıdaki alıcı (lar) ulaşılamadı"
-
-#, fuzzy
-msgid "Duplicate recipients"
-msgstr "Alıcı düzenle"
 
 msgid "Help"
 msgstr "yardım"
@@ -2596,6 +2588,9 @@ msgstr "E-posta gönder"
 #, fuzzy
 msgid "Delete recipient from suggestion list"
 msgstr "Bu dağıtım listesini sil"
+
+msgid "Copy all email addresses"
+msgstr ""
 
 msgid "View recipient"
 msgstr "Alıcı bilgileri"
@@ -3089,12 +3084,16 @@ msgstr ""
 msgid "Loading from addresses"
 msgstr ""
 
+msgid "Forward Mail"
+msgstr ""
+
 msgid "Please select a from address record."
 msgstr ""
 
-msgid ""
-"Manage the email addresses you can use as sender address when sending an "
-"email."
+msgid "Add/Edit From recipient"
+msgstr ""
+
+msgid "Manage the recipients used in the 'From' field"
 msgstr ""
 
 msgid "View"
@@ -3426,11 +3425,8 @@ msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr "adına yazıyorum"
 
-# 100%
-#. TRANSLATORS: This message is used as label for the field which indicates the date/time on which the given message was sent.
-msgctxt "mail.previewpanel"
-msgid "Sent"
-msgstr "Gönderildi"
+msgid "D {0}"
+msgstr ""
 
 # 75%
 #. TRANSLATORS: This message is used to indicate that no sent date is available for the message (because it has not been sent yet).
@@ -4259,9 +4255,6 @@ msgstr "widget panosunu genişlet"
 msgid "Your changes will be lost if you leave this page now."
 msgstr "Bu sayfadan şimdi çıkarsanız değişiklikleriniz kaybolacaktır."
 
-msgid "D {0}"
-msgstr ""
-
 #, fuzzy
 msgid "D d-m"
 msgstr "d-m-Y"
@@ -4607,6 +4600,11 @@ msgstr "{0} Boşaltmak istediğinizden emin misiniz?"
 
 msgid "Show all folders"
 msgstr "Tüm klasörleri göster"
+
+msgid ""
+"You have insufficient privileges to move this folder. Would you like to copy "
+"instead?"
+msgstr ""
 
 msgid "CC"
 msgstr "CC"
@@ -5221,6 +5219,9 @@ msgstr ""
 msgid "Show unread mail counter in application title"
 msgstr ""
 
+msgid "Hide widget panel"
+msgstr ""
+
 msgid "File previewing"
 msgstr ""
 
@@ -5617,9 +5618,6 @@ msgstr "Atanan"
 
 msgid "Sort by: Assignee"
 msgstr "Sıralama: Atanan"
-
-msgid "Sort by: Start Date"
-msgstr "Sıralama: Başlangıç Tarihi"
 
 # 76%
 # 78%

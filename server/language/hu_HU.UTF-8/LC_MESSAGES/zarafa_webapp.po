@@ -935,18 +935,18 @@ msgstr "Rendezés: Ismétlődés szerint"
 msgid "Sort by: Subject"
 msgstr "Rendezés: Tárgy szerint"
 
-msgid "Startdate"
-msgstr "Kezdő dátum"
+msgid "Start Date"
+msgstr "Kezdési időpont"
 
-# 89%
-msgid "Sort by: Startdate"
+msgid "Sort by: Start Date"
 msgstr "Rendezés: Kezdő dátum szerint"
 
-msgid "Enddate"
+# 87%
+msgid "End Date"
 msgstr "Befejezés dátuma"
 
-msgid "Sort by: Enddate"
-msgstr "Rendezés: Befejezés dátuma szerint"
+msgid "Sort by: End Date"
+msgstr ""
 
 msgid "Organizer"
 msgstr "Szervező"
@@ -959,13 +959,6 @@ msgstr "Opcionális résztvevő"
 
 msgid "Show Time As"
 msgstr "Időpont megjelenítése mint"
-
-msgid "Start Date"
-msgstr "Kezdési időpont"
-
-# 87%
-msgid "End Date"
-msgstr "Befejezés dátuma"
 
 msgid "Recurrence pattern"
 msgstr "Ismétlődési minta"
@@ -1673,17 +1666,17 @@ msgstr "Rendezés: Opcionális résztvevő szerint"
 msgid "Sort by: Resources"
 msgstr "Rendezés: Erőforrások szerint"
 
-msgid "Recurring Startdate"
-msgstr "Ismétlődés kezdő dátuma"
+msgid "Recurring Start Date"
+msgstr ""
 
-msgid "Sort by: Recurring Startdate"
-msgstr "Rendezés: Ismétlődés kezdő dátuma szerint"
+msgid "Sort by: Recurring Start Date"
+msgstr ""
 
-msgid "Recurring Enddate"
-msgstr "Ismétlődés befejezési ideje"
+msgid "Recurring End Date"
+msgstr ""
 
-msgid "Sort by: Recurring Enddate"
-msgstr "Rendezés: Ismétlődés befejezési ideje"
+msgid "Sort by: Recurring End Date"
+msgstr ""
 
 msgid "Recurring Pattern"
 msgstr "Ismétlődési minta"
@@ -2005,6 +1998,22 @@ msgstr "Visszautasítás és törlés"
 
 msgid "Mark complete and delete"
 msgstr "Késznek jelöl és törlés"
+
+#, fuzzy
+msgid "Following recipients are already exists"
+msgstr "Az alábbi címzet(tek) nem érhető(ek) el"
+
+#, fuzzy
+msgid "Duplicate recipients"
+msgstr "Címzett szerkesztése"
+
+#, fuzzy
+msgid "Duplicate recipient"
+msgstr "Címzett szerkesztése"
+
+#, fuzzy
+msgid "Recipient already exists."
+msgstr "A felhasználó már létezik"
 
 # 77%
 #, fuzzy
@@ -2517,14 +2526,6 @@ msgid "Add/Edit Cc recipient"
 msgstr "Címzett szerkesztése"
 
 #, fuzzy
-msgid "Duplicate recipient"
-msgstr "Címzett szerkesztése"
-
-#, fuzzy
-msgid "Recipient already exists."
-msgstr "A felhasználó már létezik"
-
-#, fuzzy
 msgid "No Cc recipient configured"
 msgstr "Nincs aláírás beállítva"
 
@@ -2554,14 +2555,6 @@ msgid ""
 "Cc recipients can be used to set a default Cc user in new mail, replies or "
 "both."
 msgstr ""
-
-#, fuzzy
-msgid "Following recipients are already exists"
-msgstr "Az alábbi címzet(tek) nem érhető(ek) el"
-
-#, fuzzy
-msgid "Duplicate recipients"
-msgstr "Címzett szerkesztése"
 
 msgid "Help"
 msgstr "Súgó"
@@ -2617,6 +2610,9 @@ msgstr "Email küldése"
 
 msgid "Delete recipient from suggestion list"
 msgstr "Címzett törlése a javaslatok listájáról"
+
+msgid "Copy all email addresses"
+msgstr ""
 
 msgid "View recipient"
 msgstr "Címzett megtekintése"
@@ -3106,12 +3102,16 @@ msgstr ""
 msgid "Loading from addresses"
 msgstr ""
 
+msgid "Forward Mail"
+msgstr ""
+
 msgid "Please select a from address record."
 msgstr ""
 
-msgid ""
-"Manage the email addresses you can use as sender address when sending an "
-"email."
+msgid "Add/Edit From recipient"
+msgstr ""
+
+msgid "Manage the recipients used in the 'From' field"
 msgstr ""
 
 msgid "View"
@@ -3428,11 +3428,8 @@ msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr "nevében"
 
-# 100%
-#. TRANSLATORS: This message is used as label for the field which indicates the date/time on which the given message was sent.
-msgctxt "mail.previewpanel"
-msgid "Sent"
-msgstr "Elküldve"
+msgid "D {0}"
+msgstr ""
 
 # 75%
 #. TRANSLATORS: This message is used to indicate that no sent date is available for the message (because it has not been sent yet).
@@ -4259,9 +4256,6 @@ msgstr "Beépülő modul panel szétnyitása"
 msgid "Your changes will be lost if you leave this page now."
 msgstr "A változtatásai elvesznek, ha most elhagyja ezt az oldalt."
 
-msgid "D {0}"
-msgstr ""
-
 #, fuzzy
 msgid "D d-m"
 msgstr "Y-m-d D"
@@ -4605,6 +4599,11 @@ msgstr "Biztosan ki szeretné üríteni {0}?"
 
 msgid "Show all folders"
 msgstr "Minden mappa megjelenítése"
+
+msgid ""
+"You have insufficient privileges to move this folder. Would you like to copy "
+"instead?"
+msgstr ""
 
 msgid "CC"
 msgstr "CC"
@@ -5220,6 +5219,9 @@ msgstr ""
 msgid "Show unread mail counter in application title"
 msgstr ""
 
+msgid "Hide widget panel"
+msgstr ""
+
 msgid "File previewing"
 msgstr ""
 
@@ -5601,9 +5603,6 @@ msgstr "Alábbi személyhez rendelve"
 
 msgid "Sort by: Assignee"
 msgstr "Rendezés: Hozzárendelt személy szerint"
-
-msgid "Sort by: Start Date"
-msgstr "Rendezés: Kezdő dátum szerint"
 
 msgid "Sort by: Owner"
 msgstr "Rendezés: Tulajdonos szerint"
