@@ -867,17 +867,17 @@ msgstr "Raða eftir endurtekningu"
 msgid "Sort by: Subject"
 msgstr "Raða eftir málefni"
 
-msgid "Startdate"
+msgid "Start Date"
 msgstr "Upphafsdagur"
 
-msgid "Sort by: Startdate"
+msgid "Sort by: Start Date"
 msgstr "Raða eftir upphafsdegi"
 
-msgid "Enddate"
+msgid "End Date"
 msgstr "Lokadagur"
 
-msgid "Sort by: Enddate"
-msgstr "Raða eftir lokadegi"
+msgid "Sort by: End Date"
+msgstr ""
 
 msgid "Organizer"
 msgstr "Skipuleggjandi"
@@ -890,12 +890,6 @@ msgstr "Valkvæður þátttakandi"
 
 msgid "Show Time As"
 msgstr "Sýna tíma sem"
-
-msgid "Start Date"
-msgstr "Upphafsdagur"
-
-msgid "End Date"
-msgstr "Lokadagur"
 
 msgid "Recurrence pattern"
 msgstr "Endurtekningarmynstur"
@@ -1551,17 +1545,17 @@ msgstr "Raða eftir valkvæðum þátttakanda"
 msgid "Sort by: Resources"
 msgstr "Raða eftir aðföngum"
 
-msgid "Recurring Startdate"
-msgstr "Upphafsdagur endurtekningar"
+msgid "Recurring Start Date"
+msgstr ""
 
-msgid "Sort by: Recurring Startdate"
-msgstr "Raða eftir upphafsdegi endurtekningar"
+msgid "Sort by: Recurring Start Date"
+msgstr ""
 
-msgid "Recurring Enddate"
-msgstr "Lokadagur endurtekningar"
+msgid "Recurring End Date"
+msgstr ""
 
-msgid "Sort by: Recurring Enddate"
-msgstr "Raða eftir lokadegi endurtekningar"
+msgid "Sort by: Recurring End Date"
+msgstr ""
 
 msgid "Recurring Pattern"
 msgstr "Endurtekningarmynstur"
@@ -1870,6 +1864,18 @@ msgstr "Hafna og eyða"
 
 msgid "Mark complete and delete"
 msgstr "Merkja sem klárað og eyða"
+
+msgid "Following recipients are already exists"
+msgstr "Eftirfarandi viðtakendur eru nú þegar til"
+
+msgid "Duplicate recipients"
+msgstr "Fjölfalda viðtakendur"
+
+msgid "Duplicate recipient"
+msgstr "Fjölfalda viðtakanda"
+
+msgid "Recipient already exists."
+msgstr "Viðtakandi er þegar til."
 
 msgid "Notify sender"
 msgstr "Láta sendanda vita"
@@ -2368,12 +2374,6 @@ msgstr ""
 msgid "Add/Edit Cc recipient"
 msgstr "Bæta við/breyta viðtakanda afrits"
 
-msgid "Duplicate recipient"
-msgstr "Fjölfalda viðtakanda"
-
-msgid "Recipient already exists."
-msgstr "Viðtakandi er þegar til."
-
 msgid "No Cc recipient configured"
 msgstr "Engin viðtakandi afrits skráður"
 
@@ -2398,12 +2398,6 @@ msgid ""
 msgstr ""
 "Viðtakendur afrits geta verið nýttir til að senda afrit á þá í nýjum pósti, "
 "svörum eða báðum tilvikum."
-
-msgid "Following recipients are already exists"
-msgstr "Eftirfarandi viðtakendur eru nú þegar til"
-
-msgid "Duplicate recipients"
-msgstr "Fjölfalda viðtakendur"
 
 msgid "Help"
 msgstr "Hjálp"
@@ -2450,6 +2444,9 @@ msgstr "Senda tölvupóst"
 
 msgid "Delete recipient from suggestion list"
 msgstr "Eyða viðtakanda úr tillögulista"
+
+msgid "Copy all email addresses"
+msgstr ""
 
 msgid "View recipient"
 msgstr "Skoða viðtakanda"
@@ -2891,15 +2888,17 @@ msgstr "Póstfang sendanda ekki stillt"
 msgid "Loading from addresses"
 msgstr "Hleð póstföngum sendenda"
 
+msgid "Forward Mail"
+msgstr ""
+
 msgid "Please select a from address record."
 msgstr "Vinsamlegast veldu póstfangafærslu sendanda."
 
-msgid ""
-"Manage the email addresses you can use as sender address when sending an "
-"email."
+msgid "Add/Edit From recipient"
 msgstr ""
-"Stjórnaðu tölvupóstföngum sem þú getur sett í póstfang sendanda þegar þú "
-"sendir póst."
+
+msgid "Manage the recipients used in the 'From' field"
+msgstr ""
 
 msgid "View"
 msgstr "Skoða"
@@ -3208,10 +3207,8 @@ msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr "fyrir hönd"
 
-#. TRANSLATORS: This message is used as label for the field which indicates the date/time on which the given message was sent.
-msgctxt "mail.previewpanel"
-msgid "Sent"
-msgstr "Send"
+msgid "D {0}"
+msgstr ""
 
 #. TRANSLATORS: This message is used to indicate that no sent date is available for the message (because it has not been sent yet).
 msgctxt "mail.previewpanel"
@@ -3964,9 +3961,6 @@ msgstr "Opna græjuskika"
 msgid "Your changes will be lost if you leave this page now."
 msgstr "Þú glatar breytingunum þínum ef þú ferð af síðunni núna."
 
-msgid "D {0}"
-msgstr ""
-
 msgid "D d-m"
 msgstr "D d-m"
 
@@ -4281,6 +4275,11 @@ msgstr "Ertu viss um að þú viljir tæma {0}?"
 
 msgid "Show all folders"
 msgstr "Sýna allar möppur"
+
+msgid ""
+"You have insufficient privileges to move this folder. Would you like to copy "
+"instead?"
+msgstr ""
 
 msgid "CC"
 msgstr "Afrit"
@@ -4858,6 +4857,9 @@ msgstr ""
 msgid "Show unread mail counter in application title"
 msgstr ""
 
+msgid "Hide widget panel"
+msgstr ""
+
 msgid "File previewing"
 msgstr ""
 
@@ -5223,9 +5225,6 @@ msgstr "Úthlutað til"
 
 msgid "Sort by: Assignee"
 msgstr "Raða eftir verktaka"
-
-msgid "Sort by: Start Date"
-msgstr "Raða eftir upphafsdegi"
 
 msgid "Sort by: Owner"
 msgstr "Raða eftir eiganda"

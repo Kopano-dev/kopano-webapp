@@ -9,8 +9,8 @@ msgstr ""
 "POT-Creation-Date: 2019-09-25 14:32+0200\n"
 "PO-Revision-Date: 2020-12-11 17:26+0000\n"
 "Last-Translator: Nuno Jerónimo <nuno.jeronimo@valsousa.pt>\n"
-"Language-Team: Portuguese (Portugal) "
-"<http://translate.kopano.io/projects/kopano/kopano-webapp/pt_PT/>\n"
+"Language-Team: Portuguese (Portugal) <http://translate.kopano.io/projects/"
+"kopano/kopano-webapp/pt_PT/>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
@@ -824,7 +824,8 @@ msgid "Occurs every {0} {1} effective {2} for {3} occurrence from {4} to {5}."
 msgid_plural ""
 "Occurs every {0} {1} effective {2} for {3} occurrences {4} to {5}."
 msgstr[0] "Acontece a cada {0} {1} a partir de {2} por {3} vez de {4} até {5}."
-msgstr[1] "Acontece a cada {0} {1} a partir de {2} por {3} vezes de {4} até {5}."
+msgstr[1] ""
+"Acontece a cada {0} {1} a partir de {2} por {3} vezes de {4} até {5}."
 
 msgid "Occurs every {0} effective {1} for {2} occurrence."
 msgid_plural "Occurs every {0} effective {1} for {2} occurrences."
@@ -873,17 +874,17 @@ msgstr "Ordenar por: Periódico"
 msgid "Sort by: Subject"
 msgstr "Ordenar por: Assunto"
 
-msgid "Startdate"
+msgid "Start Date"
 msgstr "Data de início"
 
-msgid "Sort by: Startdate"
-msgstr "Ordenar por: Data de início"
+msgid "Sort by: Start Date"
+msgstr "Ordenar por: Data de Início"
 
-msgid "Enddate"
+msgid "End Date"
 msgstr "Data de fim"
 
-msgid "Sort by: Enddate"
-msgstr "Ordenar por: Data de fim"
+msgid "Sort by: End Date"
+msgstr ""
 
 msgid "Organizer"
 msgstr "Organizador"
@@ -896,12 +897,6 @@ msgstr "Participante opcional"
 
 msgid "Show Time As"
 msgstr "Mostrar hora como"
-
-msgid "Start Date"
-msgstr "Data de início"
-
-msgid "End Date"
-msgstr "Data de fim"
 
 msgid "Recurrence pattern"
 msgstr "Padrão de Periocidade"
@@ -1555,17 +1550,17 @@ msgstr "Ordenar por: Participante opcional"
 msgid "Sort by: Resources"
 msgstr "Ordenar por: Recursos"
 
-msgid "Recurring Startdate"
-msgstr "Data início periodicidade"
+msgid "Recurring Start Date"
+msgstr ""
 
-msgid "Sort by: Recurring Startdate"
-msgstr "Ordenar por: Data início periodicidade"
+msgid "Sort by: Recurring Start Date"
+msgstr ""
 
-msgid "Recurring Enddate"
-msgstr "Data fim periodicidade"
+msgid "Recurring End Date"
+msgstr ""
 
-msgid "Sort by: Recurring Enddate"
-msgstr "Ordenar por: Data fim periodicidade"
+msgid "Sort by: Recurring End Date"
+msgstr ""
 
 msgid "Recurring Pattern"
 msgstr "Padrão de periodicidade"
@@ -1870,6 +1865,18 @@ msgstr "Recusar e eliminar"
 
 msgid "Mark complete and delete"
 msgstr "Marcar como terminada e eliminar"
+
+msgid "Following recipients are already exists"
+msgstr "O seguintes destinatários já existem"
+
+msgid "Duplicate recipients"
+msgstr "Destinatários duplicados"
+
+msgid "Duplicate recipient"
+msgstr "Destinatário duplicado"
+
+msgid "Recipient already exists."
+msgstr "Destinatário já existe."
 
 msgid "Notify sender"
 msgstr "Notificar remetente"
@@ -2369,12 +2376,6 @@ msgstr ""
 msgid "Add/Edit Cc recipient"
 msgstr "Adicionar/editar destinatário Cc"
 
-msgid "Duplicate recipient"
-msgstr "Destinatário duplicado"
-
-msgid "Recipient already exists."
-msgstr "Destinatário já existe."
-
 msgid "No Cc recipient configured"
 msgstr "Nenhum destinatário Cc  configurado"
 
@@ -2399,12 +2400,6 @@ msgid ""
 msgstr ""
 "Destinatários Cc podem ser usados para definir destinatários Cc por defeito "
 "em mensagens novas, respostas ou ambas."
-
-msgid "Following recipients are already exists"
-msgstr "O seguintes destinatários já existem"
-
-msgid "Duplicate recipients"
-msgstr "Destinatários duplicados"
 
 msgid "Help"
 msgstr "Ajuda"
@@ -2451,6 +2446,9 @@ msgstr "Enviar mensagem"
 
 msgid "Delete recipient from suggestion list"
 msgstr "Eliminar destinatário da lista de sugestões"
+
+msgid "Copy all email addresses"
+msgstr ""
 
 msgid "View recipient"
 msgstr "Ver destinatário"
@@ -2892,15 +2890,17 @@ msgstr "Sem endereços configurados"
 msgid "Loading from addresses"
 msgstr "A carregar 'Em nome de'"
 
+msgid "Forward Mail"
+msgstr ""
+
 msgid "Please select a from address record."
 msgstr "Por favor selecione um registo."
 
-msgid ""
-"Manage the email addresses you can use as sender address when sending an "
-"email."
+msgid "Add/Edit From recipient"
 msgstr ""
-"Gerir os endereços de E-mail que pode usar como remetente para enviar "
-"mensagens."
+
+msgid "Manage the recipients used in the 'From' field"
+msgstr ""
 
 msgid "View"
 msgstr "Ver"
@@ -3211,10 +3211,8 @@ msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr "em nome de"
 
-#. TRANSLATORS: This message is used as label for the field which indicates the date/time on which the given message was sent.
-msgctxt "mail.previewpanel"
-msgid "Sent"
-msgstr "Enviado"
+msgid "D {0}"
+msgstr "D {0}"
 
 #. TRANSLATORS: This message is used to indicate that no sent date is available for the message (because it has not been sent yet).
 msgctxt "mail.previewpanel"
@@ -3971,9 +3969,6 @@ msgstr "Abrir painel de widgets"
 msgid "Your changes will be lost if you leave this page now."
 msgstr "As alterações serão perdidas se sair desta página."
 
-msgid "D {0}"
-msgstr "D {0}"
-
 msgid "D d-m"
 msgstr "D d-m"
 
@@ -4289,6 +4284,11 @@ msgstr "Tem certeza de que quer esvaziar {0}?"
 
 msgid "Show all folders"
 msgstr "Mostar todas as pastas"
+
+msgid ""
+"You have insufficient privileges to move this folder. Would you like to copy "
+"instead?"
+msgstr ""
 
 msgid "CC"
 msgstr "CC"
@@ -4865,6 +4865,9 @@ msgstr "Mostrar botão \"Ajuda\" no canto superior direito"
 msgid "Show unread mail counter in application title"
 msgstr "Mostrar número de mensagens por ler no título da aplicação"
 
+msgid "Hide widget panel"
+msgstr ""
+
 msgid "File previewing"
 msgstr "Pré-visualização de ficheiros"
 
@@ -5232,9 +5235,6 @@ msgstr "Atribuído a"
 
 msgid "Sort by: Assignee"
 msgstr "Ordenar por: Atribuído"
-
-msgid "Sort by: Start Date"
-msgstr "Ordenar por: Data de Início"
 
 msgid "Sort by: Owner"
 msgstr "Ordenar por: Proprietário"

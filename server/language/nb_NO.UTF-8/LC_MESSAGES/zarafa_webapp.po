@@ -901,22 +901,17 @@ msgstr "Sorter på: regelmessighet"
 msgid "Sort by: Subject"
 msgstr "Sorter på: emne"
 
-# 90%
-msgid "Startdate"
+msgid "Start Date"
 msgstr "Startdato"
 
-# 89%
-msgid "Sort by: Startdate"
+msgid "Sort by: Start Date"
 msgstr "Sorter på: startdato"
 
-# 75%
-msgid "Enddate"
+msgid "End Date"
 msgstr "Sluttdato"
 
-# 84%
-# 75%
-msgid "Sort by: Enddate"
-msgstr "Sorter på: sluttdato"
+msgid "Sort by: End Date"
+msgstr ""
 
 msgid "Organizer"
 msgstr "Arrangør"
@@ -929,12 +924,6 @@ msgstr "Valgfri deltaker"
 
 msgid "Show Time As"
 msgstr "Vis tid som"
-
-msgid "Start Date"
-msgstr "Startdato"
-
-msgid "End Date"
-msgstr "Sluttdato"
 
 msgid "Recurrence pattern"
 msgstr "Mønster for regelmessighet"
@@ -1628,17 +1617,17 @@ msgstr "Sorter på: valgfri deltaker"
 msgid "Sort by: Resources"
 msgstr "Sorter på: ressurser"
 
-msgid "Recurring Startdate"
-msgstr "Regelmessig startdato"
+msgid "Recurring Start Date"
+msgstr ""
 
-msgid "Sort by: Recurring Startdate"
-msgstr "Sorter på: regelmessig startdato"
+msgid "Sort by: Recurring Start Date"
+msgstr ""
 
-msgid "Recurring Enddate"
-msgstr "Regelmessig sluttdato"
+msgid "Recurring End Date"
+msgstr ""
 
-msgid "Sort by: Recurring Enddate"
-msgstr "Sorter på: regelmessig sluttdato"
+msgid "Sort by: Recurring End Date"
+msgstr ""
 
 # 77%
 msgid "Recurring Pattern"
@@ -1950,6 +1939,18 @@ msgstr "Avslå og slett"
 
 msgid "Mark complete and delete"
 msgstr "Merk som fullført og slett"
+
+msgid "Following recipients are already exists"
+msgstr "De følgende mottakere finnes allerede"
+
+msgid "Duplicate recipients"
+msgstr "Duplikate mottakere"
+
+msgid "Duplicate recipient"
+msgstr "Duplikat mottaker"
+
+msgid "Recipient already exists."
+msgstr "Mottaker finnes allerede."
 
 # 77%
 msgid "Notify sender"
@@ -2467,12 +2468,6 @@ msgstr ""
 msgid "Add/Edit Cc recipient"
 msgstr "Legg til/Rediger kopi-mottaker"
 
-msgid "Duplicate recipient"
-msgstr "Duplikat mottaker"
-
-msgid "Recipient already exists."
-msgstr "Mottaker finnes allerede."
-
 msgid "No Cc recipient configured"
 msgstr "Ingen kopi-mottakere er konfigurert"
 
@@ -2498,12 +2493,6 @@ msgid ""
 msgstr ""
 "Kopi-mottakere kan settes som standard kopi-mottakere på ny e-post, ved "
 "svar, eller begge deler."
-
-msgid "Following recipients are already exists"
-msgstr "De følgende mottakere finnes allerede"
-
-msgid "Duplicate recipients"
-msgstr "Duplikate mottakere"
 
 msgid "Help"
 msgstr "Hjelp"
@@ -2553,6 +2542,9 @@ msgstr "Send e-post"
 
 msgid "Delete recipient from suggestion list"
 msgstr "Slett mottakeren fra forslagslisten"
+
+msgid "Copy all email addresses"
+msgstr ""
 
 msgid "View recipient"
 msgstr "Vis mottakere"
@@ -2997,15 +2989,17 @@ msgstr "Ingen avsenderadresse valgt"
 msgid "Loading from addresses"
 msgstr "Laster inn avsenderadresse"
 
+msgid "Forward Mail"
+msgstr ""
+
 msgid "Please select a from address record."
 msgstr "Velg en avsenderadresse."
 
-msgid ""
-"Manage the email addresses you can use as sender address when sending an "
-"email."
+msgid "Add/Edit From recipient"
 msgstr ""
-"Behandle e-postadresser du kan bruke som avsender-adresse når du sender e-"
-"post."
+
+msgid "Manage the recipients used in the 'From' field"
+msgstr ""
 
 msgid "View"
 msgstr "Visning"
@@ -3317,10 +3311,8 @@ msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr "på vegne av"
 
-#. TRANSLATORS: This message is used as label for the field which indicates the date/time on which the given message was sent.
-msgctxt "mail.previewpanel"
-msgid "Sent"
-msgstr "Sendt"
+msgid "D {0}"
+msgstr "D {0}"
 
 # 75%
 #. TRANSLATORS: This message is used to indicate that no sent date is available for the message (because it has not been sent yet).
@@ -4111,9 +4103,6 @@ msgstr "Utvid miniprogrampanel"
 msgid "Your changes will be lost if you leave this page now."
 msgstr "Dine endringer vil gå tapt om du forlater siden nå."
 
-msgid "D {0}"
-msgstr "D {0}"
-
 msgid "D d-m"
 msgstr "D, d.m.Y"
 
@@ -4434,6 +4423,11 @@ msgstr "Er du sikker på at du vil tømme {0}?"
 
 msgid "Show all folders"
 msgstr "Vis alle mapper"
+
+msgid ""
+"You have insufficient privileges to move this folder. Would you like to copy "
+"instead?"
+msgstr ""
 
 msgid "CC"
 msgstr "CC"
@@ -5021,6 +5015,9 @@ msgstr ""
 msgid "Show unread mail counter in application title"
 msgstr ""
 
+msgid "Hide widget panel"
+msgstr ""
+
 msgid "File previewing"
 msgstr ""
 
@@ -5394,9 +5391,6 @@ msgstr "Tilordnet til"
 
 msgid "Sort by: Assignee"
 msgstr "Sorter på: mottaker"
-
-msgid "Sort by: Start Date"
-msgstr "Sorter på: startdato"
 
 msgid "Sort by: Owner"
 msgstr "Sorter på: eier"

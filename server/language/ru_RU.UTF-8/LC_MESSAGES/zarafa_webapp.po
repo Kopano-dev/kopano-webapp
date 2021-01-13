@@ -907,18 +907,18 @@ msgstr "Сортировка по повторению"
 msgid "Sort by: Subject"
 msgstr "Сортировать по теме"
 
-msgid "Startdate"
-msgstr "Начало"
+msgid "Start Date"
+msgstr "Дата начала"
 
-# 89%
-msgid "Sort by: Startdate"
-msgstr "Сортирока по дате начала"
+msgid "Sort by: Start Date"
+msgstr "Сортировать по дате начала"
 
-msgid "Enddate"
-msgstr "Конец"
+# 87%
+msgid "End Date"
+msgstr "Дата завершения"
 
-msgid "Sort by: Enddate"
-msgstr "Сортировка по дате конца"
+msgid "Sort by: End Date"
+msgstr ""
 
 msgid "Organizer"
 msgstr "Организатор"
@@ -931,13 +931,6 @@ msgstr "Необязательный участник"
 
 msgid "Show Time As"
 msgstr "Вид показа времени"
-
-msgid "Start Date"
-msgstr "Дата начала"
-
-# 87%
-msgid "End Date"
-msgstr "Дата завершения"
 
 msgid "Recurrence pattern"
 msgstr "Шаблон повторения"
@@ -1632,17 +1625,17 @@ msgstr "Сортировка по: Необязательным участник
 msgid "Sort by: Resources"
 msgstr "Сортировка по: Ресурсам"
 
-msgid "Recurring Startdate"
-msgstr "Дата начала повторения"
+msgid "Recurring Start Date"
+msgstr ""
 
-msgid "Sort by: Recurring Startdate"
-msgstr "Сортировка по: Дате начала повторения"
+msgid "Sort by: Recurring Start Date"
+msgstr ""
 
-msgid "Recurring Enddate"
-msgstr "Дата окончания повторения"
+msgid "Recurring End Date"
+msgstr ""
 
-msgid "Sort by: Recurring Enddate"
-msgstr "Сортировка по: Дате окончания повторения"
+msgid "Sort by: Recurring End Date"
+msgstr ""
 
 msgid "Recurring Pattern"
 msgstr "Шаблон повторения"
@@ -1965,6 +1958,22 @@ msgstr "Отменить и удалить"
 
 msgid "Mark complete and delete"
 msgstr "Пометить завершенной и удалить"
+
+#, fuzzy
+msgid "Following recipients are already exists"
+msgstr "Не удалось обнаружить следующих получателей"
+
+#, fuzzy
+msgid "Duplicate recipients"
+msgstr "Изменить получателя"
+
+#, fuzzy
+msgid "Duplicate recipient"
+msgstr "Изменить получателя"
+
+#, fuzzy
+msgid "Recipient already exists."
+msgstr "Пользователь уже существует"
 
 # 77%
 #, fuzzy
@@ -2476,14 +2485,6 @@ msgid "Add/Edit Cc recipient"
 msgstr "Изменить получателя"
 
 #, fuzzy
-msgid "Duplicate recipient"
-msgstr "Изменить получателя"
-
-#, fuzzy
-msgid "Recipient already exists."
-msgstr "Пользователь уже существует"
-
-#, fuzzy
 msgid "No Cc recipient configured"
 msgstr "Подписи не настроены"
 
@@ -2512,14 +2513,6 @@ msgid ""
 "Cc recipients can be used to set a default Cc user in new mail, replies or "
 "both."
 msgstr ""
-
-#, fuzzy
-msgid "Following recipients are already exists"
-msgstr "Не удалось обнаружить следующих получателей"
-
-#, fuzzy
-msgid "Duplicate recipients"
-msgstr "Изменить получателя"
 
 msgid "Help"
 msgstr "Помощь"
@@ -2572,6 +2565,9 @@ msgstr "Отправить письмо"
 
 msgid "Delete recipient from suggestion list"
 msgstr "Удалить получателя из списка предложений"
+
+msgid "Copy all email addresses"
+msgstr ""
 
 msgid "View recipient"
 msgstr "Показать получателя"
@@ -3060,12 +3056,16 @@ msgstr "Нет настроенных адресов"
 msgid "Loading from addresses"
 msgstr "Загрузка адресов"
 
+msgid "Forward Mail"
+msgstr ""
+
 msgid "Please select a from address record."
 msgstr "Пожалуйста, выберите один из адресов."
 
-msgid ""
-"Manage the email addresses you can use as sender address when sending an "
-"email."
+msgid "Add/Edit From recipient"
+msgstr ""
+
+msgid "Manage the recipients used in the 'From' field"
 msgstr ""
 
 msgid "View"
@@ -3380,10 +3380,8 @@ msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr "от имени"
 
-#. TRANSLATORS: This message is used as label for the field which indicates the date/time on which the given message was sent.
-msgctxt "mail.previewpanel"
-msgid "Sent"
-msgstr "Отправлено"
+msgid "D {0}"
+msgstr ""
 
 #. TRANSLATORS: This message is used to indicate that no sent date is available for the message (because it has not been sent yet).
 msgctxt "mail.previewpanel"
@@ -4178,9 +4176,6 @@ msgstr "Раскрыть панель виджетов"
 msgid "Your changes will be lost if you leave this page now."
 msgstr "Ваши изменения будут потеряны, если вы покинете страницу."
 
-msgid "D {0}"
-msgstr ""
-
 #, fuzzy
 msgid "D d-m"
 msgstr "d-m-Y"
@@ -4520,6 +4515,11 @@ msgstr "Вы действительно хотите очистить «{0}»?"
 # 75%
 msgid "Show all folders"
 msgstr "Все каталоги"
+
+msgid ""
+"You have insufficient privileges to move this folder. Would you like to copy "
+"instead?"
+msgstr ""
 
 msgid "CC"
 msgstr "Копия"
@@ -5124,6 +5124,9 @@ msgstr ""
 msgid "Show unread mail counter in application title"
 msgstr ""
 
+msgid "Hide widget panel"
+msgstr ""
+
 msgid "File previewing"
 msgstr ""
 
@@ -5506,9 +5509,6 @@ msgstr "Назначено"
 
 msgid "Sort by: Assignee"
 msgstr "Сортировать по назначению"
-
-msgid "Sort by: Start Date"
-msgstr "Сортировать по дате начала"
 
 # 76%
 # 78%

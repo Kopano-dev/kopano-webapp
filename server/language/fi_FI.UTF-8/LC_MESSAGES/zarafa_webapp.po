@@ -921,19 +921,19 @@ msgstr "Järjestä: Toistuva"
 msgid "Sort by: Subject"
 msgstr "Järjestä: Aihe"
 
-# 80%
-msgid "Startdate"
-msgstr "Aloituspäivä"
+msgid "Start Date"
+msgstr "Aloitus päivä"
 
-# 89%
-msgid "Sort by: Startdate"
-msgstr "Järjestä: Aloitusaika"
+msgid "Sort by: Start Date"
+msgstr "Järjestä: Aloitus aika"
 
-msgid "Enddate"
+# 87%
+#, fuzzy
+msgid "End Date"
 msgstr "Päättymispäivä"
 
-msgid "Sort by: Enddate"
-msgstr "Järjestä: Päättymispäivä"
+msgid "Sort by: End Date"
+msgstr ""
 
 msgid "Organizer"
 msgstr "Järjestäjä"
@@ -946,14 +946,6 @@ msgstr "Vapaaehtoinen osallistuja"
 
 msgid "Show Time As"
 msgstr "Näytä aika muodossa"
-
-msgid "Start Date"
-msgstr "Aloitus päivä"
-
-# 87%
-#, fuzzy
-msgid "End Date"
-msgstr "Päättymispäivä"
 
 msgid "Recurrence pattern"
 msgstr "Toistuvuus kaava"
@@ -1653,17 +1645,17 @@ msgstr "Järjestä: Vapaaehtoinen osallistuja"
 msgid "Sort by: Resources"
 msgstr "Järjestä: Resurssit"
 
-msgid "Recurring Startdate"
-msgstr "Toistuva aloituspäivä"
+msgid "Recurring Start Date"
+msgstr ""
 
-msgid "Sort by: Recurring Startdate"
-msgstr "Järjestä: Toistuva aloituspäivä"
+msgid "Sort by: Recurring Start Date"
+msgstr ""
 
-msgid "Recurring Enddate"
-msgstr "Toistuva päättymispäivä"
+msgid "Recurring End Date"
+msgstr ""
 
-msgid "Sort by: Recurring Enddate"
-msgstr "Järjestä: Toistuva päättymispäivä"
+msgid "Sort by: Recurring End Date"
+msgstr ""
 
 # 77%
 msgid "Recurring Pattern"
@@ -1980,6 +1972,22 @@ msgstr "Kieltäydy kokouskutsusta"
 #, fuzzy
 msgid "Mark complete and delete"
 msgstr "Merkitse valmiiksi"
+
+#, fuzzy
+msgid "Following recipients are already exists"
+msgstr "Seuraavia vastaanottajia ei tavoitettu"
+
+#, fuzzy
+msgid "Duplicate recipients"
+msgstr "Muokkaa vastaanottajia"
+
+#, fuzzy
+msgid "Duplicate recipient"
+msgstr "Muokkaa vastaanottajia"
+
+#, fuzzy
+msgid "Recipient already exists."
+msgstr "Käyttäjä on jo olemassa"
 
 # 77%
 #, fuzzy
@@ -2486,14 +2494,6 @@ msgid "Add/Edit Cc recipient"
 msgstr "Muokkaa vastaanottajia"
 
 #, fuzzy
-msgid "Duplicate recipient"
-msgstr "Muokkaa vastaanottajia"
-
-#, fuzzy
-msgid "Recipient already exists."
-msgstr "Käyttäjä on jo olemassa"
-
-#, fuzzy
 msgid "No Cc recipient configured"
 msgstr "Allekirjoituksia ei asetettu"
 
@@ -2523,14 +2523,6 @@ msgid ""
 "Cc recipients can be used to set a default Cc user in new mail, replies or "
 "both."
 msgstr ""
-
-#, fuzzy
-msgid "Following recipients are already exists"
-msgstr "Seuraavia vastaanottajia ei tavoitettu"
-
-#, fuzzy
-msgid "Duplicate recipients"
-msgstr "Muokkaa vastaanottajia"
 
 msgid "Help"
 msgstr "Ohje"
@@ -2582,6 +2574,9 @@ msgstr "Lähetä sähköposti"
 #, fuzzy
 msgid "Delete recipient from suggestion list"
 msgstr "Poista jakelulista."
+
+msgid "Copy all email addresses"
+msgstr ""
 
 msgid "View recipient"
 msgstr "Tarkastele vastaanottajia"
@@ -3076,12 +3071,16 @@ msgstr ""
 msgid "Loading from addresses"
 msgstr ""
 
+msgid "Forward Mail"
+msgstr ""
+
 msgid "Please select a from address record."
 msgstr ""
 
-msgid ""
-"Manage the email addresses you can use as sender address when sending an "
-"email."
+msgid "Add/Edit From recipient"
+msgstr ""
+
+msgid "Manage the recipients used in the 'From' field"
 msgstr ""
 
 msgid "View"
@@ -3404,11 +3403,8 @@ msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr "puolesta"
 
-# 100%
-#. TRANSLATORS: This message is used as label for the field which indicates the date/time on which the given message was sent.
-msgctxt "mail.previewpanel"
-msgid "Sent"
-msgstr "Lähetetty"
+msgid "D {0}"
+msgstr ""
 
 # 100%
 #. TRANSLATORS: This message is used to indicate that no sent date is available for the message (because it has not been sent yet).
@@ -4215,9 +4211,6 @@ msgstr ""
 msgid "Your changes will be lost if you leave this page now."
 msgstr ""
 
-msgid "D {0}"
-msgstr ""
-
 #, fuzzy
 msgid "D d-m"
 msgstr "d-m-Y"
@@ -4561,6 +4554,11 @@ msgstr "Haluatko varmasti tyhjentää kohteen {0}?"
 
 msgid "Show all folders"
 msgstr "Näytä kaikki kansiot"
+
+msgid ""
+"You have insufficient privileges to move this folder. Would you like to copy "
+"instead?"
+msgstr ""
 
 msgid "CC"
 msgstr "Kopio"
@@ -5180,6 +5178,9 @@ msgstr ""
 msgid "Show unread mail counter in application title"
 msgstr ""
 
+msgid "Hide widget panel"
+msgstr ""
+
 msgid "File previewing"
 msgstr ""
 
@@ -5565,9 +5566,6 @@ msgstr "Määrätty"
 
 msgid "Sort by: Assignee"
 msgstr "Järjestä: Määrääjä"
-
-msgid "Sort by: Start Date"
-msgstr "Järjestä: Aloitus aika"
 
 msgid "Sort by: Owner"
 msgstr "Järjestä: Omistaja"

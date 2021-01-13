@@ -935,16 +935,18 @@ msgstr ""
 msgid "Sort by: Subject"
 msgstr "מיין לפי: נושא"
 
-msgid "Startdate"
+msgid "Start Date"
 msgstr "תאריך התחלה"
 
-msgid "Sort by: Startdate"
+msgid "Sort by: Start Date"
 msgstr ""
 
-msgid "Enddate"
+# 87%
+#, fuzzy
+msgid "End Date"
 msgstr "תאריך סיום"
 
-msgid "Sort by: Enddate"
+msgid "Sort by: End Date"
 msgstr ""
 
 msgid "Organizer"
@@ -958,14 +960,6 @@ msgstr "משתתף אופציונלי"
 
 msgid "Show Time As"
 msgstr ""
-
-msgid "Start Date"
-msgstr "תאריך התחלה"
-
-# 87%
-#, fuzzy
-msgid "End Date"
-msgstr "תאריך סיום"
 
 # 77%
 msgid "Recurrence pattern"
@@ -1679,16 +1673,16 @@ msgstr ""
 msgid "Sort by: Resources"
 msgstr ""
 
-msgid "Recurring Startdate"
-msgstr "תאריך התחלה חוזר"
-
-msgid "Sort by: Recurring Startdate"
+msgid "Recurring Start Date"
 msgstr ""
 
-msgid "Recurring Enddate"
-msgstr "תאריך סיום חוזר"
+msgid "Sort by: Recurring Start Date"
+msgstr ""
 
-msgid "Sort by: Recurring Enddate"
+msgid "Recurring End Date"
+msgstr ""
+
+msgid "Sort by: Recurring End Date"
 msgstr ""
 
 msgid "Recurring Pattern"
@@ -1991,6 +1985,21 @@ msgstr "סרב לבקשת הפגישה"
 #, fuzzy
 msgid "Mark complete and delete"
 msgstr "סמן כהושלמה"
+
+#, fuzzy
+msgid "Following recipients are already exists"
+msgstr "לא ניתן היה להגיע אל המיועדים הבאים:"
+
+#, fuzzy
+msgid "Duplicate recipients"
+msgstr "ערוך נמען"
+
+#, fuzzy
+msgid "Duplicate recipient"
+msgstr "ערוך נמען"
+
+msgid "Recipient already exists."
+msgstr ""
 
 msgid "Notify sender"
 msgstr ""
@@ -2499,13 +2508,6 @@ msgid "Add/Edit Cc recipient"
 msgstr "ערוך נמען"
 
 #, fuzzy
-msgid "Duplicate recipient"
-msgstr "ערוך נמען"
-
-msgid "Recipient already exists."
-msgstr ""
-
-#, fuzzy
 msgid "No Cc recipient configured"
 msgstr "לא ניתן היה להגיע לכל הנמענים"
 
@@ -2535,14 +2537,6 @@ msgid ""
 "Cc recipients can be used to set a default Cc user in new mail, replies or "
 "both."
 msgstr ""
-
-#, fuzzy
-msgid "Following recipients are already exists"
-msgstr "לא ניתן היה להגיע אל המיועדים הבאים:"
-
-#, fuzzy
-msgid "Duplicate recipients"
-msgstr "ערוך נמען"
 
 msgid "Help"
 msgstr ""
@@ -2596,6 +2590,9 @@ msgstr "שלח דואר"
 #, fuzzy
 msgid "Delete recipient from suggestion list"
 msgstr "מחק את רשימת תפוצה זו."
+
+msgid "Copy all email addresses"
+msgstr ""
 
 msgid "View recipient"
 msgstr "הצג נמען"
@@ -3068,12 +3065,16 @@ msgstr ""
 msgid "Loading from addresses"
 msgstr ""
 
+msgid "Forward Mail"
+msgstr ""
+
 msgid "Please select a from address record."
 msgstr ""
 
-msgid ""
-"Manage the email addresses you can use as sender address when sending an "
-"email."
+msgid "Add/Edit From recipient"
+msgstr ""
+
+msgid "Manage the recipients used in the 'From' field"
 msgstr ""
 
 msgid "View"
@@ -3395,11 +3396,8 @@ msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr ""
 
-# 100%
-#. TRANSLATORS: This message is used as label for the field which indicates the date/time on which the given message was sent.
-msgctxt "mail.previewpanel"
-msgid "Sent"
-msgstr "נשלח"
+msgid "D {0}"
+msgstr ""
 
 # 100%
 #. TRANSLATORS: This message is used to indicate that no sent date is available for the message (because it has not been sent yet).
@@ -4227,9 +4225,6 @@ msgstr ""
 msgid "Your changes will be lost if you leave this page now."
 msgstr ""
 
-msgid "D {0}"
-msgstr ""
-
 #, fuzzy
 msgid "D d-m"
 msgstr "ש-ח-י"
@@ -4575,6 +4570,11 @@ msgstr "האם אתה בטוח כי ברצונך לרוקן את {0}?"
 #, fuzzy
 msgid "Show all folders"
 msgstr "הצג תיקיות משנה"
+
+msgid ""
+"You have insufficient privileges to move this folder. Would you like to copy "
+"instead?"
+msgstr ""
 
 msgid "CC"
 msgstr "עותק נוסף"
@@ -5194,6 +5194,9 @@ msgstr ""
 msgid "Show unread mail counter in application title"
 msgstr ""
 
+msgid "Hide widget panel"
+msgstr ""
+
 msgid "File previewing"
 msgstr ""
 
@@ -5591,9 +5594,6 @@ msgid "Assigned To"
 msgstr "משויך אל"
 
 msgid "Sort by: Assignee"
-msgstr ""
-
-msgid "Sort by: Start Date"
 msgstr ""
 
 # 76%

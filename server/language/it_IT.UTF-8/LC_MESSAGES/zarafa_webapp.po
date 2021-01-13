@@ -912,18 +912,18 @@ msgstr "Ordina per: Ricorrenza"
 msgid "Sort by: Subject"
 msgstr "Ordina per: Oggetto"
 
-msgid "Startdate"
+msgid "Start Date"
 msgstr "Data inizio"
 
-# 89%
-msgid "Sort by: Startdate"
+msgid "Sort by: Start Date"
 msgstr "Ordina per: Data inizio"
 
-msgid "Enddate"
+# 87%
+msgid "End Date"
 msgstr "Data fine"
 
-msgid "Sort by: Enddate"
-msgstr "Ordina per: Data fine"
+msgid "Sort by: End Date"
+msgstr ""
 
 msgid "Organizer"
 msgstr "Agenda"
@@ -936,13 +936,6 @@ msgstr "Partecipante opzionale"
 
 msgid "Show Time As"
 msgstr "Mostra orario come"
-
-msgid "Start Date"
-msgstr "Data inizio"
-
-# 87%
-msgid "End Date"
-msgstr "Data fine"
 
 # 77%
 msgid "Recurrence pattern"
@@ -1641,17 +1634,17 @@ msgstr "Ordina per: Partecipante opzionale"
 msgid "Sort by: Resources"
 msgstr "Ordina per: Risorse"
 
-msgid "Recurring Startdate"
-msgstr "Data inizio ricorrenza"
+msgid "Recurring Start Date"
+msgstr ""
 
-msgid "Sort by: Recurring Startdate"
-msgstr "Ordina per: Data inizio ricorrenza"
+msgid "Sort by: Recurring Start Date"
+msgstr ""
 
-msgid "Recurring Enddate"
-msgstr "Data fine ricorrenza"
+msgid "Recurring End Date"
+msgstr ""
 
-msgid "Sort by: Recurring Enddate"
-msgstr "Ordina per: Data fine ricorrenza"
+msgid "Sort by: Recurring End Date"
+msgstr ""
 
 msgid "Recurring Pattern"
 msgstr "Modalità ricorrenza"
@@ -1981,6 +1974,22 @@ msgstr "Rifiuta richiesta di riunione"
 
 msgid "Mark complete and delete"
 msgstr "Segna come completata e elimina"
+
+#, fuzzy
+msgid "Following recipients are already exists"
+msgstr "Impossibile contattare i seguenti destinatari"
+
+#, fuzzy
+msgid "Duplicate recipients"
+msgstr "Modifica destinatario"
+
+#, fuzzy
+msgid "Duplicate recipient"
+msgstr "Modifica destinatario"
+
+#, fuzzy
+msgid "Recipient already exists."
+msgstr "L'utente esiste già"
 
 # 77%
 #, fuzzy
@@ -2493,14 +2502,6 @@ msgstr ""
 msgid "Add/Edit Cc recipient"
 msgstr "Aggiungi/Modifica destinatario Cc"
 
-#, fuzzy
-msgid "Duplicate recipient"
-msgstr "Modifica destinatario"
-
-#, fuzzy
-msgid "Recipient already exists."
-msgstr "L'utente esiste già"
-
 msgid "No Cc recipient configured"
 msgstr "Nessun destinatario Cc configurato"
 
@@ -2530,14 +2531,6 @@ msgid ""
 msgstr ""
 "I destinatari Cc possono essere utilizzati per impostare un utente Cc "
 "predefinito nella nuova posta, nelle risposte o in entrambi"
-
-#, fuzzy
-msgid "Following recipients are already exists"
-msgstr "Impossibile contattare i seguenti destinatari"
-
-#, fuzzy
-msgid "Duplicate recipients"
-msgstr "Modifica destinatario"
 
 msgid "Help"
 msgstr "Aiuto"
@@ -2590,6 +2583,9 @@ msgstr "Invia email"
 
 msgid "Delete recipient from suggestion list"
 msgstr "Elimina il destinatario dalla lista dei suggerimenti"
+
+msgid "Copy all email addresses"
+msgstr ""
 
 msgid "View recipient"
 msgstr "Visualizza destinatario"
@@ -3062,15 +3058,17 @@ msgstr "L'indirizzo del mittente non e` configurato"
 msgid "Loading from addresses"
 msgstr "Caricamento dagli indirizzi"
 
+msgid "Forward Mail"
+msgstr ""
+
 msgid "Please select a from address record."
 msgstr "Prego selezionare un indirizzo del mittente."
 
-msgid ""
-"Manage the email addresses you can use as sender address when sending an "
-"email."
+msgid "Add/Edit From recipient"
 msgstr ""
-"Gestisci gli indirizzi e-mail che puoi utilizzare come indirizzo del "
-"mittente quando invii una e-mail."
+
+msgid "Manage the recipients used in the 'From' field"
+msgstr ""
 
 msgid "View"
 msgstr "Visualizza"
@@ -3404,11 +3402,8 @@ msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr "per conto di"
 
-# 100%
-#. TRANSLATORS: This message is used as label for the field which indicates the date/time on which the given message was sent.
-msgctxt "mail.previewpanel"
-msgid "Sent"
-msgstr "Inviato"
+msgid "D {0}"
+msgstr ""
 
 # 100%
 #. TRANSLATORS: This message is used to indicate that no sent date is available for the message (because it has not been sent yet).
@@ -4226,9 +4221,6 @@ msgstr "Espandi pannello widget"
 msgid "Your changes will be lost if you leave this page now."
 msgstr "Lasciando questa pagina, tutte le modifiche effettuate andranno perse."
 
-msgid "D {0}"
-msgstr ""
-
 msgid "D d-m"
 msgstr "D d-m"
 
@@ -4571,6 +4563,11 @@ msgstr "Sei sicuro di voler svuotare la cartella {0}?"
 # 75%
 msgid "Show all folders"
 msgstr "Mostra tutte le cartelle"
+
+msgid ""
+"You have insufficient privileges to move this folder. Would you like to copy "
+"instead?"
+msgstr ""
 
 msgid "CC"
 msgstr "Cc"
@@ -5186,6 +5183,9 @@ msgstr "Mostra il pulsante 'aiuto' nell'angolo in alto a destra"
 msgid "Show unread mail counter in application title"
 msgstr "Mostra il contatore della posta non letta nel titolo dell'applicazione"
 
+msgid "Hide widget panel"
+msgstr ""
+
 msgid "File previewing"
 msgstr "Anteprima file"
 
@@ -5577,9 +5577,6 @@ msgstr "Assegnato a"
 
 msgid "Sort by: Assignee"
 msgstr "Ordina per: Assegnatario"
-
-msgid "Sort by: Start Date"
-msgstr "Ordina per: Data inizio"
 
 # 76%
 # 78%
