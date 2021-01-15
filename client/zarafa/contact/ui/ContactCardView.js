@@ -50,12 +50,12 @@ Zarafa.contact.ui.ContactCardView = Ext.extend(Zarafa.common.ui.DraggableDataVie
 		config.plugins.push('zarafa.icondragselectorplugin');
 
 		Ext.apply(this, config, {
-			xtype : 'zarafa.contactcardview',
-			border : false,
-			loadingText : _('Loading contacts') + '...',
+			xtype: 'zarafa.contactcardview',
+			border: false,
+			loadingText: _('Loading contacts') + '...',
 			deferEmptyText: false,
-			emptyText: '<div class="emptytext">'+_('There are no items to show in this list')+'</div>',
-			tpl : this.initTemplate(),
+			emptyText: '<div class="emptytext-context">' +_('There are no items to show in this list. Update the filter for more results.') +'</div>',
+			tpl: this.initTemplate(),
 
 			/*
 			 * this is a required property
@@ -63,11 +63,11 @@ Zarafa.contact.ui.ContactCardView = Ext.extend(Zarafa.common.ui.DraggableDataVie
 			 * all elements that are child of this element, so without this property dataview will not know
 			 * from which element it has to re-render elements so it will give error on refresh or store update
 			 */
-			itemSelector : 'div.zarafa-contact-cardview-card',
-			multiSelect	: true,
-			selectedClass:'zarafa-contact-cardview-selected',
-			enableDrag : true,
-			ddGroup : 'dd.mapiitem'
+			itemSelector: 'div.zarafa-contact-cardview-card',
+			multiSelect: true,
+			selectedClass: 'zarafa-contact-cardview-card-selected',
+			enableDrag: true,
+			ddGroup: 'dd.mapiitem'
 		});
 
 		Zarafa.contact.ui.ContactCardView.superclass.constructor.call(this, config);
@@ -85,8 +85,8 @@ Zarafa.contact.ui.ContactCardView = Ext.extend(Zarafa.common.ui.DraggableDataVie
 			'dblclick': this.onNodeDblClick,
 			'contextmenu': this.onNodeContextMenu,
 			'selectionchange': this.onSelectionChange,
-			'afterrender' : this.onAfterRender,
-			scope : this
+			'afterrender': this.onAfterRender,
+			scope: this
 		});
 	},
 
@@ -97,8 +97,8 @@ Zarafa.contact.ui.ContactCardView = Ext.extend(Zarafa.common.ui.DraggableDataVie
 	{
 		var cardViewEl = Ext.get('contact-cardview');
 		cardViewEl.on({
-			'mouseenter' : this.onMouseEnter.createDelegate(this, [cardViewEl], true),
-			'mouseleave' : this.onMouseLeave,
+			'mouseenter': this.onMouseEnter.createDelegate(this, [cardViewEl], true),
+			'mouseleave': this.onMouseLeave,
 			scope : this
 		});
 	},
@@ -159,13 +159,13 @@ Zarafa.contact.ui.ContactCardView = Ext.extend(Zarafa.common.ui.DraggableDataVie
 			'<div class="zarafa-contact-cardview">',
 				'<tpl for=".">',
 					'<div class="zarafa-contact-cardview-card">',
-						'<div id="{entryid}" class="x-panel">',
+						'<div class="x-panel">',
 							'<div class="x-panel-tl">',
 								'<div class="x-panel-tr">',
 									'<div class="x-panel-tc">',
 										'<div class="x-panel-header">',
 											'<span class="x-panel-header-text">',
-												'{fileas:htmlEncodeUndef}',
+												'<tpl if="values.message_class==\'IPM.DistList\'">' + _('[Group]') + " " +'</tpl>{fileas:htmlEncodeUndef}',
 											'</span>',
 										'</div>',
 									'</div>',
@@ -173,29 +173,38 @@ Zarafa.contact.ui.ContactCardView = Ext.extend(Zarafa.common.ui.DraggableDataVie
 							'</div>',
 							'<div class="x-panel-bwrap">',
 								'<div class="x-panel-body zarafa-card-body">',
-										// Photo or Icon
-										'<p><tpl>{message_class:this.getIcon}</tpl></p>',
-									'<div>',
-										// content
-										'<p class="zarafa-contact-cardview-card-title">{display_name:htmlEncode}</p>',
-										'<p><tpl if="values.message_class==\'IPM.DistList\'">' + _('Group') + '</tpl></p>',
-										'<p>{company_name:htmlEncodeUndef}</p>',
-										'<p>{title:htmlEncodeUndef}</p>',
-										'<p>{department_name:htmlEncodeUndef}</p>',
-										'<table>',
-										'<tpl if="!Ext.isEmpty(values.business_telephone_number)"><tr><td class="contact-card-label">' + _('Work') + ':</td><td>{business_telephone_number:htmlEncode}</td></tr></tpl>',
-										'<tpl if="!Ext.isEmpty(values.business2_telephone_number)"><tr><td class="contact-card-label">' + _('Work') + ':</td><td>{business2_telephone_number:htmlEncode}</td></tr></tpl>',
-										'<tpl if="!Ext.isEmpty(values.primary_telephone_number)"><tr><td class="contact-card-label">' + _('Primary') + ':</td><td>{primary_telephone_number:htmlEncode}</td></tr></tpl>',
-										'<tpl if="!Ext.isEmpty(values.cellular_telephone_number)"><tr><td class="contact-card-label">' + _('Mobile') + ':</td><td>{cellular_telephone_number:htmlEncode}</td></tr></tpl>',
-										'<tpl if="!Ext.isEmpty(values.home_telephone_number)"><tr><td class="contact-card-label">' + _('Home') + ':</td><td>{home_telephone_number:htmlEncode}</td></tr></tpl>',
-										'</table>',
-										'<table>',
-										'<br>',
+									// content
+									'<p class="zarafa-contact-cardview-card-title">{display_name:htmlEncode}</p>',
+									'<p>{company_name:htmlEncodeUndef}</p>',
+									'<table>',
+										'<tpl if="!Ext.isEmpty(values.title)"><td><p>{title:htmlEncodeUndef}</p></td></tpl>',
+										'<tpl if="!Ext.isEmpty(values.department_name) && Ext.isEmpty(values.title)">',
+											'<td><p>{department_name:htmlEncodeUndef}</p></td>',
+										'</tpl>',
+										'<tpl if="!Ext.isEmpty(values.business_telephone_number)">',
+											'<tr><td class="contact-card-label">' + _('Work:') + ' {business_telephone_number:htmlEncode}</td></tr>',
+										'</tpl>',
+										'<tpl if="!Ext.isEmpty(values.business2_telephone_number) && Ext.isEmpty(values.business_telephone_number)">',
+											'<tr><td class="contact-card-label">' + _('Work:') + ' {business2_telephone_number:htmlEncode}</td></tr>',
+										'</tpl>',
+										'<tpl if="!Ext.isEmpty(values.primary_telephone_number) && Ext.isEmpty(values.business_telephone_number)',
+											'&& Ext.isEmpty(values.business2_telephone_number)">',
+											'<tr><td class="contact-card-label">' + _('Primary:') + ' {primary_telephone_number:htmlEncode}</td></tr>',
+										'</tpl>',
+										'<tpl if="!Ext.isEmpty(values.cellular_telephone_number)">',
+											'<tr><td class="contact-card-label">' + _('Mobile:') + ' {cellular_telephone_number:htmlEncode}</td></tr>',
+										'</tpl>',
 										'<tpl if="!Ext.isEmpty(values.email_address_1)"><tr><td>{email_address_1:htmlEncode}</td></tr></tpl>',
-										'<tpl if="!Ext.isEmpty(values.email_address_2)"><tr><td>{email_address_2:htmlEncode}</td></tr></tpl>',
-										'<tpl if="!Ext.isEmpty(values.email_address_3)"><tr><td>{email_address_3:htmlEncode}</td></tr></tpl>',
-										'</table>',
-									'</div>',
+										'<tpl if="!Ext.isEmpty(values.email_address_2) && Ext.isEmpty(values.email_address_1)">',
+											'<tr><td>{email_address_2:htmlEncode}</td></tr>',
+										'</tpl>',
+										'<tpl if="!Ext.isEmpty(values.email_address_3) && Ext.isEmpty(values.email_address_2) && Ext.isEmpty(values.email_address_1)">',
+											'<tr><td>{email_address_3:htmlEncode}</td></tr>',
+										'</tpl>',
+									'</table>',
+								'</div>',
+								'<div class="k-contact-cardview-initials contact_photo_box">',
+									'{[this.getInitials(values)]}',
 								'</div>',
 							'</div>',
 						'</div>',
@@ -205,19 +214,23 @@ Zarafa.contact.ui.ContactCardView = Ext.extend(Zarafa.common.ui.DraggableDataVie
 		];
 
 		return new Ext.XTemplate(templateStrArr.join(''), {
-			compiled : true,		// compile immediately
-			// Returns contact/distlist icon to show it in cardview.
-			getIcon : function(message_class)
+			compiled : true, // compile immediately
+
+			getInitials : function(values)
 			{
-				// TODO: Create new Icons for Distlist and contacts for cardview.
-				if(message_class == "IPM.DistList") {
-					return '<div class="zarafa-contact-cardview-distlist-card"></div>';
-				} else {
-					return '<div class="zarafa-contact-cardview-contact-card"></div>';
+				// Contacts can have empty display names. Fall back to question mark.
+				var contactInitials = "?";
+				var displayName = values.display_name;
+				if (!Ext.isEmpty(displayName)) {
+			 		displayName = displayName.replace(/\(.*?\)/g, '').trim().split(' ');
+					contactInitials = displayName.length > 1 ? displayName.shift().charAt(0) + displayName.pop().charAt(0) : displayName.shift().charAt(0);
 				}
+				return contactInitials.toUpperCase();
 			}
+	
 		});
 	}
 });
 
 Ext.reg('zarafa.contactcardview', Zarafa.contact.ui.ContactCardView);
+

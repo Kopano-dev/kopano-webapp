@@ -46,6 +46,14 @@ ul.x-tab-strip-top {
 	margin-top: 5%;
 }
 
+/* Empty text for empty contexts */
+.emptytext-context {
+	font-size: $font-size-extra-large;
+	color: $grey7;
+	text-align: center;
+	margin-top: 10%;
+}
+
 /* Exclude bigger font and margin for x-window empty texts
  * Example: permission tab
  */
