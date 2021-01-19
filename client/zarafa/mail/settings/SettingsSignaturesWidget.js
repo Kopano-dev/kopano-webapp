@@ -180,7 +180,12 @@ Zarafa.mail.settings.SettingsSignaturesWidget = Ext.extend(Zarafa.settings.ui.Se
 				ref : '../saveSignatureBtn',
 				handler : this.onSaveSignature,
 				scope : this
-			}]
+			}],
+			listeners:{
+				afterrender:this.onAfterRender,
+				delay:1,
+				scope:this
+			}
 		});
 
 		Zarafa.mail.settings.SettingsSignaturesWidget.superclass.constructor.call(this, config);
@@ -203,6 +208,20 @@ Zarafa.mail.settings.SettingsSignaturesWidget = Ext.extend(Zarafa.settings.ui.Se
 		this.mon(source, 'add', this.onGridAddSignature, this);
 		this.mon(source, 'remove', this.onGridDelSignature, this);
 		this.mon(source, 'update', this.onGridUpdateSignature, this);
+	},
+
+	/**
+	 * Event handler triggered after rendering settings signatures widget.
+	 * If {@link Zarafa.mail.settings.SettingsMailCategory SettingsMailCategory} has
+	 * scrollToSignatureWidget to true it will scroll the scroll bar to settings widget.
+	 */
+	onAfterRender: function()
+	{
+		if (this.settingsMailCategory.scrollToSignatureWidget) {
+			var dom = this.settingsMailCategory.getEl().dom;
+			dom.scrollTo('t', dom.scrollHeight);
+			delete this.settingsMailCategory.scrollToSignatureWidget;
+		}
 	},
 
 	/**

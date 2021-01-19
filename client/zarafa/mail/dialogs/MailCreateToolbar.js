@@ -305,41 +305,53 @@ Zarafa.mail.dialogs.MailCreateToolbar = Ext.extend(Zarafa.core.ui.ContentPanelTo
 		// generate menu for signature button
 		var signatures = settingsModel.get('zarafa/v1/contexts/mail/signatures/all', true);
 
-		if (!Ext.isEmpty(signatures)) {
-			var sigItems = [];
-
-			for (var key in signatures) {
-				sigItems.push({
-					text : Ext.util.Format.htmlEncode(signatures[key].name),
-					signatureId : parseInt(key, 10)
-				});
-			}
-			// If no signatures are configured we add a dummy button
-			if (sigItems.length === 0) {
-				sigItems.push({
-					text : _('No signatures configured'),
-					signatureId : false
-				});
-			}
-
-			if (this.signatureButton.menu) {
-				// Remove list of old signatures and add all the signatures again
-				var signatureMenu = this.signatureButton.menu;
-				signatureMenu.removeAll();
-				signatureMenu.add(sigItems);
-			} else {
-				// Create menu for the first time.
-				// instance creation of menu will be handled by MenuMgr
-				this.signatureButton.menu = Ext.menu.MenuMgr.get({
-					xtype : 'menu',
-					listeners : {
-						click : this.onSignatureSelect,
-						scope : this
-					},
-					items : sigItems
-				});
-			}
+		var sigItems = [];
+		for (var key in signatures) {
+			sigItems.push({
+				text : Ext.util.Format.htmlEncode(signatures[key].name),
+				iconCls : 'icon_signature',
+				signatureId : parseInt(key, 10)
+			});
 		}
+
+		if (!Ext.isEmpty(sigItems)){
+			sigItems.push({
+				xtype: 'menuseparator'
+			});
+		}
+		sigItems.push({
+			text : _('Add signature'),
+			iconCls : 'plus',
+			handler: this.onClickAddSignatureHandler,
+			signatureId : false
+		});
+
+		if (this.signatureButton.menu) {
+			// Remove list of old signatures and add all the signatures again
+			var signatureMenu = this.signatureButton.menu;
+			signatureMenu.removeAll();
+			signatureMenu.add(sigItems);
+		} else {
+			// Create menu for the first time.
+			// instance creation of menu will be handled by MenuMgr
+			this.signatureButton.menu = Ext.menu.MenuMgr.get({
+				xtype : 'menu',
+				listeners : {
+					click : this.onSignatureSelect,
+					scope : this
+				},
+				items : sigItems
+			});
+		}
+	},
+
+	/**
+	 * Handler which triggered when 'Add signature' button clicked.
+	 * This will call the {@link Zarafa.mail.Actions#redirectToSignatureWidget}.
+	 */
+	onClickAddSignatureHandler : function()
+	{
+		Zarafa.mail.Actions.redirectToSignatureWidget();
 	},
 
 	/**
