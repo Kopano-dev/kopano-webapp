@@ -43,64 +43,64 @@ Zarafa.addressbook.dialogs.ABUserGeneralTab = Ext.extend(Ext.form.FormPanel, {
 	createNameFieldset : function()
 	{
 		return {
-			xtype : 'fieldset',
-			columnWidth	: 1,
-			border : true,
-			cls	 : 'zarafa-fieldset',
-			title : _('Name'),
-			layout : 'column',
-			anchor :'100%',
-			items : [{//1st column
-				xtype : 'container',
-				layout : 'form',
+			xtype: 'fieldset',
+			columnWidth: 1,
+			border: true,
+			cls : 'zarafa-fieldset',
+			title: _('Name'),
+			layout: 'column',
+			anchor:'100%',
+			items: [{
+				xtype: 'container',
+				layout: 'form',
 				columnWidth : 0.50,
-				border : false,
-				items : [{
+				border: false,
+				items: [{
 					xtype: 'container',
-					layout : 'column',
-					anchor :'100%',
+					layout: 'column',
+					anchor:'100%',
 					border: false,
-					defaults : {
-						anchor :'100%',
-						readOnly : true
+					defaults: {
+						anchor:'100%',
+						readOnly: true
 					},
-					items : [{
-						columnWidth	: 0.7,
-						xtype : 'textfield',
-						fieldLabel : _('First'),
-						name : 'given_name',
-						plugins : [{
-							ptype : 'zarafa.fieldlabeler'
+					items: [{
+						columnWidth: 0.7,
+						xtype: 'textfield',
+						fieldLabel: _('First'),
+						name: 'given_name',
+						plugins: [{
+							ptype: 'zarafa.fieldlabeler'
 						}]
 					},{
-						xtype : 'spacer',
-						width : 6,
-						height : 3
+						xtype: 'spacer',
+						width: 6,
+						height: 3
 					},{
-						xtype : 'textfield',
-						columnWidth	: 0.3,
-						labelWidth : 50,
-						fieldLabel : _('Initial'),
-						name : 'initials',
-						plugins : [{
-							ptype : 'zarafa.fieldlabeler'
+						xtype: 'textfield',
+						columnWidth: 0.3,
+						labelWidth: 50,
+						fieldLabel: _('Initials'),
+						name: 'initials',
+						plugins: [{
+							ptype: 'zarafa.fieldlabeler'
 						}]
 					}]
 				},{
 					xtype: 'container',
-					layout : 'column',
-					anchor :'100%',
+					layout: 'column',
+					anchor:'100%',
 					border: false,
 					items: [{
-						xtype : 'textfield',
-						columnWidth : 0.7,
-						readOnly : true,
+						xtype: 'textfield',
+						columnWidth: 0.7,
+						readOnly: true,
 						style: 'margin-top: 3px;',
-						fieldLabel :_('Display'),
-						plugins : [{
-							ptype : 'zarafa.fieldlabeler'
+						fieldLabel:_('Display'),
+						plugins: [{
+							ptype: 'zarafa.fieldlabeler'
 						}],
-						name : 'display_name'
+						name: 'display_name'
 					},{
 						// Add the same spacer as 1 row above.
 						// This forces the 'Display' and 'First'
@@ -110,24 +110,24 @@ Zarafa.addressbook.dialogs.ABUserGeneralTab = Ext.extend(Ext.form.FormPanel, {
 						height: 3
 					}]
 				}]
-			},{//2nd column
-				xtype : 'container',
-				layout : 'form',
+			},{
+				xtype: 'container',
+				layout: 'form',
 				cls: 'zarafa-fieldset-second',
-				columnWidth : 0.50,
-				border : false,
-				defaults : {
-					anchor :'100%',
-					readOnly : true
+				columnWidth: 0.50,
+				border: false,
+				defaults: {
+					anchor:'100%',
+					readOnly: true
 				},
-				items : [{
-					xtype : 'textfield',
-					fieldLabel : _('Last'),
-					name : 'surname'
+				items: [{
+					xtype: 'textfield',
+					fieldLabel: _('Last'),
+					name: 'surname'
 				},{
-					xtype : 'textfield',
-					fieldLabel : _('Alias'),
-					name : 'account'
+					xtype: 'textfield',
+					fieldLabel: _('Alias'),
+					name: 'account'
 				}]
 			}]
 		};
@@ -141,32 +141,32 @@ Zarafa.addressbook.dialogs.ABUserGeneralTab = Ext.extend(Ext.form.FormPanel, {
 	createAddressFieldset : function()
 	{
 		return {
-			xtype : 'fieldset',
-			cls	 : 'zarafa-fieldset',
-			defaultType	: 'textfield',
-			border : false,
-			columnWidth	: 0.5,
-			defaults : {
-				anchor	:'100%',
+			xtype: 'fieldset',
+			cls: 'zarafa-fieldset',
+			defaultType: 'textfield',
+			border: false,
+			columnWidth: 0.5,
+			defaults: {
+				anchor:'100%',
 				readOnly: true
 			},
-			items : [{
-				xtype : 'textarea',
-				fieldLabel : _('Address'),
-				name : 'street_address',
-				height : '40px'
+			items: [{
+				xtype: 'textarea',
+				fieldLabel: _('Address'),
+				name: 'street_address',
+				height: '40px'
 			},{
-				fieldLabel : _('City'),
-				name : 'locality'
+				fieldLabel: _('City'),
+				name: 'locality'
 			},{
-				fieldLabel : _('State'),
-				name : 'state_or_province'
+				fieldLabel: _('State'),
+				name: 'state_or_province'
 			},{
-				fieldLabel : _('Zip Code'),
-				name : 'postal_code'
+				fieldLabel: _('Zip Code'),
+				name: 'postal_code'
 			},{
-				fieldLabel : _('Country'),
-				name : 'country'
+				fieldLabel: _('Country'),
+				name: 'country'
 			}]
 		};
 	},
@@ -179,33 +179,33 @@ Zarafa.addressbook.dialogs.ABUserGeneralTab = Ext.extend(Ext.form.FormPanel, {
 	createOfficeFieldset : function()
 	{
 		return {
-			xtype : 'fieldset',
-			cls	 : 'zarafa-fieldset-second',
-			defaultType	: 'textfield',
-			border : false,
-			columnWidth	: 0.5,
-			defaults : {
-				anchor : '100%',
-				readOnly : true
+			xtype: 'fieldset',
+			cls: 'zarafa-fieldset-second',
+			defaultType: 'textfield',
+			border: false,
+			columnWidth: 0.5,
+			defaults: {
+				anchor: '100%',
+				readOnly: true
 			},
-			items : [{
-				fieldLabel : _('Title'),
-				name : 'title'
+			items: [{
+				fieldLabel: _('Title'),
+				name: 'title'
 			},{
-				fieldLabel : _('Company'),
-				name : 'company_name'
+				fieldLabel: _('Company'),
+				name: 'company_name'
 			},{
-				fieldLabel : _('Department'),
-				name : 'department_name'
+				fieldLabel: _('Department'),
+				name: 'department_name'
 			},{
-				fieldLabel : _('Office'),
-				name : 'office_location'
+				fieldLabel: _('Office'),
+				name: 'office_location'
 			},{
-				fieldLabel : _('Assistant'),
-				name : 'assistant'
+				fieldLabel: _('Assistant'),
+				name: 'assistant'
 			},{
-				fieldLabel : _('Phone'),
-				name : 'business_telephone_number'
+				fieldLabel: _('Phone'),
+				name: 'business_telephone_number'
 			}]
 		};
 	},
