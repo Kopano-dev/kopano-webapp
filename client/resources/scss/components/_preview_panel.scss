@@ -184,6 +184,7 @@ $preview-header-collapse-icon-height	: 5;
 	font-size: 18px !important;
 	@include basefont($font-size-extra-large);
 	float: left;
+	user-select: none;
 }
 
 .preview-body {
