@@ -136,12 +136,6 @@ if(!defined("ALWAYS_ENABLED_PLUGINS_LIST")) define("ALWAYS_ENABLED_PLUGINS_LIST"
 if(!defined("THEME")) define("THEME", "");
 
 /**
- * Set to true to give users the ability to chose a personal theme that will be shown
- * when they are logged in.
- */
-if(!defined("PERSONAL_THEMES_ENABLED")) define("PERSONAL_THEMES_ENABLED", false);
-
-/**
  * Use the classic icons as default iconset
  */
 if(!defined("ICONSET")) define("ICONSET", "breeze");
