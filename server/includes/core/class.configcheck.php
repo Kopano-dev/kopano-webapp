@@ -7,17 +7,18 @@
 class ConfigCheck 
 {
 	public $result;
+	public $errorMessage = "";
 
 	function __construct($haltOnError = true)
 	{
 		$this->haltOnError = $haltOnError;
 
-		$this->result = true;	
+		$this->result = true;
 
 		// here we check our settings, changes to the config and
 		// additional checks must be added/changed here
 		$this->checkPHP("5.4", "You must upgrade PHP");
-		$this->checkExtension("mapi", "7.0.0-27530", "If you have upgraded Kopano Core, please restart Apache");
+		$this->checkExtension("mapi", "7.0.0-27530", "If you have upgraded Kopano Core, please restart your webserver");
 		$this->checkExtension("gettext", null, "Install the gettext extension for PHP");
 		$this->checkPHPsetting("session.auto_start", "off", "Modify this setting in '%s'");
 		$this->checkPHPsetting("output_handler", "", "With this option set, it is unsure if the Kopano WebApp will work correctly");
@@ -31,17 +32,37 @@ class ConfigCheck
 			$this->checkPHPsecurity("session.cookie_secure", "on", "Modify this setting in '%s'");
 		}
 
-		$this->checkDirectory(TMP_PATH, "rw", "Please make sure this directory exists and is writable for PHP/Apache");
+		$this->checkDirectory(TMP_PATH, "rw", "Please make sure this directory exists and is writable for PHP and your webserver");
 		$this->checkFunction("iconv", "Install the 'iconv' module for PHP, or else you don't have euro-sign support.");
 		$this->checkFunction("gzencode", "You don't have zlib support: <a href=\"https://php.net/manual/en/ref.zlib.php#zlib.installation\">https://php.net/manual/en/ref.zlib.php#zlib.installation</a>");
-		$this->checkLoader(DEBUG_LOADER, "Your 'DEBUG_LOADER' configuration isn't valid for the current folder");
+		$this->checkLoader(DEBUG_LOADER, "Your 'DEBUG_LOADER' configuration isn't valid for the current setup. Please check this property.");
 
 		// check if there were *any* errors and we need to stop the WebApp
 		if (!$this->result && $this->haltOnError){
 			?>
-				<p style="font-weight: bold;">Kopano WebApp can't start because of incompatible configuration.</p>
-				<p>Please correct above errors, a good start is by checking your '<tt><?php echo $this->get_php_ini(); ?></tt>' file.</p>
-				<p>You can disable this configuration check by editing the file '<tt><?php echo dirname($_SERVER["SCRIPT_FILENAME"]) ?>/config.php</tt>', but this is not recommended.</p>
+				<link rel="stylesheet" href="client/resources/css/external/configcheck.css" media="screen">
+
+				<div class="wrapper">
+					<div class="header">
+						<h1>Invalid configuration</h1>
+					</div>	
+					<div class="action">
+						<p class="intro">Don’t worry, we’ll help you get to the bottom of this problem.</p>
+						<p>First of all if you see this message and aren't the administrator, please contact your system administrator for assistance.</p>
+						<h3>Please validate</h3>
+						<ul>
+						<li><p><?php echo $this->errorMessage?></p></li>
+						<li><p>Check your '<tt><?php echo $this->get_php_ini(); ?></tt>' file for faulty configurations.</p></li>
+						<li><p>Documentation can be found <a href="https://documentation.kopano.io/" target="_blank">here.</a></p></li>
+						<li><p>Readme can be found <a href="https://stash.kopano.io/projects/KW/repos/kopano-webapp/browse/README.md" target="_blank">here.</a></p></li>
+						<li><p>Still stuck? Contact our support team at <a href="https://www.kopano.com/" target="_blank">kopano.com.</a></p></li>
+						</ul>
+					</div>
+					<div class="disable">
+						<h3>Disable this message</h3>
+						<p>You can disable this check in your <i>config.php</i>, but this is not recommended.</p>
+					</div>
+				</div>
 			<?php
 			exit;
 		}
@@ -55,8 +76,8 @@ class ConfigCheck
 	function error($string, $help)
 	{
 		if ($this->haltOnError) {
-			printf("<div style=\"color: #f00;\">%s</div><div style=\"font-size: smaller; margin-left: 20px;\">%s</div>\n",$string, $help);
-		}else{
+			$this->errorMessage = $string . ". <br>". $help;
+		} else{
 			trigger_error(strip_tags($string), E_USER_NOTICE);
 		}
 		$this->result = false;
@@ -67,7 +88,7 @@ class ConfigCheck
 	 */
 	function error_version($name, $needed, $found, $help)
 	{
-		$this->error("<strong>Version error:</strong> $name $found found, but $needed needed.", $help);
+		$this->error("Version error: $name $found found, but $needed needed.", $help);
 	}
 
 	/**
@@ -75,7 +96,7 @@ class ConfigCheck
 	 */
 	function error_notfound($name, $help)
 	{
-		$this->error("<strong>Not Found:</strong> $name not found", $help);
+		$this->error("Not Found: $name not found", $help);
 	}
 
 	/**
@@ -84,7 +105,7 @@ class ConfigCheck
 	function error_config($name, $needed, $help)
 	{
 		$help = sprintf($help, "<tt>".$this->get_php_ini()."</tt>");
-		$this->error("<strong>PHP Config error:</strong> $name must be '$needed'", $help);
+		$this->error("PHP Config error: $name must be '$needed'", $help);
 	}
 
 	/**
@@ -93,7 +114,7 @@ class ConfigCheck
 	function error_security($name, $needed, $help)
 	{
 		$help = sprintf($help, "<tt>" . $this->get_site_config() . "</tt>");
-		$this->error("<strong>PHP Security Config error:</strong> $name must be '$needed'", $help);
+		$this->error("PHP Security Config error: $name must be '$needed'", $help);
 	}
 
 	/**
@@ -101,7 +122,7 @@ class ConfigCheck
 	 */
 	function error_directory($dir, $msg, $help)
 	{
-		$this->error("<strong>Directory Error:</strong> $dir $msg", $help);
+		$this->error("Directory error: $dir $msg", $help);
 	}
 
 	/**
@@ -154,7 +175,7 @@ class ConfigCheck
 	}
 
 	/**********************************************************\
-	*  Check functions                                         *
+	*  Check functions					   *
 	\**********************************************************/
 
 
@@ -269,8 +290,8 @@ class ConfigCheck
 	 * this directory is readable/writable specified with the $states parameter
 	 *
 	 * $states is a string which can contain these chars:
-	 *      r  - check if directory is readable
-	 *      w  - check if directory is writable
+	 *	r  - check if directory is readable
+	 *	w  - check if directory is writable
 	 */
 	function checkDirectory($dir, $states="r", $help_msg="")
 	{
@@ -308,37 +329,41 @@ class ConfigCheck
 	function checkLoader($loader, $help_msg="")
 	{
 		$result = true;
-
+		
+		$releaseFiles = is_file(BASE_PATH . '/client/kopano.js');
+		$sourceFiles = is_dir(BASE_PATH . '/client/zarafa');
+		$debugFiles = is_file(BASE_PATH . '/client/zarafa-debug.js');
+	
 		switch ($loader) {
 		case LOAD_RELEASE:
-			if (!is_file(BASE_PATH . '/client/kopano.js')) {
-				$this->error('<strong>LOAD_RELEASE configured, but no release files found</strong>', $help_msg);
-				$result = false;
-			} else if (is_dir(BASE_PATH . '/client/zarafa')) {
-				$this->error('<strong>LOAD_RELEASE configured, but source files were found</strong>', $help_msg);
+			if ($sourceFiles) {
+				$this->error('LOAD_RELEASE set, but source files were found', $help_msg);
+				$result = false; 
+			} else if (!$releaseFiles) {
+				$this->error('LOAD_RELEASE set, but no release files found', $help_msg);
 				$result = false;
 			}
 			break;
 		case LOAD_DEBUG:
-			if (!is_file(BASE_PATH . '/client/zarafa-debug.js')) {
-				$this->error('<strong>LOAD_DEBUG configured, but no debug files found</strong>', $help_msg);
+			if ($sourceFiles) {
+				$this->error('LOAD_DEBUG set, but source files were found', $help_msg);
 				$result = false;
-			} else if (is_dir(BASE_PATH . '/client/zarafa')) {
-				$this->error('<strong>LOAD_DEBUG configured, but source files were found</strong>', $help_msg);
+			} else if (!$debugFiles) {
+				$this->error('LOAD_DEBUG set, but no debug files were found', $help_msg);
 				$result = false;
 			}
 			break;
 		case LOAD_SOURCE:
-			if (!is_dir(BASE_PATH . '/client/zarafa')) {
-				$this->error('<strong>LOAD_SOURCE configured, but no source files found</strong>', $help_msg);
+			if ($releaseFiles || $debugFiles) {
+				$this->error('LOAD_SOURCE set, but release or debug file were found', $help_msg);
 				$result = false;
-			} else if (is_file(BASE_PATH . '/client/kopano.js') || is_file(BASE_PATH . '/client/zarafa-debug.js')) {
-				$this->error('<strong>LOAD_SOURCE configured, but release & debug file were found</strong>', $help_msg);
+			} else if (!$sourceFiles) {
+				$this->error('LOAD_SOURCE set, but no source files found', $help_msg);
 				$result = false;
 			}
 			break;
 		default:
-			$this->error('<strong>Unknown \'DEBUG_LOADER\' value: ' . $loader . '</strong>', $help_msg);
+			$this->error('Unknown \'DEBUG_LOADER\' value: ' . $loader, $help_msg);
 			$result = false;
 			break;
 		}
