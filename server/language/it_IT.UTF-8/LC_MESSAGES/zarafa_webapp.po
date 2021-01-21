@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Kopano Webapp Italian (Italy)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-25 14:32+0200\n"
-"PO-Revision-Date: 2020-12-07 16:28+0000\n"
+"PO-Revision-Date: 2021-01-21 15:59+0000\n"
 "Last-Translator: Luca <luca.delcarlo@welcomeitalia.it>\n"
 "Language-Team: Italian <http://translate.kopano.io/projects/kopano/kopano-"
 "webapp/it/>\n"
@@ -889,7 +889,7 @@ msgstr "Quando"
 
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "l jS F Y {0}"
-msgstr ""
+msgstr "l j F Y {0}"
 
 msgid "Where"
 msgstr "Dove"
@@ -1212,7 +1212,7 @@ msgstr "Vuoi aggiornare la posizione \"{0}\" con la nuova posizione \"{1}\"?"
 
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "jS F Y {0}"
-msgstr ""
+msgstr "j F Y {0}"
 
 msgid "None"
 msgstr "Nessuno"
@@ -1409,7 +1409,7 @@ msgstr "l j F Y"
 
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "l jS F"
-msgstr "l jS F"
+msgstr "l j F"
 
 msgid "Organiser"
 msgstr "Agenda"
@@ -1440,9 +1440,8 @@ msgstr "Importanza"
 msgid "M j"
 msgstr ""
 
-#, fuzzy
 msgid "j"
-msgstr "jS"
+msgstr "j"
 
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "l d/m/Y"
@@ -1529,7 +1528,7 @@ msgstr "Orario predefinito appuntamento giornata intera"
 
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "jS"
-msgstr "jS"
+msgstr "j"
 
 msgid "{0} selected item"
 msgid_plural "{0} selected items"
@@ -1668,7 +1667,7 @@ msgstr ""
 
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "jS F Y"
-msgstr "jS F Y"
+msgstr "j F Y"
 
 msgid ""
 "You have insufficient privileges to move and copy this item. Ask the folder "
@@ -3942,7 +3941,7 @@ msgstr "{0} per conto di {1}"
 
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "jS F"
-msgstr "jS F"
+msgstr "j F"
 
 msgid "Y"
 msgstr "Y"
