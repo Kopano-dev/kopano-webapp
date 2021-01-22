@@ -247,6 +247,10 @@ Ext.apply(Zarafa, {
 				node.setAttribute('target', '_blank');
 				// prevent https://www.owasp.org/index.php/Reverse_Tabnabbing
 				node.setAttribute('rel', 'noopener noreferrer external');
+
+				if (node.nodeName === "A" && !Ext.isEmpty(node.href)){
+					node.setAttribute('title', `${node.href} \n ${_("Click the link to open the URL in a new window.")}`);
+				}
 			} else if (!node.hasAttribute('target') && (node.hasAttribute('xlink:href') || node.hasAttribute('href'))) {
 				// set non-HTML/MathML links to xlink:show=new
 				node.setAttribute('xlink:show', 'new');
