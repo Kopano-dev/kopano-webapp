@@ -569,10 +569,6 @@ Zarafa.hierarchy.data.HierarchyTreeLoader = Ext.extend(Ext.tree.TreeLoader, {
 		var folder = attr.folder;
 
 		if (folder) {
-			if (attr.nodeType === 'rootfolder') {
-				attr.extendedDisplayName = this.tree.hasFilter();
-			}
-
 			// To uniquely identify the favorites tree nodes we append the "favorites-" key word with node id
 			// when the node is created.
 			attr.id = folder.isFavoritesFolder() ? "favorites-" + folder.get('entryid') : folder.get('entryid');

@@ -117,7 +117,7 @@ Zarafa.hierarchy.ui.FolderNodeUI = Ext.extend(Ext.tree.TreeNodeUI, {
 						'href="' + href + '" tabIndex="1" ' +
 						(a.hrefTarget ? ' target="' + a.hrefTarget + '"' : "") + ">" +
 							// hierarchy node text (this.textNode)
-							'<span unselectable="on">' + (n.tpl ? n.tpl.apply(a) : n.text) + '</span>' +
+							'<span class="zarafa-hierarchy-node-foldername" unselectable="on">' + (n.tpl ? n.tpl.apply(a) : n.text) + '</span>' +
 							// counter node (this.counterNode)
 							'<span class="zarafa-hierarchy-node-counter" unselectable="on"></span>' +
 							'<span class="zarafa-hierarchy-node-owner" unselectable="on"></span>'+
@@ -191,8 +191,11 @@ Zarafa.hierarchy.ui.FolderNodeUI = Ext.extend(Ext.tree.TreeNodeUI, {
 	showFolderOwner : function (node)
 	{
 		var folder = node.getFolder();
-
-		if (!Ext.isDefined(folder) || !folder.isFavoritesFolder() || folder.isIPMSubTree() || folder.isFavoritesRootFolder()) {
+		
+		// Display owner of a folder : 
+		// - When a favorite folder. 
+		// - When a folder exists in a filtered tree ('Show all folders' checkbox is unchecked) in Tasks, Contacts, Calender, Notes contexts.
+		if (!Ext.isDefined(folder) || (!folder.isFavoritesFolder() && node.attributes.nodeType !== 'rootfolder') || folder.isIPMSubTree() || folder.isFavoritesRootFolder()) {
 			return;
 		}
 
@@ -240,6 +243,7 @@ Zarafa.hierarchy.ui.FolderNodeUI = Ext.extend(Ext.tree.TreeNodeUI, {
 					elNode.replaceClass('zarafa-hierarchy-node-unread-count', 'zarafa-hierarchy-node-total-count');
 					elNode.addClass('zarafa-hierarchy-node-withcounter');
 				}
+				counterNode.removeClass('zarafa-hierarchy-node-nopadding');
 				counterNode.update(folder.getCounterValue());
 				counterNode.repaint();
 				break;
@@ -251,6 +255,7 @@ Zarafa.hierarchy.ui.FolderNodeUI = Ext.extend(Ext.tree.TreeNodeUI, {
 					elNode.replaceClass('zarafa-hierarchy-node-total-count', 'zarafa-hierarchy-node-unread-count');
 					elNode.addClass('zarafa-hierarchy-node-withcounter');
 				}
+				counterNode.removeClass('zarafa-hierarchy-node-nopadding');
 				counterNode.update(folder.getCounterValue());
 				counterNode.repaint();
 				break;
@@ -262,6 +267,7 @@ Zarafa.hierarchy.ui.FolderNodeUI = Ext.extend(Ext.tree.TreeNodeUI, {
 					elNode.removeClass(['zarafa-hierarchy-node-total-count', 'zarafa-hierarchy-node-unread-count']);
 					elNode.removeClass('zarafa-hierarchy-node-withcounter');
 				}
+				counterNode.addClass('zarafa-hierarchy-node-nopadding');
 				counterNode.update('');
 				counterNode.repaint();
 				break;
