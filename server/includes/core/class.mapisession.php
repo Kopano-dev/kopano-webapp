@@ -146,8 +146,7 @@
 				$user = $this->getUser($store_props[PR_USER_ENTRYID]);
 
 				// receive userdata
-				// TODO: 0x8C9E0102 represents an LDAP jpegPhoto and should get a named property PR_EMS_AB_THUMBNAIL_PHOTO
-				$user_props = array(PR_DISPLAY_NAME, PR_SMTP_ADDRESS, PR_EMAIL_ADDRESS, PR_SEARCH_KEY, 0x8C9E0102, PR_ASSISTANT_TELEPHONE_NUMBER);
+				$user_props = array(PR_DISPLAY_NAME, PR_SMTP_ADDRESS, PR_EMAIL_ADDRESS, PR_SEARCH_KEY, PR_EMS_AB_THUMBNAIL_PHOTO, PR_ASSISTANT_TELEPHONE_NUMBER);
 				$properties = new properties();
 				$user_props = array_merge($user_props, $properties->getAddressBookItemMailuserProperties());
 
@@ -159,7 +158,7 @@
 					$this->session_info["smtpaddress"] = $user_props[PR_SMTP_ADDRESS];
 					$this->session_info["emailaddress"] = $user_props[PR_EMAIL_ADDRESS];
 					$this->session_info["searchkey"] = $user_props[PR_SEARCH_KEY];
-					$this->session_info["userimage"] = isset($user_props[-1935802110]) ? base64_encode($user_props[-1935802110]) : "";
+					$this->session_info["userimage"] = isset($user_props[PR_EMS_AB_THUMBNAIL_PHOTO]) ? base64_encode($user_props[PR_EMS_AB_THUMBNAIL_PHOTO]) : "";
 					$this->session_info["userimage"] = strlen($this->session_info["userimage"]) > 0 ? "data:image/png;base64," . $this->session_info["userimage"] : "" ;
 
 					$this->session_info["given_name"] = isset($user_props[PR_GIVEN_NAME]) ? $user_props[PR_GIVEN_NAME] : '';

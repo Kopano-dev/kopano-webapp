@@ -508,11 +508,12 @@ Zarafa.core.data.MessageRecord = Ext.extend(Zarafa.core.data.IPMRecord, {
 		}
 
 		var sender = Zarafa.core.data.RecordFactory.createRecordObjectByCustomType(Zarafa.core.data.RecordCustomObjectType.ZARAFA_RECIPIENT, {
-			smtp_address: this.get('sender_email_address'),
-			display_name: this.get('sender_name'),
-			address_type: this.get('sender_address_type'),
-			entryid: this.get('sender_entryid'),
-			search_key: this.get('sender_search_key')
+			smtp_address : this.get('sender_email_address'),
+			display_name : this.get('sender_name'),
+			address_type : this.get('sender_address_type'),
+			entryid : this.get('sender_entryid'),
+			search_key : this.get('sender_search_key'),
+			user_image : this.get('user_image')
 		});
 
 		return sender;
@@ -531,11 +532,12 @@ Zarafa.core.data.MessageRecord = Ext.extend(Zarafa.core.data.IPMRecord, {
 		}
 
 		var sender = Zarafa.core.data.RecordFactory.createRecordObjectByCustomType(Zarafa.core.data.RecordCustomObjectType.ZARAFA_RECIPIENT, {
-			smtp_address: this.get('sent_representing_email_address'),
-			display_name: this.get('sent_representing_name'),
-			address_type: this.get('sent_representing_address_type'),
-			entryid: this.get('sent_representing_entryid'),
-			search_key: this.get('sent_representing_search_key')
+			smtp_address : this.get('sent_representing_email_address'),
+			display_name : this.get('sent_representing_name'),
+			address_type : this.get('sent_representing_address_type'),
+			entryid : this.get('sent_representing_entryid'),
+			search_key : this.get('sent_representing_search_key'),
+			user_image : this.get('user_image')
 		});
 
 		return sender;

@@ -4631,5 +4631,45 @@
 			}
 			return $senderStructure;
 		}
+
+		/**
+		* This function will fetch the user from mapi session and retrive it's LDAP image.
+		* It will return the compressed image using php's GD library.
+		*
+		* @param string $userEntryid The user entryid which is going to open.
+		* @param integer compressedQuaity The compression factor range from 0 (high) to 100 (low)
+		* Default value is set to 10 which is nearly extreme compressed image.
+		* @return string A base64 encoded string (data url)
+		*/
+		function getCompressedUserImage($userEntryId, $compressedQuaity = 10)
+		{
+			$user = $GLOBALS['mapisession']->getUser($userEntryId);
+			$userImageProp = mapi_getprops($user, array(PR_EMS_AB_THUMBNAIL_PHOTO));
+			// Proceed only when GD library's functions and user image data are available.
+			if (function_exists('imagecreatefromstring') && isset($userImageProp[PR_EMS_AB_THUMBNAIL_PHOTO])) {
+				try {
+					$userImg = imagecreatefromstring($userImageProp[PR_EMS_AB_THUMBNAIL_PHOTO]);
+				} catch (Exception $e) {
+					$msg = "Problem while getting user image from string. Error %s : %s.";
+					$formattedMsg = sprintf($msg, $e->getCode(), $e->getMessage());
+					error_log($formattedMsg);
+					Log::Write(LOGLEVEL_ERROR, "Operations:getCompressedUserImage() ". $formattedMsg);
+				}
+
+				if ($userImg !== false) {
+					//We need to use buffer because imagejpeg will give output as image in browser or file.
+					ob_start();
+					imagejpeg($userImg, NULL, $compressedQuaity);
+					$compressedImg = ob_get_contents();
+					ob_end_clean();
+
+					// Free up memory space acquired by image.
+					imagedestroy($userImg);
+					return strlen($compressedImg) > 0 ? "data:image/png;base64," . base64_encode($compressedImg) : "";
+				}
+			}
+			
+			return "";
+		}
 	}
 ?>

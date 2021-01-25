@@ -189,6 +189,20 @@ $preview-header-collapse-icon-height	: 5;
 	user-select: none;
 }
 
+.preview-header-sender-image {
+	background-size: cover;
+    background-position: center;
+	background-repeat: no-repeat;
+	border-radius: 50%;
+	-moz-border-radius: 50%;
+	display: inline-block;
+	min-height: 40px;
+	margin-right: 7px;
+	text-align: center;
+	width: 40px;
+	float: left;
+}
+
 .preview-body {
 	padding: 0;
 }

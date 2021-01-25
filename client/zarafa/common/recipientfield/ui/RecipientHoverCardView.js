@@ -108,7 +108,7 @@ Zarafa.common.recipientfield.ui.RecipientHoverCardView = Ext.extend(Ext.Window, 
 			width: 70,
 			items: [{
 				xtype: 'container',
-				html: this.getInitials(record)
+				html: this.getImageOrInitials(record)
 			}]
 		}, {
 			layout: {
@@ -304,14 +304,18 @@ Zarafa.common.recipientfield.ui.RecipientHoverCardView = Ext.extend(Ext.Window, 
 	},
 
 	/**
-	 * Function will return html template that contains the initials of a sender.
+	 * Function will return html template that contains the sender user's image or initials.
 	 * @param {Ext.data.Record} record which will show in hover card view.
 	 * @returns {string} html string which contains the initials of a sender.
 	 */
-	getInitials: function(record)
+	getImageOrInitials: function(record)
 	{
-		var senderInitials = record.getSenderInitials();
-		return '<span class="preview-header-sender-initial">'+ senderInitials +'</span>';
+		var senderUserImage = record.get('user_image');
+		if (Ext.isEmpty(senderUserImage)) {
+			return '<span class="preview-header-sender-initial">'+ record.getSenderInitials() +'</span>';
+		}
+		
+		return '<span class="preview-header-sender-image" style ="background-image:url('+ senderUserImage +');"></span>';
 	}
 });
 

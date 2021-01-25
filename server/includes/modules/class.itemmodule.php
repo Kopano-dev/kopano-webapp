@@ -461,7 +461,6 @@
 			} else {
 				// get message props of the message
 				$data['item'] = $GLOBALS['operations']->getMessageProps($store, $message, $this->properties, $this->plaintext);
-
 				$messageClass = !empty($data['item']['props']['message_class']) ? $data['item']['props']['message_class'] : '';
 
 				// Check for meeting request, do processing if necessary
@@ -534,6 +533,18 @@
 					$data['item']['props']['isHTML'] = false;
 					$data['item']['props']['body'] = $this->getNDRbody($message);
 				}
+			}
+			
+			$userEntryId = '';
+			if (isset($data['item']['props']['sent_representing_entryid'])) {
+				$userEntryId = hex2bin($data['item']['props']['sent_representing_entryid']);
+			} else if (isset($data['item']['props']['sender_entryid'])) {
+				$userEntryId = hex2bin($data['item']['props']['sender_entryid']);
+			}
+			
+			// get user image saved in LDAP.
+			if (!empty($userEntryId)) {
+				$data['item']['props']['user_image'] = $GLOBALS['operations']->getCompressedUserImage($userEntryId);
 			}
 
 			// Allowing to hook in just before the data sent away to be sent to the client

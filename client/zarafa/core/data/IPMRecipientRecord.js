@@ -23,6 +23,7 @@ Zarafa.core.data.IPMRecipientRecordFields = [
 	{name: 'display_type', type: 'int', defaultValue: Zarafa.core.mapi.DisplayType.DT_MAILUSER},
 	{name: 'display_type_ex', type: 'int', defaultValue: Zarafa.core.mapi.DisplayType.DT_MAILUSER},
 	{name: 'email_address'},
+	{name: 'user_image', type: 'string'},
 	{name: 'smtp_address'},
 	{name: 'address_type', type: 'string', defaultValue: 'SMTP'},
 	{name: 'presence_status', type: 'int'}, // Note: this field will not be filled by the back-end

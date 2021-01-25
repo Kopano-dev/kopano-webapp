@@ -44,7 +44,12 @@ Zarafa.common.ui.messagepanel.SentInfoLinks = Ext.extend(Ext.Container, {
 				/* # TRANSLATORS: check if the mail is send by some delegator or not. if then display "on behalf of". */
 				'<span>&nbsp;' + pgettext('mail.previewpanel', 'on behalf of') + '&nbsp;</span>' +
 				/* Display the initials of a sender */
-				'<span class="preview-header-sender-initial">{sender_initials}</span>' +
+				'<tpl if="!Ext.isEmpty(values.user_image)">'+
+					'<span class="preview-header-sender-image" style="background-image:url({user_image});"></span>' +
+				'</tpl>'+
+				'<tpl if="Ext.isEmpty(values.user_image)">'+
+					'<span class="preview-header-sender-initial">{sender_initials}</span>' +
+				'</tpl>'+
 				'<span class="zarafa-emailaddress-link zarafa-sentinfo-on-behalf">' +
 					'<span class="zarafa-presence-status {[Zarafa.core.data.PresenceStatus.getCssClass(values.sent_representing_presence_status)]}">'+
 						'<span class="zarafa-presence-status-icon"></span>' +
@@ -60,7 +65,12 @@ Zarafa.common.ui.messagepanel.SentInfoLinks = Ext.extend(Ext.Container, {
 				'<span class="preview-from zarafa-presence-status {[Zarafa.core.data.PresenceStatus.getCssClass(values.sender_presence_status)]}">' +
 				'<span class="zarafa-presence-status-icon"></span>' +
 				/* Display the initials of a sender */
-				'<span class="preview-header-sender-initial">{sender_initials}</span>' +
+				'<tpl if="!Ext.isEmpty(values.user_image)">'+
+					'<span class="preview-header-sender-image" style="background-image:url({user_image});"></span>' +
+				'</tpl>'+
+				'<tpl if="Ext.isEmpty(values.user_image)">'+
+					'<span class="preview-header-sender-initial">{sender_initials}</span>' +
+				'</tpl>'+
 				'<span class="zarafa-emailaddress-link zarafa-sentinfo-link">' +
 					'{sender_name:htmlEncodeElide(this.ellipsisStringStartLength, this.ellipsisStringEndLength)}&nbsp;' +
 					'<tpl if="!Ext.isEmpty(values.sender_email_address)">' +
