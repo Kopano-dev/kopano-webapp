@@ -3,6 +3,11 @@ body.Safari input[type="radio"] {
 	margin-left: 1px;
 }
 
+/* Firefox hack for orange border around input fields */
+body.Firefox input:required {
+    box-shadow: none;
+}
+
 .x-form-item {
 	margin-bottom: $padding-small;
 }
