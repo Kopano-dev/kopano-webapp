@@ -219,12 +219,15 @@ Zarafa.common.ui.messagepanel.SentInfoLinks = Ext.extend(Ext.Container, {
 	onSenderRightClick: function (evt, elem, obj)
 	{
 		var recipient = this.convertSenderToRecord(elem);
-		var senderElem = Ext.get(this.senderElem);
-		Zarafa.core.data.UIFactory.openHoverCard(recipient, {
-			position: evt.getXY(),
-			recipientView : senderElem,
-			store:this.record.getSubStore('reply-to')
-		});
+		// Don't show hover card if no recipient (happens when there is no sender_entryid)
+		if(recipient) {
+			var senderElem = Ext.get(this.senderElem);
+			Zarafa.core.data.UIFactory.openHoverCard(recipient, {
+				position: evt.getXY(),
+				recipientView : senderElem,
+				store:this.record.getSubStore('reply-to')
+			});
+		}
 	},
 
 	/**
@@ -238,7 +241,10 @@ Zarafa.common.ui.messagepanel.SentInfoLinks = Ext.extend(Ext.Container, {
 	onDoubleClick : function(evt, elem, obj)
 	{
 		var recipient = this.convertSenderToRecord(elem);
-		Zarafa.common.Actions.openViewRecipientContent(recipient);
+		// Don't show hover card if no recipient (happens when there is no sender_entryid)
+		if(recipient) {
+			Zarafa.common.Actions.openViewRecipientContent(recipient);
+		}
 	},
 
 	/**
@@ -275,13 +281,16 @@ Zarafa.common.ui.messagepanel.SentInfoLinks = Ext.extend(Ext.Container, {
 	{
 		this.timer = setTimeout(function (scope) {
 			var recipient = scope.convertSenderToRecord(node);
-			recipient.set('recipient_type', Zarafa.core.mapi.RecipientType.MAPI_TO);
-			var senderElem = Ext.get(scope.senderElem);
-			Zarafa.core.data.UIFactory.openHoverCard(recipient, {
-				position: e.getXY(),
-				recipientView : senderElem,
-				store : scope.record.getSubStore('reply-to')
-			});
+			// Don't show hover card if no recipient (happens when there is no sender_entryid)
+			if(recipient) {
+				recipient.set('recipient_type', Zarafa.core.mapi.RecipientType.MAPI_TO);
+				var senderElem = Ext.get(scope.senderElem);
+				Zarafa.core.data.UIFactory.openHoverCard(recipient, {
+					position: e.getXY(),
+					recipientView : senderElem,
+					store : scope.record.getSubStore('reply-to')
+				});
+			}
 		}, 700, this);
 	},
 
