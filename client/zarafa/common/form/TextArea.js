@@ -64,7 +64,15 @@ Zarafa.common.form.TextArea = Ext.extend(Ext.form.TextArea, {
 		if(startPos === textLen && endPos === textLen) {
 			textAreaDom.setSelectionRange(0,0);
 		}
-	}
+	},
+
+	/**
+	 * Function select the text in editor by given selector.
+	 *
+	 * @param {String} selector The selector query which used to select the text in editor.
+	 * @return {boolean} return true if text is selected in editor else false.
+	 */
+	selectBySelector : Ext.emptyFn,
 });
 
 Ext.reg('zarafa.textarea', Zarafa.common.form.TextArea);

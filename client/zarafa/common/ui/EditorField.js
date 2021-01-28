@@ -340,6 +340,18 @@ Zarafa.common.ui.EditorField = Ext.extend(Ext.Container, {
 	},
 
 	/**
+	 * Function select the text in editor by given selector.
+	 * 
+	 * @param {String} selector The selector query which used to select the text in editor.
+	 * @return {boolean} return true if text is selected in editor else false.
+	 */
+	selectBySelector : function(selector) 
+	{
+		var component = this.getLayout().activeItem;
+		return component.selectBySelector(selector);
+	},
+	
+	/**
 	 * bind a record to this component
 	 * overridden because a record is needed for the HTML editor when there are inline images
 	 * @param {Zarafa.core.data.IPMRecord} record
