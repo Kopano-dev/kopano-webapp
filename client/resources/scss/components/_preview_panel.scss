@@ -1,8 +1,10 @@
 .preview-header {
 	border-bottom: 1px solid $grey;
+
 }
 
-.preview-header {
+.preview-header,
+.x-plain {
 	.preview-header-title,
 	.preview-header-sentinfo,
 	.preview-header-recipients,
@@ -124,10 +126,10 @@ $preview-header-collapse-icon-height	: 5;
 	font-weight: bold;
 }
 
-.preview-header-titlebox{
+.preview-header-titlebox {
 	padding: ($header-height - $font-line-height-large )/2 0;
 }
-.preview-header-senderbox .preview-from{
+.preview-header-senderbox .preview-from {
 	display: block;
 	padding-bottom: $padding-medium;
 }
@@ -288,9 +290,34 @@ span.zarafa-emailaddress-link:hover {
 	}
 }
 
-/*********************
-* Conversation view
-**********************/
+/* x-plain preview used for e.g. displaying appointments in search preview */
+
+.x-plain {
+
+	.zarafa-search-previewpanel-toolbar {
+		border-bottom: none;
+	}
+
+	.preview-body .x-plain {
+	
+		.x-plain-body {
+
+			.x-fieldset {
+				padding: 10px;
+				border: none;
+			}
+	
+			.x-form-item-label {
+				text-align: left;
+				font-weight: bold;
+			}
+		}
+	}
+}
+
+/********************
+ * Conversation view
+ *******************/
 .zarafa-mailconversationpanel {
 	.x-panel-header{
 		background: $white;
