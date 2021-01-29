@@ -34,7 +34,7 @@ $normal-button-bgcolor-hover		: $grey2;
 				display: inline-block;
 			}
 
-			button{
+			button {
 				background-color: transparent;
 				box-sizing: border-box;
 				/* override .x-btn button from ExtJs */
@@ -344,6 +344,7 @@ $normal-button-bgcolor-hover		: $grey2;
 		.x-btn-small {
 			background-color: transparent !important;
 			box-shadow: none !important;
+			padding: 3px 3px;
 		}
 	}
 
@@ -354,7 +355,7 @@ $normal-button-bgcolor-hover		: $grey2;
 	}
 
 	.k-hover-card-recipient-detail-panel button {
-		margin-top: -2px;
+		margin-top: -1px;
 	}
 
 	.x-panel-footer, .x-window-footer {
@@ -371,7 +372,7 @@ $normal-button-bgcolor-hover		: $grey2;
 
 	.k-hover-card-email-text {
 		padding-right: $padding-medium !important;
-		margin-top: 2px;
+		margin-top: 5px;
 	}
 }
 

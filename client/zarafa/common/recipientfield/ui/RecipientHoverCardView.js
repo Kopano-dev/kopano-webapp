@@ -62,8 +62,8 @@ Zarafa.common.recipientfield.ui.RecipientHoverCardView = Ext.extend(Ext.Window, 
 				type: 'hbox',
 				align: 'stretch'
 			},
-			width: 305,
-			height: 90,
+			width: 340,
+			height: 130,
 			border: false,
 			items: this.getHoverCardItems(config),
 			buttonAlign: 'left',
@@ -105,7 +105,7 @@ Zarafa.common.recipientfield.ui.RecipientHoverCardView = Ext.extend(Ext.Window, 
 				type: 'vbox'
 			},	
 			border: false,
-			width: 55,
+			width: 70,
 			items: [{
 				xtype: 'container',
 				html: this.getInitials(record)
@@ -115,6 +115,7 @@ Zarafa.common.recipientfield.ui.RecipientHoverCardView = Ext.extend(Ext.Window, 
 				type: 'vbox'
 			},
 			border: false,
+			cls: 'k-hover-card-recipient-detail-panel',
 			items: [{
 				xtype: 'displayfield',
 				html: this.getDisplayName(record)
@@ -122,7 +123,6 @@ Zarafa.common.recipientfield.ui.RecipientHoverCardView = Ext.extend(Ext.Window, 
 				layout: {
 					type: 'hbox'
 				},
-				cls: 'k-hover-card-recipient-detail-panel',
 				width: 255,
 				height: 70,
 				border: false,

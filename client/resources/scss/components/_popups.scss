@@ -462,8 +462,37 @@
 }
 
 .k-recipient-card-view {
-	.x-panel > .x-panel-bwrap > .x-panel-body {
-		padding-top: $padding-medium !important;
+		
+	padding: 10px 5px 5px 5px;
+	background-color: white;
+	
+	.k-hover-card-recipient-detail-panel {
+		padding-top: 2px;
+	}	
+	
+	/* Initials */
+	.preview-header-sender-initial {
+		width: 55px;
+		line-height: 55px;
+		font-size: 24px !important;
+	}
+	
+	/* Display name */
+	.x-form-display-field.x-form-item.x-box-item {
+		font-size: 18px;
+		max-width: 95%;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+	
+	/* Email address */
+	.k-hover-card-email-text {
+		font-size: 14px;
+		max-width: 70%;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		color: $preview-panel-timestamp;
 	}
 }
 
