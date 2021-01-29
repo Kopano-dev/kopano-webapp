@@ -3,11 +3,6 @@ body.Safari input[type="radio"] {
 	margin-left: 1px;
 }
 
-/* Firefox hack for orange border around input fields */
-body.Firefox input:required {
-    box-shadow: none;
-}
-
 .x-form-item {
 	margin-bottom: $padding-small;
 }
@@ -43,6 +38,7 @@ body.Firefox input:required {
 
 	input.x-form-text.x-form-field.x-form-focus {
 		border-color: $sky-blue !important;
+		-moz-box-shadow: none; /* Firefox hack for orange border around input fields */
 	}
 }
 
