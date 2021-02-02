@@ -78,7 +78,8 @@ $serverConfig = array_merge($serverConfig, array(
         'enable_dompurify'                      => ENABLE_DOMPURIFY_FILTER,
         'enable_file_previewer'                 => ENABLE_FILE_PREVIEWER,
         'enable_themes'                         => ENABLE_THEMES,
-        'enable_iconsets'                       => ENABLE_ICONSETS
+        'enable_iconsets'                       => ENABLE_ICONSETS,
+        'enable_widgets'                        => ENABLE_WIDGETS
 ));
 if ( CONTACT_PREFIX ){
 	$serverConfig['contact_prefix'] = json_decode(CONTACT_PREFIX);

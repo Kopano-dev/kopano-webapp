@@ -380,5 +380,13 @@ Zarafa.core.data.ServerConfig = Ext.extend(Object, {
 	isIconSetsEnabled: function ()
 	{
 		return this.meta.enable_iconsets;
+	},
+
+	/**
+	 * @returns {Boolean} True if widgets are enabled by admin(from config.php) else false.
+	 */
+	isWidgetEnabled : function()
+	{
+		return this.meta.enable_widgets;
 	}
 });

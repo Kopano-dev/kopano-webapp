@@ -148,6 +148,7 @@ Zarafa.settings.ui.SettingsDisplayWidget = Ext.extend(Zarafa.settings.ui.Setting
 				name: 'zarafa/v1/widgets/sidebar/hide_widgetpanel',
 				ref: 'hideWidgetpanel',
 				hideLabel: true,
+				hidden: !container.getServerConfig().isWidgetEnabled(),
 				requiresReload: true,
 				boxLabel: _('Hide widget panel'),
 				listeners: {

@@ -341,5 +341,21 @@ Zarafa.hierarchy.ui.FolderNodeUI = Ext.extend(Ext.tree.TreeNodeUI, {
 			nodes = nodes.concat(this.calendarSVGIconChilds);
 		}
 		return nodes;
+	},
+
+	/**
+	 * Event handler triggered when folder node has been clicked by the user.
+	 */
+	onClick : function(e)
+	{
+		var folder = this.node.getFolder();
+		if (!container.getServerConfig().isWidgetEnabled() && folder.isOwnRoot()){
+			e.preventDefault();
+			folder = folder.getMAPIStore().getDefaultFolder("inbox");
+			this.node.getOwnerTree().getNodeById(folder.get('entryid')).getUI().elNode.click();
+			return;
+		}
+
+		Zarafa.hierarchy.ui.FolderNodeUI.superclass.onClick.apply(this, arguments);
 	}
 });
