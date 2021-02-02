@@ -3,6 +3,11 @@ body.Safari input[type="radio"] {
 	margin-left: 1px;
 }
 
+/* Firefox hack to get rid of orange borders */
+body.Firefox input:focus {
+	outline: none;
+}
+
 .x-form-item {
 	margin-bottom: $padding-small;
 }
@@ -38,7 +43,6 @@ body.Safari input[type="radio"] {
 
 	input.x-form-text.x-form-field.x-form-focus {
 		border-color: $sky-blue !important;
-		-moz-box-shadow: none; /* Firefox hack for orange border around input fields */
 	}
 }
 
