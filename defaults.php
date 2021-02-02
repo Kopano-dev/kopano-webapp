@@ -130,6 +130,11 @@ if(!defined("PATH_PLUGIN_CONFIG_DIR")) define("PATH_PLUGIN_CONFIG_DIR", PATH_PLU
 if(!defined("ALWAYS_ENABLED_PLUGINS_LIST")) define("ALWAYS_ENABLED_PLUGINS_LIST", "");
 
 /**
+ * Enable themes.
+ */
+if(!defined("ENABLE_THEMES")) define("ENABLE_THEMES", true);
+
+/**
  * A theme. When this is not defined or empty or 'default', the default Kopano theme will be loaded.
  * The theme should the (directory)name of a installed theme plugin.
  */

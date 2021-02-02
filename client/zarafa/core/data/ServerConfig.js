@@ -364,5 +364,13 @@ Zarafa.core.data.ServerConfig = Ext.extend(Object, {
 	isFilePreviewerEnabled : function ()
 	{
 		return this.meta.enable_file_previewer;
+	},
+
+	/**
+	 * @returns {Boolean} True if theming is enabled by admin(from config.php) else false.
+	 */
+	isThemingEnabled : function() 
+	{
+		return this.meta.enable_themes;	
 	}
 });

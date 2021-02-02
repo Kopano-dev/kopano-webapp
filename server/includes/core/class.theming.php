@@ -65,8 +65,12 @@ class Theming
 
 		// First check if a theme was set by this user in his settings
 		if ( WebAppAuthentication::isAuthenticated() ){
-			$theme = $GLOBALS['settings']->get('zarafa/v1/main/active_theme');
-
+			if (ENABLE_THEMES === false) {
+				$theme = THEME !== "" ? THEME : 'basic';
+			} else {
+				$theme = $GLOBALS['settings']->get('zarafa/v1/main/active_theme');
+			}
+						
 			// If a theme was found, check if the theme is still installed
 			// Remember that 'basic' is not a real theme, but the name for the default look of WebApp
 			// Note 1: We will first try to find the a core theme with this name, only
