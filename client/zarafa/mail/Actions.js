@@ -315,5 +315,29 @@ Zarafa.mail.Actions = {
             resizable: false,
             scope: this
         });
-    }
+	},
+
+	/**
+	 * Function will redirect to signature widget which belongs to {@link Zarafa.mail.settings.SettingsSignaturesWidget SettingsSignaturesWidget}.
+	 */
+	redirectToSignatureWidget : function()
+	{
+		if (Zarafa.core.BrowserWindowMgr.isMainWindowActive() === false){
+			Zarafa.core.BrowserWindowMgr.switchFocusToMainWindow();
+		}
+
+		var context = container.getCurrentContext();
+		if (context.getName() === "settings") {
+			var tabPanel = container.getTabPanel();
+			context.defaultActiveTab = 1;
+			context.scrollToSignatureWidget = true;
+			tabPanel.setActiveTab("zarafa-mainpanel-content");
+		} else {
+			context = container.getContextByName('settings');
+			// defaultActiveTab = 1 is mail tab
+			context.defaultActiveTab = 1;
+			context.scrollToSignatureWidget = true;
+			container.switchContext(context);
+		}
+	}
 };

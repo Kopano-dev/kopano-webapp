@@ -43,7 +43,7 @@ Zarafa.common.manageCc.ui.ManageCcPanel = Ext.extend(Ext.Panel, {
 		return [{
 			xtype: 'displayfield',
 			value: _('Cc recipients can be used to set a default Cc user in new mail, replies or both.'),
-			fieldClass: 'x-form-display-field zarafa-settings-widget-extrainfo'
+			flex:0.1,
 		},{
 			xtype: 'container',
 			flex: 1,

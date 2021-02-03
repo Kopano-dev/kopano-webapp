@@ -49,6 +49,7 @@ Zarafa.settings.ui.SettingsCategoryWidgetPanel = Ext.extend(Ext.Container, {
 		}
 
 		this.on('afterlayout', this.onAfterFirstLayout, this, { single : true });
+		this.mon(container.getTabPanel(), 'beforetabchange', this.onTabChangeHandler, this);
 	},
 
 	/**
@@ -58,9 +59,43 @@ Zarafa.settings.ui.SettingsCategoryWidgetPanel = Ext.extend(Ext.Container, {
 	 */
 	onAfterFirstLayout : function()
 	{
-		var item = this.get(0);
+		var item = this.get(this.getActiveTab());
+
+		// scroll the scroll bar to signature tab.
+		if (Ext.isDefined(this.context.scrollToSignatureWidget)) {
+			item.scrollToSignatureWidget = this.context.scrollToSignatureWidget;
+			delete this.context.scrollToSignatureWidget;
+		}
 
 		this.context.setView(item.id);
+	},
+
+	/**
+	 * Helper function which used to get the index of {@link Zarafa.settings.ui.SettingsCategoryTab activeTab}.
+	 *
+	 * @returns {Number} return the index of active tab.
+	 */
+	getActiveTab : function()
+	{
+		var activeTab = 0;
+		if (Ext.isDefined(this.context.defaultActiveTab)) {
+			var activeTab = this.context.defaultActiveTab;
+			delete this.context.defaultActiveTab;
+		}
+		return activeTab;
+	},
+
+	/**
+	 * Event handler triggers when content tab panel is changed,
+	 * It will internally call {@link #onAfterFirstLayout} function.
+	 * Which select the {@link Zarafa.mail.settings.SettingsMailCategory SettingsMailCategory}
+	 * and set the focus on {@link Zarafa.mail.settings.SettingsSignaturesWidget SettingsSignaturesWidget}
+	 */
+	onTabChangeHandler : function()
+	{
+		if (Ext.isDefined(this.context.defaultActiveTab) && Ext.isDefined(this.context.scrollToSignatureWidget)){
+			this.onAfterFirstLayout();
+		}
 	},
 
 	/**
