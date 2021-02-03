@@ -30,7 +30,7 @@ test: config.php debug.php
 
 .PHONY:  test-kopano-ci-clean
 test-kopano-ci-clean:
-	$(DOCKERCOMPOSE) down -v || true
+	$(DOCKERCOMPOSE) down -v --rmi local || true
 
 .PHONY: clean
 clean:
