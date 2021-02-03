@@ -64,6 +64,7 @@ Zarafa.core.ui.MainToolbar = Ext.extend(Zarafa.core.ui.Toolbar, {
 		this.addPrintButton();
 		this.addViewItems();
 		this.addItems([], 'main.toolbar.actions.last');
+		this.addItems([{xtype: 'tbfill'}], 'main.toolbar.actions.right');
 	},
 
 	/**
