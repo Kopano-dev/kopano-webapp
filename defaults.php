@@ -22,6 +22,11 @@ if(!defined("ENABLE_PUBLIC_FOLDERS")) define("ENABLE_PUBLIC_FOLDERS", true);
 if(!defined("ENABLE_FILE_PREVIEWER")) define("ENABLE_FILE_PREVIEWER", true);
 
 /**
+ * Enable iconsets.
+ */
+if(!defined("ENABLE_ICONSETS")) define("ENABLE_ICONSETS", true);
+
+/**
  * Set to true to give users the possiblity to edit and create mail filters on the store
  * of other users. The user needs owner permissions on the store and folder permissions on
  * the inbox of the other user.

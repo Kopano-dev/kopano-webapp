@@ -369,8 +369,16 @@ Zarafa.core.data.ServerConfig = Ext.extend(Object, {
 	/**
 	 * @returns {Boolean} True if theming is enabled by admin(from config.php) else false.
 	 */
-	isThemingEnabled : function() 
+	isThemingEnabled: function ()
 	{
-		return this.meta.enable_themes;	
+		return this.meta.enable_themes;
+	},
+
+	/**
+	 * @returns {Boolean} True if iconsets are enabled by admin(from config.php) else false.
+	 */
+	isIconSetsEnabled: function ()
+	{
+		return this.meta.enable_iconsets;
 	}
 });

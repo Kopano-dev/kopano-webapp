@@ -185,6 +185,7 @@ Zarafa.settings.ui.SettingsAccountWidget = Ext.extend(Zarafa.settings.ui.Setting
 			store: iconsetStore,
 			fieldLabel: _('Icons'),
 			mode: 'local',
+			hidden: !container.getServerConfig().isIconSetsEnabled(),
 			valueField: 'id',
 			displayField: 'displayName',
 			ref: 'iconsetCombo',

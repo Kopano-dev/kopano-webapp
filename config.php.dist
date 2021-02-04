@@ -105,6 +105,9 @@
 	// Users can override the iconset in the settings.
 	define("ICONSET", "breeze");
 
+	// Enable iconsets.
+	define("ENABLE_ICONSETS", true);
+
 	// The title that will be shown in the title bar of the browser
 	define("WEBAPP_TITLE", "Kopano WebApp");
 
