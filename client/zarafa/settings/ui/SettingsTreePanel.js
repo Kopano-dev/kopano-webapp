@@ -69,6 +69,10 @@ Zarafa.settings.ui.SettingsTreePanel = Ext.extend(Zarafa.common.ui.EditorTreeGri
 		});
 
 		Zarafa.settings.ui.SettingsTreePanel.superclass.constructor.call(this, config);
+		
+		if (this.treeFilter && !(this.treeFilter instanceof Ext.tree.TreeFilter)) {
+			this.treeFilter = new Zarafa.common.ui.TreeFilter(this, {autoClear: true});
+		}
 	},
 
 	/**

@@ -143,6 +143,11 @@ Zarafa.hierarchy.ui.Tree = Ext.extend(Ext.tree.TreePanel, {
 		if(this.treeSorter && !(this.treeSorter instanceof Ext.tree.TreeSorter)) {
 			this.treeSorter = new Zarafa.hierarchy.ui.TreeSorter(this, Ext.apply({}, this.treeSorter));
 		}
+
+		// filter tree on search querry.
+		if (this.treeFilter && !(this.treeFilter instanceof Ext.tree.TreeFilter)) {
+			this.treeFilter = new Zarafa.hierarchy.ui.HierarchyTreeFilter(this, {autoClear: true});
+		}
 	},
 
 	/**

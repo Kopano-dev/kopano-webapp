@@ -202,6 +202,40 @@ Zarafa.hierarchy.ui.FolderNode = Ext.extend(Ext.tree.AsyncTreeNode, {
 				this.childNodes[i].update(deep);
 			}
 		}
+	},
+
+	/**
+	 * Cascades down the tree from this node, calling the specified function with each node. 
+	 * The arguments to the function will be the args provided or the current node. 
+	 * If the function returns false at any point, the cascade is stopped on that branch.
+	 * 
+	 * @param {Function} fn function to call on every node. 
+	 * @param {Object} scope scope of the function.
+	 * @param {Array} args arguments to call the function with
+	 */
+	cascade: function(fn, scope, args)
+	{	
+		if(fn.apply(scope || this, args || [this]) !== false) {
+			var cs = this.childNodes;
+			var cascadechildren =  function(cs) {
+				cs.forEach(function(child) {
+					child.cascade(fn, scope, args);
+				});
+			};
+		
+			// If children are available then focefully expand this node to get the data.
+			if(this.hasChildNodes() && Ext.isEmpty(cs)) {
+				// Collapse the node which was forcefully expanded.
+				var expandCallback = function(node) {
+					cs = this.childNodes;
+					cascadechildren(cs);
+					node.collapse(false, false);
+				};				
+				this.expand(false, false, expandCallback, this);
+			} else {
+				cascadechildren(cs);
+			}
+		}
 	}
 });
 

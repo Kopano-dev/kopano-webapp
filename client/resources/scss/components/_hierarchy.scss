@@ -15,16 +15,10 @@ body.scrollFavorites .zarafa-tree-ipm-subtree-favorites-container, .x-window .za
 		/* Bottom has -1 pixel since we have a bottom-border of 1px */
 		padding: ($toolbar-height - $font-default-line-height)/2 + 1 $padding-extra-large (($toolbar-height - $font-default-line-height)/2 - 1) $padding-extra-large;
 
-		.x-form-check-wrap{
-
-			input, label{
-				line-height: $font-default-line-height;
-				vertical-align: middle;
-			}
-		}
-
 		.x-form-item {
 			margin-bottom: 0;
+			display: flex;
+			align-items: center;
 		}
 	}
 }
@@ -128,7 +122,9 @@ Note: Does not work in IE11 */
 	padding: 0 0 0 0;
 	margin: 0 0 0 0;
 }
-
+.k-searchfolder-field {
+	padding: 0 5px 0 !important;
+}
 /* counters */
 .zarafa-hierarchy-node-total-count span.zarafa-hierarchy-node-counter {
 	color: $green-hover;

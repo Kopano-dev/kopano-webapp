@@ -506,7 +506,14 @@ Zarafa.settings.data.SettingsDefaultValue = function(){
 								 * @property
 								 * @type Boolean
 								 */
-								'scroll_favorites': false
+								'scroll_favorites': false,
+								
+								/**
+								 * zarafa/v1/contexts/hierarchy/show_searchbar
+								 * @property
+								 * @type Boolean
+								 */
+								'show_searchbar': true
 							},
 
 							'search': {
