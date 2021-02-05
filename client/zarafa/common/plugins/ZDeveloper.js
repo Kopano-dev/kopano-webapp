@@ -16,9 +16,39 @@ Zarafa.common.plugins.ZDeveloperPlugin = Ext.extend(Zarafa.core.Plugin, {
 	{
 		Zarafa.common.plugins.ZDeveloperPlugin.superclass.initPlugin.apply(this, arguments);
 
-		if (container.getSettingsModel().get("zarafa/v1/main/kdeveloper_tool/kdeveloper") === true) {
+		var isAdvancedSettingsEnabled = container.getServerConfig().isAdvancedSettingsEnabled();
+		if (container.getSettingsModel().get("zarafa/v1/main/kdeveloper_tool/kdeveloper") === true && isAdvancedSettingsEnabled === true)  {
 			this.registerInsertionPoint(/(.*?)/, this.putMessageBox, this);
 		}
+
+		// Registrate the item data button when the setting is enabled and when advanced settings is enabled
+		if (container.getSettingsModel().get('zarafa/v1/main/kdeveloper_tool/itemdata') === true && isAdvancedSettingsEnabled === true) {
+			this.registerInsertionPoint('context.mail.contextmenu.options', this.itemdatabutton, this);
+		}
+	},
+
+	/**
+	 * Create item data button
+	 */
+	itemdatabutton: function () {
+		return [{
+			xtype: 'zarafa.conditionalitem',
+			text: _('Item data'),
+			iconCls: 'icon_cogwheel',
+			singleSelectOnly: true,
+			handler: this.onClickItemDataHandler,
+			scope: this
+		}];
+	},
+
+	/**
+	 * Event handler which is called when the user clicks the 'Item data'
+	 * item in the context menu. This will open a new window with item details.
+	 * @private
+	 */
+	onClickItemDataHandler: function (btn) {
+		var popUp = window.open("", "",'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=1000,height=900');
+		popUp.document.write("<pre style=word-wrap:break-word;white-space:pre-line;>"+JSON.stringify(btn.parentMenu.records[0].data, undefined, 2)+"</pre>");
 	},
 
 	/**

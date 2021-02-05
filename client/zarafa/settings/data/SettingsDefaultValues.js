@@ -394,7 +394,12 @@ Zarafa.settings.data.SettingsDefaultValue = function(){
 								/**
 								 * zarafa/v1/main/kdeveloper_tool/kdeveloper
 								 */
-								'kdeveloper': false
+								'kdeveloper': false,
+
+								/**
+								 * zarafa/v1/main/kdeveloper_tool/itemdata
+								 */
+								'itemdata': false
 							},
 
 							/**
