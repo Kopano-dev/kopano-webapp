@@ -21,20 +21,20 @@ Zarafa.common.settings.SettingsNotificationsCategory = Ext.extend(Zarafa.setting
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			title : _('Notifications'),
-			categoryIndex : 9996,
-			xtype : 'zarafa.settingsnotificationscategory',
-			iconCls : 'zarafa-settings-category-notifications',
-			hidden : Ext.isIE,
-			items : [{
-					xtype : 'zarafa.settingsdesktopnotificationswidget',
-					settingsContext : config.settingsContext
-				}, 
+			title: _('Notifications'),
+			categoryIndex: 9996,
+			xtype: 'zarafa.settingsnotificationscategory',
+			iconCls: 'zarafa-settings-category-notifications',
+			hidden: Ext.isIE,
+			items: [{
+					xtype: 'zarafa.settingsdesktopnotificationswidget',
+					settingsContext: config.settingsContext
+				},
 				container.populateInsertionPoint('context.settings.category.notifications', this)
 			]
 		});

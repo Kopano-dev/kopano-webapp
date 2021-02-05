@@ -14,19 +14,19 @@ Zarafa.common.manageCc.ui.ManageCcPanel = Ext.extend(Ext.Panel, {
 	 * @constructor
 	 * @param config Configuration structure
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 		Ext.applyIf(config, {
-			xtype : 'zarafa.manageccpanel',
-			height : 300,
-			title : _("Manage Cc recipients"),
-			layout : {
-				type : 'vbox',
-				align : 'stretch',
-				pack  : 'start'
+			xtype: 'zarafa.manageccpanel',
+			height: 300,
+			title: _("Manage Cc recipients"),
+			layout: {
+				type: 'vbox',
+				align: 'stretch',
+				pack: 'start'
 			},
-			items : this.createPanelItems()
+			items: this.createPanelItems()
 		});
 
 		Zarafa.common.manageCc.ui.ManageCcPanel.superclass.constructor.call(this, config);
@@ -38,7 +38,7 @@ Zarafa.common.manageCc.ui.ManageCcPanel = Ext.extend(Ext.Panel, {
 	 * @return {Array} array of items that should be added to panel.
 	 * @private
 	 */
-	createPanelItems : function()
+	createPanelItems: function()
 	{
 		return [{
 			xtype: 'displayfield',
@@ -76,7 +76,7 @@ Zarafa.common.manageCc.ui.ManageCcPanel = Ext.extend(Ext.Panel, {
 					xtype: 'button',
 					text: _('Add') + '...',
 					ref: '../../addButton',
-					handler : this.onClickAdd,
+					handler: this.onClickAdd,
 					scope: this
 				},{
 					xtype: 'spacer',
@@ -86,7 +86,7 @@ Zarafa.common.manageCc.ui.ManageCcPanel = Ext.extend(Ext.Panel, {
 					text: _('Remove') + '...',
 					disabled: true,
 					ref: '../../removeButton',
-					handler : this.onClickRemove,
+					handler: this.onClickRemove,
 					scope: this
 				}]
 			}]
@@ -97,15 +97,15 @@ Zarafa.common.manageCc.ui.ManageCcPanel = Ext.extend(Ext.Panel, {
 	 * Initialize events for the panel.
 	 * @private
 	 */
-	initEvents : function()
+	initEvents: function()
 	{
 		Zarafa.common.manageCc.ui.ManageCcPanel.superclass.initEvents.call(this);
 
 		this.mon(this.getStore(), {
-			'remove' : this.onStoreRemove,
-			'update' : this.onStoreUpdate,
-			'add' : this.onStoreAdd,
-			scope : this
+			'remove': this.onStoreRemove,
+			'update': this.onStoreUpdate,
+			'add': this.onStoreAdd,
+			scope: this
 		});
 
 		// register event to enable/disable buttons
@@ -120,16 +120,16 @@ Zarafa.common.manageCc.ui.ManageCcPanel = Ext.extend(Ext.Panel, {
 	 * {@link Zarafa.settings.SettingsModel} into the UI of this category.
 	 * @param {Zarafa.settings.SettingsModel} settingsModel The settings to load
 	 */
-	update : function(settingsModel)
+	update: function(settingsModel)
 	{
 		this.model = settingsModel;
 
 		// Convert the Cc recipients into Store data
 		var recipients = settingsModel.get('zarafa/v1/contexts/mail/cc_recipients', []);
 
-		var recipientsData = {'item' : []};
+		var recipientsData = {'item': []};
 		Ext.each(recipients, function(recipient, index) {
-			recipientsData.item.push({props : recipient});
+			recipientsData.item.push({props: recipient});
 		});
 
 		// Load all recipients into the Store
@@ -143,9 +143,9 @@ Zarafa.common.manageCc.ui.ManageCcPanel = Ext.extend(Ext.Panel, {
 	 *
 	 * @param {Zarafa.settings.SettingsModel} settingsModel The settings to update
 	 */
-	updateSettings : function(settingsModel)
+	updateSettings: function(settingsModel)
 	{
-		var recipients  = settingsModel.get('zarafa/v1/contexts/mail/cc_recipients', []);
+		var recipients = settingsModel.get('zarafa/v1/contexts/mail/cc_recipients', []);
 		var records = Ext.pluck(this.getStore().getRange(), 'data');
 
 		if (!recipients.equals(records)) {
@@ -157,7 +157,7 @@ Zarafa.common.manageCc.ui.ManageCcPanel = Ext.extend(Ext.Panel, {
 	 * Event handler triggered when 'Add' button has been clicked.
 	 * It will call the {@link Zarafa.common.manageCc.ui.ManageCcGrid#addOrEditManageCcRecipient}.
 	 */
-	onClickAdd : function()
+	onClickAdd: function()
 	{
 		var store = this.getStore();
 		// find rowid value
@@ -165,8 +165,8 @@ Zarafa.common.manageCc.ui.ManageCcPanel = Ext.extend(Ext.Panel, {
 		var rowId = Ext.max(Ext.pluck(data, 'rowid')) || 0;
 
 		var record = Zarafa.core.data.RecordFactory.createRecordObjectByCustomType(Zarafa.core.data.RecordCustomObjectType.ZARAFA_CC_RECIPIENT, {
-			rowid : rowId + 1,
-			display_type : Zarafa.core.mapi.DisplayType.DT_REMOTE_MAILUSER
+			rowid: rowId + 1,
+			display_type: Zarafa.core.mapi.DisplayType.DT_REMOTE_MAILUSER
 		});
 
 		store.add(record);
@@ -178,7 +178,7 @@ Zarafa.common.manageCc.ui.ManageCcPanel = Ext.extend(Ext.Panel, {
 	 * Handler called when 'remove' button was clicked. It is used to remove the
 	 * user from {@link Zarafa.common.manageCc.ui.manageCcGrid manageCcGrid}.
 	 */
-	onClickRemove : function()
+	onClickRemove: function()
 	{
 		this.manageCcgrid.removeCcRecipient();
 	},
@@ -188,7 +188,7 @@ Zarafa.common.manageCc.ui.ManageCcPanel = Ext.extend(Ext.Panel, {
 	 * with this panel.
 	 * @return {Zarafa.core.data.IPMRecipientStore} The store
 	 */
-	getStore : function()
+	getStore: function()
 	{
 		return this.manageCcgrid.getStore();
 	},
@@ -203,7 +203,7 @@ Zarafa.common.manageCc.ui.ManageCcPanel = Ext.extend(Ext.Panel, {
 	 * @param {Ext.data.Record} record The record which was updated
 	 * @private
 	 */
-	onStoreRemove : function(store, record)
+	onStoreRemove: function(store, record)
 	{
 		if(!record.phantom) {
 			this.settingsContext.getModel().setDirty();
@@ -221,7 +221,7 @@ Zarafa.common.manageCc.ui.ManageCcPanel = Ext.extend(Ext.Panel, {
 	 * @param {Array} records An Array of {@link Ext.data.Record record} objects which are added to store
 	 * @private
 	 */
-	onStoreAdd : function(store, records)
+	onStoreAdd: function(store, records)
 	{
 		if (!Ext.isEmpty(records[0].get('entryid'))) {
 			// mark the model as dirty as the new send as is added
@@ -240,7 +240,7 @@ Zarafa.common.manageCc.ui.ManageCcPanel = Ext.extend(Ext.Panel, {
 	 * @param {String} operation The update operation being performed.
 	 * @private
 	 */
-	onStoreUpdate : function(store, record, operation)
+	onStoreUpdate: function(store, record, operation)
 	{
 		if (operation !== Ext.data.Record.COMMIT) {
 			this.settingsContext.getModel().setDirty();
@@ -252,7 +252,7 @@ Zarafa.common.manageCc.ui.ManageCcPanel = Ext.extend(Ext.Panel, {
 	 * has been changed.
 	 * @param {Ext.grid.RowSelectionModel} selectionModel selection model that fired the event
 	 */
-	onGridSelectionChange : function(selectionModel)
+	onGridSelectionChange: function(selectionModel)
 	{
 		this.removeButton.setDisabled(!selectionModel.hasSelection());
 	},
@@ -263,15 +263,15 @@ Zarafa.common.manageCc.ui.ManageCcPanel = Ext.extend(Ext.Panel, {
 	 * from any of the address book contact list.
 	 * @private
 	 */
-	onClickAddressBookBtn : function()
+	onClickAddressBookBtn: function()
 	{
 		Zarafa.common.Actions.openABUserSelectionContent({
-			callback : Zarafa.common.Actions.abCallBack,
-			scope : this,
-			singleSelect : false,
-			listRestriction : {
-				hide_users : ['system', 'everyone'],
-				hide_companies : true
+			callback: Zarafa.common.Actions.abCallBack,
+			scope: this,
+			singleSelect: false,
+			listRestriction: {
+				hide_users: ['system', 'everyone'],
+				hide_companies: true
 			}
 		});
 	}

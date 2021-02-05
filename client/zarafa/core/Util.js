@@ -11,7 +11,7 @@ Zarafa.core.Util =
 	 * @cfg {Boolean} skipRequester This flag specifies if confirm dialog will skip.
 	 * If it is true then confirm dialog will not show otherwise it will show.
 	 */
-	skipRequester : false,
+	skipRequester: false,
 
 	/**
 	 * Sort an array of objects
@@ -25,7 +25,7 @@ Zarafa.core.Util =
 	 * @return {Array} The sorted array
 	 * @method
 	 */
-	sortArray : function(list, order, sort)
+	sortArray: function(list, order, sort)
 	{
 		var collection = new Ext.util.MixedCollection();
 		var fn;
@@ -60,7 +60,7 @@ Zarafa.core.Util =
 	 * @return {Number} A positive value when number1 is greater then number2.
 	 * A negative value when number2 is greater then number1. 0 when both objects are equal.
 	 */
-	numericComparison : function(number1, number2)
+	numericComparison: function(number1, number2)
 	{
 		if(!Ext.isDefined(number2) || !Ext.isDefined(number1)) {
 			return -1;
@@ -78,7 +78,7 @@ Zarafa.core.Util =
 	 * @return {Number} A positive value when string1 is greater then string2.
 	 * A negative value when string2 is greater then string1. 0 when both objects are equal.
 	 */
-	caseSensitiveComparison : function(string1, string2)
+	caseSensitiveComparison: function(string1, string2)
 	{
 		return string1 > string2 ? 1 : (string1 < string2 ? -1 : 0);
 	},
@@ -93,7 +93,7 @@ Zarafa.core.Util =
 	 * @return {Number} A positive value when string1 is greater then string2.
 	 * A negative value when string2 is greater then string1. 0 when both objects are equal.
 	 */
-	caseInsensitiveComparison : function(string1, string2)
+	caseInsensitiveComparison: function(string1, string2)
 	{
 		var v1 = String(string1).toUpperCase(), v2 = String(string2).toUpperCase();
 		return Zarafa.core.Util.caseSensitiveComparison(v1, v2);
@@ -108,7 +108,7 @@ Zarafa.core.Util =
 	 * @return {Array} The array with only unique elements
 	 * @method
 	 */
-	uniqueArray : function(list, attr)
+	uniqueArray: function(list, attr)
 	{
 		var collection = new Ext.util.MixedCollection();
 
@@ -130,7 +130,7 @@ Zarafa.core.Util =
 	 * @param {Array} arrayToTrim array whose values should be trimmed
 	 * @return {Array} trimmed array
 	 */
-	trimStringArray : function(arrayToTrim)
+	trimStringArray: function(arrayToTrim)
 	{
 		var tmpArray = arrayToTrim;
 		arrayToTrim = [];				// reset array
@@ -157,7 +157,7 @@ Zarafa.core.Util =
 	 * @param {Boolean} matchPartial comparison will also check for partial match
 	 * @return {Boolean} true if token is found else false
 	 */
-	inArray : function(multiDimArray, tokenToSearch, caseInSensitive, matchPartial)
+	inArray: function(multiDimArray, tokenToSearch, caseInSensitive, matchPartial)
 	{
 		for(var index = 0, len = multiDimArray.length; index < len; index++) {
 			if(Array.isArray(multiDimArray[index])) {
@@ -204,7 +204,7 @@ Zarafa.core.Util =
 	 * @param {Object} defaults A different object that will also be applied for default values
 	 * @return {Object} returns obj
 	 */
-	applyRecursive : function(obj, config, defaults)
+	applyRecursive: function(obj, config, defaults)
 	{
 		if(defaults) {
 			obj = Zarafa.core.Util.applyRecursive(obj, defaults);
@@ -236,7 +236,7 @@ Zarafa.core.Util =
 	 * @param {Object} defaults A different object that will also be applied for default values
 	 * @return {Object} returns obj
 	 */
-	applyIfRecursive : function(obj, config, defaults)
+	applyIfRecursive: function(obj, config, defaults)
 	{
 		if(defaults) {
 			obj = Zarafa.core.Util.applyIfRecursive(obj, defaults);
@@ -264,20 +264,20 @@ Zarafa.core.Util =
 	 *
 	 * For example: The object:
 	 *	{
-	 *   	'zarafa' : {
-	 *   		'v1' : {
-	 *   			'main' : {
-	 *   				'settingA' : 'value1',
-	 *					'settingB' : 'value2'
-	 *   			}
-	 *   		}
-	 *   	}
+	 *  	'zarafa': {
+	 *  		'v1': {
+	 *  			'main': {
+	 *  				'settingA': 'value1',
+	 *					'settingB': 'value2'
+	 *  			}
+	 *  		}
+	 *  	}
 	 *	}
 	 *
 	 * will be flattened to:
 	 *	{
-	 * 		'zarafa/v1/main/settingA' : 'value1',
-	 * 		'zarafa/v1/main/settingB' : 'value2'
+	 * 		'zarafa/v1/main/settingA': 'value1',
+	 * 		'zarafa/v1/main/settingB': 'value2'
 	 *	}
 	 *
 	 * @param {Object} obj The object to flatten.
@@ -285,7 +285,7 @@ Zarafa.core.Util =
 	 * @param {String} path The basePath for the keys inside the object.
 	 * @return {Object} The flattened object
 	 */
-	flattenObject : function(obj, sep, path)
+	flattenObject: function(obj, sep, path)
 	{
 		var ret = {};
 
@@ -313,7 +313,7 @@ Zarafa.core.Util =
 	 * @param {Object} obj The object.
 	 * @return {Object} The object with all keys as lowercase
 	 */
-	objectKeysToLowerCase : function(object)
+	objectKeysToLowerCase: function(object)
 	{
 		var key, keys = Object.keys(object);
 		var newObject={};
@@ -333,7 +333,7 @@ Zarafa.core.Util =
 	 * @return {Array} The array of pieces
 	 * @private
 	 */
-	splitStringByPattern : function(str, pattern)
+	splitStringByPattern: function(str, pattern)
 	{
 		var cutOffPoints = [0];
 		var found;
@@ -353,11 +353,11 @@ Zarafa.core.Util =
 				// Use the current and the next cutOffPoint to calculate the number of character we need to extract.
 				if(Ext.isDefined(cutOffPoints[i+1])){
 					parts.push(str.slice(cutOffPoints[i], cutOffPoints[i+1]));
-				}else{
+				} else {
 					parts.push(str.slice(cutOffPoints[i]));
 				}
 			}
-		}else{
+		} else {
 			parts = [str];
 		}
 		return parts;
@@ -370,7 +370,7 @@ Zarafa.core.Util =
 	 * @param {Number} y point y component
 	 * @return {Boolean} True if the given point is inside the box.
 	 */
-	inside : function(box, x, y)
+	inside: function(box, x, y)
 	{
 		return (x >= box.x && x < (box.x + box.width) && y >= box.y && y < (box.y + box.height));
 	},
@@ -385,7 +385,7 @@ Zarafa.core.Util =
 	 * @param {Object} box The box
 	 * @return {Object} The updated box position
 	 */
-	restrictBox : function(container, box)
+	restrictBox: function(container, box)
 	{
 		// Ensure we copy the box
 		box = Ext.apply({}, box);
@@ -427,12 +427,12 @@ Zarafa.core.Util =
 	 * the current position of the start and end of the selection. The fields will
 	 * be -1 if there is no selection.
 	 */
-	getSelectionRange : function(obj)
+	getSelectionRange: function(obj)
 	{
 		obj = obj.dom || obj;
 
 		if (obj.selectionStart || (obj.selectionStart == "0")) {
-			return { start : obj.selectionStart, end : obj.selectionEnd };
+			return { start: obj.selectionStart, end: obj.selectionEnd };
 		}
 	},
 
@@ -474,7 +474,7 @@ Zarafa.core.Util =
 		var filter = new RegExp(/^([^<]*<){0,1}(([a-z0-9\.\!\#\$\%\&\'\*\+\-\/\=\?\^\_\`\{\|\}\~])+\@(([a-z0-9\-])+\.)+([a-z0-9]{2,5})+)>{0,1}$|^\[[^\]]+\]$/i);
 		if(Ext.isString(str) && str.length > 0 ){
 			return filter.test(str);
-		}else{
+		} else {
 			return false;
 		}
 	},
@@ -495,7 +495,7 @@ Zarafa.core.Util =
 	 * rather then {@link Function#createInterceptor}.
 	 * @return {Object} The merged object
 	 */
-	mergeListeners : function(target, source, intercept)
+	mergeListeners: function(target, source, intercept)
 	{
 		// Make sure we have a target
 		target = Ext.value(target, {});
@@ -533,21 +533,21 @@ Zarafa.core.Util =
 	 * @param {String} str String to be converted into utf-16 encoded hex string
 	 * @return {String} The utf-16 encoded string in hex format
 	 */
-	encode_utf16 : function(str)
+	encode_utf16: function(str)
 	{
 		var num1, num2;
 		var result = '';
 
 		if(!Ext.isString(str)) {
-		    str = String(str);
+		  str = String(str);
 		}
 
 		for (var i = 0, len = str.length; i < len; i++) {
-		    num2 = (str.charCodeAt(i) >> 8).toString(16);
-		    num1 = (str.charCodeAt(i) & 0xff).toString(16);
+		  num2 = (str.charCodeAt(i) >> 8).toString(16);
+		  num1 = (str.charCodeAt(i) & 0xff).toString(16);
 
-		    result += String.leftPad(String(num1), 2, '0');
-		    result += String.leftPad(String(num2), 2, '0');
+		  result += String.leftPad(String(num1), 2, '0');
+		  result += String.leftPad(String(num2), 2, '0');
 		}
 
 		return result;
@@ -558,7 +558,7 @@ Zarafa.core.Util =
 	 * @param {String} str ASCII string to be converted into hexadecimal representation.
 	 * @return {String} The hexadecimal representation as a string.
 	 */
-	stringToHex : function(string)
+	stringToHex: function(string)
 	{
 		string = string.toUpperCase();
 		var hexString = '';
@@ -574,7 +574,7 @@ Zarafa.core.Util =
 	 * @param {String} hexString The hexadecimal string
 	 * @return {String} converted ASCII string
 	 */
-	hexToString : function(hexString)
+	hexToString: function(hexString)
 	{
 		hexString = hexString.toString();
 		var string = '';
@@ -587,7 +587,7 @@ Zarafa.core.Util =
 	/**
 	 * Function used to reload the webapp.
 	 */
-	reloadWebapp : function()
+	reloadWebapp: function()
 	{
 		if ( container.fireEvent('beforewebappreload') !== false ){
 			this.disableLeaveRequester();
@@ -599,7 +599,7 @@ Zarafa.core.Util =
 	 * Function is use to register onbeforeunload event to show confirm dialog
 	 * when user trying to leave the page.
 	 */
-	enableLeaveRequester : function()
+	enableLeaveRequester: function()
 	{
 		window.onbeforeunload = this.onBeforeUnload.createDelegate(this);
 	},
@@ -607,7 +607,7 @@ Zarafa.core.Util =
 	/**
 	 * Function is use to deregistering onbeforeunload event.
 	 */
-	disableLeaveRequester : function()
+	disableLeaveRequester: function()
 	{
 		window.onbeforeunload = null;
 	},
@@ -617,7 +617,7 @@ Zarafa.core.Util =
 	 * It will also check the value of {#Zarafa.core.Util.skipRequester skipRequester}
 	 * If it's true then it will not show the confirm dialog.
 	 */
-	onBeforeUnload : function()
+	onBeforeUnload: function()
 	{
 		if(!this.skipRequester) {
 			return _('Your changes will be lost if you leave this page now.');
@@ -630,11 +630,11 @@ Zarafa.core.Util =
 	/**
 	 * Helper function which used to show the {@link Ext.MessageBox}
 	 * and {@link window.Zarafa.core.Util#disableLeaveRequester disable Leave Requester}
-	 * 
+	 *
 	 * @param {Object} options The options object which used to construct the {@link Ext.MessageBox}.
 	 * @param {boolean} custom True to show {@link Zarafa.common.dialogs.MessageBox.addCustomButtons messageBox}.
 	 */
-	showMessageBox : function(options, custom)
+	showMessageBox: function(options, custom)
 	{
 		Zarafa.core.Util.disableLeaveRequester();
 		if (custom){
@@ -651,7 +651,7 @@ Zarafa.core.Util =
 	 * @param {String} text The text which is going to
 	 * add in clipboard data.
 	 */
-	copyToClipboard : function (text)
+	copyToClipboard: function (text)
 	{
 		var textArea = document.createElement("textarea");
 		textArea.setAttribute("id","copyTextArea");
@@ -669,7 +669,7 @@ Zarafa.core.Util =
 	 * And value must be 'KB' or 'MB'.
 	 * @return {Number} input in Bytes.
 	 */
-	convertToBytes : function (input, sizeUnit)
+	convertToBytes: function (input, sizeUnit)
 	{
 		sizeUnit = sizeUnit.toUpperCase();
 		if (sizeUnit === 'MB') {
@@ -689,7 +689,7 @@ Zarafa.core.Util =
 	 * And value must be 'KB' or 'MB'.
 	 * @return {Number} input in KB or MB.
 	 */
-	convertBytesToKBorMB : function (input, sizeUnit)
+	convertBytesToKBorMB: function (input, sizeUnit)
 	{
 		sizeUnit = sizeUnit.toUpperCase();
 		if (sizeUnit === 'MB') {
@@ -699,7 +699,7 @@ Zarafa.core.Util =
 		}
 		return input;
 	},
-	
+
 	/**
 	 * Function gets the formatted date according to the given/selected language, as formats differ
 	 * according to languages.
@@ -708,7 +708,7 @@ Zarafa.core.Util =
 	 * @param {String} format The current format of the date
 	 * @return {Array} newDate The date array which is to be set
 	 */
-	getDateByLanguageFormat : function(value, language, format)
+	getDateByLanguageFormat: function(value, language, format)
 	{
 		if (!Ext.isDefined(language)) {
 			language = container.getSettingsModel().get('zarafa/v1/main/language');
@@ -716,12 +716,12 @@ Zarafa.core.Util =
 		// We extract the language code from the language since the language retrieved
 		// from the settings is in the format 'en_GB.UTF-8'
 		language = language.split('.')[0];
-		
+
 		var rawValue = value;
 		var formattedDate = [];
 		var newDate = new Date();
 		var regExSpecialChar = /[^0-9a-zA-Z]/g;
-		
+
 		switch (language) {
 			case 'ja_JP':
 			case 'hu_HU':
@@ -807,42 +807,42 @@ Zarafa.core.Util =
 		}
 		return formattedDate;
 	},
-	
+
 	/**
 	 * Function corrects the date string if it has no separator or it is incomplete/incorrect.
 	 * @param {String} rawValue The input date value
 	 * @param {String} separator The separator of the date according to the format
 	 * @return {Array} dateArray The date array which is to be set
 	 */
-	getFormattedDate : function(rawValue, separator)
+	getFormattedDate: function(rawValue, separator)
 	{
 		var dateArray, hasNoSeparator = false;
 		var currentFullDate = new Date();
 		var currentYear = currentFullDate.getFullYear();
 		var currentMonth = currentFullDate.getMonth() + 1;
 		var currentDate = currentFullDate.getDate();
-		
+
 		var regExSeparator = /[^0-9a-zA-Z]/g;
 		if (!regExSeparator.test(rawValue)) {
 			hasNoSeparator = true;
 		}
-		
+
 		if (hasNoSeparator) {
 			rawValue = rawValue.replace(/[a-zA-Z]/g, "");
 			switch (rawValue.length) {
-				// Example : '06062020' -> '06/06/2020'
+				// Example: '06062020' -> '06/06/2020'
 				case 8:
 					rawValue = rawValue.slice(0, 2) + separator + rawValue.slice(2, 4) + separator + rawValue.slice(4);
 					break;
-				// Example : '662020' -> '06/06/2020'
+				// Example: '662020' -> '06/06/2020'
 				case 6:
 					rawValue = rawValue.slice(0, 1) + separator + rawValue.slice(1, 2) + separator + rawValue.slice(2);
 					break;
-				// Example : '06' -> '06/02/2020'
+				// Example: '06' -> '06/02/2020'
 				case 2:
 					rawValue = rawValue + separator + currentMonth + separator + currentYear;
 					break;
-				// Example : '6' -> '06/02/2020'
+				// Example: '6' -> '06/02/2020'
 				case 1:
 					rawValue = '0' + rawValue + separator + currentMonth + separator + currentYear;
 					break;
@@ -854,7 +854,7 @@ Zarafa.core.Util =
 		} else {
 			rawValue = rawValue.replace(/[a-zA-Z\s]/g, "");
 			dateArray = rawValue.split(regExSeparator);
-			
+
 			// Check for the year value
 			if (dateArray.length > 1 && rawValue.length > 0) {
 				var year = dateArray[2];

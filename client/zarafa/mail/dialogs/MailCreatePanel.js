@@ -11,13 +11,13 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 	/**
 	 * @cfg {Boolean} useHtml True to enable the HTML editor in this panel.
 	 */
-	useHtml : false,
+	useHtml: false,
 
 	/**
 	 * @constructor
 	 * @param {Object} config configuration object.
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -30,7 +30,7 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 				type: 'vbox',
 				align: 'stretch'
 			},
-			border : false,
+			border: false,
 			cls: 'zarafa-mailcreatepanel',
 			bodyStyle: 'background-color: inherit;',
 			defaults: {
@@ -49,7 +49,7 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 	 * is being rendered. This will add a listener to to the {@link Zarafa.mail.dialogs.MailCreateContentPanel#bcctoggle} button.
 	 * @private
 	 */
-	onRender : function()
+	onRender: function()
 	{
 		Zarafa.mail.dialogs.MailCreatePanel.superclass.onRender.apply(this, arguments);
 
@@ -63,7 +63,7 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 	 * Returns items for the splitbutton
 	 * @private
 	 */
-	initSendAsList : function()
+	initSendAsList: function()
 	{
 		var recipients = container.getSettingsModel().get('zarafa/v1/contexts/mail/sendas', true);
 		var items = [];
@@ -92,7 +92,7 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 	 * Creates the form panel
 	 * @private
 	 */
-	initMessageFormPanel : function(config)
+	initMessageFormPanel: function(config)
 	{
 		var sendAsMenu = this.initSendAsList();
 		var hasEmptySendAsList = Ext.isEmpty(sendAsMenu);
@@ -116,7 +116,7 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 				text: _('From') + ':',
 				handler: this.onSelectUser,
 				menu: hasEmptySendAsList ? false : new Ext.menu.Menu({
-					showSeparator : false,
+					showSeparator: false,
 					items: sendAsMenu
 				}),
 				scope: this
@@ -149,15 +149,15 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 				autoHeight: true,
 				handler: function() {
 					Zarafa.mail.Actions.openRecipientSelectionContent(this.record, {
-						defaultRecipientType : Zarafa.core.mapi.RecipientType.MAPI_TO
+						defaultRecipientType: Zarafa.core.mapi.RecipientType.MAPI_TO
 					});
 				},
 				scope: this
 			},{
 				xtype: 'zarafa.recipientfield',
 				ref: '../toRecipientField',
-				enableKeyEvents : true,
-				plugins : [ 'zarafa.recordcomponentupdaterplugin' ],
+				enableKeyEvents: true,
+				plugins: [ 'zarafa.recordcomponentupdaterplugin' ],
 				flex: 1,
 				filterRecipientType: Zarafa.core.mapi.RecipientType.MAPI_TO,
 				defaultRecipientType: Zarafa.core.mapi.RecipientType.MAPI_TO
@@ -175,14 +175,14 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 				text: _('Cc'),
 				handler: function() {
 					Zarafa.mail.Actions.openRecipientSelectionContent(this.record, {
-						defaultRecipientType : Zarafa.core.mapi.RecipientType.MAPI_CC
+						defaultRecipientType: Zarafa.core.mapi.RecipientType.MAPI_CC
 					});
 				},
 				scope: this
 			},{
 				xtype: 'zarafa.recipientfield',
-				enableKeyEvents : true,
-				plugins : [ 'zarafa.recordcomponentupdaterplugin' ],
+				enableKeyEvents: true,
+				plugins: [ 'zarafa.recordcomponentupdaterplugin' ],
 				flex: 1,
 				filterRecipientType: Zarafa.core.mapi.RecipientType.MAPI_CC,
 				defaultRecipientType: Zarafa.core.mapi.RecipientType.MAPI_CC
@@ -201,14 +201,14 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 				text: _('Bcc'),
 				handler: function() {
 					Zarafa.mail.Actions.openRecipientSelectionContent(this.record, {
-						defaultRecipientType : Zarafa.core.mapi.RecipientType.MAPI_BCC
+						defaultRecipientType: Zarafa.core.mapi.RecipientType.MAPI_BCC
 					});
 				},
 				scope: this
 			},{
 				xtype: 'zarafa.recipientfield',
-				enableKeyEvents : true,
-				plugins : [ 'zarafa.recordcomponentupdaterplugin' ],
+				enableKeyEvents: true,
+				plugins: [ 'zarafa.recordcomponentupdaterplugin' ],
 				flex: 1,
 				filterRecipientType: Zarafa.core.mapi.RecipientType.MAPI_BCC,
 				defaultRecipientType: Zarafa.core.mapi.RecipientType.MAPI_BCC
@@ -218,13 +218,13 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 			xtype: 'textfield',
 			cls: 'zarafa-mailcreatepanel-field-subject',
 			name: 'subject',
-			enableKeyEvents : true,
+			enableKeyEvents: true,
 			value: undefined,
 			height: 36,
 			emptyText: _('Subject') + ':',
 			listeners: {
-				change : this.onChange,
-				scope : this
+				change: this.onChange,
+				scope: this
 			}
 		},{
 			xtype: 'zarafa.resizablecompositefield',
@@ -235,12 +235,12 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 			items: [{
 				xtype: 'zarafa.attachmentbutton',
 				autoHeight: true,
-				plugins : [ 'zarafa.recordcomponentupdaterplugin' ],
+				plugins: [ 'zarafa.recordcomponentupdaterplugin' ],
 				text: _('Attachments')
 			},{
 				xtype: 'zarafa.attachmentfield',
-				enableKeyEvents : true,
-				plugins : [ 'zarafa.recordcomponentupdaterplugin' ],
+				enableKeyEvents: true,
+				plugins: [ 'zarafa.recordcomponentupdaterplugin' ],
 				flex: 1,
 				tabIndex: -1,
 				hideLabel: true,
@@ -249,16 +249,16 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 		},{
 			xtype: 'zarafa.editorfield',
 			cls: 'zarafa-mailcreatepanel-field-editor',
-			enableKeyEvents : true,
+			enableKeyEvents: true,
 			ref: 'editorField',
 			hideLabel: true,
 			useHtml:config.useHtml,
 			flex: 1,
 			listeners: {
-				change : this.onBodyChange,
-				initialized : this.onEditorInitialized,
-				valuecorrection : this.onBodyValueCorrection,
-				scope : this
+				change: this.onBodyChange,
+				initialized: this.onEditorInitialized,
+				valuecorrection: this.onBodyValueCorrection,
+				scope: this
 			}
 		}];
 	},
@@ -270,7 +270,7 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 	 * @param {Zarafa.core.data.IPMRecord} record The record update the panel with.
 	 * @param {Boolean} contentReset force the component to perform a full update of the data.
 	 */
-	update : function(record, contentReset)
+	update: function(record, contentReset)
 	{
 		this.record = record;
 		this.getForm().loadRecord(record);
@@ -286,8 +286,8 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 				// 1) Don't sanitize body with DOMPurify when it's plain text.
 				// 2) We get whole HTML page as a body so we need to remove extra tags
 				// before setting it into the editor.
-				if (this.useHtml && container.getServerConfig().getDOMPurifyEnabled()) { 
-					body = DOMPurify.sanitize(body, {USE_PROFILES: {html: true}}); 
+				if (this.useHtml && container.getServerConfig().getDOMPurifyEnabled()) {
+					body = DOMPurify.sanitize(body, {USE_PROFILES: {html: true}});
 				}
 				this.editorField.setValue(body);
 			}
@@ -305,7 +305,7 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 	 * Function will update the {@link #extraInfoPanel} with extra information that should be shown
 	 * @private
 	 */
-	updateExtraInfoPanel : function()
+	updateExtraInfoPanel: function()
 	{
 		// clear the previous contents
 		var el = this.extraInfoPanel.getEl();
@@ -328,7 +328,7 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 	 *
 	 * @param {String|Boolean} Message to show, false otherwise.
 	 */
-	getExtraInfoMessage : function()
+	getExtraInfoMessage: function()
 	{
 		var flagStatus = this.record.get('flag_status');
 		if (flagStatus !== Zarafa.core.mapi.FlagStatus.flagged) {
@@ -354,7 +354,7 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 	 * @param {String} oldValue the original value which was applied.
 	 * @private
 	 */
-	onBodyValueCorrection : function(field, value, oldValue)
+	onBodyValueCorrection: function(field, value, oldValue)
 	{
 		var record = this.record;
 
@@ -380,7 +380,7 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 	 * @param {Zarafa.core.data.IPMStore} store The store of the record.
 	 * @param {Zarafa.core.data.IPMRecord} record The record which will be converted to a task
 	 */
-	onRecordOpen : function(store, record)
+	onRecordOpen: function(store, record)
 	{
 		if (this.editorField) {
 			var fieldValue = this.editorField.getValue();
@@ -402,7 +402,7 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 	 * the values from this {@link Ext.Panel panel}.
 	 * @param {Zarafa.core.data.IPMRecord} record The record to update
 	 */
-	updateRecord : function(record)
+	updateRecord: function(record)
 	{
 		record.beginEdit();
 		this.getForm().updateRecord(record);
@@ -419,7 +419,7 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 	 * @param {Object} value The value of the field updated
 	 * @private
 	 */
-	onChange : function(field, value)
+	onChange: function(field, value)
 	{
 		this.record.set(field.name, value);
 	},
@@ -433,7 +433,7 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 	 * @param {Mixed} oldValue The old value
 	 * @private
 	 */
-	onBodyChange : function(field, newValue, oldValue)
+	onBodyChange: function(field, newValue, oldValue)
 	{
 		var record = this.record;
 
@@ -451,7 +451,7 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 	 * @param {tinymce.Editor} tinymceEditor The tinymce editor instance
 	 * @private
 	 */
-	onEditorInitialized : function(htmlEditor, tinymceEditor)
+	onEditorInitialized: function(htmlEditor, tinymceEditor)
 	{
 		/*
 		 * Fixed issue with FF that when we change focus in FF using tab key it sets focus
@@ -523,7 +523,7 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 	 * Function will set sent_representing_* properties to send mails on behalf.
 	 * @private
 	 */
-	onFromRecipientChanged : function()
+	onFromRecipientChanged: function()
 	{
 		var store = this.fromRecipientField.getBoxStore();
 		var record = this.record;
@@ -557,15 +557,15 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 	 * This will open the Address Book User Selection Dialog to select a user.
 	 * @private
 	 */
-	onSelectUser : function()
+	onSelectUser: function()
 	{
 		Zarafa.common.Actions.openABUserSelectionContent({
-			callback : this.abCallBack,
-			scope : this,
-			hideContactsFolders : true,
-			listRestriction : {
-				hide_users : ['system', 'everyone'],
-				hide_companies : true
+			callback: this.abCallBack,
+			scope: this,
+			hideContactsFolders: true,
+			listRestriction: {
+				hide_users: ['system', 'everyone'],
+				hide_companies: true
 			}
 		});
 	},
@@ -575,7 +575,7 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 	 *
 	 * @private
 	 */
-	onSelectSendAsRecipient : function(item)
+	onSelectSendAsRecipient: function(item)
 	{
 		if(!item.record) {
 			// can't do anything here
@@ -595,7 +595,7 @@ Zarafa.mail.dialogs.MailCreatePanel = Ext.extend(Ext.form.FormPanel, {
 	 * @param {Ext.data.Record} record user selected from AddressBook
 	 * @private
 	 */
-	abCallBack : function(record)
+	abCallBack: function(record)
 	{
 		var store = this.fromRecipientField.getBoxStore();
 

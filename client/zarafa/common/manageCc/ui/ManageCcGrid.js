@@ -26,10 +26,10 @@ Zarafa.common.manageCc.ui.ManageCcGrid = Ext.extend(Ext.grid.GridPanel, {
 			loadMask: {
 				msg: _('Loading Cc recipients') + '...'
 			},
-			store : new Zarafa.core.data.IPMRecipientStore({
-				autoResolve : false,
-				autoDestroy : true,
-				customObjectType : Zarafa.core.data.RecordCustomObjectType.ZARAFA_CC_RECIPIENT
+			store: new Zarafa.core.data.IPMRecipientStore({
+				autoResolve: false,
+				autoDestroy: true,
+				customObjectType: Zarafa.core.data.RecordCustomObjectType.ZARAFA_CC_RECIPIENT
 			}),
 			columns: this.initColumnModel(),
 			selModel: new Zarafa.common.ui.grid.RowSelectionModel({
@@ -45,54 +45,54 @@ Zarafa.common.manageCc.ui.ManageCcGrid = Ext.extend(Ext.grid.GridPanel, {
 	 * @return {Ext.grid.ColumnModel} column model object
 	 * @private
 	 */
-	initColumnModel : function()
+	initColumnModel: function()
 	{
 		return [{
-			dataIndex : 'icon_index',
+			dataIndex: 'icon_index',
 			headerCls: 'zarafa-icon-column',
-			header : '<p class="icon_index">&nbsp;</p>',
-			width : 25,
-			sortable : false,
-			menuDisabled :true,
-			fixed : true,
-			renderer : Zarafa.common.ui.grid.Renderers.icon
+			header: '<p class="icon_index">&nbsp;</p>',
+			width: 25,
+			sortable: false,
+			menuDisabled:true,
+			fixed: true,
+			renderer: Zarafa.common.ui.grid.Renderers.icon
 		},{
-			dataIndex : 'reply_mail',
-			header : _('Reply Mail'),
-			renderer : this.columnRenderer,
-			sortable : false,
-			menuDisabled :true,
-			fixed : true,
-			align  : "center",
+			dataIndex: 'reply_mail',
+			header: _('Reply Mail'),
+			renderer: this.columnRenderer,
+			sortable: false,
+			menuDisabled:true,
+			fixed: true,
+			align: "center",
 			width: 150,
 			listeners: {
 				click: this.onCellClick
 			}
 		},{
-			dataIndex : 'new_mail',
-			header : _('New Mail'),
-			renderer : this.columnRenderer,
-			sortable : false,
-			align  : "center",
-			menuDisabled :true,
-			fixed : true,
+			dataIndex: 'new_mail',
+			header: _('New Mail'),
+			renderer: this.columnRenderer,
+			sortable: false,
+			align: "center",
+			menuDisabled:true,
+			fixed: true,
 			width: 150,
 			listeners: {
 				click: this.onCellClick,
 			}
 		},{
-			dataIndex : 'display_name',
-			header : _('Display Name'),
-			renderer : Zarafa.common.ui.grid.Renderers.displayName,
-			sortable : false,
-			menuDisabled :true,
+			dataIndex: 'display_name',
+			header: _('Display Name'),
+			renderer: Zarafa.common.ui.grid.Renderers.displayName,
+			sortable: false,
+			menuDisabled:true,
 			width: 250
 		},{
-			dataIndex : 'smtp_address',
-			header : _('Email Address'),
-			renderer : Zarafa.common.ui.grid.Renderers.displayName,
-			sortable : false,
-			menuDisabled :true,
+			dataIndex: 'smtp_address',
+			header: _('Email Address'),
+			renderer: Zarafa.common.ui.grid.Renderers.displayName,
+			sortable: false,
+			menuDisabled:true,
 			width: 250
 		}];
 	},
@@ -101,14 +101,14 @@ Zarafa.common.manageCc.ui.ManageCcGrid = Ext.extend(Ext.grid.GridPanel, {
 	 * initialize events for the grid panel.
 	 * @private
 	 */
-	initEvents : function()
+	initEvents: function()
 	{
 		Zarafa.common.manageCc.ui.ManageCcGrid.superclass.initEvents.apply(this, arguments);
 
 		this.on({
 			'viewready': this.onViewReady,
 			'rowdblclick': this.onRowDblClick,
-			scope : this
+			scope: this
 		});
 	},
 
@@ -120,7 +120,7 @@ Zarafa.common.manageCc.ui.ManageCcGrid = Ext.extend(Ext.grid.GridPanel, {
 	 * @param {Object} p An object with metadata
 	 * @return {String} The formatted string
 	 */
-	columnRenderer : function (value, p) {
+	columnRenderer: function (value, p) {
 		p.css += 'zarafa-grid-empty-cell';
 		p.css += value === true ? ' icon_flag_complete' : ' icon_cross_red';
 		return '';
@@ -130,7 +130,7 @@ Zarafa.common.manageCc.ui.ManageCcGrid = Ext.extend(Ext.grid.GridPanel, {
 	 * Function which delete the {@link Zarafa.common.manageCc.data.IPMCcRecipientRecord IPMCcRecipientRecord}
 	 * remove the Cc recipient from the {@link Zarafa.core.data.IPMRecipientStore IPMRecipientStore}.
 	 */
-	removeCcRecipient : function ()
+	removeCcRecipient: function ()
 	{
 		var selectionModel = this.getSelectionModel();
 		var record = this.getSelectionModel().getSelected();
@@ -156,7 +156,7 @@ Zarafa.common.manageCc.ui.ManageCcGrid = Ext.extend(Ext.grid.GridPanel, {
 	 * select the first row in the grid.
 	 * @private
 	 */
-	onViewReady : function()
+	onViewReady: function()
 	{
 		this.getSelectionModel().selectFirstRow();
 	},
@@ -169,7 +169,7 @@ Zarafa.common.manageCc.ui.ManageCcGrid = Ext.extend(Ext.grid.GridPanel, {
 	 * @param {Number} rowIndex number of the row double clicked.
 	 * @private
 	 */
-	onRowDblClick : function(grid, rowIndex)
+	onRowDblClick: function(grid, rowIndex)
 	{
 		var store = grid.getStore();
 		var record = store.getAt(rowIndex);
@@ -182,7 +182,7 @@ Zarafa.common.manageCc.ui.ManageCcGrid = Ext.extend(Ext.grid.GridPanel, {
 			});
 		}
 	},
-	
+
 	/**
 	 * Event handler triggered when the icon on the cell of "Reply Mail" or "New Mail" is clicked.
 	 *
@@ -190,7 +190,7 @@ Zarafa.common.manageCc.ui.ManageCcGrid = Ext.extend(Ext.grid.GridPanel, {
 	 * @param {Ext.grid.GridPanel} grid the grid of which the row was clicked.
 	 * @param {Number} rowIndex number of the row clicked.
 	 */
-	onCellClick : function(item, grid, rowIndex)
+	onCellClick: function(item, grid, rowIndex)
 	{
 		var store = grid.getStore();
 		var record = store.getAt(rowIndex);
@@ -203,10 +203,10 @@ Zarafa.common.manageCc.ui.ManageCcGrid = Ext.extend(Ext.grid.GridPanel, {
 	 * @param {Boolean} removeOnCancel true to remove the record
 	 * from store while pressing cancel button, false otherwise
 	 */
-	addOrEditManageCcRecipient : function (record, removeOnCancel)
+	addOrEditManageCcRecipient: function (record, removeOnCancel)
 	{
 		var componentType = Zarafa.core.data.SharedComponentType['common.managecc.dialog.managecceditcontentpanel'];
-		Zarafa.common.Actions.openEditRecipientContent(componentType, record, { removeOnCancel : removeOnCancel});
+		Zarafa.common.Actions.openEditRecipientContent(componentType, record, { removeOnCancel: removeOnCancel});
 	}
 });
 

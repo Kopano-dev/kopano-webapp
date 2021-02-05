@@ -18,25 +18,25 @@ Zarafa.common.searchfield.ui.SearchFolderCombo = Ext.extend(Ext.form.ComboBox, {
 	 * @property
 	 * @type Zarafa.core.ContextModel
 	 */
-	model : undefined,
+	model: undefined,
 
 	/**
 	 * @cfg {Number} minListWidth The minimum width of the dropdown list in pixels (defaults to <tt>70</tt>, will
 	 * be ignored if <tt>{@link #listWidth}</tt> has a higher value)
 	 */
-	minListWidth : 150,
+	minListWidth: 150,
 
 	/**
 	 * @cfg {Number} ellipsisStringStartLength maximum length of text allowed before truncations,
 	 * truncation will be replaced with ellipsis ('...').
 	 */
-	ellipsisStringStartLength : 15,
+	ellipsisStringStartLength: 15,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		if (!this.tpl) {
 			var tplString =
@@ -101,25 +101,25 @@ Zarafa.common.searchfield.ui.SearchFolderCombo = Ext.extend(Ext.form.ComboBox, {
 			idIndex: 0,
 			idProperty: 'value',
 			fields: ['name', 'value', 'flag', 'include_subfolder'],
-			data : [],
+			data: [],
 			autoDestroy: true
 		});
 
 		Ext.apply(config, {
-			xtype : 'zarafa.searchfoldercombo',
+			xtype: 'zarafa.searchfoldercombo',
 			mode: 'local',
-			ref : 'searchFolderCombo',
+			ref: 'searchFolderCombo',
 			valueField: 'value',
 			displayField: 'name',
 			store: searchFolderStore,
 			triggerAction: 'all',
 			editable: false,
 			width: 100,
-			listWidth : 150,
-			listeners : {
-				expand : this.onExpandComboBox,
-				beforeRender : this.onBeforeRender,
-				scope : this
+			listWidth: 150,
+			listeners: {
+				expand: this.onExpandComboBox,
+				beforeRender: this.onBeforeRender,
+				scope: this
 			}
 		});
 
@@ -128,18 +128,18 @@ Zarafa.common.searchfield.ui.SearchFolderCombo = Ext.extend(Ext.form.ComboBox, {
 
 	/**
 	 * Event handler which is raised just before the {@link Zarafa.common.searchfield.ui.SearchFolderCombo SearchFolderCombo}
-	 * is being rendered. At this moment data for store will be prepared based on default selected folder 
+	 * is being rendered. At this moment data for store will be prepared based on default selected folder
 	 * and {@link Ext.data.JsonStore searchFolderStore} will be loaded. Also default combobox value will be set.
 	 * @private
 	 */
-	onBeforeRender : function()
+	onBeforeRender: function()
 	{
 		var index = 0;
 		var defaultFolder = this.model.getDefaultFolder();
 		if (defaultFolder.getDefaultFolderKey() !== 'inbox' && defaultFolder.getDefaultFolderKey() !== 'publicfolders') {
 			index = 1;
-        }
-		
+    }
+
 		var data = [{
 			'name': _('All folders'),
 			'value': defaultFolder.getMAPIStore().get("subtree_entryid"),
@@ -163,12 +163,12 @@ Zarafa.common.searchfield.ui.SearchFolderCombo = Ext.extend(Ext.form.ComboBox, {
 	 * initialize events for the grid panel
 	 * @private
 	 */
-	initEvents : function()
+	initEvents: function()
 	{
 		Zarafa.common.searchfield.ui.SearchFolderCombo.superclass.initEvents.apply(this, arguments);
 
 		this.on('beforeselect', this.onBeforeSelectSearchFolder, this);
-        this.on('select', this.onSelectSearchFolder, this);
+    this.on('select', this.onSelectSearchFolder, this);
 		this.mon(this.model, 'folderchange', this.onFolderChange, this);
 		this.mon(this.model, 'activate', this.onActiveFolder, this);
 		this.mon(container, 'aftercontextswitch', this.onAfterContextSwitch, this);
@@ -184,13 +184,13 @@ Zarafa.common.searchfield.ui.SearchFolderCombo = Ext.extend(Ext.form.ComboBox, {
 	 * @param {number} index The index of the selected item in the dropdown list
 	 * @return {boolean} true if selected record is not 'Other...' else false.
 	 */
-	onBeforeSelectSearchFolder : function (combo, record, index)
+	onBeforeSelectSearchFolder: function (combo, record, index)
 	{
 		if(record.get('value') === 'other') {
 			combo.collapse();
 			Zarafa.advancesearch.Actions.openSelectSearchFolderDialog({
-				searchFolderCombo : combo,
-				model : this.model
+				searchFolderCombo: combo,
+				model: this.model
 			});
 			return false;
 		} else if (!container.getHierarchyStore().getFolder(combo.getValue())) {
@@ -210,7 +210,7 @@ Zarafa.common.searchfield.ui.SearchFolderCombo = Ext.extend(Ext.form.ComboBox, {
 	 *
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder which will be current folder in search folder combo box.
 	 */
-	onActiveFolder : function(folder)
+	onActiveFolder: function(folder)
 	{
 		this.setFolder(folder, true);
 	},
@@ -236,7 +236,7 @@ Zarafa.common.searchfield.ui.SearchFolderCombo = Ext.extend(Ext.form.ComboBox, {
 	 * @param {Context} oldContext previously selected context
 	 * @param {Context} context selected context
 	 */
-	onAfterContextSwitch : function (folders, oldContext, context)
+	onAfterContextSwitch: function (folders, oldContext, context)
 	{
 		var folder = context.getModel().getDefaultFolder();
 		this.setFolder(folder, false);
@@ -249,7 +249,7 @@ Zarafa.common.searchfield.ui.SearchFolderCombo = Ext.extend(Ext.form.ComboBox, {
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder folder that should be shown by the selected context.
 	 * @param {Boolean} changeCurrentFolder true to change the current folder in search folder combo box.
 	 */
-	setFolder : function(folder, changeCurrentFolder)
+	setFolder: function(folder, changeCurrentFolder)
 	{
 		// Don't update search folder combo box which belongs to search panel toolbar or we
 		// not found folder.
@@ -290,7 +290,7 @@ Zarafa.common.searchfield.ui.SearchFolderCombo = Ext.extend(Ext.form.ComboBox, {
 	 * @param {Ext.data.JsonStore} store of search folder combo box.
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder folder that should be shown by the selected context.
 	 */
-	doChangeCurrentFolder : function(store, folder)
+	doChangeCurrentFolder: function(store, folder)
 	{
 		var currentFolderRecord = store.getAt(store.find('flag', Zarafa.advancesearch.data.SearchComboBoxFieldsFlags.CURRENT_SELECTED_FOLDER));
 
@@ -349,19 +349,19 @@ Zarafa.common.searchfield.ui.SearchFolderCombo = Ext.extend(Ext.form.ComboBox, {
 		}
 	},
 
-    /**
+  /**
 	 * Event handler triggered when a search combo list item is selected.
 	 * It will fire click event of search button to automatically triggers a search
 	 * when user selects a different folder from the search-tab drop-down.
-     *
-     */
-    onSelectSearchFolder: function ()
+   *
+   */
+  onSelectSearchFolder: function ()
 	{
-        var searchTextField = this.searchFieldContainer.searchTextField;
-        if (searchTextField.searchPanelRendered) {
-            searchTextField.onTriggerClick();
-        }
+    var searchTextField = this.searchFieldContainer.searchTextField;
+    if (searchTextField.searchPanelRendered) {
+      searchTextField.onTriggerClick();
     }
+  }
 });
 
 Ext.reg('zarafa.searchfoldercombo', Zarafa.common.searchfield.ui.SearchFolderCombo);

@@ -20,7 +20,7 @@ Zarafa.calendar.printer.AbstractViewRenderer = Ext.extend(Zarafa.common.printer.
 	 * @cfg {String} timeStyle The style attribute which must be applied to  the
 	 * &lt;td&gt; element containing the timestamp for the appointment
 	 */
-	timeStyle : '',
+	timeStyle: '',
 
 	/**
 	 * Add additional rendering into the newly created dom tree containing the processed template
@@ -54,16 +54,16 @@ Zarafa.calendar.printer.AbstractViewRenderer = Ext.extend(Zarafa.common.printer.
 		if (Ext.isIE11){
 			leftDP = new Ext.DatePicker({
 				renderTo: Ext.getBody(),
-				hidden : true,
-				width : '200px',
+				hidden: true,
+				width: '200px',
 				value: left,
 				showToday: false
 			});
 
 			rightDP = new Ext.DatePicker({
 				renderTo: Ext.getBody(),
-				hidden : true,
-				width : '200px',
+				hidden: true,
+				width: '200px',
 				value: right,
 				showToday: false
 			});

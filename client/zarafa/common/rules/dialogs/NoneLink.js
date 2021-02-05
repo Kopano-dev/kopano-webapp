@@ -13,7 +13,7 @@ Zarafa.common.rules.dialogs.NoneLink = Ext.extend(Zarafa.common.rules.dialogs.Ba
 	 * Obtain the condition as configured by the user
 	 * @return {Object} The condition
 	 */
-	getCondition : function()
+	getCondition: function()
 	{
 		if (this.isModified !== true) {
 			return this.condition;

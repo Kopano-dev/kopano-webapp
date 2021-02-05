@@ -254,7 +254,7 @@ class UploadAttachment
 
 		$extension = pathinfo($filename, PATHINFO_EXTENSION);
 
-		// Set the module id of the notifier according to the file type 
+		// Set the module id of the notifier according to the file type
 		switch (strtoupper($extension)) {
 			case 'EML':
 				$this->notifierModule = 'maillistnotifier';
@@ -334,9 +334,9 @@ class UploadAttachment
 	}
 
 	/**
-	 * Function checks whether the file to be converted contains a single vCard 
+	 * Function checks whether the file to be converted contains a single vCard
 	 * or multiple vCard entries. It calls the appropriate method and converts the vcf.
-	 * 
+	 *
 	 * @param Object $destinationFolder The folder which holds the message which we need to import from file.
 	 * @param String $attachmentStream The attachment as a stream.
 	 * @return Array $contacts The array of contact(s) to be imported.
@@ -700,14 +700,14 @@ class UploadAttachment
 				'type'       => mime_content_type($tmpname),
 				'sourcetype' => 'default'
 			));
-		}else{
+		} else {
 			// Check if no files are uploaded with this attachmentid
 			$this->attachment_state->clearAttachmentFiles($_GET['attachment_id']);
 		}
 	}
 
 	/**
-	 * Helper function to send proper response for import request only. It sets the appropriate 
+	 * Helper function to send proper response for import request only. It sets the appropriate
 	 * notifier to be sent in the response according to the type of the file to be imported.
 	 */
 	function sendImportResponse($importStatus)
@@ -760,7 +760,7 @@ class UploadAttachment
 					)
 				)
 			)
-		);		
+		);
 		echo json_encode($return);
 	}
 

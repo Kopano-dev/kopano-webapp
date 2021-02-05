@@ -17,7 +17,7 @@ Zarafa.common.restoreitem.dialogs.RestoreItemPanel = Ext.extend(Zarafa.common.ui
 	/**
 	 * @cfg {Zarafa.hierarchy.data.MAPIFolderRecord} folder default folder for the contextModel.
 	 */
-	folder : undefined,
+	folder: undefined,
 
 	/**
 	 * The current type of soft deleted items list.
@@ -27,14 +27,14 @@ Zarafa.common.restoreitem.dialogs.RestoreItemPanel = Ext.extend(Zarafa.common.ui
 	 * @type String
 	 * @private
 	 */
-	itemType : 'message',
+	itemType: 'message',
 
 	/**
 	 * The {@link Zarafa.core.ContextModel} which is obtained by using {@link #folder}.
 	 * @property
 	 * @type Zarafa.core.ContextModel
 	 */
-	model : undefined,
+	model: undefined,
 
 	/**
 	 * @constructor
@@ -48,18 +48,18 @@ Zarafa.common.restoreitem.dialogs.RestoreItemPanel = Ext.extend(Zarafa.common.ui
 			xtype: 'zarafa.restoreitempanel',
 			border: false,
 			store: new Zarafa.common.restoreitem.data.RestoreItemStore({
-				folder : config.folder,
+				folder: config.folder,
 				autoLoad: {
 					folder: config.folder
 				}
 			}),
-			model : container.getContextByFolder(config.folder).getModel(),
+			model: container.getContextByFolder(config.folder).getModel(),
 			loadMask: true,
-			supportLiveScroll : true,
+			supportLiveScroll: true,
 			viewConfig: {
 				forceFit: true,
-				emptyText : '<div class="emptytext">' + _('There are no items to show in this list') + '</div>',
-				getRowClass : this.viewConfigGetRowClass
+				emptyText: '<div class="emptytext">' + _('There are no items to show in this list') + '</div>',
+				getRowClass: this.viewConfigGetRowClass
 			},
 			tbar: {
 				xtype: 'zarafa.contentpaneltoolbar',
@@ -67,7 +67,7 @@ Zarafa.common.restoreitem.dialogs.RestoreItemPanel = Ext.extend(Zarafa.common.ui
 				actionItems: this.createActionButtons()
 			},
 			colModel: this.initMessageColumnModel(),
-			sm : new Ext.grid.RowSelectionModel()
+			sm: new Ext.grid.RowSelectionModel()
 		});
 
 		Zarafa.common.restoreitem.dialogs.RestoreItemPanel.superclass.constructor.call(this,config);
@@ -78,7 +78,7 @@ Zarafa.common.restoreitem.dialogs.RestoreItemPanel = Ext.extend(Zarafa.common.ui
 	 * Initialize event handlers
 	 * @private
 	 */
-	initEvents : function() 
+	initEvents: function()
 	{
 		Zarafa.common.restoreitem.dialogs.RestoreItemPanel.superclass.initEvents.call(this);
 
@@ -101,7 +101,7 @@ Zarafa.common.restoreitem.dialogs.RestoreItemPanel = Ext.extend(Zarafa.common.ui
 	 * @return {String} a CSS class name to add to the row
 	 * @private
 	 */
-	viewConfigGetRowClass :function(record, rowIndex, rowParams, store)
+	viewConfigGetRowClass:function(record, rowIndex, rowParams, store)
 	{
 		return record.isRead() ? 'mail_read' : 'mail_unread';
 	},
@@ -112,7 +112,7 @@ Zarafa.common.restoreitem.dialogs.RestoreItemPanel = Ext.extend(Zarafa.common.ui
 	 * @return {Array} array consist of buttons for restore content panel
 	 * @private
 	 */
-	createActionButtons : function()
+	createActionButtons: function()
 	{
 		var radioGroupName = Ext.id(null, 'restoreitem-');
 		return [{
@@ -120,59 +120,59 @@ Zarafa.common.restoreitem.dialogs.RestoreItemPanel = Ext.extend(Zarafa.common.ui
 			overflowText: _('Restore'),
 			text: _('Restore'),
 			iconCls: 'icon_restore',
-			handler : this.onRestore,
-			disabled : true,
-			ref : '../restoreButton',
+			handler: this.onRestore,
+			disabled: true,
+			ref: '../restoreButton',
 			scope: this
 		}, {
 			xtype: 'button',
 			overflowText: _('Restore All'),
 			text: _('Restore All'),
 			iconCls: 'icon_restore',
-			handler : this.onRestoreAll,
-			disabled : true,
-			ref : '../restoreAllButton',
+			handler: this.onRestoreAll,
+			disabled: true,
+			ref: '../restoreAllButton',
 			scope: this
 		},{
 			xtype: 'button',
 			overflowText: _('Permanent Delete'),
 			text: _('Permanent Delete'),
 			iconCls: 'icon_delete',
-			handler : this.onPermanentDelete,
-			disabled : true,
-			ref : '../permanentDeleteButton',
+			handler: this.onPermanentDelete,
+			disabled: true,
+			ref: '../permanentDeleteButton',
 			scope: this
 		},{
 			xtype: 'button',
 			overflowText: _('Delete All'),
 			text: _('Delete All'),
 			iconCls: 'icon_delete',
-			handler : this.onDeleteAll,
-			disabled : true,
-			ref : '../deleteAllButton',
+			handler: this.onDeleteAll,
+			disabled: true,
+			ref: '../deleteAllButton',
 			scope: this
 		},{
 			xtype: 'tbfill'
 		},{
-			xtype : 'radio',
+			xtype: 'radio',
 			width: 90,
 			boxLabel: _('Messages'),
 			name: radioGroupName,
 			inputValue: 'message',
 			checked: true,
-			listeners : {
-				check : this.onRadioChecked,
-				scope : this
+			listeners: {
+				check: this.onRadioChecked,
+				scope: this
 			}
 		},{
-			xtype : 'radio',
+			xtype: 'radio',
 			width: 70,
 			boxLabel: _('Folders'),
 			name: radioGroupName,
 			inputValue: 'folder',
-			listeners : {
-				check : this.onRadioChecked,
-				scope : this
+			listeners: {
+				check: this.onRadioChecked,
+				scope: this
 			}
 		}];
 	},
@@ -184,7 +184,7 @@ Zarafa.common.restoreitem.dialogs.RestoreItemPanel = Ext.extend(Zarafa.common.ui
 	 * @param {Boolean} checked The new checked value
 	 * @private
 	 */
-	onRadioChecked : function(radio, checked)
+	onRadioChecked: function(radio, checked)
 	{
 		// load data about deleted message or folder in store based on the selected radio
 		if (checked === true) {
@@ -202,7 +202,7 @@ Zarafa.common.restoreitem.dialogs.RestoreItemPanel = Ext.extend(Zarafa.common.ui
 	 * @param {Ext.EventObject} eventObj event object for the click event.
 	 * @private
 	 */
-	onPermanentDelete : function(button, eventObj)
+	onPermanentDelete: function(button, eventObj)
 	{
 		var records = this.getSelectionModel().getSelections();
 		this.doPermanentDelete(records);
@@ -216,7 +216,7 @@ Zarafa.common.restoreitem.dialogs.RestoreItemPanel = Ext.extend(Zarafa.common.ui
 	 * @param {Ext.EventObject} eventObj event object for the click event.
 	 * @private
 	 */
-	onDeleteAll : function(button, eventObj)
+	onDeleteAll: function(button, eventObj)
 	{
 		Ext.MessageBox.show({
 			title: _('Delete all items'),
@@ -244,7 +244,7 @@ Zarafa.common.restoreitem.dialogs.RestoreItemPanel = Ext.extend(Zarafa.common.ui
 				folder: this.folder,
 				params: {
 					message_action: {
-						action_type : action + "All"
+						action_type: action + "All"
 					}
 				}
 			});
@@ -264,7 +264,7 @@ Zarafa.common.restoreitem.dialogs.RestoreItemPanel = Ext.extend(Zarafa.common.ui
 	 * @param {boolean} bulkAction true to permanently delete all items.
 	 * @private
 	 */
-	doPermanentDelete : function(records, bulkAction)
+	doPermanentDelete: function(records, bulkAction)
 	{
 		this.doAction(records, 'delete', bulkAction);
 	},
@@ -277,7 +277,7 @@ Zarafa.common.restoreitem.dialogs.RestoreItemPanel = Ext.extend(Zarafa.common.ui
 	 * @param {Ext.EventObject} eventObj event object for the click event.
 	 * @private
 	 */
-	onRestore : function(button, eventObj)
+	onRestore: function(button, eventObj)
 	{
 		var records = this.getSelectionModel().getSelections();
 		this.doRestore(records);
@@ -291,7 +291,7 @@ Zarafa.common.restoreitem.dialogs.RestoreItemPanel = Ext.extend(Zarafa.common.ui
 	 * @param {Ext.EventObject} eventObj event object for the click event.
 	 * @private
 	 */
-	onRestoreAll : function(button, eventObj)
+	onRestoreAll: function(button, eventObj)
 	{
 		Ext.MessageBox.show({
 			title: _('Restore all items'),
@@ -301,7 +301,7 @@ Zarafa.common.restoreitem.dialogs.RestoreItemPanel = Ext.extend(Zarafa.common.ui
 				if (buttonClicked == 'yes') {
 					this.doRestore([], true);
 				}
-			
+
 			},
 			scope: this
 		});
@@ -313,7 +313,7 @@ Zarafa.common.restoreitem.dialogs.RestoreItemPanel = Ext.extend(Zarafa.common.ui
 	 * @param {boolean} bulkAction true to restore all items.
 	 * @private
 	 */
-	doRestore : function(records, bulkAction)
+	doRestore: function(records, bulkAction)
 	{
 		this.doAction(records, 'restore', bulkAction);
 	},
@@ -326,7 +326,7 @@ Zarafa.common.restoreitem.dialogs.RestoreItemPanel = Ext.extend(Zarafa.common.ui
 	 * @param {Object} options The options which were used to load the data
 	 * @private
 	 */
-	onStoreLoad : function( store, records, options )
+	onStoreLoad: function( store, records, options )
 	{
 		if (Ext.isDefined(options.params.itemType) && options.params.itemType === 'folder') {
 			this.reconfigure(store, this.initFolderColumnModel());
@@ -347,7 +347,7 @@ Zarafa.common.restoreitem.dialogs.RestoreItemPanel = Ext.extend(Zarafa.common.ui
 	 * @param {Ext.grid.RowSelectionModel} selectionModel The selection model used by the grid.
 	 * @private
 	 */
-	onSelectionChange : function(selectionModel)
+	onSelectionChange: function(selectionModel)
 	{
 		var noSelection = (selectionModel.hasSelection() === false);
 
@@ -364,7 +364,7 @@ Zarafa.common.restoreitem.dialogs.RestoreItemPanel = Ext.extend(Zarafa.common.ui
 	 * @param {Number} index The index from where the records were deleted
 	 * @private
 	 */
-	setStatusMessage : function(store, record, index)
+	setStatusMessage: function(store, record, index)
 	{
 		this.statusMessage.setValue(String.format(ngettext('Total {0} recoverable item', 'Total {0} recoverable items', store.getCount()), store.getCount()));
 	},
@@ -378,7 +378,7 @@ Zarafa.common.restoreitem.dialogs.RestoreItemPanel = Ext.extend(Zarafa.common.ui
 	 * @param {Number} index The index from where the records were deleted
 	 * @private
 	 */
-	disableToolbarButton : function(store, record, index)
+	disableToolbarButton: function(store, record, index)
 	{
 		var noItem = (store.getCount() === 0);
 		this.deleteAllButton.setDisabled(noItem);
@@ -391,34 +391,34 @@ Zarafa.common.restoreitem.dialogs.RestoreItemPanel = Ext.extend(Zarafa.common.ui
 	 * @return {Ext.grid.ColumnModel} column model object
 	 * @private
 	 */
-	initFolderColumnModel : function()
+	initFolderColumnModel: function()
 	{
 		return new Ext.grid.ColumnModel({
-			columns : [{
-				dataIndex : 'icon_index',
+			columns: [{
+				dataIndex: 'icon_index',
 				headerCls: 'zarafa-icon-column',
-				header : '<p class="icon_index">&nbsp;</p>',
-				tooltip : _('Sort by: Icon'),
-				width : 24,
+				header: '<p class="icon_index">&nbsp;</p>',
+				tooltip: _('Sort by: Icon'),
+				width: 24,
 				sortable: true,
-				fixed : true,
-				renderer : Zarafa.common.ui.grid.Renderers.icon
+				fixed: true,
+				renderer: Zarafa.common.ui.grid.Renderers.icon
 			},{
 				dataIndex:'display_name',
 				header: _('Name'),
-				tooltip : _('Sort by: Name'),
+				tooltip: _('Sort by: Name'),
 				sortable: true,
 				renderer: Ext.util.Format.htmlEncode
 			},{
 				dataIndex:'deleted_on',
 				header: _('Deleted On'),
-				tooltip : _('Sort by: Deleted On'),
+				tooltip: _('Sort by: Deleted On'),
 				sortable: true,
 				renderer: Zarafa.common.ui.grid.Renderers.datetime
 			},{
 				dataIndex: 'content_count',
 				header: _('Item Count'),
-				tooltip : _('Sort by: Item Count'),
+				tooltip: _('Sort by: Item Count'),
 				sortable: true,
 				renderer: Ext.util.Format.htmlEncode
 			}]
@@ -431,55 +431,55 @@ Zarafa.common.restoreitem.dialogs.RestoreItemPanel = Ext.extend(Zarafa.common.ui
 	 * @return {Ext.grid.ColumnModel} column model object
 	 * @private
 	 */
-	initMessageColumnModel : function()
+	initMessageColumnModel: function()
 	{
 		return new Ext.grid.ColumnModel({
 			columns: [{
-				dataIndex : 'icon_index',
+				dataIndex: 'icon_index',
 				headerCls: 'zarafa-icon-column',
-				header : '<p class="icon_index">&nbsp;</p>',
-				tooltip : _('Sort by: Icon'),
-				width : 24,
+				header: '<p class="icon_index">&nbsp;</p>',
+				tooltip: _('Sort by: Icon'),
+				width: 24,
 				sortable: true,
-				fixed : true,
-				renderer : Zarafa.common.ui.grid.Renderers.icon
+				fixed: true,
+				renderer: Zarafa.common.ui.grid.Renderers.icon
 			},{
-				dataIndex : 'hasattach',
+				dataIndex: 'hasattach',
 				headerCls: 'zarafa-icon-column',
-				header : '<p class=\'icon_paperclip\'>&nbsp;</p>',
-				tooltip : _('Sort by: Attachment'),
-				width : 24,
+				header: '<p class=\'icon_paperclip\'>&nbsp;</p>',
+				tooltip: _('Sort by: Attachment'),
+				width: 24,
 				sortable: true,
-				fixed : true,
-				renderer : Zarafa.common.ui.grid.Renderers.attachment
+				fixed: true,
+				renderer: Zarafa.common.ui.grid.Renderers.attachment
 			},{
 				dataIndex:'sender_name',
 				header: _('From'),
-				tooltip : _('Sort by: From'),
+				tooltip: _('Sort by: From'),
 				sortable: true,
 				renderer: Ext.util.Format.htmlEncode
 			},{
 				dataIndex: 'subject',
 				header: _('Subject'),
-				tooltip : _('Sort by: Subject'),
+				tooltip: _('Sort by: Subject'),
 				sortable: true,
 				renderer: Ext.util.Format.htmlEncode
 			},{
 				dataIndex:'deleted_on',
 				header: _('Deleted On'),
-				tooltip : _('Sort by: Deleted On'),
+				tooltip: _('Sort by: Deleted On'),
 				sortable: true,
 				renderer: Zarafa.common.ui.grid.Renderers.datetime
 			},{
-				dataIndex : 'message_delivery_time',
-				header : _('Received'),
-				tooltip : _('Sort by: Received'),
+				dataIndex: 'message_delivery_time',
+				header: _('Received'),
+				tooltip: _('Sort by: Received'),
 				sortable: true,
-				renderer : Zarafa.common.ui.grid.Renderers.datetime
+				renderer: Zarafa.common.ui.grid.Renderers.datetime
 			},{
 				dataIndex:'message_size',
 				header: _('Size'),
-				tooltip : _('Sort by: Size'),
+				tooltip: _('Sort by: Size'),
 				sortable: true,
 				renderer: Zarafa.common.ui.grid.Renderers.size
 			}]
@@ -495,7 +495,7 @@ Zarafa.common.restoreitem.dialogs.RestoreItemPanel = Ext.extend(Zarafa.common.ui
 	 * @param {Number} cursor the cursor contains the last index of record in grid.
 	 * @private
 	 */
-	onLiveScrollStart : function(cursor)
+	onLiveScrollStart: function(cursor)
 	{
 		this.model.startLiveScroll(cursor, this.getStore());
 	},
@@ -506,7 +506,7 @@ Zarafa.common.restoreitem.dialogs.RestoreItemPanel = Ext.extend(Zarafa.common.ui
 	 * {@link Zarafa.core.ContextModel#stopLiveScroll live scroll} and then apply the sorting.
 	 * @private
 	 */
-	onBeforeSort : function()
+	onBeforeSort: function()
 	{
 		this.model.stopLiveScroll();
 	}

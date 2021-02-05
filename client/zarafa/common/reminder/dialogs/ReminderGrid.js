@@ -10,15 +10,15 @@ Zarafa.common.reminder.dialogs.ReminderGrid = Ext.extend(Zarafa.common.ui.grid.G
 	 * @constructor
 	 * @param {Object} config Configuration structure
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			xtype : 'zarafa.remindergrid',
-			border : true,
-			columns : this.initColumnModel(),
-			selModel : this.initSelectionModel()
+			xtype: 'zarafa.remindergrid',
+			border: true,
+			columns: this.initColumnModel(),
+			selModel: this.initSelectionModel()
 		});
 
 		Zarafa.common.reminder.dialogs.ReminderGrid.superclass.constructor.call(this, config);
@@ -32,15 +32,15 @@ Zarafa.common.reminder.dialogs.ReminderGrid = Ext.extend(Zarafa.common.ui.grid.G
 	 * @return {Ext.grid.ColumnModel} column model object
 	 * @private
 	 */
-	initColumnModel : function()
+	initColumnModel: function()
 	{
 		return [{
-				header : '<p class="icon_index">&nbsp;</p>',
+				header: '<p class="icon_index">&nbsp;</p>',
 				headerCls: 'zarafa-icon-column',
-				dataIndex : 'icon_index',
-				width : 24,
-				renderer : Zarafa.common.ui.grid.Renderers.icon,
-				fixed : true,
+				dataIndex: 'icon_index',
+				width: 24,
+				renderer: Zarafa.common.ui.grid.Renderers.icon,
+				fixed: true,
 				menuDisabled: true
 			},{
 				dataIndex: 'subject',
@@ -49,7 +49,7 @@ Zarafa.common.reminder.dialogs.ReminderGrid = Ext.extend(Zarafa.common.ui.grid.G
 				menuDisabled: true
 			},{
 				dataIndex: 'reminder_time',
-				width : 150,
+				width: 150,
 				header: _('Due In'),
 				renderer: Zarafa.common.ui.grid.Renderers.dueBy,
 				menuDisabled: true
@@ -61,10 +61,10 @@ Zarafa.common.reminder.dialogs.ReminderGrid = Ext.extend(Zarafa.common.ui.grid.G
 	 * @return {Ext.grid.RowSelectionModel} selection model object
 	 * @private
 	 */
-	initSelectionModel : function()
+	initSelectionModel: function()
 	{
 		return new Ext.grid.RowSelectionModel({
-			multiSelect : true
+			multiSelect: true
 		});
 	},
 
@@ -75,7 +75,7 @@ Zarafa.common.reminder.dialogs.ReminderGrid = Ext.extend(Zarafa.common.ui.grid.G
 	 * @param {Number} rowIndex The index of the row which was double clicked
 	 * @param {Ext.EventObject} event The event
 	 */
-	onRowDblClick : function(grid, rowIndex, event)
+	onRowDblClick: function(grid, rowIndex, event)
 	{
 		var record = this.store.getAt(rowIndex);
 		if (record) {
@@ -93,7 +93,7 @@ Zarafa.common.reminder.dialogs.ReminderGrid = Ext.extend(Zarafa.common.ui.grid.G
 	 * @param {Ext.EventObject} event The event structure
 	 * @private
 	 */
-	onRowContextMenu : function(grid, rowIndex, event)
+	onRowContextMenu: function(grid, rowIndex, event)
 	{
 		var sm = this.getSelectionModel();
 
@@ -113,7 +113,7 @@ Zarafa.common.reminder.dialogs.ReminderGrid = Ext.extend(Zarafa.common.ui.grid.G
 
 		var records = sm.getSelections();
 		if (records) {
-			Zarafa.core.data.UIFactory.openContextMenu(Zarafa.core.data.SharedComponentType['common.contextmenu.reminder.remindergrid'], records, { position : event.getXY() });
+			Zarafa.core.data.UIFactory.openContextMenu(Zarafa.core.data.SharedComponentType['common.contextmenu.reminder.remindergrid'], records, { position: event.getXY() });
 		}
 	}
 });

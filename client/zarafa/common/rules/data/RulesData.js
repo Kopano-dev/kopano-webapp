@@ -208,7 +208,7 @@ Zarafa.common.rules.data.RulesData = {
 	 * @param {Array} conditions array for which we need to create OR restriction.
 	 * @return {Array} restriction for conditions or false if conditions array is empty.
 	 */
-	createOrRestriction : function(conditions)
+	createOrRestriction: function(conditions)
 	{
 		var restrictionFactory = Zarafa.core.data.RestrictionFactory;
 
@@ -325,7 +325,7 @@ Zarafa.common.rules.data.RulesData = {
 			if (actionType === actionFlags.DELETE) {
 				return false;
 			}
-		} 
+		}
 
 		if (actionType === actionFlags.COPY) {
 			action.action = ruleActions.OP_COPY;

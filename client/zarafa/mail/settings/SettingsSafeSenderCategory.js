@@ -21,17 +21,17 @@ Zarafa.mail.settings.SettingsSafeSenderCategory = Ext.extend(Zarafa.settings.ui.
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			title : _('Safe Senders'),
-			categoryIndex : 8,
-			iconCls : 'zarafa-settings-category-delegate',
-			items : [{
+			title: _('Safe Senders'),
+			categoryIndex: 8,
+			iconCls: 'zarafa-settings-category-delegate',
+			items: [{
 				xtype: 'zarafa.settingssafesenderswidget',
-				settingsContext : config.settingsContext
+				settingsContext: config.settingsContext
 			},
 				container.populateInsertionPoint('context.settings.category.safesender', this)
 			]

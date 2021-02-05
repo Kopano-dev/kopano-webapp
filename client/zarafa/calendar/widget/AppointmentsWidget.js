@@ -21,14 +21,14 @@ Zarafa.calendar.widget.AppointmentsWidget = Ext.extend(Zarafa.core.ui.widget.Abs
 	 * @property
 	 * @type Zarafa.hierarchy.data.MAPIFolderRecord
 	 */
-	folder : undefined,
+	folder: undefined,
 
 	/**
 	 * 'entryid' of folder which was selected by the user
 	 * @property
 	 * @type String
 	 */
-	folderId : undefined,
+	folderId: undefined,
 
 	/**
 	 * @constructor
@@ -50,7 +50,7 @@ Zarafa.calendar.widget.AppointmentsWidget = Ext.extend(Zarafa.core.ui.widget.Abs
 				cls: 'k-appointmentwidget',
 				store: store,
 				hideHeaders: true,
-				ref : 'appointmentsGrid',
+				ref: 'appointmentsGrid',
 				loadMask: {
 					msg: _('Loading appointments...')
 				},
@@ -150,7 +150,7 @@ Zarafa.calendar.widget.AppointmentsWidget = Ext.extend(Zarafa.core.ui.widget.Abs
 	 * This will call {@link #startFilterTask} and {@link #setEmptytext} after the {@link #store} load.
 	 * @private
 	 */
-	onStoreLoad : function()
+	onStoreLoad: function()
 	{
 		this.startFilterTask();
 		this.setEmptytext();
@@ -211,7 +211,7 @@ Zarafa.calendar.widget.AppointmentsWidget = Ext.extend(Zarafa.core.ui.widget.Abs
 	 * This will be called from {@link Zarafa.widgets.folderwidgets.AbstractFolderWidget#onHierarchyLoad onHierarchyLoad}
 	 * when folder is not found and when the 'remove' or 'removeFolder' event fired for hierarchy store.
 	 */
-	resetWidget : function()
+	resetWidget: function()
 	{
 		this.folder = undefined;
 		this.folderId = undefined;
@@ -220,17 +220,17 @@ Zarafa.calendar.widget.AppointmentsWidget = Ext.extend(Zarafa.core.ui.widget.Abs
 	},
 
 	/**
-	 * This method will set name of this widget. 
+	 * This method will set name of this widget.
 	 * If folder is not given, it will set default title otherwise it will prepare
 	 * title for widget as per folder given and apply it.
 	 *
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder folder which is selected to show appointments from.
 	 * @private
 	 */
-	setWidgetTitle : function(folder)
+	setWidgetTitle: function(folder)
 	{
 		var title = _('Upcoming Appointments');
-		
+
 		if (folder) {
 			var folderStore = folder.getMAPIStore();
 			var isOwnStore = folderStore.isDefaultStore();
@@ -238,7 +238,7 @@ Zarafa.calendar.widget.AppointmentsWidget = Ext.extend(Zarafa.core.ui.widget.Abs
 
 			var ownerName = folderStore.get('display_name');
 			var folderName = folder.get('display_name');
-			
+
 			// Do not show ownername for own store folder.
 			// And don't change title for default calendar folder of own store.
 			if (!(isOwnStore && isDefaultFolder)) {
@@ -262,7 +262,7 @@ Zarafa.calendar.widget.AppointmentsWidget = Ext.extend(Zarafa.core.ui.widget.Abs
 	 *
 	 * @param {String} emptyText which needs to be set as empty text of grid view.
 	 */
-	setEmptytext : function(emptyText)
+	setEmptytext: function(emptyText)
 	{
 		var gridView = this.appointmentsGrid.getView();
 
@@ -277,12 +277,12 @@ Zarafa.calendar.widget.AppointmentsWidget = Ext.extend(Zarafa.core.ui.widget.Abs
 	/**
 	 * Event handler for 'remove' and 'removeFolder' events of {@link Zarafa.hierarchy.data.HierarchyStore Hierarchy}
 	 * This will reset widget if state folder of this widget gets deleted.
-	 * 
+	 *
 	 * @param {Zarafa.hierarchy.data.HierarchyStore} store hierarchy store after removing record.
 	 * @param {Zarafa.hierarchy.data.MAPIStoreRecord} record The record which is removed
 	 * @param {Number} totalRecords total number of records in store.
 	 */
-	onSharedStoreRemove : function(store, record, totalRecords)
+	onSharedStoreRemove: function(store, record, totalRecords)
 	{
 		var stateFolderId = this.get('folderId');
 		if (!Ext.isEmpty(stateFolderId)) {
@@ -301,7 +301,7 @@ Zarafa.calendar.widget.AppointmentsWidget = Ext.extend(Zarafa.core.ui.widget.Abs
 	 * Event handler for 'folderupdate' event.
 	 * This will update the {@link #folder} , save the folder entryid in state,
 	 * set title of this widget and reload the state with updated folder.
-	 * 
+	 *
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder folder which is selected to show appointments from.
 	 * @private
 	 */
@@ -488,9 +488,9 @@ Zarafa.calendar.widget.AppointmentsWidget = Ext.extend(Zarafa.core.ui.widget.Abs
 
 Zarafa.onReady(function () {
 	container.registerWidget(new Zarafa.core.ui.widget.WidgetMetaData({
-		name : 'appointments',
+		name: 'appointments',
 		iconCls: "icon_widget_calendar",
-		displayName : _('Upcoming Appointments'),
-		widgetConstructor : Zarafa.calendar.widget.AppointmentsWidget
+		displayName: _('Upcoming Appointments'),
+		widgetConstructor: Zarafa.calendar.widget.AppointmentsWidget
 	}));
 });

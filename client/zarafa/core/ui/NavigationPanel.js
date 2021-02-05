@@ -58,7 +58,7 @@ Zarafa.core.ui.NavigationPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 	 * @constructor
 	 * @param {Object} config configuration object
 	 */
-	constructor : function (config)
+	constructor: function (config)
 	{
 		this.addEvents([
 			/**
@@ -97,8 +97,8 @@ Zarafa.core.ui.NavigationPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 				cls: 'zarafa-navigationpanel-centerpanel',
 				flex: 1,
 				layout: {
-					type : 'card',
-					deferredRender : true
+					type: 'card',
+					deferredRender: true
 				},
 				activeItem: 0,
 				items: centerComponents
@@ -111,36 +111,36 @@ Zarafa.core.ui.NavigationPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 			// Prevent overriding other css classes
 			if(Ext.isEmpty(items[i].cls)){
 				items[i].cls = 'zarafa-navigationpanel-item';
-			}else{
+			} else {
 				items[i].cls += ' zarafa-navigationpanel-item';
 			}
 		}
 
 		Ext.applyIf(config, {
-			border : false,
-			layout : {
+			border: false,
+			layout: {
 				type: 'vbox',
 				align: 'stretch'
 			},
 			id: 'zarafa-navigationpanel',
 			cls: 'zarafa-navigation zarafa-panel zarafa-context-mainpanel',
 
-			north : northComponents,
-			center : centerComponents,
-			south : southComponents,
+			north: northComponents,
+			center: centerComponents,
+			south: southComponents,
 
-			items : items,
+			items: items,
 			collapseQuickTip: _('Collapse hierarchy'),
 			expandQuickTip: _('Expand hierarchy'),
 			animCollapse: false,
-			headerCfg : { cls : 'zarafa-main-header x-panel-header' }
+			headerCfg: { cls: 'zarafa-main-header x-panel-header' }
 		});
 
 		// parent constructor
 		Zarafa.core.ui.NavigationPanel.superclass.constructor.call(this, config);
 
 		// If previous value is there in state to "show all the folders" then simply assign it to respective config
-		// TODO : This is achieved by overriding the applyState in Zarafa.hierarchy.ui.HierarchyTreePanel class.
+		// TODO: This is achieved by overriding the applyState in Zarafa.hierarchy.ui.HierarchyTreePanel class.
 		// But, the instance of Zarafa.core.ui.NavigationPanel is not created when applyState gets executed.
 		var checkBoxState = container.getSettingsModel().get('zarafa/v1/state/sidebars/hierarchytree/showallcheckbox');
 		this.showFolderList = checkBoxState || false;
@@ -150,14 +150,14 @@ Zarafa.core.ui.NavigationPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 	 * @return {Ext.Container} Container which contains {@link Zarafa.hierarchy.ui.FolderSelectTree HierarchyTree}
 	 * component and {@link Zarafa.hierarchy.ui.OpenSharedStorePanel OpenSharedStorePanel} component.
 	 */
-	getAllFoldersPanel : function()
+	getAllFoldersPanel: function()
 	{
 		return {
-			xtype : 'zarafa.contextnavigation',
+			xtype: 'zarafa.contextnavigation',
 			ownerTitle: _('Folders List'),
 			cls: 'zarafa-navigationpanel-centerpanel-allfolders',
-			ref : 'allFoldersPanel',
-			items : [{
+			ref: 'allFoldersPanel',
+			items: [{
 				layout: 'fit',
 				cls: 'zarafa-context-navigation-block',
 				items: this.getFolderListPanel()
@@ -168,15 +168,15 @@ Zarafa.core.ui.NavigationPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 	/**
 	 * @return {Zarafa.hierarchy.ui.Tree} Tree component showing folder list
 	 */
-	getFolderListPanel : function()
+	getFolderListPanel: function()
 	{
 		return {
-			xtype : 'zarafa.hierarchytreepanel',
-			enableDD : true,
-			ref : '../allFoldersHierarchyTree',
-			enableItemDrop : true,
-			showAllFoldersDefaultValue : true,
-			deferredLoading : true
+			xtype: 'zarafa.hierarchytreepanel',
+			enableDD: true,
+			ref: '../allFoldersHierarchyTree',
+			enableItemDrop: true,
+			showAllFoldersDefaultValue: true,
+			deferredLoading: true
 		};
 	},
 
@@ -188,7 +188,7 @@ Zarafa.core.ui.NavigationPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 	 *
 	 * @private
 	 */
-	onContextSwitch : function(parameters, oldContext, newContext)
+	onContextSwitch: function(parameters, oldContext, newContext)
 	{
 		this.activeContext = newContext;
 
@@ -215,7 +215,7 @@ Zarafa.core.ui.NavigationPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 				// If no navigationContext property is set always show it, otherwise only for the related Context
 				if(!item.navigationContext || item.navigationContext == this.activeContext){
 					item.setVisible(true);
-				}else{
+				} else {
 					item.setVisible(false);
 				}
 			}
@@ -262,7 +262,7 @@ Zarafa.core.ui.NavigationPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 	 * state of the {@link #showFolderList} is not changed it will not do anything.
 	 * @param {Boolean} showFolderList True to force the full folder list to be shown
 	 */
-	setShowFolderList : function(showFolderList)
+	setShowFolderList: function(showFolderList)
 	{
 		if (this.showFolderList === showFolderList){
 			return;
@@ -281,7 +281,7 @@ Zarafa.core.ui.NavigationPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 	 * initialized.
 	 * @private
 	 */
-	initEvents : function()
+	initEvents: function()
 	{
 		this.activeContext = container.getCurrentContext();
 		this.mon(container, 'contextswitch', this.onContextSwitch, this);
@@ -301,7 +301,7 @@ Zarafa.core.ui.NavigationPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 	 * @param {Number} rawHeight The height that was originally specified
 	 * @private
 	 */
-	onResizePanel : function(adjWidth, adjHeight, rawWidth, rawHeight)
+	onResizePanel: function(adjWidth, adjHeight, rawWidth, rawHeight)
 	{
 		this.doLayout();
 	},
@@ -314,7 +314,7 @@ Zarafa.core.ui.NavigationPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 	 *
 	 * @private
 	 */
-	saveState : function()
+	saveState: function()
 	{
 		if (container.getCurrentContext().getName() !== "settings") {
 			Zarafa.core.ui.NavigationPanel.superclass.saveState.apply(this);

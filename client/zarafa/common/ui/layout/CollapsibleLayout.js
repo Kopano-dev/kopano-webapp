@@ -18,7 +18,7 @@ Zarafa.common.ui.layout.CollapsibleLayout = Ext.extend(Ext.layout.FitLayout, {
 	 * @property
 	 * @type Ext.Panel
 	 */
-	resizeItem : undefined,
+	resizeItem: undefined,
 
 	/**
 	 * Apply event listeners for the {@link Ext.Panel#collapse} and {@link Ext.panel#expand} events
@@ -71,7 +71,7 @@ Zarafa.common.ui.layout.CollapsibleLayout = Ext.extend(Ext.layout.FitLayout, {
 	 * to make sure it will fit inside the height offered by the {@link #contaner}.
 	 * @private
 	 */
-	doResizeItem : function()
+	doResizeItem: function()
 	{
 		if (this.resizeItem && this.activeItem) {
 			var totalHeight = this.container.getInnerHeight ? this.container.getInnerHeight() : this.container.getHeight();
@@ -88,7 +88,7 @@ Zarafa.common.ui.layout.CollapsibleLayout = Ext.extend(Ext.layout.FitLayout, {
 	 * @param {Ext.Panel} c The panel which is expanded or collapsed
 	 * @private
 	 */
-	onCollapseState : function(c)
+	onCollapseState: function(c)
 	{
 		this.doResizeItem();
 	},
@@ -102,7 +102,7 @@ Zarafa.common.ui.layout.CollapsibleLayout = Ext.extend(Ext.layout.FitLayout, {
 	 * @param {Ext.Element} target The target element which is being laid out
 	 * @private
 	 */
-	onLayout : function(ct, target)
+	onLayout: function(ct, target)
 	{
 		Zarafa.common.ui.layout.CollapsibleLayout.superclass.onLayout.call(this, ct, target);
 		this.doResizeItem();

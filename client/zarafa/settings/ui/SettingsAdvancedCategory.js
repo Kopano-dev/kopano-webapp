@@ -15,48 +15,48 @@ Zarafa.settings.ui.SettingsAdvancedCategory = Ext.extend(Zarafa.settings.ui.Sett
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			title : _('Advanced'),
-			categoryIndex : 9999,
-			iconCls : 'zarafa-settings-category-advanced',
-			layout : 'fit',
+			title: _('Advanced'),
+			categoryIndex: 9999,
+			iconCls: 'zarafa-settings-category-advanced',
+			layout: 'fit',
 			// scrolling is supplied by the treepanel
 			autoScroll: false,
 			defaults: {
-				margins : "0 0 5 0"
+				margins: "0 0 5 0"
 			},
-			items : [{
+			items: [{
 				xtype:'container',
 				layout: {
 					type: 'border',
 				},
-				items : [{
-					xtype : 'zarafa.settingswidget',
-					title : _('Advanced settings'),
+				items: [{
+					xtype: 'zarafa.settingswidget',
+					title: _('Advanced settings'),
 					layout:'fit',
 					region:'center',
-					items : [{
-						xtype : 'zarafa.settingstreepanel',
-						ref : '../../treePanel'
+					items: [{
+						xtype: 'zarafa.settingstreepanel',
+						ref: '../../treePanel'
 					}]
 				}, {
-					xtype : 'zarafa.settingswidget',
-					title : _('Developer tools'),
+					xtype: 'zarafa.settingswidget',
+					title: _('Developer tools'),
 					height:80,
-					region : 'north',
+					region: 'north',
 					items:[{
 						xtype: 'checkbox',
-						name : 'zarafa/v1/main/kdeveloper_tool/kdeveloper',
-						boxLabel : _('Show insertion points in WebApp'),
-						ref : '../../showInsertionCheck',
-						hideLabel : true,
-						listeners : {
-							change : this.onFieldChange,
-							scope : this
+						name: 'zarafa/v1/main/kdeveloper_tool/kdeveloper',
+						boxLabel: _('Show insertion points in WebApp'),
+						ref: '../../showInsertionCheck',
+						hideLabel: true,
+						listeners: {
+							change: this.onFieldChange,
+							scope: this
 						}
 					}]
 				}]
@@ -72,7 +72,7 @@ Zarafa.settings.ui.SettingsAdvancedCategory = Ext.extend(Zarafa.settings.ui.Sett
 	 * {@link Zarafa.settings.SettingsModel} into the UI of this category.
 	 * @param {Zarafa.settings.SettingsModel} settingsModel The settings to load
 	 */
-	update : function(settingsModel)
+	update: function(settingsModel)
 	{
 		this.model = settingsModel;
 		Zarafa.settings.ui.SettingsAdvancedCategory.superclass.update.apply(this, arguments);
@@ -88,7 +88,7 @@ Zarafa.settings.ui.SettingsAdvancedCategory = Ext.extend(Zarafa.settings.ui.Sett
 	 * This is used to update the settings from the UI into the {@link Zarafa.settings.SettingsModel settings model}.
 	 * @param {Zarafa.settings.SettingsModel} settingsModel The settings to update
 	 */
-	updateSettings : function(settingsModel)
+	updateSettings: function(settingsModel)
 	{
 		Zarafa.settings.ui.SettingsAdvancedCategory.superclass.updateSettings.apply(this, arguments);
 
@@ -102,7 +102,7 @@ Zarafa.settings.ui.SettingsAdvancedCategory = Ext.extend(Zarafa.settings.ui.Sett
 	 * @param {String} checked The new value of check box.
 	 * @private
 	 */
-	onFieldChange : function(field, checked)
+	onFieldChange: function(field, checked)
 	{
 		if (this.model) {
 			if (this.model.get(field.name) !== checked) {

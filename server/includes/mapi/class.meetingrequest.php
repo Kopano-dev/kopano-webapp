@@ -466,7 +466,7 @@ If it is the first time this attendee has proposed a new date/time, increment th
 			$props = Array();
 			if($messageprops[$this->proptags['counter_proposal']]){
 				$props[$this->proptags['counter_proposal']] = true;
-			}else{
+			} else {
 				$props[$this->proptags['counter_proposal']] = false;
 			}
 
@@ -823,14 +823,14 @@ If it is the first time this attendee has proposed a new date/time, increment th
 					$this->applyLocalCategories($calendarItem, $store, $localCategories);
 				}
 
-				$entryid = $props[PR_ENTRYID];				
+				$entryid = $props[PR_ENTRYID];
 				if ($move) {
 					// open wastebasket of currently logged in user and move the meeting request to it
 					// for delegates this will be delegate's wastebasket folder
 					$wastebasket = $this->openDefaultWastebasket($this->openDefaultStore());
 					mapi_folder_copymessages($calFolder, Array($props[PR_ENTRYID]), $wastebasket, MESSAGE_MOVE);
 				}
-				
+
 			} else {
 				/**
 				 * This meeting request is not recurring, so can be an exception or normal meeting.
@@ -1335,7 +1335,7 @@ If it is the first time this attendee has proposed a new date/time, increment th
 		$highdatetime = $time >> 32;
 		$lowdatetime = $time & 0xffffffff;
 		$goid .= pack('II', $lowdatetime, $highdatetime);
-		
+
 		// 8 Zeros
 		if(version_compare(PHP_VERSION, '5.6.3', '<')) {
 			$goid .= pack('V', 0);
@@ -1459,7 +1459,7 @@ If it is the first time this attendee has proposed a new date/time, increment th
 				'error' => $this->errorSetResource,
 				'displayname' => $this->recipientDisplayname
 			);
-		}else{
+		} else {
 			return true;
 		}
 	}
@@ -2066,7 +2066,7 @@ If it is the first time this attendee has proposed a new date/time, increment th
 		}
 
 		$ab = mapi_openaddressbook($this->session);
-		
+
 		try {
 			$abitem = mapi_ab_openentry($ab, $entryid);
 		} catch (MAPIException $e) {
@@ -2426,7 +2426,7 @@ If it is the first time this attendee has proposed a new date/time, increment th
 						 */
 						//$errorSetResource = 2;
 						$this->nonAcceptingResources[] = $resourceRecipients[$i];
-					}else{
+					} else {
 						if($declineRecurringMeetingRequests && !$cancel){
 							// Check if appointment is recurring
 							if($messageprops[ $this->proptags['recurring'] ]){
@@ -2485,7 +2485,7 @@ If it is the first time this attendee has proposed a new date/time, increment th
 					// Still no results found. I giveup, create new message.
 					if (!$newResourceMsg)
 						$newResourceMsg = mapi_folder_createmessage($calFolder);
-				}else{
+				} else {
 					$newResourceMsg = mapi_msgstore_openentry($userStore, $rows[0]);
 				}
 
@@ -2606,7 +2606,7 @@ If it is the first time this attendee has proposed a new date/time, increment th
 					'msg' => $newResourceMsg,
 				);
 				$this->includesResources = true;
-			}else{
+			} else {
 				/**
 				 * If no other errors occurred and you have no access to the
 				 * folder of the resource, throw an error=1.
@@ -3622,7 +3622,7 @@ If it is the first time this attendee has proposed a new date/time, increment th
 			$delegator[PR_EMAIL_ADDRESS] = $messageProps[PR_RCVD_REPRESENTING_EMAIL_ADDRESS];
 			$delegator[PR_RECIPIENT_TYPE] = MAPI_TO;
 			$delegator[PR_RECIPIENT_DISPLAY_NAME] = $messageProps[PR_RCVD_REPRESENTING_NAME];
-			$delegator[PR_ADDRTYPE] = empty($messageProps[PR_RCVD_REPRESENTING_ADDRTYPE]) ? 'SMTP':$messageProps[PR_RCVD_REPRESENTING_ADDRTYPE];
+			$delegator[PR_ADDRTYPE] = empty($messageProps[PR_RCVD_REPRESENTING_ADDRTYPE]) ? 'SMTP' : $messageProps[PR_RCVD_REPRESENTING_ADDRTYPE];
 			$delegator[PR_RECIPIENT_TRACKSTATUS] = olRecipientTrackStatusNone;
 			$delegator[PR_RECIPIENT_FLAGS] = recipSendable;
 			$delegator[PR_SEARCH_KEY] = $messageProps[PR_RCVD_REPRESENTING_SEARCH_KEY];

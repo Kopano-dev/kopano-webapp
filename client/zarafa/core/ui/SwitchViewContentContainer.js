@@ -19,20 +19,20 @@ Zarafa.core.ui.SwitchViewContentContainer = Ext.extend(Ext.Container, {
 	 * used in switchView. Without this property it is not possible to switch
 	 * to this view.
 	 */
-	lazyItems : undefined,
+	lazyItems: undefined,
 
 	/**
 	 * @cfg {Boolean} autoClean If true this container will automatically remove
 	 * and delete the previously selected {@link Ext.Container container} when switching
 	 * to a new active {@link Ext.Container container}.
 	 */
-	autoClean : true,
+	autoClean: true,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -57,7 +57,7 @@ Zarafa.core.ui.SwitchViewContentContainer = Ext.extend(Ext.Container, {
 			 * @param {Ext.Container} newView The new {@link Ext.Container view} which is shown
 			 * @param {Ext.Container} oldView The old {@link Ext.Container view} which was shown
 			 */
-			'switchview'			
+			'switchview'
 		);
 
 		Zarafa.core.ui.SwitchViewContentContainer.superclass.constructor.call(this, config);
@@ -69,7 +69,7 @@ Zarafa.core.ui.SwitchViewContentContainer = Ext.extend(Ext.Container, {
 	 * on that component as well.
 	 * @private
 	 */
-	onLayout : function()
+	onLayout: function()
 	{
 		Zarafa.core.ui.SwitchViewContentContainer.superclass.onLayout.apply(this, arguments);
 
@@ -86,7 +86,7 @@ Zarafa.core.ui.SwitchViewContentContainer = Ext.extend(Ext.Container, {
 	 * then the layout manager will be updated with the new view.
 	 * @param {String} viewId id of the view that should be shown
 	 */
-	switchView : function(viewId)
+	switchView: function(viewId)
 	{
 		var oldView = this.getActiveItem();
 		var newView = this.findById(viewId);
@@ -98,7 +98,7 @@ Zarafa.core.ui.SwitchViewContentContainer = Ext.extend(Ext.Container, {
 		// Check if the layout has been created yet, if not
 		// then we store the activeItem inside the current
 		// panel so it can be applied to the layout when it
-		// is being created. 
+		// is being created.
 		var layout = this.getLayout();
 		if (!Ext.isFunction(layout.setActiveItem)) {
 			this.activeItem = viewId;
@@ -122,7 +122,7 @@ Zarafa.core.ui.SwitchViewContentContainer = Ext.extend(Ext.Container, {
 	 * This function returns the currently active item
 	 * @return {Ext.Component} The active item
 	 */
-	getActiveItem : function()
+	getActiveItem: function()
 	{
 		var layout = this.getLayout();
 		if (!Ext.isFunction(layout.setActiveItem)) {
@@ -139,7 +139,7 @@ Zarafa.core.ui.SwitchViewContentContainer = Ext.extend(Ext.Container, {
 	 * @param {String} id
 	 * @return Ext.Component
 	 */
-	findById : function(id)
+	findById: function(id)
 	{
 		var retval = Zarafa.core.ui.SwitchViewContentContainer.superclass.findById.call(this, id);
 		if (!retval) {
@@ -163,7 +163,7 @@ Zarafa.core.ui.SwitchViewContentContainer = Ext.extend(Ext.Container, {
 	 * @param {Object} scope (optional)
 	 * @return {Array} Array of Ext.Components
 	 */
-	findBy : function(fn, scope)
+	findBy: function(fn, scope)
 	{
 		var retval = Zarafa.core.ui.SwitchViewContentContainer.superclass.findBy.apply(this, arguments);
 

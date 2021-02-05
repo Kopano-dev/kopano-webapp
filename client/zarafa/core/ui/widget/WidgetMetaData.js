@@ -13,44 +13,44 @@ Zarafa.core.ui.widget.WidgetMetaData = Ext.extend(Object, {
 	 * @cfg {String} name (required) The unique name for this widget.
 	 * For a user-friendly name for UI components, see {@link #displayName}
 	 */
-	name : '',
+	name: '',
 
 	/**
 	 * @cfg {String} displayName The display name for this widget. This
 	 * will be used in places where the widget is referenced in UI components.
 	 * If not provided, {@link #name} will be used.
 	 */
-	displayName : '',
+	displayName: '',
 
 	/**
 	 * @cfg {String} iconCls The icon to be used in places where the widget is referenced
 	 * in UI components.
 	 */
-	iconCls : '',
+	iconCls: '',
 
 	/**
 	 * @cfg {String} iconPath (deprecated) The path to the icon to be used in places where the widget is referenced
 	 * in UI components. This configuration option is deprecated, it is preferred to use {@link #iconCls} instead.
 	 */
-	iconPath : '',
+	iconPath: '',
 
 	/**
 	 * @cfg {String} about The about text. If provided, {@link Zarafa.core.ui.widget.Widget#registerAboutText}
 	 * will be automatically called during {@link Zarafa.core.ui.widget.Widget#initWidget initialization}.
 	 */
-	about : undefined,
+	about: undefined,
 
 	/**
 	 * @cfg {Constructor} WidgetConstructor (required) The constructor of the
 	 * {@link Zarafa.core.ui.widgetWidget} which is described by this WidgetMetaData instance.
 	 */
-	widgetConstructor : undefined,
+	widgetConstructor: undefined,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -68,7 +68,7 @@ Zarafa.core.ui.widget.WidgetMetaData = Ext.extend(Object, {
 	 * Obtain the unique name for this widget
 	 * @return {String} The unique name for this widget
 	 */
-	getName : function()
+	getName: function()
 	{
 		return this.name;
 	},
@@ -77,7 +77,7 @@ Zarafa.core.ui.widget.WidgetMetaData = Ext.extend(Object, {
 	 * Obtain the display name for this widget
 	 * @return {String} The display name for this widget
 	 */
-	getDisplayName : function()
+	getDisplayName: function()
 	{
 		return this.displayName;
 	},
@@ -86,7 +86,7 @@ Zarafa.core.ui.widget.WidgetMetaData = Ext.extend(Object, {
 	 * Obtain the CSS classname for this widget
 	 * @return {String} The CSS classname for this widget
 	 */
-	getIconCls : function()
+	getIconCls: function()
 	{
 		return this.iconCls;
 	},
@@ -95,7 +95,7 @@ Zarafa.core.ui.widget.WidgetMetaData = Ext.extend(Object, {
 	 * Obtain the path to the image for this widget
 	 * @return {String} The path to the icon for this widget
 	 */
-	getIconPath : function()
+	getIconPath: function()
 	{
 		return this.iconPath;
 	},
@@ -104,7 +104,7 @@ Zarafa.core.ui.widget.WidgetMetaData = Ext.extend(Object, {
 	 * Obtain the About text containing the copyright and other disclaimers.
 	 * @return {String} The about text for this widget
 	 */
-	getAbout : function()
+	getAbout: function()
 	{
 		return this.about;
 	},
@@ -115,8 +115,8 @@ Zarafa.core.ui.widget.WidgetMetaData = Ext.extend(Object, {
 	 * @param {Object} config The configuration object to apply
 	 * @return {Zarafa.core.ui.widget.Widget} The Widget instance
 	 */
-	getInstance : function(config)
+	getInstance: function(config)
 	{
-		return new this.widgetConstructor(Ext.apply({ info : this }, config));
+		return new this.widgetConstructor(Ext.apply({ info: this }, config));
 	}
 });

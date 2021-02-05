@@ -21,17 +21,17 @@ Zarafa.mail.settings.SettingsOutOfOfficeCategory = Ext.extend(Zarafa.settings.ui
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			title : _('Out of Office'),
-			categoryIndex : 2,
-			iconCls : 'zarafa-settings-category-oof',
-			items : [{
-				xtype : 'zarafa.settingsoofwidget',
-				settingsContext : config.settingsContext
+			title: _('Out of Office'),
+			categoryIndex: 2,
+			iconCls: 'zarafa-settings-category-oof',
+			items: [{
+				xtype: 'zarafa.settingsoofwidget',
+				settingsContext: config.settingsContext
 			},
 			container.populateInsertionPoint('context.settings.category.outofoffice', this)
 			]
@@ -46,10 +46,10 @@ Zarafa.mail.settings.SettingsOutOfOfficeCategory = Ext.extend(Zarafa.settings.ui
 	 * event. It will register the 'beforesave' event on {@link Zarafa.mail.settings.OofStore  outofoffice Store}.
 	 * @private
 	 */
-	onBeforeSaveSettingsModel : function()
+	onBeforeSaveSettingsModel: function()
 	{
 		var store = this.get(0).getOofStore();
-		this.mon(store, 'beforesave', this.onBeforeSaveOofSettings, this, { single : true });
+		this.mon(store, 'beforesave', this.onBeforeSaveOofSettings, this, { single: true });
 	},
 
 	/**
@@ -58,7 +58,7 @@ Zarafa.mail.settings.SettingsOutOfOfficeCategory = Ext.extend(Zarafa.settings.ui
 	 * event handlers for the completion of the save.
 	 * @private
 	 */
-	onBeforeSaveOofSettings : function()
+	onBeforeSaveOofSettings: function()
 	{
 		this.displaySavingMask();
 
@@ -73,7 +73,7 @@ Zarafa.mail.settings.SettingsOutOfOfficeCategory = Ext.extend(Zarafa.settings.ui
 	 * {@link #hideSavingMask hide the notification}.
 	 * @private
 	 */
-	onOofSettingsSave : function()
+	onOofSettingsSave: function()
 	{
 		this.hideSavingMask(true);
 
@@ -88,7 +88,7 @@ Zarafa.mail.settings.SettingsOutOfOfficeCategory = Ext.extend(Zarafa.settings.ui
 	 * {@link #hideSavingMask hide the notification}.
 	 * @private
 	 */
-	onOofSettingsException : function()
+	onOofSettingsException: function()
 	{
 		this.hideSavingMask(false);
 

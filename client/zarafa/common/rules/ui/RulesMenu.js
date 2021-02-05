@@ -13,13 +13,13 @@ Zarafa.common.rules.ui.RulesContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditi
 	/**
 	 * @cfg {Zarafa.common.rules.data.RulesStore} store store to use for adding rules
 	 */
-	store : undefined,
+	store: undefined,
 
 	/**
 	 * @cfg {Zarafa.core.data.MAPIStore} store contains {@link #records} on which
 	 * rules are going to apply.
 	 */
-	mailStore : undefined,
+	mailStore: undefined,
 
 	/**
 	 * @constructor
@@ -48,33 +48,33 @@ Zarafa.common.rules.ui.RulesContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditi
 		Ext.applyIf(config || {}, {
 			xtype: 'zarafa.rulescontextmenu',
 			defaults: {
-				cls : 'k-rules-menu-item'
+				cls: 'k-rules-menu-item'
 			},
-			mailStore : mailStore,
-			store : new Zarafa.common.rules.data.RulesStore({
+			mailStore: mailStore,
+			store: new Zarafa.common.rules.data.RulesStore({
 				'storeEntryId': container.getHierarchyStore().getDefaultStore().get('store_entryid')
 			}),
 			items: [{
-				xtype : 'zarafa.conditionalitem',
-				text : String.format(_('Always move messages from {0}'), senderName),
+				xtype: 'zarafa.conditionalitem',
+				text: String.format(_('Always move messages from {0}'), senderName),
 				name: 'ruleForSender',
 				handler: this.onCreateRuleForSender,
 				beforeShow: this.onBeforeshowHandler,
 				scope: this
 			},{
-				xtype : 'zarafa.conditionalitem',
-				text : _('Always move messages that are sent to <recipients>'),
-				name : 'ruleForRecipient',
-				handler : this.onCreateRuleForRecipient,
+				xtype: 'zarafa.conditionalitem',
+				text: _('Always move messages that are sent to <recipients>'),
+				name: 'ruleForRecipient',
+				handler: this.onCreateRuleForRecipient,
 				beforeShow: this.onBeforeshowHandler,
-				scope : this
+				scope: this
 			},{
-				text : _('Always move messages with this subject'),
-				hidden : Ext.isEmpty(subject),
+				text: _('Always move messages with this subject'),
+				hidden: Ext.isEmpty(subject),
 				handler: this.onCreateRuleForSubject,
 				scope: this
 			},{
-				text : _('Create rule...'),
+				text: _('Create rule...'),
 				handler: this.onCreateRule,
 				scope: this
 			}]
@@ -136,7 +136,7 @@ Zarafa.common.rules.ui.RulesContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditi
 	 * Show a {@link Zarafa.core.ui.notifier.Notifier Notification} to the user indicating that Rule
 	 * was saved successfully.
 	 */
-	onSaveRecord : function()
+	onSaveRecord: function()
 	{
 		container.getNotifier().notify('info.saved','Saved', 'Rule saved successfully');
 	},
@@ -146,7 +146,7 @@ Zarafa.common.rules.ui.RulesContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditi
 	 * item in the sub context menu. This will open the rule dialog for creating new rule.
 	 * @private
 	 */
-	onCreateRule : function()
+	onCreateRule: function()
 	{
 		// FIXME: Need to hide context menu for the case where User keep on clicking the same context menu
 		// while this handler is being executed.
@@ -155,7 +155,7 @@ Zarafa.common.rules.ui.RulesContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditi
 		var ruleRecord = this.createRuleRecord();
 
 		this.store.add(ruleRecord);
-		Zarafa.common.Actions.openRulesEditContent(ruleRecord, { removeRecordOnCancel : true , autoSave : true});
+		Zarafa.common.Actions.openRulesEditContent(ruleRecord, { removeRecordOnCancel: true , autoSave: true});
 	},
 
 	/**
@@ -163,11 +163,11 @@ Zarafa.common.rules.ui.RulesContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditi
 	 * item in the sub context menu. This will open the rule dialog for creating new rule
 	 * with condition as of type {@link Zarafa.common.rules.data.ConditionFlags.RECEIVED_FROM RECEIVED_FROM}
 	 * and action as of type {@link Zarafa.common.rules.data.ActionFlags.MOVE MOVE}.
-     *
-     * @param {Ext.menu.Item} button which is clicked.
+   *
+   * @param {Ext.menu.Item} button which is clicked.
 	 * @private
 	 */
-	onCreateRuleForSender : function(button)
+	onCreateRuleForSender: function(button)
 	{
 		// FIXME: Need to hide context menu for the case where User keep on clicking the same context menu
 		// while this handler is being executed. This will create multiple conditions and actions in a Rule dialog.
@@ -186,13 +186,13 @@ Zarafa.common.rules.ui.RulesContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditi
 		var actionId = Zarafa.common.rules.data.ActionFlags.MOVE;
 		var definitions = this.getDefinitions(conditionId, actionId);
 
-		var condition = definitions.conditionDefinition({store : userStore});
+		var condition = definitions.conditionDefinition({store: userStore});
 		var action = definitions.actionDefinition();
 		ruleRecord.set('rule_condition', condition);
 		ruleRecord.set('rule_actions', action);
 		this.store.add(ruleRecord);
 
-		Zarafa.common.Actions.openRulesEditContent(ruleRecord, { removeRecordOnCancel : true , autoSave : true});
+		Zarafa.common.Actions.openRulesEditContent(ruleRecord, { removeRecordOnCancel: true , autoSave: true});
 	},
 
 	/**
@@ -204,7 +204,7 @@ Zarafa.common.rules.ui.RulesContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditi
 	 * @param {Ext.menu.Item} button which is clicked.
 	 * @private
 	 */
-	onCreateRuleForRecipient : function(button)
+	onCreateRuleForRecipient: function(button)
 	{
 		//FIXME: Need to hide context menu for the case where User keep on clicking the same context menu
 		// while this handler is being executed. This will create multiple conditions and actions in a Rule dialog.
@@ -241,14 +241,14 @@ Zarafa.common.rules.ui.RulesContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditi
 		var actionId = Zarafa.common.rules.data.ActionFlags.MOVE;
 		var definitions = this.getDefinitions(conditionId, actionId);
 
-		var condition = definitions.conditionDefinition({store : userStore});
+		var condition = definitions.conditionDefinition({store: userStore});
 		var action = definitions.actionDefinition();
 
 		ruleRecord.set('rule_condition', condition);
 		ruleRecord.set('rule_actions', action);
 		this.store.add(ruleRecord);
 
-		Zarafa.common.Actions.openRulesEditContent(ruleRecord, { removeRecordOnCancel : true , autoSave : true});
+		Zarafa.common.Actions.openRulesEditContent(ruleRecord, { removeRecordOnCancel: true , autoSave: true});
 	},
 
 	/**
@@ -258,7 +258,7 @@ Zarafa.common.rules.ui.RulesContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditi
 	 * and action as of type {@link Zarafa.common.rules.data.ActionFlags.MOVE MOVE}.
 	 * @private
 	 */
-	onCreateRuleForSubject : function()
+	onCreateRuleForSubject: function()
 	{
 		//FIXME: Need to hide context menu for the case where User keep on clicking the same context menu
 		// while this handler is being executed. This will create multiple conditions and actions in a Rule dialog.
@@ -266,22 +266,22 @@ Zarafa.common.rules.ui.RulesContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditi
 
 		var mailRecord = this.records[0];
 		var subject = mailRecord.get('subject');
-		var wordStore = new Ext.data.Store({ fields : [ 'words' ] });
-		wordStore.add(new Ext.data.Record({ words : subject }));
+		var wordStore = new Ext.data.Store({ fields: [ 'words' ] });
+		wordStore.add(new Ext.data.Record({ words: subject }));
 
 		var ruleRecord = this.createRuleRecord();
 		var conditionId = Zarafa.common.rules.data.ConditionFlags.SUBJECT_WORDS;
 		var actionId = Zarafa.common.rules.data.ActionFlags.MOVE;
 		var definitions = this.getDefinitions(conditionId, actionId);
 
-		var condition = definitions.conditionDefinition({store : wordStore});
+		var condition = definitions.conditionDefinition({store: wordStore});
 		var action = definitions.actionDefinition();
 		ruleRecord.set('rule_name', subject);
 		ruleRecord.set('rule_condition', condition);
 		ruleRecord.set('rule_actions', action);
 		this.store.add(ruleRecord);
 
-		Zarafa.common.Actions.openRulesEditContent(ruleRecord, {removeRecordOnCancel : true , autoSave : true});
+		Zarafa.common.Actions.openRulesEditContent(ruleRecord, {removeRecordOnCancel: true , autoSave: true});
 	},
 
 	/**
@@ -292,7 +292,7 @@ Zarafa.common.rules.ui.RulesContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditi
 	 * @return {Object} returns Object that will contain condition and action definitions.
 	 * @private
 	 */
-	getDefinitions : function(conditionId, actionId)
+	getDefinitions: function(conditionId, actionId)
 	{
 		var conditionFactory = container.getRulesFactoryByType(Zarafa.common.data.RulesFactoryType.CONDITION);
 		var conditionDefinition = conditionFactory.getConditionById(conditionId);
@@ -301,8 +301,8 @@ Zarafa.common.rules.ui.RulesContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditi
 		var actionDefinition = actionFactory.getActionById(actionId);
 
 		return {
-			conditionDefinition : conditionDefinition,
-			actionDefinition : actionDefinition
+			conditionDefinition: conditionDefinition,
+			actionDefinition: actionDefinition
 		};
 	},
 
@@ -312,7 +312,7 @@ Zarafa.common.rules.ui.RulesContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditi
 	 * @return {Zarafa.common.rules.data.RulesRecord} returns newly created Rule's Record.
 	 * @private
 	 */
-	createRuleRecord : function() {
+	createRuleRecord: function() {
 		return Zarafa.core.data.RecordFactory.createRecordObjectByCustomType(Zarafa.core.data.RecordCustomObjectType.ZARAFA_RULE);
 	},
 
@@ -323,7 +323,7 @@ Zarafa.common.rules.ui.RulesContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditi
 	 * @param {String} buttonName of clicked menu item.
 	 * @private
 	 */
-	openRecord : function(mailRecord, buttonName)
+	openRecord: function(mailRecord, buttonName)
 	{
 		var store = mailRecord.getStore();
 		var handler = function(store, record) {

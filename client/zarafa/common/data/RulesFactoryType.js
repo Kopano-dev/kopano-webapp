@@ -15,12 +15,12 @@ Zarafa.common.data.RulesFactoryType = Zarafa.core.Enum.create({
 	 * @property
 	 * @type Number
 	 */
-	CONDITION : 0,
+	CONDITION: 0,
 
 	/**
 	 * Type of Action factory.
 	 * @property
 	 * @type Number
 	 */
-	ACTION : 1
+	ACTION: 1
 });

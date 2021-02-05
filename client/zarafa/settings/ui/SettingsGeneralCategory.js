@@ -22,31 +22,31 @@ Zarafa.settings.ui.SettingsGeneralCategory = Ext.extend(Zarafa.settings.ui.Setti
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			title : _('General'),
-			categoryIndex : 0,
-			iconCls : 'icon_cogwheel',
-			items : [{
-					xtype : 'zarafa.settingsaccountwidget'
+			title: _('General'),
+			categoryIndex: 0,
+			iconCls: 'icon_cogwheel',
+			items: [{
+					xtype: 'zarafa.settingsaccountwidget'
 				},{
-					xtype : 'zarafa.settingsinboxnavigationwidget'
+					xtype: 'zarafa.settingsinboxnavigationwidget'
 				},{
-					xtype : 'zarafa.settingsdisplaywidget'
+					xtype: 'zarafa.settingsdisplaywidget'
 				},{
-					xtype : 'zarafa.settingsfilepreviewerwidget'
+					xtype: 'zarafa.settingsfilepreviewerwidget'
 				},{
-					xtype : 'zarafa.settingsaddressbookwidget'
+					xtype: 'zarafa.settingsaddressbookwidget'
 				},{
-					xtype : 'zarafa.settingsquotainfowidget'
+					xtype: 'zarafa.settingsquotainfowidget'
 				},{
-					xtype : 'zarafa.settingsresetsettingswidget',
-					settingsContext : config.settingsContext
+					xtype: 'zarafa.settingsresetsettingswidget',
+					settingsContext: config.settingsContext
 				},{
-					xtype : 'zarafa.settingsversionwidget'
+					xtype: 'zarafa.settingsversionwidget'
 				}, container.populateInsertionPoint('context.settings.category.general', this)
 			]
 		});

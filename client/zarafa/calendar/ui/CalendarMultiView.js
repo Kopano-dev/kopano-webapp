@@ -22,7 +22,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	/**
 	 * @cfg {Zarafa.core.Context} context The context which this view is associated with
 	 */
-	context : undefined,
+	context: undefined,
 	/**
 	 * Used to compare the calendar groupings to the previous value. Contains a JSON stringified version
 	 * of the groupings at the previous load.
@@ -33,39 +33,39 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	/**
 	 * @cfg {Number} tabAreaHeight height in pixels of the tab strip
 	 */
-	tabAreaHeight : 39,
+	tabAreaHeight: 39,
 	/**
 	 * @cfg {Number} height of the header text in pixels. This is the day number and friendly day name text (e.g. 'monday', 'tuesday', etc)
 	 */
-	headerTextHeight : 24,
+	headerTextHeight: 24,
 	/**
 	 * @cfg {Number} height of a header appointment in pixels.
 	 */
-	headerItemHeight : 24,
+	headerItemHeight: 24,
 	/**
 	 * @cfg {Number} headerLineHeight height in pixels of the dividing line between the scrollable
 	 * body of the calendar view and the header above it.
 	 */
-	headerLineHeight : 1,
+	headerLineHeight: 1,
 	/**
 	 * @cfg {Number} calendarGap number of pixels (horizontally) between multiple calendars
 	 */
-	calendarGap : 6,
+	calendarGap: 6,
 	/**
 	 * this is probably always going to be 24. Made it into a property to avoid magic numbers
 	 * in the code.
 	 * @property
 	 * @type Number
 	 */
-	numHours : 24,
+	numHours: 24,
 	/**
 	 * @cfg {Number} timeStripWidth width in pixels of the time strips on the left of the panel.
 	 */
-	timeStripWidth : 62,
+	timeStripWidth: 62,
 	/**
 	 * @cfg {Number} timeStripGap gap in pixels between timestrips (defaults to 0)
 	 */
-	timeStripGap : 0,
+	timeStripGap: 0,
 	/**
 	 * The zoomLevel used in this view. This determines how many numbers are reflected by 2 horizontal
 	 * lines in the calendar view.
@@ -73,35 +73,35 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @property
 	 * @type Number
 	 */
-	zoomLevel : 30,
+	zoomLevel: 30,
 	/**
 	 * The {@link Zarafa.core.ContextModel contextmodel} obtained from the {@link #context}.
 	 * @property
 	 * @type Zarafa.core.ContextModel
 	 */
-	model : undefined,
+	model: undefined,
 	/**
 	 * number of pixels the strips are shifted left by. This is used to obtain black vertical lines between
-	 * multiple time strips. Each strip as 'border-left : 1px solid black', and all strips are shifted left
+	 * multiple time strips. Each strip as 'border-left: 1px solid black', and all strips are shifted left
 	 * one pixel so that the border of the first time strip is hidden (it's horizonal position is -1).
 	 * @property
 	 * @type Number
 	 */
-	timeStripShift : 1,
+	timeStripShift: 1,
 	/**
 	 * @cfg {Number} firstWorkingHour The number of minutes counted from the start of the day which represents
 	 * the start of the working hours.
 	 */
-	firstWorkingHour : 9 * 60,
+	firstWorkingHour: 9 * 60,
 	/**
 	 * @cfg {Number} lastWorkingHour The number of minutes counted from the start of the day which represents
 	 * the end of the working hours.
 	 */
-	lastWorkingHour : 17 * 60,
+	lastWorkingHour: 17 * 60,
 	/**
 	 * @cfg {Array} workingDays The array of working days
 	 */
-	workingDays : undefined,
+	workingDays: undefined,
 
 	/**
 	 * If {@link #showTooltip tooltips are enabled} this will hold the reference to the tooltip
@@ -111,18 +111,18 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @type Zarafa.calendar.ui.ToolTip
 	 * @private
 	 */
-	tooltip : undefined,
+	tooltip: undefined,
 
 	/**
 	 * @cfg {Number} tabStrokeHeight height in pixels of the active tab stroke.
 	 */
-	tabStrokeHeight : 9,
+	tabStrokeHeight: 9,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -148,16 +148,16 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 		}
 
 		config = Ext.applyIf(config, {
-			baseCls : 'zarafa-calendar',
+			baseCls: 'zarafa-calendar',
 
 			// zooming constants
-			timeUnitHeight : 24,
+			timeUnitHeight: 24,
 
 			// configuration for the individual calendar views
-			minHeaderDayTextWidth : 150,
-			showBorder : false,
-			borderWidth : 1,
-			showTimeStrips : true
+			minHeaderDayTextWidth: 150,
+			showBorder: false,
+			borderWidth: 1,
+			showTimeStrips: true
 		});
 
 		this.addEvents(
@@ -266,7 +266,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * Initialises the view.
 	 * @protected
 	 */
-	init : function()
+	init: function()
 	{
 		// parent init
 		Zarafa.calendar.ui.CalendarMultiView.superclass.init.call(this);
@@ -289,7 +289,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	/**
 	 * @return {Zarafa.calendar.ui.AppointmentSelectionModel} selection model.
 	 */
-	getSelectionModel : function()
+	getSelectionModel: function()
 	{
 		return this.selectionModel;
 	},
@@ -297,7 +297,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	/**
 	 * @return {Zarafa.calendar.ui.DateRangeSelectionModel} range selection model.
 	 */
-	getRangeSelectionModel : function()
+	getRangeSelectionModel: function()
 	{
 		return this.rangeSelectionModel;
 	},
@@ -306,7 +306,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * Returns the current date range (start, due) of the view.
 	 * @return {Zarafa.core.DateRange} Current date range.
 	 */
-	getDateRange : function()
+	getDateRange: function()
 	{
 		return this.model.dateRange;
 	},
@@ -316,7 +316,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * tab area height, otherwise it will return 0.
 	 * @return {Number} height in pixels of the tab strip area.
 	 */
-	getTabHeight : function()
+	getTabHeight: function()
 	{
 		return this.showBorder ? this.tabAreaHeight : 0;
 	},
@@ -326,12 +326,12 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {Number} time difference in hours. See {Zarafa.calendar.ui.TimeStripView TimeStripView}.
 	 * @param {String} name of the time zone. Will be shown above the time strip.
 	 */
-	addTimeStrip : function(timeDifference, name)
+	addTimeStrip: function(timeDifference, name)
 	{
 		// add a view
 		var timeStrip = new Zarafa.calendar.ui.TimeStripView({
-			timeDifference : timeDifference || 0,
-			name : name || ''
+			timeDifference: timeDifference || 0,
+			name: name || ''
 		});
 		this.addChildView(timeStrip);
 		this.timeStrips.splice(0, 0, timeStrip);
@@ -347,7 +347,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * Removes a time strip from the view.
 	 * @param {String} name Time strip name.
 	 */
-	removeTimeStrip : function(name)
+	removeTimeStrip: function(name)
 	{
 		for (var i=0, strip; strip=this.timeStrips[i]; i++) {
 			if (strip.name==name) {
@@ -365,7 +365,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * Obtain the singleton instance of the {@link Zarafa.calendar.ui.ToolTip Tooltip}.
 	 * @return {Zarafa.calendar.ui.ToolTip} The tooltip
 	 */
-	getTooltipInstance : function()
+	getTooltipInstance: function()
 	{
 		if (!this.tooltip) {
 			this.tooltip = new Zarafa.calendar.ui.ToolTip({
@@ -387,7 +387,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {Zarafa.calendar.data.ViewModes} oldViewMode The previous active viewmode
 	 * @private
 	 */
-	onViewModeChanged : function(context, viewMode, oldViewMode)
+	onViewModeChanged: function(context, viewMode, oldViewMode)
 	{
 		if (!this.rendered) {
 			return;
@@ -434,7 +434,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {Zarafa.core.Context} context The context which fired the event
 	 * @param {Number} zoomLevel The new zoomLevel
 	 */
-	onZoomLevelChanged : function(context, zoomLevel)
+	onZoomLevelChanged: function(context, zoomLevel)
 	{
 		this.zoomLevel = zoomLevel;
 		this.layout();
@@ -444,7 +444,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * Event handler which is triggered when the mergeState has
 	 * changed for the folders or when the folders have changed.
 	 */
-	onFolderChange : function()
+	onFolderChange: function()
 	{
 		// if folder is not present than we cannot proceed pruning and creating views
 		if (!Ext.isDefined(this.folders)) {
@@ -462,7 +462,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {Ext.EventObject} event The original event object
 	 * @private
 	 */
-	onAppointmentCalendarDrop : function(calendar, source, appointment, dateRange, event)
+	onAppointmentCalendarDrop: function(calendar, source, appointment, dateRange, event)
 	{
 		this.fireEvent('appointmentcalendardrop', this, appointment, source.getSelectedFolder(), calendar.getSelectedFolder(), dateRange, event);
 	},
@@ -474,7 +474,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {Ext.EventObject} event The original event object
 	 * @private
 	 */
-	onAppointmentMouseOver : function(calendar, appointment, event)
+	onAppointmentMouseOver: function(calendar, appointment, event)
 	{
 		this.fireEvent('appointmentmouseover', this, appointment, event);
 	},
@@ -486,7 +486,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {Ext.EventObject} event The original event object
 	 * @private
 	 */
-	onAppointmentMouseOut : function(calendar, appointment, event)
+	onAppointmentMouseOut: function(calendar, appointment, event)
 	{
 		this.fireEvent('appointmentmouseout', this, appointment, event);
 	},
@@ -499,7 +499,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {Ext.EventObject} event The original event object
 	 * @private
 	 */
-	onAppointmentMove : function(calendar, appointment, dateRange, event)
+	onAppointmentMove: function(calendar, appointment, dateRange, event)
 	{
 		this.fireEvent('appointmentmove', this, appointment, dateRange, event);
 	},
@@ -512,7 +512,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {Ext.EventObject} event The original event object
 	 * @private
 	 */
-	onAppointmentResize : function(calendar, appointment, dateRange, event)
+	onAppointmentResize: function(calendar, appointment, dateRange, event)
 	{
 		this.fireEvent('appointmentresize', this, appointment, dateRange, event);
 	},
@@ -524,7 +524,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {String} text Appointment text.
 	 * @private
 	 */
-	onAppointmentCreate : function(calendarView, dateRange, text)
+	onAppointmentCreate: function(calendarView, dateRange, text)
 	{
 		this.fireEvent('appointmentcreate', this, calendarView.getSelectedFolder(), dateRange, text);
 	},
@@ -539,7 +539,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {Zarafa.calendar.ui.AppointmentView} appointment The appointment on which the event occurred
 	 * @private
 	 */
-	onAppointmentInitDrag : function(calendarView, event, appointment)
+	onAppointmentInitDrag: function(calendarView, event, appointment)
 	{
 		this.fireEvent('appointmentinitdrag', this, event, appointment);
 	},
@@ -553,7 +553,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {Zarafa.calendar.ui.AppointmentView} appointment The appointment on which the event occurred
 	 * @private
 	 */
-	onAppointmentEndDrag : function(calendarView, event, appointment)
+	onAppointmentEndDrag: function(calendarView, event, appointment)
 	{
 		this.fireEvent('appointmentenddrag', this, event, appointment);
 	},
@@ -568,7 +568,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * was invoked. This is only provided when the event didn't occur on a record.
 	 * @private
 	 */
-	onContextMenu : function(calendar, event, record, range)
+	onContextMenu: function(calendar, event, record, range)
 	{
 		// If the user clicked on an appointment, make that appointment selected.
 		// If the user did not click on an appointment, clear the appointment selection
@@ -602,7 +602,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * this will contain the IPMRecord of the appointment in question. Otherwise undefined.
 	 * @private
 	 */
-	onDoubleClick : function(calendar, event, record)
+	onDoubleClick: function(calendar, event, record)
 	{
 		if (record) {
 			// disable dblclick on private appointments
@@ -627,7 +627,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {Zarafa.calendar.ui.AbstractCalendarView} source Source calendar view.
 	 * @param {Date} date Date of the day that was selected.
 	 */
-	onDayClick : function(source, date)
+	onDayClick: function(source, date)
 	{
 		this.fireEvent('dayclick', source, date);
 	},
@@ -635,7 +635,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	/**
 	 * @return {Number} the height in pixels of a single hour. Depends on the zoom level.
 	 */
-	getHourHeight : function()
+	getHourHeight: function()
 	{
 		return (60 / this.zoomLevel) * this.timeUnitHeight;
 	},
@@ -645,7 +645,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * around the views, and this function will return the default border with. Used by the layout mechanism.
 	 * @return {Number} Width in pixels of the calendar view borders. If zero, borders should not be shown.
 	 */
-	getBorderWidth : function()
+	getBorderWidth: function()
 	{
 		return this.showBorder ? this.borderWidth : 0;
 	},
@@ -656,7 +656,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @return {Number} Height in pixels of the tab area.
 	 * @private
 	 */
-	getTabAreaHeight : function()
+	getTabAreaHeight: function()
 	{
 		return this.showBorder ? this.tabAreaHeight : 0;
 	},
@@ -667,7 +667,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @return {Number} Height in pixels of the header area.
 	 * @private
 	 */
-	getHeaderAreaHeight : function()
+	getHeaderAreaHeight: function()
 	{
 		// Find the largest header height for all the child calendar views
 		var headerHeight = 0;
@@ -683,7 +683,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * Renders the view. The view will be rendered to the view container.
 	 * @param {Ext.Element} container The Ext.Element into which the view must be rendered.
 	 */
-	render : function(container)
+	render: function(container)
 	{
 		if (this.rendered) {
 			return;
@@ -734,7 +734,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * <p>
 	 * @param {Zarafa.core.data.IMPStore} store Store to bind to this view.
 	 */
-	bindStore : function(store)
+	bindStore: function(store)
 	{
 		if (this.store == store) {
 			return;
@@ -770,7 +770,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 *
 	 * @param {Zarafa.core.data.IPMStore} store Store to release from this view.
 	 */
-	releaseStore : function(store)
+	releaseStore: function(store)
 	{
 		if (Ext.isDefined(store)) {
 			this.mun(store, {
@@ -796,7 +796,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {Boolean} skipResizingScrollPosition True will skip resizing scrollbar position.
 	 * @private
 	 */
-	resizeAreas : function(skipResizingScrollPosition)
+	resizeAreas: function(skipResizingScrollPosition)
 	{
 		var tabHeight = this.getTabHeight();
 
@@ -856,7 +856,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * It calculates the positions of the child calendar views and calls layout on them.
 	 * @protected
 	 */
-	onLayout : function()
+	onLayout: function()
 	{
 		this.resizeAreas();
 
@@ -905,7 +905,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * Called just after this Calendar multiview has been {@link #layout laid out}.
 	 * @protected
 	 */
-	onAfterLayout : function()
+	onAfterLayout: function()
 	{
 		this.layoutChildren();
 	},
@@ -916,7 +916,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @return {Zarafa.calendar.ui.AbstractCalendarView} the calendar view that contains the given folder or undefined if not found.
 	 * @private
 	 */
-	getCalendarViewByFolder : function(folder)
+	getCalendarViewByFolder: function(folder)
 	{
 		for (var i=0, calendar; calendar = this.calendars[i]; i++) {
 			if (calendar.containsFolder(folder)) {
@@ -935,18 +935,18 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @return {Zarafa.calendar.ui.AbstractCalendarView} calendarView new created calendarView.
 	 * @private
 	 */
-	createCalendarView : function(groupId, folders)
+	createCalendarView: function(groupId, folders)
 	{
 		if (!Ext.isEmpty(folders) && !Array.isArray(folders)) {
 			folders = [ folders ];
 		}
 
 		var calendarView = new this.calendarViewConstructor({
-			selectionModel : this.selectionModel,
-			rangeSelectionModel : this.rangeSelectionModel,
+			selectionModel: this.selectionModel,
+			rangeSelectionModel: this.rangeSelectionModel,
 			enableDD: this.enableDD,
-			groupId : groupId,
-			contextModel : this.model
+			groupId: groupId,
+			contextModel: this.model
 		});
 
 		this.mon(calendarView, {
@@ -988,7 +988,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {Zarafa.calendar.ui.AbstractCalendarView} calendar calendar to remove
 	 * @private
 	 */
-	removeCalendarView : function(calendar)
+	removeCalendarView: function(calendar)
 	{
 		this.calendars.remove(calendar);
 
@@ -1019,7 +1019,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord[]} folders list of folders.
 	 * @private
 	 */
-	pruneCalendarViews : function(folders)
+	pruneCalendarViews: function(folders)
 	{
 		// Go over all the calendar views and prune any IDs that are not in the list.
 		var calendars = this.calendars.clone();
@@ -1046,7 +1046,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord[]} folders list of folders.
 	 * @private
 	 */
-	createCalendarViews : function(folders)
+	createCalendarViews: function(folders)
 	{
 		var grouping = this.model.getGroupings();
 
@@ -1127,13 +1127,13 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord[]} folders list of folders. The order of the calendar views will be according to the order of the folders in this list.
 	 * @private
 	 */
-	sortCalendarViews : function(folders)
+	sortCalendarViews: function(folders)
 	{
 		var calendars = [];
 
 		// Run over the list of folders and find for each folder a calendar view that goes with it.
 		// The views are added in sequence to the calendars list and in this way are ordered in the same
-		// way als the folders in the input list. And yeah, I know this is O(n^2), but n is small, so meh :)
+		// way als the folders in the input list. And yeah, I know this is O(n^2), but n is small, so meh:)
 		for (var i=0, folder; folder = folders[i]; i++)
 		{
 			var calendarView = this.getCalendarViewByFolder(folder);
@@ -1159,7 +1159,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * the folders of the store when available. That way we will immediately have the folders when we switch the view.
 	 * @private
 	 */
-	manageCalendarViews : function(folders)
+	manageCalendarViews: function(folders)
 	{
 		// Use this.folders when folders is undefined
 		folders = folders || this.folders;
@@ -1180,7 +1180,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {Object} options the options (parameters) with which the load was invoked.
 	 * @private
 	 */
-	onBeforeLoad : function(store, options)
+	onBeforeLoad: function(store, options)
 	{
 		if (!this.rendered) {
 			return;
@@ -1202,7 +1202,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {Object} options the options (parameters) with which the load was invoked.
 	 * @private
 	 */
-	onLoad : function(store, records, options)
+	onLoad: function(store, records, options)
 	{
 		if (!this.rendered) {
 			return;
@@ -1237,7 +1237,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {String} operation mutation operation key. Equals 'add'
 	 * @private
 	 */
-	onAdd : function(store, record, operation)
+	onAdd: function(store, record, operation)
 	{
 		if (Array.isArray(record)) {
 			for (var i = 0, len = record.length; i < len; i++) {
@@ -1259,7 +1259,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {String} operation mutation operation key. Equals 'remove'
 	 * @private
 	 */
-	onRemove : function(store, record, operation)
+	onRemove: function(store, record, operation)
 	{
 		if (Array.isArray(record)) {
 			for (var i = 0, len = record.length; i < len; i++) {
@@ -1286,7 +1286,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {String} operation mutation operation key. Equals 'update'
 	 * @private
 	 */
-	onUpdate : function(store, record, operation)
+	onUpdate: function(store, record, operation)
 	{
 		if (Array.isArray(record)) {
 			for (var i = 0, len = record.length; i < len; i++) {
@@ -1317,7 +1317,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	* @param {Zarafa.calendar.ui.AbstractCalendarView} calendar The calendar to remove.
 	* @private
 	*/
-	removeCalendarViewIfEmpty : function(calendar)
+	removeCalendarViewIfEmpty: function(calendar)
 	{
 		if (calendar.getFolders().length === 0) {
 			this.removeCalendarView(calendar);
@@ -1332,7 +1332,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder MAPI folder to move.
 	 * @private
 	 */
-	moveFolder : function(sourceCalendar, targetCalendar, folder)
+	moveFolder: function(sourceCalendar, targetCalendar, folder)
 	{
 		// Move the folder to the calendar view that goes before it in the list.
 		targetCalendar.addFolder(folder);
@@ -1369,7 +1369,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder MAPI folder to move.
 	 * @private
 	 */
-	mergeFolder : function(sourceCalendar, targetCalendar, folder)
+	mergeFolder: function(sourceCalendar, targetCalendar, folder)
 	{
 		this.model.mergeFolderToGroup(folder, targetCalendar.groupId, sourceCalendar.groupId);
 		this.moveFolder(sourceCalendar, targetCalendar, folder);
@@ -1385,7 +1385,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder MAPI folder to move.
 	 * @private
 	 */
-	separateFolder : function(sourceCalendar, folder)
+	separateFolder: function(sourceCalendar, folder)
 	{
 		// Create a new calendar view.
 		var newGroupId = this.model.separateFolderFromGroup(folder, sourceCalendar.groupId);
@@ -1402,7 +1402,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {Zarafa.calendar.ui.AbstractCalendarView} calendar The calendar to update
 	 * @private
 	 */
-	updateActiveFolder : function(calendar)
+	updateActiveFolder: function(calendar)
 	{
 		var group = this.model.getGroupings()[calendar.groupId];
 		if (group && group.active) {
@@ -1417,7 +1417,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder The folder which was activated
 	 * @private
 	 */
-	onCalendarActivate : function(calendar, folder)
+	onCalendarActivate: function(calendar, folder)
 	{
 		this.model.activateFolderInGroup(folder, calendar.groupId);
 		this.model.setActiveFolder(folder);
@@ -1464,7 +1464,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder folder to separate.
 	 * @private
 	 */
-	onCalendarSeparate : function(calendar, folder)
+	onCalendarSeparate: function(calendar, folder)
 	{
 		// Check if the calendar view has more than one folder. If it has only one, there is no need to separate
 		// as it would have no effect.
@@ -1486,7 +1486,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder folder to close.
 	 * @private
 	 */
-	onCalendarClose : function(calendar, folder)
+	onCalendarClose: function(calendar, folder)
 	{
 		this.fireEvent('calendarclose', folder);
 	},
@@ -1495,7 +1495,7 @@ Zarafa.calendar.ui.CalendarMultiView = Ext.extend(Zarafa.core.ui.View, {
 	 * Called when the View is being destroyed.
 	 * @protected
 	 */
-	onDestroy : function()
+	onDestroy: function()
 	{
 		Zarafa.calendar.ui.CalendarMultiView.superclass.onDestroy.apply(this, arguments);
 

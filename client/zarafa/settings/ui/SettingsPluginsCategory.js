@@ -25,25 +25,25 @@ Zarafa.settings.ui.SettingsPluginsCategory = Ext.extend(Zarafa.settings.ui.Setti
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			title : _('Plugins'),
-			categoryIndex : 9998,
-			iconCls : 'zarafa-settings-category-plugins',
+			title: _('Plugins'),
+			categoryIndex: 9998,
+			iconCls: 'zarafa-settings-category-plugins',
 			autoScroll: false,
 			layout: {
 				type: 'vbox',
 				align: 'stretch',
-				pack  : 'start'
+				pack: 'start'
 			},
-			items : [
+			items: [
 				{
-					xtype : 'zarafa.settingspluginswidget',
-					settingsContext : config.settingsContext,
-					flex : 1
+					xtype: 'zarafa.settingspluginswidget',
+					settingsContext: config.settingsContext,
+					flex: 1
 				},
 				container.populateInsertionPoint('context.settings.category.plugins', this)
 			]

@@ -13,31 +13,31 @@ Zarafa.task.widgets.QuickTaskWidget = Ext.extend(Zarafa.core.ui.widget.AbstractQ
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			wrapCfg : {
-				recordComponentPluginConfig : Ext.applyIf(config.recordComponentPluginConfig || {}, {
-					allowWrite : true
+			wrapCfg: {
+				recordComponentPluginConfig: Ext.applyIf(config.recordComponentPluginConfig || {}, {
+					allowWrite: true
 				}),
-				layout : 'fit',
-				items : [{
-					xtype : 'form',
-					ref : '../formPanel',
+				layout: 'fit',
+				items: [{
+					xtype: 'form',
+					ref: '../formPanel',
 					layout: {
 						type: 'vbox',
 						align: 'stretch'
 					},
-					border : false,
+					border: false,
 					bodyStyle: 'background-color: inherit; padding: 5px;',
 					defaults: {
 						border: false,
 						labelLength: 100,
 						style: 'padding-bottom: 2px'
 					},
-					items : [{
+					items: [{
 						xtype: 'zarafa.compositefield',
 						hideLabel: true,
 						anchor: '100%',
@@ -47,8 +47,8 @@ Zarafa.task.widgets.QuickTaskWidget = Ext.extend(Zarafa.core.ui.widget.AbstractQ
 							name: 'subject',
 							emptyText: _('Subject') + ':',
 							listeners: {
-								change : this.onChange,
-								scope : this
+								change: this.onChange,
+								scope: this
 							}
 						}]
 					},{
@@ -59,45 +59,45 @@ Zarafa.task.widgets.QuickTaskWidget = Ext.extend(Zarafa.core.ui.widget.AbstractQ
 						},{
 							xtype: 'datefield',
 							ref: '../dueDateField',
-							emptyText : _('End date') + ': ' + _('none'),
+							emptyText: _('End date') + ': ' + _('none'),
 							flex: 1,
 							name: 'commonend',
-							utcname : 'duedate',
+							utcname: 'duedate',
 							// # TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-							format : _('d/m/Y'),
-							minValue : new Date(),
+							format: _('d/m/Y'),
+							minValue: new Date(),
 							listeners: {
-								change : this.onDueDateChange,
-								scope : this
+								change: this.onDueDateChange,
+								scope: this
 							}
 						}]
 					},{
 						xtype: 'zarafa.editorfield',
 						ref: 'editorField',
-						htmlName : 'html_body',
-						plaintextName : 'body',
+						htmlName: 'html_body',
+						plaintextName: 'body',
 						hideLabel: true,
 						flex: 1,
-						useHtml : false,
+						useHtml: false,
 						defaultValue: '',
 						listeners: {
-							change : this.onBodyChange,
-							scope : this
+							change: this.onBodyChange,
+							scope: this
 						}
 					}]
 				}]
 			},
-			buttons : [{
-				text : _('Save'),
-				cls : 'zarafa-action',
+			buttons: [{
+				text: _('Save'),
+				cls: 'zarafa-action',
 				style: 'padding-bottom: 5px',
-				handler : this.onSave,
-				scope : this
+				handler: this.onSave,
+				scope: this
 			},{
-				text : _('Discard'),
+				text: _('Discard'),
 				style: 'padding-bottom: 5px',
-				handler : this.onDiscard,
-				scope : this
+				handler: this.onDiscard,
+				scope: this
 			}]
 		});
 
@@ -113,7 +113,7 @@ Zarafa.task.widgets.QuickTaskWidget = Ext.extend(Zarafa.core.ui.widget.AbstractQ
 	 * @param {Mixed} oldValue The old value
 	 * @private
 	 */
-	onDueDateChange : function(field, newValue, oldValue)
+	onDueDateChange: function(field, newValue, oldValue)
 	{
 		if (Ext.isDate(newValue)) {
 			this.record.set(field.name, newValue.clone());
@@ -129,7 +129,7 @@ Zarafa.task.widgets.QuickTaskWidget = Ext.extend(Zarafa.core.ui.widget.AbstractQ
 	 * @return {Ext.data.Record} record The record to load into the {@link #wrap}
 	 * @protected
 	 */
-	createRecord : function()
+	createRecord: function()
 	{
 		var folder = container.getHierarchyStore().getDefaultFolder('task');
 		var context = container.getContextByName('task');
@@ -145,7 +145,7 @@ Zarafa.task.widgets.QuickTaskWidget = Ext.extend(Zarafa.core.ui.widget.AbstractQ
 	 * @param {Boolean} contentReset force the component to perform a full update of the data.
 	 * @protected
 	 */
-	update : function(record, contentReset)
+	update: function(record, contentReset)
 	{
 		this.formPanel.getForm().loadRecord(record);
 	},
@@ -156,7 +156,7 @@ Zarafa.task.widgets.QuickTaskWidget = Ext.extend(Zarafa.core.ui.widget.AbstractQ
 	 * @param {Zarafa.core.data.IPMRecord} record The record to update
 	 * @protected
 	 */
-	updateRecord : function(record)
+	updateRecord: function(record)
 	{
 		record.beginEdit();
 		this.formPanel.getForm().updateRecord(record);
@@ -168,9 +168,9 @@ Zarafa.task.widgets.QuickTaskWidget = Ext.extend(Zarafa.core.ui.widget.AbstractQ
 
 Zarafa.onReady(function() {
 	container.registerWidget(new Zarafa.core.ui.widget.WidgetMetaData({
-		name : 'quicktask',
-		iconCls : 'icon_widget_new_task',
-		displayName : _('Quick Task'),
-		widgetConstructor : Zarafa.task.widgets.QuickTaskWidget
+		name: 'quicktask',
+		iconCls: 'icon_widget_new_task',
+		displayName: _('Quick Task'),
+		widgetConstructor: Zarafa.task.widgets.QuickTaskWidget
 	}));
 });

@@ -77,7 +77,7 @@ abstract class KopanoTest extends PHPUnit_Framework_TestCase {
 	 * @param  array  $data
 	 * @param  string $dataName
 	 * @access public
-	 */		
+	 */
 	public function __construct($name = NULL, array $data = array(), $dataName = '')
 	{
 		parent::__construct($name, $data, $dataName);
@@ -273,7 +273,7 @@ abstract class KopanoTest extends PHPUnit_Framework_TestCase {
 	/*
 	public static function assertCount($expectedCount, $haystack, $message = '')
 	{
-		if(!is_array($haystack)){
+		if(!is_array($haystack)) {
 			$haystack = array($haystack);
 		}
 

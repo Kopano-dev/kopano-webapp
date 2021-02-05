@@ -9,7 +9,7 @@ Zarafa.common.reminder.dialogs.ReminderPanel = Ext.extend(Ext.Panel, {
 	/**
 	 * @cfg {Zarafa.common.reminder.data.ReminderStore} store store that will be used to get reminder information.
 	 */
-	store : undefined,
+	store: undefined,
 
 	/**
 	 * @cfg {Ext.Template/String} activeReminderTemplate The template or template string which
@@ -17,7 +17,7 @@ Zarafa.common.reminder.dialogs.ReminderPanel = Ext.extend(Ext.Panel, {
 	 * {@link Zarafa.common.reminder.data.ReminderRecord record} has been {@link #update updated}.
 	 * The arguments of this template will be the {@link Zarafa.common.reminder.data.ReminderRecord#data record.data} field.
 	 */
-	activeReminderTemplate :
+	activeReminderTemplate:
 		'<tpl>' +
 			'<div>'+
 				'<span class="zarafa-reminder-dialog-active-reminder-icon {[Zarafa.common.ui.IconClass.getIconClass(values.record)]}"></span>'+
@@ -61,17 +61,17 @@ Zarafa.common.reminder.dialogs.ReminderPanel = Ext.extend(Ext.Panel, {
 	 * @constructor
 	 * @param config Configuration structure
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			xtype : 'zarafa.reminderpanel',
+			xtype: 'zarafa.reminderpanel',
 			cls: 'k-reminderpanel',
 			layout: {
-				type : 'vbox',
-				align : 'stretch',
-				pack  : 'start'
+				type: 'vbox',
+				align: 'stretch',
+				pack: 'start'
 			},
 			header: false,
 			border: false,
@@ -110,14 +110,14 @@ Zarafa.common.reminder.dialogs.ReminderPanel = Ext.extend(Ext.Panel, {
 	 * @return {Object} Configuration object for the panel containing the fields
 	 * @private
 	 */
-	activeReminderPanel : function()
+	activeReminderPanel: function()
 	{
 		return {
 			xtype: 'panel',
 			cls:'zarafa-reminder-dialog-active-reminder',
 			layout: 'fit',
 			ref: 'activeReminder',
-			height : 40
+			height: 40
 		};
 	},
 
@@ -127,14 +127,14 @@ Zarafa.common.reminder.dialogs.ReminderPanel = Ext.extend(Ext.Panel, {
 	 * @return {Object} The configuration object for the reminder grid
 	 * @private
 	 */
-	reminderGrid : function(store)
+	reminderGrid: function(store)
 	{
 		return{
 			xtype: 'zarafa.remindergrid',
-			ref : 'reminderGridView',
-			store : store,
-			border : true,
-			flex : 2
+			ref: 'reminderGridView',
+			store: store,
+			border: true,
+			flex: 2
 		};
 	},
 
@@ -144,15 +144,15 @@ Zarafa.common.reminder.dialogs.ReminderPanel = Ext.extend(Ext.Panel, {
 	 * @return {Object} Configuration object for the panel with reminder action fields
 	 * @private
 	 */
-	reminderAction : function()
+	reminderAction: function()
 	{
 		return{
-			xtype : 'panel',
-			layout : 'fit',
-			height : 40,
-			ref : 'reminderAction',
-			minButtonWidth : 90,
-			buttons : [{
+			xtype: 'panel',
+			layout: 'fit',
+			height: 40,
+			ref: 'reminderAction',
+			minButtonWidth: 90,
+			buttons: [{
 				text	: _('Dismiss All'),
 				handler	: this.onDismissAll,
 				ref: '../../dismissAllButton',
@@ -181,48 +181,48 @@ Zarafa.common.reminder.dialogs.ReminderPanel = Ext.extend(Ext.Panel, {
 	 * @return {Object} Configuration object for the panel with snooze field
 	 * @private
 	 */
-	reminderSnooze : function()
+	reminderSnooze: function()
 	{
 		var reminderStore = {
 			xtype: 'jsonstore',
 			fields: ['name', 'value'],
 			// Remove the first value of the ReminderPeriods array because
 			// we don't need to snooze with a period of 0 minutes.
-			data : Zarafa.calendar.data.ReminderPeriods.slice(1)
+			data: Zarafa.calendar.data.ReminderPeriods.slice(1)
 		};
 
 		return{
 			xtype: 'panel',
 			cls: 'zarafa-reminder-dialog-snooze',
 			layout: {
-				type : 'vbox',
-				align : 'stretch',
-				pack  : 'start'
+				type: 'vbox',
+				align: 'stretch',
+				pack: 'start'
 			},
-			height : 80,
+			height: 80,
 			ref: 'reminderAction',
 			items:[{
 				xtype: 'displayfield',
-				value:  _('Click Snooze to be reminded again in') + ': ',
-				hideLabel : true,
-				height : 25,
+				value: _('Click Snooze to be reminded again in') + ': ',
+				hideLabel: true,
+				height: 25,
 				ref: '../snoozeInfoText'
 			},{
 				xtype: 'panel',
 				layout: 'hbox',
 				border: false,
-				flex : 1,
+				flex: 1,
 				items: [{
 					xtype: 'combo',
 					ref: '../../snoozeTimeCombo',
 					name: 'snooze',
-					flex : 1,
+					flex: 1,
 					store: reminderStore,
 					mode: 'local',
 					triggerAction: 'all',
 					displayField: 'name',
 					valueField: 'value',
-					value : container.getSettingsModel().get('zarafa/v1/main/reminder/default_snooze_time'),
+					value: container.getSettingsModel().get('zarafa/v1/main/reminder/default_snooze_time'),
 					lazyInit: false,
 					forceSelection: true,
 					editable: false
@@ -231,7 +231,7 @@ Zarafa.common.reminder.dialogs.ReminderPanel = Ext.extend(Ext.Panel, {
 					width: 10
 				},{
 					xtype	: 'button',
-					width : 90,
+					width: 90,
 					text	: _('Snooze'),
 					handler	: this.onSnooze,
 					ref: '../../snoozeButton',
@@ -245,7 +245,7 @@ Zarafa.common.reminder.dialogs.ReminderPanel = Ext.extend(Ext.Panel, {
 	 * initialize events for the {@link Zarafa.common.reminder.dialogs.ReminderPanel ReminderPanel}
 	 * @private
 	 */
-	initEvents : function()
+	initEvents: function()
 	{
 		Zarafa.common.reminder.dialogs.ReminderPanel.superclass.initEvents.call(this);
 
@@ -272,7 +272,7 @@ Zarafa.common.reminder.dialogs.ReminderPanel = Ext.extend(Ext.Panel, {
 	 * @param {Ext.grid.RowSelectionModel} selectionModel The selection model used by the grid.
 	 * @private
 	 */
-	onSelectionChange : function()
+	onSelectionChange: function()
 	{
 		var selections = this.reminderGridView.getSelectionModel().getSelections();
 
@@ -306,7 +306,7 @@ Zarafa.common.reminder.dialogs.ReminderPanel = Ext.extend(Ext.Panel, {
 	 * Function will disable buttons if there isn't any reminder selected.
 	 * @private
 	 */
-	toggleFields : function()
+	toggleFields: function()
 	{
 		var reminderCount = this.reminderGridView.getStore().getCount();
 
@@ -333,7 +333,7 @@ Zarafa.common.reminder.dialogs.ReminderPanel = Ext.extend(Ext.Panel, {
 	 * @param {EventObject} eventObject The click event object.
 	 * @private
 	 */
-	onDismissAll : function()
+	onDismissAll: function()
 	{
 		this.store.dismissReminders(this.store.getRange());
 
@@ -348,7 +348,7 @@ Zarafa.common.reminder.dialogs.ReminderPanel = Ext.extend(Ext.Panel, {
 	 * @param {EventObject} eventObject The click event object.
 	 * @private
 	 */
-	onOpenItem : function()
+	onOpenItem: function()
 	{
 		var record = this.reminderGridView.getSelectionModel().getSelected();
 
@@ -364,7 +364,7 @@ Zarafa.common.reminder.dialogs.ReminderPanel = Ext.extend(Ext.Panel, {
 	 * @param {EventObject} eventObject The click event object.
 	 * @private
 	 */
-	onDismiss : function()
+	onDismiss: function()
 	{
 		var selectedRecords = this.reminderGridView.getSelectionModel().getSelections();
 
@@ -383,7 +383,7 @@ Zarafa.common.reminder.dialogs.ReminderPanel = Ext.extend(Ext.Panel, {
 	 * @param {EventObject} eventObject The click event object.
 	 * @private
 	 */
-	onSnooze : function()
+	onSnooze: function()
 	{
 		var selectedRecords = this.reminderGridView.getSelectionModel().getSelections();
 		this.store.snoozeReminders(selectedRecords, this.snoozeTimeCombo.getValue());

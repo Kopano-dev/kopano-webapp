@@ -20,7 +20,7 @@ Zarafa.common.previewer.ui.ViewerContainer = Ext.extend(Zarafa.core.ui.ContentPa
 	 * This is a relative path starting from the plugin root.
 	 */
 	pdfjsPath: 'client/filepreviewer/pdfjs/web/viewer.html',
-	
+
 	/**
 	 * @cfg {String} src The Iframe source. This will be applied if no record is set.
 	 * If a records was passed to this panel, the return value of the "getInlineImageUrl" function
@@ -53,10 +53,10 @@ Zarafa.common.previewer.ui.ViewerContainer = Ext.extend(Zarafa.core.ui.ContentPa
 	 * @constructor
 	 * @param config
 	 */
-    constructor: function (config) 
-    {   
+  constructor: function (config)
+  {
 		config = config || {};
-		
+
 		var src = config.src;
 		this.title = config.title;
 		var record = config.record;
@@ -80,38 +80,38 @@ Zarafa.common.previewer.ui.ViewerContainer = Ext.extend(Zarafa.core.ui.ContentPa
 		} else {
 			this.tag = 'iframe';
 		}
-		
+
 		var viewSize = Ext.getBody().getViewSize();
-		
-        Ext.applyIf(config, {
-			xtype : 'zarafa.viewercontainer',
-			layout : 'anchor',
-			anchor : '100%',
-            title : Ext.util.Format.htmlEncode(this.title),
-			height : viewSize.height * this.defaultScale,
-			width : viewSize.width * this.defaultScale,
-			defaultScale : config.defaultScale || this.defaultScale,
+
+    Ext.applyIf(config, {
+			xtype: 'zarafa.viewercontainer',
+			layout: 'anchor',
+			anchor: '100%',
+      title: Ext.util.Format.htmlEncode(this.title),
+			height: viewSize.height * this.defaultScale,
+			width: viewSize.width * this.defaultScale,
+			defaultScale: config.defaultScale || this.defaultScale,
 			autoResize: config.autoResize || false,
-			items : [{
-				xtype : 'component',
-				ref : 'iframeComponent',
+			items: [{
+				xtype: 'component',
+				ref: 'iframeComponent',
 				autoEl: {
-					tag : this.tag,
-					src : src,
-					style : {
-						width : '100%',
-						height : '100%'
+					tag: this.tag,
+					src: src,
+					style: {
+						width: '100%',
+						height: '100%'
 					},
-					frameborder : 0,
+					frameborder: 0,
 					allowfullscreen: true
 				},
-				listeners : {
-					afterrender : this.onAfterRender,
+				listeners: {
+					afterrender: this.onAfterRender,
 					scope: this
 				}
 			}]
-        });
-        
+    });
+
 		Zarafa.common.previewer.ui.ViewerContainer.superclass.constructor.call(this, config);
 
 		if (this.autoResize === true) {
@@ -123,7 +123,7 @@ Zarafa.common.previewer.ui.ViewerContainer = Ext.extend(Zarafa.core.ui.ContentPa
 	 * Removes the resize event listener. This function is called when the panel gets destroyed.
 	 * @private
 	 */
-	onDestroy: function () 
+	onDestroy: function ()
 	{
 		if (this.autoResize === true) {
 			Ext.EventManager.removeResizeListener(this.onResizeWindow, this);
@@ -139,11 +139,11 @@ Zarafa.common.previewer.ui.ViewerContainer = Ext.extend(Zarafa.core.ui.ContentPa
 	 * @param {Number} adjHeight The window height.
 	 * @private
 	 */
-	onResizeWindow : function(adjWidth, adjHeight) 
+	onResizeWindow: function(adjWidth, adjHeight)
 	{
 		this.setWidth(adjWidth * this.defaultScale);
 		this.setHeight(adjHeight * this.defaultScale);
-		
+
 		// center the panel
 		if (this.ownerCt instanceof Ext.Window) {
 			this.ownerCt.center();
@@ -157,7 +157,7 @@ Zarafa.common.previewer.ui.ViewerContainer = Ext.extend(Zarafa.core.ui.ContentPa
 	 * @param {String} extension The fileextension of the attachment. Optional.
 	 * @returns {string}
 	 */
-	generateUrl : function (url, extension)
+	generateUrl: function (url, extension)
 	{
 		var root = container.getBasePath();
 		var options = '';
@@ -184,13 +184,13 @@ Zarafa.common.previewer.ui.ViewerContainer = Ext.extend(Zarafa.core.ui.ContentPa
 	 * This will register the load event handler on {@link Ext.Component IFrame}.
 	 * @param {Ext.Component} component The component that encapsulates the iframe
 	 */
-	onAfterRender : function (component)
+	onAfterRender: function (component)
 	{
 		var componentEl = component.getEl();
 		// Add a load event handler for the iframe
-		componentEl.on('load', this.onLoadFrame, component.getEl(), { single : true});
+		componentEl.on('load', this.onLoadFrame, component.getEl(), { single: true});
 		// Add a load event handler for the webview
-		this.getEl().on('contentload', this.onLoadWebview, this, { single : true});
+		this.getEl().on('contentload', this.onLoadWebview, this, { single: true});
 
 		// Add some event listeners when we are using webviews (i.e. in DeskApp)
 		if ( this.tag === 'webview' ){
@@ -206,14 +206,14 @@ Zarafa.common.previewer.ui.ViewerContainer = Ext.extend(Zarafa.core.ui.ContentPa
 	 * in WEBVIEW. This function is currently used for injecting a script into WEBVIEW context
 	 * to set default target of links reside in pdf to '_blank'.
 	 */
-	onWebViewLoadstop : function() 
+	onWebViewLoadstop: function()
 	{
 		// We are adding a script tag at the end of all scripts in WEBVIEW dom so that
 		// we can have access of all global variables exported by all the other scripts
 		// while this script runs.
 		// We also don't want unnecessary script tag in dom. So to keep dom clean we remove script tag.
 		this.executeScript({ code: "var script = document.createElement('script');" +
-				"script.textContent =  '(' + function() " +
+				"script.textContent = '(' + function() " +
 				"{if(window.PDFJS) {window.PDFJS.externalLinkTarget = window.PDFJS.LinkTarget.BLANK;}}" +
 				" + ')();';" +
 				"(document.head||document.documentElement).appendChild(script);" +
@@ -229,7 +229,7 @@ Zarafa.common.previewer.ui.ViewerContainer = Ext.extend(Zarafa.core.ui.ContentPa
 	 * Get the {@link Ext.Button download button} of iframe body and
 	 * it will skip showing the requester on {@link Ext.Button download button} click event
 	 */
-	onLoadFrame : function ()
+	onLoadFrame: function ()
 	{
 		var self = this;
 		var frameDom = this.dom.contentDocument;
@@ -264,7 +264,7 @@ Zarafa.common.previewer.ui.ViewerContainer = Ext.extend(Zarafa.core.ui.ContentPa
 	 * Handler for the contentload event of the webview. Will inject the WebApp cookies
 	 * into the webview, so documents can be loaded
 	 */
-	onLoadWebview : function()
+	onLoadWebview: function()
 	{
 		var iframeCookieStoreId = this.iframeComponent.el.dom.getCookieStoreId();
 		var cookieCounter = 0;
@@ -293,9 +293,9 @@ Zarafa.common.previewer.ui.ViewerContainer = Ext.extend(Zarafa.core.ui.ContentPa
 	 * Handler of the newwindow event of WEBVIEW element.
 	 * Chrome is blocking new window from WEBVIEW. So this handler will handle new window request
 	 * from WEBVIEW and open link in new window.
-	 * @param  {Event} event The newwindow event
+	 * @param {Event} event The newwindow event
 	 */
-	newWindowHandler : function(event) 
+	newWindowHandler: function(event)
 	{
 		switch (event.windowOpenDisposition) {
 			case 'new_window':
@@ -315,16 +315,16 @@ Zarafa.common.previewer.ui.ViewerContainer = Ext.extend(Zarafa.core.ui.ContentPa
 	/**
 	 * Handler for the dialog event of WEBVIEW elements. Will handle alert, prompt,
 	 * and confirm dialogs
-	 * @param  {Event} e The dialog event
+	 * @param {Event} e The dialog event
 	 */
-	handleDialogRequests : function(e)
+	handleDialogRequests: function(e)
 	{
 		switch (e.messageType) {
 			case "alert":
 				window.alert(e.messageText); // eslint-disable-line no-alert
 			break;
 			case "confirm":
-				var confirmation =  window.confirm(e.messageText); // eslint-disable-line no-alert
+				var confirmation = window.confirm(e.messageText); // eslint-disable-line no-alert
 				if (confirmation === true) {
 					e.dialog.ok();
 				} else {
@@ -349,7 +349,7 @@ Zarafa.common.previewer.ui.ViewerContainer = Ext.extend(Zarafa.core.ui.ContentPa
 	 * For now we deny geolocation, fullscreen and pointerLock requests.
 	 * @param {Event} e The permissionrequest event
 	 */
-	handlePermissionRequests : function(e)
+	handlePermissionRequests: function(e)
 	{
 		e.preventDefault();
 		switch (e.permission) {

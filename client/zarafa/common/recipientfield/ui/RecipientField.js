@@ -23,14 +23,14 @@ Zarafa.common.recipientfield.ui.RecipientField = Ext.extend(Zarafa.common.ui.Box
 	 * @cfg {Zarafa.core.mapi.RecipientType} defaultRecipientType The default recipient type value which should be used for the field
 	 * defaultRecipientType takes the value of filterRecipientType properties if its defined.
 	 */
-	defaultRecipientType : Zarafa.core.mapi.RecipientType.MAPI_TO,
+	defaultRecipientType: Zarafa.core.mapi.RecipientType.MAPI_TO,
 
 	/**
 	 * @cfg {Zarafa.core.mapi.RecipientType} filterRecipientType The recipient type value which is used for this Input field
 	 * This field also helps us to make a decision on which recipients should visible into the field and if set to undefined
 	 * it will allow to display multiple recipient types into that field.
 	 */
-	filterRecipientType : undefined,
+	filterRecipientType: undefined,
 
 	/**
 	 * @cfg {String} delimiterCharacters The characters which is used to split input up into multiple
@@ -42,31 +42,31 @@ Zarafa.common.recipientfield.ui.RecipientField = Ext.extend(Zarafa.common.ui.Box
 	/**
 	 * @cfg {Boolean} enableDrag true to enable just drag
 	 */
-	enableDrag : true,
+	enableDrag: true,
 
 	/**
 	 * @cfg {Boolean} enableDrop true to enable just drop
 	 */
-	enableDrop : true,
+	enableDrop: true,
 
 	/**
 	 * @cfg {Boolean} enableDragDrop true to enable drag and drop
 	 */
-	enableDragDrop : true,
+	enableDragDrop: true,
 
 	/**
 	 * The dragZone used by this field if drag is enabled (see {@link #enableDrag})
 	 * @property
 	 * @type Zarafa.common.recipientfield.ui.RecipientDragZone
 	 */
-	dragZone : undefined,
+	dragZone: undefined,
 
 	/**
 	 * The dropZone used by this tree if drop is enabled (see {@link #enableDrop})
 	 * @property
 	 * @type Zarafa.common.recipientfield.ui.RecipientDropZone
 	 */
-	dropZone : undefined,
+	dropZone: undefined,
 
 	/**
 	 * @cfg {Number} The length of time in milliseconds to delay between
@@ -79,7 +79,7 @@ Zarafa.common.recipientfield.ui.RecipientField = Ext.extend(Zarafa.common.ui.Box
 	 * @constructor
 	 * @param config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -88,12 +88,12 @@ Zarafa.common.recipientfield.ui.RecipientField = Ext.extend(Zarafa.common.ui.Box
 		}
 
 		Ext.applyIf(config, {
-			boxType : 'zarafa.recipientbox',
+			boxType: 'zarafa.recipientbox',
 			itemSelector: 'div.x-zarafa-boxfield-suggestion-item',
 			extraItemSelector: 'a.x-zarafa-boxfield-suggestion-cross',
 			border: false,
 			minChars: 1,
-			listEmptyText : _('No suggestions available'),
+			listEmptyText: _('No suggestions available'),
 			boxMinHeight: 24,
 			boxMaxHeight: 66,
 			height: 24,
@@ -133,12 +133,12 @@ Zarafa.common.recipientfield.ui.RecipientField = Ext.extend(Zarafa.common.ui.Box
 	 *
 	 * It will split up the input string if it has multiple email addresses or valid delimeteres.
 	 * It will split following types of multiple email addresses string
-	 *      1. Email addresses with valid delimiters  , and ; and spaces
-	 *      2. Email addresses with user name where email address is enclosed in < >
-	 *      3. User name with delimiters , and ;
+	 *   1. Email addresses with valid delimiters , and ; and spaces
+	 *   2. Email addresses with user name where email address is enclosed in < >
+	 *   3. User name with delimiters , and ;
 	 * @param {String} value The value from the input field
 	 */
-	handleInput : function(value)
+	handleInput: function(value)
 	{
 		// FIXME: Disallow typing in HTML formatting...
 
@@ -179,7 +179,7 @@ Zarafa.common.recipientfield.ui.RecipientField = Ext.extend(Zarafa.common.ui.Box
 	 * @param {Ext.data.Record} record The record which was selected from {@link #store}
 	 * @protected
 	 */
-	handleSelection : function(record)
+	handleSelection: function(record)
 	{
 		var recipient = record.convertToRecipient(this.defaultRecipientType);
 		this.boxStore.add(recipient);
@@ -209,7 +209,7 @@ Zarafa.common.recipientfield.ui.RecipientField = Ext.extend(Zarafa.common.ui.Box
 	 * @param {Zarafa.core.data.MAPIRecord} record The record to update in this component
 	 * @param {Boolean} contentReset force the component to perform a full update of the data.
 	 */
-	update : function(record, contentReset)
+	update: function(record, contentReset)
 	{
 		if (record && record instanceof Zarafa.core.data.MAPIRecord) {
 			// In case the recordcomponentupdaterplugin is installed
@@ -299,7 +299,7 @@ Zarafa.common.recipientfield.ui.RecipientField = Ext.extend(Zarafa.common.ui.Box
 	 * @return {Boolean} True if the record should be visible, false otherwise
 	 * @protected
 	 */
-	filterRecord : function(record)
+	filterRecord: function(record)
 	{
 		return !record.isMeetingOrganizer() &&
 				(!Ext.isDefined(this.filterRecipientType) ||
@@ -313,17 +313,17 @@ Zarafa.common.recipientfield.ui.RecipientField = Ext.extend(Zarafa.common.ui.Box
 	 * @param {Zarafa.core.data.IPMRecipientRecord} record The record which is attached to the box
 	 * @private
 	 */
-	onBoxDblClick : function(field, box, record)
+	onBoxDblClick: function(field, box, record)
 	{
 		if (record.isResolved()) {
 			// Resolved recipients cannot be edited, so we open the "View" dialog for it.
 			Zarafa.common.Actions.openViewRecipientContent(record, {
-				modal : true
+				modal: true
 			});
 		} else {
 			// Unresolved recipients can be edited, so we open the "Create" dialog for it.
 			Zarafa.core.data.UIFactory.openCreateRecord(record, {
-				modal : true
+				modal: true
 			});
 		}
 	},
@@ -335,11 +335,11 @@ Zarafa.common.recipientfield.ui.RecipientField = Ext.extend(Zarafa.common.ui.Box
 	 * @param {Zarafa.core.data.IPMRecipientRecord} record The record which is attached to the box
 	 * @private
 	 */
-	onBoxContextMenu : function(field, box, record)
+	onBoxContextMenu: function(field, box, record)
 	{
 		Zarafa.core.data.UIFactory.openDefaultContextMenu(record, {
-			position : box.getEl().getXY(),
-			editable : box.editable
+			position: box.getEl().getXY(),
+			editable: box.editable
 		});
 	},
 
@@ -351,21 +351,21 @@ Zarafa.common.recipientfield.ui.RecipientField = Ext.extend(Zarafa.common.ui.Box
 	 * @override
 	 * @private
 	 */
-	initEvents : function()
+	initEvents: function()
 	{
 		Zarafa.common.recipientfield.ui.RecipientField.superclass.initEvents.apply(this, arguments);
 
 		if ((this.enableDrag || this.enableDragDrop) && !this.dragZone) {
 			this.dragZone = new Zarafa.common.ui.BoxFieldDragZone(this.container, {
-				ddGroup : 'dd.mapiitem',
-				field : this
+				ddGroup: 'dd.mapiitem',
+				field: this
 			});
 		}
 
 		if ((this.enableDrop || this.enableDragDrop) && !this.dropZone) {
 			this.dropZone = new Zarafa.common.recipientfield.ui.RecipientDropZone(this.container, {
-				ddGroup : 'dd.mapiitem',
-				field : this
+				ddGroup: 'dd.mapiitem',
+				field: this
 			});
 		}
 	}

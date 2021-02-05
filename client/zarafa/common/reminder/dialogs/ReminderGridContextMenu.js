@@ -22,7 +22,7 @@ Zarafa.common.reminder.dialogs.ReminderGridContextMenu = Ext.extend(Zarafa.core.
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -44,15 +44,15 @@ Zarafa.common.reminder.dialogs.ReminderGridContextMenu = Ext.extend(Zarafa.core.
 	 * @return {Zarafa.core.ui.menu.ConditionalItem[]} The list of Action context menu items
 	 * @private
 	 */
-	createContextActionItems : function()
+	createContextActionItems: function()
 	{
 		return [{
-			xtype : 'zarafa.conditionalitem',
-			text : _('Open'),
-			iconCls : 'icon_open',
-			singleSelectOnly : true,
-			handler : this.onContextItemOpen,
-			scope : this
+			xtype: 'zarafa.conditionalitem',
+			text: _('Open'),
+			iconCls: 'icon_open',
+			singleSelectOnly: true,
+			handler: this.onContextItemOpen,
+			scope: this
 		}];
 	},
 
@@ -61,7 +61,7 @@ Zarafa.common.reminder.dialogs.ReminderGridContextMenu = Ext.extend(Zarafa.core.
 	 * item in the context menu. This will open the item in a new dialog.
 	 * @private
 	 */
-	onContextItemOpen : function()
+	onContextItemOpen: function()
 	{
 		Zarafa.common.Actions.openReminderRecord(this.records[0]);
 	}

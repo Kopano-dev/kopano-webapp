@@ -16,18 +16,18 @@ Zarafa.mail.MailStore = Ext.extend(Zarafa.core.data.ListModuleStore, {
 	 * @constructor
 	 * @param {Object} config configuration params that should be used to create instance of this store.
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		// Apply default settings.
 		Ext.applyIf(config, {
-			preferredMessageClass : 'IPM.Note',
-			defaultSortInfo : {
-				field : 'message_delivery_time',
-				direction : 'desc'
+			preferredMessageClass: 'IPM.Note',
+			defaultSortInfo: {
+				field: 'message_delivery_time',
+				direction: 'desc'
 			},
-			conversationManager : new Zarafa.mail.data.ConversationManagers()
+			conversationManager: new Zarafa.mail.data.ConversationManagers()
 		});
 
 		Zarafa.mail.MailStore.superclass.constructor.call(this, config);
@@ -57,13 +57,13 @@ Zarafa.mail.MailStore = Ext.extend(Zarafa.core.data.ListModuleStore, {
 	 * applied to those records.
 	 * @private
 	 */
-	getRecordsForUpdateData : function(records, action)
+	getRecordsForUpdateData: function(records, action)
 	{
 		if (!Ext.isDefined(records) || action !== Ext.data.Api.actions.open) {
 			return Zarafa.mail.MailStore.superclass.getRecordsForUpdateData.apply(this, arguments);
 		}
 
-		var results = { records: [],  updatedRecords : [] };
+		var results = { records: [], updatedRecords: [] };
 
 		if (!Array.isArray(records)) {
 			records = [ records ];
@@ -129,13 +129,13 @@ Zarafa.mail.MailStore = Ext.extend(Zarafa.core.data.ListModuleStore, {
 	 * @param {Object} options An options which set the filter restriction in params
 	 * if filter was already applied on store.
 	 */
-	reload : function(options)
+	reload: function(options)
 	{
 		if (this.hasFilterApplied) {
 			options = Ext.apply(options||{}, {
 				params:{
 					restriction:{
-						filter : this.getFilterRestriction(Zarafa.common.data.Filters.UNREAD)
+						filter: this.getFilterRestriction(Zarafa.common.data.Filters.UNREAD)
 					}
 				}
 			});
@@ -175,7 +175,7 @@ Zarafa.mail.MailStore = Ext.extend(Zarafa.core.data.ListModuleStore, {
 	 * @return {Boolean} True is the record is part of an expanded conversation,
 	 * false otherwise
 	 */
-	isConversationOpened : function(record)
+	isConversationOpened: function(record)
 	{
 		var openedRecordManager = this.conversationManager.getOpenedRecordManager();
 		var openedItems = Ext.flatten(openedRecordManager.getRange());
@@ -192,7 +192,7 @@ Zarafa.mail.MailStore = Ext.extend(Zarafa.core.data.ListModuleStore, {
 	 * @param {Zarafa.mail.MailStore} store which contains message records
 	 * @param {Zarafa.mail.MailRecord[]} records array which holds all the records we received in load request.
 	 */
-	manageOpenConversations : function(store, records)
+	manageOpenConversations: function(store, records)
 	{
 		if(container.isEnabledConversation() === false) {
 			return;
@@ -252,7 +252,7 @@ Zarafa.mail.MailStore = Ext.extend(Zarafa.core.data.ListModuleStore, {
 	/**
 	 * Filters the store to not show items in conversations that have not been expanded
 	 */
-	filterByConversations : function()
+	filterByConversations: function()
 	{
 		var openedRecordManager = this.conversationManager.getOpenedRecordManager();
 		var openedItems = Ext.flatten(openedRecordManager.getRange());
@@ -293,12 +293,12 @@ Zarafa.mail.MailStore = Ext.extend(Zarafa.core.data.ListModuleStore, {
 	},
 
 	/**
-	 * Function will collapse all the conversation except the given header record in parameter 
+	 * Function will collapse all the conversation except the given header record in parameter
 	 * and if no header record is provided then it will collapse all the conversation.
-	 * 
+	 *
 	 * @param {Zarafa.core.IPMRecord} headerRecord The header record of conversation.
 	 */
-	collapseAllConversation : function(headerRecord) 
+	collapseAllConversation: function(headerRecord)
 	{
 		this.conversationManager.closeAll(headerRecord);
 		this.filterByConversations();
@@ -309,7 +309,7 @@ Zarafa.mail.MailStore = Ext.extend(Zarafa.core.data.ListModuleStore, {
 	 *
 	 * @param {Zarafa.mail.MailRecord} headerRecord
 	 */
-	expandConversation: function(headerRecord) 
+	expandConversation: function(headerRecord)
 	{
 		this.toggleConversation(headerRecord, true);
 	},
@@ -338,12 +338,12 @@ Zarafa.mail.MailStore = Ext.extend(Zarafa.core.data.ListModuleStore, {
 	/**
 	 * Returns header record identified by the given record item which is part of that conversation.
 	 * Or it returns false if given record is not part of any conversation.
-	 * 
+	 *
 	 * @param {Zarafa.core.data.MapiRecord} record The conversation item record whose header record needs to be found.
 	 * @return {Zarafa.core.data.MapiRecord} returns header record for the given conversation item
 	 * or false if given record is not part of any conversation.
 	 */
-	getHeaderRecordFromItem : function(record) {
+	getHeaderRecordFromItem: function(record) {
 		if (!Ext.isDefined(record) || record.isNormalRecord()) {
 			return false;
 		} else if (record.isConversationHeaderRecord()) {
@@ -373,7 +373,7 @@ Zarafa.mail.MailStore = Ext.extend(Zarafa.core.data.ListModuleStore, {
 	 *
 	 * @return {Number} The number of items
 	 */
-	getStoreLength : function()
+	getStoreLength: function()
 	{
 		// Get all items count when 'Unread' filtered has been applied.
 		if (this.containsConversations() && !this.hasFilterApplied) {
@@ -418,7 +418,7 @@ Zarafa.mail.MailStore = Ext.extend(Zarafa.core.data.ListModuleStore, {
 	 * @param {Zarafa.common.data.Filters} filterType The filterType which needs to perform on store.
 	 * @return {Array|false} RES_BITMASK restriction else false.
 	 */
-	getFilterRestriction : function(filterType)
+	getFilterRestriction: function(filterType)
 	{
 		if (filterType === Zarafa.common.data.Filters.UNREAD) {
 			var unreadFilterRestriction = Zarafa.core.data.RestrictionFactory.dataResBitmask(

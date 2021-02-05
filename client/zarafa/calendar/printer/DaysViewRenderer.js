@@ -114,13 +114,13 @@ Zarafa.calendar.printer.DaysViewRenderer = Ext.extend(Zarafa.calendar.printer.Ab
 	 * Returns the HTML that will be placed into the <body> part of the print window.
 	 * @return {String} The HTML fragment to place inside the print window's <body> element
 	 */
-	generateBodyTemplate : function()
+	generateBodyTemplate: function()
 	{
 		var html = '';
 
 		/* +--------------------------------------------+
 		 * | Kopano WebApp     |                        |
-		 * | Calendar : [name] |      date pick         |
+		 * | Calendar: [name] |      date pick         |
 		 * | start time        |      this month        |
 		 * |                   |                        |
 		 * +--------------------------------------------+

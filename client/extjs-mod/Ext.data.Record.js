@@ -1,12 +1,12 @@
 (function() {
 	Ext.override(Ext.data.Record, {
 	    /**
-	     * Method to extract the initial letters of a sender's name. 
+	     * Method to extract the initial letters of a sender's name.
 	     * If the name is not available, use the email address's first letter.
-	     * 
+	     *
 	     * @return {String} The string containing the initials
 	     */
-	    getSenderInitials : function()
+	    getSenderInitials: function()
 	    {
 	    	var senderInitials;
 	    	var senderName = this.get('sent_representing_name') || this.get('display_name') || this.get('sender_name');

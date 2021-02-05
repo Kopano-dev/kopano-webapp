@@ -27,7 +27,7 @@ Zarafa.common.data.ConditionRuleFactory = Ext.extend(Object,{
 	 * @constructor
 	 * @param {Object} config configuration object.
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 		this.conditionDefinitions = Zarafa.common.rules.data.RulesData.getConditionRestriction();
@@ -45,7 +45,7 @@ Zarafa.common.data.ConditionRuleFactory = Ext.extend(Object,{
 	 * @return {Function} The Condition Definition or false if there's problem in registering.
 	 * If there already exists a definition for the given key then function will return that definition.
 	 */
-	registerConditionDefinition : function(key, conditionFunction)
+	registerConditionDefinition: function(key, conditionFunction)
 	{
 		if (this.conditionDefinitions[key]) {
 			return this.conditionDefinitions[key];
@@ -65,7 +65,7 @@ Zarafa.common.data.ConditionRuleFactory = Ext.extend(Object,{
 	 * in the definitions table.
 	 * @return {Function} registered Condition Definition from definitions table or false if given condition is not registered.
 	 */
-	getConditionById : function(key)
+	getConditionById: function(key)
 	{
 		if (!Ext.isEmpty(this.conditionDefinitions[key])) {
 			return this.conditionDefinitions[key];
@@ -80,7 +80,7 @@ Zarafa.common.data.ConditionRuleFactory = Ext.extend(Object,{
 	 * in the definitions table.
 	 * @return {Object} restriction for the exception else returns false if exception can not be generated.
 	 */
-	getExceptionById : function(key, options)
+	getExceptionById: function(key, options)
 	{
 		if (Ext.isEmpty(key)) {
 			return false;
@@ -104,7 +104,7 @@ Zarafa.common.data.ConditionRuleFactory = Ext.extend(Object,{
 	 * in the definitions table.
 	 * @return {Boolean} The true if successfully definition removed else false.
 	 */
-	unregisterConditionDefinition : function(key)
+	unregisterConditionDefinition: function(key)
 	{
 		if (!Ext.isEmpty(this.conditionDefinitions[key])) {
 			delete this.conditionDefinitions[key];

@@ -13,12 +13,12 @@ Zarafa.calendar.printer.WorkWeekViewRenderer = Ext.extend(Zarafa.calendar.printe
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			timeStyle : 'width:10%;'
+			timeStyle: 'width:10%;'
 		});
 
 		Zarafa.calendar.printer.WorkWeekViewRenderer.superclass.constructor.call(this, config);

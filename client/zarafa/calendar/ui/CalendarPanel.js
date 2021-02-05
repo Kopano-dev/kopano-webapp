@@ -9,7 +9,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	/**
 	 * @cfg {Zarafa.calendar.CalendarContext} context The context to which this panel belongs
 	 */
-	context : undefined,
+	context: undefined,
 
 	/**
 	 * The {@link Zarafa.calendar.CalendarContextModel} which is obtained from
@@ -18,7 +18,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @property
 	 * @type Zarafa.calendar.CalendarContextModel
 	 */
-	model : undefined,
+	model: undefined,
 
 	/**
 	 * The store which is attached to this Calendar. This reference is obtained
@@ -27,7 +27,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @property
 	 * @type Zarafa.core.data.IPMStore
 	 */
-	store : undefined,
+	store: undefined,
 
 	/**
 	 * The clipBoardData which contains copied record.
@@ -35,12 +35,12 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @property
 	 * @type Zarafa.calendar.AppointmentRecord
 	 */
-	clipBoardData : undefined,
+	clipBoardData: undefined,
 
 	/**
 	 * @cfg {String} loadMaskText text shown when the panel is loading data from the store.
 	 */
-	loadMaskText : _('Loading') + '...',
+	loadMaskText: _('Loading') + '...',
 
 	/**
 	 * The selection model which manages the selection of {@link Zarafa.core.data.IPMRecord appointments}
@@ -49,7 +49,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @property
 	 * @type Zarafa.calendar.ui.AppointmentSelectionModel
 	 */
-	selectionModel : undefined,
+	selectionModel: undefined,
 
 	/**
 	 * The selection model which manages the selection of a {@link Zarafa.core.DateRange daterange}
@@ -58,13 +58,13 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @property
 	 * @type Zarafa.calendar.ui.DateRangeSelectionModel
 	 */
-	rangeSelectionModel : undefined,
+	rangeSelectionModel: undefined,
 
 	/**
 	 * @cfg {Object} viewConfig The configuration which must be applied to the {@link Zarafa.calendar.ui.CalendarMultiView}
 	 * which belongs to this calendar panel.
 	 */
-	viewConfig : undefined,
+	viewConfig: undefined,
 
 	/**
 	 * The {@link Zarafa.calendar.ui.CalendarMultiView calendarMultiView} which is attached to this panel, the creation
@@ -73,24 +73,24 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @property
 	 * @type Zarafa.calendar.ui.CalendarMultiView
 	 */
-	view : undefined,
+	view: undefined,
 
 	/**
 	 * @cfg {Boolean} showTooltip True to show tooltips when the cursor moves over an appointment.
 	 */
-	showTooltip : true,
+	showTooltip: true,
 
 	/**
 	 * @cfg {String/Ext.XTemplate} tooltipTitleTpl If {@link #showTooltip tooltips are enabled},
 	 * this template is used for the title of the tooltip. The data for the template will
 	 * be the data object from the {@link Zarafa.calendar.AppointmentRecord appointment}.
 	 */
-	tooltipTitleTpl : new Ext.XTemplate(
+	tooltipTitleTpl: new Ext.XTemplate(
 		'<tpl if="!Ext.isEmpty(values.subject)">',
 			'{values.subject:htmlEncode}',
 		'</tpl>',
 		{
-			compiled : true
+			compiled: true
 		}
 	),
 
@@ -99,7 +99,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * this template is used for the main contents of the tooltip. The data for the template will
 	 * be the data object from the {@link Zarafa.calendar.AppointmentRecord appointment}.
 	 */
-	tooltipTextTpl : new Ext.XTemplate(
+	tooltipTextTpl: new Ext.XTemplate(
 		'<tpl if="values.meeting !== Zarafa.core.mapi.MeetingStatus.NONMEETING && !Ext.isEmpty(this.formatOrganizer(values))">',
 			_('Organizer') + ': {[this.formatOrganizer(values)]}<br>',
 		'</tpl>',
@@ -116,9 +116,9 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 			_('Recurrence') + ': {values.recurring_pattern:htmlEncode}<br>',
 		'</tpl>',
 		{
-			compiled : true,
+			compiled: true,
 			// Format the organizer of the meeting
-			formatOrganizer : function(values)
+			formatOrganizer: function(values)
 			{
 				var value = values.sent_representing_name;
 				if (Ext.isEmpty(value)) {
@@ -128,8 +128,8 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 				return Ext.util.Format.htmlEncode(value);
 			},
 			// Format the times for a normal appointment.
-			formatTime : function(start, due)
-			{		
+			formatTime: function(start, due)
+			{
 				if (start.clearTime(true).getTime() == due.clearTime(true).getTime()) {
 					// # TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 					return start.formatDefaultTime() + ' - ' + due.formatDefaultTime();
@@ -140,7 +140,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 			},
 			// Format the dates for an allday appointment, this requires the duedate
 			// to be reduced by one day, and doesn't print times.
-			formatDate : function(start, due)
+			formatDate: function(start, due)
 			{
 				due = due.add(Date.HOUR, -1);
 				if (Date.diff(Date.DAY, due, start) <= 1) {
@@ -158,13 +158,13 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @constructor
 	 * @param {Object} config configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.apply(this, config, {
 			xtype: 'zarafa.calendarpanel',
-			border : false
+			border: false
 		});
 
 		// Declare events.
@@ -297,7 +297,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * Initialises the component.
 	 * @private
 	 */
-	initComponent : function()
+	initComponent: function()
 	{
 		Zarafa.calendar.ui.CalendarPanel.superclass.initComponent.apply(this, arguments);
 
@@ -329,12 +329,12 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 		// side-by-side.
 		this.viewConfig = this.viewConfig || {};
 		Ext.apply(this.viewConfig, {
-			context : this.context,
-			selectionModel : this.selectionModel,
-			rangeSelectionModel : this.rangeSelectionModel
+			context: this.context,
+			selectionModel: this.selectionModel,
+			rangeSelectionModel: this.rangeSelectionModel
 		});
 		this.view = new Zarafa.calendar.ui.CalendarMultiView(this.viewConfig);
-		
+
 		// Hook into events of the view.
 		this.mon(this.view, {
 			'appointmentcalendardrop': this.onAppointmentCalendarDrop,
@@ -368,7 +368,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 *
 	 * @private
 	 */
-	onStoreRemove : function(store, record, index){
+	onStoreRemove: function(store, record, index){
 		this.selectionModel.deselectRecord(record);
 	},
 
@@ -378,7 +378,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @param {Zarafa.core.data.IPMRecord} record The record on which the context menu was requested
 	 * @private
 	 */
-	onViewContextMenu : function(event, record)
+	onViewContextMenu: function(event, record)
 	{
 		this.fireEvent('contextmenu', event, record);
 		event.stopEvent();
@@ -390,7 +390,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @param {Zarafa.core.data.IPMRecord} record The record on which was double clicked
 	 * @private
 	 */
-	onDoubleClick : function(event, record)
+	onDoubleClick: function(event, record)
 	{
 		this.fireEvent('dblclick', event, record);
 	},
@@ -401,7 +401,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @param {Date} date The date on which was clicked
 	 * @private
 	 */
-	onDayClick : function(source, date)
+	onDayClick: function(source, date)
 	{
 		this.fireEvent('dayclick', source, date);
 	},
@@ -411,7 +411,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @param {Zarafa.core.IPMFolder} folder The folder which was closed
 	 * @private
 	 */
-	onCalendarClose : function(folder)
+	onCalendarClose: function(folder)
 	{
 		this.fireEvent('calendarclose', folder);
 	},
@@ -426,7 +426,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @param {Ext.EventObject} event The original event object
 	 * @private
 	 */
-	onAppointmentCalendarDrop : function(multiview, appointment, sourceFolder, targetFolder, dateRange, event)
+	onAppointmentCalendarDrop: function(multiview, appointment, sourceFolder, targetFolder, dateRange, event)
 	{
 		if (this.fireEvent('beforeappointmentcalendardrop', this, appointment, sourceFolder, targetFolder, dateRange) !== false) {
 			// Check if target folder has not enough rights then show error message.
@@ -451,13 +451,13 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 				modifiedProps[key] = copyAppointment.get(key);
 			}
 			appointment.addMessageAction('dropmodifications', modifiedProps);
-			
+
 			var store = appointment.getStore();
 			var isAppointmentFromPublicStore = sourceFolder.getMAPIStore().isPublicStore();
 
 			// Note: for public store items (mail, appointments, etc), we are getting wrong PR_ACCESS value on list request.
 			// But we get the right value on open request of that item. So need to add this check for public folders.
-			// For other stores (i.e. own, shared) its working fine. 
+			// For other stores (i.e. own, shared) its working fine.
 			if (isAppointmentFromPublicStore && !appointment.isOpened()) {
 				const openHandler = function (store, record) {
 					if (!Zarafa.core.EntryId.compareEntryIds(appointment.get('entryid'), record.get('entryid'))) {
@@ -471,25 +471,25 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 				appointment.open();
 				return;
 			}
-			
+
 			this.onDropCopyOrMoveAppointment(appointment, store, sourceFolder, targetFolder, dateRange, event);
 		}
 	},
 
 	/**
 	 * This is helper function of {@link #onAppointmentCalendarDrop} function.
-	 * This will perform copy/move action for given appointment and show messagebox to perform copy action 
+	 * This will perform copy/move action for given appointment and show messagebox to perform copy action
 	 * when not enough access rights.
-	 * 
+	 *
 	 * @param {Zarafa.calendar.AppointmentRecord} appointment the appointment record that was dragged
-	 * @param {Zarafa.calendar.data.AppointmentStore} store the store in which appointment exists. 
+	 * @param {Zarafa.calendar.data.AppointmentStore} store the store in which appointment exists.
 	 * @param {Zarafa.calendar.core.MAPIFolder} sourceFolder source folder
 	 * @param {Zarafa.calendar.core.MAPIFolder} targetFolder target folder
 	 * @param {Zarafa.core.DateRange} dateRange The new daterange for the appointment
 	 * @param {Ext.EventObject} event The original event object
 	 * @private
 	 */
-	onDropCopyOrMoveAppointment : function(appointment, store, sourceFolder, targetFolder, dateRange, event) 
+	onDropCopyOrMoveAppointment: function(appointment, store, sourceFolder, targetFolder, dateRange, event)
 	{
 		if (event.ctrlKey) {
 			appointment.copyTo(targetFolder);
@@ -498,7 +498,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 			// or appointment does not belong to the user then 'move' operation can not be performed.
 			// In that case ask user whether he wants to perform 'copy' operation instead.
 			if (!sourceFolder.hasDeleteOwnRights() || !appointment.hasDeleteAccess()) {
-				// Need to relay 'appointmentcalendardrop' event on click of copy button of messagebox. 
+				// Need to relay 'appointmentcalendardrop' event on click of copy button of messagebox.
 				const callBack = function() {
 					this.fireEvent('appointmentcalendardrop', this, appointment, sourceFolder, targetFolder, dateRange);
 				};
@@ -506,11 +506,11 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 				return;
 			}
 
-			// If source folder has enough rights or for public store, item belongs to the user 
+			// If source folder has enough rights or for public store, item belongs to the user
 			// then perform move operation.
 			appointment.moveTo(targetFolder);
 		}
-		appointment.save();		
+		appointment.save();
 		this.fireEvent('appointmentcalendardrop', this, appointment, sourceFolder, targetFolder,  dateRange);
 	},
 
@@ -521,7 +521,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @param {Ext.EventObject} event The original event object
 	 * @private
 	 */
-	onAppointmentMouseOver : function(multiview, appointment, event)
+	onAppointmentMouseOver: function(multiview, appointment, event)
 	{
 		if (this.showTooltip === true) {
 			var tooltip = this.view.getTooltipInstance();
@@ -537,7 +537,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 
 				// As component ID we use the RecordKey, use the MixedCollection#getKey,
 				// as that will generate a fully unique ID in case of recurring series.
-				tooltip.show(id, { title : title, text: text, categories: categories }, event);
+				tooltip.show(id, { title: title, text: text, categories: categories }, event);
 			}
 		}
 
@@ -551,7 +551,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @param {Ext.EventObject} event The original event object
 	 * @private
 	 */
-	onAppointmentMouseOut : function(multiview, appointment, event)
+	onAppointmentMouseOut: function(multiview, appointment, event)
 	{
 		if (this.showTooltip === true) {
 			var tooltip = this.view.getTooltipInstance();
@@ -574,7 +574,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @param {Ext.EventObject} event The original event object
 	 * @private
 	 */
-	onAppointmentMove : function(multiview, appointment, dateRange, event)
+	onAppointmentMove: function(multiview, appointment, dateRange, event)
 	{
 		if (appointment.isMeetingSent() && !appointment.isAppointmentInPast() && appointment.getMessageAction('send') !== true) {
 			this.doAppointmentChangeConfirmation(appointment, dateRange, this.doAppointmentMove);
@@ -590,7 +590,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @param {Zarafa.core.DateRange} dateRange The new daterange for the appointment
 	 * @private
 	 */
-	doAppointmentMove : function(appointment, dateRange)
+	doAppointmentMove: function(appointment, dateRange)
 	{
 		if (this.fireEvent('beforeappointmentmove', this, appointment, dateRange) !== false) {
 			this.doAppointmentChange(appointment, dateRange);
@@ -615,7 +615,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @param {Ext.EventObject} event The original event object
 	 * @private
 	 */
-	onAppointmentResize : function(multiview, appointment, dateRange, event)
+	onAppointmentResize: function(multiview, appointment, dateRange, event)
 	{
 		if (appointment.isMeetingSent() && !appointment.isAppointmentInPast() && appointment.getMessageAction('send') !== true) {
 			this.doAppointmentChangeConfirmation(appointment, dateRange, this.doAppointmentResize);
@@ -631,7 +631,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @param {Zarafa.core.DateRange} dateRange The DateRange used to update the record
 	 * @private
 	 */
-	doAppointmentResize : function(appointment, dateRange)
+	doAppointmentResize: function(appointment, dateRange)
 	{
 		if (this.fireEvent('beforeappointmentresize', this, appointment, dateRange) !== false) {
 			this.doAppointmentChange(appointment, dateRange);
@@ -656,7 +656,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * user wants to change the meeting immediately without a ContentPanel
 	 * @private
 	 */
-	doAppointmentChangeConfirmation : function(appointment, dateRange, changeCallback)
+	doAppointmentChangeConfirmation: function(appointment, dateRange, changeCallback)
 	{
 		Zarafa.common.dialogs.MessageBox.select(
 			_('Update recipients'),
@@ -667,7 +667,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 						// The user has selected the option to review the changes in a ContentPanel.
 						var tasks = [];
 						tasks.push({
-							fn : function(panel, contentRecord, task, callback) {
+							fn: function(panel, contentRecord, task, callback) {
 								var newDateRange = dateRange.clone();
 								if (!contentRecord.isOpened()) {
 									var fn = function(store, recordFromStore) {
@@ -683,17 +683,17 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 									// server was obtained. During that loop all other stores
 									// will be modified as well, and we don't want our changes
 									// to be applied to any other store then the current.
-									contentRecord.getStore().on('open', fn, this, { delay : 1 });
+									contentRecord.getStore().on('open', fn, this, { delay: 1 });
 								} else {
 									this.doAppointmentChange(contentRecord, newDateRange);
 									callback();
 								}
 							},
-							scope : this
+							scope: this
 						});
 						var config = {
-							recordComponentPluginConfig : {
-								loadTasks : tasks
+							recordComponentPluginConfig: {
+								loadTasks: tasks
 							}
 						};
 						Zarafa.calendar.Actions.openMeetingRequestContent(appointment, config);
@@ -706,12 +706,12 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 			this,
 			[{
 				boxLabel: _('Save changes and send an update to all recipients'),
-				id : 'send_update',
+				id: 'send_update',
 				name: 'select',
 				checked: true
 			},{
 				boxLabel: _('Open meeting request with changes'),
-				id : 'review_changes',
+				id: 'review_changes',
 				name: 'select'
 			}]
 		);
@@ -723,7 +723,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @param {Zarafa.core.DateRange} dateRange The DateRange used to update the record
 	 * @private
 	 */
-	doAppointmentChange : function(record, dateRange)
+	doAppointmentChange: function(record, dateRange)
 	{
 		record.beginEdit();
 
@@ -767,7 +767,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @param {String} text The subject for the new appointment
 	 * @private
 	 */
-	onAppointmentCreate : function(multiview, folder, dateRange, text)
+	onAppointmentCreate: function(multiview, folder, dateRange, text)
 	{
 		if (this.fireEvent('beforeappointmentcreate', this, folder, dateRange, text) !== false) {
 
@@ -791,7 +791,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @param {Ext.EventObject} event The mouse event
 	 * @param {Zarafa.calendar.ui.AppointmentView} The appointment on which the event occurred
 	 */
-	onAppointmentInitDrag : function(multiview, event, appointment)
+	onAppointmentInitDrag: function(multiview, event, appointment)
 	{
 		if (this.showTooltip === true) {
 			var tooltip = multiview.getTooltipInstance();
@@ -810,14 +810,14 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @param {Ext.EventObject} event The mouse event
 	 * @param {Zarafa.calendar.ui.AppointmentView} The appointment on which the event occurred
 	 */
-	onAppointmentEndDrag : Ext.emptyFn,
+	onAppointmentEndDrag: Ext.emptyFn,
 
 	/**
 	 * Called when the component is rendered.
 	 * @param {Ext.Element} container The container in which the panel is being rendered
 	 * @private
 	 */
-	onRender : function(container)
+	onRender: function(container)
 	{
 		// Parent render.
 		Zarafa.calendar.ui.CalendarPanel.superclass.onRender.apply(this, arguments);
@@ -830,7 +830,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * Event handler which is fired when the panel has been resized.
 	 * @private
 	 */
-	onResize : function()
+	onResize: function()
 	{
 		Zarafa.calendar.ui.CalendarPanel.superclass.onResize.apply(this, arguments);
 
@@ -843,7 +843,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * Event handler which is fired when the panel has been rendered
 	 * @private
 	 */
-	afterRender : function()
+	afterRender: function()
 	{
 		Zarafa.calendar.ui.CalendarPanel.superclass.afterRender.apply(this, arguments);
 		this.loadMask = new Zarafa.common.ui.LoadMask(this.body, {msg: this.loadMaskText});
@@ -856,7 +856,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * Returns the calendar's CalendarView object.
 	 * @return {Zarafa.calendar.ui.CalendarMultiView} The calendar view
 	 */
-	getView : function()
+	getView: function()
 	{
 		return this.view;
 	},
@@ -866,7 +866,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * and to get a list of currently selected appointments.
 	 * @return {Zarafa.calendar.ui.AppointmentSelectionModel} the calendar's selection model.
 	 */
-	getSelectionModel : function()
+	getSelectionModel: function()
 	{
 		return this.selectionModel;
 	},
@@ -876,7 +876,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * and to get the currently selected range.
 	 * @return {Zarafa.calendar.ui.DateRangeSelectionModel} date range selection model.
 	 */
-	getRangeSelectionModel : function()
+	getRangeSelectionModel: function()
 	{
 		return this.rangeSelectionModel;
 	},
@@ -886,7 +886,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * {@link Ext.data.Store#beforeload}, {@link Ext.data.Store#load} and {@link Ext.data.Store#exception} events.
 	 * @param {Zarafa.core.data.IPMStore} store The store to bind
 	 */
-	bindStore : function(store)
+	bindStore: function(store)
 	{
 		this.store = store;
 
@@ -908,7 +908,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * unhook all event listeners.
 	 * @param {Zarafa.core.data.IPMStore} store The store to release
 	 */
-	releaseStore : function(store)
+	releaseStore: function(store)
 	{
 		if (!Ext.isDefined(store)) {
 			this.mun(store, {
@@ -929,7 +929,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * data from the server.
 	 * @private
 	 */
-	onBeforeLoad : function()
+	onBeforeLoad: function()
 	{
 		if (this.loadMask) {
 			this.loadMask.show();
@@ -941,7 +941,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * data from the server.
 	 * @private
 	 */
-	onLoad : function()
+	onLoad: function()
 	{
 		if (this.loadMask) {
 			this.loadMask.hide();
@@ -953,7 +953,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * an exception while loading data from the server.
 	 * @private
 	 */
-	onLoadException : function()
+	onLoadException: function()
 	{
 		if (this.loadMask) {
 			this.loadMask.hide();
@@ -975,7 +975,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @param {Boolean} success The success status, True if the notification was successfully received.
 	 * @private
 	 */
-	onStoreNotify : function(store, action, records, data, timestamp, success)
+	onStoreNotify: function(store, action, records, data, timestamp, success)
 	{
 		var selectionModel = this.getRangeSelectionModel();
 
@@ -996,7 +996,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @param {Zarafa.core.data.IPMRecord} clipBoardRecord copied calender item which will paste in calender view.
 	 * @private
 	 */
-	doPaste : function(clipBoardRecord)
+	doPaste: function(clipBoardRecord)
 	{
 		var record = this.createRecordCopy(clipBoardRecord);
 		// Added source record info in message action. which used to
@@ -1009,8 +1009,8 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 		var store = this.model.store;
 		if(record.get('recurring')) {
 			Zarafa.common.Actions.openRecurrenceContent(record, {
-				store : store,
-				pasteItem : true
+				store: store,
+				pasteItem: true
 			});
 		} else {
 			store.add(record);
@@ -1026,7 +1026,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @return {Zarafa.core.DateRange} dateRange new date range.
 	 * @private
 	 */
-	getNewDateRange : function(copiedRecord)
+	getNewDateRange: function(copiedRecord)
 	{
 		var views = this.getView();
 		var dateModelType = this.model.getCurrentDataMode();
@@ -1090,22 +1090,22 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 		// between original and copied appointment/meeting record in calender.
 		var auxiliaryFlags = Zarafa.core.mapi.AppointmentAuxiliaryFlags.auxApptFlagCopied | 0x00000008 | 0x00000080;
 		Ext.apply(record.data, {
-			'subject' : !copiedRecord.isCopied() ? _('Copy')+": "+copiedRecord.get('subject') : copiedRecord.get('subject'),
-			'body' : copiedRecord.get('body'),
-			'location' : copiedRecord.get('location'),
-			'importance' : copiedRecord.get('importance'),
-			'label' : copiedRecord.get('label'),
-			'private' : copiedRecord.get('private'),
-			'busystatus' : copiedRecord.get('busystatus'),
+			'subject': !copiedRecord.isCopied() ? _('Copy')+": "+copiedRecord.get('subject') : copiedRecord.get('subject'),
+			'body': copiedRecord.get('body'),
+			'location': copiedRecord.get('location'),
+			'importance': copiedRecord.get('importance'),
+			'label': copiedRecord.get('label'),
+			'private': copiedRecord.get('private'),
+			'busystatus': copiedRecord.get('busystatus'),
 			'reminder': remainder,
-			'categories' : copiedRecord.get('categories'),
-			'auxiliary_flags' : auxiliaryFlags
+			'categories': copiedRecord.get('categories'),
+			'auxiliary_flags': auxiliaryFlags
 		});
 
 		if (remainder) {
 			Ext.apply(record.data, {
-				'reminder_minutes' : copiedRecord.get('reminder_minutes'),
-				'reminder_time' : copiedRecord.get('reminder_time')
+				'reminder_minutes': copiedRecord.get('reminder_minutes'),
+				'reminder_time': copiedRecord.get('reminder_time')
 			});
 		}
 
@@ -1133,7 +1133,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @param {Zarafa.core.data.IPMRecord} copiedRecord Copy of original recurring appointment/meeting record
 	 * @private
 	 */
-	copyRecurringProps : function (record, copiedRecord)
+	copyRecurringProps: function (record, copiedRecord)
 	{
 		if(copiedRecord.get('alldayevent')) {
 			record.get('startdate').setHours(12);
@@ -1145,23 +1145,23 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 		}
 
 		Ext.apply(record.data , {
-			'recurring' : true,
-			'recurrence_start' : startDate,
-			'recurrence_end' : startDate,
-			'recurrence_endocc' : startOcc + record.get('duration'),
-			'recurrence_startocc' : startOcc,
-			'recurrence_subtype' : copiedRecord.get('recurrence_subtype'),
-			'recurrence_term' : copiedRecord.get('recurrence_term'),
-			'recurrence_type' : copiedRecord.get('recurrence_type'),
-			'recurrence_weekdays' : copiedRecord.get('recurrence_weekdays'),
-			'recurrence_regen' : copiedRecord.get('recurrence_regen'),
-			'recurrence_numoccur' : copiedRecord.get('recurrence_numoccur'),
-			'recurrence_numexceptmod' : copiedRecord.get('recurrence_numexceptmod'),
-			'recurrence_numexcept' : copiedRecord.get('recurrence_numexcept'),
-			'recurrence_everyn' : copiedRecord.get('recurrence_everyn'),
-			'recurrence_month' : copiedRecord.get('recurrence_month'),
-			'recurrence_monthday' : parseInt(startDate.format('d'),10),
-			'recurrence_nday' : copiedRecord.get('recurrence_nday')
+			'recurring': true,
+			'recurrence_start': startDate,
+			'recurrence_end': startDate,
+			'recurrence_endocc': startOcc + record.get('duration'),
+			'recurrence_startocc': startOcc,
+			'recurrence_subtype': copiedRecord.get('recurrence_subtype'),
+			'recurrence_term': copiedRecord.get('recurrence_term'),
+			'recurrence_type': copiedRecord.get('recurrence_type'),
+			'recurrence_weekdays': copiedRecord.get('recurrence_weekdays'),
+			'recurrence_regen': copiedRecord.get('recurrence_regen'),
+			'recurrence_numoccur': copiedRecord.get('recurrence_numoccur'),
+			'recurrence_numexceptmod': copiedRecord.get('recurrence_numexceptmod'),
+			'recurrence_numexcept': copiedRecord.get('recurrence_numexcept'),
+			'recurrence_everyn': copiedRecord.get('recurrence_everyn'),
+			'recurrence_month': copiedRecord.get('recurrence_month'),
+			'recurrence_monthday': parseInt(startDate.format('d'),10),
+			'recurrence_nday': copiedRecord.get('recurrence_nday')
 		});
 		record.set('recurring_pattern', record.generateRecurringPattern());
 		record.updateTimezoneInformation();
@@ -1175,7 +1175,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * @param {Zarafa.core.data.IPMRecord} copiedRecord Copy of original recurring appointment/meeting record
 	 * @private
 	 */
-	copyMeetingProps : function (record, copiedRecord)
+	copyMeetingProps: function (record, copiedRecord)
 	{
 		if (copiedRecord.isMeetingOrganized()) {
 			var store = record.getRecipientStore();
@@ -1184,29 +1184,29 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 				store.add(recipient.copy());
 			}, this);
 			Ext.apply(record.data, {
-				'meeting' : copiedRecord.get('meeting'),
-				'responsestatus' : Zarafa.core.mapi.ResponseStatus.RESPONSE_ORGANIZED,
-				'sender_address_type' : copiedRecord.get('sender_address_type'),
-				'sender_email_address' : copiedRecord.get('sender_email_address'),
-				'sender_entryid' : copiedRecord.get('sender_entryid'),
-				'sender_name' : copiedRecord.get('sender_name'),
-				'sender_presence_status' : copiedRecord.get('sender_presence_status'),
-				'sender_search_key' : copiedRecord.get('sender_search_key'),
+				'meeting': copiedRecord.get('meeting'),
+				'responsestatus': Zarafa.core.mapi.ResponseStatus.RESPONSE_ORGANIZED,
+				'sender_address_type': copiedRecord.get('sender_address_type'),
+				'sender_email_address': copiedRecord.get('sender_email_address'),
+				'sender_entryid': copiedRecord.get('sender_entryid'),
+				'sender_name': copiedRecord.get('sender_name'),
+				'sender_presence_status': copiedRecord.get('sender_presence_status'),
+				'sender_search_key': copiedRecord.get('sender_search_key'),
 				'sender_username': copiedRecord.get('sender_username'),
-				'sent_representing_address_type' : copiedRecord.get('sent_representing_address_type'),
-				'sent_representing_email_address' : copiedRecord.get('sent_representing_email_address'),
-				'sent_representing_entryid' : copiedRecord.get('sent_representing_entryid'),
-				'sent_representing_name' : copiedRecord.get('sent_representing_name'),
-				'sent_representing_presence_status' : copiedRecord.get('sent_representing_presence_status'),
-				'sent_representing_search_key' : copiedRecord.get('sent_representing_search_key'),
-				'sent_representing_username' : copiedRecord.get('sent_representing_username'),
-				'reply_name' : copiedRecord.get('reply_name')
+				'sent_representing_address_type': copiedRecord.get('sent_representing_address_type'),
+				'sent_representing_email_address': copiedRecord.get('sent_representing_email_address'),
+				'sent_representing_entryid': copiedRecord.get('sent_representing_entryid'),
+				'sent_representing_name': copiedRecord.get('sent_representing_name'),
+				'sent_representing_presence_status': copiedRecord.get('sent_representing_presence_status'),
+				'sent_representing_search_key': copiedRecord.get('sent_representing_search_key'),
+				'sent_representing_username': copiedRecord.get('sent_representing_username'),
+				'reply_name': copiedRecord.get('reply_name')
 			});
 		} else if(copiedRecord.isMeetingReceived()) {
 			Ext.apply(record.data, {
-				'meeting' : Zarafa.core.mapi.MeetingStatus.MEETING,
-				'responsestatus' : Zarafa.core.mapi.ResponseStatus.RESPONSE_ORGANIZED,
-				'sensitivity' : copiedRecord.get('sensitivity')
+				'meeting': Zarafa.core.mapi.MeetingStatus.MEETING,
+				'responsestatus': Zarafa.core.mapi.ResponseStatus.RESPONSE_ORGANIZED,
+				'sensitivity': copiedRecord.get('sensitivity')
 			});
 		}
 	},
@@ -1215,7 +1215,7 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 * Called when the calendar is being destroyed, this will also
 	 * destroy the {@link #view}.
 	 */
-	destroy : function()
+	destroy: function()
 	{
 		this.view.destroy();
 		// super class destroy

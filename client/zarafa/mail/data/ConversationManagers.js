@@ -14,16 +14,16 @@ Zarafa.mail.data.ConversationManagers = Ext.extend(Ext.util.Observable, {
      * @property
      * @type Object
      */
-    managers : {},
+    managers: {},
 
     /**
      * @constructor
      * @param config
      */
-    constructor : function(config)
+    constructor: function(config)
     {
         this.managers = Ext.apply({}, {
-            openedRecordManager : new Ext.util.MixedCollection()
+            openedRecordManager: new Ext.util.MixedCollection()
         });
 
         Zarafa.mail.data.ConversationManagers.superclass.constructor.call(this, config);
@@ -33,7 +33,7 @@ Zarafa.mail.data.ConversationManagers = Ext.extend(Ext.util.Observable, {
      * @return {Ext.util.MixedCollection} The opened conversation manager which manages the
      * all opened conversation.
      */
-    getOpenedRecordManager : function ()
+    getOpenedRecordManager: function ()
     {
         return this.managers.openedRecordManager;
     },
@@ -44,7 +44,7 @@ Zarafa.mail.data.ConversationManagers = Ext.extend(Ext.util.Observable, {
      * @param {Ext.util.MixedCollection} openedRecordManager The {@link Ext.util.MixedCollection openedRecord} which manages the
      * all opened conversation
      */
-    setOpenedRecord : function (openedRecordManager)
+    setOpenedRecord: function (openedRecordManager)
     {
         this.managers.openedRecordManager = openedRecordManager;
     },
@@ -55,7 +55,7 @@ Zarafa.mail.data.ConversationManagers = Ext.extend(Ext.util.Observable, {
      *
      * @param {Zarafa.core.IPMRecord} headerRecord The header record of conversation.
      */
-    closeAll : function (headerRecord)
+    closeAll: function (headerRecord)
     {
         // Close all conversation.
         var openedRecordManager = new Ext.util.MixedCollection();

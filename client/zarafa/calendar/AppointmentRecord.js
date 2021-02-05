@@ -14,15 +14,15 @@ Ext.namespace('Zarafa.calendar');
 Zarafa.calendar.AppointmentRecordFields = [
 	{name: 'importance', type: 'int', defaultValue: Zarafa.core.mapi.Importance.NORMAL},
 	{name: 'sensitivity', type: 'int', defaultValue: Zarafa.core.mapi.Sensitivity.NONE},
-	{name: 'startdate', type: 'date', dateFormat: 'timestamp', allowBlank : false, sortDir : 'DESC'},
-	{name: 'duedate', type: 'date', dateFormat: 'timestamp', allowBlank : false, sortDir : 'DESC'},
+	{name: 'startdate', type: 'date', dateFormat: 'timestamp', allowBlank: false, sortDir: 'DESC'},
+	{name: 'duedate', type: 'date', dateFormat: 'timestamp', allowBlank: false, sortDir: 'DESC'},
 	{name: 'basedate', type: 'date', dateFormat: 'timestamp', defaultValue: null},
 	{name: 'recurring', type: 'boolean', defaultValue: false},
 	{name: 'recurring_reset', type: 'boolean', defaultValue: false},
 	{name: 'recurring_pattern', type: 'string'},
-	{name: 'startdate_recurring', type: 'date', dateFormat: 'timestamp', defaultValue: null, sortDir : 'DESC'},
-	{name: 'enddate_recurring', type: 'date', dateFormat: 'timestamp', defaultValue: null, sortDir : 'DESC'},
-	{name: 'exception', type : 'boolean', defaultValue: false},
+	{name: 'startdate_recurring', type: 'date', dateFormat: 'timestamp', defaultValue: null, sortDir: 'DESC'},
+	{name: 'enddate_recurring', type: 'date', dateFormat: 'timestamp', defaultValue: null, sortDir: 'DESC'},
+	{name: 'exception', type: 'boolean', defaultValue: false},
 	{name: 'reply_time', type: 'date', dateFormat: 'timestamp', defaultValue: null},
 	{name: 'reply_name', type: 'string', defaultValue: ''},
 	{name: 'busystatus', type: 'int', defaultValue: Zarafa.core.mapi.BusyStatus.BUSY},
@@ -40,8 +40,8 @@ Zarafa.calendar.AppointmentRecordFields = [
 	{name: 'reminder_minutes', type: 'int'},
 	{name: 'reminder_time', type: 'date', dateFormat: 'timestamp', defaultValue: null},
 	{name: 'flagdueby', type: 'date', dateFormat: 'timestamp', defaultValue: null},
-	{name: 'commonstart', type: 'date', dateFormat: 'timestamp', allowBlank : false},
-	{name: 'commonend', type: 'date', dateFormat: 'timestamp', allowBlank : false},
+	{name: 'commonstart', type: 'date', dateFormat: 'timestamp', allowBlank: false},
+	{name: 'commonend', type: 'date', dateFormat: 'timestamp', allowBlank: false},
 	{name: 'commonassign'},
 	{name: 'counter_proposal', type: 'boolean', defaultValue: false},
 	// TODO: Move all Recurrence properties into a single object
@@ -146,7 +146,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * @type Array
 	 * @private
 	 */
-	baseIdProperties : [ 'entryid', 'store_entryid', 'parent_entryid', 'basedate', 'attach_num' ],
+	baseIdProperties: [ 'entryid', 'store_entryid', 'parent_entryid', 'basedate', 'attach_num' ],
 
 	/**
 	 * Compare this {@link Zarafa.core.data.IPMRecord record} instance with another one to see
@@ -155,7 +155,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * @param {Zarafa.core.data.IPMRecord} record The IPMRecord to compare with
 	 * @return {Boolean} True if the records are the same.
 	 */
-	equals : function(record)
+	equals: function(record)
 	{
 		if (Zarafa.calendar.AppointmentRecord.superclass.equals.apply(this, arguments) === true) {
 			// For recurring appointments we must also check if we have a match on the occurrence (through the basedate).
@@ -169,7 +169,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * will generate the recurring pattern string that can be saved in recurring_pattern proeprty of {@link Zarafa.core.data.IPMRecord IPMRecord}.
 	 * @return {String} Recurring pattern string that can be saved in {@link Zarafa.core.data.IPMRecord IPMRecord}.
 	 */
-	generateRecurringPattern : function()
+	generateRecurringPattern: function()
 	{
 		// Start formatting the properties in such a way we can apply
 		// them directly into the recurrence pattern.
@@ -310,7 +310,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * Generates meeting time details which will be added to meeting response body.
 	 * @return {String} generated body message.
 	 */
-	generateMeetingTimeInfo : function(responseText)
+	generateMeetingTimeInfo: function(responseText)
 	{
 		var messageBody = responseText || '';
 		var startDate = this.get('startdate');
@@ -343,7 +343,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * @param {Boolean} noResponse true if no response should be send to organizer else false
 	 * @private
 	 */
-	sendMeetingRequestResponse : function(responseType, meetingTimeInfo, sendResponse)
+	sendMeetingRequestResponse: function(responseType, meetingTimeInfo, sendResponse)
 	{
 		if (Ext.isDefined(responseType)) {
 			switch(responseType)
@@ -372,7 +372,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * @param {String} comment user's extra comments to response
 	 * @param {Boolean} sendResponse send response to organizer
 	 */
-	respondToMeetingRequest : function(responseType, comment, sendResponse)
+	respondToMeetingRequest: function(responseType, comment, sendResponse)
 	{
 		this.sendMeetingRequestResponse(responseType, this.generateMeetingTimeInfo(comment), sendResponse);
 	},
@@ -385,7 +385,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * @param {Date} startDate Proposed start time for the meeting
 	 * @param {Date} endDate Proposed end time for the meeting
 	 */
-	proposeNewTimeToMeetingRequest : function(responseType, comment, startDate, endDate)
+	proposeNewTimeToMeetingRequest: function(responseType, comment, startDate, endDate)
 	{
 		this.set('counter_proposal', true);
 
@@ -402,7 +402,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * @param {Date} startDate Proposed start time for the meeting
 	 * @param {Date} endDate Proposed end time for the meeting
 	 */
-	generateProposeNewTimeBody : function (comment, startDate, endDate)
+	generateProposeNewTimeBody: function (comment, startDate, endDate)
 	{
 		var proposeNewTimeBody = comment + '\n\n\n-----------\n' + _('New Meeting Time Proposed') + ':\n';
 		// # TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
@@ -417,7 +417,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * Function cancels Meeting invitation and sends Meeting Cancellation message.
 	 * @param {String} Meeting Time Information shown in message body.
 	 */
-	cancelInvitation : function(meetingTimeInfo)
+	cancelInvitation: function(meetingTimeInfo)
 	{
 		this.addMessageAction('action_type', 'cancelInvitation');
 		this.addMessageAction('meetingTimeInfo', this.generateMeetingTimeInfo(meetingTimeInfo));
@@ -431,7 +431,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * Function which cancel/decline/deletes Meeting and sends Meeting decline message to organizer.
 	 * @param {String} sendUpdateFlag flag which decides messageAction for the deleting item
 	 */
-	declineMeeting : function(sendUpdateFlag)
+	declineMeeting: function(sendUpdateFlag)
 	{
 		var store = this.getStore();
 
@@ -448,7 +448,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * {@link Zarafa.calendar.AppointmentRecord AppointmentRecord} is in past or not.
 	 * @return {Boolean} true if meeting/appointment is in past else false.
 	 */
-	isAppointmentInPast : function()
+	isAppointmentInPast: function()
 	{
 		var dueDate = this.get('duedate');
 
@@ -468,7 +468,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * @return {Boolean} Returns true if the {@link Zarafa.core.data.AppointmentRecord AppointmentRecord} has
 	 * been sent to the invitees.
 	 */
-	isMeetingSent : function()
+	isMeetingSent: function()
 	{
 		return this.isMeetingOrganized() && this.get('request_sent') === true;
 	},
@@ -477,7 +477,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * @return {Boolean} Returns true if the {@link Zarafa.core.data.AppointmentRecord AppointmentRecord} has
 	 * meeting status received.
 	 */
-	isMeetingReceived : function()
+	isMeetingReceived: function()
 	{
 		return this.get('meeting') === Zarafa.core.mapi.MeetingStatus.MEETING_RECEIVED &&
 			   this.get('responsestatus') !== Zarafa.core.mapi.ResponseStatus.RESPONSE_ORGANIZED;
@@ -487,7 +487,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * @return {Boolean} Returns true if the {@link Zarafa.core.data.AppointmentRecord AppointmentRecord} has
 	 * meeting status organized.
 	 */
-	isMeetingOrganized : function()
+	isMeetingOrganized: function()
 	{
 		return this.get('meeting') === Zarafa.core.mapi.MeetingStatus.MEETING &&
 			   this.get('responsestatus') === Zarafa.core.mapi.ResponseStatus.RESPONSE_ORGANIZED;
@@ -497,7 +497,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * @return {Boolean} Returns true if the {@link Zarafa.core.data.AppointmentRecord AppointmentRecord} has
 	 * meeting status nonmeeting.
 	 */
-	isMeeting : function()
+	isMeeting: function()
 	{
 		var meeting = this.get('meeting');
 		return (meeting && meeting !== Zarafa.core.mapi.MeetingStatus.NONMEETING);
@@ -507,7 +507,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * @return {Boolean} Returns true if the {@link Zarafa.core.data.AppointmentRecord AppointmentRecord} has
 	 * meeting status meeting canceled.
 	 */
-	isMeetingCanceled : function()
+	isMeetingCanceled: function()
 	{
 		var meeting = this.get('meeting');
 		return (meeting === Zarafa.core.mapi.MeetingStatus.MEETING_CANCELED || meeting === Zarafa.core.mapi.MeetingStatus.MEETING_RECEIVED_AND_CANCELED);
@@ -517,7 +517,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * @return {Boolean} Returns true if the {@link Zarafa.core.data.AppointmentRecord AppointmentRecord} has
 	 * meeting status meeting received and canceled.
 	 */
-	isMeetingReceivedAndCanceled : function()
+	isMeetingReceivedAndCanceled: function()
 	{
 		return this.get('meeting') === Zarafa.core.mapi.MeetingStatus.MEETING_RECEIVED_AND_CANCELED &&
 			   this.get('responsestatus') !== Zarafa.core.mapi.ResponseStatus.RESPONSE_ORGANIZED;
@@ -526,7 +526,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	/**
 	 * @return {Boolean} Returns true when the organizer requires a response from the attendee
 	 */
-	isMeetingResponseRequired : function()
+	isMeetingResponseRequired: function()
 	{
 		return this.isMeetingReceived() && this.get('responsestatus') !== Zarafa.core.mapi.ResponseStatus.RESPONSE_NONE;
 	},
@@ -535,7 +535,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * @return {Boolean} Returns true if the {@link Zarafa.core.data.AppointmentRecord AppointmentRecord} is
 	 * recurring appointment.
 	 */
-	isRecurring : function()
+	isRecurring: function()
 	{
 		return this.get('recurring') === true && !this.hasIdProp('basedate');
 	},
@@ -544,7 +544,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * @return {Boolean} Returns true if the {@link Zarafa.core.data.AppointmentRecord AppointmentRecord} is
 	 * recurring occurrence appointment.
 	 */
-	isRecurringOccurence : function()
+	isRecurringOccurence: function()
 	{
 		return Ext.isDate(this.get('basedate'));
 	},
@@ -553,7 +553,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * @return {Boolean} Returns true if the {@link Zarafa.core.data.AppointmentRecord AppointmentRecord} is
 	 * recurring occurrence appointment.
 	 */
-	isRecurringException : function()
+	isRecurringException: function()
 	{
 		return Ext.isDate(this.get('basedate')) && this.get('exception') === true;
 	},
@@ -563,7 +563,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * For appointment record we need to also check if message is not an exception/occurrence of recurring appointment.
 	 * @return {Boolean} True if this message is a sub message.
 	 */
-	isSubMessage : function()
+	isSubMessage: function()
 	{
 		// Recurring occurrences can never be embedded message
 		if(this.isRecurringOccurence()) {
@@ -576,7 +576,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	/**
 	 * @return {Boolean} Returns true if this
 	 */
-	hasRecurringExceptions : function()
+	hasRecurringExceptions: function()
 	{
 		// The appointment is not open, we don't know if there is an exeption or not
 		if (!this.isOpened()) {
@@ -606,7 +606,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * Called by the store after the record was opened successfully.
 	 * @private
 	 */
-	afterOpen : function()
+	afterOpen: function()
 	{
 		if (this.isRecurring()) {
 			// Recurring appointments can be opened as series or as occurrence.
@@ -643,7 +643,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	/**
 	 * @return {Boolean} true if the record has been fully loaded.
 	 */
-	isOpened : function()
+	isOpened: function()
 	{
 		if (!this.isRecurring()) {
 			return this.opened === true;
@@ -655,7 +655,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	/**
 	 * @return {Boolean} true if the record is copied record.
 	 */
-	isCopied : function ()
+	isCopied: function ()
 	{
 		return (this.get('auxiliary_flags') & Zarafa.core.mapi.AppointmentAuxiliaryFlags.auxApptFlagCopied) > 0;
 	},
@@ -666,7 +666,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * @param {String} name The action name to add to the list.
 	 * @param {String} value The value attached to the action name
 	 */
-	addMessageAction : function(name, value)
+	addMessageAction: function(name, value)
 	{
 		Zarafa.calendar.AppointmentRecord.superclass.addMessageAction.apply(this, arguments);
 		if (name === 'send') {
@@ -677,7 +677,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 			// meetingTimeInfo. In this case the server needs to add this.
 			if(!this.isOpened()){
 				this.addMessageAction('append_body', true);
-			}else{
+			} else {
 				this.deleteMessageAction('append_body');
 			}
 		}
@@ -690,7 +690,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * @override
 	 * @private
 	 */
-	afterEdit : function()
+	afterEdit: function()
 	{
 		if (this.isMeeting() && this.hasMessageAction('send')) {
 			this.addMessageAction('meetingTimeInfo', this.generateMeetingTimeInfo(this.getBody()));
@@ -703,7 +703,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * will be initialized according to the timezone information which is currently
 	 * valid for this browser (See {@link Date#getTimezoneStruct}).
 	 */
-	updateTimezoneInformation : function()
+	updateTimezoneInformation: function()
 	{
 		var tz = Date.getTimezoneStruct();
 
@@ -727,7 +727,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * If this appointment is a {@link #isMeeting meeting} then the organizer will be added into
 	 * the recipients table otherwise all recipients will be removed.
 	 */
-	updateMeetingRecipients : function()
+	updateMeetingRecipients: function()
 	{
 		var recipientStore = this.getSubStore('recipients');
 		if (!Ext.isDefined(recipientStore)) {
@@ -753,9 +753,9 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 
 			if (orgIndex < 0) {
 				var props = {
-					recipient_type : Zarafa.core.mapi.RecipientType.MAPI_ORIG,
-					recipient_flags : Zarafa.core.mapi.RecipientFlags.recipSendable | Zarafa.core.mapi.RecipientFlags.recipOrganizer,
-					recipient_trackstatus : Zarafa.core.mapi.ResponseStatus.RESPONSE_ORGANIZED
+					recipient_type: Zarafa.core.mapi.RecipientType.MAPI_ORIG,
+					recipient_flags: Zarafa.core.mapi.RecipientFlags.recipSendable | Zarafa.core.mapi.RecipientFlags.recipOrganizer,
+					recipient_trackstatus: Zarafa.core.mapi.ResponseStatus.RESPONSE_ORGANIZED
 				};
 
 				// Check if the sent_representing_* properties are there,
@@ -763,17 +763,17 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 				// otherwise the real sender is the organizer,
 				if (this.get('sent_representing_entryid')) {
 					Ext.apply(props, {
-						display_name : this.get('sent_representing_name'),
-						smtp_address : this.get('sent_representing_email_address'),
-						address_type : this.get('sent_representing_address_type'),
-						entryid : this.get('sent_representing_entryid')
+						display_name: this.get('sent_representing_name'),
+						smtp_address: this.get('sent_representing_email_address'),
+						address_type: this.get('sent_representing_address_type'),
+						entryid: this.get('sent_representing_entryid')
 					});
 				} else {
 					Ext.apply(props, {
-						display_name : this.get('sender_name'),
-						smtp_address : this.get('sender_email_address'),
-						address_type : this.get('sender_address_type'),
-						entryid : this.get('sender_entryid')
+						display_name: this.get('sender_name'),
+						smtp_address: this.get('sender_email_address'),
+						address_type: this.get('sender_address_type'),
+						entryid: this.get('sender_entryid')
 					});
 				}
 
@@ -790,7 +790,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 				});
 				existingRecords.push(organizer);
 
-				recipientStore.loadRecords({records : existingRecords}, undefined, true);
+				recipientStore.loadRecords({records: existingRecords}, undefined, true);
 
 				// Register for an update event of ShadowStore to add organizer every time
 				// when server responded about recipient(s) related changes
@@ -823,7 +823,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * @param {String} organizerId EntryID of current organizer
 	 * @return {Boolean} True if organizer is same, false if organizer is changed
 	 */
-	isOrganizerChanged : function(organizerId)
+	isOrganizerChanged: function(organizerId)
 	{
 		var isRepresentingId = Zarafa.core.EntryId.compareEntryIds(organizerId, this.get('sent_representing_entryid'));
 		var isSenderId = Zarafa.core.EntryId.compareEntryIds(organizerId, this.get('sender_entryid'));
@@ -838,7 +838,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * @param {Ext.data.Record} record The Record that was updated
 	 * @param {String} operation The update operation being performed
 	 */
-	addOrganizerAfterUpdate : function(store, record, operation)
+	addOrganizerAfterUpdate: function(store, record, operation)
 	{
 		if(operation === Ext.data.Record.COMMIT) {
 			// Unregister the update event from shadow store as it will be registered again if there is no organizer found
@@ -851,7 +851,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * Update the current appointment to a meeting, this will update the 'meeting'
 	 * and 'responsestatus' properties to the proper values.
 	 */
-	convertToMeeting : function()
+	convertToMeeting: function()
 	{
 		this.beginEdit();
 		this.set('meeting', Zarafa.core.mapi.MeetingStatus.MEETING);
@@ -864,7 +864,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * Update the current meeting to a normal appointment, this will update the 'meeting'
 	 * and 'responsestatus' properties to the proper values.
 	 */
-	convertToAppointment : function()
+	convertToAppointment: function()
 	{
 		this.beginEdit();
 		this.set('meeting', Zarafa.core.mapi.MeetingStatus.NONMEETING);
@@ -880,7 +880,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * so the record can be correctly identified as an occurrence record.
 	 * @return {Zarafa.core.data.IPMRecord} record that can be used to open occurrence of a series.
 	 */
-	convertToOccurenceRecord : function()
+	convertToOccurenceRecord: function()
 	{
 		// only convert it when its a series record
 		if(this.hasIdProp('basedate') === false) {
@@ -915,7 +915,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * as a series record.
 	 * @return {Zarafa.core.data.IPMRecord} record that can be used to open whole series.
 	 */
-	convertToSeriesRecord : function()
+	convertToSeriesRecord: function()
 	{
 		// only convert it when its a occurrence record
 		if(this.hasIdProp('basedate') === true) {
@@ -944,7 +944,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * as a part of recurring pattern.
 	 * @return {String} A string containing selected week days separated by comma.
 	 */
-	prepareWeekDaysString : function()
+	prepareWeekDaysString: function()
 	{
 		var weekDaysObject = new Ext.util.MixedCollection();
 		var weekStart = container.getSettingsModel().get('zarafa/v1/main/week_start');
@@ -954,7 +954,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 		for (var i = 0; i < Date.dayNames.length; i++) {
 			weekDaysObject.add({
 				dayName: Date.dayNames[(weekStart + i) % 7],
-				dayValue : Math.pow(2, (weekStart + i) % 7)
+				dayValue: Math.pow(2, (weekStart + i) % 7)
 			});
 		}
 
@@ -980,7 +980,7 @@ Zarafa.calendar.AppointmentRecord = Ext.extend(Zarafa.core.data.MessageRecord, {
 	 * @param {Boolean} allAsZip (optional) True to downloading all the attachments as ZIP
 	 * @return {String} URL for downloading message as file.
 	 */
-	getDownloadMessageUrl : function(allAsZip)
+	getDownloadMessageUrl: function(allAsZip)
 	{
 		var url = container.getBaseURL();
 		url = Ext.urlAppend(url, 'load=download_appointment');

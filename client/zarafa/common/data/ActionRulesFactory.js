@@ -19,13 +19,13 @@ Zarafa.common.data.ActionRulesFactory = Ext.extend(Object,{
 	 * @property
 	 * @type Object
 	 */
-	actionDefinitions : {},
+	actionDefinitions: {},
 
 	/**
 	 * @constructor
 	 * @param {Object} config configuration object.
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 		this.actionDefinitions = Zarafa.common.rules.data.RulesData.getAction();
@@ -43,7 +43,7 @@ Zarafa.common.data.ActionRulesFactory = Ext.extend(Object,{
 	 * @return {Function} The Action Definition or false if given condition is not registered.
 	 * If there already exists a definition then function will return that definition.
 	 */
-	registerActionDefinition : function(key, actionFunction)
+	registerActionDefinition: function(key, actionFunction)
 	{
 		if (this.actionDefinitions[key]) {
 			return this.actionDefinitions[key];
@@ -63,7 +63,7 @@ Zarafa.common.data.ActionRulesFactory = Ext.extend(Object,{
 	 * in the definitions table.
 	 * @return {Function} registered Action Definition from definitions table or false if given condition is not registered.
 	 */
-	getActionById : function(key)
+	getActionById: function(key)
 	{
 		if (!Ext.isEmpty(this.actionDefinitions[key])) {
 			return this.actionDefinitions[key];
@@ -79,7 +79,7 @@ Zarafa.common.data.ActionRulesFactory = Ext.extend(Object,{
 	 * in the definitions table.
 	 * @return {Boolean} true if successfully definition removed else false.
 	 */
-	unregisterActionDefinition : function(key)
+	unregisterActionDefinition: function(key)
 	{
 		if (!Ext.isEmpty(this.actionDefinitions[key])) {
 			delete this.actionDefinitions[key];

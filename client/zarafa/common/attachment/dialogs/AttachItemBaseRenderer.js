@@ -13,7 +13,7 @@ Zarafa.common.attachment.dialogs.AttachItemBaseRenderer = Ext.extend(Object, {
 	 * @property labels
 	 * @type Array
 	 */
-	labels : undefined,
+	labels: undefined,
 
 	/**
 	 * Will store object of {@link Ext.XTemplate XTemplate} that is created by {@link #generateText} for html data,
@@ -21,7 +21,7 @@ Zarafa.common.attachment.dialogs.AttachItemBaseRenderer = Ext.extend(Object, {
 	 * @property htmlTemplate
 	 * @type Ext.XTemplate
 	 */
-	htmlTemplate : undefined,
+	htmlTemplate: undefined,
 
 	/**
 	 * Will store object of {@link Ext.XTemplate XTemplate} that is created by {@link #generateText} for plain text data,
@@ -29,24 +29,24 @@ Zarafa.common.attachment.dialogs.AttachItemBaseRenderer = Ext.extend(Object, {
 	 * @property plainTemplate
 	 * @type Ext.XTemplate
 	 */
-	plainTemplate : undefined,
+	plainTemplate: undefined,
 
 	/**
 	 * Constructor will intialize default properties
 	 * @param {Object} config configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		this.labels = Ext.apply({}, {
-			subject : _('Subject'),
-			display_to : _('To'),
-			display_cc : _('Cc'),
-			display_bcc : _('Bcc'),
-			from : _('From'),
-			categories : _('Categories'),
-			sensitivity : _('Sensitivity'),
-			importance : _('Importance'),
-			attachment_names : _('Attachments')
+			subject: _('Subject'),
+			display_to: _('To'),
+			display_cc: _('Cc'),
+			display_bcc: _('Bcc'),
+			from: _('From'),
+			categories: _('Categories'),
+			sensitivity: _('Sensitivity'),
+			importance: _('Importance'),
+			attachment_names: _('Attachments')
 		});
 	},
 
@@ -57,13 +57,13 @@ Zarafa.common.attachment.dialogs.AttachItemBaseRenderer = Ext.extend(Object, {
 	 * @return {String} data that can be put in the record's body property.
 	 * @public
 	 */
-	generateText : function(record, htmlFormat)
+	generateText: function(record, htmlFormat)
 	{
 		var template;
 
 		if(htmlFormat) {
 			if(!this.htmlTemplate) {
-				this.htmlTemplate =  new Ext.XTemplate(
+				this.htmlTemplate = new Ext.XTemplate(
 					this.cleanTemplate(
 						this.generateHTMLTemplate()
 					)
@@ -73,7 +73,7 @@ Zarafa.common.attachment.dialogs.AttachItemBaseRenderer = Ext.extend(Object, {
 			template = this.htmlTemplate;
 		} else {
 			if(!this.plainTemplate) {
-				this.plainTemplate =  new Ext.XTemplate(
+				this.plainTemplate = new Ext.XTemplate(
 					this.generatePlainTemplate()
 				);
 			}
@@ -107,7 +107,7 @@ Zarafa.common.attachment.dialogs.AttachItemBaseRenderer = Ext.extend(Object, {
 	 * which will be recursively checked.
 	 * @return {String} data template string for group of rows.
 	 */
-	addPlainRowGroup : function(group)
+	addPlainRowGroup: function(group)
 	{
 		var html = '';
 		// add rows
@@ -135,7 +135,7 @@ Zarafa.common.attachment.dialogs.AttachItemBaseRenderer = Ext.extend(Object, {
 	 * @return {String} data template string for a row.
 	 * @protected
 	 */
-	addPlainRow : function(tag, format)
+	addPlainRow: function(tag, format)
 	{
 		var html = '';
 
@@ -154,7 +154,7 @@ Zarafa.common.attachment.dialogs.AttachItemBaseRenderer = Ext.extend(Object, {
 	 * @return {String} data template string for a row.
 	 * @protected
 	 */
-	addPlainSeperator : function(group)
+	addPlainSeperator: function(group)
 	{
 		if(group) {
 			// if group is provided then create condition which checks if separator should be added or not
@@ -197,7 +197,7 @@ Zarafa.common.attachment.dialogs.AttachItemBaseRenderer = Ext.extend(Object, {
 	 * which will be recursively checked.
 	 * @return {String} data template string for group of rows.
 	 */
-	addHTMLRowGroup : function(group)
+	addHTMLRowGroup: function(group)
 	{
 		var html = '';
 		// add rows
@@ -225,12 +225,12 @@ Zarafa.common.attachment.dialogs.AttachItemBaseRenderer = Ext.extend(Object, {
 	 * @return {String} data template string for a row.
 	 * @protected
 	 */
-	addHTMLRow : function(tag, format)
+	addHTMLRow: function(tag, format)
 	{
 		var html = '';
 
 		html += '<tpl if="!Ext.isEmpty(values.' + tag + ')">';
-		html += '<div width=\'100%\'><div style="display: inline-block; width: 20%;"><strong>' + this.getLabel(tag) + ' :</strong></div><div style="display: inline-block; width: 80%">' + format + '</div></div>';
+		html += '<div width=\'100%\'><div style="display: inline-block; width: 20%;"><strong>' + this.getLabel(tag) + ':</strong></div><div style="display: inline-block; width: 80%">' + format + '</div></div>';
 		html += '</tpl>';
 
 		return html;
@@ -244,7 +244,7 @@ Zarafa.common.attachment.dialogs.AttachItemBaseRenderer = Ext.extend(Object, {
 	 * @return {String} data template string for a row.
 	 * @protected
 	 */
-	addHTMLSeperator : function(group)
+	addHTMLSeperator: function(group)
 	{
 		if(group) {
 			// if group is provided then create condition which checks if separator should be added or not
@@ -286,7 +286,7 @@ Zarafa.common.attachment.dialogs.AttachItemBaseRenderer = Ext.extend(Object, {
 	 * @return {String} The clean template
 	 * @private
 	 */
-	cleanTemplate : function(template)
+	cleanTemplate: function(template)
 	{
 		// Conversions:
 		// - \r is an illegal character which cannot be present in a string
@@ -299,21 +299,21 @@ Zarafa.common.attachment.dialogs.AttachItemBaseRenderer = Ext.extend(Object, {
 	 * This will generate template for the html format only.
 	 * @return {String} The HTML for the XTemplate to use
 	 */
-	generateHTMLTemplate : Ext.emptyFn,
+	generateHTMLTemplate: Ext.emptyFn,
 
 	/**
 	 * Function should be used to generate template which can be used by {@link #generateText} to add data into template and return the string that is generated.
 	 * This will generate template for the plain text format only.
 	 * @return {String} The HTML for the XTemplate to use
 	 */
-	generatePlainTemplate : Ext.emptyFn,
+	generatePlainTemplate: Ext.emptyFn,
 
 	/**
 	 * Function should be used to get row label based on record property. Function will be used by {@link #addPlainRow} and {@link #addHTMLRow}.
 	 * @param {String} tag field name or property from the record.
 	 * @return {String} The label to use for showing particular data from record.
 	 */
-	getLabel : function(tag)
+	getLabel: function(tag)
 	{
 		return this.labels[tag];
 	},
@@ -324,7 +324,7 @@ Zarafa.common.attachment.dialogs.AttachItemBaseRenderer = Ext.extend(Object, {
 	 * @param {Boolean} htmlFormat decide if html or plain data is requested, this will depend on the user settings.
 	 * @return {Array} An array of data which is customized for our purpose.
 	 */
-	prepareData : function(record, htmlFormat)
+	prepareData: function(record, htmlFormat)
 	{
 		// copy all properties
 		var data = Ext.apply({}, record.data);

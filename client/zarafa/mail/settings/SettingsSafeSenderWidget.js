@@ -12,27 +12,27 @@ Zarafa.mail.settings.SettingsSafeSendersWidget = Ext.extend(Zarafa.settings.ui.S
 	/**
 	 * @property {Zarafa.settings.SettingsModel} model
 	 */
-	model : undefined,
+	model: undefined,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			title : _('Safe Senders'),
-			xtype : 'zarafa.settingssafesenderswidget',
-			name : 'zarafa/v1/contexts/mail/safe_senders_list',
+			title: _('Safe Senders'),
+			xtype: 'zarafa.settingssafesenderswidget',
+			name: 'zarafa/v1/contexts/mail/safe_senders_list',
 			height: 400,
-			layout : {
-				type : 'vbox',
-				align : 'stretch',
-				pack  : 'start'
+			layout: {
+				type: 'vbox',
+				align: 'stretch',
+				pack: 'start'
 			},
-			items : [{
+			items: [{
 				xtype: 'displayfield',
 				value: _('To protect your privacy email addresses or domains can only be added via the "Add to safe sender list" functionality in an opened email.'),
 				fieldClass: 'x-form-display-field k-safesenders-extrainfo'
@@ -40,18 +40,18 @@ Zarafa.mail.settings.SettingsSafeSendersWidget = Ext.extend(Zarafa.settings.ui.S
 				xtype: 'spacer',
 				height: 10
 			},{
-				xtype : 'container',
-				layout : {
-					type : 'hbox',
-					pack  : 'start'
+				xtype: 'container',
+				layout: {
+					type: 'hbox',
+					pack: 'start'
 				},
-				items : [{
-					xtype : 'zarafa.safesendergrid',
-					ref : '../safeSendersGrid',
-					flex :1
+				items: [{
+					xtype: 'zarafa.safesendergrid',
+					ref: '../safeSendersGrid',
+					flex:1
 				},{
 					xtype: 'container',
-					height : 400,
+					height: 400,
 					width: 160,
 					layout: {
 						type: 'vbox',
@@ -60,11 +60,11 @@ Zarafa.mail.settings.SettingsSafeSendersWidget = Ext.extend(Zarafa.settings.ui.S
 					},
 					items: [{
 						xtype: 'button',
-						handler : this.onDeleteSafeSender,
+						handler: this.onDeleteSafeSender,
 						text: _('Delete'),
 						ref: '../../deleteButton',
 						disabled: true,
-						scope : this
+						scope: this
 					},{
 						xtype: 'spacer',
 						height: 20
@@ -87,7 +87,7 @@ Zarafa.mail.settings.SettingsSafeSendersWidget = Ext.extend(Zarafa.settings.ui.S
 	 * Initialize events for the widget.
 	 * @private
 	 */
-	initEvents : function()
+	initEvents: function()
 	{
 		Zarafa.mail.settings.SettingsSafeSendersWidget.superclass.initEvents.call(this);
 
@@ -97,9 +97,9 @@ Zarafa.mail.settings.SettingsSafeSendersWidget = Ext.extend(Zarafa.settings.ui.S
 
 		// register event to set settingsContextModel dirty.
 		this.mon(this.getStore(), {
-			'remove' : this.doStoreRemove,
-			'clear' : this.doStoreRemove,
-			scope : this
+			'remove': this.doStoreRemove,
+			'clear': this.doStoreRemove,
+			scope: this
 		});
 	},
 
@@ -108,7 +108,7 @@ Zarafa.mail.settings.SettingsSafeSendersWidget = Ext.extend(Zarafa.settings.ui.S
 	 * This handler will toggle 'Delete All' button and select first row of grid on every refresh.
 	 * @param {Ext.grid.View} gridView that fired the event
 	 */
-	onRefreshView : function(gridView)
+	onRefreshView: function(gridView)
 	{
 		var safeSendersGrid = this.safeSendersGrid;
 		if (!Ext.isEmpty(safeSendersGrid.getSafeSenders())) {
@@ -124,7 +124,7 @@ Zarafa.mail.settings.SettingsSafeSendersWidget = Ext.extend(Zarafa.settings.ui.S
 	 * with grid in this widget.
 	 * @return {Ext.data.JsonStore} The store
 	 */
-	getStore : function()
+	getStore: function()
 	{
 		return this.safeSendersGrid.getStore();
 	},
@@ -134,7 +134,7 @@ Zarafa.mail.settings.SettingsSafeSendersWidget = Ext.extend(Zarafa.settings.ui.S
 	 * has been changed.
 	 * @param {Ext.grid.RowSelectionModel} selectionModel selection model that fired the event
 	 */
-	onGridSelectionChange : function(selectionModel)
+	onGridSelectionChange: function(selectionModel)
 	{
 		var hasSelection = selectionModel.hasSelection();
 		var hasRows = this.safeSendersGrid.getView().hasRows();
@@ -152,13 +152,13 @@ Zarafa.mail.settings.SettingsSafeSendersWidget = Ext.extend(Zarafa.settings.ui.S
 	 * {@link Zarafa.settings.SettingsModel} into the UI grid of this widget.
 	 * @param {Zarafa.settings.SettingsModel} settingsModel The settings to load
 	 */
-	update : function(settingsModel)
+	update: function(settingsModel)
 	{
 		this.model = settingsModel;
 		var safeSenders = settingsModel.get(this.name, true);
 
 		// Load all safesenders into the GridPanel
-		var safeSendersNameList = {'item' : []};
+		var safeSendersNameList = {'item': []};
 		Ext.each(safeSenders, function(item, index) {
 			safeSendersNameList.item.push({name: item, id: index});
 		});
@@ -173,7 +173,7 @@ Zarafa.mail.settings.SettingsSafeSendersWidget = Ext.extend(Zarafa.settings.ui.S
 	 * This is used to update the settings from the UI into the {@link Zarafa.settings.SettingsModel settings model}.
 	 * @param {Zarafa.settings.SettingsModel} settingsModel The settings to update
 	 */
-	updateSettings : function(settingsModel)
+	updateSettings: function(settingsModel)
 	{
 		settingsModel.beginEdit();
 		settingsModel.set(this.safeSendersGrid.name, this.safeSendersGrid.getSafeSenders());
@@ -190,7 +190,7 @@ Zarafa.mail.settings.SettingsSafeSendersWidget = Ext.extend(Zarafa.settings.ui.S
 	 * @param {Number} index index of the record in store which is removed
 	 * @private
 	 */
-	doStoreRemove : function(store, record, index)
+	doStoreRemove: function(store, record, index)
 	{
 		this.settingsContext.getModel().setDirty();
 	},
@@ -201,7 +201,7 @@ Zarafa.mail.settings.SettingsSafeSendersWidget = Ext.extend(Zarafa.settings.ui.S
 	 * {@link Zarafa.mail.settings.SafeSenderGrid grid}
 	 * @private
 	 */
-	onDeleteSafeSender : function()
+	onDeleteSafeSender: function()
 	{
 		this.safeSendersGrid.deleteSafeSender();
 	},
@@ -212,7 +212,7 @@ Zarafa.mail.settings.SettingsSafeSendersWidget = Ext.extend(Zarafa.settings.ui.S
 	 * {@link Zarafa.mail.settings.SafeSenderGrid grid}
 	 * @private
 	 */
-	onDeleteAll : function()
+	onDeleteAll: function()
 	{
 		this.safeSendersGrid.deleteAllSafeSender();
 	}

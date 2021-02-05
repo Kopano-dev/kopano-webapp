@@ -10,19 +10,19 @@ Zarafa.common.rules.dialogs.WordSelectionLink = Ext.extend(Ext.BoxComponent, {
 	 * @cfg {String} fieldLabel The label which must be applied to template
 	 * as a prefix to the list of attachments.
 	 */
-	emptyText :_('Select one...'),
+	emptyText:_('Select one...'),
 
 	/**
 	 * @cfg {String} wordStringSeparator The separator which is used to separate list
 	 * of words while displaying them as string.
 	 */
-	wordStringSeparator :_('or'),
+	wordStringSeparator:_('or'),
 
 	/**
 	 * @cfg {Ext.data.Store} store The store in which
 	 * the words are stored
 	 */
-	store : undefined,
+	store: undefined,
 
 	/**
 	 * The Condition type which is handled by this view
@@ -30,7 +30,7 @@ Zarafa.common.rules.dialogs.WordSelectionLink = Ext.extend(Ext.BoxComponent, {
 	 * @property
 	 * @type Zarafa.common.rules.data.ConditionFlags
 	 */
-	conditionFlag : undefined,
+	conditionFlag: undefined,
 
 	/**
 	 * The condition property which was configured during
@@ -38,7 +38,7 @@ Zarafa.common.rules.dialogs.WordSelectionLink = Ext.extend(Ext.BoxComponent, {
 	 * @property
 	 * @type Object
 	 */
-	condition : undefined,
+	condition: undefined,
 
 	/**
 	 * True if the action/condition was modified by the user, if this is false,
@@ -48,7 +48,7 @@ Zarafa.common.rules.dialogs.WordSelectionLink = Ext.extend(Ext.BoxComponent, {
 	 * @property
 	 * @type Boolean
 	 */
-	isModified : false,
+	isModified: false,
 
 	/**
 	 * True if the action/condition is complete and valid,
@@ -59,37 +59,37 @@ Zarafa.common.rules.dialogs.WordSelectionLink = Ext.extend(Ext.BoxComponent, {
 	 * @property
 	 * @type Boolean
 	 */
-	isValid : true,
+	isValid: true,
 
 	/**
 	 * @constructor
 	 * @param {Object} config configuration object.
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config,{
 			xtype: 'zarafa.wordselectionlink',
-			border : false,
+			border: false,
 			autoScroll:true,
-			anchor : '100%',
-			multiSelect : false,
-			store : new Ext.data.Store({ fields : [ 'words' ] }),
-			tpl : new Ext.XTemplate(
+			anchor: '100%',
+			multiSelect: false,
+			store: new Ext.data.Store({ fields: [ 'words' ] }),
+			tpl: new Ext.XTemplate(
 				'<div class="zarafa-word-link">' +
-					'<tpl for=".">' + 
+					'<tpl for=".">' +
 						'<tpl if="!Ext.isEmpty(values.words)">' +
 							'&quot;{words:htmlEncode}&quot;'+
 						'</tpl>' +
 						'<tpl if="xcount &gt; 0 && xindex != xcount">' +
-							'<span>&nbsp;' + this.wordStringSeparator  + '&nbsp;</span>' +
+							'<span>&nbsp;' + this.wordStringSeparator + '&nbsp;</span>' +
 						'</tpl>' +
 					'</tpl>' +
 				'</div>',
 				{
-					compiled : true,
-					wordStringSeparator : config.wordStringSeparator || this.wordStringSeparator
+					compiled: true,
+					wordStringSeparator: config.wordStringSeparator || this.wordStringSeparator
 				}
 			)
 		});
@@ -102,7 +102,7 @@ Zarafa.common.rules.dialogs.WordSelectionLink = Ext.extend(Ext.BoxComponent, {
 	 * This will register the {@link #onActivate} and {@link #onClick} event handlers.
 	 * @private
 	 */
-	afterRender : function()
+	afterRender: function()
 	{
 		Zarafa.common.rules.dialogs.WordSelectionLink.superclass.initComponent.apply(this, arguments);
 
@@ -118,17 +118,17 @@ Zarafa.common.rules.dialogs.WordSelectionLink = Ext.extend(Ext.BoxComponent, {
 	 * @param {Ext.EventObject} evt The mouse event
  	 * @protected
 	 */
-	onClick : function(dataView, index, node, evt)
+	onClick: function(dataView, index, node, evt)
 	{
-		var tmpStore = new Ext.data.Store({ fields : [ 'words' ] });
+		var tmpStore = new Ext.data.Store({ fields: [ 'words' ] });
 		tmpStore.add(this.store.getRange());
 
 		// Open RulesWordsEditDialog
 		Zarafa.common.Actions.openRulesWordsEditContent({
-			store : tmpStore,
-			callback : this.rulesWordsEditDialogCallback,
-			scope : this,
-			modal : true
+			store: tmpStore,
+			callback: this.rulesWordsEditDialogCallback,
+			scope: this,
+			modal: true
 		});
 	},
 
@@ -137,7 +137,7 @@ Zarafa.common.rules.dialogs.WordSelectionLink = Ext.extend(Ext.BoxComponent, {
 	 * @param {Ext.data.Store} store the store which contains list of words
 	 * @private
 	 */
-	rulesWordsEditDialogCallback : function(store)
+	rulesWordsEditDialogCallback: function(store)
 	{
 		// Remove old words and add words which we have got
 		// from callback function of RulesWordsEditDialog.
@@ -154,7 +154,7 @@ Zarafa.common.rules.dialogs.WordSelectionLink = Ext.extend(Ext.BoxComponent, {
 	 * which identifies the exact type of the condition.
 	 * @param {Object} condition The condition to apply
 	 */
-	setCondition : function(conditionFlag, condition)
+	setCondition: function(conditionFlag, condition)
 	{
 		this.store.removeAll();
 		this.isValid = false;
@@ -192,7 +192,7 @@ Zarafa.common.rules.dialogs.WordSelectionLink = Ext.extend(Ext.BoxComponent, {
 								if (conditionFlag === Zarafa.common.rules.data.ConditionFlags.SENDER_WORDS) {
 									value = Zarafa.core.Util.hexToString(value);
 								}
-								this.store.add(new Ext.data.Record({ words : value }));
+								this.store.add(new Ext.data.Record({ words: value }));
 							}
 						}, this);
 					}
@@ -217,7 +217,7 @@ Zarafa.common.rules.dialogs.WordSelectionLink = Ext.extend(Ext.BoxComponent, {
 						Ext.iterate(value, function(key, value) {
 							if(!Ext.isEmpty(value)) {
 								this.isValid = true;
-								this.store.add(new Ext.data.Record({ words : value }));
+								this.store.add(new Ext.data.Record({ words: value }));
 							}
 						}, this);
 					}
@@ -229,14 +229,14 @@ Zarafa.common.rules.dialogs.WordSelectionLink = Ext.extend(Ext.BoxComponent, {
 		this.condition = condition;
 		this.isModified = !Ext.isDefined(condition);
 		this.update(this.store);
-		
+
 	},
 
 	/**
 	 * Obtain the condition as configured by the user
 	 * @return {Object} The condition
 	 */
-	getCondition : function()
+	getCondition: function()
 	{
 		if (this.isModified !== true && this.isValid === true) {
 			return this.condition;
@@ -249,7 +249,7 @@ Zarafa.common.rules.dialogs.WordSelectionLink = Ext.extend(Ext.BoxComponent, {
 
 		var conditionFactory = container.getRulesFactoryByType(Zarafa.common.data.RulesFactoryType.CONDITION);
 		var conditionDefinition = conditionFactory.getConditionById(this.conditionFlag);
-		return conditionDefinition({store : this.store});
+		return conditionDefinition({store: this.store});
 	},
 
 	/**
@@ -257,12 +257,12 @@ Zarafa.common.rules.dialogs.WordSelectionLink = Ext.extend(Ext.BoxComponent, {
 	 * the {@link #store}.
 	 * @param {Zarafa.core.data.IPMRecipientStore} store The store to show
 	 */
-	update : function(store)
+	update: function(store)
 	{
 		var data = Ext.pluck(store.getRange(), 'data');
 		if (Ext.isEmpty(data)) {
 			data = [{
-				words : this.emptyText
+				words: this.emptyText
 			}];
 		}
 

@@ -5,9 +5,9 @@ Ext.namespace('Zarafa.calendar.data');
  * @extends Zarafa.core.Enum
  *
  * Enum containing all the meetingrequest button names.
- * Which will be helpful in distinguishing meeting request buttons 
+ * Which will be helpful in distinguishing meeting request buttons
  * in {@link Zarafa.calendar.ui.MeetingRequestButton MeetingRequestButton} base class.
- * 
+ *
  * @singleton
  */
 Zarafa.calendar.data.MeetingRequestButtonNames = Zarafa.core.Enum.create({
@@ -17,7 +17,7 @@ Zarafa.calendar.data.MeetingRequestButtonNames = Zarafa.core.Enum.create({
 	 * @property
 	 * @type String
 	 */
-    REMOVEFROMCALENDAR : 'removeFromCalendarButton',
+    REMOVEFROMCALENDAR: 'removeFromCalendarButton',
 
     /**
 	 * Preserve name for NoResponseRequiredButton.
@@ -25,7 +25,7 @@ Zarafa.calendar.data.MeetingRequestButtonNames = Zarafa.core.Enum.create({
 	 * @property
 	 * @type String
 	 */
-    NORESPONSE : 'noResponseButton',
+    NORESPONSE: 'noResponseButton',
 
     /**
 	 * Preserve name for AcceptButton.
@@ -33,7 +33,7 @@ Zarafa.calendar.data.MeetingRequestButtonNames = Zarafa.core.Enum.create({
 	 * @property
 	 * @type String
 	 */
-    ACCEPT : 'acceptButton',
+    ACCEPT: 'acceptButton',
 
     /**
 	 * Preserve name for TentativeButton.
@@ -41,7 +41,7 @@ Zarafa.calendar.data.MeetingRequestButtonNames = Zarafa.core.Enum.create({
 	 * @property
 	 * @type String
 	 */
-    TENTETIVE : 'tentativeButton',
+    TENTATIVE: 'tentativeButton',
 
     /**
 	 * Preserve name for DeclineButton.
@@ -49,7 +49,7 @@ Zarafa.calendar.data.MeetingRequestButtonNames = Zarafa.core.Enum.create({
 	 * @property
 	 * @type String
 	 */
-    DECLINE : 'declineButton',
+    DECLINE: 'declineButton',
 
     /**
 	 * Preserve name for ProposeNewTimeButton.
@@ -57,7 +57,7 @@ Zarafa.calendar.data.MeetingRequestButtonNames = Zarafa.core.Enum.create({
 	 * @property
 	 * @type String
 	 */
-    PROPOSENEWTIME : 'proposeNewTimeButton',
+    PROPOSENEWTIME: 'proposeNewTimeButton',
 
     /**
 	 * Preserve name for ViewAllProposalsButton.
@@ -65,7 +65,7 @@ Zarafa.calendar.data.MeetingRequestButtonNames = Zarafa.core.Enum.create({
 	 * @property
 	 * @type String
 	 */
-    VIEWPROPOSALS : 'viewProposalsButton',
+    VIEWPROPOSALS: 'viewProposalsButton',
 
     /**
 	 * Preserve name for AcceptProposalButton.
@@ -73,7 +73,7 @@ Zarafa.calendar.data.MeetingRequestButtonNames = Zarafa.core.Enum.create({
 	 * @property
 	 * @type String
 	 */
-    ACCEPTPROPOSAL : 'acceptProposalButton',
+    ACCEPTPROPOSAL: 'acceptProposalButton',
 
     /**
 	 * Preserve name for calendarButton.
@@ -81,5 +81,5 @@ Zarafa.calendar.data.MeetingRequestButtonNames = Zarafa.core.Enum.create({
 	 * @property
 	 * @type String
 	 */
-    CALENDAR : 'calendarButton'
+    CALENDAR: 'calendarButton'
 });

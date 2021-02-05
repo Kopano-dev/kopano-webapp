@@ -18,7 +18,7 @@ Zarafa.core.data.JsonRecipientWriter = Ext.extend(Zarafa.core.data.JsonWriter, {
 	 * @override
 	 * @private
 	 */
-	toPropHash : function(record)
+	toPropHash: function(record)
 	{
 		var recipientStore = record.getRecipientStore();
 		var hash = {};

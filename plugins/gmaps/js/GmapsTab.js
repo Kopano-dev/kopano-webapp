@@ -15,14 +15,14 @@ Zarafa.plugins.gmaps.GmapsTab=Ext.extend(Ext.Panel, {
 	 * @property
 	 * @type google.maps.Map
 	 */
-	gmap : undefined,
+	gmap: undefined,
 
 	/**
 	 * Array of Google Marker instances which are positioned on the {@link #gmap}.
 	 * @property
 	 * @type google.maps.Marker[]
 	 */
-	markers : undefined,
+	markers: undefined,
 
 	/**
 	 * Latitude for gmaps
@@ -46,19 +46,19 @@ Zarafa.plugins.gmaps.GmapsTab=Ext.extend(Ext.Panel, {
 	 * @constructor
 	 * @param {Object} config configuration object.
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 		config.plugins = Ext.value(config.plugins, []);
 		config.plugins.push('zarafa.recordcomponentupdaterplugin');
 
 		Ext.apply(config, {
-			xtype     : 'gmaps.contactgmapstab',
+			xtype   : 'gmaps.contactgmapstab',
 			// #TRANSLATORS: The map of earth
-			title     : _('Map'),
+			title   : _('Map'),
 			//proper body style for rendering gmaps
-			bodyStyle : 'width: 100%; height: 500px',
-			listeners : {
+			bodyStyle: 'width: 100%; height: 500px',
+			listeners: {
 				resize: this.resizeMap,
 				scope: this
 			}
@@ -72,7 +72,7 @@ Zarafa.plugins.gmaps.GmapsTab=Ext.extend(Ext.Panel, {
 	 * {@link #createGmap} and {@link #markers}.
 	 * @private
 	 */
-	onRender : function()
+	onRender: function()
 	{
 		Zarafa.plugins.gmaps.GmapsTab.superclass.onRender.apply(this, arguments);
 		this.latitude=container.getSettingsModel().get('zarafa/v1/plugins/gmaps/lat');
@@ -100,9 +100,9 @@ Zarafa.plugins.gmaps.GmapsTab=Ext.extend(Ext.Panel, {
 	/**
 	 * Event handler for the resize event of the tab. Will make sure the map is also resized correctly.
 	 */
-	resizeMap : function()
+	resizeMap: function()
 	{
-		if ( this.gmap ){
+		if ( this.gmap ) {
 			google.maps.event.trigger(this.gmap, "resize");
 		}
 	},
@@ -259,7 +259,7 @@ Zarafa.plugins.gmaps.GmapsTab=Ext.extend(Ext.Panel, {
 	 * @param {String} title (optional) - The title for the marker
 	 * @private
 	 */
-	showOnMap : function(address, title)
+	showOnMap: function(address, title)
 	{
 			var geocoder = new google.maps.Geocoder();
 			geocoder.geocode({ 'address': address}, this.callbackGeocodeResult.createDelegate(this,[address, title], true));
@@ -306,7 +306,7 @@ Zarafa.plugins.gmaps.GmapsTab=Ext.extend(Ext.Panel, {
 		this.markers.push(new google.maps.Marker({
 			map: this.gmap,
 			position:  latlng,
-			title : title
+			title: title
 		}));
 	},
 
@@ -333,7 +333,7 @@ Zarafa.plugins.gmaps.GmapsTab=Ext.extend(Ext.Panel, {
 	 * Resets the {@link #markers}, removing the given markers from the {@link #gmap}.
 	 * @private
 	 */
-	resetMarkers : function()
+	resetMarkers: function()
 	{
 		for (var i = 0; i < this.markers.length; i++) {
 			// Calling setMap without arguments, removes the marker.

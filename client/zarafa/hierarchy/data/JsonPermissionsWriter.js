@@ -18,7 +18,7 @@ Zarafa.hierarchy.data.JsonPermissionsWriter = Ext.extend(Zarafa.core.data.JsonWr
 	 * @override
 	 * @private
 	 */
-	toPropHash : function(record)
+	toPropHash: function(record)
 	{
 		var permissionsStore = record.getSubStore('permissions');
 		var hash = {};

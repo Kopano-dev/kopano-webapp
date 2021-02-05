@@ -13,7 +13,7 @@ Zarafa.common.reminder.data.ReminderStore = Ext.extend(Zarafa.core.data.ListModu
 	 * @cfg {String} actionType type of action that should be used to send request to server,
 	 * valid action types are defined in {@link Zarafa.core.Actions Actions}, default value is 'list'.
 	 */
-	actionType : Zarafa.core.Actions['list'],
+	actionType: Zarafa.core.Actions['list'],
 
 	/**
 	 * Checksum that will be generated from records that are received from server, this checksum will be
@@ -21,7 +21,7 @@ Zarafa.common.reminder.data.ReminderStore = Ext.extend(Zarafa.core.data.ListModu
 	 * @property
 	 * @type Number
 	 */
-	lastChecksum : undefined,
+	lastChecksum: undefined,
 
 	/**
 	 * Flag is used to indicate that we should reload the data in {@link Zarafa.common.reminder.data.ReminderStore ReminderStore}
@@ -31,7 +31,7 @@ Zarafa.common.reminder.data.ReminderStore = Ext.extend(Zarafa.core.data.ListModu
 	 * @property
 	 * @type Boolean
 	 */
-	refreshStore : false,
+	refreshStore: false,
 
 	/**
 	 * Flag is used to show reminder dialog or not. It is false when reminder button render as we have to show reminder dialog
@@ -39,14 +39,14 @@ Zarafa.common.reminder.data.ReminderStore = Ext.extend(Zarafa.core.data.ListModu
 	 * @property
 	 * @type Boolean
 	 */
-	showReminderDialog : true,
+	showReminderDialog: true,
 
 	/**
 	 * The object with the configuration for the {@link Ext.TaskMgr TaskMgr} to start the polling for reminders.
 	 * @property
 	 * @type Object
 	 */
-	pollTask : null,
+	pollTask: null,
 
 	/**
 	 * The notifier plugin that is used to show 'error.json' notifications. If the {#link load loading} of reminders
@@ -57,13 +57,13 @@ Zarafa.common.reminder.data.ReminderStore = Ext.extend(Zarafa.core.data.ListModu
 	 * @property
 	 * @type Zarafa.core.ui.notifier.NotifyPlugin
 	 */
-	originalErrorNotifier : undefined,
+	originalErrorNotifier: undefined,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -72,11 +72,11 @@ Zarafa.common.reminder.data.ReminderStore = Ext.extend(Zarafa.core.data.ListModu
 		Ext.applyIf(config, {
 			proxy: new Zarafa.common.reminder.data.ReminderProxy(),
 			writer: new Zarafa.core.data.JsonWriter(),
-			reader: new Zarafa.core.data.JsonReader({ dynamicRecord : false }, recordType),
+			reader: new Zarafa.core.data.JsonReader({ dynamicRecord: false }, recordType),
 
 			// @FIXME when batching the delete requests then there is some problem with response router and
 			// it updates the grid view twice with the same data
-			batch : false
+			batch: false
 		});
 
 		Zarafa.common.reminder.data.ReminderStore.superclass.constructor.call(this, config);
@@ -86,7 +86,7 @@ Zarafa.common.reminder.data.ReminderStore = Ext.extend(Zarafa.core.data.ListModu
 	 * Initialize events which Zarafa.common.reminder.data.ReminderStore ReminderStore} will listen to.
 	 * @protected
 	 */
-	initEvents : function()
+	initEvents: function()
 	{
 		this.on('exception', this.onError, this);
 		Zarafa.common.reminder.data.ReminderStore.superclass.initEvents.call(this);
@@ -97,7 +97,7 @@ Zarafa.common.reminder.data.ReminderStore = Ext.extend(Zarafa.core.data.ListModu
 	 * <br> Function just adds 'list' as actionType in options and calls parent {@link Zarafa.core.data.IPFStore#load} method.
 	 * <br> Check documentation of {@link Ext.data.Store#load} for more information.
 	 */
-	load : function(options)
+	load: function(options)
 	{
 		if (!Ext.isObject(options)) {
 			options = {};
@@ -114,7 +114,7 @@ Zarafa.common.reminder.data.ReminderStore = Ext.extend(Zarafa.core.data.ListModu
 
 		// ignore action type passed in options and instead use action type from config
 		Ext.apply(options, {
-			actionType : this.actionType
+			actionType: this.actionType
 		});
 
 		return Zarafa.common.reminder.data.ReminderStore.superclass.load.call(this, options);
@@ -132,7 +132,7 @@ Zarafa.common.reminder.data.ReminderStore = Ext.extend(Zarafa.core.data.ListModu
 	 * @param {Object} response response received from server depends on type.
 	 * @param {Mixed} args
 	 */
-	onError : function(proxy, type, action, options, response, args)
+	onError: function(proxy, type, action, options, response, args)
 	{
 		// if any error occurs in getting reminders then we don't need to nag users by displaying error message
 		// every time so we will show the error message once and then use the console notifier for subsequent
@@ -157,7 +157,7 @@ Zarafa.common.reminder.data.ReminderStore = Ext.extend(Zarafa.core.data.ListModu
 	/**
 	 * Initialize reminder requests to the server by {@link Ext.TaskMgr.start starting} a task.
 	 */
-	initializeReminderInterval : function()
+	initializeReminderInterval: function()
 	{
 		var interval = container.getSettingsModel().get('zarafa/v1/main/reminder/polling_interval');
 		this.pollTask = {
@@ -173,7 +173,7 @@ Zarafa.common.reminder.data.ReminderStore = Ext.extend(Zarafa.core.data.ListModu
 	 * Function which is called periodically to send a reminder request to the server.
 	 * @private
 	 */
-	sendReminderRequest : function()
+	sendReminderRequest: function()
 	{
 		if(!this.showReminderDialog) {
 			this.showReminderDialog = true;
@@ -185,7 +185,7 @@ Zarafa.common.reminder.data.ReminderStore = Ext.extend(Zarafa.core.data.ListModu
 	 * Function will reset reminder request interval.
 	 * @private
 	 */
-	resetReminderInterval : function()
+	resetReminderInterval: function()
 	{
 		this.clearReminderInterval();
 		this.initializeReminderInterval();
@@ -195,7 +195,7 @@ Zarafa.common.reminder.data.ReminderStore = Ext.extend(Zarafa.core.data.ListModu
 	 * Function will clear reminder request interval.
 	 * @private
 	 */
-	clearReminderInterval : function()
+	clearReminderInterval: function()
 	{
 		Ext.TaskMgr.stop(this.pollTask);
 	},
@@ -211,7 +211,7 @@ Zarafa.common.reminder.data.ReminderStore = Ext.extend(Zarafa.core.data.ListModu
 	 * @param {Object} options options that are paased through {@link #load} event.
 	 * @param {Boolean} success success status of request.
 	 */
-	loadRecords : function(data, options, success)
+	loadRecords: function(data, options, success)
 	{
 		Zarafa.common.reminder.data.ReminderStore.superclass.loadRecords.apply(this, arguments);
 
@@ -248,14 +248,14 @@ Zarafa.common.reminder.data.ReminderStore = Ext.extend(Zarafa.core.data.ListModu
 	 * @param {Ext.Element} reminderEl The reminder button element.
 	 * @param {Number} recordsLength The number of reminder in reminder store.
 	 */
-	updateReminderIcon : function(reminderEl, recordsLength)
+	updateReminderIcon: function(reminderEl, recordsLength)
 	{
 		var reminderBtn = Ext.get(reminderEl);
 		reminderBtn.setStyle('backgroundImage', 'url(\'' + Zarafa.common.ui.IconClass.getReminderSvgIcon(recordsLength) + '\')');
 		var reminder = container.getMainPanel().mainTabBar.reminder;
 		var noReminder = recordsLength === 0;
 		reminder.setDisabled(noReminder);
-		reminder.setTooltip(noReminder? _('There are no reminders') : '');
+		reminder.setTooltip(noReminder ? _('There are no reminders') : '');
 	},
 
 	/**
@@ -264,14 +264,14 @@ Zarafa.common.reminder.data.ReminderStore = Ext.extend(Zarafa.core.data.ListModu
 	 * reminder records which are going to be dismissed
 	 * @param {Boolean} openAfterDismiss true if the record is to be opened after dismissal
 	 */
-	dismissReminders : function(reminderRecords, openAfterDismiss)
+	dismissReminders: function(reminderRecords, openAfterDismiss)
 	{
 		if(!Array.isArray(reminderRecords)){
 			reminderRecords = [reminderRecords];
 		}
 
 		Ext.each(reminderRecords, function(reminderRecord) {
-			reminderRecord.addMessageAction('action_type', 'dismiss'); 
+			reminderRecord.addMessageAction('action_type', 'dismiss');
 			if (openAfterDismiss) {
 				reminderRecord.addMessageAction('response_action', openAfterDismiss);
 			}
@@ -288,7 +288,7 @@ Zarafa.common.reminder.data.ReminderStore = Ext.extend(Zarafa.core.data.ListModu
 	 * reminder records which are going to be snoozed.
 	 * @param {Number} snoozeTime time in minutes, after which reminder will be pop-up again.
 	 */
-	snoozeReminders : function(reminderRecords, snoozeTime)
+	snoozeReminders: function(reminderRecords, snoozeTime)
 	{
 		Ext.each(reminderRecords, function(reminderRecord) {
 			reminderRecord.addMessageAction('action_type', 'snooze');
@@ -301,8 +301,8 @@ Zarafa.common.reminder.data.ReminderStore = Ext.extend(Zarafa.core.data.ListModu
 	},
 
 	/**
-	 * Event handler which is raised when the {@link #write} event has been fired. It will convert the 
-	 * {@link Zarafa.common.reminder.ReminderRecord ReminderRecord} to an 
+	 * Event handler which is raised when the {@link #write} event has been fired. It will convert the
+	 * {@link Zarafa.common.reminder.ReminderRecord ReminderRecord} to an
 	 * {@link Zarafa.core.data.IPMRecord IPMRecord} based on its message_class property and then pass that
 	 * {@link Zarafa.core.data.IPMRecord IPMRecord} to {@link Zarafa.core.ui.ContentPanel ContentPanel} to open it.
 	 * Also, it will send list request for reminders and will reset reminder polling interval.
@@ -314,7 +314,7 @@ Zarafa.common.reminder.data.ReminderStore = Ext.extend(Zarafa.core.data.ListModu
 	 * @param {Record/Record[]} records The records which were written to the server
 	 * @private
 	 */
-	onWrite : function(store, action, result, res, records)
+	onWrite: function(store, action, result, res, records)
 	{
 		records = [].concat(records);
 

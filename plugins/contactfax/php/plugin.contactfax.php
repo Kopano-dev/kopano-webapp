@@ -2,13 +2,13 @@
 /**
  * contactfax Plugin
  *
- * Open a new 'create mail' dialog with contact's fax number postfixed with domain name 
+ * Open a new 'create mail' dialog with contact's fax number postfixed with domain name
  * configured in Plugin Setting in the TO field of the email.
  *
  */
 class Plugincontactfax extends Plugin {
 
-	function __construct(){}
+	function __construct() {}
 
 	/**
 	 * Function initializes the Plugin and registers all hooks
@@ -25,7 +25,7 @@ class Plugincontactfax extends Plugin {
 	 */
 	function execute($eventID, &$data) {
 		switch($eventID) {
-			case 'server.core.settings.init.before' :
+			case 'server.core.settings.init.before':
 				$this->injectPluginSettings($data);
 				break;
 		}

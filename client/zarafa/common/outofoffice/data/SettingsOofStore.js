@@ -11,32 +11,32 @@ Ext.namespace('Zarafa.common.outofoffice.data');
  */
 Zarafa.common.outofoffice.data.OofStore = Ext.extend(Zarafa.core.data.ListModuleStore, {
 
-    /**
-     * @constructor
-     * @param {Object} config Configuration object
-     */
-    constructor : function(config)
-    {
-        config = config || {};
+  /**
+   * @constructor
+   * @param {Object} config Configuration object
+   */
+  constructor: function(config)
+  {
+    config = config || {};
 
-        var recordType = Zarafa.core.data.RecordFactory.getRecordClassByCustomType(Zarafa.core.data.RecordCustomObjectType.ZARAFA_OOF_SETTINGS);
+    var recordType = Zarafa.core.data.RecordFactory.getRecordClassByCustomType(Zarafa.core.data.RecordCustomObjectType.ZARAFA_OOF_SETTINGS);
 
-        Ext.applyIf(config, {
-            proxy: new Zarafa.core.data.IPMProxy({
-                listModuleName: Zarafa.core.ModuleNames.getListName('OUTOFOFFICESETTINGS'),
-                itemModuleName: Zarafa.core.ModuleNames.getItemName('OUTOFOFFICESETTINGS')
-            }),
+    Ext.applyIf(config, {
+      proxy: new Zarafa.core.data.IPMProxy({
+        listModuleName: Zarafa.core.ModuleNames.getListName('OUTOFOFFICESETTINGS'),
+        itemModuleName: Zarafa.core.ModuleNames.getItemName('OUTOFOFFICESETTINGS')
+      }),
 
-            reader: new Zarafa.core.data.JsonReader({
-                dynamicRecord : false,
-                id : 'store_entryid',
-                idProperty : 'store_entryid',
-            }, recordType),
+      reader: new Zarafa.core.data.JsonReader({
+        dynamicRecord: false,
+        id: 'store_entryid',
+        idProperty: 'store_entryid',
+      }, recordType),
 
-            batch : true,
-            autoLoad: true
-        });
+      batch: true,
+      autoLoad: true
+    });
 
-        Zarafa.common.outofoffice.data.OofStore.superclass.constructor.call(this, config);
-    }
+    Zarafa.common.outofoffice.data.OofStore.superclass.constructor.call(this, config);
+  }
 });

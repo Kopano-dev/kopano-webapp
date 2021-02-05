@@ -4,7 +4,7 @@ Ext.namespace('Zarafa.common.recurrence.dialogs');
  * @class Zarafa.common.recurrence.dialogs.RecurrencePanel
  * @extends Ext.Panel
  * @xtype zarafa.recurrencepanel
- * 
+ *
  * Panel that is used to create Recurrences
  */
 Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
@@ -12,7 +12,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 	 * @constructor
 	 * @param {Object} config configuration object.
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -27,7 +27,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 				border: false,
 				bodyStyle: 'padding: 10px;'
 			},
-			items : [
+			items: [
 				this.createTimePanel(),
 				this.createRecurrencePanel(),
 				this.createRangePanel()
@@ -42,7 +42,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 	 * @return {Object} The configuration object for the Time
 	 * @private
 	 */
-	createTimePanel : function()
+	createTimePanel: function()
 	{
 		return {
 			xtype: 'panel',
@@ -56,11 +56,11 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 			items: [{
 				xtype: 'displayfield',
 				ref: '../timeperiodLabel',
-				htmlEncode : true,
-				hideLabel : true,
+				htmlEncode: true,
+				hideLabel: true,
 				height: 20
 			},{
-				xtype: 'panel',	
+				xtype: 'panel',
 				layout: 'hbox',
 				anchor: '100% 100%',
 				border: false,
@@ -69,14 +69,14 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 					xtype: 'zarafa.timeperiodfield',
 					ref: '../../timeperiodField',
 					layout: 'hbox',
-					defaultPeriod : 30,
-					defaultPeriodType : Date.MINUTE,
+					defaultPeriod: 30,
+					defaultPeriodType: Date.MINUTE,
 					flex: 0.7,
 					spacerConfig: {
 						width: 5
 					},
 					listeners: {
-						change : this.onDurationChange,
+						change: this.onDurationChange,
 						scope: this
 					}
 				},{
@@ -106,7 +106,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 	 * @return {Object} The configuration object for the Recurrence Pattern
 	 * @private
 	 */
-	createRecurrencePanel : function()
+	createRecurrencePanel: function()
 	{
 		return {
 			xtype: 'panel',
@@ -127,28 +127,28 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 					boxLabel: _('Daily'),
 					name: 'pattern',
 					targetId: 'card-daily',
-					patternValue : Zarafa.common.recurrence.data.RecurrenceType.DAILY,
+					patternValue: Zarafa.common.recurrence.data.RecurrenceType.DAILY,
 					handler: this.onSwitchRecurrenceView,
 					scope: this
 				},{
 					boxLabel: _('Weekly'),
 					name: 'pattern',
 					targetId: 'card-weekly',
-					patternValue : Zarafa.common.recurrence.data.RecurrenceType.WEEKLY,
+					patternValue: Zarafa.common.recurrence.data.RecurrenceType.WEEKLY,
 					handler: this.onSwitchRecurrenceView,
 					scope: this
 				},{
 					boxLabel: _('Monthly'),
 					name: 'pattern',
 					targetId: 'card-monthly',
-					patternValue : Zarafa.common.recurrence.data.RecurrenceType.MONTHLY,
+					patternValue: Zarafa.common.recurrence.data.RecurrenceType.MONTHLY,
 					handler: this.onSwitchRecurrenceView,
 					scope: this
 				},{
 					boxLabel: _('Yearly'),
 					name: 'pattern',
 					targetId: 'card-yearly',
-					patternValue : Zarafa.common.recurrence.data.RecurrenceType.YEARLY,
+					patternValue: Zarafa.common.recurrence.data.RecurrenceType.YEARLY,
 					handler: this.onSwitchRecurrenceView,
 					scope: this
 				}]
@@ -187,7 +187,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 	 * @return {Object} The configuration object for the Recurrence Range
 	 * @private
 	 */
-	createRangePanel : function()
+	createRangePanel: function()
 	{
 		return {
 			xtype: 'panel',
@@ -205,7 +205,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 					name: 'recurrence_start',
 					fieldLabel: _('Start'),
 					// # TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-					format : _('d/m/Y'),
+					format: _('d/m/Y'),
 					listeners: {
 						select: this.onUTCFieldChange,
 						change: this.onUTCFieldChange,
@@ -220,7 +220,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 				border: false,
 				bodyStyle: 'background-color: inherit;',
 				defaults: {
-					anchor :'100%',
+					anchor:'100%',
 					border: false,
 					bodyStyle: 'background-color: inherit;',
 					defaults: {
@@ -237,14 +237,14 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 						endTerm: Zarafa.common.recurrence.data.RecurrenceEnd.NEVER,
 						hideLabel: true,
 						width: 25,
-						listeners : {
-							check : this.onSwitchRecurrenceTerm,
-							scope : this
+						listeners: {
+							check: this.onSwitchRecurrenceTerm,
+							scope: this
 						}
 					},{
 						xtype: 'displayfield',
 						value: _('No end date'),
-						hideLabel : true
+						hideLabel: true
 					}]
 				},{
 					xtype: 'panel',
@@ -255,9 +255,9 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 						endTerm: Zarafa.common.recurrence.data.RecurrenceEnd.N_OCCURRENCES,
 						hideLabel: true,
 						width: 25,
-						listeners : {
-							check : this.onSwitchRecurrenceTerm,
-							scope : this
+						listeners: {
+							check: this.onSwitchRecurrenceTerm,
+							scope: this
 						}
 					},{
 						xtype: 'zarafa.compositefield',
@@ -268,7 +268,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 							xtype: 'zarafa.spinnerfield',
 							plugins: [ 'zarafa.numberspinner' ],
 							ref: '../../../../endOccurencesSpinner',
-							name : 'recurrence_numoccur',
+							name: 'recurrence_numoccur',
 							labelSplitter: '{A}',
 							allowNegative: false,
 							minValue: 1,
@@ -288,9 +288,9 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 						endTerm: Zarafa.common.recurrence.data.RecurrenceEnd.ON_DATE,
 						hideLabel: true,
 						width: 25,
-						listeners : {
-							check : this.onSwitchRecurrenceTerm,
-							scope : this
+						listeners: {
+							check: this.onSwitchRecurrenceTerm,
+							scope: this
 						}
 					},{
 						xtype: 'zarafa.compositefield',
@@ -305,7 +305,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 							width: 120,
 							labelSplitter: '{A}',
 							// # TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-							format : _('d/m/Y'),
+							format: _('d/m/Y'),
 							listeners: {
 								select: this.onUTCFieldChange,
 								change: this.onUTCFieldChange,
@@ -324,7 +324,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 	 * the label belonging to the field will be updated to reflect the new duration.
 	 * @private
 	 */
-	updateDurationLabel : function()
+	updateDurationLabel: function()
 	{
 		if (!this.record) {
 			return;
@@ -335,7 +335,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 		duration %= (24 * 60);
 		var hours = Math.floor(duration / 60);
 		duration %= 60;
-		var minutes = Math.floor(duration);	
+		var minutes = Math.floor(duration);
 
 		// # TRANSLATORS: This informs the user what the exact duration of the appointment is. Where {D} represents the days, {H} the hours and {M} the minutes.
 		// # For example: 'Occurence duration: 1 day 2 hours 45 minutes', or when the appointment is shorter then 1 day: 'Occurence duration: 1 hour'
@@ -367,7 +367,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 	 * @param {Mixed} oldValue The original value for the field
 	 * @private
 	 */
-	onFieldChange : function(field, newValue, oldValue)
+	onFieldChange: function(field, newValue, oldValue)
 	{
 		this.record.set(field.getName(), newValue);
 	},
@@ -381,7 +381,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 	 * @param {Mixed} oldValue The original value for the field
 	 * @private
 	 */
-	onUTCFieldChange : function(field, newValue, oldValue)
+	onUTCFieldChange: function(field, newValue, oldValue)
 	{
 		// The field is represented in UTC time,
 		// so convert it to local to get the time for the property
@@ -396,7 +396,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 	 * @param {Mixed} oldValue The original value for the field
 	 * @private
 	 */
-	onDurationChange : function(field, newValue, oldValue)
+	onDurationChange: function(field, newValue, oldValue)
 	{
 		var startOcc = (newValue.getStartDate().getHours() * 60) + newValue.getStartDate().getMinutes();
 		var endOcc = startOcc + newValue.getDuration(Date.MINUTE);
@@ -415,7 +415,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 	 * @param {Boolean} checked True if the radio was checked
 	 * @private
 	 */
-	onSwitchRecurrenceTerm : function(radio, checked)
+	onSwitchRecurrenceTerm: function(radio, checked)
 	{
 		if (checked) {
 			this.record.set('recurrence_term', radio.endTerm);
@@ -431,7 +431,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 	 * @param {Boolean} Checked True if the checkbox was checked
 	 * @private
 	 */
-	onSwitchRecurrenceView : function(checkbox, checked)
+	onSwitchRecurrenceView: function(checkbox, checked)
 	{
 		if (checked) {
 			this.record.set('recurrence_type', checkbox.patternValue);
@@ -447,7 +447,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 	 * @param {Boolean} checked The new checked state of the checkbox.
 	 * @private
 	 */
-	onToggleAllDay : function(checkbox, checked)
+	onToggleAllDay: function(checkbox, checked)
 	{
 		// When the user already has an appointment that last a more then a day, we should
 		// round the end of the occurrences up to a whole number of days.
@@ -469,7 +469,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 	 * @param {Boolean} contentReset force the component to perform a full update of the data.
 	 * @private
 	 */
-	updateUI : function(record, contentReset)
+	updateUI: function(record, contentReset)
 	{
 		var layout = false;
 
@@ -503,7 +503,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 	 * @param {Zarafa.core.data.IPMRecord} record The record used to update the panel
 	 * @param {Boolean} contentReset force the component to perform a full update of the data.
 	 */
-	update : function(record, contentReset)
+	update: function(record, contentReset)
 	{
 		this.record = record;
 		this.updateUI(record, contentReset);
@@ -600,7 +600,7 @@ Zarafa.common.recurrence.dialogs.RecurrencePanel = Ext.extend(Ext.Panel, {
 	 * @param {Zarafa.core.data.IPMRecord} record The record to update
 	 * @private
 	 */
-	updateRecord : function(record)
+	updateRecord: function(record)
 	{
 		record.beginEdit();
 

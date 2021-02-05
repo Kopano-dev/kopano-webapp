@@ -14,7 +14,7 @@ Zarafa.common.rules.dialogs.ReceivedBeforeLink = Ext.extend(Zarafa.common.rules.
 	 * Obtain the condition as configured by the user
 	 * @return {Object} The condition
 	 */
-	getCondition : function()
+	getCondition: function()
 	{
 		if (this.isModified !== true) {
 			return this.condition;
@@ -24,7 +24,7 @@ Zarafa.common.rules.dialogs.ReceivedBeforeLink = Ext.extend(Zarafa.common.rules.
 		var conditionFactory = container.getRulesFactoryByType(Zarafa.common.data.RulesFactoryType.CONDITION);
 		var conditionDefinition = conditionFactory.getConditionById(this.conditionFlag);
 
-		return conditionDefinition({value : value});
+		return conditionDefinition({value: value});
 	}
 });
 

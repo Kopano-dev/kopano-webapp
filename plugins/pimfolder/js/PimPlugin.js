@@ -3,7 +3,7 @@ Ext.namespace('Zarafa.plugins.pimfolder');
 /**
  * @class Zarafa.plugins.pimfolder.PimPlugin
  * @extends Zarafa.core.Plugin
- * 
+ *
  * This class represents the core functionality of the Personal Inbox
  * Manager plugin (or PIM-folder).  The user gets a new icon in the
  * context menu and in the preview panel, that allows him to move the
@@ -19,7 +19,7 @@ Zarafa.plugins.pimfolder.PimPlugin = Ext.extend(Zarafa.core.Plugin, {
 	 * preview panel and in the mail context menu.
 	 * @protected
 	 */
-	initPlugin : function()
+	initPlugin: function()
 	{
 		Zarafa.plugins.pimfolder.PimPlugin.superclass.initPlugin.apply(this, arguments);
 
@@ -33,11 +33,11 @@ Zarafa.plugins.pimfolder.PimPlugin = Ext.extend(Zarafa.core.Plugin, {
 	 * contains the name of the target folder. If no folder is
 	 * configured (or the folder doesn't exist any longer), then the
 	 * button is hidden.
-	 * 
+	 *
 	 * @return {Ext.Button} Button instance
 	 * @private
 	 */
-	makeAButtonInContextMenu : function ()
+	makeAButtonInContextMenu: function ()
 	{
 		var folder = this.getTargetFolder();
 		if (!folder) {
@@ -46,12 +46,12 @@ Zarafa.plugins.pimfolder.PimPlugin = Ext.extend(Zarafa.core.Plugin, {
 
 		var displayName = folder.getFullyQualifiedDisplayName();
 		return  [{
-			xtype : 'zarafa.conditionalitem',
-			tooltip : String.format(_('Move currently selected message(s) to {0}'), displayName),
-			text : String.format(_('Move to {0}'), displayName),
-			iconCls : 'icon_pim_setup',
-			handler : this.moveSelectedMailsToFolder,
-			scope : this
+			xtype: 'zarafa.conditionalitem',
+			tooltip: String.format(_('Move currently selected message(s) to {0}'), displayName),
+			text: String.format(_('Move to {0}'), displayName),
+			iconCls: 'icon_pim_setup',
+			handler: this.moveSelectedMailsToFolder,
+			scope: this
 		}];
 	},
 
@@ -73,14 +73,14 @@ Zarafa.plugins.pimfolder.PimPlugin = Ext.extend(Zarafa.core.Plugin, {
 
 		var displayName = folder.getFullyQualifiedDisplayName();
 		return {
-			xtype : 'button',
-			tooltip : String.format(_('Move current message to {0}'), displayName),
-			overflowText : String.format(_('Move to {0}'), displayName),
-			iconCls : 'icon_pim_setup',
-			handler : this.moveOneMailToFolder,
-			scope : this,
-			plugins : ['zarafa.recordcomponentupdaterplugin'],
-			update : function(record, contentReset)
+			xtype: 'button',
+			tooltip: String.format(_('Move current message to {0}'), displayName),
+			overflowText: String.format(_('Move to {0}'), displayName),
+			iconCls: 'icon_pim_setup',
+			handler: this.moveOneMailToFolder,
+			scope: this,
+			plugins: ['zarafa.recordcomponentupdaterplugin'],
+			update: function(record, contentReset)
 			{
 				this.records = [ record ];
 			}
@@ -94,7 +94,7 @@ Zarafa.plugins.pimfolder.PimPlugin = Ext.extend(Zarafa.core.Plugin, {
 	 * @param {Ext.button} btn Reference to the context menu item.
 	 * @private
 	 */
-	moveSelectedMailsToFolder : function(btn)
+	moveSelectedMailsToFolder: function(btn)
 	{
 		this.moveMailsToFolder(btn.parentMenu.records);
 	},
@@ -102,22 +102,22 @@ Zarafa.plugins.pimfolder.PimPlugin = Ext.extend(Zarafa.core.Plugin, {
 	/**
 	 * Handler function for the mail context menu. This method allows
 	 * moving multiple messages at once. Calls {@link @moveMailsToFolder}.
-	 * 
+	 *
 	 * @param {Ext.button} btn Reference to the tool bar button.
 	 * @private
 	 */
-	moveOneMailToFolder : function(btn)
+	moveOneMailToFolder: function(btn)
 	{
 		this.moveMailsToFolder(btn.records);
 	},
 
 	/**
 	 * Move the given records to the configured folder.
-	 * 
+	 *
 	 * @param {Ext.data.Record[]} records The selected e-mails in the list.
 	 * @private
 	 */
-	moveMailsToFolder : function(records)
+	moveMailsToFolder: function(records)
 	{
 		var folder = this.getTargetFolder();
 
@@ -139,7 +139,7 @@ Zarafa.plugins.pimfolder.PimPlugin = Ext.extend(Zarafa.core.Plugin, {
 	 *
 	 * @return {Zarafa.hierarchy.data.MAPIFolderRecord} The selected folder
 	 */
-	getTargetFolder : function()
+	getTargetFolder: function()
 	{
 		var settingsModel = container.getSettingsModel();
 		var storeEntryId = settingsModel.get(this.getSettingsBase() + '/store_entryid');
@@ -157,23 +157,23 @@ Zarafa.plugins.pimfolder.PimPlugin = Ext.extend(Zarafa.core.Plugin, {
 
 	/**
 	 * Return the instance of {@link Zarafa.plugins.pimfolder.PimPluginSettingsWidget}.
-	 * 
+	 *
 	 * @return {Zarafa.plugins.pimfolder.PimPluginSettingswidget} An instance of the settings widget
 	 * @private
 	 */
-	createSettingsWidget : function()
+	createSettingsWidget: function()
 	{
 		return {
-			xtype : 'zarafa.pimfoldersettingswidget',
-			plugin : this
+			xtype: 'zarafa.pimfoldersettingswidget',
+			plugin: this
 		};
 	}
 });
 
 Zarafa.onReady(function() {
 	container.registerPlugin(new Zarafa.core.PluginMetaData({
-		name : 'pimfolder',
-		displayName : _('Personal Inbox Manager'),
-		pluginConstructor : Zarafa.plugins.pimfolder.PimPlugin
+		name: 'pimfolder',
+		displayName: _('Personal Inbox Manager'),
+		pluginConstructor: Zarafa.plugins.pimfolder.PimPlugin
 	}));
 });

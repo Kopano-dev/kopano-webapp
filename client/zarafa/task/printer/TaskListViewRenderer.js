@@ -28,7 +28,7 @@ Zarafa.task.printer.TaskListViewRenderer = Ext.extend(Zarafa.common.printer.rend
 		// | priority | % complete | due date | subject | owner |
 		// ....
 		// +----------------------------------------------------+
-		// [name]                                    [print date]
+		// [name]                  [print date]
 
 		html += '<table id="printlist" cellpadding=0 cellspacing=0>\n';
 
@@ -53,7 +53,7 @@ Zarafa.task.printer.TaskListViewRenderer = Ext.extend(Zarafa.common.printer.rend
 			+ '</tpl>';
 
 		html += '</table>\n';
-		
+
 		// Bottom table with username and date
 		html += '<table id="printlistbottom">'
 		+ '<tr>'

@@ -20,38 +20,38 @@ Zarafa.mail.settings.SafeSenderGrid = Ext.extend(Ext.grid.GridPanel, {
 			xtype: 'jsonstore',
 			root: 'item',
 			fields: [
-				{ name : 'id', type : 'int' },
-				{ name : 'name' }
+				{ name: 'id', type: 'int' },
+				{ name: 'name' }
 			],
 			idProperty: 'id',
-			sortInfo : {
-				field : 'name',
-				direction : 'ASC'
+			sortInfo: {
+				field: 'name',
+				direction: 'ASC'
 			},
-			autoDestroy : true
+			autoDestroy: true
 		};
 
 		Ext.applyIf(config, {
-			xtype : 'zarafa.safesendergrid',
-			name : 'zarafa/v1/contexts/mail/safe_senders_list',
-			height : 320,
-			forceFit : true,
-			store : store,
-			listeners : {
+			xtype: 'zarafa.safesendergrid',
+			name: 'zarafa/v1/contexts/mail/safe_senders_list',
+			height: 320,
+			forceFit: true,
+			store: store,
+			listeners: {
 				viewready: this.onViewReady,
-				scope : this
+				scope: this
 			},
-			viewConfig : {
-				forceFit : true,
+			viewConfig: {
+				forceFit: true,
 				deferEmptyText: false,
 				emptyText: '<div class="emptytext">' + _('Safe Senders list is empty') + '</div>'
 			},
 			columns: [{
-				dataIndex : 'name',
-				header : _('Name'),
+				dataIndex: 'name',
+				header: _('Name'),
 				menuDisabled: true,
 				sortable: true,
-				renderer : Zarafa.common.ui.grid.Renderers.text
+				renderer: Zarafa.common.ui.grid.Renderers.text
 			}]
 		});
 
@@ -64,7 +64,7 @@ Zarafa.mail.settings.SafeSenderGrid = Ext.extend(Ext.grid.GridPanel, {
 	 * if safesenders available in store then selects first row in grid.
 	 * @private
 	 */
-	onViewReady : function()
+	onViewReady: function()
 	{
 		this.getSelectionModel().selectFirstRow();
 	},
@@ -74,7 +74,7 @@ Zarafa.mail.settings.SafeSenderGrid = Ext.extend(Ext.grid.GridPanel, {
 	 * from {@link Zarafa.mail.settings.SafeSenderGrid#store store}
 	 * @private
 	 */
-	deleteSafeSender : function()
+	deleteSafeSender: function()
 	{
 		var selectionModel = this.getSelectionModel();
 		var safeSenderRecord = selectionModel.getSelections();
@@ -95,7 +95,7 @@ Zarafa.mail.settings.SafeSenderGrid = Ext.extend(Ext.grid.GridPanel, {
 		}
 
 		store.remove(safeSenderRecord);
-		
+
 		if (Ext.isDefined(rowToSelect)) {
 			selectionModel.selectRow(rowToSelect);
 		}
@@ -107,7 +107,7 @@ Zarafa.mail.settings.SafeSenderGrid = Ext.extend(Ext.grid.GridPanel, {
 	 * and {@link Ext.data.JsonStore#removeAll removeAll}.
 	 * @private
 	 */
-	deleteAllSafeSender : function()
+	deleteAllSafeSender: function()
 	{
 		Ext.MessageBox.show({
 			title: _('Delete all safe senders'),
@@ -129,7 +129,7 @@ Zarafa.mail.settings.SafeSenderGrid = Ext.extend(Ext.grid.GridPanel, {
 	 * @return {Array} list of currently available safesenders records from store.
 	 * @private
 	 */
-	getSafeSenders : function()
+	getSafeSenders: function()
 	{
 		var store = this.getStore();
 		var records = store.getRange();

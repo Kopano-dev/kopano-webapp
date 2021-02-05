@@ -64,25 +64,25 @@ Zarafa.task.widgets.TasksWidget = Ext.extend(Zarafa.core.ui.widget.AbstractFolde
 				colModel: new Ext.grid.ColumnModel({
 					columns: [{
 						header: _("Due"),
-						tooltip : _('Sort by: Due Date'),
+						tooltip: _('Sort by: Due Date'),
 						dataIndex: "duedate",
 						renderer: Zarafa.common.ui.grid.Renderers.utcdate
 					}, {
 						header: "<p class='icon_importance'>&nbsp;</p>",
-						tooltip : _('Sort by: Priority'),
+						tooltip: _('Sort by: Priority'),
 						dataIndex: "importance",
 						width: 24,
 						fixed: true,
 						renderer: Zarafa.common.ui.grid.Renderers.importance
 					}, {
 						header: "%",
-						tooltip : _('Sort by: Percentage Completed'),
+						tooltip: _('Sort by: Percentage Completed'),
 						dataIndex: "percent_complete",
-						width : 75,
+						width: 75,
 						renderer: Zarafa.common.ui.grid.Renderers.percentage
 					}, {
 						header: _('Owner'),
-						tooltip : _('Sort by: Owner'),
+						tooltip: _('Sort by: Owner'),
 						dataIndex: 'owner',
 						renderer: this.ownerRenderer
 					}],
@@ -183,9 +183,9 @@ Zarafa.task.widgets.TasksWidget = Ext.extend(Zarafa.core.ui.widget.AbstractFolde
 
 Zarafa.onReady(function () {
 	container.registerWidget(new Zarafa.core.ui.widget.WidgetMetaData({
-		name : 'tasks',
+		name: 'tasks',
 		iconCls: "icon_widget_task",
-		displayName : _('Tasks / To-Do'),
-		widgetConstructor : Zarafa.task.widgets.TasksWidget
+		displayName: _('Tasks / To-Do'),
+		widgetConstructor: Zarafa.task.widgets.TasksWidget
 	}));
 });

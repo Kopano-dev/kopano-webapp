@@ -24,7 +24,7 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -33,13 +33,13 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 		}
 
 		Ext.applyIf(config, {
-			xtype : 'zarafa.settingsoofwidget',
-			title : _('Out of Office'),
+			xtype: 'zarafa.settingsoofwidget',
+			title: _('Out of Office'),
 			ref: '../outOfOfficeWidget',
-			cls : 'zarafa-settings-widget',
-			layout : 'form',
-			labelWidth : 200,
-			items : this.getNewConfig()
+			cls: 'zarafa-settings-widget',
+			layout: 'form',
+			labelWidth: 200,
+			items: this.getNewConfig()
 		});
 
 		Zarafa.mail.settings.SettingsOofWidget.superclass.constructor.call(this, config);
@@ -53,7 +53,7 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 	 * initialize events for the {@link Zarafa.mail.settings.SettingsOofWidget SettingsOofWidget}.
 	 * @private
 	 */
-	initEvents : function()
+	initEvents: function()
 	{
 		Zarafa.mail.settings.SettingsOofWidget.superclass.initEvents.call(this);
 
@@ -69,7 +69,7 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 	/**
 	 * @return {Zarafa.common.outofoffice.data.OofStore} The store which holds record of users' out of office settings.
 	 */
-	getOofStore : function()
+	getOofStore: function()
 	{
 		return this.store;
 	},
@@ -80,7 +80,7 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 	 * Also adds user selection combo which holds user names who has given 'owner' permission.
 	 * @return {Object} Configuration object
 	 */
-	getNewConfig : function()
+	getNewConfig: function()
 	{
 		var backDate = new Date().getNextWorkWeekDay() || new Date().add(Date.DAY, 1);
 		backDate = backDate.clearTime().add(Date.MINUTE, container.getSettingsModel().get('zarafa/v1/main/start_working_hour'));
@@ -118,146 +118,146 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 		}
 
 		items.push({
-			xtype : 'radio',
-			name : 'set',
+			xtype: 'radio',
+			name: 'set',
 			// ExtJs demands inputValue to be a string
-			inputValue : 'false',
-			boxLabel : _('I am currently in the office'),
-			hideLabel : true,
-			ref : 'inOfficeField',
-			listeners : {
-				check : this.onRadioChecked,
-				scope : this
+			inputValue: 'false',
+			boxLabel: _('I am currently in the office'),
+			hideLabel: true,
+			ref: 'inOfficeField',
+			listeners: {
+				check: this.onRadioChecked,
+				scope: this
 			}
 		},{
-			xtype : 'container',
+			xtype: 'container',
 			layout: {
 				type: 'table',
 				columns: 3
 			},
-			border : false,
-			style : {
-				paddingBottom : '25px'
+			border: false,
+			style: {
+				paddingBottom: '25px'
 			},
 			defaults:{
 				xtype: 'container',
 				layout: 'form',
 				cellCls: 'zarafa-settings-oof-table-cellpadding'
 			},
-			items : [{
+			items: [{
 				items:[{
-					xtype : 'radio',
-					name : 'set',
-					hideLabel : true,
-					boxLabel : _('I am out of the office from') + ':',
-					ref : '../../outOfOfficeRadio',
+					xtype: 'radio',
+					name: 'set',
+					hideLabel: true,
+					boxLabel: _('I am out of the office from') + ':',
+					ref: '../../outOfOfficeRadio',
 					// ExtJs demands inputValue to be a string
-					inputValue : 'true',
-					listeners : {
-						check : this.onRadioChecked,
-						scope : this
+					inputValue: 'true',
+					listeners: {
+						check: this.onRadioChecked,
+						scope: this
 					}
 				}]
 			},{
 				items:[{
 					xtype: 'zarafa.datetimefield',
 					ref: '../../outOfOfficeDateTimeField',
-					name : 'from',
-					dateFieldConfig : {
-						showNow : true,
-						invalidClass : 'zarafa-settings-oof-invalid'
+					name: 'from',
+					dateFieldConfig: {
+						showNow: true,
+						invalidClass: 'zarafa-settings-oof-invalid'
 					},
-					fieldLabel : '',
-					width : 200,
-					hideLabel : true,
-					dateFormat : _('d/m/Y'),
-					minValue : new Date(),
-					defaultValue : new Date(),
+					fieldLabel: '',
+					width: 200,
+					hideLabel: true,
+					dateFormat: _('d/m/Y'),
+					minValue: new Date(),
+					defaultValue: new Date(),
 					timeIncrement: container.getSettingsModel().get('zarafa/v1/contexts/calendar/default_zoom_level'),
-					listeners : {
-						change : this.onOutOfOfficeChange,
-						scope : this
+					listeners: {
+						change: this.onOutOfOfficeChange,
+						scope: this
 					}
 				}]
 			},{
-				xtype : 'displayfield'
+				xtype: 'displayfield'
 			},{
 				items:[{
-					xtype : 'checkbox',
-					disabled : true,
-					name : 'zarafa/v1/contexts/mail/autosave_enable',
-					ref : '../../willBeBackCheckBox',
-					boxLabel : _('I will be back on') + ':',
-					hideLabel : true,
-					listeners : {
-						render : this.onWillBeBackCheckRender,
-						check : this.onWillBeBackCheck,
-						scope : this
+					xtype: 'checkbox',
+					disabled: true,
+					name: 'zarafa/v1/contexts/mail/autosave_enable',
+					ref: '../../willBeBackCheckBox',
+					boxLabel: _('I will be back on') + ':',
+					hideLabel: true,
+					listeners: {
+						render: this.onWillBeBackCheckRender,
+						check: this.onWillBeBackCheck,
+						scope: this
 					}
 				}]
 			},{
 				xtype: 'zarafa.datetimefield',
-				fieldLabel : '',
+				fieldLabel: '',
 				ref: '../backDateTimeField',
-				name : 'until',
-				dateFieldConfig : {
-					showNow : true,
-					invalidClass : 'zarafa-settings-oof-invalid'
+				name: 'until',
+				dateFieldConfig: {
+					showNow: true,
+					invalidClass: 'zarafa-settings-oof-invalid'
 				},
-				timeFieldConfig : {
-					invalidClass : 'zarafa-settings-oof-invalid'
+				timeFieldConfig: {
+					invalidClass: 'zarafa-settings-oof-invalid'
 				},
-				width : 200,
-				disabled : true,
-				hideLabel : true,
-				dateFormat : _('d/m/Y'),
-				minValue : new Date(),
-				defaultValue : backDate,
+				width: 200,
+				disabled: true,
+				hideLabel: true,
+				dateFormat: _('d/m/Y'),
+				minValue: new Date(),
+				defaultValue: backDate,
 				timeIncrement: container.getSettingsModel().get('zarafa/v1/contexts/calendar/default_zoom_level'),
-				listeners : {
-					change : this.backDateTimeChange,
-					scope : this
+				listeners: {
+					change: this.backDateTimeChange,
+					scope: this
 				}
 			},{
-				xtype : 'displayfield',
-				width : '100%',
-				cellCls : 'zarafa-settings-oof-table-cellpadding',
-				ref : '../oofWarning'
+				xtype: 'displayfield',
+				width: '100%',
+				cellCls: 'zarafa-settings-oof-table-cellpadding',
+				ref: '../oofWarning'
 			}]
 		},{
-			xtype : 'container',
-			cls : 'zarafa-settings-oof-subject',
+			xtype: 'container',
+			cls: 'zarafa-settings-oof-subject',
 			anchor: '100%',
 			layout: 'hbox',
 			hideLabel: true,
-			items : [{
-				xtype : 'textfield',
-				name : 'subject',
-				ref : '../subjectField',
-				emptyText : _('I am out of office'),
+			items: [{
+				xtype: 'textfield',
+				name: 'subject',
+				ref: '../subjectField',
+				emptyText: _('I am out of office'),
 				flex: 1,
-				listeners : {
-					change : this.onFieldChange,
-					scope : this
+				listeners: {
+					change: this.onFieldChange,
+					scope: this
 				}
 			}]
 		},{
-			xtype : 'displayfield',
+			xtype: 'displayfield',
 			anchor: '100%',
-			cls : 'zarafa-settings-oof-autoreplay',
-			hideLabel : true,
-			value : _('Automatically reply once per day, per sender with the following text') + ':'
+			cls: 'zarafa-settings-oof-autoreplay',
+			hideLabel: true,
+			value: _('Automatically reply once per day, per sender with the following text') + ':'
 		},{
-			xtype : 'textarea',
+			xtype: 'textarea',
 			anchor: '100%',
-			name : 'message',
-			ref : 'bodyField',
-			height : '400',
-			hideLabel : true,
-			emptyText : _('User is currently out of office.'),
-			listeners : {
-				change : this.onFieldChange,
-				scope : this
+			name: 'message',
+			ref: 'bodyField',
+			height: '400',
+			hideLabel: true,
+			emptyText: _('User is currently out of office.'),
+			listeners: {
+				change: this.onFieldChange,
+				scope: this
 			}
 		});
 
@@ -270,7 +270,7 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 	 * @return {Object} array which contains the jsonstore.
 	 * @private
 	 */
-	createComboboxStore : function()
+	createComboboxStore: function()
 	{
 		var hierarchyStore = container.getHierarchyStore();
 		var data = [{name: _('myself'), value: hierarchyStore.getDefaultStore().get('store_entryid') }];
@@ -318,7 +318,7 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 	 * @return {Mixed} False if there are pending changes. The selecting will then be
 	 * handled by {@link #applyChanges}. Undefined otherwise.
 	 */
-	onBeforeUserSelect : function(field, nextRecord, index)
+	onBeforeUserSelect: function(field, nextRecord, index)
 	{
 		var model = this.settingsContext.getModel();
 		if (model.hasChanges()) {
@@ -338,7 +338,7 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 	 * We are aligning the check box to the right of its cell.
 	 * @param {Ext.form.Checkbox} checkbox Will be back checkbox instance.
 	 */
-	onWillBeBackCheckRender : function(checkbox)
+	onWillBeBackCheckRender: function(checkbox)
 	{
 		checkbox.wrap.addClass('zarafa-settings-oof-table-cellalign');
 	},
@@ -350,7 +350,7 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 	 * {@link Zarafa.settings.SettingsModel}.
 	 * @param {Zarafa.settings.SettingsModel} settingsModel latest settings
 	 */
-	update : function(settingsModel)
+	update: function(settingsModel)
 	{
 		this.model = settingsModel;
 
@@ -364,7 +364,7 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 	 * This is used to load the latest version of the settings from the
 	 * {@config record} into the UI of this widget.
 	 */
-	updateView : function()
+	updateView: function()
 	{
 		if(this.userCombo) {
 			var defaultUser = this.userCombo.getValue();
@@ -414,7 +414,7 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 	 * This function will remove users from comboBox which are not in {@config store} to sync with
 	 * the latest shared users. And also hide comboBox when there's no other Users available.
 	 */
-	filterUserFromDropDown : function()
+	filterUserFromDropDown: function()
 	{
 		var comboStore = this.userCombo.getStore();
 		var oofStore = this.getOofStore();
@@ -435,7 +435,7 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 	 * it has been called with {@link zarafa.settings.ui.SettingsCategory#updateSettings}.
 	 * This is used to update the settings from the UI into the {@config record}.
 	 */
-	updateSettings : function()
+	updateSettings: function()
 	{
 		this.record.beginEdit();
 		// We must either set the requested subject, or the default subject
@@ -469,7 +469,7 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 	 * @param {Date} date The date that was selected
 	 * @private
 	 */
-	onOutOfOfficeSelectNow : function(dateField, date)
+	onOutOfOfficeSelectNow: function(dateField, date)
 	{
 		this.outOfOfficeDateTimeField.timeField.setValue(new Date());
 	},
@@ -481,7 +481,7 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 	 * @param {Date} date The date that was selected
 	 * @private
 	 */
-	onBackSelectNow : function(dateField, date)
+	onBackSelectNow: function(dateField, date)
 	{
 		this.backDateTimeField.timeField.setValue(new Date());
 	},
@@ -494,7 +494,7 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 	 * @param {Ext.form.Radio} radio The radio which was enabled
 	 * @private
 	 */
-	onRadioChange : function(group, radio)
+	onRadioChange: function(group, radio)
 	{
 		var set = radio.inputValue === 'true';
 
@@ -511,7 +511,7 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 	 * @param {Boolean} checked True if the radio is currently checked, false otherwise
 	 * @private
 	 */
-	onRadioChecked : function(radio, checked)
+	onRadioChecked: function(radio, checked)
 	{
 		if (checked === true) {
 			var set = radio.inputValue === 'true';
@@ -537,7 +537,7 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 	 * @param {Boolean} check True if the checkbox is currently checked
 	 * @private
 	 */
-	onWillBeBackCheck : function(field, check)
+	onWillBeBackCheck: function(field, check)
 	{
 		if(!check) {
 			this.record.set('until',0);
@@ -558,7 +558,7 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 	 * @param {String} value The new value
 	 * @private
 	 */
-	onFieldChange : function(field, value)
+	onFieldChange: function(field, value)
 	{
 		this.record.set(field.name, value || field.emptyText);
 	},
@@ -572,7 +572,7 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 	 * @param {Mixed} oldValue The old value
 	 * @private
 	 */
-	onOutOfOfficeChange : function(dateField, newValue, oldValue)
+	onOutOfOfficeChange: function(dateField, newValue, oldValue)
 	{
 		this.backDateTimeField.dateField.setMinValue(newValue);
 		this.reviseWarningStatus();
@@ -589,7 +589,7 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 	 * @param {Mixed} oldValue The old value
 	 * @private
 	 */
-	backDateTimeChange : function(dateField, newValue, oldValue)
+	backDateTimeChange: function(dateField, newValue, oldValue)
 	{
 		this.reviseWarningStatus();
 		this.record.set(dateField.name, newValue.getTime()/1000 || dateField.defaultValue);
@@ -600,7 +600,7 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 	 * calling {@link Ext.form.DisplayField#set set} or {@link Ext.form.DisplayField#reset reset} methods respectively.
 	 * @private
 	 */
-	reviseWarningStatus : function()
+	reviseWarningStatus: function()
 	{
 		if(this.outOfOfficeDateTimeField.getValue() >= this.backDateTimeField.getValue() && this.willBeBackCheckBox.getValue() === true) {
 			this.oofWarning.setValue(_('The time you entered is before the out of office date. Please reschedule.'));
@@ -622,7 +622,7 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 	 * @param {Ext.form.ComboBox} field the user selection combobox.
 	 * @param {Ext.Record} record The user's record which was selected from user combobox.
 	 */
-	applyChanges : function(btn, model, field, record)
+	applyChanges: function(btn, model, field, record)
 	{
 		// The user cancels the switch to a different category
 		if (btn === 'cancel') {
@@ -653,7 +653,7 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 	 * @param {String} operation The update operation being performed.
 	 * @private
 	 */
-	doStoreUpdate : function(store, record, operation)
+	doStoreUpdate: function(store, record, operation)
 	{
 		if (operation !== Ext.data.Record.COMMIT) {
 			var contextModel = this.settingsContext.getModel();
@@ -664,7 +664,7 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 	/**
 	 * Function will be used to reload data in the {@link Zarafa.common.outofoffice.data.OofStore OofStore}.
 	 */
-	onDiscardSettings : function()
+	onDiscardSettings: function()
 	{
 		this.record.reject(true);
 		this.updateView();
@@ -675,7 +675,7 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 	 * This will save out of office store data.
 	 * @private
 	 */
-	onSaveSettings : function()
+	onSaveSettings: function()
 	{
 		this.getOofStore().save();
 	}

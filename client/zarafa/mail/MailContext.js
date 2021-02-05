@@ -21,7 +21,7 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 	 * @type Mixed
 	 * @private
 	 */
-	oldView : undefined,
+	oldView: undefined,
 
 	/**
 	 * When searching, this property marks the {@link Zarafa.core.Context#getCurrentViewMode viewmode}
@@ -31,19 +31,19 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 	 * @type Mixed
 	 * @private
 	 */
-	oldViewMode : undefined,
+	oldViewMode: undefined,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			current_view : Zarafa.mail.data.Views.LIST,
-			current_view_mode : Zarafa.mail.data.ViewModes.RIGHT_PREVIEW
+			current_view: Zarafa.mail.data.Views.LIST,
+			current_view_mode: Zarafa.mail.data.ViewModes.RIGHT_PREVIEW
 		});
 
 		Zarafa.mail.MailContext.superclass.constructor.call(this, config);
@@ -74,22 +74,22 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 
 		// Register mail specific dialog types
 		Zarafa.core.data.SharedComponentType.addProperty('mail.dialog.options');
-        Zarafa.core.data.SharedComponentType.addProperty('mail.dialog.delayeddelivery');
+    Zarafa.core.data.SharedComponentType.addProperty('mail.dialog.delayeddelivery');
 	},
 
 	/**
 	 * @return {Zarafa.mail.MailContextModel} the mail context model
 	 */
-	getModel : function()
+	getModel: function()
 	{
 		if (!Ext.isDefined(this.model)) {
 			this.model = new Zarafa.mail.MailContextModel();
 			this.model.on({
-				'searchstart' : this.onModelSearchStart,
-				'searchstop' : this.onModelSearchStop,
-				'livescrollstart' : this.onModelLiveScrollStart,
-				'livescrollstop' : this.onModelLiveScrollStop,
-				scope : this
+				'searchstart': this.onModelSearchStart,
+				'searchstop': this.onModelSearchStop,
+				'livescrollstart': this.onModelLiveScrollStart,
+				'livescrollstop': this.onModelLiveScrollStop,
+				scope: this
 			});
 		}
 		return this.model;
@@ -103,7 +103,7 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 	 * @param {Zarafa.core.ContextModel} model The model which fired the event
 	 * @private
 	 */
-	onModelLiveScrollStart : function(model)
+	onModelLiveScrollStart: function(model)
 	{
 		if(this.getCurrentView() !== Zarafa.mail.data.Views.LIVESCROLL && this.getCurrentViewMode() !== Zarafa.mail.data.ViewModes.LIVESCROLL){
 			/*
@@ -124,7 +124,7 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 	 * @param {Zarafa.core.ContextModel} model The model which fired the event
 	 * @private
 	 */
-	onModelLiveScrollStop : function(model)
+	onModelLiveScrollStop: function(model)
 	{
 		/*
 		 * Check requires to prevent loading old view again when user
@@ -153,7 +153,7 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 	 * @param {Zarafa.core.ContextModel} model The model which fired the event
 	 * @private
 	 */
-	onModelSearchStart : function(model)
+	onModelSearchStart: function(model)
 	{
 		if(this.getCurrentView() !== Zarafa.mail.data.Views.SEARCH && this.getCurrentViewMode() !== Zarafa.mail.data.ViewModes.SEARCH){
 			/*
@@ -175,7 +175,7 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 	 * @param {Zarafa.core.ContextModel} model The model which fired the event
 	 * @private
 	 */
-	onModelSearchStop : function(model)
+	onModelSearchStop: function(model)
 	{
 		this.switchView(this.oldView, this.oldViewMode);
 		delete this.oldView;
@@ -189,7 +189,7 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder The folder for which the context is bidding
 	 * @return {Number} 1 when the contexts supports the folder, -1 otherwise
 	 */
-	bid : function(folder)
+	bid: function(folder)
 	{
 		// The folder contains items of type IPF.Note
 		if (folder.isContainerClass('IPF.Note', true)) {
@@ -235,7 +235,7 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 				break;
 			// Bid for mail specific dialog
 			case Zarafa.core.data.SharedComponentType['mail.dialog.options']:
-            case Zarafa.core.data.SharedComponentType['mail.dialog.delayeddelivery']:
+      case Zarafa.core.data.SharedComponentType['mail.dialog.delayeddelivery']:
 				bid = 1;
 				break;
 			case Zarafa.core.data.SharedComponentType['common.contextmenu']:
@@ -324,8 +324,8 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 			case Zarafa.core.data.SharedComponentType['common.attachment.dialog.attachitem.textrenderer']:
 				component = Zarafa.mail.attachitem.AttachMailRenderer;
 				break;
-            case Zarafa.core.data.SharedComponentType['mail.dialog.delayeddelivery']:
-                component = Zarafa.mail.dialogs.DelayedDeliveryContentPanel;
+      case Zarafa.core.data.SharedComponentType['mail.dialog.delayeddelivery']:
+        component = Zarafa.mail.dialogs.DelayedDeliveryContentPanel;
 		}
 		return component;
 	},
@@ -336,10 +336,10 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 	 * @return {Zarafa.mail.ui.MailPanel} The main panel which should
 	 * be used within the {@link Zarafa.core.Context context}
 	 */
-	createContentPanel : function()
+	createContentPanel: function()
 	{
 		return {
-			xtype : 'zarafa.mailpanel',
+			xtype: 'zarafa.mailpanel',
 			id: 'zarafa-mainpanel-contentpanel-mail',
 			context: this
 		};
@@ -350,29 +350,29 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 	 * button panel. It shows a tree of available mail folders
 	 * @private
 	 */
-	createMailNavigationPanel : function()
+	createMailNavigationPanel: function()
 	{
 		return {
-			xtype : 'zarafa.contextnavigation',
-			context : this,
-			items : [{
-				xtype : 'panel',
+			xtype: 'zarafa.contextnavigation',
+			context: this,
+			items: [{
+				xtype: 'panel',
 				id: 'zarafa-navigationpanel-mail-navigation',
 				cls: 'zarafa-context-navigation-block',
 				ref: 'mailnavigation',
 				layout: 'fit',
-				items : [{
-					xtype : 'zarafa.hierarchytreepanel',
+				items: [{
+					xtype: 'zarafa.hierarchytreepanel',
 					id: 'zarafa-navigationpanel-mail-navigation-tree',
 					model: this.getModel(),
 					IPMFilter: 'IPF.Note',
-					hideDeletedFolders : false,
-					enableDD : true,
-					enableItemDrop : true,
-					deferredLoading : true,
+					hideDeletedFolders: false,
+					enableDD: true,
+					enableItemDrop: true,
+					deferredLoading: true,
 					bbarConfig: {
 						defaultSelectedSharedFolderType: Zarafa.hierarchy.data.SharedFolderTypes['MAIL'],
-						buttonText : _('Open Shared Mails')
+						buttonText: _('Open Shared Mails')
 					}
 				}]
 			}]
@@ -392,8 +392,8 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 		return {
 			xtype: 'menuitem',
 			id: 'zarafa-maintoolbar-newitem-mail',
-			tooltip : _('Email')+ ' (Ctrl + Alt + X)',
-			plugins : 'zarafa.menuitemtooltipplugin',
+			tooltip: _('Email')+ ' (Ctrl + Alt + X)',
+			plugins: 'zarafa.menuitemtooltipplugin',
 			text: _('Email'),
 			iconCls: 'icon_new_email',
 			newMenuIndex: 1,
@@ -411,20 +411,20 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 	 * with buttons to send a mail to the given Contact and Address Book.
 	 * @private
 	 */
-	createSendEmailContextItem : function()
+	createSendEmailContextItem: function()
 	{
 		return {
-			text : _('Send email'),
-			iconCls : 'icon_new_email',
-			scope : this,
-			handler : function(item) {
+			text: _('Send email'),
+			iconCls: 'icon_new_email',
+			scope: this,
+			handler: function(item) {
 				Zarafa.mail.Actions.openCreateMailContentForContacts(
 					this.getModel(),
 					item.parentMenu.records, {
-					ABDialog : item.parentMenu.dialog
+					ABDialog: item.parentMenu.dialog
 				});
 			},
-			beforeShow : function(item, records) {
+			beforeShow: function(item, records) {
 				var visible = false;
 				var hasMixRecord = false;
 				for (var i = 0, len = records.length; i < len; i++) {
@@ -446,19 +446,19 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 	 * with buttons to send a mail to the given Contact or Distribution list.
 	 * @private
 	 */
-	createSendEmailButton : function()
+	createSendEmailButton: function()
 	{
 		return {
-			xtype : 'button',
-			plugins : [ 'zarafa.recordcomponentupdaterplugin' ],
-			iconCls : 'icon_new_email',
-			overflowText : _('Send email'),
-			tooltip : _('Send email'),
-			handler : function(btn) {
+			xtype: 'button',
+			plugins: [ 'zarafa.recordcomponentupdaterplugin' ],
+			iconCls: 'icon_new_email',
+			overflowText: _('Send email'),
+			tooltip: _('Send email'),
+			handler: function(btn) {
 				Zarafa.mail.Actions.openCreateMailContentForContacts(this.getModel(), btn.record);
 			},
-			scope : this,
-			update : function(record, resetContent) {
+			scope: this,
+			update: function(record, resetContent) {
 				this.record = record;
 				if (resetContent) {
 					// Smal workaround, update is called from the btn scope,
@@ -480,7 +480,7 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 	 * @return {Boolean} True if we can send an email to this contact/distlist
 	 * @private
 	 */
-	isSendEmailButtonVisible : function(record)
+	isSendEmailButtonVisible: function(record)
 	{
 		if (record.phantom) {
 			return false;
@@ -510,14 +510,14 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 	createSettingCategories: function(insertionName, settingsMainPanel, settingsContext)
 	{
 		return [{
-			xtype : 'zarafa.settingsmailcategory',
-			settingsContext : settingsContext
+			xtype: 'zarafa.settingsmailcategory',
+			settingsContext: settingsContext
 		},{
-			xtype : 'zarafa.settingsoutofofficecategory',
-			settingsContext : settingsContext
+			xtype: 'zarafa.settingsoutofofficecategory',
+			settingsContext: settingsContext
 		},{
-			xtype : 'zarafa.settingssafesendercategory',
-			settingsContext : settingsContext
+			xtype: 'zarafa.settingssafesendercategory',
+			settingsContext: settingsContext
 		}];
 	},
 
@@ -527,7 +527,7 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 	 *
 	 * @return {Ext.Component[]} an array of components
 	 */
-	getMainToolbarViewButtons : function()
+	getMainToolbarViewButtons: function()
 	{
 		var items = container.populateInsertionPoint('main.maintoolbar.view.mail', this) || [];
 
@@ -536,8 +536,8 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 			overflowText: _('No preview'),
 			iconCls: 'icon_previewpanel_off',
 			text: _('No preview'),
-			valueView : Zarafa.mail.data.Views.LIST,
-			valueViewMode : Zarafa.mail.data.ViewModes.NO_PREVIEW,
+			valueView: Zarafa.mail.data.Views.LIST,
+			valueViewMode: Zarafa.mail.data.ViewModes.NO_PREVIEW,
 			handler: this.onContextSelectView,
 			scope: this
 		},{
@@ -545,8 +545,8 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 			overflowText: _('Right preview'),
 			iconCls: 'icon_previewpanel_right',
 			text: _('Right preview'),
-			valueView : Zarafa.mail.data.Views.LIST,
-			valueViewMode : Zarafa.mail.data.ViewModes.RIGHT_PREVIEW,
+			valueView: Zarafa.mail.data.Views.LIST,
+			valueViewMode: Zarafa.mail.data.ViewModes.RIGHT_PREVIEW,
 			handler: this.onContextSelectView,
 			scope: this
 		},{
@@ -554,8 +554,8 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 			overflowText: _('Bottom preview'),
 			iconCls: 'icon_previewpanel_bottom',
 			text: _('Bottom preview'),
-			valueView : Zarafa.mail.data.Views.LIST,
-			valueViewMode : Zarafa.mail.data.ViewModes.BOTTOM_PREVIEW,
+			valueView: Zarafa.mail.data.Views.LIST,
+			valueViewMode: Zarafa.mail.data.ViewModes.BOTTOM_PREVIEW,
 			handler: this.onContextSelectView,
 			scope: this
 		}];
@@ -570,7 +570,7 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 	 * @param {Ext.Button} button The button which was pressed
 	 * @private
 	 */
-	onContextSelectView : function(button)
+	onContextSelectView: function(button)
 	{
 		var model = this.getModel();
 		this.getModel().setDataMode(model.getCurrentDataMode());
@@ -583,7 +583,7 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 	 *
 	 * @return {Ext.Component[]} an array of components
 	 */
-	getMainToolbarPrintButtons : function()
+	getMainToolbarPrintButtons: function()
 	{
 		var items = container.populateInsertionPoint('main.toolbar.print.mail', this) || [];
 
@@ -592,8 +592,8 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 			id: 'zarafa-maintoolbar-print-singlemail',
 			overflowText: _('Print single email'),
 			iconCls: 'icon_print',
-			tooltip : _('Print selected email') + ' (Ctrl + P)',
-			plugins : 'zarafa.menuitemtooltipplugin',
+			tooltip: _('Print selected email') + ' (Ctrl + P)',
+			plugins: 'zarafa.menuitemtooltipplugin',
 			text: _('Print single email'),
 			hideOnDisabled: false,
 			singleSelectOnly: true,
@@ -609,7 +609,7 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 	 * This calls {@link Zarafa.common.Actions.openPrintDialog} with the current context.
 	 * @private
 	 */
-	onPrintList : function()
+	onPrintList: function()
 	{
 		Zarafa.common.Actions.openPrintDialog(this);
 	},
@@ -637,7 +637,7 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 	 * insertion point triggered.
 	 * @return {Object} configuration object to create filter button.
 	 */
-	createFilterButton : function(insertionPoint, currentContext)
+	createFilterButton: function(insertionPoint, currentContext)
 	{
 		var hidden = true;
 		if (Ext.isDefined(currentContext)) {
@@ -650,21 +650,21 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 			text: '<span>' + _('Filter') + '</span>',
 			overflowText: _('Filter'),
 			iconCls: 'icon_filter',
-			ref : 'filterBtn',
-			hidden : hidden,
+			ref: 'filterBtn',
+			hidden: hidden,
 			nonEmptySelectOnly: true,
 			model: this.model,
-			menu : {
-				items : [{
-					xtype : 'menucheckitem',
+			menu: {
+				items: [{
+					xtype: 'menucheckitem',
 					text: _('Unread'),
 					model: this.model,
-					cls : 'k-unread-filter-btn',
-					ref : '../unreadBtn',
-					iconCls : isCurrDataModeUnread ? 'x-menu-item-icon' : 'k-hide-img',
-					valueDataMode : Zarafa.mail.data.DataModes.UNREAD,
-					checked : isCurrDataModeUnread,
-					checkHandler : this.onUnreadToggle,
+					cls: 'k-unread-filter-btn',
+					ref: '../unreadBtn',
+					iconCls: isCurrDataModeUnread ? 'x-menu-item-icon' : 'k-hide-img',
+					valueDataMode: Zarafa.mail.data.DataModes.UNREAD,
+					checked: isCurrDataModeUnread,
+					checkHandler: this.onUnreadToggle,
 					scope: this
 				}]
 			},
@@ -673,15 +673,15 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 					this.showMenu();
 				}
 			},
-			listeners : {
-				afterrender : function(button) {
-					// Add selection class on main filter button 
+			listeners: {
+				afterrender: function(button) {
+					// Add selection class on main filter button
 					// and avoid this when filter button is included in more menu.
 					if (Ext.isDefined(button.unreadBtn) && isCurrDataModeUnread) {
 						button.btnEl.addClass('k-selection');
 						button.pressed = true;
 						this.model.getStore().hasFilterApplied = true;
-					}	
+					}
 				}
 			}
 		};
@@ -693,7 +693,7 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 	 * @param {Ext.menu.CheckItem} menuItem The menu item which is clicked.
 	 * @param {Boolean} checked The checked is true if {@link Ext.menu.CheckItem CheckItem} was clicked.
 	 */
-	onUnreadToggle : function(menuItem, checked)
+	onUnreadToggle: function(menuItem, checked)
 	{
 		var mainPanelToolbar = container.getContentPanel().getTopToolbar();
 		var filterBtn = mainPanelToolbar.filterBtn;
@@ -717,9 +717,9 @@ Zarafa.mail.MailContext = Ext.extend(Zarafa.core.Context, {
 
 Zarafa.onReady(function() {
 	container.registerContext(new Zarafa.core.ContextMetaData({
-		name : 'mail',
+		name: 'mail',
 		displayName: _('Mail'),
-		allowUserVisible : false,
-		pluginConstructor : Zarafa.mail.MailContext
+		allowUserVisible: false,
+		pluginConstructor: Zarafa.mail.MailContext
 	}));
 });

@@ -12,14 +12,14 @@ Zarafa.core.data.UIFactoryBrowserWindowLayer = Ext.extend(Zarafa.core.data.UIFac
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			type : 'separateWindows',
-			index : 20,
-			plugins : [ 'zarafa.contentlayerplugin' ]
+			type: 'separateWindows',
+			index: 20,
+			plugins: [ 'zarafa.contentlayerplugin' ]
 		});
 
 		Zarafa.core.data.UIFactoryBrowserWindowLayer.superclass.constructor.call(this, config);
@@ -33,7 +33,7 @@ Zarafa.core.data.UIFactoryBrowserWindowLayer = Ext.extend(Zarafa.core.data.UIFac
 	 * passed to the constructor when creating the component
 	 * @protected
 	 */
-	create : function(component, config)
+	create: function(component, config)
 	{
 		// Generate unique name to assign to a separate window, this unique name will be then
 		// extensively used by the BrowserWindowMgr
@@ -80,7 +80,7 @@ Zarafa.core.data.UIFactoryBrowserWindowLayer = Ext.extend(Zarafa.core.data.UIFac
 	 * @param {Object} config The configuration object which must be
 	 * passed to the constructor when creating the component
 	 */
-	registerNewlyCreatedWindow : function(separateWindowInstance, component, config)
+	registerNewlyCreatedWindow: function(separateWindowInstance, component, config)
 	{
 		if (separateWindowInstance) {
 			Zarafa.core.BrowserWindowMgr.register(separateWindowInstance, component, config);
@@ -115,7 +115,7 @@ Zarafa.core.data.UIFactoryBrowserWindowLayer = Ext.extend(Zarafa.core.data.UIFac
 	 * See {@link https://developer.mozilla.org/en-US/docs/Web/API/Window/open} for more information on these
 	 * properties.
 	 */
-	getBrowserWindowPosition : function(config)
+	getBrowserWindowPosition: function(config)
 	{
 		var availableBrowserWindows = Zarafa.core.BrowserWindowMgr.browserWindows;
 		var browserWindowHeight = config.width || 600;
@@ -139,10 +139,10 @@ Zarafa.core.data.UIFactoryBrowserWindowLayer = Ext.extend(Zarafa.core.data.UIFac
 
 		var toolbar = config.toolbar && config.toolbar !== 'no' ? 'yes' : 'no';
 		var location = config.location && config.location !== 'no' ? 'yes' : 'no';
-		var status = config.status && config.status !== '0' ? 1 : 0;
-		var menubar = config.menubar && config.menubar !== '0' ? 1 : 0;
-		var scrollbars = config.scrollbars && config.scrollbars !== '0' ? 1 : 0;
-		var resizable = config.resizable && config.resizable !== '0' ? 1 : 0;
+		var status = config.status && config.status !== '0' ? 1: 0;
+		var menubar = config.menubar && config.menubar !== '0' ? 1: 0;
+		var scrollbars = config.scrollbars && config.scrollbars !== '0' ? 1: 0;
+		var resizable = config.resizable && config.resizable !== '0' ? 1: 0;
 
 		return (
 			'toolbar=' + toolbar + ', ' +

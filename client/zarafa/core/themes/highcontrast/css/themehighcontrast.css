@@ -1,9 +1,9 @@
 /*********************************************************************************************
- *                                                                                           *
- * This is the css for the High Contrast theme for the Kopano WebApp.                        *
- *                                                                                           *
- * (c) 2019 Kopano                                                                       *
- *                                                                                           *
+ *                                              *
+ * This is the css for the High Contrast theme for the Kopano WebApp.            *
+ *                                              *
+ * (c) 2019 Kopano                                    *
+ *                                              *
  *********************************************************************************************/
 
 /*********************************************************************************************
@@ -16,8 +16,8 @@ body.login,
 #bg,
 /* Background image of the Welcome screen */
 body.zarafa-welcome {
-    background: url(../img/background.jpg) no-repeat center center;
-    background-size: cover;
+  background: url(../img/background.jpg) no-repeat center center;
+  background-size: cover;
 }
 
 /*********************************************************************************************
@@ -221,7 +221,7 @@ ul.x-tab-strip li .x-tab-right,
 .zarafa-freebusy-panel .x-freebusy-timeline-container .x-freebusy-header .x-freebusy-header-body div.x-freebusy-timeline-day table tr.x-freebusy-timeline-day td,
 /* Date picker */
 .x-date-picker .x-date-mp table tr.x-date-mp-btns td button {
-  background-color: #cfd2dc;
+ background-color: #cfd2dc;
 }
 
 /* Buttons */
@@ -231,21 +231,21 @@ ul.x-tab-strip li .x-tab-right,
 .x-btn.x-btn-click .x-btn-small,
 .x-btn.x-btn-click .x-btn-medium,
 .x-btn.x-btn-click .x-btn-large {
-  background-color: #cfd2dc !important;
+ background-color: #cfd2dc !important;
 }
 
 /* Fade block in titlebar of dialog header */
 .x-window .x-window-tl .x-window-tr .x-window-tc .x-window-header .fade,
 .x-panel-ghost .x-window-tl .x-window-tr .x-window-tc .x-window-header .fade {
-  background: linear-gradient(to right, rgba(207, 210, 220, 0) 0%, #cfd2dc 50%, #cfd2dc 100%);
+ background: linear-gradient(to right, rgba(207, 210, 220, 0) 0%, #cfd2dc 50%, #cfd2dc 100%);
 }
 
 /*
  * Contact filter
  */
 .contact-characterstrip .x-btn-pressed .x-btn-small {
-  background-color: #b9dcf5;
-  border-color: #b9dcf5;
+ background-color: #b9dcf5;
+ border-color: #b9dcf5;
 }
 
 .k-selection {
@@ -258,15 +258,15 @@ ul.x-tab-strip li .x-tab-right,
 
 /* Selected mail item */
 .theme-highcontrast .x-grid3-row.x-grid3-row-expanded.mail_read.x-grid3-row-selected > table {
-        border-left: 4px solid #b9dcf5 !important;
+    border-left: 4px solid #b9dcf5 !important;
 }
 
 /* Hover selected item */
 .theme-highcontrast .x-grid3-row.x-grid3-row-expanded.mail_read.x-grid3-row-selected.x-grid3-row-over > table,
 .theme-highcontrast .x-grid3-row.x-grid3-row-collapsed.mail_read.x-grid3-row-selected > table {
-        border-left: 4px solid #b9dcf5 !important;
+    border-left: 4px solid #b9dcf5 !important;
 }
 
 .preview-header-sender-initial {
 	color: #0f70bd;
-  }
+ }

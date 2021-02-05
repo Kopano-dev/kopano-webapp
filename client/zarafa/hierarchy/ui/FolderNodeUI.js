@@ -10,7 +10,7 @@ Ext.namespace('Zarafa.hierarchy.ui');
  * so we can create a new element for showing counters so it will not interfere with default functionality of text nodes.
  *
  * The default layout of extjs for treenodes is something like this
-  <pre><code>
+ <pre><code>
  	 <div unselectable="on" class="x-tree-node-el x-tree-node-leaf x-unselectable" >	// element node
  		<span class="x-tree-node-indent">		// for indentation
  			<img class="x-tree-elbow-line">
@@ -22,9 +22,9 @@ Ext.namespace('Zarafa.hierarchy.ui');
  			<span unselectable="on"> node text </span>						// text node
  		</a>
  	 </div>
-  </code></pre>
- *  but for our custom needs we need to chagne that layout to accommodate counters also
-  <pre><code>
+ </code></pre>
+ * but for our custom needs we need to chagne that layout to accommodate counters also
+ <pre><code>
  	<div unselectable="on" class="x-tree-node-el x-tree-node-leaf x-unselectable" >	// element node
  		<span class="x-tree-node-indent">		// for indentation
  			<img class="x-tree-elbow-line">
@@ -37,7 +37,7 @@ Ext.namespace('Zarafa.hierarchy.ui');
  			<span unselectable="on" class="zarafa-hierarchy-node-unread-count">(2)</span>	// counter node
  		</a>
  	</div>
-  </code></pre>
+ </code></pre>
  */
 Zarafa.hierarchy.ui.FolderNodeUI = Ext.extend(Ext.tree.TreeNodeUI, {
 
@@ -46,7 +46,7 @@ Zarafa.hierarchy.ui.FolderNodeUI = Ext.extend(Ext.tree.TreeNodeUI, {
 	 * @property
 	 * @type Zarafa.hierarchy.data.CounterTypes
 	 */
-	currentCounterType : undefined,
+	currentCounterType: undefined,
 
 	/**
 	 * Function will render {@link Zarafa.hierachy.ui.FolderNode FolderNode} based on modified template for
@@ -56,7 +56,7 @@ Zarafa.hierarchy.ui.FolderNodeUI = Ext.extend(Ext.tree.TreeNodeUI, {
 	 * @param {Ext.Element} targetNode element in which {@link Zarafa.hierarchy.ui.FolderNode FolderNode} will be rendered.
 	 * @param {Boolean} bulkRender
 	 */
-	renderElements : function(n, a, targetNode, bulkRender)
+	renderElements: function(n, a, targetNode, bulkRender)
 	{
 		// add some indent caching, this helps performance when rendering a large tree
 		this.indentMarkup = n.parentNode ? n.parentNode.ui.getChildIndent() : '';
@@ -109,7 +109,7 @@ Zarafa.hierarchy.ui.FolderNodeUI = Ext.extend(Ext.tree.TreeNodeUI, {
 					// expand icon
 					'<img src="' + this.emptyIcon + '" class="x-tree-ec-icon x-tree-elbow" />' +
 					// checkbox
-					(cb ? '<input class="x-tree-node-cb zarafa-hierarchy-node-cb" type="checkbox" ' + (a.checked ? 'checked="checked" />' : '/>') : '') +
+					(cb ? '<input class="x-tree-node-cb zarafa-hierarchy-node-cb" type="checkbox" ' + (a.checked ? 'checked="checked" />': '/>') : '') +
 					// node icon
 					(isCalenderNode ? calendarSVGIcon : icon) +
 					// node element (this.elNode)
@@ -128,7 +128,7 @@ Zarafa.hierarchy.ui.FolderNodeUI = Ext.extend(Ext.tree.TreeNodeUI, {
 
 		if (bulkRender !== true && n.nextSibling && (nel = n.nextSibling.ui.getEl())) {
 			this.wrap = Ext.DomHelper.insertHtml("beforeBegin", nel, buf);
-		}else{
+		} else {
 			this.wrap = Ext.DomHelper.insertHtml("beforeEnd", targetNode, buf);
 		}
 
@@ -188,12 +188,12 @@ Zarafa.hierarchy.ui.FolderNodeUI = Ext.extend(Ext.tree.TreeNodeUI, {
 	 * Function is used to show folder owner name along with {@link Zarafa.hierarchy.data.FavoritesFolderRecord favorites} folder name.
 	 * @param {Zarafa.hierarchy.ui.FolderNode} node which has to show folder owner name.
 	 */
-	showFolderOwner : function (node)
+	showFolderOwner: function (node)
 	{
 		var folder = node.getFolder();
-		
-		// Display owner of a folder : 
-		// - When a favorite folder. 
+
+		// Display owner of a folder:
+		// - When a favorite folder.
 		// - When a folder exists in a filtered tree ('Show all folders' checkbox is unchecked) in Tasks, Contacts, Calender, Notes contexts.
 		if (!Ext.isDefined(folder) || (!folder.isFavoritesFolder() && node.attributes.nodeType !== 'rootfolder') || folder.isIPMSubTree() || folder.isFavoritesRootFolder()) {
 			return;
@@ -215,7 +215,7 @@ Zarafa.hierarchy.ui.FolderNodeUI = Ext.extend(Ext.tree.TreeNodeUI, {
 	 * Update the {@link #counterNode counter} with the correct value.
 	 * @param {Zarafa.hierarchy.ui.FolderNode} node The node which is being updated
 	 */
-	updateCounter : function(node)
+	updateCounter: function(node)
 	{
 		var folder = node.getFolder();
 
@@ -282,7 +282,7 @@ Zarafa.hierarchy.ui.FolderNodeUI = Ext.extend(Ext.tree.TreeNodeUI, {
 	 * @param {String} oldText The previous text which was set on the node
 	 * @private
 	 */
-	onTextChange : function(node, text, oldText)
+	onTextChange: function(node, text, oldText)
 	{
 		if (this.rendered) {
 			this.textNode.innerHTML = node.tpl ? node.tpl.apply(node.attributes) : text;
@@ -296,7 +296,7 @@ Zarafa.hierarchy.ui.FolderNodeUI = Ext.extend(Ext.tree.TreeNodeUI, {
 	 * @param {String} oldIconCls The old iconCls which must be removed from the {@link #iconNode}.
 	 * @private
 	 */
-	onIconChange : function(node, iconCls, oldIconCls)
+	onIconChange: function(node, iconCls, oldIconCls)
 	{
 		if (this.rendered) {
 			var iconNode = Ext.get(this.iconNode);
@@ -314,7 +314,7 @@ Zarafa.hierarchy.ui.FolderNodeUI = Ext.extend(Ext.tree.TreeNodeUI, {
 	 * @param {String} cls The class which must be applied to the {@link #iconNode}
 	 * @private
 	 */
-	onContainerClsChange : function(node, cls, oldCls)
+	onContainerClsChange: function(node, cls, oldCls)
 	{
 		if(this.rendered) {
 			var containerNode = Ext.get(this.wrap);
@@ -331,7 +331,7 @@ Zarafa.hierarchy.ui.FolderNodeUI = Ext.extend(Ext.tree.TreeNodeUI, {
 	 * drag and drop manager for {@link Zarafa.hierarchy.ui.Tree Tree}.
 	 * @return {Ext.Element[]} nodes which should be registered with dnd manager.
 	 */
-	getDDHandles : function()
+	getDDHandles: function()
 	{
 		// register counter node, icon node, text node to dnd manager
 		var nodes = [this.iconNode, this.textNode, this.counterNode, this.elNode];

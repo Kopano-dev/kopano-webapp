@@ -15,12 +15,12 @@ Zarafa.plugins.pimfolder.PimPluginSettingsWidget = Ext.extend(Zarafa.settings.ui
 	 * @cfg {Zarafa.plugins.pimfolder.PimPlugin} plugin The plugin which has registered this
 	 * settings widget.
 	 */
-	plugin : undefined,
+	plugin: undefined,
 
 	/**
 	 * Currently selected folder - reference kept around for
 	 * convenience.
-	 * 
+	 *
 	 * @property
 	 * @type Zarafa.hierarchy.data.MAPIFolderRecord
 	 * @private
@@ -31,12 +31,12 @@ Zarafa.plugins.pimfolder.PimPluginSettingsWidget = Ext.extend(Zarafa.settings.ui
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
-	{	
+	constructor: function(config)
+	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			title : _('Personal Inbox Management Settings'),
+			title: _('Personal Inbox Management Settings'),
 			xtype: 'panel',
 			items: [{
 				xtype: 'zarafa.compositefield',
@@ -60,10 +60,10 @@ Zarafa.plugins.pimfolder.PimPluginSettingsWidget = Ext.extend(Zarafa.settings.ui
 	 * User clicked on the button to select a different folder - open
 	 * a folder selection dialog, with the currently configured
 	 * folder selected.
-	 * 
+	 *
 	 * @private
 	 */
-	onSelectFolder : function() {
+	onSelectFolder: function() {
 		Zarafa.hierarchy.Actions.openFolderSelectionContent({
 			callback: this.onFolderSelected,
 			folder: this.currentFolder,
@@ -74,11 +74,11 @@ Zarafa.plugins.pimfolder.PimPluginSettingsWidget = Ext.extend(Zarafa.settings.ui
 	/**
 	 * Callback function: a folder was selected. Update the settings
 	 * and the label.
-	 * 
+	 *
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder The selected folder.
 	 * @private
 	 */
-	onFolderSelected : function(folder) {
+	onFolderSelected: function(folder) {
 		var settingsModel = container.getSettingsModel();
 		settingsModel.beginEdit();
 		settingsModel.set('zarafa/v1/plugins/pimfolder/folder_entryid', folder.get('entryid'));
@@ -91,10 +91,10 @@ Zarafa.plugins.pimfolder.PimPluginSettingsWidget = Ext.extend(Zarafa.settings.ui
 	 * Update the view with the new values of the settings
 	 * model. Called when opening the settings widget or when a new
 	 * folder is selected.
-	 * 
+	 *
 	 * @param {Zarafa.settings.SettingsModel} settingsModel The settings to display.
 	 */
-	update : function(settingsModel)
+	update: function(settingsModel)
 	{
 		var displayName = _('(None)');
 		this.currentFolder = this.plugin.getTargetFolder();

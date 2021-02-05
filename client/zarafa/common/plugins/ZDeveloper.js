@@ -12,7 +12,7 @@ Zarafa.common.plugins.ZDeveloperPlugin = Ext.extend(Zarafa.core.Plugin, {
 	 * Initialize the plugin by calling {@link #registerInsertionPoint}.
 	 * @protected
 	 */
-	initPlugin : function()
+	initPlugin: function()
 	{
 		Zarafa.common.plugins.ZDeveloperPlugin.superclass.initPlugin.apply(this, arguments);
 
@@ -34,50 +34,50 @@ Zarafa.common.plugins.ZDeveloperPlugin = Ext.extend(Zarafa.core.Plugin, {
 	 * @param context
 	 * @return {Object}
 	 */
-	putMessageBox : function(context)
+	putMessageBox: function(context)
 	{
 		if (context === 'main.categories') {
 			return _('INSERT') + ': ' + context;
 		} else if (context.match(/(.*?).tabs/)) {
 			return {
-				xtype : 'panel',
-				title : context,
-				listeners : {
-					'added' : function() {
+				xtype: 'panel',
+				title: context,
+				listeners: {
+					'added': function() {
 						Ext.get(this.tabEl.lastChild).addClass('k-developer-insertion-point');
 					},
-					delay : 1,
-					single : true
+					delay: 1,
+					single: true
 				}
 			};
 		} else if (context === 'navigation.center') {
 			return {
 				xtype: 'zarafa.contextnavigation',
-				items : [{
+				items: [{
 						xtype: 'box',
 						autoEl: {
 							tag: 'span',
 							html: context,
-							cls : 'k-developer-insertion-point'
+							cls: 'k-developer-insertion-point'
 						}
 					}
 				],
-				context : container.getCurrentContext()
+				context: container.getCurrentContext()
 			};
 		} else if (context === 'context.settings.categories') {
 			return {
-				xtype : 'zarafa.settingscategory',
-				title : context,
-				iconCls : 'k-developer-insertion-point',
-				items : []
+				xtype: 'zarafa.settingscategory',
+				title: context,
+				iconCls: 'k-developer-insertion-point',
+				items: []
 			};
 		} else if (context.match(/(.*?)toolbar(.*?)/) && context !== 'previewpanel.toolbar.detaillinks') {
 			return {
-				xtype : 'button',
-				text : context,
-				cls : 'k-developer-insertion-point',
-				listeners : {
-					'render' : function() {
+				xtype: 'button',
+				text: context,
+				cls: 'k-developer-insertion-point',
+				listeners: {
+					'render': function() {
 						if (!this.text) {
 							// In case the view buttons are expanded
 							// rather then placed in a dropdown menu.
@@ -90,12 +90,12 @@ Zarafa.common.plugins.ZDeveloperPlugin = Ext.extend(Zarafa.core.Plugin, {
 			return String.format('<td style="width: 112px"><div class="{0}">{1}</div></td>', 'grid_compact k-developer-insertion-point', 'context.mail.gridrow');
 		} else if (context === 'context.mail.griddefaultcolumn' || context === 'context.addressbook.gridpanel') {
 			return {
-				header : '<p class="k-developer-insertion-point">context.mail.griddefaultcolumn</p>',
-				width : 200,
-				renderer : function(value, p, record) {
+				header: '<p class="k-developer-insertion-point">context.mail.griddefaultcolumn</p>',
+				width: 200,
+				renderer: function(value, p, record) {
 					return 'context.mail.griddefaultcolumn';
 				},
-				tooltip : _('Sort by: context.mail.griddefaultcolumn')
+				tooltip: _('Sort by: context.mail.griddefaultcolumn')
 			};
 		}
 		else if(context !== 'main.content') {
@@ -104,7 +104,7 @@ Zarafa.common.plugins.ZDeveloperPlugin = Ext.extend(Zarafa.core.Plugin, {
 				autoEl: {
 					tag: 'div',
 					html: context,
-					cls : 'k-developer-insertion-point'
+					cls: 'k-developer-insertion-point'
 				}
 			};
 		}
@@ -114,10 +114,10 @@ Zarafa.common.plugins.ZDeveloperPlugin = Ext.extend(Zarafa.core.Plugin, {
 
 Zarafa.onReady(function() {
 	container.registerPlugin(new Zarafa.core.PluginMetaData({
-		name : 'zdeveloper',
+		name: 'zdeveloper',
 		allowUserDisable: false,
 		allowUserVisible: false,
-		displayName : _('ZDeveloper'),
-		pluginConstructor : Zarafa.common.plugins.ZDeveloperPlugin
+		displayName: _('ZDeveloper'),
+		pluginConstructor: Zarafa.common.plugins.ZDeveloperPlugin
 	}));
 });

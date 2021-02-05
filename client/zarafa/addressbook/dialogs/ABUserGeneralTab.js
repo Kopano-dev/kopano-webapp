@@ -13,7 +13,7 @@ Zarafa.addressbook.dialogs.ABUserGeneralTab = Ext.extend(Ext.form.FormPanel, {
 	 * @constructor
 	 * @param {Object} config configuration object.
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -21,11 +21,11 @@ Zarafa.addressbook.dialogs.ABUserGeneralTab = Ext.extend(Ext.form.FormPanel, {
 		config.plugins.push('zarafa.recordcomponentupdaterplugin');
 
 		Ext.applyIf(config, {
-			xtype : 'zarafa.abusergeneraltab',
-			title : _('General'),
+			xtype: 'zarafa.abusergeneraltab',
+			title: _('General'),
 			layout: 'column',
-			autoScroll : true,
-			items : [
+			autoScroll: true,
+			items: [
 				this.createNameFieldset(),
 				this.createAddressFieldset(),
 				this.createOfficeFieldset()
@@ -40,20 +40,20 @@ Zarafa.addressbook.dialogs.ABUserGeneralTab = Ext.extend(Ext.form.FormPanel, {
 	 * @return {Object} config object for creating {@link Ext.form.FieldSet FieldSet}.
 	 * @private
 	 */
-	createNameFieldset : function()
+	createNameFieldset: function()
 	{
 		return {
 			xtype: 'fieldset',
 			columnWidth: 1,
 			border: true,
-			cls : 'zarafa-fieldset',
+			cls: 'zarafa-fieldset',
 			title: _('Name'),
 			layout: 'column',
 			anchor:'100%',
 			items: [{
 				xtype: 'container',
 				layout: 'form',
-				columnWidth : 0.50,
+				columnWidth: 0.50,
 				border: false,
 				items: [{
 					xtype: 'container',
@@ -138,7 +138,7 @@ Zarafa.addressbook.dialogs.ABUserGeneralTab = Ext.extend(Ext.form.FormPanel, {
 	 * @return {Object} config object for creating {@link Ext.form.FieldSet FieldSet}.
 	 * @private
 	 */
-	createAddressFieldset : function()
+	createAddressFieldset: function()
 	{
 		return {
 			xtype: 'fieldset',
@@ -176,7 +176,7 @@ Zarafa.addressbook.dialogs.ABUserGeneralTab = Ext.extend(Ext.form.FormPanel, {
 	 * @return {Object} config object for creating {@link Ext.form.FieldSet FieldSet}.
 	 * @private
 	 */
-	createOfficeFieldset : function()
+	createOfficeFieldset: function()
 	{
 		return {
 			xtype: 'fieldset',
@@ -217,7 +217,7 @@ Zarafa.addressbook.dialogs.ABUserGeneralTab = Ext.extend(Ext.form.FormPanel, {
 	 * @param {Boolean} contentReset force the component to perform a full update of the data.
 	 * @private
 	 */
-	update : function(record, contentReset)
+	update: function(record, contentReset)
 	{
 		if(Ext.isEmpty(record)) {
 			return;

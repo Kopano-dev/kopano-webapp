@@ -18,7 +18,7 @@ Zarafa.task.data.TodoTaskListNotificationResponseHandler = Ext.extend(Zarafa.cor
 	 * processed during this transaction.
 	 * @private
 	 */
-	doNewtodotask : function (data)
+	doNewtodotask: function (data)
 	{
 		var stores = data.item;
 		var entryIds = Ext.pluck(stores, 'entryid');

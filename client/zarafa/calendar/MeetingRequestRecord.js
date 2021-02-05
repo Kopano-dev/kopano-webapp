@@ -29,7 +29,7 @@ Zarafa.calendar.MeetingRequestRecordFields = [
 	{name: 'appointment_enddate_recurring', type: 'date', dateFormat: 'timestamp'},
 	{name: 'appointment_exception', type: 'boolean', defaultValue: false},
 	{name: 'appointment_location', type: 'string'},
-	{name: 'updatecounter', type: 'int', defaultValue : 0},
+	{name: 'updatecounter', type: 'int', defaultValue: 0},
 	{name: 'meeting_updated', type: 'boolean', defaultValue: false},
 	{name: 'goid', type: 'string'},
 	{name: 'goid2', type: 'string'}
@@ -43,7 +43,7 @@ Zarafa.core.data.RecordFactory.addListenerToMessageClass('IPM.Schedule', 'create
 /**
  * @class Zarafa.calendar.MeetingRequestRecord
  * @extends Zarafa.calendar.AppointmentRecord
- * 
+ *
  * An extension to the {@link Zarafa.calendar.AppointmentRecord AppointmentRecord} specific to Meeting Request/Response Messages.
  */
 Zarafa.calendar.MeetingRequestRecord = Ext.extend(Zarafa.calendar.AppointmentRecord, {
@@ -51,7 +51,7 @@ Zarafa.calendar.MeetingRequestRecord = Ext.extend(Zarafa.calendar.AppointmentRec
 	 * @return {Boolean} Returns true, overridden from {@link Zarafa.calendar.AppointmentRecord}
 	 * as Meeting Requests in your inbox are always received.
 	 */
-	isMeetingReceived : function()
+	isMeetingReceived: function()
 	{
 		return true;
 	},
@@ -64,7 +64,7 @@ Zarafa.calendar.MeetingRequestRecord = Ext.extend(Zarafa.calendar.AppointmentRec
 	{
 		return this.isMessageClass('IPM.Schedule.Meeting.Resp', true);
 	},
-	
+
 	/**
 	 * @return {Boolean} Returns true if the {@link Zarafa.core.data.MessageRecord MessageRecord} is a
 	 * meeting cancellation response message.
@@ -73,7 +73,7 @@ Zarafa.calendar.MeetingRequestRecord = Ext.extend(Zarafa.calendar.AppointmentRec
 	{
 		return this.isMessageClass('IPM.Schedule.Meeting.Canceled', true);
 	},
-	
+
 	/**
 	 * @return {Boolean} Returns true if the {@link Zarafa.core.data.MessageRecord MessageRecord} is a
 	 * meeting request message.
@@ -88,7 +88,7 @@ Zarafa.calendar.MeetingRequestRecord = Ext.extend(Zarafa.calendar.AppointmentRec
 	 * recurring meeting.
 	 * @overridden
 	 */
-	isRecurring : function()
+	isRecurring: function()
 	{
 		return this.get('appointment_recurring') === true;
 	},
@@ -98,7 +98,7 @@ Zarafa.calendar.MeetingRequestRecord = Ext.extend(Zarafa.calendar.AppointmentRec
 	 * recurring occurrence meeting.
 	 * @overridden
 	 */
-	isRecurringOccurence : function()
+	isRecurringOccurence: function()
 	{
 		return Ext.isDate(this.get('appointment_basedate'));
 	},
@@ -108,7 +108,7 @@ Zarafa.calendar.MeetingRequestRecord = Ext.extend(Zarafa.calendar.AppointmentRec
 	 * recurring exception meeting.
 	 * @overridden
 	 */
-	isRecurringException : function()
+	isRecurringException: function()
 	{
 		return Ext.isDate(this.get('appointment_basedate')) && this.get('appointment_exception') === true;
 	},
@@ -127,7 +127,7 @@ Zarafa.calendar.MeetingRequestRecord = Ext.extend(Zarafa.calendar.AppointmentRec
 	 * {@link Zarafa.calendar.MeetingRequestRecord MeetingRequestRecord} is in past or not.
 	 * @return {Boolean} true if meeting request/response is in past else false.
 	 */
-	isAppointmentInPast : function()
+	isAppointmentInPast: function()
 	{
 		// @FIXME this actually depends on appointment_duedate property which is not returned for all meeting objects
 		var dueDate = this.get('appointment_duedate');
@@ -144,7 +144,7 @@ Zarafa.calendar.MeetingRequestRecord = Ext.extend(Zarafa.calendar.AppointmentRec
 	 * @return {String} generated body message.
 	 * @overridden
 	 */
-	generateMeetingTimeInfo : function(responseText)
+	generateMeetingTimeInfo: function(responseText)
 	{
 		var messageBody = responseText || '';
 		var startDate = this.get('appointment_startdate');
@@ -177,7 +177,7 @@ Zarafa.calendar.MeetingRequestRecord = Ext.extend(Zarafa.calendar.AppointmentRec
 	 * @return {Zarafa.core.data.IPMRecord} record which should be used to open
 	 * {@link Zarafa.calendar.dialogs.AppointmentContentPanel AppointmentContentPanel}.
 	 */
-	convertToAppointmentRecord : function(viewAllProposals)
+	convertToAppointmentRecord: function(viewAllProposals)
 	{
 		// get entryids of the corresponding meeting in calendar
 		var appointmentEntryid = this.get('appointment_entryid');
@@ -198,10 +198,10 @@ Zarafa.calendar.MeetingRequestRecord = Ext.extend(Zarafa.calendar.AppointmentRec
 			store_entryid: appointmentStoreEntryid,
 			parent_entryid: appointmentParentEntryid,
 			basedate: appointmentBasedate,
-			counter_proposal : viewAllProposals,
+			counter_proposal: viewAllProposals,
 
 			/*
-			 * we need to provide some properties initially to the appointment record so when its set first time in 
+			 * we need to provide some properties initially to the appointment record so when its set first time in
 			 * the record dialog, checks which are using initial === true will work correct otherwise
 			 * these properties will only be avaialable after record is opened and at that time
 			 * initial will be false
@@ -223,6 +223,6 @@ Zarafa.calendar.MeetingRequestRecord = Ext.extend(Zarafa.calendar.AppointmentRec
 	 * as we don't need this functionality in {@link Zarafa.calendar.MeetingRequestRecord MeetingRequestRecord}.
 	 * @hide
 	 */
-	updateMeetingRecipients : Ext.emptyFn
+	updateMeetingRecipients: Ext.emptyFn
 });
 Zarafa.core.data.RecordFactory.setBaseClassToMessageClass('IPM.Schedule', Zarafa.calendar.MeetingRequestRecord);

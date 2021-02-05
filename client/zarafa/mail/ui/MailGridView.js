@@ -16,7 +16,7 @@ Zarafa.mail.ui.MailGridView = Ext.extend(Zarafa.common.ui.grid.GridView, {
 	 * 'Group By This Field' button from header menu and change css class for the check box.
 	 * @private
 	 */
-	afterRenderUI : function()
+	afterRenderUI: function()
 	{
 		Zarafa.mail.ui.MailGridView.superclass.afterRenderUI.apply(this, arguments);
 

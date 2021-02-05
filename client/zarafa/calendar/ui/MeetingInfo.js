@@ -14,7 +14,7 @@ Zarafa.calendar.ui.MeetingInfo = Ext.extend(Ext.Container, {
 	 * @property
 	 * @type Zarafa.core.data.IPMRecord
 	 */
-	record : undefined,
+	record: undefined,
 
 	/**
 	 * @cfg {Ext.Template/String} meetingInfoTemplate The template which must be applied
@@ -22,7 +22,7 @@ Zarafa.calendar.ui.MeetingInfo = Ext.extend(Ext.Container, {
 	 * has been {@link #update updated}.The arguments of this template will be
 	 * the {@link Zarafa.core.data.IPMRecord#data record.data} field.
 	 */
-	meetingInfoTemplate :
+	meetingInfoTemplate:
 			'<hr class="preview-title-hr">'+
 			 '<table>'+
 					'<tpl if="values.counter_proposal">' +
@@ -80,7 +80,7 @@ Zarafa.calendar.ui.MeetingInfo = Ext.extend(Ext.Container, {
 	 * @constructor
 	 * @param {Object} config configuration object.
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -90,8 +90,8 @@ Zarafa.calendar.ui.MeetingInfo = Ext.extend(Ext.Container, {
 		config =  Ext.applyIf(config, {
 			xtype: 'zarafa.meetinginfo',
 			cls: 'preview-header-meeting',
-			hidden : true,
-			forceLayout : true
+			hidden: true,
+			forceLayout: true
 		});
 
 		Zarafa.calendar.ui.MeetingInfo.superclass.constructor.call(this, config);

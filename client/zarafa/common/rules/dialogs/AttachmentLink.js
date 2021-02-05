@@ -16,7 +16,7 @@ Zarafa.common.rules.dialogs.AttachmentLink = Ext.extend(Zarafa.common.rules.dial
 	 * Obtain the condition as configured by the user
 	 * @return {Object} The condition
 	 */
-	getCondition : function()
+	getCondition: function()
 	{
 		if (this.isModified !== true) {
 			return this.condition;

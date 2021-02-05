@@ -13,13 +13,13 @@ Zarafa.task.TaskContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * @type Mixed
 	 * @private
 	 */
-	oldDataMode : undefined,
+	oldDataMode: undefined,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -29,15 +29,15 @@ Zarafa.task.TaskContextModel = Ext.extend(Zarafa.core.ContextModel, {
 
 		Ext.applyIf(config, {
 			statefulRecordSelection: true,
-			current_data_mode : Zarafa.task.data.DataModes.ALL
+			current_data_mode: Zarafa.task.data.DataModes.ALL
 		});
 
 		Zarafa.task.TaskContextModel.superclass.constructor.call(this, config);
 
 		this.on({
-			'searchstart' : this.onSearchStart,
-			'searchstop' : this.onSearchStop,
-			scope : this
+			'searchstart': this.onSearchStart,
+			'searchstop': this.onSearchStop,
+			scope: this
 		});
 	},
 
@@ -48,7 +48,7 @@ Zarafa.task.TaskContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * created. If this is not provided the default folder will be used.
 	 * @return {Zarafa.core.data.IPMRecord} The new {@link Zarafa.core.data.IPMRecord IPMRecord}.
 	 */
-	createRecord : function(folder)
+	createRecord: function(folder)
 	{
 		folder = folder || this.getDefaultFolder();
 
@@ -59,10 +59,10 @@ Zarafa.task.TaskContextModel = Ext.extend(Zarafa.core.ContextModel, {
 		var defaultStore = folder.getMAPIStore();
 
 		var record = Zarafa.core.data.RecordFactory.createRecordObjectByMessageClass('IPM.Task', {
-			store_entryid : folder.get('store_entryid'),
-			parent_entryid : folder.get('entryid'),
-			icon_index : Zarafa.core.mapi.IconIndex['task'],
-			owner : defaultStore.isPublicStore() ? container.getUser().getFullName() : defaultStore.get('mailbox_owner_name')
+			store_entryid: folder.get('store_entryid'),
+			parent_entryid: folder.get('entryid'),
+			icon_index: Zarafa.core.mapi.IconIndex['task'],
+			owner: defaultStore.isPublicStore() ? container.getUser().getFullName() : defaultStore.get('mailbox_owner_name')
 		});
 
 		return record;
@@ -78,18 +78,18 @@ Zarafa.task.TaskContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * @param {Zarafa.task.data.DataModes} oldMode The previously selected DataMode.
 	 * @private
 	 */
-	onDataModeChange : function(model, newMode, oldMode)
+	onDataModeChange: function(model, newMode, oldMode)
 	{
 		Zarafa.task.TaskContextModel.superclass.onDataModeChange.call(this, model, newMode, oldMode);
 
 		if (newMode !== oldMode && oldMode === Zarafa.task.data.DataModes.SEARCH) {
 			this.stopSearch();
 		}
-		
+
 		this.load({
-			params : {
-				restriction : {
-					task : this.getFilterRestriction(newMode)
+			params: {
+				restriction: {
+					task: this.getFilterRestriction(newMode)
 				}
 			}
 		});
@@ -103,7 +103,7 @@ Zarafa.task.TaskContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * @param {Zarafa.core.ContextModel} model The model which fired the event
 	 * @private
 	 */
-	onSearchStart : function(model)
+	onSearchStart: function(model)
 	{
 		if(this.getCurrentDataMode() != Zarafa.task.data.DataModes.SEARCH){
 			this.oldDataMode = this.getCurrentDataMode();
@@ -117,7 +117,7 @@ Zarafa.task.TaskContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * @param {Zarafa.core.ContextModel} model The model which fired the event
 	 * @private
 	 */
-	onSearchStop : function(model)
+	onSearchStop: function(model)
 	{
 		if (this.getCurrentDataMode() === Zarafa.task.data.DataModes.SEARCH) {
 			this.setDataMode(this.oldDataMode);
@@ -133,7 +133,7 @@ Zarafa.task.TaskContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * @param {Zarafa.core.hierarchyStore} hierarchyStore that holds hierarchy data.
 	 * @private
 	 */
-	onHierarchyLoad : function(hierarchyStore)
+	onHierarchyLoad: function(hierarchyStore)
 	{
 		// only continue when hierarchyStore has data
 		if (hierarchyStore.getCount() === 0) {
@@ -161,7 +161,7 @@ Zarafa.task.TaskContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * @return {Array|false} returns restriction according to filter else false.
 	 */
 
-	getFilterRestriction : function(datamode)
+	getFilterRestriction: function(datamode)
 	{
 		var store = this.getStore();
 		return store.getFilterRestriction(datamode);
@@ -169,17 +169,17 @@ Zarafa.task.TaskContextModel = Ext.extend(Zarafa.core.ContextModel, {
 
 	/**
 	 * Function will load the store with given options.
-	 * 
-	 * @param {object} options Object containing options to load 
+	 *
+	 * @param {object} options Object containing options to load
 	 */
-	load : function(options)
+	load: function(options)
 	{
 		var store = this.getStore();
 		if (this.suspended && store.hasFilterApplied) {
 			store.stopFilter();
 		} else {
 			options = Ext.apply(options || {}, {
-				params : {
+				params: {
 					restriction: {
 						filter: this.getFilterRestriction(this.current_data_mode)
 					}

@@ -14,7 +14,7 @@ Zarafa.calendar.data.AppointmentBounds = Ext.extend(Object, {
 	 * @constructor
 	 * @param {Object} config Configrution object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		Ext.apply(this, config);
 	},
@@ -25,7 +25,7 @@ Zarafa.calendar.data.AppointmentBounds = Ext.extend(Object, {
 	 * @property
 	 * @type Number
 	 */
-	left : 0,
+	left: 0,
 
 	/**
 	 * The right offset for the element from the right-side of the container
@@ -33,7 +33,7 @@ Zarafa.calendar.data.AppointmentBounds = Ext.extend(Object, {
 	 * @property
 	 * @type Number
 	 */
-	right : 0,
+	right: 0,
 
 	/**
 	 * The top offset for the element from the top-side of the container
@@ -41,7 +41,7 @@ Zarafa.calendar.data.AppointmentBounds = Ext.extend(Object, {
 	 * @property
 	 * @type Number
 	 */
-	top : 0,
+	top: 0,
 
 	/**
 	 * The bottom offset for the element from the bottom-side of the container
@@ -49,7 +49,7 @@ Zarafa.calendar.data.AppointmentBounds = Ext.extend(Object, {
 	 * @property
 	 * @type Number
 	 */
-	bottom : 0,
+	bottom: 0,
 
 	/**
 	 * This indicates if this is the first {@link Zarafa.calendar.data.AppointmentBounds bound}
@@ -61,7 +61,7 @@ Zarafa.calendar.data.AppointmentBounds = Ext.extend(Object, {
 	 * @property
 	 * @type Boolean
 	 */
-	firstBox : false,
+	firstBox: false,
 
 	/**
 	 * This indicates if this is the last {@link Zarafa.calendar.data.AppointmentBounds bound}
@@ -73,5 +73,5 @@ Zarafa.calendar.data.AppointmentBounds = Ext.extend(Object, {
 	 * @property
 	 * @type Boolean
 	 */
-	lastBox : false
+	lastBox: false
 });
