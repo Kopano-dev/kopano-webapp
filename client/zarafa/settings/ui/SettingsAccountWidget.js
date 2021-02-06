@@ -153,9 +153,8 @@ Zarafa.settings.ui.SettingsAccountWidget = Ext.extend(Zarafa.settings.ui.Setting
 			}]
 		});
 
-		if ( themeStore.data.length > 1 ){
-			// We have more than just the basic theme, so give the user the posibility to
-			// change it.
+		if ( themeStore.data.length > 1  && container.getServerConfig().isThemingEnabled()){
+			// We have more than just the basic theme and Admin allows user to configure theme, only then enabled theme dropdown.
 			config.items.push({
 				xtype: 'combo',
 				width : 200,

@@ -98,6 +98,9 @@
 	// Users can override the 'logged-in' theme in the settings.
 	define("THEME", "");
 
+	// Enable themes.
+	define("ENABLE_THEMES", true);
+
 	// General WebApp icon set. This will be loaded by default for every user.
 	// Users can override the iconset in the settings.
 	define("ICONSET", "breeze");
