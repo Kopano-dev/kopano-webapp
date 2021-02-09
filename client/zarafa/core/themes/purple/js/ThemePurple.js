@@ -9,10 +9,10 @@ Zarafa.core.themes.ThemePurple = Ext.extend(Zarafa.core.ThemePlugin, {});
 
 Zarafa.onReady(function() {
 	container.registerPlugin(new Zarafa.core.PluginMetaData({
-		name : 'purple',
-		displayName : _('Purple'),
-		allowUserDisable : false,
-		allowUserVisible : false,
-		pluginConstructor : Zarafa.core.themes.ThemePurple
+		name: 'purple',
+		displayName: _('Purple'),
+		allowUserDisable: false,
+		allowUserVisible: false,
+		pluginConstructor: Zarafa.core.themes.ThemePurple
 	}));
 });

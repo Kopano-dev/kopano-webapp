@@ -24,9 +24,9 @@ Zarafa.mail.KeyMapping = Ext.extend(Object, {
 			stopEvent: true,
 			handler: this.onNewMail,
 			scope: this,
-			settingsCfg : {
-				description : _('New mail'),
-				category : _('Creating an item')
+			settingsCfg: {
+				description: _('New mail'),
+				category: _('Creating an item')
 			}
 		}];
 
@@ -39,9 +39,9 @@ Zarafa.mail.KeyMapping = Ext.extend(Object, {
 			stopEvent: true,
 			handler: this.onReplyMail,
 			scope: this,
-			settingsCfg : {
-				description : _('Reply'),
-				category : _('Mail')
+			settingsCfg: {
+				description: _('Reply'),
+				category: _('Mail')
 			}
 		},{
 			key: Ext.EventObject.R,
@@ -52,9 +52,9 @@ Zarafa.mail.KeyMapping = Ext.extend(Object, {
 			stopEvent: true,
 			handler: this.onReplyAllMail,
 			scope: this,
-			settingsCfg : {
-				description : _('Reply all'),
-				category : _('Mail')
+			settingsCfg: {
+				description: _('Reply all'),
+				category: _('Mail')
 			}
 		},{
 			key: Ext.EventObject.F,
@@ -64,9 +64,9 @@ Zarafa.mail.KeyMapping = Ext.extend(Object, {
 			stopEvent: true,
 			handler: this.onForwardMail,
 			scope: this,
-			settingsCfg : {
-				description : _('Forward'),
-				category : _('Mail')
+			settingsCfg: {
+				description: _('Forward'),
+				category: _('Mail')
 			}
 		},{
 			key: Ext.EventObject.E,
@@ -76,9 +76,9 @@ Zarafa.mail.KeyMapping = Ext.extend(Object, {
 			stopEvent: true,
 			handler: this.onEditAsNewMail,
 			scope: this,
-			settingsCfg : {
-				description : _('Edit as New'),
-				category : _('Mail')
+			settingsCfg: {
+				description: _('Edit as New'),
+				category: _('Mail')
 			}
 		}];
 
@@ -90,9 +90,9 @@ Zarafa.mail.KeyMapping = Ext.extend(Object, {
 			stopEvent: true,
 			handler: this.onReadUnreadToggle,
 			scope: this,
-			settingsCfg : {
-				description : _('Toggle read/unread'),
-				category : _('Mail')
+			settingsCfg: {
+				description: _('Toggle read/unread'),
+				category: _('Mail')
 			}
 		},{
 			key: Ext.EventObject.G,
@@ -102,9 +102,9 @@ Zarafa.mail.KeyMapping = Ext.extend(Object, {
 			stopEvent: true,
 			handler: this.onFlagToggle,
 			scope: this,
-			settingsCfg : {
-				description : _('Toggle red/complete flag'),
-				category : _('Mail')
+			settingsCfg: {
+				description: _('Toggle red/complete flag'),
+				category: _('Mail')
 			}
 		},{
 			key: Ext.EventObject.LEFT,
@@ -116,9 +116,9 @@ Zarafa.mail.KeyMapping = Ext.extend(Object, {
 			handler: this.onConversationClose,
 			scope: this,
 			basic: true,
-			settingsCfg : {
-				description : _('Close a conversation'),
-				category : _('Mail')
+			settingsCfg: {
+				description: _('Close a conversation'),
+				category: _('Mail')
 			}
 		}];
 
@@ -134,7 +134,7 @@ Zarafa.mail.KeyMapping = Ext.extend(Object, {
 	},
 
 	/**
-	 * Event handler for the keydown event of the {@link Zarafa.core.KeyMap KeyMap} when the user wants to 
+	 * Event handler for the keydown event of the {@link Zarafa.core.KeyMap KeyMap} when the user wants to
 	 * close the conversation.
 	 * @param {Number} key Key code
 	 * @param {Ext.EventObject} event The event
@@ -146,7 +146,7 @@ Zarafa.mail.KeyMapping = Ext.extend(Object, {
 	},
 
 	/**
-	 * Event handler for the keydown event of the {@link Zarafa.core.KeyMap KeyMap} when the user wants to 
+	 * Event handler for the keydown event of the {@link Zarafa.core.KeyMap KeyMap} when the user wants to
 	 * create a new item.
 	 * @param {Number} key Key code
 	 * @param {Ext.EventObject} event The event
@@ -163,7 +163,7 @@ Zarafa.mail.KeyMapping = Ext.extend(Object, {
 	 * @return {Ext.data.Record} The record which is selected int the view.
 	 * @private
 	 */
-	getSelectedRecord : function (component)
+	getSelectedRecord: function (component)
 	{
 		if(Ext.isDefined(component.record)) {
 			return component.record;
@@ -180,7 +180,7 @@ Zarafa.mail.KeyMapping = Ext.extend(Object, {
 	 * @return {Zarafa.core.ContextModel} The model of component..
 	 * @private
 	 */
-	getModel : function (component)
+	getModel: function (component)
 	{
 		if(Ext.isFunction(component.getContextModel)) {
 			return component.getContextModel();
@@ -192,7 +192,7 @@ Zarafa.mail.KeyMapping = Ext.extend(Object, {
 	},
 
 	/**
-	 * Event handler for the keydown event of the {@link Zarafa.core.KeyMap KeyMap} when the user wants to 
+	 * Event handler for the keydown event of the {@link Zarafa.core.KeyMap KeyMap} when the user wants to
 	 * reply to an item.
 	 * @param {Number} key Key code
 	 * @param {Ext.EventObject} event The event
@@ -208,7 +208,7 @@ Zarafa.mail.KeyMapping = Ext.extend(Object, {
 	},
 
 	/**
-	 * Event handler for the keydown event of the {@link Zarafa.core.KeyMap KeyMap} when the user wants to 
+	 * Event handler for the keydown event of the {@link Zarafa.core.KeyMap KeyMap} when the user wants to
 	 * reply to all recipients of an item
 	 * @param {Number} key Key code
 	 * @param {Ext.EventObject} event The event
@@ -224,7 +224,7 @@ Zarafa.mail.KeyMapping = Ext.extend(Object, {
 	},
 
 	/**
-	 * Event handler for the keydown event of the {@link Zarafa.core.KeyMap KeyMap} when the user wants to 
+	 * Event handler for the keydown event of the {@link Zarafa.core.KeyMap KeyMap} when the user wants to
 	 * forward an item.
 	 * @param {Number} key Key code
 	 * @param {Ext.EventObject} event The event
@@ -240,7 +240,7 @@ Zarafa.mail.KeyMapping = Ext.extend(Object, {
 	},
 
 	/**
-	 * Event handler for the keydown event of the {@link Zarafa.core.KeyMap KeyMap} when the user wants to 
+	 * Event handler for the keydown event of the {@link Zarafa.core.KeyMap KeyMap} when the user wants to
 	 * edit a sent item as a new item.
 	 * @param {Number} key Key code
 	 * @param {Ext.EventObject} event The event
@@ -256,7 +256,7 @@ Zarafa.mail.KeyMapping = Ext.extend(Object, {
 	},
 
 	/**
-	 * Event handler for the keydown event of the {@link Zarafa.core.KeyMap KeyMap} when the user wants to 
+	 * Event handler for the keydown event of the {@link Zarafa.core.KeyMap KeyMap} when the user wants to
 	 * mark an item as unread/read.
 	 * @param {Number} key Key code
 	 * @param {Ext.EventObject} event The event
@@ -275,7 +275,7 @@ Zarafa.mail.KeyMapping = Ext.extend(Object, {
 	},
 
 	/**
-	 * Event handler for the keydown event of the {@link Zarafa.core.KeyMap KeyMap} when the user wants to 
+	 * Event handler for the keydown event of the {@link Zarafa.core.KeyMap KeyMap} when the user wants to
 	 * flag an item as complete.
 	 * @param {Number} key Key code
 	 * @param {Ext.EventObject} event The event

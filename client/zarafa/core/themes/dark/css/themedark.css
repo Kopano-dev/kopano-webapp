@@ -1,9 +1,9 @@
 /*********************************************************************************************
- *                                                                                           *
- * This is the css for the Dark theme for the Kopano WebApp.                                 *
- *                                                                                           *
- * (c) 2019 Kopano                                                                           *
- *                                                                                           *
+ *                                              *
+ * This is the css for the Dark theme for the Kopano WebApp.                 *
+ *                                              *
+ * (c) 2019 Kopano                                      *
+ *                                              *
  *********************************************************************************************/
 
 /*********************************************************************************************
@@ -16,26 +16,26 @@ body.login,
 #bg,
 /* Background image of the Welcome screen */
 body.zarafa-welcome {
-    background: url(../img/background.jpg) no-repeat center center;
-    background-size: cover;
+  background: url(../img/background.jpg) no-repeat center center;
+  background-size: cover;
 }
 /* The Sign in button of the login screen */
 body.login #form-container #submitbutton,
 #loading-mask #form-container #submitbutton {
-    background: #2b90d9;
+  background: #2b90d9;
 }
 /* Hover state and active state of the Sign in button */
 body.login #form-container #submitbutton:hover,
 #loading-mask #form-container #submitbutton:hover,
 body.login #form-container #submitbutton:active,
 #loading-mask #form-container #submitbutton:active {
-    background: #2587cb;
+  background: #2587cb;
 }
 /* The top bar of the Welcome dialog */
 .zarafa-welcome-body > .x-panel-bwrap > .x-panel-body div.zarafa-welcome-title {
-    border-left: 1px solid #282c37;
-    border-right: 1px solid #282c37;
-    background: #282c37;
+  border-left: 1px solid #282c37;
+  border-right: 1px solid #282c37;
+  background: #282c37;
 }
 
 /*********************************************************************************************
@@ -46,11 +46,11 @@ body.login #form-container #submitbutton:active,
  ********************************************************************************************/
 /* The border line under the top menu bar */
 body #zarafa-mainmenu {
-    border-color: #282c37;
+  border-color: #282c37;
 }
 /* The background color of the top menu bar */
 body #zarafa-mainmenu.zarafa-maintabbar > .x-toolbar-ct {
-    background-color: #282c37;
+  background-color: #282c37;
 }
 /* Background color of the hover state of the buttons in the top menu bar */
 body #zarafa-mainmenu.zarafa-maintabbar > .x-toolbar-ct .x-btn.x-btn-over,
@@ -62,11 +62,11 @@ body #zarafa-mainmenu.zarafa-maintabbar > .x-toolbar-ct .zarafa-maintabbar-maint
 body #zarafa-mainmenu.zarafa-maintabbar > .x-toolbar-ct .zarafa-maintabbar-maintab-active.x-btn-over,
 /* Background color of the active state of selected button */
 body #zarafa-mainmenu.zarafa-maintabbar > .x-toolbar-ct .zarafa-maintabbar-maintab-active.x-btn-over.x-btn-click {
-    background-color: #2b90d9 !important;
+  background-color: #2b90d9 !important;
 }
 
 /****************************************************************************
- *  Action color
+ * Action color
  * ===============
  * Some elements have a different color than the default color of these elements
  * to get extra attention, e.g. 'call-to-action' buttons, the current day
@@ -136,12 +136,12 @@ body #zarafa-mainmenu.zarafa-maintabbar > .x-toolbar-ct .zarafa-maintabbar-maint
 
 /* focused action button */
 .x-btn.zarafa-action.x-btn-focus .x-btn-small, .x-btn.zarafa-action.x-btn-focus .x-btn-medium, .x-btn.zarafa-action.x-btn-focus .x-btn-large {
-  background: #2b90d9 !important;
+ background: #2b90d9 !important;
 }
 
 /* Active calendar tab stroke */
 .zarafa-calendar-tabarea-stroke.zarafa-calendar-tab-selected {
-    border-top-color: #2b90d9;
+  border-top-color: #2b90d9;
 }
 
 /* hover state */
@@ -174,7 +174,7 @@ body #zarafa-mainmenu.zarafa-maintabbar > .x-toolbar-ct .zarafa-maintabbar-maint
  border-left-color: #2b90d9;
 }
 .zarafa-freebusy-panel .x-freebusy-timeline-container .x-freebusy-body .x-freebusy-background .x-freebusy-timeline-day.x-freebusy-timeline-day-current {
-  border-right-color: #2b90d9;
+ border-right-color: #2b90d9;
 }
 
 /* Counters in the hierarchy */
@@ -182,12 +182,12 @@ body #zarafa-mainmenu.zarafa-maintabbar > .x-toolbar-ct .zarafa-maintabbar-maint
 .zarafa-hierarchy-node-unread-count span.zarafa-hierarchy-node-counter,
 /* Font color of the week numbers in the date pickers */
 .x-date-picker .x-date-inner td.x-date-weeknumber a {
-  color: #2b90d9;
+ color: #2b90d9;
 }
 
 /* Counters for conversation in the mail grid */
 .x-grid3-row .k-conversation-count {
-  color: #2b90d9;
+ color: #2b90d9;
 }
 
 /* Current day in the calendar */
@@ -195,7 +195,7 @@ body #zarafa-mainmenu.zarafa-maintabbar > .x-toolbar-ct .zarafa-maintabbar-maint
 /* border colors of the current day and month in the date pickers */
 .x-date-picker .x-date-inner td.x-date-today a,
 .x-date-picker .x-date-mp table td.x-date-mp-sel a {
-  border-color: #2b90d9;
+ border-color: #2b90d9;
 }
 
 /*********************************************************************
@@ -258,8 +258,8 @@ div.zarafa-contact-cardview-selected,
 .preview-header-extrainfobox-item,
 .k-appointmentcreatetab .zarafa-calendar-appointment-extrainfo div,
 .k-taskgeneraltab .zarafa-calendar-appointment-extrainfo div {
-  background: #b9dcf5 !important;
-  color: #222222;
+ background: #b9dcf5 !important;
+ color: #222222;
 }
 
 /*********************************************************************
@@ -268,7 +268,7 @@ div.zarafa-contact-cardview-selected,
  *********************************************************************/
 /* Selected x-menu */
 .x-menu-item-selected {
-  background-color: #b9dcf5;
+ background-color: #b9dcf5;
 }
 
 /*********************************************************************
@@ -422,7 +422,7 @@ ul.x-tab-strip li .x-tab-right,
 .zarafa-freebusy-panel .x-freebusy-timeline-container .x-freebusy-header .x-freebusy-header-body div.x-freebusy-timeline-day table tr.x-freebusy-timeline-day td,
 /* Date picker */
 .x-date-picker .x-date-mp table tr.x-date-mp-btns td button {
-  background-color: #dddfe6;
+ background-color: #dddfe6;
 }
 /* Buttons */
 .x-btn.x-btn-over.x-btn-click .x-btn-small,
@@ -431,24 +431,24 @@ ul.x-tab-strip li .x-tab-right,
 .x-btn.x-btn-click .x-btn-small,
 .x-btn.x-btn-click .x-btn-medium,
 .x-btn.x-btn-click .x-btn-large {
-  background-color: #dddfe6 !important;
+ background-color: #dddfe6 !important;
 }
 /* Fade block in titlebar of dialog header */
 .x-window .x-window-tl .x-window-tr .x-window-tc .x-window-header .fade,
 .x-panel-ghost .x-window-tl .x-window-tr .x-window-tc .x-window-header .fade {
-  background: linear-gradient(to right, rgba(221, 223, 230, 0) 0%, #dddfe6 50%, #dddfe6 100%);
+ background: linear-gradient(to right, rgba(221, 223, 230, 0) 0%, #dddfe6 50%, #dddfe6 100%);
 }
 
 /*
  * Contact filter
  */
 .contact-characterstrip .x-btn-pressed .x-btn-small {
-  background-color: #b9dcf5;
-  border-color: #b9dcf5;
+ background-color: #b9dcf5;
+ border-color: #b9dcf5;
 }
 
 .k-selection {
-    background-color: #b9dcf5 !important;
+  background-color: #b9dcf5 !important;
 }
 
 /*****************************
@@ -458,21 +458,21 @@ ul.x-tab-strip li .x-tab-right,
 /* Unread items */
 .theme-dark.k-unreadborders .x-grid3-row.x-grid3-row-collapsed.mail_unread > table,
 .theme-dark.k-unreadborders .x-grid3-row.x-grid3-row-expanded.mail_unread > table {
-        border-left: 4px solid #2b90d9 !important;
+    border-left: 4px solid #2b90d9 !important;
 }
 
 /* Selected mail item */
 .theme-dark .x-grid3-row.x-grid3-row-expanded.mail_read.x-grid3-row-selected > table {
-        border-left: 4px solid #b9dcf5 !important;
+    border-left: 4px solid #b9dcf5 !important;
 }
 
 /* Hover selected item */
 .theme-dark .x-grid3-row.x-grid3-row-expanded.mail_read.x-grid3-row-selected.x-grid3-row-over > table,
 .theme-dark .x-grid3-row.x-grid3-row-collapsed.mail_read.x-grid3-row-selected > table {
-        border-left: 4px solid #b9dcf5 !important;
+    border-left: 4px solid #b9dcf5 !important;
 }
 
 .preview-header-sender-initial {
-  color: #282c37;
+ color: #282c37;
 }
 

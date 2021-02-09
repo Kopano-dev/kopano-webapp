@@ -15,14 +15,14 @@ Zarafa.common.freebusy.ui.UserlistBox = Ext.extend(Zarafa.common.recipientfield.
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			autoHeight : true,
-			btnCls : 'x-freebusy-userrow-remove',
-			btnHoverCls : 'x-freebusy-userrow-remove-hover'
+			autoHeight: true,
+			btnCls: 'x-freebusy-userrow-remove',
+			btnHoverCls: 'x-freebusy-userrow-remove-hover'
 		});
 
 		Zarafa.common.freebusy.ui.UserlistBox.superclass.constructor.call(this, config);
@@ -36,7 +36,7 @@ Zarafa.common.freebusy.ui.UserlistBox = Ext.extend(Zarafa.common.recipientfield.
 	 * @return {String} The CSS class which must be applied to the {@link #iconEl}.
 	 * @private
 	 */
-	prepareIcon : function(record)
+	prepareIcon: function(record)
 	{
 		switch (record.get('recipient_type')) {
 			case Zarafa.core.mapi.RecipientType.MAPI_CC:
@@ -59,7 +59,7 @@ Zarafa.common.freebusy.ui.UserlistBox = Ext.extend(Zarafa.common.recipientfield.
 	 * @param {Ext.Container} ct The container in which the component is being rendered.
 	 * @private.
 	 */
-	afterRender : function(ct)
+	afterRender: function(ct)
 	{
 		Zarafa.common.freebusy.ui.UserlistBox.superclass.afterRender.call(this, ct);
 		this.delBtnEl.setVisible(this.editable);

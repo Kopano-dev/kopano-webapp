@@ -15,7 +15,7 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 	 * @type Ext.util.MixedCollection
 	 * @private
 	 */
-	openedTabs : new Ext.util.MixedCollection(),
+	openedTabs: new Ext.util.MixedCollection(),
 
 	/**
 	 * Overridden to modify the tab depending on whether the record has been edited or not
@@ -25,7 +25,7 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 	 * @override
 	 * @private
 	 */
-	onItemTitleChanged : function(item, title, oldTitle)
+	onItemTitleChanged: function(item, title, oldTitle)
 	{
 		var el = this.getTabEl(item);
 		if (el) {
@@ -46,7 +46,7 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 	 * @param {String} oldCls The previous icon class
 	 * @private
 	 */
-	onItemIconChanged : function(item, iconCls, oldCls)
+	onItemIconChanged: function(item, iconCls, oldCls)
 	{
 		var tabEl = this.getTabEl(item);
 		if (!Ext.isEmpty(tabEl)) {
@@ -75,7 +75,7 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 	 * @param {Boolean} changed True if the item has been changed by the user
 	 * @private
 	 */
-	onItemUserUpdateRecord : function(item, record, changed)
+	onItemUserUpdateRecord: function(item, record, changed)
 	{
 		var el = this.getTabEl(item);
 		if (el) {
@@ -100,7 +100,7 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 	 * @override
 	 * @private
 	 */
-	initTab : function(item, index)
+	initTab: function(item, index)
 	{
 		var title = item.title;
 		if(!Ext.isEmpty(title)) {
@@ -113,11 +113,11 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 		Zarafa.core.ui.MainContentTabPanel.superclass.initTab.call(this, item, index);
 
 		item.on({
-			scope : this,
-			render : this.applyTooltip,
-			iconchange : this.onItemIconChanged,
-			userupdaterecord : this.onItemUserUpdateRecord,
-			close : this.onTabClose
+			scope: this,
+			render: this.applyTooltip,
+			iconchange: this.onItemIconChanged,
+			userupdaterecord: this.onItemUserUpdateRecord,
+			close: this.onTabClose
 		});
 	},
 
@@ -125,7 +125,7 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 	 * This will apply tooltip on close button ('X') of {@link Ext.Panel Panel}.
 	 * @param {Component} item.
 	 */
-	applyTooltip : function(item)
+	applyTooltip: function(item)
 	{
 		var el = item.tabEl;
 		var closeTab = Ext.get(el).child('.x-tab-strip-close', true);
@@ -139,7 +139,7 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 	 * For instance when a mail is sent, the MailCreateContentPanel needs to be closed
 	 * @param {Component} tab
 	 */
-	onTabClose : function(tab)
+	onTabClose: function(tab)
 	{
 		if (this.fireEvent('beforeclose', tab)!==false) {
 			this.remove(tab);
@@ -157,7 +157,7 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 	 * @param {Element} t Event target
 	 * @param {Object} o Configuration object
 	 */
-	onTabAddClick : function(e, t, o)
+	onTabAddClick: function(e, t, o)
 	{
 		var model = container.getCurrentContext().getModel();
 
@@ -178,7 +178,7 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 					return;
 				} else {
 					// This will always use tab layer only, no matter what layer is configured in settings
-					Zarafa.core.data.UIFactory.openCreateRecord(record, {layerType : 'tab'});
+					Zarafa.core.data.UIFactory.openCreateRecord(record, {layerType: 'tab'});
 				}
 			} else {
 				model.createRecord(function(record){
@@ -189,7 +189,7 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 						return;
 					} else {
 						// This will always use tab layer only, no matter what layer is configured in settings
-						Zarafa.core.data.UIFactory.openCreateRecord(record, {layerType : 'tab'});
+						Zarafa.core.data.UIFactory.openCreateRecord(record, {layerType: 'tab'});
 					}
 				}.createDelegate(this));
 			}
@@ -202,7 +202,7 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 	 * @param {Element} position Element at which the panel is created (relative to its position)
 	 * @override
 	 */
-	onRender : function(ct, position)
+	onRender: function(ct, position)
 	{
 		Zarafa.core.ui.MainContentTabPanel.superclass.onRender.call(this, ct, position);
 
@@ -222,7 +222,7 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 	 * @private
 	 * @override
 	 */
-	onStripMouseDown : function(e)
+	onStripMouseDown: function(e)
 	{
 		if (e.button !== 0) {
 			return;
@@ -244,7 +244,7 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 	 * @private
 	 * @override
 	 */
-	getScrollWidth : function()
+	getScrollWidth: function()
 	{
 		return this.edge.getOffsetsTo(this.stripWrap)[0] + this.getScrollPos() + this.edge.getWidth();
 	},
@@ -317,7 +317,7 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 			if (Array.isArray(record.get('attach_num'))) {
 				entryid = record.id;
 			}
-			
+
 			if (Zarafa.core.EntryId.compareEntryIds(item, entryid)) {
 				return true;
 			}

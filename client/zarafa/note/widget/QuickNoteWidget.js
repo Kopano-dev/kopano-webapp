@@ -14,48 +14,48 @@ Zarafa.note.widgets.QuickNoteWidget = Ext.extend(Zarafa.core.ui.widget.AbstractQ
 	 * @property
 	 * @type String
 	 */
-	currentColorCls : undefined,
+	currentColorCls: undefined,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			wrapCfg : {
-				recordComponentPluginConfig : Ext.applyIf(config.recordComponentPluginConfig || {}, {
-					allowWrite : true
+			wrapCfg: {
+				recordComponentPluginConfig: Ext.applyIf(config.recordComponentPluginConfig || {}, {
+					allowWrite: true
 				}),
-				layout : 'fit',
-				items : [{
-					xtype : 'form',
-					ref : 'formPanel',
-					layout : 'fit',
-					items : [{
-						xtype : 'textarea',
-						ref : '../editorField',
-						name : 'body',
+				layout: 'fit',
+				items: [{
+					xtype: 'form',
+					ref: 'formPanel',
+					layout: 'fit',
+					items: [{
+						xtype: 'textarea',
+						ref: '../editorField',
+						name: 'body',
 						listeners: {
-							change : this.onChange,
-							scope : this
+							change: this.onChange,
+							scope: this
 						}
 					}]
 				}]
 			},
-			buttons : [{
-				text : _('Save'),
-				cls : 'zarafa-action',
+			buttons: [{
+				text: _('Save'),
+				cls: 'zarafa-action',
 				style: 'padding-bottom: 5px',
-				handler : this.onSave,
-				scope : this
+				handler: this.onSave,
+				scope: this
 			},{
-				text : _('Discard'),
+				text: _('Discard'),
 				style: 'padding-bottom: 5px',
-				handler : this.onDiscard,
-				scope : this
+				handler: this.onDiscard,
+				scope: this
 			}]
 		});
 
@@ -67,7 +67,7 @@ Zarafa.note.widgets.QuickNoteWidget = Ext.extend(Zarafa.core.ui.widget.AbstractQ
 	 * @return {Ext.data.Record} record The record to load into the {@link #wrap}
 	 * @protected
 	 */
-	createRecord : function()
+	createRecord: function()
 	{
 		var folder = container.getHierarchyStore().getDefaultFolder('note');
 		var context = container.getContextByName('note');
@@ -83,7 +83,7 @@ Zarafa.note.widgets.QuickNoteWidget = Ext.extend(Zarafa.core.ui.widget.AbstractQ
 	 * @param {Boolean} contentReset force the component to perform a full update of the data.
 	 * @protected
 	 */
-	update : function(record, contentReset)
+	update: function(record, contentReset)
 	{
 		this.wrap.formPanel.getForm().loadRecord(record);
 
@@ -122,7 +122,7 @@ Zarafa.note.widgets.QuickNoteWidget = Ext.extend(Zarafa.core.ui.widget.AbstractQ
 	 * @param {Zarafa.core.data.IPMRecord} record The record to update
 	 * @protected
 	 */
-	updateRecord : function(record)
+	updateRecord: function(record)
 	{
 		record.beginEdit();
 		this.wrap.formPanel.getForm().updateRecord(record);
@@ -133,9 +133,9 @@ Zarafa.note.widgets.QuickNoteWidget = Ext.extend(Zarafa.core.ui.widget.AbstractQ
 
 Zarafa.onReady(function() {
 	container.registerWidget(new Zarafa.core.ui.widget.WidgetMetaData({
-		name : 'quicknote',
+		name: 'quicknote',
 		iconCls: 'icon_widget_new_note',
-		displayName : _('Quick Note'),
-		widgetConstructor : Zarafa.note.widgets.QuickNoteWidget
+		displayName: _('Quick Note'),
+		widgetConstructor: Zarafa.note.widgets.QuickNoteWidget
 	}));
 });

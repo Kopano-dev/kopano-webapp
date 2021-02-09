@@ -12,16 +12,16 @@ Zarafa.task.TaskStore = Ext.extend(Zarafa.core.data.ListModuleStore, {
 	 * @constructor
 	 * @param {Object} config configuration params that should be used to create instance of this store.
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		// Apply default settings.
 		Ext.applyIf(config, {
-			preferredMessageClass : 'IPM.Task',
-			defaultSortInfo : {
-				field : 'duedate',
-				direction : 'desc'
+			preferredMessageClass: 'IPM.Task',
+			defaultSortInfo: {
+				field: 'duedate',
+				direction: 'desc'
 			}
 		});
 
@@ -43,7 +43,7 @@ Zarafa.task.TaskStore = Ext.extend(Zarafa.core.data.ListModuleStore, {
 	 * which have been affected by the notification.
 	 * @private
 	 */
-	onNotifyObjectcreated : function(action, records)
+	onNotifyObjectcreated: function(action, records)
 	{
 		var model = container.getCurrentContext().getModel();
 		// Reload task grid only when selected folder is
@@ -62,10 +62,10 @@ Zarafa.task.TaskStore = Ext.extend(Zarafa.core.data.ListModuleStore, {
 	 * @param {Number} operator relational operator that will be used for comparison.
 	 * @param {Mixed} value that should be used for checking.
 	 * @returns {Array} restriction.
-     */
-	prepareRestriction : function (property,operator,value)
+   */
+	prepareRestriction: function (property,operator,value)
 	{
-		return  Zarafa.core.data.RestrictionFactory.dataResProperty(property, Zarafa.core.mapi.Restrictions[operator], value);
+		return Zarafa.core.data.RestrictionFactory.dataResProperty(property, Zarafa.core.mapi.Restrictions[operator], value);
 	},
 
 	/**
@@ -75,7 +75,7 @@ Zarafa.task.TaskStore = Ext.extend(Zarafa.core.data.ListModuleStore, {
 	 * @return {Array|false} returns restriction according to filter else false.
 	 */
 
-	getFilterRestriction : function(datamode)
+	getFilterRestriction: function(datamode)
 	{
 		var restriction = [];
 		switch (datamode) {

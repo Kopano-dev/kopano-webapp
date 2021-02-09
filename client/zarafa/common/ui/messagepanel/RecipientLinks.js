@@ -15,52 +15,52 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 	 * @cfg {Number} ellipsisStringStartLength maximum length of text allowed before truncations,
 	 * truncation will be replaced with ellipsis ('...').
 	 */
-	ellipsisStringStartLength : 30,
+	ellipsisStringStartLength: 30,
 
 	/**
 	 * @cfg {Number} ellipsisStringEndLength maximum length of text allowed after truncations,
 	 * truncation will be replaced with ellipsis ('...').
 	 */
-	ellipsisStringEndLength : 30,
+	ellipsisStringEndLength: 30,
 
 	/**
 	 * @cfg {Number} maxHeight The maximum height the element which holds all
 	 * recipient is allowed to take before a scrollbar will be shown.
 	 */
-	maxHeight : 30,
+	maxHeight: 30,
 
 	/**
 	 * @cfg {String} fieldLabel The label which must be applied to template
 	 * as a prefix to the list of attachments.
 	 */
 	/* # TRANSLATORS: This message is used as label for the field which to indicates to whom the given mail was sent */
-	fieldLabel : pgettext('mail.previewpanel', 'Recipients'),
+	fieldLabel: pgettext('mail.previewpanel', 'Recipients'),
 
 	/**
 	 * @cfg {Zarafa.core.mapi.RecipientType} recipientType The recipientType
 	 * which should be displayed in the DataView. If not provided, no filtering
 	 * will occur and all recipients will be displayed.
 	 */
-	recipientType : undefined,
+	recipientType: undefined,
 
 	/**
 	 * @constructor
 	 * @param {Object} config configuration object.
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config,{
 			xtype: 'zarafa.recipientlinks',
-			border : false,
+			border: false,
 			autoScroll:true,
-			anchor : '100%',
-			cls : 'preview-header-recipients',
-			multiSelect : false,
+			anchor: '100%',
+			cls: 'preview-header-recipients',
+			multiSelect: false,
 			overClass: 'zarafa-recipient-link-over',
 			itemSelector: 'span.zarafa-recipient-link',
-			tpl : new Ext.XTemplate(
+			tpl: new Ext.XTemplate(
 				'<tpl if="values.length &gt; 0">' +
 					'<div class="preview-header-recipientbox">' +
 						'<div class="preview-recipient-title" style="min-width: {[this.getMinWidth(values)]}px">{this.fieldLabel}</div>' +
@@ -82,11 +82,11 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 					'</div>' +
 				'</tpl>',
 				{
-					compiled : true,
-					fieldLabel : config.fieldLabel || this.fieldLabel,
-					maxHeight : config.maxHeight || this.maxHeight,
-					ellipsisStringStartLength : config.ellipsisStringStartLength || this.ellipsisStringStartLength,
-					ellipsisStringEndLength : config.ellipsisStringEndLength || this.ellipsisStringEndLength,
+					compiled: true,
+					fieldLabel: config.fieldLabel || this.fieldLabel,
+					maxHeight: config.maxHeight || this.maxHeight,
+					ellipsisStringStartLength: config.ellipsisStringStartLength || this.ellipsisStringStartLength,
+					ellipsisStringEndLength: config.ellipsisStringEndLength || this.ellipsisStringEndLength,
 					getMinWidth: function(values)
 					{
 						return values[0].hasBcc ? 25 : 17;
@@ -105,7 +105,7 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 	 * This will register the {@link #onAttachmentClicked} event handler.
 	 * @private
 	 */
-	initComponent : function()
+	initComponent: function()
 	{
 		Zarafa.common.ui.messagepanel.RecipientLinks.superclass.initComponent.call(this);
 
@@ -123,7 +123,7 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 	 * {@link #bindStore bound} to this view.
 	 * @param {Zarafa.core.data.IPMRecord} record The record to apply
 	 */
-	setRecord : function(record)
+	setRecord: function(record)
 	{
 		if (record) {
 			if (record.isOpened()) {
@@ -140,11 +140,11 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 	 * however if there are more than one groups, the indexes are wrong
 	 * @private
 	 */
-	updateIndexes : function(startIndex, endIndex)
+	updateIndexes: function(startIndex, endIndex)
 	{
 		var ns = this.all.elements;
 		startIndex = startIndex || 0;
-		endIndex = endIndex || ((endIndex === 0) ? 0 : (ns.length - 1));
+		endIndex = endIndex || ((endIndex === 0) ? 0: (ns.length - 1));
 		for(var i = startIndex; i <= endIndex; i++){
 				ns[i].viewIndex = ns[i].getAttribute('viewIndex');
 		}
@@ -163,7 +163,7 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 	 * contain <i>named</i> properties.
 	 * @private
 	 */
-	collectData : function(records, startIndex)
+	collectData: function(records, startIndex)
 	{
 		var r = [];
 		for (var i = 0, len = records.length; i < len; i++) {
@@ -184,7 +184,7 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 	 * @return {Object} new object with index appended
 	 * @private
 	 */
-	prepareData : function(data, index, record)
+	prepareData: function(data, index, record)
 	{
 		return Ext.apply({viewIndex: index, hasBcc: (record.store.find('recipient_type', 3) !== -1)}, data);
 	},
@@ -194,7 +194,7 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 	 * @param {Array} nodes The nodes to evaluate
 	 * @return {Array} records The {@link Ext.data.Record} objects
 	 */
-	getRecords : function(nodes)
+	getRecords: function(nodes)
 	{
 		var records = [];
 
@@ -211,7 +211,7 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 	 * @return {Record} record The {@link Ext.data.Record} object
 	 * @override
 	 */
-	getRecord : function(node)
+	getRecord: function(node)
 	{
 		return this.store.getAt(this.store.findExact('rowid', parseInt(node.viewIndex, 10)));
 	},
@@ -222,7 +222,7 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 	 * @param {Zarafa.core.data.MAPIRecord} record The record to update in this component
 	 * @param {Boolean} contentReset force the component to perform a full update of the data.
 	 */
-	update : function(record, contentReset)
+	update: function(record, contentReset)
 	{
 		if (record && record instanceof Zarafa.core.data.MAPIRecord) {
 			// In case the recordcomponentupdaterplugin is installed
@@ -248,7 +248,7 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 	 * @param {Zarafa.core.data.IPMRecipientRecord} record The record that was updated
 	 * @private
 	 */
-	onUpdate : function(store, record)
+	onUpdate: function(store, record)
 	{
 		if ( record.get('recipient_type') !== this.recipientType ){
 			// We didn't render a node for this record, so we cannot update it
@@ -270,16 +270,16 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 		}, this);
 
 		if(index > -1){
-		    var sel = this.isSelected(filteredIndex),
+		  var sel = this.isSelected(filteredIndex),
 			original = this.all.elements[filteredIndex],
 			node = this.bufferRender([record], index)[0];
 
-		    this.all.replaceElement(filteredIndex, node, true);
-		    if(sel){
+		  this.all.replaceElement(filteredIndex, node, true);
+		  if(sel){
 				this.selected.replaceElement(original, node);
 				this.all.item(filteredIndex).addClass(this.selectedClass);
-		    }
-		    this.updateIndexes(filteredIndex, filteredIndex);
+		  }
+		  this.updateIndexes(filteredIndex, filteredIndex);
 		}
 	},
 
@@ -288,7 +288,7 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 	 * Overridden in order to hide this component also if *filtered* records are empty
 	 * @override
 	 */
-	refresh : function()
+	refresh: function()
 	{
 		if (!this.getTemplateTarget().dom) {
 			return;
@@ -337,7 +337,7 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 		var recipientRecord = this.createRecipientFromNode(node);
 		Zarafa.core.data.UIFactory.openHoverCard(recipientRecord, {
 			position: e.getXY(),
-			recipientView : dataView,
+			recipientView: dataView,
 			store:this.getStore()
 		});
 	},
@@ -351,7 +351,7 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 	 * @param {Ext.EventObject} evt The mouse event
 	 * @private
 	 */
-	onRecipientDoubleClick : function(dataView, index, node, evt)
+	onRecipientDoubleClick: function(dataView, index, node, evt)
 	{
 		var record = dataView.getRecord(node);
 		Zarafa.common.Actions.openViewRecipientContent(record);
@@ -364,7 +364,7 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 	 * @return {Zarafa.core.data.IPMRecipientRecord} recipient record that will be used for sending the mail
 	 * @private
 	 */
-	createRecipientFromNode : function(node)
+	createRecipientFromNode: function(node)
 	{
 		var record = this.getRecord(node);
 		record = Zarafa.core.data.RecordFactory.createRecordObjectByCustomType(Zarafa.core.data.RecordCustomObjectType.ZARAFA_RECIPIENT, record.data);
@@ -382,7 +382,7 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 	 * mouse leaves the recipient links. it will
 	 * just clear the timeout.
 	 */
-	onMouseLeave : function()
+	onMouseLeave: function()
 	{
 		clearTimeout(this.timer);
 	},
@@ -402,8 +402,8 @@ Zarafa.common.ui.messagepanel.RecipientLinks = Ext.extend(Ext.DataView, {
 			var recipientRecord = scope.createRecipientFromNode(node);
 			Zarafa.core.data.UIFactory.openHoverCard(recipientRecord, {
 				position: e.getXY(),
-				recipientView : dataView,
-				store : scope.getStore()
+				recipientView: dataView,
+				store: scope.getStore()
 			});
 		}, 700, this);
 	}

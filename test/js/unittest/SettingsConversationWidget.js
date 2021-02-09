@@ -16,9 +16,9 @@ describe('SettingsConversationWidget', function() {
     /**
      * Unit Test for the render setting conversation widget.
      */
-    describe('Render', function(){
+    describe('Render', function() {
 
-        it('Should have proper title', function(){
+        it('Should have proper title', function() {
             expect(widget.title).toEqual("Conversation view settings");
         });
 
@@ -43,10 +43,10 @@ describe('SettingsConversationWidget', function() {
     /**
      * Unit test cases for 'Enabled conversation checkbox'.
      */
-    describe('Enabled conversation checkbox', function(){
+    describe('Enabled conversation checkbox', function() {
         var checkbox;
 
-        beforeEach(function(){
+        beforeEach(function() {
             checkbox = widget.enableConversations;
         });
 
@@ -65,7 +65,7 @@ describe('SettingsConversationWidget', function() {
             expect(widget.singleExpand.checked).toBeTruthy();
         });
 
-        it('Should disable the \'Collapse conversation when selecting a different email\' checkbox if \'Enabled conversation view\' checkbox unchecked.', function(){
+        it('Should disable the \'Collapse conversation when selecting a different email\' checkbox if \'Enabled conversation view\' checkbox unchecked.', function() {
             checkbox.setValue(true);
 
             expect(settingsModel.get(checkbox.name)).toBeTruthy();
@@ -73,7 +73,7 @@ describe('SettingsConversationWidget', function() {
             expect(widget.singleExpand.checked).toBeTruthy();
 
             checkbox.setValue(false);
-            
+
             expect(settingsModel.get(checkbox.name)).toBeFalsy();
             expect(widget.singleExpand.disabled).toBeTruthy();
             expect(widget.singleExpand.checked).toBeTruthy();
@@ -83,10 +83,10 @@ describe('SettingsConversationWidget', function() {
     /**
      * Unit test cases for 'Expand single conversation'.
      */
-    describe('Expand single conversation', function(){
+    describe('Expand single conversation', function() {
         var checkbox;
 
-        beforeEach(function(){
+        beforeEach(function() {
             checkbox = widget.singleExpand;
             widget.enableConversations.setValue(true);
         });

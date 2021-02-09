@@ -18,7 +18,7 @@
 			if(!empty($this->displayMessage))
 				return $this->displayMessage;
 
-			switch($this->getCode()) 
+			switch($this->getCode())
 			{
 				case MAPI_E_NO_ACCESS:
 					return dgettext("zarafa","You have insufficient privileges to open this object.");
@@ -45,7 +45,7 @@
 				case MAPI_E_AMBIGUOUS_RECIP:
 				case MAPI_E_COLLISION:
 				case MAPI_E_UNCONFIGURED:
-				default :
+				default:
 					return sprintf(dgettext("zarafa","Unknown MAPI Error: %s"), get_mapi_error_name($this->getCode()));
 			}
 		}

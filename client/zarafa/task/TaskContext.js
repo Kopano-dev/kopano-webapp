@@ -26,7 +26,7 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 	 * @type Mixed
 	 * @private
 	 */
-	oldView : undefined,
+	oldView: undefined,
 
 	/**
 	 * When searching, this property marks the {@link Zarafa.core.Context#getCurrentViewMode viewmode}
@@ -36,19 +36,19 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 	 * @type Mixed
 	 * @private
 	 */
-	oldViewMode : undefined,
+	oldViewMode: undefined,
 
 	/**
 	 * @constructor
 	 * @param config
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 		Ext.applyIf(config, {
-			current_view : Zarafa.task.data.Views.LIST,
-			current_view_mode : Zarafa.task.data.ViewModes.SIMPLE,
-			current_data_mode : Zarafa.task.data.DataModes.ALL
+			current_view: Zarafa.task.data.Views.LIST,
+			current_view_mode: Zarafa.task.data.ViewModes.SIMPLE,
+			current_data_mode: Zarafa.task.data.DataModes.ALL
 		});
 
 		// The tab in the top tabbar
@@ -82,13 +82,13 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 	/**
 	 * @return Zarafa.task.TaskContextModel the task context model
 	 */
-	getModel : function()
+	getModel: function()
 	{	if (!Ext.isDefined(this.model)) {
 			this.model = new Zarafa.task.TaskContextModel();
 			this.model.on({
-				'searchstart' : this.onModelSearchStart,
-				'searchstop' : this.onModelSearchStop,
-				scope : this
+				'searchstart': this.onModelSearchStart,
+				'searchstop': this.onModelSearchStop,
+				scope: this
 			});
 		}
 		return this.model;
@@ -102,7 +102,7 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 	 * @param {Zarafa.core.ContextModel} model The model which fired the event
 	 * @private
 	 */
-	onModelSearchStart : function(model)
+	onModelSearchStart: function(model)
 	{
 		if(this.getCurrentView() !== Zarafa.task.data.Views.SEARCH && this.getCurrentViewMode() !== Zarafa.task.data.ViewModes.SEARCH){
 			this.oldView = this.getCurrentView();
@@ -117,7 +117,7 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 	 * @param {Zarafa.core.ContextModel} model The model which fired the event
 	 * @private
 	 */
-	onModelSearchStop : function(model)
+	onModelSearchStop: function(model)
 	{
 		this.switchView(this.oldView, this.oldViewMode);
 		delete this.oldView;
@@ -130,7 +130,7 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 	 * @return {Number} return 1 if specified folder contains items of type IPF.Task else -1
 	 * @method
 	 */
-	bid : function(folder)
+	bid: function(folder)
 	{
 
 		// the folder contains items of type IPF.Task, return 1
@@ -235,10 +235,10 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 				component = Zarafa.task.dialogs.SendTaskRequestConfirmationContentPanel;
 				break;
 			case Zarafa.core.data.SharedComponentType['common.contextmenu']:
-		  		component = Zarafa.task.ui.TaskContextMenu;
+		 		component = Zarafa.task.ui.TaskContextMenu;
 				break;
 			case Zarafa.core.data.SharedComponentType['task.contextmenu.flags']:
-		  		component = Zarafa.task.ui.TaskFlagsMenu;
+		 		component = Zarafa.task.ui.TaskFlagsMenu;
 				break;
 			case Zarafa.core.data.SharedComponentType['common.printer.renderer']:
 				if (record instanceof Zarafa.core.data.IPMRecord && record.get('object_type') === Zarafa.core.mapi.ObjectType.MAPI_MESSAGE) {
@@ -262,28 +262,28 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 	 * button panel. It shows a tree of available task folders that can be checked and unchecked.
 	 * @private
 	 */
-	createTaskNavigationPanel : function()
+	createTaskNavigationPanel: function()
 	{
 		return {
-			xtype : 'zarafa.contextnavigation',
-			context : this,
-			items : [{
-				xtype : 'panel',
+			xtype: 'zarafa.contextnavigation',
+			context: this,
+			items: [{
+				xtype: 'panel',
 				id: 'zarafa-navigationpanel-tasks-navigation',
 				cls: 'zarafa-context-navigation-block',
 				layout: 'fit',
-				items : [{
-					xtype : 'zarafa.hierarchytreepanel',
+				items: [{
+					xtype: 'zarafa.hierarchytreepanel',
 					id: 'zarafa-navigationpanel-tasks-navigation-tree',
 					model: this.getModel(),
 					IPMFilter: 'IPF.Task',
-					hideDeletedFolders : true,
-					enableDD : true,
-					enableItemDrop : true,
-					deferredLoading : true,
+					hideDeletedFolders: true,
+					enableDD: true,
+					enableItemDrop: true,
+					deferredLoading: true,
 					bbarConfig: {
 						defaultSelectedSharedFolderType: Zarafa.hierarchy.data.SharedFolderTypes['TASK'],
-						buttonText : _('Open Shared Tasks')
+						buttonText: _('Open Shared Tasks')
 					}
 				}]
 			}]
@@ -296,12 +296,12 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 	 * @return {Zarafa.task.ui.taskPanel} The main panel which should
 	 * be used within the {@link Zarafa.core.Context context}
 	 */
-	createContentPanel : function()
+	createContentPanel: function()
 	{
 		return {
-			xtype : 'zarafa.taskmainpanel',
+			xtype: 'zarafa.taskmainpanel',
 			id: 'zarafa-mainpanel-contentpanel-tasks',
-			context : this
+			context: this
 		};
 	},
 
@@ -311,7 +311,7 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 	 *
 	 * @return {Ext.Component[]} an array of components
 	 */
-	getMainToolbarViewButtons : function()
+	getMainToolbarViewButtons: function()
 	{
 		var items = container.populateInsertionPoint('main.maintoolbar.view.task', this) || [];
 
@@ -320,19 +320,19 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 			text: _('Simple view'),
 			overflowText: _('Simple view'),
 			iconCls: 'icon_task_simple',
-			valueView : Zarafa.task.data.Views.LIST,
-			valueViewMode : Zarafa.task.data.ViewModes.SIMPLE,
-			handler : this.onContextSelectView,
-			scope : this
+			valueView: Zarafa.task.data.Views.LIST,
+			valueViewMode: Zarafa.task.data.ViewModes.SIMPLE,
+			handler: this.onContextSelectView,
+			scope: this
 		},{
 			id: 'zarafa-maintoolbar-view-tasks-detailed',
 			text: _('Detailed view'),
 			overflowText: _('Detailed view'),
 			iconCls: 'icon_task_detailed',
-			valueView : Zarafa.task.data.Views.LIST,
-			valueViewMode : Zarafa.task.data.ViewModes.DETAILED,
-			handler : this.onContextSelectView,
-			scope : this
+			valueView: Zarafa.task.data.Views.LIST,
+			valueViewMode: Zarafa.task.data.ViewModes.DETAILED,
+			handler: this.onContextSelectView,
+			scope: this
 		}];
 
 		return defaultItems.concat(items);
@@ -345,7 +345,7 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 	 * @param {Ext.Button} button The button which was pressed
 	 * @private
 	 */
-	onContextSelectView : function(button)
+	onContextSelectView: function(button)
 	{
 		var model = this.getModel();
 		model.setDataMode(model.getCurrentDataMode());
@@ -361,15 +361,15 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 	 * @return {Object} The menu item for creating a new task item
 	 * @static
 	 */
-	createToolbarNewTaskButton : function()
+	createToolbarNewTaskButton: function()
 	{
 		//create new task buttton.
 		return {
 
 			xtype	: 'menuitem',
 			id: 'zarafa-maintoolbar-newitem-task',
-			tooltip : _('Task')+' (Ctrl + Alt + K)',
-			plugins : 'zarafa.menuitemtooltipplugin',
+			tooltip: _('Task')+' (Ctrl + Alt + K)',
+			plugins: 'zarafa.menuitemtooltipplugin',
 			text	: _('Task'),
 			handler	: function(){
 				Zarafa.task.Actions.openCreateTaskContent(this.getModel());
@@ -377,7 +377,7 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 			iconCls		: 'icon_new_task',
 			newMenuIndex: 4,
 			context: 'task',
-			scope : this
+			scope: this
 		};
 	},
 
@@ -390,21 +390,21 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 	 * @return {Object} The menu item for creating a new task request item
 	 * @static
 	 */
-	createToolbarNewTaskRequestButton : function()
+	createToolbarNewTaskRequestButton: function()
 	{
 		return {
-			xtype : 'menuitem',
-			id : 'zarafa-maintoolbar-newitem-task-request',
-			tooltip : _('Task request'),
-			plugins : 'zarafa.menuitemtooltipplugin',
-			text : _('Task request'),
-			handler : function(){
+			xtype: 'menuitem',
+			id: 'zarafa-maintoolbar-newitem-task-request',
+			tooltip: _('Task request'),
+			plugins: 'zarafa.menuitemtooltipplugin',
+			text: _('Task request'),
+			handler: function(){
 				Zarafa.task.Actions.openCreateTaskRequestContent(this.getModel());
 			},
-			iconCls : 'icon_new-task_request',
+			iconCls: 'icon_new-task_request',
 			newMenuIndex: 4,
 			context: 'task',
-			scope : this
+			scope: this
 		};
 	},
 
@@ -412,7 +412,7 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 	 * Populates the Print button in the main toolbar
 	 * @return {Array} items The menu items available for printing in this context
 	 */
-	getMainToolbarPrintButtons : function()
+	getMainToolbarPrintButtons: function()
 	{
 		var items = container.populateInsertionPoint('main.toolbar.print.task', this) || [];
 
@@ -421,22 +421,22 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 			id: 'zarafa-maintoolbar-print-selectedtask',
 			overflowText: _('Print selected task'),
 			iconCls: 'icon_print_task',
-			tooltip : _('Print selected task') + ' (Ctrl + P)',
-			plugins : 'zarafa.menuitemtooltipplugin',
+			tooltip: _('Print selected task') + ' (Ctrl + P)',
+			plugins: 'zarafa.menuitemtooltipplugin',
 			text: _('Print selected task'),
 			hideOnDisabled: false,
-			singleSelectOnly : true,
+			singleSelectOnly: true,
 			handler: this.onPrintSelected.createDelegate(this, [_('No task selected')], 2),
 			scope: this
 		},{
 			overflowText: _('Print task list'),
 			id: 'zarafa-maintoolbar-print-tasklist',
 			iconCls: 'icon_print',
-			tooltip : _('Print task list') + ' (Ctrl + Alt + P)',
-			plugins : 'zarafa.menuitemtooltipplugin',
+			tooltip: _('Print task list') + ' (Ctrl + Alt + P)',
+			plugins: 'zarafa.menuitemtooltipplugin',
 			text: _('Print task list'),
 			handler: this.onPrintList,
-			scope : this
+			scope: this
 		}];
 
 		return defaultItems.concat(items);
@@ -447,7 +447,7 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 	 * Calls {@link Zarafa.common.Actions.openPrintDialog} openPrintDialog with the current context.
 	 * @private
 	 */
-	onPrintList : function(item)
+	onPrintList: function(item)
 	{
 		Zarafa.common.Actions.openPrintDialog(this);
 	},
@@ -472,12 +472,12 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 	 * @return {Zarafa.core.ui.menu.ConditionalItem[]} The Action context menu item
 	 * @private
 	 */
-	convertToTask : function()
+	convertToTask: function()
 	{
 		return {
 			xtype: 'zarafa.conditionalitem',
-			text : _('Create task'),
-			iconCls : 'icon_new_task',
+			text: _('Create task'),
+			iconCls: 'icon_new_task',
 			singleSelectOnly: true,
 			hidden: true,
 			handler: this.onContextItemCreateTask,
@@ -491,7 +491,7 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 	 * added in the {@link Ext.Toolbar Toolbar}.
 	 * @private
 	 */
-	createTaskRequestToolbarButtons : function(component)
+	createTaskRequestToolbarButtons: function(component)
 	{
 		return [{
 			xtype: 'zarafa.taskrequestbutton',
@@ -501,11 +501,11 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 			responseStatus: Zarafa.core.mapi.TaskMode.ACCEPT
 
 		},{
-			xtype : 'zarafa.taskrequestbutton',
+			xtype: 'zarafa.taskrequestbutton',
 			name: Zarafa.task.data.TaskRequestButtonNames.DECLINE,
-			text : _('Decline'),
-			iconCls : 'icon_calendar_appt_cancelled',
-			responseStatus : Zarafa.core.mapi.TaskMode.DECLINE
+			text: _('Decline'),
+			iconCls: 'icon_calendar_appt_cancelled',
+			responseStatus: Zarafa.core.mapi.TaskMode.DECLINE
 		}];
 	},
 
@@ -517,7 +517,7 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 	 * @param {Ext.EventObject} event The event information
 	 * @private
 	 */
-	onContextItemCreateTask : function(menuItem, event)
+	onContextItemCreateTask: function(menuItem, event)
 	{
 		var records = menuItem.getRecords();
 		Zarafa.task.Actions.createTaskFromMail(records, this.getModel());
@@ -531,9 +531,9 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 	 * insertion point triggered.
 	 * @return {Object} configuration object to create task filter buttons.
 	 */
-	createFilterButtons : function(insertionPoint, currentContext) {
-		var hidden = currentContext.getName() !== 'task';	
-			
+	createFilterButtons: function(insertionPoint, currentContext) {
+		var hidden = currentContext.getName() !== 'task';
+
 		return [{
 				xtype: 'button',
 				cls: 'k-filter-options-btn',
@@ -607,10 +607,10 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 
 	/**
 	 * Function sets selection on the button which has the current data mode.
-	 * 
+	 *
 	 * @param {Object} button The filter button to be selected.
 	 */
-	onAfterRenderFilterButtons : function (button)
+	onAfterRenderFilterButtons: function (button)
 	{
 		if (this.getModel().getCurrentDataMode() === button.valueDataMode) {
 			button.btnEl.addClass('k-selection');
@@ -619,13 +619,13 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 	},
 
 	/**
-	 * The function handles the toggling of the filter button. If already pressed, 
+	 * The function handles the toggling of the filter button. If already pressed,
 	 * it resets the {@link Zarafa.task.data.DataModes datamode} and clears the restriction.
-	 * 
-	 * @param {Object} button The filter button pressed by user. 
-	 * @param {Boolean} state The state of the button, true if pressed. 
+	 *
+	 * @param {Object} button The filter button pressed by user.
+	 * @param {Boolean} state The state of the button, true if pressed.
 	 */
-	onClickToggleHandler : function (button, state)
+	onClickToggleHandler: function (button, state)
 	{
 		var model = this.getModel();
 		button.btnEl.toggleClass('k-selection');
@@ -636,9 +636,9 @@ Zarafa.task.TaskContext = Ext.extend(Zarafa.core.Context, {
 
 Zarafa.onReady(function() {
 	container.registerContext(new Zarafa.core.ContextMetaData({
-		name : 'task',
-		displayName : _('Tasks'),
-		allowUserVisible : false,
-		pluginConstructor : Zarafa.task.TaskContext
+		name: 'task',
+		displayName: _('Tasks'),
+		allowUserVisible: false,
+		pluginConstructor: Zarafa.task.TaskContext
 	}));
 });

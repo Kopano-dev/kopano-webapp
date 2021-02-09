@@ -35,7 +35,7 @@ Zarafa.calendar.ui.DatePicker = Ext.extend(Ext.DatePicker, {
 	 * constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 		if(!config.store){
@@ -104,7 +104,7 @@ Zarafa.calendar.ui.DatePicker = Ext.extend(Ext.DatePicker, {
 	 * Event handler which is called when the component is made visible
 	 * @private
 	 */
-	onShow : function()
+	onShow: function()
 	{
 		this.reloadStore(this.cells.first().dom.firstChild.dateValue, this.cells.last().dom.firstChild.dateValue);
 		Zarafa.calendar.ui.DatePicker.superclass.onShow.apply(this, arguments);
@@ -114,7 +114,7 @@ Zarafa.calendar.ui.DatePicker = Ext.extend(Ext.DatePicker, {
 	 * Event handler which is called when the component is hidden
 	 * @private
 	 */
-	onHide : function()
+	onHide: function()
 	{
 		this.store.cancelLoadRequests();
 		Zarafa.calendar.ui.DatePicker.superclass.onHide.apply(this, arguments);
@@ -137,9 +137,9 @@ Zarafa.calendar.ui.DatePicker = Ext.extend(Ext.DatePicker, {
 			this.store.load({
 				actionType: Zarafa.core.Actions['list'],
 				params: {
-					entryid : folder.get('entryid'),
-					store_entryid : folder.get('store_entryid'),
-					restriction : {
+					entryid: folder.get('entryid'),
+					store_entryid: folder.get('store_entryid'),
+					restriction: {
 						startdate: startDate / 1000,
 						duedate: dueDate / 1000
 					}

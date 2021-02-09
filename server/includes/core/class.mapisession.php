@@ -301,7 +301,7 @@
 		function getUserName()
 		{
 			$encryptionStore = EncryptionStore::getInstance();
-			return $encryptionStore->get('username') ? $encryptionStore->get('username'): '';
+			return $encryptionStore->get('username') ? $encryptionStore->get('username') : '';
 		}
 
 		/**
@@ -345,7 +345,7 @@
 		{
 			$this->retrieveUserData();
 
-			return array_key_exists("userimage",$this->session_info)? $this->session_info["userimage"]:false;
+			return array_key_exists("userimage",$this->session_info)? $this->session_info["userimage"] : false;
 		}
 
 		/**
@@ -384,7 +384,7 @@
 				error_log('Method ' . $methodName . ' does not exist');
 				Log::Write(LOGLEVEL_ERROR, 'Method ' . $methodName . ' does not exist');
 				return "";
-		 	}else{
+		 	} else {
 		 		$this->retrieveUserData();
 		 		$propertyName = strtolower(preg_replace('/([^A-Z])([A-Z])/', '$1_$2', $matches[1]));
 				if ( !array_key_exists($propertyName, $this->session_info) ){
@@ -392,7 +392,7 @@
 					error_log('Method ' . $methodName . ' does not exist '.$propertyName);
 					Log::Write(LOGLEVEL_ERROR, 'Method ' . $methodName . ' does not exist '.$propertyName);
 					return "";
-				}else{
+				} else {
 					return $this->session_info[$propertyName];
 				}
 		 	}
@@ -590,13 +590,13 @@
 				// Cache the store for later use
 				$this->stores[$entryid] = $store;
 			} catch (MAPIException $e) {
-				error_log('Failed to open store with entryid ' . bin2hex($entryid) . ($name ? " ($name)":''));
+				error_log('Failed to open store with entryid ' . bin2hex($entryid) . ($name ? " ($name)" : ''));
 				error_log($e);
 				return $e->getCode();
 			} catch (Exception $e ) {
 				// mapi_openmsgstore seems to throw another exception than MAPIException
 				// sometimes, so we add a safety net.
-				error_log('Failed to open store with entryid ' . bin2hex($entryid) . ($name ? " ($name)":''));
+				error_log('Failed to open store with entryid ' . bin2hex($entryid) . ($name ? " ($name)" : ''));
 				error_log($e);
 				return $e->getCode();
 			}
@@ -984,7 +984,7 @@
 			// PR_IPM_SUBTREE_ENTRYID that can be used on your own and delegate stores.
 			if($storeProps[PR_MDB_PROVIDER] == ZARAFA_STORE_PUBLIC_GUID){
 				$subtreeEntryid = $storeProps[PR_IPM_PUBLIC_FOLDERS_ENTRYID];
-			}else{
+			} else {
 				$subtreeEntryid = $storeProps[PR_IPM_SUBTREE_ENTRYID];
 			}
 

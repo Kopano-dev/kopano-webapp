@@ -483,7 +483,7 @@ class PluginManager
 	function pluginExists($pluginname){
 		if(isset($this->plugindata[ $pluginname ])){
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}

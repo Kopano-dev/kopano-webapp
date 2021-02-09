@@ -3,7 +3,7 @@ Ext.namespace('Zarafa.core.data');
 /**
  * @class Zarafa.common.rulesdata.RulesProxy
  * @extends Zarafa.core.data.IPMProxy
- * 
+ *
  * A special proxy which handles rules, the rules are send slightly different to the
  * server then normal records, instead of creating 1 request per record being saved,
  * we will send all records in a single request so the server can really save
@@ -28,7 +28,7 @@ Zarafa.common.rules.data.RulesProxy = Ext.extend(Zarafa.core.data.IPMProxy, {
 	 * which should be used for this request.
 	 * @private
 	 */
-	getResponseHandlerForRequest : function(modulename, serverAction, action, records, parameters, reader, callback, scope, args)
+	getResponseHandlerForRequest: function(modulename, serverAction, action, records, parameters, reader, callback, scope, args)
 	{
 		return new Zarafa.common.rules.data.RulesResponseHandler({
 			proxy: this,
@@ -51,12 +51,12 @@ Zarafa.common.rules.data.RulesProxy = Ext.extend(Zarafa.core.data.IPMProxy, {
 	 * @param {Object} args arguments object. This will be passed to the call back function on successful read.
 	 * @private
 	 */
-	createUpdateAction : function(action, records, parameters, reader, callback, scope, args)
+	createUpdateAction: function(action, records, parameters, reader, callback, scope, args)
 	{
 		// Force the listmodule action, as we will edit all rules
 		// in complete batches.
 		Ext.applyIf(args, {
-			listRequest : true
+			listRequest: true
 		});
 
 		// When no records are sent, add the store id.
@@ -81,12 +81,12 @@ Zarafa.common.rules.data.RulesProxy = Ext.extend(Zarafa.core.data.IPMProxy, {
 	 * @param {Object} args arguments object. This will be passed to the call back function on successful read.
 	 * @private
 	 */
-	destroyAction : function(action, records, parameters, reader, callback, scope, args)
+	destroyAction: function(action, records, parameters, reader, callback, scope, args)
 	{
 		// Force the listmodule action, as we will edit all rules
 		// in complete batches.
 		Ext.applyIf(args, {
-			listRequest : true
+			listRequest: true
 		});
 		// Unwrap the serialized data and pass it as parameters directly
 		parameters = parameters.jsonData[reader.meta.root];
@@ -105,12 +105,12 @@ Zarafa.common.rules.data.RulesProxy = Ext.extend(Zarafa.core.data.IPMProxy, {
 	 * @param {Object} args arguments object. This will be passed to the call back function on successful read.
 	 * @private
 	 */
-	openAction : function(action, records, parameters, reader, callback, scope, args)
+	openAction: function(action, records, parameters, reader, callback, scope, args)
 	{
 		// Force the listmodule action, as we will edit all rules
 		// in complete batches.
 		Ext.applyIf(args, {
-			listRequest : true
+			listRequest: true
 		});
 		// Unwrap the serialized data and pass it as parameters directly
 		parameters = parameters.jsonData[reader.meta.root];

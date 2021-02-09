@@ -21,7 +21,7 @@ Zarafa.contact.ui.MemberBox = Ext.extend(Zarafa.common.recipientfield.ui.Recipie
 	 * @return {Boolean} True if the record is valid
 	 * @protected
 	 */
-	isValidRecord : function(record)
+	isValidRecord: function(record)
 	{
 		var distlistType = record.get('distlist_type');
 
@@ -57,7 +57,7 @@ Zarafa.contact.ui.MemberBox = Ext.extend(Zarafa.common.recipientfield.ui.Recipie
 	 * @return {String} The CSS class which must be applied to the {@link #iconEl}.
 	 * @private
 	 */
-	prepareIcon : function(record)
+	prepareIcon: function(record)
 	{
 		if (this.isValidRecord(record)) {
 			return Zarafa.common.ui.IconClass.getIconClass(record);

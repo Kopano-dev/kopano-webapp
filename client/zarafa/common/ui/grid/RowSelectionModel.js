@@ -14,7 +14,7 @@ Zarafa.common.ui.grid.RowSelectionModel = Ext.extend(Ext.grid.RowSelectionModel,
 	 * @constructor
 	 * @param {Object} config configuration object.
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		Zarafa.common.ui.grid.RowSelectionModel.superclass.constructor.call(this, config);
 
@@ -39,7 +39,7 @@ Zarafa.common.ui.grid.RowSelectionModel = Ext.extend(Ext.grid.RowSelectionModel,
 	 * @param {Boolean} fast (optional) <tt>true</tt> to bypass the
 	 * conditional checks and events described in {@link #deselectRow}.
 	 */
-	clearSelections : function(fast)
+	clearSelections: function(fast)
 	{
 		if(this.isLocked()){
 			return;
@@ -67,7 +67,7 @@ Zarafa.common.ui.grid.RowSelectionModel = Ext.extend(Ext.grid.RowSelectionModel,
 	 * @param {Number/Record} index The record or index of the record to check
 	 * @return {Boolean}
 	 */
-	isSelected : function(index)
+	isSelected: function(index)
 	{
 		var store = this.grid.getStore();
 		var r = Ext.isNumber(index) ? store.getAt(index) : index;

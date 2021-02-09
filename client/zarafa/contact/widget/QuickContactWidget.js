@@ -14,13 +14,13 @@ Zarafa.contact.widget.QuickContactWidget = Ext.extend(Zarafa.core.ui.widget.Abst
 	 * @property
 	 * @type Zarafa.contact.data.ContactDetailsParser
 	 */
-	contactParser : undefined,
+	contactParser: undefined,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -32,39 +32,39 @@ Zarafa.contact.widget.QuickContactWidget = Ext.extend(Zarafa.core.ui.widget.Abst
 		}
 
 		Ext.applyIf(config, {
-			wrapCfg : {
-				recordComponentPluginConfig : Ext.applyIf(config.recordComponentPluginConfig || {}, {
-					allowWrite : true
+			wrapCfg: {
+				recordComponentPluginConfig: Ext.applyIf(config.recordComponentPluginConfig || {}, {
+					allowWrite: true
 				}),
-				layout : 'fit',
-				items : [{
-					xtype : 'form',
-					ref : 'formPanel',
+				layout: 'fit',
+				items: [{
+					xtype: 'form',
+					ref: 'formPanel',
 					layout: {
 						type: 'vbox',
 						align: 'stretch'
 					},
-					border : false,
+					border: false,
 					bodyStyle: 'background-color: inherit; padding: 5px;',
 					defaults: {
 						border: false,
 						labelLength: 100,
 						style: 'padding-bottom: 2px'
 					},
-					items : [{
+					items: [{
 						xtype: 'zarafa.compositefield',
 						hideLabel: true,
 						anchor: '100%',
 						height: 30,
-						items : [{
-							xtype : 'textfield',
-							flex : 1,
-							name : 'display_name',
-							emptyText : _('Full Name') + ':',
-							ref : '../../fullnameField',
-							listeners : {
-								scope : this,
-								change : this.onFullNameChange
+						items: [{
+							xtype: 'textfield',
+							flex: 1,
+							name: 'display_name',
+							emptyText: _('Full Name') + ':',
+							ref: '../../fullnameField',
+							listeners: {
+								scope: this,
+								change: this.onFullNameChange
 							}
 						}]
 					},{
@@ -72,67 +72,67 @@ Zarafa.contact.widget.QuickContactWidget = Ext.extend(Zarafa.core.ui.widget.Abst
 						hideLabel: true,
 						anchor: '100%',
 						height: 33,
-						items : [{
-							xtype : 'splitbutton',
+						items: [{
+							xtype: 'splitbutton',
 							width: 100,
-							text : _('Mobile') + ':',
-							handler : this.onPhoneButtonClick,
+							text: _('Mobile') + ':',
+							handler: this.onPhoneButtonClick,
 							scope: this,
-							menu : this.initPhoneButtonMenu('cellular_telephone_number')
+							menu: this.initPhoneButtonMenu('cellular_telephone_number')
 						},{
-							xtype : 'textfield',
-							ref : '../../telephoneField',
+							xtype: 'textfield',
+							ref: '../../telephoneField',
 							flex: 1,
-							name : 'telephone_number',
-							property : 'cellular_telephone_number',
-							listeners : {
-								scope : this,
-								change : this.onTelephoneNumberChange
+							name: 'telephone_number',
+							property: 'cellular_telephone_number',
+							listeners: {
+								scope: this,
+								change: this.onTelephoneNumberChange
 							}
 						}]
 					},{
 						xtype: 'zarafa.compositefield',
 						hideLabel: true,
 						anchor: '100%',
-						items : [{
-							xtype : 'textfield',
+						items: [{
+							xtype: 'textfield',
 							flex: 1,
 							emptyText: _('Email') + ':',
-							ref : '../../mailAddressField',
-							name : 'email_address_1',
+							ref: '../../mailAddressField',
+							name: 'email_address_1',
 							height: 30,
-							listeners : {
-								scope : this,
-								change : this.onChange
+							listeners: {
+								scope: this,
+								change: this.onChange
 							}
 						}]
 					},{
 						xtype: 'zarafa.editorfield',
 						ref: '../editorField',
-						htmlName : 'html_body',
-						plaintextName : 'body',
+						htmlName: 'html_body',
+						plaintextName: 'body',
 						hideLabel: true,
 						flex: 1,
-						useHtml : false,
+						useHtml: false,
 						defaultValue: '',
 						listeners: {
-							change : this.onBodyChange,
-							scope : this
+							change: this.onBodyChange,
+							scope: this
 						}
 					}]
 				}]
 			},
-			buttons : [{
-				text : _('Save'),
-				cls : 'zarafa-action',
+			buttons: [{
+				text: _('Save'),
+				cls: 'zarafa-action',
 				style: 'padding-bottom: 5px',
-				handler : this.onSave,
-				scope : this
+				handler: this.onSave,
+				scope: this
 			},{
-				text : _('Discard'),
+				text: _('Discard'),
 				style: 'padding-bottom: 5px',
-				handler : this.onDiscard,
-				scope : this
+				handler: this.onDiscard,
+				scope: this
 			}]
 		});
 
@@ -146,38 +146,38 @@ Zarafa.contact.widget.QuickContactWidget = Ext.extend(Zarafa.core.ui.widget.Abst
 	 * @param {String} property will be used to show default selection
 	 * @private
 	 */
-	initPhoneButtonMenu : function(property)
+	initPhoneButtonMenu: function(property)
 	{
 		return {
-			xtype : 'menu',
-			listeners : {
-				click : this.onMenuItemSelection,
-				scope : this
+			xtype: 'menu',
+			listeners: {
+				click: this.onMenuItemSelection,
+				scope: this
 			},
-			defaults : {
-				xtype : 'menucheckitem',
-				group : 'phone_number'
+			defaults: {
+				xtype: 'menucheckitem',
+				group: 'phone_number'
 			},
-			items : [{
-				text : _('Business'),
-				property : 'business_telephone_number',
-				checked : property == 'business_telephone_number'
+			items: [{
+				text: _('Business'),
+				property: 'business_telephone_number',
+				checked: property == 'business_telephone_number'
 			},{
-				text : _('Company'),
-				property : 'company_telephone_number',
-				checked : property == 'company_telephone_number'
+				text: _('Company'),
+				property: 'company_telephone_number',
+				checked: property == 'company_telephone_number'
 			},{
-				text : _('Home'),
-				property : 'home_telephone_number',
-				checked : property == 'home_telephone_number'
+				text: _('Home'),
+				property: 'home_telephone_number',
+				checked: property == 'home_telephone_number'
 			},{
-				text : _('Mobile'),
-				property : 'cellular_telephone_number',
-				checked : property == 'cellular_telephone_number'
+				text: _('Mobile'),
+				property: 'cellular_telephone_number',
+				checked: property == 'cellular_telephone_number'
 			},{
-				text : _('Other'),
-				property : 'other_telephone_number',
-				checked : property == 'other_telephone_number'
+				text: _('Other'),
+				property: 'other_telephone_number',
+				checked: property == 'other_telephone_number'
 			}]
 		};
 	},
@@ -191,7 +191,7 @@ Zarafa.contact.widget.QuickContactWidget = Ext.extend(Zarafa.core.ui.widget.Abst
 	 * @param {Ext.EventObject} EventObjectt event object
 	 * @private
 	 */
-	onMenuItemSelection : function(menu, menuItem, eventObj)
+	onMenuItemSelection: function(menu, menuItem, eventObj)
 	{
 		if (!Ext.isEmpty(menuItem)) {
 			var compositeField = menu.findParentByType('zarafa.compositefield');
@@ -217,7 +217,7 @@ Zarafa.contact.widget.QuickContactWidget = Ext.extend(Zarafa.core.ui.widget.Abst
 	 * @param {Ext.EventObject} eventObj event object for the click event.
 	 * @private
 	 */
-	onPhoneButtonClick : function(buttonEl, eventObj)
+	onPhoneButtonClick: function(buttonEl, eventObj)
 	{
 		this.showDetailedPhoneContent(buttonEl.ownerCt.findByType('textfield')[0].property);
 	},
@@ -230,7 +230,7 @@ Zarafa.contact.widget.QuickContactWidget = Ext.extend(Zarafa.core.ui.widget.Abst
 	 * @param {Object} value The value of the field updated
 	 * @private
 	 */
-	onChange : function(field, value)
+	onChange: function(field, value)
 	{
 		this.wrap.record.set(field.name, value);
 	},
@@ -243,7 +243,7 @@ Zarafa.contact.widget.QuickContactWidget = Ext.extend(Zarafa.core.ui.widget.Abst
 	 * @param {Object} value The value of the field updated
 	 * @private
 	 */
-	onTelephoneNumberChange : function(field, value)
+	onTelephoneNumberChange: function(field, value)
 	{
 		this.wrap.record.set(field.property, value);
 	},
@@ -256,7 +256,7 @@ Zarafa.contact.widget.QuickContactWidget = Ext.extend(Zarafa.core.ui.widget.Abst
 	 * @param {Object} value The value of the field updated
 	 * @private
 	 */
-	onFullNameChange : function(field, newValue)
+	onFullNameChange: function(field, newValue)
 	{
 		var parsedData = this.contactParser.parseInfo('name', newValue);
 
@@ -287,7 +287,7 @@ Zarafa.contact.widget.QuickContactWidget = Ext.extend(Zarafa.core.ui.widget.Abst
 	 * @param {Mixed} oldValue The old value
 	 * @private
 	 */
-	onBodyChange : function(field, newValue, oldValue)
+	onBodyChange: function(field, newValue, oldValue)
 	{
 		this.wrap.record.beginEdit();
 		if (field instanceof Ext.form.HtmlEditor) {
@@ -305,9 +305,9 @@ Zarafa.contact.widget.QuickContactWidget = Ext.extend(Zarafa.core.ui.widget.Abst
 	 * that object here in componentConfig so parsing will not be done twice
 	 * @private
 	 */
-	showDetailedNameContent : function(parsedData)
+	showDetailedNameContent: function(parsedData)
 	{
-		Zarafa.contact.Actions.openDetailedNameContent(this.wrap.record, { parser : this.contactParser, parsedData : parsedData });
+		Zarafa.contact.Actions.openDetailedNameContent(this.wrap.record, { parser: this.contactParser, parsedData: parsedData });
 	},
 
 	/**
@@ -315,9 +315,9 @@ Zarafa.contact.widget.QuickContactWidget = Ext.extend(Zarafa.core.ui.widget.Abst
 	 * @param {String} property property that will be modified
 	 * @private
 	 */
-	showDetailedPhoneContent : function(property)
+	showDetailedPhoneContent: function(property)
 	{
-		Zarafa.contact.Actions.openDetailedPhoneContent(this.wrap.record, { parser : this.contactParser, property : property });
+		Zarafa.contact.Actions.openDetailedPhoneContent(this.wrap.record, { parser: this.contactParser, property: property });
 	},
 
 	/**
@@ -325,7 +325,7 @@ Zarafa.contact.widget.QuickContactWidget = Ext.extend(Zarafa.core.ui.widget.Abst
 	 * @return {Ext.data.Record} record The record to load into the {@link #wrap}
 	 * @protected
 	 */
-	createRecord : function()
+	createRecord: function()
 	{
 		var folder = container.getHierarchyStore().getDefaultFolder('contact');
 		var context = container.getContextByName('contact');
@@ -341,7 +341,7 @@ Zarafa.contact.widget.QuickContactWidget = Ext.extend(Zarafa.core.ui.widget.Abst
 	 * @param {Boolean} contentReset force the component to perform a full update of the data.
 	 * @protected
 	 */
-	update : function(record, contentReset)
+	update: function(record, contentReset)
 	{
 		this.wrap.formPanel.getForm().loadRecord(record);
 		this.wrap.telephoneField.setValue(record.get(this.wrap.telephoneField.property));
@@ -353,7 +353,7 @@ Zarafa.contact.widget.QuickContactWidget = Ext.extend(Zarafa.core.ui.widget.Abst
 	 * @param {Zarafa.core.data.IPMRecord} record The record to update
 	 * @protected
 	 */
-	updateRecord : function(record)
+	updateRecord: function(record)
 	{
 		record.beginEdit();
 		this.wrap.formPanel.getForm().updateRecord(record);
@@ -371,7 +371,7 @@ Zarafa.contact.widget.QuickContactWidget = Ext.extend(Zarafa.core.ui.widget.Abst
 	 * sending the mail.
 	 * @private
 	 */
-	onSave : function()
+	onSave: function()
 	{
 		this.wrap.saveRecord();
 	},
@@ -381,7 +381,7 @@ Zarafa.contact.widget.QuickContactWidget = Ext.extend(Zarafa.core.ui.widget.Abst
 	 * This will call {@link #reset} to clear the contents.
 	 * @private
 	 */
-	onDiscard : function()
+	onDiscard: function()
 	{
 		this.reset();
 	}
@@ -389,9 +389,9 @@ Zarafa.contact.widget.QuickContactWidget = Ext.extend(Zarafa.core.ui.widget.Abst
 
 Zarafa.onReady(function() {
 	container.registerWidget(new Zarafa.core.ui.widget.WidgetMetaData({
-		name : 'quickcontact',
-		iconCls : 'icon_widget_new_contact',
-		displayName : _('Quick Contact'),
-		widgetConstructor : Zarafa.contact.widget.QuickContactWidget
+		name: 'quickcontact',
+		iconCls: 'icon_widget_new_contact',
+		displayName: _('Quick Contact'),
+		widgetConstructor: Zarafa.contact.widget.QuickContactWidget
 	}));
 });

@@ -14,7 +14,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * the context. Each folder will be assigned with an entry from this array to
 	 * define the colors applied to it.
 	 */
-	colorScheme : undefined,
+	colorScheme: undefined,
 
 	/**
 	 * A flag that denotes if colors are being assigned, thereby letting
@@ -24,14 +24,14 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * @type Boolean
 	 * @private
 	 */
-	assigningColors : false,
+	assigningColors: false,
 
 	/**
 	 * @cfg {Boolean} default_merge_state True if the contents of each folder is currently merged into a single view.
 	 * This is updated through {@link #setMergeState} and when this field changes,
 	 * the {@link #foldermergestatechanged} event will be fired.
 	 */
-	default_merge_state : false,
+	default_merge_state: false,
 
 	/**
 	 * The currently active grouping of all active {@link #folders}.
@@ -45,14 +45,14 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * @type Object
 	 * @private
 	 */
-	groupings : undefined,
+	groupings: undefined,
 
 	/**
 	 * Mapping of folder entryids to color schemes
 	 * @property
 	 * @type Object
 	 */
-	colorMap : undefined,
+	colorMap: undefined,
 
 	/**
 	 * The currently active group out of all groupings in this context model
@@ -64,13 +64,13 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * @type String
 	 * @private
 	 */
-	active_group : undefined,
+	active_group: undefined,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -116,7 +116,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder MAPI folder to show.
 	 * @param {Boolean} suspended True to enable the ContextModel {@link #suspendLoading suspended}
 	 */
-	enable : function(folder, suspended)
+	enable: function(folder, suspended)
 	{
 		Zarafa.core.MultiFolderContextModel.superclass.enable.apply(this, arguments);
 
@@ -126,12 +126,12 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	/**
 	 * Set the mergeState to force eiher the UI components to merge or separate
 	 * all folders currently in the view. If the lock argument is not given, or
-	 * is currently  This will only act upon the currently open folders in the view.
+	 * is currently This will only act upon the currently open folders in the view.
 	 * @param {Boolean} mergeState True to merge all folders into a single view
 	 * @param {Boolean} init (optional) True when this function is called during initialization
 	 * and it should force the change of the data mode.
 	 */
-	setMergeState : function(mergeState, init)
+	setMergeState: function(mergeState, init)
 	{
 		if (init === true || this.default_merge_state !== mergeState) {
 			this.default_merge_state = mergeState;
@@ -144,7 +144,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * Get the current merge state of all opened folders
 	 * @return {Boolean} The current merge state
 	 */
-	getCurrentMergeState : function()
+	getCurrentMergeState: function()
 	{
 		return this.default_merge_state;
 	},
@@ -157,7 +157,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * @param {Array} folders selected folders as an array of {@link Zarafa.hierarchy.data.MAPIFolderRecord Folder} objects.
 	 * @private
 	 */
-	onFolderChange : function(model, folders)
+	onFolderChange: function(model, folders)
 	{
 		Zarafa.core.MultiFolderContextModel.superclass.onFolderChange.apply(this, arguments);
 
@@ -180,7 +180,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * @private
 	 * @override
 	 */
-	onHierarchyLoad : function(hierarchyStore)
+	onHierarchyLoad: function(hierarchyStore)
 	{
 		// only continue when hierarchyStore has data
 		if (hierarchyStore.getCount() === 0) {
@@ -197,7 +197,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * Handler for the 'addfolder' event of the {@link Zarafa.hierarchy.data.HierarchyStore HierarchyStore}
 	 * Will add color schemes to the calendars.
 	 */
-	onHierarchyAddFolder : function()
+	onHierarchyAddFolder: function()
 	{
 		this.assignColors();
 	},
@@ -209,7 +209,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * this will always return default calendar folder from default store.
 	 * @return {Zarafa.hierarchy.data.MAPIFolderRecord} The default folder
 	 */
-	getDefaultFolder : function()
+	getDefaultFolder: function()
 	{
 		if(this.enabled) {
 			var activeGroup = this.getActiveGroup();
@@ -231,7 +231,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder The folder which is activated
 	 * @param {String} groupId The group to which the folder belongs
 	 */
-	activateFolderInGroup : function(folder, groupId)
+	activateFolderInGroup: function(folder, groupId)
 	{
 		this.active_group = groupId;
 		this.groupings[groupId].active = folder.get('entryid');
@@ -247,7 +247,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * @param {String} oldGroup The group from where the folder is moved
 	 * @return {String} The groupID to which the folder was added.
 	 */
-	mergeFolderToGroup : function(folder, newGroup, oldGroup)
+	mergeFolderToGroup: function(folder, newGroup, oldGroup)
 	{
 		var entryid = folder.get('entryid');
 		if (this.groupings[oldGroup]) {
@@ -273,7 +273,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * @param {String} oldGroup The group from wehre the folder is moved
 	 * @return {String} The groupID to which the folder was added.
 	 */
-	separateFolderFromGroup : function(folder, oldGroup)
+	separateFolderFromGroup: function(folder, oldGroup)
 	{
 		var groupId = Ext.id(null, 'group-');
 		var entryid = folder.get('entryid');
@@ -285,7 +285,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 				this.groupings[oldGroup].active = this.groupings[oldGroup].folders[0];
 			}
 		}
-		this.groupings[groupId] = { folders : [ entryid ], active : entryid };
+		this.groupings[groupId] = { folders: [ entryid ], active: entryid };
 		this.active_group = groupId;
 
 		this.fireEvent('foldergroupingchanged', this, this.groupings, this.active_group);
@@ -297,7 +297,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder The folder to move to a new group
 	 * @param {String} oldGroup The group from wehre the folder is moved
 	 */
-	removeFolderFromGroup : function(folder, oldGroup)
+	removeFolderFromGroup: function(folder, oldGroup)
 	{
 		var entryid = folder.get('entryid');
 		if (this.groupings[oldGroup]) {
@@ -316,7 +316,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * @param {String} entryid The entryid to add to a new group
 	 * @private
 	 */
-	addItemToGroup : function(entryid)
+	addItemToGroup: function(entryid)
 	{
 		if (this.default_merge_state) {
 			// attempt to merge to an existing group
@@ -324,7 +324,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 			if (Ext.isEmpty(keys)) {
 				// if no other groups - create a new group and set it in groupings
 				this.active_group = Ext.id(null, 'group-');
-				this.groupings[this.active_group] = { folders : [ entryid ], active : entryid };
+				this.groupings[this.active_group] = { folders: [ entryid ], active: entryid };
 			} else {
 				this.active_group = keys[0];
 				this.groupings[keys[0]].folders.push(entryid);
@@ -332,7 +332,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 		} else {
 			// create a new group and add it to groupings
 			this.active_group = Ext.id(null, 'group-');
-			this.groupings[this.active_group] = { folders : [ entryid ], active : entryid };
+			this.groupings[this.active_group] = { folders: [ entryid ], active: entryid };
 		}
 	},
 
@@ -341,7 +341,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * @param {String} entryid THe entryid to remove from the group
 	 * @private
 	 */
-	removeItemFromGroup : function(entryid)
+	removeItemFromGroup: function(entryid)
 	{
 		Ext.iterate(this.groupings, function(key, group) {
 			if(Ext.isEmpty(group.folders)) {
@@ -379,7 +379,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * to a group.
 	 * @private
 	 */
-	applyGrouping : function()
+	applyGrouping: function()
 	{
 		var entryids = [];
 		for (var i = 0, len = this.folders.length; i < len; i++) {
@@ -418,7 +418,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * Obtain the currently active {@link #groupings}
 	 * @return {Object} The folder groupings.
 	 */
-	getGroupings : function()
+	getGroupings: function()
 	{
 		return this.groupings;
 	},
@@ -428,7 +428,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * in the same order as they appear in the folder hierarchy.
 	 * @private
 	 */
-	sortFolders : function()
+	sortFolders: function()
 	{
 		// If one folder is selected, sorting doesn't make sense,
 		// so only sort when multiple folders are selected.
@@ -448,7 +448,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * folder for every new user.
 	 * @private
 	 */
-	assignColors : function()
+	assignColors: function()
 	{
 		this.assigningColors = true;
 		for (var i = 0, len = this.folders.length; i < len; i++) {
@@ -464,7 +464,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * @return {Object} The color scheme as defined in {@link Zarafa.calendar.ui.ColorSchemes color scheme}
 	 * for this folder
 	 */
-	getColorScheme : function(folderId)
+	getColorScheme: function(folderId)
 	{
 		// Remove 'favorites-' prefix before getting respective color scheme.
 		folderId = folderId.replace('favorites-','');
@@ -489,7 +489,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} Folder object to map
 	 * @param {Object} Color scheme to map to
 	 */
-	setColorScheme : function(folderId, scheme)
+	setColorScheme: function(folderId, scheme)
 	{
 		this.colorMap[folderId] = scheme.name;
 
@@ -501,7 +501,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	/**
 	 * Obtain the currently active group out of this.groupings
 	 */
-	getActiveGroup : function()
+	getActiveGroup: function()
 	{
 		return this.active_group;
 	},
@@ -514,7 +514,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * @param {Object} groupings The groupings object
 	 * @param {String} active The active group
 	 */
-	saveFolderGroupinChanged : function(model, groupings, active)
+	saveFolderGroupinChanged: function(model, groupings, active)
 	{
 		if (this.groupings != groupings || active != this.active_group) {
 			this.saveState();
@@ -525,13 +525,13 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * Register the {@link #stateEvents state events} to the {@link #saveState} callback function.
 	 * @protected
 	 */
-	initStateEvents : function()
+	initStateEvents: function()
 	{
 		Zarafa.core.MultiFolderContextModel.superclass.initStateEvents.call(this);
-		this.on('foldergroupingchanged', this.saveFolderGroupinChanged, this, { delay : 100 });
+		this.on('foldergroupingchanged', this.saveFolderGroupinChanged, this, { delay: 100 });
 		// The colorMap is actually does not change when we switch to the calendar context,
 		// therefore checking if it's changed is not required.
-		this.on('colormapchanged', this.saveState, this, { delay : 100 });
+		this.on('colormapchanged', this.saveState, this, { delay: 100 });
 	},
 
 	/**
@@ -540,14 +540,14 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * @return {Object} The state object
 	 * @protected
 	 */
-	getState : function()
+	getState: function()
 	{
 		var state = Zarafa.core.MultiFolderContextModel.superclass.getState.call(this) || {};
 
 		return Ext.apply(state, {
-			groupings : this.groupings,
-			active_group : this.active_group,
-			colorMap : this.colorMap
+			groupings: this.groupings,
+			active_group: this.active_group,
+			colorMap: this.colorMap
 		});
 	},
 
@@ -557,7 +557,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	 * @param {Object} state The state object
 	 * @protected
 	 */
-	applyState : function(state)
+	applyState: function(state)
 	{
 		if ( Ext.isDefined(state.groupings) ){
 			if ( Array.isArray(state.groupings) ){
@@ -583,7 +583,7 @@ Zarafa.core.MultiFolderContextModel = Ext.extend(Zarafa.core.ContextModel, {
 	/**
 	 * Reset all the grouping information
 	 */
-	resetGroupings : function()
+	resetGroupings: function()
 	{
 		this.groupings = {};
 	}

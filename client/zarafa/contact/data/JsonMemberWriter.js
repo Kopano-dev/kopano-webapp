@@ -18,7 +18,7 @@ Zarafa.contact.data.JsonMemberWriter = Ext.extend(Zarafa.core.data.JsonWriter, {
 	 * @override
 	 * @private
 	 */
-	toPropHash : function(record)
+	toPropHash: function(record)
 	{
 		var memberStore = record.getMemberStore();
 		var hash = {};

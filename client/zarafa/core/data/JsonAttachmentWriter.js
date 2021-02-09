@@ -18,7 +18,7 @@ Zarafa.core.data.JsonAttachmentWriter = Ext.extend(Zarafa.core.data.JsonWriter, 
 	 * @override
 	 * @private
 	 */
-	toPropHash : function(record)
+	toPropHash: function(record)
 	{
 		var attachmentStore = record.getAttachmentStore();
 		var hash = {};

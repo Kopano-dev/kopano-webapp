@@ -91,7 +91,7 @@
 				// Obtain the real username for the store when dealing with a shared store
 				if($storeType == ZARAFA_STORE_DELEGATE_GUID){
 					$storeUserName = $GLOBALS["mapisession"]->getUserNameOfStore($msgstore_props[PR_ENTRYID]);
-				}else{
+				} else {
 					$storeUserName = $msgstore_props[PR_USER_NAME];
 				}
 
@@ -253,7 +253,7 @@
 							// Add properties to the store response to indicate to the client
 							// that the store could not be loaded.
 							$this->invalidateResponseStore($storeData, 'all', $subtreeFolderEntryID);
-						}else{
+						} else {
 							// Add properties to the store response to add a placeholder IPMSubtree.
 							$this->getDummyIPMSubtreeFolder($storeData, $subtreeFolderEntryID);
 						}
@@ -316,7 +316,7 @@
 							}
 
 						// Open single folders under the store object
-						}else{
+						} else {
 							foreach($sharedFolders as $type => $sharedFolder){
 								$openSubFolders = ($sharedFolder["show_subfolders"] == true);
 
@@ -339,7 +339,7 @@
 									$store_access = false;
 
 								// If you access according to the above check, go ahead and retrieve the MAPIFolder object
-								}else{
+								} else {
 									$folderEntryID = hex2bin($storeData["props"]["default_folder_" . $sharedFolder["folder_type"]]);
 
 									// Update the store properties to refer to the shared folder,
@@ -1378,7 +1378,7 @@
 				if($emptySubFolders) {
 					$result = mapi_folder_emptyfolder($folder, $flag);
 				} else {
-					// Delete all items of selected folder without 
+					// Delete all items of selected folder without
 					// removing child folder and it's content.
 					// FIXME: it is effecting performance because mapi_folder_emptyfolder function not provide facility to
 					// remove only selected folder items without touching child folder and it's items.
@@ -1524,7 +1524,7 @@
 						if($key == PR_SUBJECT){
 							$sortReplace[PR_NORMALIZED_SUBJECT] = $value;
 							$sortReplace[PR_MESSAGE_DELIVERY_TIME] = TABLE_SORT_DESCEND;
-						}else{
+						} else {
 							$sortReplace[$key] = $value;
 						}
 					}
@@ -1978,7 +1978,7 @@
 						if(isset($props[PR_SUBJECT])){
 							$subject = $props[PR_SUBJECT];
 						// If subject is not updated we need to get it from the message
-						}else{
+						} else {
 							$subjectProp = mapi_getprops($message, Array(PR_SUBJECT));
 							if(isset($subjectProp[PR_SUBJECT])){
 								$subject = $subjectProp[PR_SUBJECT];
@@ -2298,7 +2298,7 @@
 					if (isset($action['message_action']) && isset($action['message_action']['source_entryid'])) {
 						$sourceEntryId = $action['message_action']['source_entryid'];
 						$sourceStoreEntryId = $action['message_action']['source_store_entryid'];
-						
+
 						$sourceStore = $GLOBALS['mapisession']->openMessageStore(hex2bin($sourceStoreEntryId));
 						$sourceRecord = mapi_msgstore_openentry($sourceStore, hex2bin($sourceEntryId));
 						if ($pasteRecord) {
@@ -2449,7 +2449,7 @@
 
 					// Return message properties that can be sent to the bus to notify changes
 					$result = $messageProps;
-				}else{
+				} else {
 					$sendMeetingRequestResult[PR_ENTRYID] = $messageProps[PR_ENTRYID];
 					$sendMeetingRequestResult[PR_PARENT_ENTRYID] = $messageProps[PR_PARENT_ENTRYID];
 					$sendMeetingRequestResult[PR_STORE_ENTRYID] = $messageProps[PR_STORE_ENTRYID];
@@ -2607,7 +2607,7 @@
 				$action["props"]["sent_representing_address_type"]      = $userprops[PR_ADDRTYPE];
 				if($userprops[PR_ADDRTYPE] == 'SMTP'){
 					$emailAddress = $userprops[PR_EMAIL_ADDRESS];
-				}else{
+				} else {
 					$emailAddress = $userprops[PR_SMTP_ADDRESS];
 				}
 				$action["props"]["sent_representing_email_address"] = $emailAddress;
@@ -2756,7 +2756,7 @@
 						$folder = mapi_msgstore_openentry($origStore, $oldParentEntryId);
 						mapi_folder_deletemessages($folder, array($oldEntryId), DELETE_HARD_DELETE);
 					}
-				}else{
+				} else {
 					// When the message is in your own store, just move it to your outbox. We move it manually so we know the new entryid after it has been moved.
 					$outbox = mapi_msgstore_openentry($store, $storeprops[PR_IPM_OUTBOX_ENTRYID]);
 
@@ -2833,7 +2833,7 @@
 			}
 
 			$folder = mapi_msgstore_openentry($store, $parententryid);
-			
+
 			$msgprops = mapi_getprops($store, array(PR_IPM_WASTEBASKET_ENTRYID, PR_MDB_PROVIDER, PR_IPM_OUTBOX_ENTRYID));
 
 			switch($msgprops[PR_MDB_PROVIDER]){
@@ -2843,7 +2843,7 @@
 					if(isset($msgprops[PR_IPM_WASTEBASKET_ENTRYID]) && $msgprops[PR_IPM_WASTEBASKET_ENTRYID] == $parententryid || $softDelete) {
 						// except when it is the waste basket itself
 						$result = mapi_folder_deletemessages($folder, $entryids);
-					}else{
+					} else {
 						$defaultstore = $GLOBALS["mapisession"]->getDefaultMessageStore();
 						$msgprops = mapi_getprops($defaultstore, array(PR_IPM_WASTEBASKET_ENTRYID, PR_MDB_PROVIDER));
 
@@ -2855,7 +2855,7 @@
 								// if moving fails, try normal delete
 								$result = mapi_folder_deletemessages($folder, $entryids);
 							}
-						}else{
+						} else {
 							$result = mapi_folder_deletemessages($folder, $entryids);
 						}
 					}
@@ -2870,7 +2870,7 @@
 					// delete message when in your own waste basket, else move it to the waste basket
 					if(isset($msgprops[PR_IPM_WASTEBASKET_ENTRYID]) && $msgprops[PR_IPM_WASTEBASKET_ENTRYID] == $parententryid  || $softDelete == true) {
 						$result = mapi_folder_deletemessages($folder, $entryids);
-					}else{
+					} else {
 						try {
 							// if the message is deleting from outbox then first delete the
 							// message from an outgoing queue.
@@ -3594,9 +3594,9 @@
 					$props['recipient_type'] = $recipientRow[PR_RECIPIENT_TYPE];
 					$props['display_type'] = isset($recipientRow[PR_DISPLAY_TYPE]) ? $recipientRow[PR_DISPLAY_TYPE] : DT_MAILUSER;
 
-					
+
 					$props['display_type_ex'] = DT_REMOTE_MAILUSER;
-					
+
 					// If recipient found in local contact folder then no need to search in global addressbook.
 					if (!$this->isExternalContactItem($recipientRow[PR_ENTRYID])) {
 						$props['display_type_ex'] = DT_MAILUSER;
@@ -3724,7 +3724,7 @@
 					$recipientItem["entryid"] = hex2bin($recipientItem["entryid"]);
 
 				// Only resolve the recipient when no entryid is set
-				}else{
+				} else {
 					/**
 					 * For external contacts (DT_REMOTE_MAILUSER) email_address contains display name of contact
 					 * which is obviously not unique so for that we need to resolve address based on smtp_address
@@ -3774,7 +3774,7 @@
 
 				if(isset($recipientItem["recipient_flags"]) && !empty($recipient["recipient_flags"])){
 					$recipient[PR_RECIPIENT_FLAGS] = $recipientItem["recipient_flags"];
-				}else{
+				} else {
 					$recipient[PR_RECIPIENT_FLAGS] = recipSendable;
 				}
 
@@ -4454,7 +4454,7 @@
 					$memberItem['props']['entryid'] = bin2hex($members[$key]);
 
 					$items[] = $memberItem;
-				}else{
+				} else {
 					if($parts['type'] === DL_DIST && $isRecursive) {
 						// Expand distribution list to get distlist members inside the distributionlist.
 						$distlist = mapi_msgstore_openentry($store, $parts['entryid']);
@@ -4545,12 +4545,12 @@
 						mapi_stream_commit($stream);
 						mapi_savechanges($inlineImage);
 					} else if (strstr($src, "cid:") !== false) {
-						// Check for the cid(there may be http: ) is in the image src. push the cid 
+						// Check for the cid(there may be http: ) is in the image src. push the cid
 						// to $imageIDs array. which further used in clearDeletedInlineAttachments function.
 
 						$firstOffset = strpos($src, ":") + 1;
 						$cid = substr($src, $firstOffset);
-						array_push($imageIDs, $cid);				
+						array_push($imageIDs, $cid);
 					}
 				}
 

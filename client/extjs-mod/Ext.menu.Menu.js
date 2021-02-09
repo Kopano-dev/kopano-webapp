@@ -5,7 +5,7 @@
 	var orig_constructor = Ext.menu.Menu.prototype.constructor;
 
 	Ext.override(Ext.menu.Menu, {
-		constructor : function() {
+		constructor: function() {
 			orig_constructor.apply(this, arguments);
 			this.on('hide', this.onMenuHide, this);
 		},
@@ -21,7 +21,7 @@
 		 * @param {Object} options the options (parameters) with which the load was invoked.
 		 * @private
 		 */
-		onLoad : function (store, records, options)
+		onLoad: function (store, records, options)
 		{
 			var newRecords = [];
 			Ext.each(this.records, function (record) {
@@ -46,7 +46,7 @@
 		 * @param {Ext.menu.Menu} menu The menu which is being hidden.
 		 * @private
 		 */
-		onMenuHide : function(menu)
+		onMenuHide: function(menu)
 		{
 			// Check if the menu has an owner component (only context menu's don't have it)
 			if (!Ext.isDefined(menu.ownerCt) && !Ext.isDefined(menu.parentMenu) && menu.autoDestroy) {

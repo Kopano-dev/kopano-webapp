@@ -1,9 +1,9 @@
 <?php
 	require_once(BASE_PATH . 'server/includes/mapi/class.recurrence.php');
-	
+
 	/**
 	 * Appointment ItemModule
-	 * Module which openes, creates, saves and deletes an item. It 
+	 * Module which openes, creates, saves and deletes an item. It
 	 * extends the Module class.
 	 */
 	class AppointmentItemModule extends ItemModule
@@ -16,7 +16,7 @@
 		function __construct($id, $data)
 		{
 			parent::__construct($id, $data);
-		
+
 			$this->properties = $GLOBALS['properties']->getAppointmentProperties();
 
 			$this->plaintext = true;
@@ -27,7 +27,7 @@
 				PR_OWNER_APPT_ID
 			);
 		}
-		
+
 		function open($store, $entryid, $action)
 		{
 			if($store && $entryid) {
@@ -52,7 +52,7 @@
 
 					$data['item'] = $GLOBALS['operations']->getEmbeddedMessageProps($store, $message, $this->properties, $parentMessage, $attachNum);
 				} else {
-					// add all standard properties from the series/normal message 
+					// add all standard properties from the series/normal message
 					$data['item'] = $GLOBALS['operations']->getMessageProps($store, $message, $this->properties, $this->plaintext);
 				}
 
@@ -245,9 +245,9 @@
 			$errorMsg = false;
 			if(!$result && isset($messageProps['remindertimeerror']) && !$messageProps['remindertimeerror']){
 				$errorMsg = _('Cannot set a reminder to appear before the previous occurrence. Reset reminder to save the change');
-			}else if (isset($messageProps['isexceptionallowed']) && $messageProps['isexceptionallowed'] === false){
+			} else if (isset($messageProps['isexceptionallowed']) && $messageProps['isexceptionallowed'] === false){
 				$errorMsg = _('Two occurrences cannot occur on the same day');
-			}elseif(is_array($messageProps) && isset($messageProps['error'])){
+			} elseif(is_array($messageProps) && isset($messageProps['error'])){
 				switch($messageProps['error']){
 					case 1:
 						$errorMsg = sprintf(_('You marked \'%s\' as a resource. You cannot schedule a meeting with \'%s\' because you do not have the appropriate permissions for that account. Either enter the name as a required or optional attendee or talk to your administrator about giving you permission to schedule \'%s\'.'), $messageProps['displayname'], $messageProps['displayname'], $messageProps['displayname']);
@@ -265,7 +265,7 @@
 						$errorMsg = _('Meeting was not scheduled.');
 						break;
 				}
-			}else{
+			} else {
 				// Recurring but non-existing exception (same as normal open, but add basedate, startdate and enddate)
 				$data = array();
 				if ($result) {
@@ -305,7 +305,7 @@
 				} else {
 					if(!empty($action['message_action']['send'])){
 						$errorMsg = _('Meeting could not be sent.');
-					}else{
+					} else {
 						$errorMsg = _('Meeting could not be saved.');
 					}
 				}

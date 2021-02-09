@@ -12,7 +12,7 @@ Zarafa.core.ui.notifier.DesktopNotifier = Ext.extend(Zarafa.core.ui.notifier.Not
 	/**
 	 * Notify the user with a message.
 	 *
-	 * The category can be either  "error", "warning", "info" or "debug", or a subtype thereof (e.g. "info.newmail").
+	 * The category can be either "error", "warning", "info" or "debug", or a subtype thereof (e.g. "info.newmail").
 	 *
 	 * @param {String} category The category which applies to the notification.
 	 * @param {String} title The title which must be shown in the message.
@@ -26,11 +26,11 @@ Zarafa.core.ui.notifier.DesktopNotifier = Ext.extend(Zarafa.core.ui.notifier.Not
 	notify: function(category, title, message, config)
 	{
 		Zarafa.common.Actions.notify(title, {
-			tag : category,
-			body : message,
-			icon : 'client/resources/images/Kopano.ico'
+			tag: category,
+			body: message,
+			icon: 'client/resources/images/Kopano.ico'
 		}, {
-			click : function() {
+			click: function() {
 				// focus window which generated this notification
 				window.focus();
 			}

@@ -4,7 +4,7 @@ Ext.namespace('Zarafa.core.plugins');
  * @class Zarafa.core.plugins.TabCloseMenuPlugin
  * @extends Ext.ux.TabCloseMenu
  * @ptype zarafa.tabclosemenuplugin
- * 
+ *
  * Extended so that the context menu would call the tab's close() method instead of directly destroying it
  * This class is intended to be used with {@link Zarafa.core.ui.MainContentTabPanel}
  * TODO: handle closing multiple tabs better
@@ -15,7 +15,7 @@ Zarafa.core.plugins.TabCloseMenuPlugin = Ext.extend(Ext.ux.TabCloseMenu, {
 	 * @override
 	 * @private
 	 */
-	createMenu : function(){
+	createMenu: function(){
 		if(!this.menu){
 			var items = [{
 				itemId: 'close',
@@ -54,7 +54,7 @@ Zarafa.core.plugins.TabCloseMenuPlugin = Ext.extend(Ext.ux.TabCloseMenu, {
 	 * @override
 	 * @private
 	 */
-	onClose : function(){
+	onClose: function(){
 		this.active.close();
 	},
 
@@ -65,7 +65,7 @@ Zarafa.core.plugins.TabCloseMenuPlugin = Ext.extend(Ext.ux.TabCloseMenu, {
 	 * @override
 	 * @private
 	 */
-	doClose : function(excludeActive){
+	doClose: function(excludeActive){
 		this.tabs.items.each(function(item){
 			if(item.closable){
 				if(!excludeActive || item != this.active){

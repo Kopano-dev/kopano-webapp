@@ -15,7 +15,7 @@ Zarafa.mail.ui.MailGridHeaderDropZone = Ext.extend(Ext.grid.HeaderDropZone, {
 	 * @param {Object} data The data object which contains the {@link Ext.Element header}.
 	 * @returns {string} return either "x-dd-drop-ok" or "x-dd-drop-nodrop".
 	 */
-	onNodeOver : function(n, dd, e, data)
+	onNodeOver: function(n, dd, e, data)
 	{
 		var result = Zarafa.mail.ui.MailGridHeaderDropZone.superclass.onNodeOver.apply(this, arguments);
 
@@ -49,7 +49,7 @@ Zarafa.mail.ui.MailGridHeaderDropZone = Ext.extend(Ext.grid.HeaderDropZone, {
 	 * @param {string} checkVisibleFn The handler name which used to get next/previous visible column.
 	 * @returns {boolean} True to allow the header column to switch else false.
 	 */
-	isColAllowSwitch : function(n, checkVisibleFn)
+	isColAllowSwitch: function(n, checkVisibleFn)
 	{
 		if (Ext.isEmpty(checkVisibleFn) || (checkVisibleFn !== 'nextVisible' && checkVisibleFn !== 'prevVisible')) {
 			console.error("checkVisibleFn should be either 'nextVisible' or 'prevVisible'.");
@@ -79,7 +79,7 @@ Zarafa.mail.ui.MailGridHeaderDropZone = Ext.extend(Ext.grid.HeaderDropZone, {
 	 * @param {Ext.Element} h The element which previous visible we need to find.
 	 * @returns {Ext.Element | null} element if there is some previous visible else Null.
 	 */
-	prevVisible : function(h)
+	prevVisible: function(h)
 	{
 		var v = this.view, cm = this.grid.colModel;
 		h = h.previousSibling;
@@ -100,7 +100,7 @@ Zarafa.mail.ui.MailGridHeaderDropZone = Ext.extend(Ext.grid.HeaderDropZone, {
 	 * @param {Ext.dd.DD} dd A DragDrop implementation where the linked element follows the mouse cursor during a drag.
 	 * @returns {string}
 	 */
-	getAppendPosition : function(n, e)
+	getAppendPosition: function(n, e)
 	{
 		var x = Ext.lib.Event.getPageX(e),
 			r = Ext.lib.Dom.getRegion(n.firstChild);
@@ -110,7 +110,7 @@ Zarafa.mail.ui.MailGridHeaderDropZone = Ext.extend(Ext.grid.HeaderDropZone, {
 
 	/**
 	 * Event handler called when node is drop somewhere in grid header. It will check
-	 * column is marked 'preventColSwitch' or next/previous  visible column are not marked as a 'preventColSwitch'
+	 * column is marked 'preventColSwitch' or next/previous visible column are not marked as a 'preventColSwitch'
 	 * then dont allow to switch that column.
 	 *
 	 * @param {Ext.Element} n The node element which is drag and drop.
@@ -119,7 +119,7 @@ Zarafa.mail.ui.MailGridHeaderDropZone = Ext.extend(Ext.grid.HeaderDropZone, {
 	 * @param {Object} data The data object which contains the {@link Ext.Element header}.
 	 * @returns {boolean} True to allow node to drop else false.
 	 */
-	onNodeDrop : function(n, dd, e, data)
+	onNodeDrop: function(n, dd, e, data)
 	{
 		var h = data.header;
 		if(h != n){

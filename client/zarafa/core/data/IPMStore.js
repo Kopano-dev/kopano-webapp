@@ -16,7 +16,7 @@ Zarafa.core.data.IPMStore = Ext.extend(Zarafa.core.data.MAPIStore, {
 	 * listening to events coming from the {@link Zarafa.core.data.IPMStoreMgr IPMStoreMgr}.
 	 * Defaults to false.
 	 */
-	standalone : false,
+	standalone: false,
 
 	/**
 	 * @cfg {Boolean} serveronly If true, the {@link Zarafa.core.data.IPMStore IPMStore}
@@ -25,18 +25,18 @@ Zarafa.core.data.IPMStore = Ext.extend(Zarafa.core.data.MAPIStore, {
 	 * event coming from the server, after a successful save).
 	 * Defaults to false.
 	 */
-	serveronly : false,
+	serveronly: false,
 
 	/**
 	 * @constructor
 	 * @param config Configuration structure
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			remoteGroup : true
+			remoteGroup: true
 		});
 
 		this.addEvents(
@@ -81,7 +81,7 @@ Zarafa.core.data.IPMStore = Ext.extend(Zarafa.core.data.MAPIStore, {
 	 * Initialize all events which Zarafa.core.data.IPMStore IPMStore} will listen to.
 	 * @private
 	 */
-	initEvents : function()
+	initEvents: function()
 	{
 		Zarafa.core.data.IPMStore.superclass.initEvents.call(this);
 
@@ -111,9 +111,9 @@ Zarafa.core.data.IPMStore = Ext.extend(Zarafa.core.data.MAPIStore, {
 	 * applied to those records.
 	 * @private
 	 */
-	getRecordsForUpdateData : function(records, action)
+	getRecordsForUpdateData: function(records, action)
 	{
-		var results = { records: [],  updatedRecords : [] };
+		var results = { records: [], updatedRecords: [] };
 
 		if (Ext.isDefined(records)) {
 			if (!Array.isArray(records)) {
@@ -172,7 +172,7 @@ Zarafa.core.data.IPMStore = Ext.extend(Zarafa.core.data.MAPIStore, {
 	 * The object will contain a key for each appropriate action, with an array
 	 * of updated data for each record.
 	 */
-	onExternalSave : function(store, data)
+	onExternalSave: function(store, data)
 	{
 		var result;
 
@@ -217,7 +217,7 @@ Zarafa.core.data.IPMStore = Ext.extend(Zarafa.core.data.MAPIStore, {
 	 * @param {Zarafa.core.data.IPMrecord} record The most recent version of the record
 	 * which came from the server.
 	 */
-	onExternalWrite : function(store, action, data, res, record)
+	onExternalWrite: function(store, action, data, res, record)
 	{
 		if (store === this) {
 			return;
@@ -280,7 +280,7 @@ Zarafa.core.data.IPMStore = Ext.extend(Zarafa.core.data.MAPIStore, {
 	 * @param {Number} timestamp The {@link Date#getTime timestamp} on which the notification was received
 	 * @param {Boolean} success The success status, True if the notification was successfully received.
 	 */
-	onNotify : function(action, records, data, timestamp, success)
+	onNotify: function(action, records, data, timestamp, success)
 	{
 		if (this.fireEvent('beforenotify', this, action, records, data, timestamp, success) !== false) {
 			var handler = this['onNotify' + Ext.util.Format.capitalize(action)];
@@ -313,7 +313,7 @@ Zarafa.core.data.IPMStore = Ext.extend(Zarafa.core.data.MAPIStore, {
 	 * @param {Boolean} success The success status, True if the notification was successfully received.
 	 * @private
 	 */
-	onNotifyObjectdeleted : function(action, records, data, timestamp, success)
+	onNotifyObjectdeleted: function(action, records, data, timestamp, success)
 	{
 		if (!Array.isArray(records)) {
 			records = [ records ];
@@ -344,7 +344,7 @@ Zarafa.core.data.IPMStore = Ext.extend(Zarafa.core.data.MAPIStore, {
 	 * @param {Boolean} success The success status, True if the notification was successfully received.
 	 * @private
 	 */
-	onNotifyObjectmodified : function(action, records, data, timestamp, success)
+	onNotifyObjectmodified: function(action, records, data, timestamp, success)
 	{
 		var reloadStore = false;
 
@@ -357,7 +357,7 @@ Zarafa.core.data.IPMStore = Ext.extend(Zarafa.core.data.MAPIStore, {
 		// bouncing events around.
 		for (var i = 0, len = records.length; i < len; i++) {
 			var record = records[i];
-			var singleData =  (Array.isArray(data)) ? data[i] : data;
+			var singleData = (Array.isArray(data)) ? data[i] : data;
 
 			record.setEventPropagation(false);
 
@@ -426,7 +426,7 @@ Zarafa.core.data.IPMStore = Ext.extend(Zarafa.core.data.MAPIStore, {
 	 * @param {Boolean} success The success status, True if the notification was successfully received.
 	 * @private
 	 */
-	onNotifyObjectcreated : function(action, records, data, timestamp, success)
+	onNotifyObjectcreated: function(action, records, data, timestamp, success)
 	{
 		// If this notification came at the same time as we reloaded this folder,
 		// we already obtained created item, and we don't need to reload.
@@ -438,7 +438,7 @@ Zarafa.core.data.IPMStore = Ext.extend(Zarafa.core.data.MAPIStore, {
 	/**
 	 * Destroys the store.
 	 */
-	destroy : function()
+	destroy: function()
 	{
 		if (!this.standalone) {
 			Zarafa.core.data.IPMStoreMgr.un('afterrecordwrite', this.onExternalWrite, this);

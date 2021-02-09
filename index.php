@@ -58,7 +58,7 @@
 	// If the user wants to logout (and is not using single-signon)
 	// then destroy the session and redirect to this page, so the login page
 	// will be shown
-	if ( isset($_GET['logout']) && !WebAppAuthentication::isUsingSingleSignOn() ){
+	if ( isset($_GET['logout']) && !WebAppAuthentication::isUsingSingleSignOn() ) {
 
 		// GET variable user will be set when the user was logged out because of session timeout
 		// or because he logged out in another window.
@@ -97,7 +97,7 @@
 	WebAppAuthentication::authenticate();
 
 	// If we could not authenticate the user, we will show the login page
-	if ( !WebAppAuthentication::isAuthenticated() ){
+	if ( !WebAppAuthentication::isAuthenticated() ) {
 
 		// Get language from the cookie, or from the language that is set by the admin
 		$Language = new Language();
@@ -118,7 +118,7 @@
 
 		$url = '?logon';
 
-		if ( isset($_GET["logout"]) && $_GET["logout"]=="auto" ){
+		if ( isset($_GET["logout"]) && $_GET["logout"]=="auto" ) {
 			$error = _("You have been automatically logged out");
 		} else {
 			$error = WebAppAuthentication::getErrorMessage();
@@ -135,7 +135,7 @@
 		$user = isset($_GET['user']) ? htmlentities($_GET['user']) : '';
 
 		// Lets add a header when login failed (DeskApp needs it to identify failed login attempts)
-		if ( WebAppAuthentication::getErrorCode() !== NOERROR ){
+		if ( WebAppAuthentication::getErrorCode() !== NOERROR ) {
 			header("X-Zarafa-Hresult: " . get_mapi_error_name(WebAppAuthentication::getErrorCode()));
 		}
 
@@ -156,15 +156,15 @@
 
 	// Check if we need to redirect the user after login (e.g. when using the WebApp
 	// to login to another application with OIDC).
-	if ( isset($_SESSION['continue']) ){
+	if ( isset($_SESSION['continue']) ) {
 		$continue = $_SESSION['continue'];
 		unset($_SESSION['continue']);
 
-		if ( isContinueRedirectAllowed($continue) ){
+		if ( isContinueRedirectAllowed($continue) ) {
 			// Add the parameter 'wacontinue' to make sure we will not keep redirecting
 			// to ourself.
 			$continue = explode('#', $continue);
-			if ( strpos($continue[0], '?') === false ){
+			if ( strpos($continue[0], '?') === false ) {
 				$continue[0] .= '?';
 			} else {
 				$continue[0] .= '&';
@@ -181,7 +181,7 @@
 	// we will redirect to make sure that a browser refresh will not post
 	// the credentials again, and that the url data is taken away from the
 	// url in the address bar (so a browser refresh will not pass them again)
-	if ( WebAppAuthentication::isUsingLoginForm() || isset($_GET['action']) && !empty($_GET['action']) ){
+	if ( WebAppAuthentication::isUsingLoginForm() || isset($_GET['action']) && !empty($_GET['action']) ) {
 		$location =  rtrim(dirname($_SERVER['PHP_SELF']), '/').'/';
 		header('Location: ' . $location , true, 303);
 		die();
@@ -242,7 +242,7 @@
 	}
 
 	// Set session settings (language & style)
-	foreach($GLOBALS["settings"]->getSessionSettings($Language) as $key=>$value){
+	foreach($GLOBALS["settings"]->getSessionSettings($Language) as $key=>$value) {
 		$_SESSION[$key] = $value;
 	}
 

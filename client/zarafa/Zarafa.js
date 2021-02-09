@@ -14,7 +14,7 @@ Ext.apply(Zarafa, {
 	 * @type {String}
 	 * @private
 	 */
-	emailAddressRegExpString : '(?:[a-zA-Z0-9.!#$%&\'*+\\-/=?^_`{|}~])+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*\\.(?:[a-zA-Z0-9]{2,15})',
+	emailAddressRegExpString: '(?:[a-zA-Z0-9.!#$%&\'*+\\-/=?^_`{|}~])+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*\\.(?:[a-zA-Z0-9]{2,15})',
 
 	/**
 	 * A regular expression to test the validity of an email address
@@ -22,7 +22,7 @@ Ext.apply(Zarafa, {
 	 * @property
 	 * @type {RegExp}
 	 */
-	reSingleEmailAddress : undefined,
+	reSingleEmailAddress: undefined,
 
 	/**
 	 * A regular expression to find email addresses in a string
@@ -30,7 +30,7 @@ Ext.apply(Zarafa, {
 	 * @property
 	 * @type {RegExp}
 	 */
-	reMultipleEmailAddresses : undefined,
+	reMultipleEmailAddresses: undefined,
 
 	/**
 	 * Ready flag which indicates that Webapp has been loaded.
@@ -38,7 +38,7 @@ Ext.apply(Zarafa, {
 	 * @property
 	 * @type Boolean
 	 */
-	isReady : false,
+	isReady: false,
 
 	/**
 	 * Registration object for {@link #onReady} onto which all event
@@ -49,7 +49,7 @@ Ext.apply(Zarafa, {
 	 * @type Ext.util.Event
 	 * @private
 	 */
-	readyEvent : new Ext.util.Event(),
+	readyEvent: new Ext.util.Event(),
 
 	/**
 	 * Ready flag which indicates that Webapp UI has been loaded.
@@ -57,7 +57,7 @@ Ext.apply(Zarafa, {
 	 * @property
 	 * @type Boolean
 	 */
-	uiReady : false,
+	uiReady: false,
 
 	/**
 	 * Registration object for {@link #uiReady} onto which all event
@@ -68,7 +68,7 @@ Ext.apply(Zarafa, {
 	 * @type Ext.util.Event
 	 * @private
 	 */
-	uiReadyEvent : new Ext.util.Event(),
+	uiReadyEvent: new Ext.util.Event(),
 
 	/**
 	 * The time that the user has not done any action
@@ -78,7 +78,7 @@ Ext.apply(Zarafa, {
 	 * @type Integer
 	 * @private
 	 */
-	idleTime : 0,
+	idleTime: 0,
 
 	/**
 	 * True if the Wingdings font is installed on the system of the user, false
@@ -87,7 +87,7 @@ Ext.apply(Zarafa, {
 	 * @property
 	 * @type {Boolean}
 	 */
-	wingdingsInstalled : false,
+	wingdingsInstalled: false,
 
 	/**
 	 * True if the user is running DeskApp to view WebApp, false otherwise.
@@ -95,7 +95,7 @@ Ext.apply(Zarafa, {
 	 * @property
 	 * @type {Boolean}
 	 */
-	isDeskApp : Ext.isDefined(window.nw),
+	isDeskApp: Ext.isDefined(window.nw),
 
 	/**
 	 * Adds a listener to be notified when WebApp is ready. This will be somewhere during {@link Ext.onReady}, when
@@ -107,7 +107,7 @@ Ext.apply(Zarafa, {
 	 * @param {Boolean} options (optional) Options object as passed to {@link Ext.Element#addListener}. It is recommended that the options
 	 * <code>{single: true}</code> be used so that the handler is removed on first invocation.
 	 */
-	onReady : function(fn, scope, options)
+	onReady: function(fn, scope, options)
 	{
 		this.readyEvent.addListener(fn, scope, options);
 
@@ -126,7 +126,7 @@ Ext.apply(Zarafa, {
 	 *
 	 * @private
 	 */
-	fireReady : function()
+	fireReady: function()
 	{
 		this.isReady = true;
 		this.readyEvent.fire();
@@ -140,7 +140,7 @@ Ext.apply(Zarafa, {
 	 * @param {Boolean} options (optional) Options object as passed to {@link Ext.Element#addListener}. It is recommended that the options
 	 * <code>{single: true}</code> be used so that the handler is removed on first invocation.
 	 */
-	onUIReady : function(fn, scope, options)
+	onUIReady: function(fn, scope, options)
 	{
 		// Force single is true for events.
 		options = options || {};
@@ -162,7 +162,7 @@ Ext.apply(Zarafa, {
 	 *
 	 * @private
 	 */
-	fireUIReady : function()
+	fireUIReady: function()
 	{
 		this.uiReady = true;
 		this.uiReadyEvent.fire();
@@ -179,7 +179,7 @@ Ext.apply(Zarafa, {
 	 * This will instantiate {@link Zarafa.core.Container container}.
 	 * @private
 	 */
-	initializeGlobals : function()
+	initializeGlobals: function()
 	{
 		// Use native json handling of browser for performance benefit
 		Ext.USE_NATIVE_JSON = true;
@@ -266,7 +266,7 @@ Ext.apply(Zarafa, {
 	 * {@link Zarafa.core.ResponseRouter}.
 	 * @private
 	 */
-	initializeEnvironment : function()
+	initializeEnvironment: function()
 	{
 		// Register the State provider which uses the SettingsModel.
 		Ext.state.Manager.setProvider(new Zarafa.core.data.SettingsStateProvider());
@@ -302,7 +302,7 @@ Ext.apply(Zarafa, {
 	 * @param {Ext.Element} el The element on which the contextmenu was requested
 	 * @private
 	 */
-	onBodyContextMenu : function(event, el)
+	onBodyContextMenu: function(event, el)
 	{
 		el = Ext.get(el);
 
@@ -335,7 +335,7 @@ Ext.apply(Zarafa, {
 	 * @param {Ext.EventObject} event The event object
 	 * @private
 	 */
-	onWindowDragDrop : function(event)
+	onWindowDragDrop: function(event)
 	{
 		event.stopPropagation();
 		event.preventDefault();
@@ -349,7 +349,7 @@ Ext.apply(Zarafa, {
 	 * @param {Ext.EventObject} event The event object
 	 * @private
 	 */
-	onWindowAuxClick : function(event)
+	onWindowAuxClick: function(event)
 	{
 		// FIXME: This fix is only work for the chrome.
 		// firefox and Edge wont work as Expected.
@@ -367,7 +367,7 @@ Ext.apply(Zarafa, {
 	 * for description.
 	 * @private
 	 */
-	onException : function(proxy, type, action, options, response, args)
+	onException: function(proxy, type, action, options, response, args)
 	{
 		var message;
 		var detailsMessage = '';
@@ -416,7 +416,7 @@ Ext.apply(Zarafa, {
 			this.setErrorLoadingMask(title, message);
 		} else {
 			container.getNotifier().notify(notificationType, title, message, {
-				details_message : detailsMessage
+				details_message: detailsMessage
 			});
 		}
 	},
@@ -429,7 +429,7 @@ Ext.apply(Zarafa, {
 	 * @param {Zarafa.core.data.ParalyzeReason} reason The reason to paralyze the WebApp
 	 * @private
 	 */
-	onConnectionParalyze : function(request, reason)
+	onConnectionParalyze: function(request, reason)
 	{
 		var message = '';
 		var logoutFn = Ext.emptyFn;
@@ -458,7 +458,7 @@ Ext.apply(Zarafa, {
 		} else {
 			Ext.MessageBox.show({
 				title: _('Session expired'),
-				msg: message + '<br>' +  _('Do you wish to be redirected to the logon page?'),
+				msg: message + '<br>' + _('Do you wish to be redirected to the logon page?'),
 				cls: Ext.MessageBox.ERROR_CLS,
 				buttons: Ext.MessageBox.YESNO,
 				fn: this.onConnectionParalyzeConfirmation,
@@ -478,15 +478,15 @@ Ext.apply(Zarafa, {
 	 * @param {Object} opt The options which was used to create the MessageBox.
 	 * @private
 	 */
-	onConnectionParalyzeConfirmation : function(button, value, opt)
+	onConnectionParalyzeConfirmation: function(button, value, opt)
 	{
 		if (button === 'yes') {
 			opt.logoutFn.call(this);
 		} else {
 			container.getNotifier().notify('error.connection', _('Session expired'), _('Reauthentication required, click here to go to back to logon page.'), {
-				persistent : true,
-				listeners : {
-					click : opt.logoutFn
+				persistent: true,
+				listeners: {
+					click: opt.logoutFn
 				}
 			});
 		}
@@ -501,7 +501,7 @@ Ext.apply(Zarafa, {
 	 * @param {Number} timeout The number of seconds until the next retry to connect to the server
 	 * @private
 	 */
-	onConnectionTimeupdate : function(service, object, timeout)
+	onConnectionTimeupdate: function(service, object, timeout)
 	{
 		var request = container.getRequest();
 
@@ -517,13 +517,13 @@ Ext.apply(Zarafa, {
 		// a new notification will be created.
 		this.connEl = container.getNotifier().notify('error.connection', _('Connection problem'),
 								 String.format(_('Could not connect to server, retrying in {0} second(s)'), timeout / 1000) + '<br />' + _('Click to retry now'), {
-			persistent : true,
-			update : !!this.connEl,
-			reference : this.connEl,
-			listeners : {
+			persistent: true,
+			update: !!this.connEl,
+			reference: this.connEl,
+			listeners: {
 				// If the user clicks on the notification,
 				// immediately retry to connecto to the server.
-				click : service.retry,
+				click: service.retry,
 				scope: service
 			}
 		});
@@ -543,7 +543,7 @@ Ext.apply(Zarafa, {
 	 * @param {Number} timeout The number of seconds until the next retry to connect to the server
 	 * @private
 	 */
-	onConnectionRetry : function(service, object, timeout)
+	onConnectionRetry: function(service, object, timeout)
 	{
 		// In case there was still a pending
 		// update task, we interrupt that one.
@@ -561,7 +561,7 @@ Ext.apply(Zarafa, {
 	 * @param {Zarafa.core.PingService} service The ping service which is going to handle the connection loss
 	 * @private
 	 */
-	onConnectionLoss : function(request, service)
+	onConnectionLoss: function(request, service)
 	{
 		this.connElTask = new Ext.util.DelayedTask(this.onConnectionTimeupdate, this);
 		service.on('retry', this.onConnectionRetry, this);
@@ -574,7 +574,7 @@ Ext.apply(Zarafa, {
 	 * @param {Zarafa.core.Request} request The request object
 	 * @private
 	 */
-	onConnectionRestore : function(request)
+	onConnectionRestore: function(request)
 	{
 		if (this.connElTask) {
 			this.connElTask.cancel();
@@ -583,8 +583,8 @@ Ext.apply(Zarafa, {
 
 		if (this.connEl) {
 			container.getNotifier().notify('error.connection', null, null, {
-				destroy : true,
-				reference : this.connEl
+				destroy: true,
+				reference: this.connEl
 			});
 			container.getNotifier().notify('info.connection.restore', _('Connection restored'), _('Connection with server has been restored'));
 			delete this.connEl;
@@ -600,14 +600,14 @@ Ext.apply(Zarafa, {
 	 * @param {Object} xmlHttpRequest The raw browser response objec
 	 * @private
 	 */
-	onReceiveException : function(requestdata, xmlHttpRequest)
+	onReceiveException: function(requestdata, xmlHttpRequest)
 	{
 		var loading = Ext.get('loading');
 		var errorTitle;
 		var errorMsg;
 		var contactAdminMsg = _("Please contact your administrator if this problem persists.");
-		
-		// # TRANSLATORS: Example: HTTP 404	
+
+		// # TRANSLATORS: Example: HTTP 404
 		errorTitle = String.format(_('Error HTTP {0}'), xmlHttpRequest.status);
 		if (xmlHttpRequest.status !== 200) {
 			errorMsg = _('HTTP status text is: ') + xmlHttpRequest.statusText + '.<br>' + contactAdminMsg;
@@ -629,7 +629,7 @@ Ext.apply(Zarafa, {
 	 * loading mask is completely hidden.
 	 * @private
 	 */
-	hideLoadingMask : function(callback)
+	hideLoadingMask: function(callback)
 	{
 		var loadingMask = Ext.get('loading-mask');
 
@@ -649,9 +649,9 @@ Ext.apply(Zarafa, {
 	 * @param {String} newMessage The message for the loading screen
 	 * @private
 	 */
-	setErrorLoadingMask : function(newTitle, newMessage)
+	setErrorLoadingMask: function(newTitle, newMessage)
 	{
-		var template = new Ext.Template('<div><b>{title}</b><br />{msg}</div>', { compiled : true, disableFormats : true });
+		var template = new Ext.Template('<div><b>{title}</b><br />{msg}</div>', { compiled: true, disableFormats: true });
 		var message = Ext.get('loading-message');
 		if (message) {
 			message.dom.className = 'loading-error';
@@ -669,7 +669,7 @@ Ext.apply(Zarafa, {
 	 * @param {Zarafa.hierarchy.data.HierarchyStore} store The Hierarchy Store to validate
 	 * @private
 	 */
-	validateHierarchy : function(store)
+	validateHierarchy: function(store)
 	{
 		if (!store.getDefaultStore()) {
 			container.getNotifier().notify('error.hierarchy.defaultfolder',
@@ -678,9 +678,9 @@ Ext.apply(Zarafa, {
 					'<br>' +
 					_('Not all functionality of WebApp might be working properly because of this.'),
 				{
-					persistent : true,
-					listeners : {
-						'click' : this.onHierarchyNotifierClick,
+					persistent: true,
+					listeners: {
+						'click': this.onHierarchyNotifierClick,
 						'scope': this
 					}
 				}
@@ -691,38 +691,38 @@ Ext.apply(Zarafa, {
 		// The following default folders are required to be present
 		// to be able to properly work with the WebApp.
 		var defaultFolders = [{
-			type : 'inbox',
-			name : pgettext('hierarchy.foldername', 'Inbox')
+			type: 'inbox',
+			name: pgettext('hierarchy.foldername', 'Inbox')
 		},{
-			type : 'outbox',
-			name : pgettext('hierarchy.foldername', 'Outbox')
+			type: 'outbox',
+			name: pgettext('hierarchy.foldername', 'Outbox')
 		},{
-			type : 'sent',
-			name : pgettext('hierarchy.foldername', 'Sent Items')
+			type: 'sent',
+			name: pgettext('hierarchy.foldername', 'Sent Items')
 		},{
-			type : 'wastebasket',
-			name : pgettext('hierarchy.foldername', 'Deleted items')
+			type: 'wastebasket',
+			name: pgettext('hierarchy.foldername', 'Deleted items')
 		},{
-			type : 'calendar',
-			name : pgettext('hierarchy.foldername', 'Calendar')
+			type: 'calendar',
+			name: pgettext('hierarchy.foldername', 'Calendar')
 		},{
-			type : 'contact',
-			name : pgettext('hierarchy.foldername', 'Contacts')
+			type: 'contact',
+			name: pgettext('hierarchy.foldername', 'Contacts')
 		},{
-			type : 'drafts',
-			name : pgettext('hierarchy.foldername', 'Drafts')
+			type: 'drafts',
+			name: pgettext('hierarchy.foldername', 'Drafts')
 		},{
-			type : 'journal',
-			name : pgettext('hierarchy.foldername', 'Journal')
+			type: 'journal',
+			name: pgettext('hierarchy.foldername', 'Journal')
 		},{
-			type : 'note',
-			name : pgettext('hierarchy.foldername', 'Notes')
+			type: 'note',
+			name: pgettext('hierarchy.foldername', 'Notes')
 		},{
-			type : 'task',
-			name : pgettext('hierarchy.foldername', 'Tasks')
+			type: 'task',
+			name: pgettext('hierarchy.foldername', 'Tasks')
 		},{
-			type : 'junk',
-			name : pgettext('hierarchy.foldername', 'Junk Email')
+			type: 'junk',
+			name: pgettext('hierarchy.foldername', 'Junk Email')
 		}];
 
 		var missing = [];
@@ -751,9 +751,9 @@ Ext.apply(Zarafa, {
 						 'The following required folders are missing in the hierarchy: {0}', missing.length), list) +
 					_('Not all functionality of WebApp might be working properly because of this.'),
 				{
-					persistent : true,
-					listeners : {
-						'click' : this.onHierarchyNotifierClick,
+					persistent: true,
+					listeners: {
+						'click': this.onHierarchyNotifierClick,
 						'scope': this
 					}
 				}
@@ -768,11 +768,11 @@ Ext.apply(Zarafa, {
 	 * @param {Ext.EventObject} event The event object
 	 * @private
 	 */
-	onHierarchyNotifierClick : function(element, event)
+	onHierarchyNotifierClick: function(element, event)
 	{
 		container.getNotifier().notify('error.hierarchy.defaultfolder', null, null, {
-			reference : element,
-			destroy : true
+			reference: element,
+			destroy: true
 		});
 	},
 
@@ -783,7 +783,7 @@ Ext.apply(Zarafa, {
 	 * @param {Object} options The options which were originally passed to {@link Ext.data.Store#load}.
 	 * @private
 	 */
-	onHierarchyLoad : function(store, records, options)
+	onHierarchyLoad: function(store, records, options)
 	{
 		if (!Ext.isEmpty(records)) {
 			// We have the hierarchy, load the entire UI
@@ -829,7 +829,7 @@ Ext.apply(Zarafa, {
 	 * but that is a bug and already fixed in trunk version https://bugzilla.mozilla.org/show_bug.cgi?id=912347
 	 * Support for isProtocolHandlerRegistered is also limited https://bugzilla.mozilla.org/show_bug.cgi?id=440620
 	 */
-	registerMailto : function()
+	registerMailto: function()
 	{
 		var navigator = window.navigator;
 
@@ -855,7 +855,7 @@ Ext.apply(Zarafa, {
 	 * load the {@link Zarafa.hierarchy.data.HierarchyStore} and open the
 	 * {@link Zarafa.core.ui.MainViewport MainViewport}.
 	 */
-	loadWebclient : function()
+	loadWebclient: function()
 	{
 		// Initialize globals & environment
 		Zarafa.initializeGlobals();
@@ -919,7 +919,7 @@ Ext.apply(Zarafa, {
 	 * @param {Number} clientTimeout The timout time in seconds.
 	 * @private
 	 */
-	startIdleTimeChecker : function(clientTimeout)
+	startIdleTimeChecker: function(clientTimeout)
 	{
 		if ( !document.addEventListener ) {
 			// User is using a browser that does not support addEventListener.
@@ -946,15 +946,15 @@ Ext.apply(Zarafa, {
 
 		// Start an interval for increasing the idle time
 		Ext.TaskMgr.start.createDelegate(this, [{
-			run : function(){
+			run: function(){
 				// Add 5 seconds to the idle time counter
 				this.idleTime += 5;
 				if ( this.idleTime > clientTimeout ){
 					hierarchyStore.sendDestroySession();
 				}
 			},
-			scope : this,
-			interval : 5000 //Run every 5 seconds
+			scope: this,
+			interval: 5000 //Run every 5 seconds
 		}]).defer(5000); // Start after 5 seconds
 
 		// Start an interval for sending keepalive requests
@@ -971,11 +971,11 @@ Ext.apply(Zarafa, {
 		}
 
 		Ext.TaskMgr.start.createDelegate(this, [{
-			run : function(){
+			run: function(){
 				hierarchyStore.sendKeepAlive();
 			},
-			scope : this,
-			interval : interval
+			scope: this,
+			interval: interval
 		}]).defer(interval); //Start sending keepalives after interval milliseconds.
 	},
 
@@ -1007,7 +1007,7 @@ Ext.apply(Zarafa, {
 	 * the folder.
 	 * @private
 	 */
-	initContext : function()
+	initContext: function()
 	{
 		var defaultContext = container.getSettingsModel().get('zarafa/v1/main/default_context');
 		var plugin = container.getContextByName(defaultContext);
@@ -1025,7 +1025,7 @@ Ext.apply(Zarafa, {
 	 * icons-primary-color and/or icons-secondary-color property this function
 	 * will rewrite the css rules of the iconset to update the colors of the icons.
 	 */
-	recolorIcons : function()
+	recolorIcons: function()
 	{
 		// Get the properties defined by the active iconset
 		var serverConfig = container.getServerConfig();
@@ -1089,7 +1089,7 @@ Ext.apply(Zarafa, {
 	 * @param {Object} options The options which were originally passed to {@link Ext.data.Store#load}.
 	 * @private
 	 */
-	onOofStoreLoad : function(store, records, options)
+	onOofStoreLoad: function(store, records, options)
 	{
 		var oof = false;
 
@@ -1142,7 +1142,7 @@ Ext.apply(Zarafa, {
 	 * @param {String} id of the button that was clicked
 	 * @private
 	 */
-	onOofConfirm : function(button)
+	onOofConfirm: function(button)
 	{
 		if (button === 'yes') {
 			this.set('set', false);
@@ -1155,7 +1155,7 @@ Ext.apply(Zarafa, {
 	 * Load the Welcome message for new users into the browser. This will initialize
 	 * the environment and open the {@link Zarafa.core.ui.WelcomeViewport WelcomeViewport}.
 	 */
-	loadWelcome : function()
+	loadWelcome: function()
 	{
 		// Setup globals & environment
 		this.initializeGlobals();
@@ -1178,7 +1178,7 @@ Ext.apply(Zarafa, {
 	 * @param {Number} len Length of the string
 	 * @return {String} Random string
 	 */
-	generateId : function(len)
+	generateId: function(len)
 	{
 		var text = "";
 		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -1196,7 +1196,7 @@ Ext.apply(Zarafa, {
 	 *
 	 * @return {Boolean} True if popout is supported, false otherwise
 	 */
-	supportsPopOut : function()
+	supportsPopOut: function()
 	{
 		// Currently, we do not support the popout in case of IE/Edge.
 		return (!(Ext.isIE || Ext.isEdge));

@@ -13,14 +13,14 @@ Ext.namespace('Zarafa.common.outofoffice.data');
  * {@link Zarafa.common.outofoffice.data.OofRecord record}.
  */
 Zarafa.common.outofoffice.data.OofRecordFields = [
-    // Here 'entryid' is user's entryid whereas 'store_entryid' is shared user's store's entry id.
-    {name: 'entryid'},
-    {name: 'store_entryid'},
-    {name: 'from',  type: 'int'},
-    {name: 'message'},
-    {name: 'set'},
-    {name: 'subject'},
-    {name: 'until',  type: 'int'},
+  // Here 'entryid' is user's entryid whereas 'store_entryid' is shared user's store's entry id.
+  {name: 'entryid'},
+  {name: 'store_entryid'},
+  {name: 'from', type: 'int'},
+  {name: 'message'},
+  {name: 'set'},
+  {name: 'subject'},
+  {name: 'until', type: 'int'},
 ];
 
 /**
@@ -28,14 +28,14 @@ Zarafa.common.outofoffice.data.OofRecordFields = [
  * @extends Zarafa.core.data.MAPIRecord
  */
 Zarafa.common.outofoffice.data.OofRecord = Ext.extend(Zarafa.core.data.MAPIRecord, {
-    /**
-     * The base array of ID properties which is copied to the {@link #idProperties}
-     * when the record is being created.
-     * @property
-     * @type Array
-     * @private
-     */
-    baseIdProperties: ['store_entryid'],
+  /**
+   * The base array of ID properties which is copied to the {@link #idProperties}
+   * when the record is being created.
+   * @property
+   * @type Array
+   * @private
+   */
+  baseIdProperties: ['store_entryid'],
 });
 
 // Register a custom type to be used by the Record Factory

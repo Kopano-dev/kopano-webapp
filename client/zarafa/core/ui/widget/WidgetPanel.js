@@ -12,31 +12,31 @@ Zarafa.core.ui.widget.WidgetPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 	 * @cfg {String} settingsPath The settings base in which all settings
 	 * for this panel will be saved.
 	 */
-	settingsPath : '',
+	settingsPath: '',
 
 	/**
 	 * @cfg {Array} showDefaultWidgets list of widgets which should be shown at first.
 	 */
-	showDefaultWidgets : undefined,
+	showDefaultWidgets: undefined,
 
 	/**
 	 * @cfg {Number} numColumns The number of columns which should be used
 	 * to divide the widgets over the panel.
 	 */
-	numColumns : 3,
+	numColumns: 3,
 
 	/**
 	 * The portal in which the widgets are located
 	 * @property
 	 * @type Ext.ux.Portal
 	 */
-	portal : undefined,
+	portal: undefined,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -45,37 +45,37 @@ Zarafa.core.ui.widget.WidgetPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 		for (var i = 0; i < numColumns; i++) {
 			columns.push(new Ext.ux.PortalColumn({
 				columnWidth: 1 / numColumns,
-				style :'padding:10px 10px 10px 10px'
+				style:'padding:10px 10px 10px 10px'
 			}));
 		}
 
 		var tools = [{
-			id : 'plus',
+			id: 'plus',
 			qtip: _('Add new widget'),
-			scope : this,
+			scope: this,
 			handler: function() {
 				Zarafa.common.Actions.openWidgetsContent({
-					widgetPanel : this,
-					manager : Ext.WindowMgr
+					widgetPanel: this,
+					manager: Ext.WindowMgr
 				});
 			}
 		}];
 
 		this.portal = new Ext.ux.Portal({
-			items : columns,
-			border : false,
-			dropConfig : {
-				ddGroup : 'dd.widget'
+			items: columns,
+			border: false,
+			dropConfig: {
+				ddGroup: 'dd.widget'
 			}
 		});
 
 		Ext.applyIf(config, {
 			cls: 'zarafa-widgetpanel',
-			headerCfg : { cls : 'zarafa-main-header x-panel-header' },
-			layout : 'fit',
-			tools : tools,
-			animCollapse : false,
-			items : [ this.portal ],
+			headerCfg: { cls: 'zarafa-main-header x-panel-header' },
+			layout: 'fit',
+			tools: tools,
+			animCollapse: false,
+			items: [ this.portal ],
 			collapseQuickTip: _('Collapse widget panel'),
 			expandQuickTip: _('Expand widget panel')
 		});
@@ -85,8 +85,8 @@ Zarafa.core.ui.widget.WidgetPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 		this.loadWidgets();
 
 		this.mon(this.portal, {
-			'drop' : this.onDrop,
-			scope :	this
+			'drop': this.onDrop,
+			scope:	this
 		});
 	},
 
@@ -98,7 +98,7 @@ Zarafa.core.ui.widget.WidgetPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 	 * @param {Ext.EventObject} event The event for this event
 	 * @private
 	 */
-	onDrop : function(event)
+	onDrop: function(event)
 	{
 		// Check if the parent has been changed
 		var widget = event.panel;
@@ -126,7 +126,7 @@ Zarafa.core.ui.widget.WidgetPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 	 * Load all widgets from the settings and them to the correct column.
 	 * @private
 	 */
-	loadWidgets : function()
+	loadWidgets: function()
 	{
 		var settings = container.getSettingsModel();
 		var guids = settings.get(this.settingsPath + '/guids');
@@ -160,8 +160,8 @@ Zarafa.core.ui.widget.WidgetPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 				if (widgetMetaData) {
 					// Widget has been found, allocate it
 					var widget = widgetMetaData.getInstance({
-						widgetPanel : this,
-						guid : guid
+						widgetPanel: this,
+						guid: guid
 					});
 
 					// Obtain the column index from settings
@@ -185,7 +185,7 @@ Zarafa.core.ui.widget.WidgetPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 	 * @param {String} guid The unique ID of the widget which has to be registered
 	 * @private
 	 */
-	addGuid : function(guid)
+	addGuid: function(guid)
 	{
 		var settings = container.getSettingsModel();
 
@@ -202,7 +202,7 @@ Zarafa.core.ui.widget.WidgetPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 	 * @param {String} guid The unique ID of the widget which has to be unregistered
 	 * @private
 	 */
-	removeGuid : function(guid)
+	removeGuid: function(guid)
 	{
 		var settings = container.getSettingsModel();
 
@@ -220,7 +220,7 @@ Zarafa.core.ui.widget.WidgetPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 	 * @param {String} name The name of the widget to add
 	 * @param {Number} The preferred column in which the widget should be placed
 	 */
-	createWidget : function(name, column)
+	createWidget: function(name, column)
 	{
 		var widgetMetaData = container.getWidgetMetaDataByName(name);
 		if (!Ext.isDefined(column)) {
@@ -233,8 +233,8 @@ Zarafa.core.ui.widget.WidgetPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 			this.addGuid(guid);
 
 			var widget = widgetMetaData.getInstance({
-				widgetPanel : this,
-				guid : guid
+				widgetPanel: this,
+				guid: guid
 			});
 
 			// Record the type of the newly created widget.
@@ -250,7 +250,7 @@ Zarafa.core.ui.widget.WidgetPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 	 * @param {Zarafa.core.ui.widget.Widget} widget The widget to destroy
 	 * @private
 	 */
-	destroyWidget : function(widget)
+	destroyWidget: function(widget)
 	{
 		// Remove guid from the parent widget panel.
 		this.removeGuid(widget.guid);

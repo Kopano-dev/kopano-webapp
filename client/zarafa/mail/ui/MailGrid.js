@@ -10,14 +10,14 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	/**
 	 * @cfg {Zarafa.mail.MailContext} context The context to which this panel belongs
 	 */
-	context : undefined,
+	context: undefined,
 
 	/**
 	 * The {@link Zarafa.mail.MailContextModel} which is obtained from the {@link #context}.
 	 * @property
 	 * @type Zarafa.mail.MailContextModel
 	 */
-	model : undefined,
+	model: undefined,
 
 	/**
 	 * @cfg {Array} sentFolderTypes List of strings of the
@@ -29,7 +29,7 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	 * By default these will be the 'outbox' and 'sent'
 	 * folders.
 	 */
-	sentFolderTypes : undefined,
+	sentFolderTypes: undefined,
 
 	/**
 	 * @cfg {Array} unSentFolderTypes List of strings of the
@@ -40,7 +40,7 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	 *
 	 * By default these will be the 'drafts' folders.
 	 */
-	unSentFolderTypes : undefined,
+	unSentFolderTypes: undefined,
 
 	/**
 	 * @cfg {Boolean} expandSingleConversation True if {@link Zarafa.mail.settings.SettingsConversationWidget#enableConversations enabled conversation view }
@@ -48,13 +48,13 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	 *
 	 * By default this will be True.
 	 */
-	expandSingleConversation : true,
+	expandSingleConversation: true,
 
 	/**
 	 * @constructor
 	 * @param config Configuration structure
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -77,17 +77,17 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 
 		Ext.applyIf(config, {
 			xtype: 'zarafa.mailgrid',
-			border : false,
-			stateful : true,
-			statefulRelativeDimensions : false,
-			loadMask : this.initLoadMask(),
-			supportLiveScroll : true,
-			view : new Zarafa.mail.ui.MailGridView(this.initViewConfig()),
-			sm : this.initSelectionModel(),
-			cm : this.initColumnModel(),
-			enableDragDrop : true,
+			border: false,
+			stateful: true,
+			statefulRelativeDimensions: false,
+			loadMask: this.initLoadMask(),
+			supportLiveScroll: true,
+			view: new Zarafa.mail.ui.MailGridView(this.initViewConfig()),
+			sm: this.initSelectionModel(),
+			cm: this.initColumnModel(),
+			enableDragDrop: true,
 			expandSingleConversation: this.allowExpandOneConversation(),
-			ddGroup : 'dd.mapiitem'
+			ddGroup: 'dd.mapiitem'
 		});
 
 		Zarafa.mail.ui.MailGrid.superclass.constructor.call(this, config);
@@ -97,7 +97,7 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	 * Initialize event handlers
 	 * @private
 	 */
-	initEvents : function()
+	initEvents: function()
 	{
 		Zarafa.mail.ui.MailGrid.superclass.initEvents.call(this);
 
@@ -105,13 +105,13 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 			'cellclick': this.onCellClick,
 			//'rowclick': this.onRowClick,
 			'rowclick': {
-				fn : this.onRowClick,
-				buffer : 1,
-				scope : this
+				fn: this.onRowClick,
+				buffer: 1,
+				scope: this
 			},
 			'rowbodycontextmenu': this.onRowBodyContextMenu,
 			'rowdblclick': this.onRowDblClick,
-			scope : this
+			scope: this
 		});
 
 		this.mon(this.getView(), 'beforelivescrollstart', this.onBeforeLiveScrollStart, this);
@@ -123,8 +123,8 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 		// is removed from the store. However removing of records isn't performed in batches. This means
 		// that we need to offload the event handlers attached to removing of records in case that
 		// a large batch of records is being removed.
-		this.mon(this.getSelectionModel(), 'rowselect', this.onRowSelect, this, { buffer : 1 });
-		this.mon(this.getSelectionModel(), 'selectionchange', this.onSelectionChange, this, { buffer : 1 });
+		this.mon(this.getSelectionModel(), 'rowselect', this.onRowSelect, this, { buffer: 1 });
+		this.mon(this.getSelectionModel(), 'selectionchange', this.onSelectionChange, this, { buffer: 1 });
 
 		this.mon(this.context, 'viewmodechange', this.onContextViewModeChange, this);
 		this.mon(this.context, 'viewchange', this.onContextViewChange, this);
@@ -159,10 +159,10 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	 * @return {Ext.LoadMask} The configuration object for {@link Ext.LoadMask}
 	 * @private
 	 */
-	initLoadMask : function()
+	initLoadMask: function()
 	{
 		return {
-			msg : _('Loading mail') + '...'
+			msg: _('Loading mail') + '...'
 		};
 	},
 
@@ -172,7 +172,7 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	 * @return {Ext.grid.GridView} The configuration object for {@link Ext.grid.GridView}
 	 * @private
 	 */
-	initViewConfig : function()
+	initViewConfig: function()
 	{
 		return {
 			// enableRowBody is used for enabling the rendering of
@@ -185,14 +185,14 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 			// here, and enable it later then the row body will never
 			// be rendered. So disabling after initializing the data
 			// with the rowBody works, but the opposite will not.
-			enableRowBody : true,
-			getRowClass : this.viewConfigGetRowClass,
+			enableRowBody: true,
+			getRowClass: this.viewConfigGetRowClass,
 
 			// We need a rowselector depth of 15 because of the nested
 			// table in the rowBody.
-			rowSelectorDepth : 15,
-			enableGrouping : this.hasEnabledGrouping(),
-			enableGroupingMenu : true
+			rowSelectorDepth: 15,
+			enableGrouping: this.hasEnabledGrouping(),
+			enableGroupingMenu: true
 		};
 	},
 
@@ -211,7 +211,7 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	 * @return {String} a CSS class name to add to the row
 	 * @private
 	 */
-	viewConfigGetRowClass : function(record, rowIndex, rowParams, store)
+	viewConfigGetRowClass: function(record, rowIndex, rowParams, store)
 	{
 		var cssClass = this.grid.getConversationCssClasses(record, rowIndex, store);
 
@@ -221,9 +221,9 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 			if (record.isConversationHeaderRecord()) {
 				/**
 				 * Add container for conversation header arrow icons.
-				 * 
-				 * Note: This is just a empty container to position the arrow icons background images 
-				 * and to handle on arrow click actions for right preview mode.  
+				 *
+				 * Note: This is just a empty container to position the arrow icons background images
+				 * and to handle on arrow click actions for right preview mode.
 				 */
 				rowParams.body += '<div class="k-conversation-icon-container"><span class="k-conversation-icon"></span></div>';
 			} else {
@@ -242,7 +242,7 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 			} else {
 				value = Zarafa.common.ui.grid.Renderers.subject(record.get('subject'), meta, record);
 			}
-			
+
 			rowParams.body += String.format('<div class="grid_compact grid_compact_left grid_compact_subject_cell {0}">{1}</div>', meta.css, value);
 
 			rowParams.body += '</div>';
@@ -254,13 +254,13 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 
 	/**
 	 * Helper function to get css classes related to conversation view.
-	 * 
+	 *
 	 * @param {Ext.data.Record} record The {@link Ext.data.Record Record} corresponding to the current row.
 	 * @param {Number} rowIndex The row index
 	 * @param {Ext.data.Store} store The Ext.data.Store this grid is bound to
 	 * @return {String} css classes related to conversation item.
 	 */
-	getConversationCssClasses : function(record, rowIndex, store)
+	getConversationCssClasses: function(record, rowIndex, store)
 	{
 		var isConversationHeader = record.isConversationHeaderRecord();
 		var depth = record.get('depth');
@@ -281,7 +281,7 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 			cssClass += ' k-conversation-header';
 
 			cssClass += store.isConversationOpened(record) ? ' line_arrow_down_l' : ' arrow_right_l';
-	
+
 		} else if (record.isConversationRecord()) {
 			// If its last item of the conversation.
 			if (store.getCount() === rowIndex + 1 ||
@@ -304,10 +304,10 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	 * @return {Ext.grid.RowSelectionModel} The subclass of {@link Ext.grid.AbstractSelectionModel}
 	 * @private
 	 */
-	initSelectionModel : function()
+	initSelectionModel: function()
 	{
 		return new Zarafa.mail.ui.MailRowSelectionModel({
-			singleSelect : false
+			singleSelect: false
 		});
 	},
 
@@ -317,7 +317,7 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	 * @return {Ext.grid.ColumnModel} The {@link Ext.grid.ColumnModel} for this grid
 	 * @private
 	 */
-	initColumnModel : function()
+	initColumnModel: function()
 	{
 		return new Zarafa.mail.ui.MailGridColumnModel();
 	},
@@ -332,7 +332,7 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	 * @param {Zarafa.mail.data.Views} newView The ID of the selected view.
 	 * @param {Zarafa.mail.data.Views} oldView The ID of the previously selected view.
 	 */
-	onContextViewChange : function(context, newView, oldView)
+	onContextViewChange: function(context, newView, oldView)
 	{
 		if(oldView === Zarafa.mail.data.Views.LIVESCROLL) {
 			this.getView().resetScroll();
@@ -352,19 +352,19 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	 * @param {Zarafa.mail.data.ViewModes} oldViewMode The previous mode
 	 * @private
 	 */
-	onContextViewModeChange : function(context, newViewMode, oldViewMode)
+	onContextViewModeChange: function(context, newViewMode, oldViewMode)
 	{
 		switch(newViewMode){
-			case Zarafa.mail.data.ViewModes.RIGHT_PREVIEW :
-			case Zarafa.mail.data.ViewModes.NO_PREVIEW :
-			case Zarafa.mail.data.ViewModes.BOTTOM_PREVIEW :
+			case Zarafa.mail.data.ViewModes.RIGHT_PREVIEW:
+			case Zarafa.mail.data.ViewModes.NO_PREVIEW:
+			case Zarafa.mail.data.ViewModes.BOTTOM_PREVIEW:
 				var compact = newViewMode === Zarafa.mail.data.ViewModes.RIGHT_PREVIEW;
 				//The row body must only be enabled in compact view.
 				this.getView().enableRowBody = compact;
 				this.getColumnModel().setCompactView(compact);
 				break;
-			case Zarafa.mail.data.ViewModes.SEARCH :
-			case Zarafa.mail.data.ViewModes.LIVESCROLL :
+			case Zarafa.mail.data.ViewModes.SEARCH:
+			case Zarafa.mail.data.ViewModes.LIVESCROLL:
 				break;
 		}
 	},
@@ -378,7 +378,7 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	 * @param {Object} config The configuration object
 	 * @private
 	 */
-	onBeforeConfigChange : function(columnModel, config)
+	onBeforeConfigChange: function(columnModel, config)
 	{
 		if (!this.currentEntryId) {
 			return;
@@ -434,7 +434,7 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	 * @param {Ext.EventObject} event The event object
 	 * @private
 	 */
-	onCellClick : function(grid, rowIndex, columnIndex, e)
+	onCellClick: function(grid, rowIndex, columnIndex, e)
 	{
 		var record = this.store.getAt(rowIndex);
 		if (!Ext.isDefined(record)) {
@@ -447,7 +447,7 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 			if (columnIndex === 0) {
 				var store = this.store;
 				store.toggleConversation(record);
-				// If conversation is open then select first record from the 
+				// If conversation is open then select first record from the
 				// conversation items.
 				if (store.isConversationOpened(record)) {
 					grid.selModel.selectRow(rowIndex + 1, false);
@@ -480,7 +480,7 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	 * @param {Ext.EventObject} event The event structure
 	 * @private
 	 */
-	onRowClick : function(grid, rowIndex, event)
+	onRowClick: function(grid, rowIndex, event)
 	{
 		var store = this.store;
 		var keepExisting = event.ctrlKey || event.shiftKey;
@@ -515,7 +515,7 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	 * @param {Ext.EventObject} event The event structure
 	 * @private
 	 */
-	onCellContextMenu : function(grid, rowIndex, cellIndex, event)
+	onCellContextMenu: function(grid, rowIndex, cellIndex, event)
 	{
 		var record = this.store.getAt(rowIndex);
 		if (record.isConversationHeaderRecord()) {
@@ -537,7 +537,7 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	 * @param {Ext.EventObject} event The event structure
 	 * @private
 	 */
-	onRowBodyContextMenu : function(grid, rowIndex, event)
+	onRowBodyContextMenu: function(grid, rowIndex, event)
 	{
 		var record = this.store.getAt(rowIndex);
 		if (record.isConversationHeaderRecord()) {
@@ -557,7 +557,7 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	 * @param {Ext.EventObject} e The event object
 	 * @private
 	 */
-	onRowDblClick : function(grid, rowIndex, e)
+	onRowDblClick: function(grid, rowIndex, e)
 	{
 		var record = this.getSelectionModel().getSelected();
 
@@ -576,15 +576,15 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	},
 
 	/**
-	 * Event handler before the row selection performs. If selected record is  
+	 * Event handler before the row selection performs. If selected record is
 	 * conversation header then cancel the selection.
-	 * 
-	 * @param {Zarafa.mail.ui.MailRowSelectionModel} selectionModel The selectionModel 
+	 *
+	 * @param {Zarafa.mail.ui.MailRowSelectionModel} selectionModel The selectionModel
 	 * @param {Number} rowIndex Then index to be selected.
 	 * @param {Boolean} keepExisting False if other selections will be cleared
 	 * @param {Zarafa.core.data.IPMRecord} record The record to be selected
 	 */
-	onBeforeRowSelect: function(selectionModel, rowIndex, keepExisting, record) 
+	onBeforeRowSelect: function(selectionModel, rowIndex, keepExisting, record)
 	{
 		if (record.isConversationHeaderRecord()) {
 			this.openConversation(record, selectionModel, rowIndex, keepExisting);
@@ -594,13 +594,13 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 
 	/**
 	 * Function will expand the conversation if closed and select the first item of it.
-	 * 
+	 *
 	 * @param {Zarafa.core.data.IPMRecord} record The record needs to expand.
-	 * @param {Zarafa.mail.ui.MailRowSelectionModel} selectionModel The selectionModel 
+	 * @param {Zarafa.mail.ui.MailRowSelectionModel} selectionModel The selectionModel
 	 * @param {Number} rowIndex Then index to be selected.
 	 * @param {Boolean} keepExisting False if other selections will be cleared
 	 */
-	openConversation : function(record, selectionModel, rowIndex, keepExisting)
+	openConversation: function(record, selectionModel, rowIndex, keepExisting)
 	{
 		var store = this.getStore();
 		if (!store.isConversationOpened(record)) {
@@ -621,7 +621,7 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	 * @return {Boolean} True if {@link Zarafa.mail.settings.SettingsConversationWidget#enableConversations enabled conversation view } and
 	 * {@link Zarafa.mail.settings.SettingsConversationWidget#singleExpand expand single conversation} is enabled else false.
 	 */
-	allowExpandOneConversation : function()
+	allowExpandOneConversation: function()
 	{
 		var settingsModel = container.getSettingsModel();
 		return settingsModel.get("zarafa/v1/contexts/mail/enable_conversation_view") && settingsModel.get("zarafa/v1/contexts/mail/expand_single_conversation");
@@ -637,7 +637,7 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	 * @param {Ext.data.Record} record The record which is selected for preview.
 	 * @private
 	 */
-	onRowSelect : function(selectionModel, rowNumber, record)
+	onRowSelect: function(selectionModel, rowNumber, record)
 	{
 		var count = selectionModel.getCount();
 		//var conversationCount = record.get('conversation_count');
@@ -658,7 +658,7 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	 * @param {Ext.grid.RowSelectionModel} selectionModel The selection model used by the grid.
 	 * @private
 	 */
-	onSelectionChange : function(selectionModel)
+	onSelectionChange: function(selectionModel)
 	{
 		var selections = selectionModel.getSelections();
 
@@ -671,7 +671,7 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	/**
 	 * Event handler triggered before the live scroll start.
 	 */
-	onBeforeLiveScrollStart : function()
+	onBeforeLiveScrollStart: function()
 	{
 		if (this.store.getStoreLength() >= this.store.getTotalCount()) {
 			return false;
@@ -687,7 +687,7 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	 * @param {Number} cursor the cursor contains the last index of record in grid.
 	 * @private
 	 */
-	onLiveScrollStart : function(cursor)
+	onLiveScrollStart: function(cursor)
 	{
 		this.model.startLiveScroll(cursor);
 	},
@@ -698,7 +698,7 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	 * {@link Zarafa.core.ContextModel#stopLiveScroll live scroll} and then apply the sorting.
 	 * @private
 	 */
-	onBeforeSort : function()
+	onBeforeSort: function()
 	{
 		this.model.stopLiveScroll();
 	},
@@ -707,7 +707,7 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	 * Event handler triggers when the configuration of {@link Zarafa.mail.ui.MailGridColumnModel MailGridColumnModel}
 	 * is changed.
 	 */
-	onConfigChange : function ()
+	onConfigChange: function ()
 	{
 		if (this.getView().enableGrouping) {
 			var store = this.getStore();
@@ -722,7 +722,7 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	 * Function which is used to check that grouping has enabled.
 	 * @return {Boolean} true if grouping is enabled else return false.
 	 */
-	hasEnabledGrouping : function ()
+	hasEnabledGrouping: function ()
 	{
 		return container.getSettingsModel().get('zarafa/v1/contexts/mail/enable_grouping');
 	},
@@ -735,7 +735,7 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	 * @param {Zarafa.mail.MailStore} store which contains message records
 	 * @param {Zarafa.mail.MailRecord} record which is deleted.
 	 */
-	manageDeleteConversations : function(store, record)
+	manageDeleteConversations: function(store, record)
 	{
 		if(container.isEnabledConversation() === false || !record.isConversationRecord()) {
 			return;
@@ -793,22 +793,22 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 	/**
 	 * Called after a row has been removed for the GridView.
 	 * This will be called from {@link Zarafa.common.ui.grid.GridPanel#onWriteRecord onWriteRecord}.
-	 * Function will check whether the {@link Zarafa.mail.ui.MailRowSelectionModel#updatedLast updatedLast} config is available 
+	 * Function will check whether the {@link Zarafa.mail.ui.MailRowSelectionModel#updatedLast updatedLast} config is available
 	 * and will select row accordingly.
-	 * 
+	 *
 	 * @param rowIndex {Number} rowIndex the index of row was deleted from grid.
 	 * @private
 	 */
-	onRowRemoved : function(rowIndex)
+	onRowRemoved: function(rowIndex)
 	{
 		var rowSelectionModel= this.getSelectionModel();
 		var lastActiveIndex = rowSelectionModel.updatedLast;
-		
+
 		if (Ext.isDefined(lastActiveIndex)) {
 			rowIndex = lastActiveIndex;
 			rowSelectionModel.clearUpdatedLast();
 		}
-		
+
 		Zarafa.mail.ui.MailGrid.superclass.onRowRemoved.call(this, rowIndex);
 	}
 });

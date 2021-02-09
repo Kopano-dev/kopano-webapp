@@ -10,7 +10,7 @@ Ext.namespace('Zarafa.core.ui.widget');
  * or a filter (using {@link #store}{@link Ext.data.Store#applyFilter}).
  *
  * Reload time is configurable per instance of the
- * widget (keys: 'reloadinterval', default 5 minutes).  These values are in
+ * widget (keys: 'reloadinterval', default 5 minutes). These values are in
  * saved in miliseconds but displayed in seconds. The reload
  * interval is how often the folder is fully reloaded from the
  * server, to show records that were added to the folder
@@ -122,7 +122,7 @@ Zarafa.core.ui.widget.AbstractFolderWidget = Ext.extend(Zarafa.core.ui.widget.Wi
 		}
 
 		// Periodically reload data from the server to remove stale
-		// data from the store.  But only do this when the store has
+		// data from the store. But only do this when the store has
 		// finished loading for the first time.
 		var interval = this.get('reloadinterval') || 30;
 		interval *= 1000; // convert seconds in milliseconds
@@ -222,7 +222,7 @@ Zarafa.core.ui.widget.AbstractFolderWidget = Ext.extend(Zarafa.core.ui.widget.Wi
 	},
 
 	/**
-	 * Configure the widget.  At this time, only the reload and
+	 * Configure the widget. At this time, only the reload and
 	 * refresh times can be configured.
 	 * @todo Also allow the user to select the folder(s) to show here.
 	 * @private

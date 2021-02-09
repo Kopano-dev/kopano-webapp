@@ -20,7 +20,7 @@ Zarafa.hierarchy.data.IPFSubStore = Ext.extend(Zarafa.core.data.IPFStore, {
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function (config)
+	constructor: function (config)
 	{
 		config = config || {};
 
@@ -28,16 +28,16 @@ Zarafa.hierarchy.data.IPFSubStore = Ext.extend(Zarafa.core.data.IPFStore, {
 
 		Ext.applyIf(config, {
 			proxy: new Zarafa.hierarchy.data.HierarchyProxy(),
-			writer : new Zarafa.core.data.JsonWriter(),
+			writer: new Zarafa.core.data.JsonWriter(),
 			reader: new Zarafa.core.data.JsonReader({}, recordType)
 		});
 
 		Zarafa.hierarchy.data.IPFSubStore.superclass.constructor.call(this, config);
 
 		this.on({
-			'beforesave' : this.onBeforeSave,
-			'exception' : this.onException,
-			scope : this
+			'beforesave': this.onBeforeSave,
+			'exception': this.onException,
+			scope: this
 		});
 	},
 
@@ -46,14 +46,14 @@ Zarafa.hierarchy.data.IPFSubStore = Ext.extend(Zarafa.core.data.IPFStore, {
 	/**
 	 * Called when member is added on store. Should not be used directly.
 	 * It's called by Store#add automatically
-	 * @FIXME now IPFSubStore is not child of NoSyncStore, 
+	 * @FIXME now IPFSubStore is not child of NoSyncStore,
 	 * so we don't need to mark parentrecord dirty, remove this.
 	 * @param {Store} store
 	 * @param {Ext.data.Record/Ext.data.Record[]} record
 	 * @param {Number} index
 	 * @private
 	 */
-	createRecords : function(store, record, index)
+	createRecords: function(store, record, index)
 	{
 		var parentRecord = this.getParentRecord();
 		if(parentRecord) {
@@ -73,7 +73,7 @@ Zarafa.hierarchy.data.IPFSubStore = Ext.extend(Zarafa.core.data.IPFStore, {
 	 * @param {Number} index
 	 * @private
 	 */
-	destroyRecord : function(store, record, index)
+	destroyRecord: function(store, record, index)
 	{
 		if(this.getParentRecord()){
 			this.getParentRecord().markDirty();
@@ -85,7 +85,7 @@ Zarafa.hierarchy.data.IPFSubStore = Ext.extend(Zarafa.core.data.IPFStore, {
 	 * Get the {@link Zarafa.core.data.IPFRecord IPFRecord} that is the parent of this store.
 	 * @return {Zarafa.core.data.IPFRecord} The parent IPFRecord.
 	 */
-	getParentRecord : function()
+	getParentRecord: function()
 	{
 		return this.parentRecord;
 	},
@@ -94,7 +94,7 @@ Zarafa.hierarchy.data.IPFSubStore = Ext.extend(Zarafa.core.data.IPFStore, {
 	 * Set the {@link Zarafa.core.data.IPFRecord IPFRecord} that is the parent of this store.
 	 * @param {Zarafa.core.data.IPFRecord} record The parent IPFRecord.
 	 */
-	setParentRecord : function(record)
+	setParentRecord: function(record)
 	{
 		this.parentRecord = record;
 	},
@@ -111,7 +111,7 @@ Zarafa.hierarchy.data.IPFSubStore = Ext.extend(Zarafa.core.data.IPFStore, {
 	 * @param {Object} response response received from server depends on type.
 	 * @param {Mixed} args
 	 */
-	onException : function(proxy, type, action, options, response, args)
+	onException: function(proxy, type, action, options, response, args)
 	{
 		if (Ext.isDefined(args) && Array.isArray(args.sendRecords)) {
 			Ext.each(args.sendRecords, function(record) {
@@ -123,7 +123,7 @@ Zarafa.hierarchy.data.IPFSubStore = Ext.extend(Zarafa.core.data.IPFStore, {
 	},
 
 	/**
-	 * Checks whether any of the stores that were included in the parameters during the last load, 
+	 * Checks whether any of the stores that were included in the parameters during the last load,
 	 * matches the supplied entryid argument.
 	 *
 	 * @param {String|Array} entryidList Entryid of the folder
@@ -163,7 +163,7 @@ Zarafa.hierarchy.data.IPFSubStore = Ext.extend(Zarafa.core.data.IPFStore, {
 	 * @param {Boolean} success The success status, True if the notification was successfully received.
 	 * @private
 	 */
-	onNotifyObjectdeleted : function(action, records, data, timestamp, success)
+	onNotifyObjectdeleted: function(action, records, data, timestamp, success)
 	{
 		if (!Array.isArray(records)) {
 			records = [ records ];
@@ -175,7 +175,7 @@ Zarafa.hierarchy.data.IPFSubStore = Ext.extend(Zarafa.core.data.IPFStore, {
 			records[i].setEventPropagation(false);
 			records[i].phantom = true;
 		}
-		
+
 		this.remove(records);
 	},
 
@@ -194,7 +194,7 @@ Zarafa.hierarchy.data.IPFSubStore = Ext.extend(Zarafa.core.data.IPFStore, {
 	 * @param {Boolean} success The success status, True if the notification was successfully received.
 	 * @private
 	 */
-	onNotifyObjectmodified : function(action, records, data, timestamp, success)
+	onNotifyObjectmodified: function(action, records, data, timestamp, success)
 	{
 		if (!Array.isArray(records)) {
 			records = [ records ];
@@ -205,19 +205,19 @@ Zarafa.hierarchy.data.IPFSubStore = Ext.extend(Zarafa.core.data.IPFStore, {
 		// bouncing events around.
 		for (var i = 0, len = records.length; i < len; i++) {
 			var record = records[i];
-			var singleData =  (Array.isArray(data)) ? data[i] : data;
+			var singleData = (Array.isArray(data)) ? data[i] : data;
 
 			record.setEventPropagation(false);
 
 			if (singleData instanceof Ext.data.Record) {
-				// Merge the changes into the record without using the JSONReader. 
+				// Merge the changes into the record without using the JSONReader.
 				record.applyData(singleData);
 			} else {
 				// Simply merge the record using the JsonReader, this will cause a 'update' event to be fired with
 				// a COMMIT action. Because it is a commit, this store will not mark the record as dirty.
 				this.reader.update(record, singleData);
 			}
-			
+
 			record.setEventPropagation(true);
 		}
 	},
@@ -237,7 +237,7 @@ Zarafa.hierarchy.data.IPFSubStore = Ext.extend(Zarafa.core.data.IPFStore, {
 	 * @param {Boolean} success The success status, True if the notification was successfully received.
 	 * @private
 	 */
-	onNotifyObjectcreated : function(action, records, data, timestamp, success)
+	onNotifyObjectcreated: function(action, records, data, timestamp, success)
 	{
 		if (!Array.isArray(data)) {
 			data = [ data ];
@@ -246,30 +246,30 @@ Zarafa.hierarchy.data.IPFSubStore = Ext.extend(Zarafa.core.data.IPFStore, {
 		var isFavoritesStoreInstance = this instanceof Zarafa.common.favorites.data.MAPIFavoritesSubStore;
 
 		if (data[0] instanceof Ext.data.Record) {
-			this.loadRecords({ records : data }, { add : true });
+			this.loadRecords({ records: data }, { add: true });
 		} else if(!isFavoritesStoreInstance) {
 			// Don't go for loadData if store is MAPIFavoritesSubStore because we are never
 			// send non Ext.data.Record in server side notification.
-			this.loadData({ item : data }, true);
+			this.loadData({ item: data }, true);
 		}
 	},
 
 	/**
-	 * Saves all pending changes to the store.  If the commensurate Ext.data.Api.actions action is not configured, then
+	 * Saves all pending changes to the store. If the commensurate Ext.data.Api.actions action is not configured, then
 	 * the configured <code>{@link #url}</code> will be used.
 	 * <pre>
-	 * change            url
-	 * ---------------   --------------------
-	 * removed records   Ext.data.Api.actions.destroy
-	 * phantom records   Ext.data.Api.actions.create
-	 * {@link #getModifiedRecords modified records}  Ext.data.Api.actions.update
+	 * change      url
+	 * ---------------  --------------------
+	 * removed records  Ext.data.Api.actions.destroy
+	 * phantom records  Ext.data.Api.actions.create
+	 * {@link #getModifiedRecords modified records} Ext.data.Api.actions.update
 	 * </pre>
-	 * @TODO:  Create extensions of Error class and send associated Record with thrown exceptions.
-	 * e.g.:  Ext.data.DataReader.Error or Ext.data.Error or Ext.data.DataProxy.Error, etc.
+	 * @TODO: Create extensions of Error class and send associated Record with thrown exceptions.
+	 * e.g.: Ext.data.DataReader.Error or Ext.data.Error or Ext.data.DataProxy.Error, etc.
 	 * @return {Number} batch Returns a number to uniquely identify the "batch" of saves occurring. -1 will be returned
 	 * if there are no items to save or the save was cancelled.
 	 */
-	save : function()
+	save: function()
 	{
 		// If the removed array is non-empty shared stores are being closed
 		// shared stores get a special treatmeent
@@ -289,13 +289,13 @@ Zarafa.hierarchy.data.IPFSubStore = Ext.extend(Zarafa.core.data.IPFStore, {
 
 			if (!Ext.isEmpty(sharedfolders)) {
 				var data = {
-					'close' : sharedfolders
+					'close': sharedfolders
 				};
 
 				if (this.fireEvent('beforesave', this, data) !== false) {
 					try {
 						var batch = ++this.batchCounter;
-						this.execute('destroy', data['close'], { actionType : 'closesharedfolder' }, batch);
+						this.execute('destroy', data['close'], { actionType: 'closesharedfolder' }, batch);
 					} catch (e) {
 						this.handleException(e);
 					}
@@ -319,7 +319,7 @@ Zarafa.hierarchy.data.IPFSubStore = Ext.extend(Zarafa.core.data.IPFStore, {
 	 * which will be send to the server
 	 * @private
 	 */
-	onBeforeSave : function(store, data)
+	onBeforeSave: function(store, data)
 	{
 		// The 'close' key is only used for shared stores/folders
 		if (!Ext.isEmpty(data['close'])) {

@@ -13,27 +13,27 @@ Zarafa.contact.ui.ContactCardView = Ext.extend(Zarafa.common.ui.DraggableDataVie
 	/**
 	 * @cfg {Zarafa.contact.ContactContext} context The context to which this view belongs
 	 */
-	context : undefined,
+	context: undefined,
 
 	/**
 	 * The {@link Zarafa.contact.ContactContextModel} which is obtained from the {@link #context}.
 	 * @property
 	 * @type Zarafa.contact.ContactContextModel
 	 */
-	model : undefined,
+	model: undefined,
 
 	/**
 	 * The {@link Zarafa.contact.ContactStore} which is obtained from the {@link #model}.
 	 * @property
 	 * @type Zarafa.contact.ContactStore
 	 */
-	store : undefined,
+	store: undefined,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -79,7 +79,7 @@ Zarafa.contact.ui.ContactCardView = Ext.extend(Zarafa.common.ui.DraggableDataVie
 	 * initialize events for the card view
 	 * @private
 	 */
-	initEvents : function()
+	initEvents: function()
 	{
 		this.on({
 			'dblclick': this.onNodeDblClick,
@@ -93,13 +93,13 @@ Zarafa.contact.ui.ContactCardView = Ext.extend(Zarafa.common.ui.DraggableDataVie
 	/**
 	 * Event handler called when contact card view rendered properly.
 	 */
-	onAfterRender : function()
+	onAfterRender: function()
 	{
 		var cardViewEl = Ext.get('contact-cardview');
 		cardViewEl.on({
 			'mouseenter': this.onMouseEnter.createDelegate(this, [cardViewEl], true),
 			'mouseleave': this.onMouseLeave,
-			scope : this
+			scope: this
 		});
 	},
 
@@ -111,14 +111,14 @@ Zarafa.contact.ui.ContactCardView = Ext.extend(Zarafa.common.ui.DraggableDataVie
 	 * @param {Ext.EventObject} event event object
 	 * @private
 	 */
-	onNodeContextMenu : function(dataView, index, node, event)
+	onNodeContextMenu: function(dataView, index, node, event)
 	{
 		// check row is already selected or not, if its not selected then select it first
 		if (!dataView.isSelected(node)) {
 			dataView.select(node);
 		}
 
-		Zarafa.core.data.UIFactory.openDefaultContextMenu(dataView.getSelectedRecords(), { position : event.getXY() });
+		Zarafa.core.data.UIFactory.openDefaultContextMenu(dataView.getSelectedRecords(), { position: event.getXY() });
 	},
 
 	/**
@@ -129,7 +129,7 @@ Zarafa.contact.ui.ContactCardView = Ext.extend(Zarafa.common.ui.DraggableDataVie
 	 * @param {Ext.EventObject} event event object
 	 * @private
 	 */
-	onNodeDblClick : function(dataView, index, node, event)
+	onNodeDblClick: function(dataView, index, node, event)
 	{
 		Zarafa.contact.Actions.openDialog(dataView.getSelectedRecords());
 	},
@@ -143,7 +143,7 @@ Zarafa.contact.ui.ContactCardView = Ext.extend(Zarafa.common.ui.DraggableDataVie
 	 * @param {HTMLElement[]} selection Array of selected nodes.
 	 * @private
 	 */
-	onSelectionChange : function(dataView, selections)
+	onSelectionChange: function(dataView, selections)
 	{
 		this.model.setSelectedRecords(dataView.getSelectedRecords());
 	},
@@ -153,7 +153,7 @@ Zarafa.contact.ui.ContactCardView = Ext.extend(Zarafa.common.ui.DraggableDataVie
 	 * @return {Ext.XTemplate} xtemplate for layout
 	 * @private
 	 */
-	initTemplate : function()
+	initTemplate: function()
 	{
 		var templateStrArr = [
 			'<div class="zarafa-contact-cardview">',
@@ -214,9 +214,9 @@ Zarafa.contact.ui.ContactCardView = Ext.extend(Zarafa.common.ui.DraggableDataVie
 		];
 
 		return new Ext.XTemplate(templateStrArr.join(''), {
-			compiled : true, // compile immediately
+			compiled: true, // compile immediately
 
-			getInitials : function(values)
+			getInitials: function(values)
 			{
 				// Contacts can have empty display names. Fall back to question mark.
 				var contactInitials = "?";
@@ -227,7 +227,7 @@ Zarafa.contact.ui.ContactCardView = Ext.extend(Zarafa.common.ui.DraggableDataVie
 				}
 				return contactInitials.toUpperCase();
 			}
-	
+
 		});
 	}
 });

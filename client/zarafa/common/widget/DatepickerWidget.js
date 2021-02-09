@@ -5,11 +5,11 @@ Ext.namespace('Zarafa.common.widget');
  * @extends Zarafa.core.ui.widget.AbstractFolderWidget
  *
  * Widget that displays the appointments for today, from the default
- * calendar.  It only displays appointments that occur on or after the
+ * calendar. It only displays appointments that occur on or after the
  * current time, so outdated information is never shown.
  *
  * Reload time is configurable per instance of the
- * widget (keys: 'reloadinterval', default 5 minutes).  These values are in
+ * widget (keys: 'reloadinterval', default 5 minutes). These values are in
  * saved in miliseconds but displayed in seconds. The reload
  * interval is how often the calendar is fully reloaded from the
  * server, to show records that were added to the folder

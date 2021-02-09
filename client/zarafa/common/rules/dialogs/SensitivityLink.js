@@ -14,30 +14,30 @@ Zarafa.common.rules.dialogs.SensitivityLink = Ext.extend(Zarafa.common.rules.dia
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			items : [{
-				xtype : 'combo',
-				ref : 'sensitivityCombo',
-				width : 100,
-				store : {
-					xtype : 'jsonstore',
-					fields : [ 'name', 'value' ],
-					data : Zarafa.common.data.SensitivityFlags.flags
+			items: [{
+				xtype: 'combo',
+				ref: 'sensitivityCombo',
+				width: 100,
+				store: {
+					xtype: 'jsonstore',
+					fields: [ 'name', 'value' ],
+					data: Zarafa.common.data.SensitivityFlags.flags
 				},
-				mode : 'local',
-				triggerAction : 'all',
-				displayField : 'name',
-				valueField : 'value',
-				lazyInit : false,
-				forceSelection : true,
-				editable : false,
-				listeners : {
-					select : function() { this.isModified = true; },
-					scope : this
+				mode: 'local',
+				triggerAction: 'all',
+				displayField: 'name',
+				valueField: 'value',
+				lazyInit: false,
+				forceSelection: true,
+				editable: false,
+				listeners: {
+					select: function() { this.isModified = true; },
+					scope: this
 				}
 			}]
 		});
@@ -52,7 +52,7 @@ Zarafa.common.rules.dialogs.SensitivityLink = Ext.extend(Zarafa.common.rules.dia
 	 * which identifies the exact type of the condition.
 	 * @param {Object} condition The condition to apply
 	 */
-	setCondition : function(conditionFlag, condition)
+	setCondition: function(conditionFlag, condition)
 	{
 		var sensitivity = Zarafa.core.mapi.Sensitivity['NONE'];
 
@@ -68,7 +68,7 @@ Zarafa.common.rules.dialogs.SensitivityLink = Ext.extend(Zarafa.common.rules.dia
 	 * Obtain the condition as configured by the user
 	 * @return {Object} The condition
 	 */
-	getCondition : function()
+	getCondition: function()
 	{
 		if (this.isModified !== true) {
 			return this.condition;
@@ -78,7 +78,7 @@ Zarafa.common.rules.dialogs.SensitivityLink = Ext.extend(Zarafa.common.rules.dia
 		var conditionFactory = container.getRulesFactoryByType(Zarafa.common.data.RulesFactoryType.CONDITION);
 		var conditionDefinition = conditionFactory.getConditionById(this.conditionFlag);
 
-		return conditionDefinition({value : value});
+		return conditionDefinition({value: value});
 	}
 });
 

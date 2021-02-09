@@ -11,18 +11,18 @@ Zarafa.core.ui.menu.ConditionalMenu = Ext.extend(Ext.menu.Menu, {
 	/**
 	 * @cfg {Zarafa.core.data.IPMRecord[]} records The records on which this contextmenu was requested
 	 */
-	records : undefined,
+	records: undefined,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			xtype : 'zarafa.conditionalmenu',
+			xtype: 'zarafa.conditionalmenu',
 			shadow: false
 		});
 
@@ -42,7 +42,7 @@ Zarafa.core.ui.menu.ConditionalMenu = Ext.extend(Ext.menu.Menu, {
 	 * @param {Zarafa.core.ui.menu.ConditionalMenu} menu The menu which is being opened.
 	 * @private
 	 */
-	onMenuBeforeShow : function(menu)
+	onMenuBeforeShow: function(menu)
 	{
 		var records = this.records;
 		var allowSeparator = false;

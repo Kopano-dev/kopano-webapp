@@ -11,7 +11,7 @@ Zarafa.mail.widget.MailWidget = Ext.extend(Zarafa.core.ui.widget.AbstractFolderW
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -24,7 +24,7 @@ Zarafa.mail.widget.MailWidget = Ext.extend(Zarafa.core.ui.widget.AbstractFolderW
 		// Create a restriction, we only want unread mails, so mails which
 		// do not have the MSGFLAG_READ flag on the PR_MESSAGE_FLAGS
 		store.setRestriction({
-			'search' : Zarafa.core.data.RestrictionFactory.dataResBitmask(
+			'search': Zarafa.core.data.RestrictionFactory.dataResBitmask(
 				'0x00E070003', /* PR_MESSAGE_FLAGS */
 				Zarafa.core.mapi.Restrictions.BMR_EQZ,
 				Zarafa.core.mapi.MessageFlags.MSGFLAG_READ
@@ -39,15 +39,15 @@ Zarafa.mail.widget.MailWidget = Ext.extend(Zarafa.core.ui.widget.AbstractFolderW
 		Ext.applyIf(config, {
 			autoScroll: true,
 			layout: 'fit',
-			folderType : 'inbox',
-			store : store,
-			items : [{
+			folderType: 'inbox',
+			store: store,
+			items: [{
 				xtype: 'zarafa.gridpanel',
 				id: 'unread-mail-widget',
 				store: store,
 				border: true,
-				loadMask : {
-					msg : _('Loading mail') + '...'
+				loadMask: {
+					msg: _('Loading mail') + '...'
 				},
 				sm: new Zarafa.common.ui.grid.RowSelectionModel({
 					singleSelect: true
@@ -60,26 +60,26 @@ Zarafa.mail.widget.MailWidget = Ext.extend(Zarafa.core.ui.widget.AbstractFolderW
 					// Enable the row body in which we can render
 					// the subject of the mail and some icons
 					// for the attachment and importance.
-					enableRowBody : true,
-					rowSelectorDepth : 15,
-					getRowClass : this.viewConfigGetRowClass
+					enableRowBody: true,
+					rowSelectorDepth: 15,
+					getRowClass: this.viewConfigGetRowClass
 				},
-				colModel : new Ext.grid.ColumnModel({
+				colModel: new Ext.grid.ColumnModel({
 					columns: [{
 						header: _('From'),
 						dataIndex: 'sent_representing_name',
-						menuDisabled : true,
+						menuDisabled: true,
 						renderer: Ext.util.Format.htmlEncode
 					},{
 						header: _('Received'),
 						dataIndex: 'message_delivery_time',
 						editable: false,
-						menuDisabled : true,
-						renderer : Zarafa.common.ui.grid.Renderers.datetime
+						menuDisabled: true,
+						renderer: Zarafa.common.ui.grid.Renderers.datetime
 					}]
 				}),
 				listeners: {
-					'rowcontextmenu' : this.onRowContextMenu,
+					'rowcontextmenu': this.onRowContextMenu,
 					'rowdblclick': this.onRowDblClick,
 					scope: this
 				}
@@ -94,7 +94,7 @@ Zarafa.mail.widget.MailWidget = Ext.extend(Zarafa.core.ui.widget.AbstractFolderW
 	 * {@link Zarafa.core.data.IPMRecord#isRead} and {@link Zarafa.core.data.IPMRecord#isConversationHeaderRecord}.
 	 * @private
 	 */
-    updateFilter : function()
+    updateFilter: function()
 	{
 		this.store.filterBy(function(record) {
 			return !record.isRead() && !record.isConversationHeaderRecord();
@@ -117,7 +117,7 @@ Zarafa.mail.widget.MailWidget = Ext.extend(Zarafa.core.ui.widget.AbstractFolderW
 	 * @return {String} a CSS class name to add to the row
 	 * @private
 	 */
-	viewConfigGetRowClass : function(record, rowIndex, rowParams, store)
+	viewConfigGetRowClass: function(record, rowIndex, rowParams, store)
 	{
 		var cssClass = (record.isRead() ? 'mail_read' : 'mail_unread');
 
@@ -152,7 +152,7 @@ Zarafa.mail.widget.MailWidget = Ext.extend(Zarafa.core.ui.widget.AbstractFolderW
 	 * @param {Ext.EventObject} eventObj eventObj object of the event
 	 * @private
 	 */
-	onRowContextMenu : function(grid, rowIndex, event)
+	onRowContextMenu: function(grid, rowIndex, event)
 	{
 		// check row is already selected or not, if its not selected then select it first
 		var selectionModel = grid.getSelectionModel();
@@ -169,7 +169,7 @@ Zarafa.mail.widget.MailWidget = Ext.extend(Zarafa.core.ui.widget.AbstractFolderW
 			}
 		}
 
-		Zarafa.core.data.UIFactory.openDefaultContextMenu(selectionModel.getSelections(), { position : event.getXY(), model : model });
+		Zarafa.core.data.UIFactory.openDefaultContextMenu(selectionModel.getSelections(), { position: event.getXY(), model: model });
 	},
 
 	/**
@@ -179,7 +179,7 @@ Zarafa.mail.widget.MailWidget = Ext.extend(Zarafa.core.ui.widget.AbstractFolderW
 	 * @param {Ext.EventObject} event The event object
 	 * @private
 	 */
-	onRowDblClick : function(grid, rowIndex, event)
+	onRowDblClick: function(grid, rowIndex, event)
 	{
 		Zarafa.core.data.UIFactory.openViewRecord(grid.getSelectionModel().getSelected());
 	}
@@ -187,9 +187,9 @@ Zarafa.mail.widget.MailWidget = Ext.extend(Zarafa.core.ui.widget.AbstractFolderW
 
 Zarafa.onReady(function() {
 	container.registerWidget(new Zarafa.core.ui.widget.WidgetMetaData({
-		name : 'mail',
-		iconCls : 'icon_widget_unread_mail',
-		displayName : _('Unread Mail'),
-		widgetConstructor : Zarafa.mail.widget.MailWidget
+		name: 'mail',
+		iconCls: 'icon_widget_unread_mail',
+		displayName: _('Unread Mail'),
+		widgetConstructor: Zarafa.mail.widget.MailWidget
 	}));
 });

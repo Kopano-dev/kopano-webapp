@@ -24,9 +24,9 @@ Zarafa.hierarchy.KeyMapping = Ext.extend(Object, {
 			stopEvent: true,
 			handler: this.onNewFolder,
 			scope: this,
-			settingsCfg : {
-				description : _('New folder'),
-				category : _('Creating an item')
+			settingsCfg: {
+				description: _('New folder'),
+				category: _('Creating an item')
 			}
 		},{
 			key: Ext.EventObject.S,
@@ -36,9 +36,9 @@ Zarafa.hierarchy.KeyMapping = Ext.extend(Object, {
 			stopEvent: true,
 			handler: this.onOpenSharedFolder,
 			scope: this,
-			settingsCfg : {
-				description : _('Open shared folder/store'),
-				category : _('Basic navigation')
+			settingsCfg: {
+				description: _('Open shared folder/store'),
+				category: _('Basic navigation')
 			}
 		}];
 
@@ -46,7 +46,7 @@ Zarafa.hierarchy.KeyMapping = Ext.extend(Object, {
 	},
 
 	/**
-	 * Event handler for the keydown event of the {@link Zarafa.core.KeyMap KeyMap} when the user wants to 
+	 * Event handler for the keydown event of the {@link Zarafa.core.KeyMap KeyMap} when the user wants to
 	 * create a new folder.
 	 * @param {Number} key Key code
 	 * @param {Ext.EventObject} event The event
@@ -58,7 +58,7 @@ Zarafa.hierarchy.KeyMapping = Ext.extend(Object, {
 	},
 
 	/**
-	 * Event handler for the keydown event of the {@link Zarafa.core.KeyMap KeyMap} when the user wants to 
+	 * Event handler for the keydown event of the {@link Zarafa.core.KeyMap KeyMap} when the user wants to
 	 * create a new folder.
 	 * @param {Number} key Key code
 	 * @param {Ext.EventObject} event The event

@@ -9,13 +9,13 @@ Zarafa.common.CommonContext = Ext.extend(Zarafa.core.Context, {
 	 * @constructor
 	 * @param config
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			hasToolbar : false,
-			hasContentPanel : false
+			hasToolbar: false,
+			hasContentPanel: false
 		});
 
 		Zarafa.common.CommonContext.superclass.constructor.call(this, config);
@@ -29,12 +29,12 @@ Zarafa.common.CommonContext = Ext.extend(Zarafa.core.Context, {
 		// Copyrights text for the viewer and pdf js.
 		this.registerInsertionPoint('context.settings.category.copyright', function() {
 			return {
-				xtype : 'zarafa.settingscopyrightwidget',
-				title : "File previewer",
-				about : Zarafa.common.previewer.ui.ABOUT
+				xtype: 'zarafa.settingscopyrightwidget',
+				title: "File previewer",
+				about: Zarafa.common.previewer.ui.ABOUT
 			};
 		});
-		
+
 		// Register common specific dialog types
 		Zarafa.core.data.SharedComponentType.addProperty('common.dialog.copymoverecords');
 		Zarafa.core.data.SharedComponentType.addProperty('common.dialog.recurrence');
@@ -291,11 +291,11 @@ Zarafa.common.CommonContext = Ext.extend(Zarafa.core.Context, {
 	 * @return {Array} configuration object for the categories to register
 	 * @private
 	 */
-	createDelegateSettingsCategory : function(insertionName, settingsMainPanel, settingsContext)
+	createDelegateSettingsCategory: function(insertionName, settingsMainPanel, settingsContext)
 	{
 		return {
-			xtype : 'zarafa.settingsdelegatecategory',
-			settingsContext : settingsContext
+			xtype: 'zarafa.settingsdelegatecategory',
+			settingsContext: settingsContext
 		};
 	},
 
@@ -312,11 +312,11 @@ Zarafa.common.CommonContext = Ext.extend(Zarafa.core.Context, {
 	 * @return {Array} configuration object for the categories to register
 	 * @private
 	 */
-	createSendAsSettingsCategory : function(insertionName, settingsMainPanel, settingsContext)
+	createSendAsSettingsCategory: function(insertionName, settingsMainPanel, settingsContext)
 	{
 		return {
-			xtype : 'zarafa.settingssendascategory',
-			settingsContext : settingsContext
+			xtype: 'zarafa.settingssendascategory',
+			settingsContext: settingsContext
 		};
 	},
 
@@ -333,11 +333,11 @@ Zarafa.common.CommonContext = Ext.extend(Zarafa.core.Context, {
 	 * @return {Array} configuration object for the categories to register
 	 * @private
 	 */
-	createRuleSettingsCategory : function(insertionName, settingsMainPanel, settingsContext)
+	createRuleSettingsCategory: function(insertionName, settingsMainPanel, settingsContext)
 	{
 		return {
-			xtype : 'zarafa.settingsrulecategory',
-			settingsContext : settingsContext
+			xtype: 'zarafa.settingsrulecategory',
+			settingsContext: settingsContext
 		};
 	},
 
@@ -354,19 +354,19 @@ Zarafa.common.CommonContext = Ext.extend(Zarafa.core.Context, {
 	 * @return {Array} configuration object for the categories to register
 	 * @private
 	 */
-	createNotificationSettingsCategory : function(insertionName, settingsMainPanel, settingsContext)
+	createNotificationSettingsCategory: function(insertionName, settingsMainPanel, settingsContext)
 	{
 		return {
-            xtype : 'zarafa.settingsnotificationscategory',
-            settingsContext : settingsContext
-        };
+      xtype: 'zarafa.settingsnotificationscategory',
+      settingsContext: settingsContext
+    };
 	}
 });
 
 Zarafa.onReady(function() {
 	container.registerContext(new Zarafa.core.ContextMetaData({
-		name : 'default',
-		allowUserVisible : false,
-		pluginConstructor : Zarafa.common.CommonContext
+		name: 'default',
+		allowUserVisible: false,
+		pluginConstructor: Zarafa.common.CommonContext
 	}));
 });

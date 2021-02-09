@@ -72,7 +72,7 @@ Zarafa.core.data.ProxyResponseHandler = Ext.extend(Zarafa.core.data.AbstractResp
 	 * @property
 	 * @type Number
 	 */
-	receivedTime : undefined,
+	receivedTime: undefined,
 
 	/**
 	 * The meta data that is received with response that will be sent to the {#callback} function.
@@ -80,7 +80,7 @@ Zarafa.core.data.ProxyResponseHandler = Ext.extend(Zarafa.core.data.AbstractResp
 	 * @property
 	 * @type Mixed
 	 */
-	metaData : undefined,
+	metaData: undefined,
 
 	/**
 	 * The handler which is invoked when no valid response was returned
@@ -90,7 +90,7 @@ Zarafa.core.data.ProxyResponseHandler = Ext.extend(Zarafa.core.data.AbstractResp
 	 * @param {Object} args (optional) A Javascript error object if the response could not
 	 * have been parsed by a {@link Ext.data.DataReader DataReader}.
 	 */
-	responseFailure : function(responseObject, args)
+	responseFailure: function(responseObject, args)
 	{
 		if (Ext.isDefined(this.proxy)) {
 			// Create the args object containing the sendRecords and the JS Error to be used when
@@ -148,7 +148,7 @@ Zarafa.core.data.ProxyResponseHandler = Ext.extend(Zarafa.core.data.AbstractResp
 	 * not cancel the transaction itself, but rather causes the 'success' argument for the
 	 * {@link #done} function to be false.
 	 */
-	handle : function(action, data)
+	handle: function(action, data)
 	{
 		var ret;
 		try {
@@ -181,11 +181,11 @@ Zarafa.core.data.ProxyResponseHandler = Ext.extend(Zarafa.core.data.AbstractResp
 	 * @return {Boolean} False when action could not be handled successfully. This will
 	 * not cancel the transaction itself, but rather causes the 'success' argument for the
 	 */
-	doError : function(response)
+	doError: function(response)
 	{
 		// Create the args object containing the sendRecords to be used when handling the exception
 		var args = { sendRecords: this.sendRecords };
-		response = { error : response };
+		response = { error: response };
 
 		this.proxy.fireEvent('exception', this.proxy, 'remote', this.action, this.options, response, args);
 		return false;
@@ -197,7 +197,7 @@ Zarafa.core.data.ProxyResponseHandler = Ext.extend(Zarafa.core.data.AbstractResp
 	 * @param {Boolean} success True if no errors were returned from the PHP-side.
 	 * @override
 	 */
-	done : function(success)
+	done: function(success)
 	{
 		if (Ext.isFunction(this.callback)) {
 			// @FIXME do we have better way to pass meta data to callback function ?
@@ -212,7 +212,7 @@ Zarafa.core.data.ProxyResponseHandler = Ext.extend(Zarafa.core.data.AbstractResp
 	 * {@link Zarafa.core.data.MAPIRecord records}
 	 * @private
 	 */
-	correlateRecordFromResponse : function(response)
+	correlateRecordFromResponse: function(response)
 	{
 		var responseObj = this.reader.readResponse(Ext.data.Api.actions.read, response);
 		var sendRecords = this.sendRecords.clone();
@@ -241,7 +241,7 @@ Zarafa.core.data.ProxyResponseHandler = Ext.extend(Zarafa.core.data.AbstractResp
 	 * @param {Zarafa.core.data.MAPIRecord} record The record which was send to the server
 	 * @protected
 	 */
-	compareResponseDataToRecord : function(data, record)
+	compareResponseDataToRecord: function(data, record)
 	{
 		// FIXME: Record comparison by entryid alone is not sufficient.
 		// FIXME: probably first we should check type of entryid and then use appropriate compare functions
@@ -258,7 +258,7 @@ Zarafa.core.data.ProxyResponseHandler = Ext.extend(Zarafa.core.data.AbstractResp
 	 * read from the server response.
 	 * @private
 	 */
-	readRecordsFromResponse : function(response, field)
+	readRecordsFromResponse: function(response, field)
 	{
 		var items = response[field] || [];
 		if (!Array.isArray(items)) {
@@ -269,7 +269,7 @@ Zarafa.core.data.ProxyResponseHandler = Ext.extend(Zarafa.core.data.AbstractResp
 		// the returned record list. This is used for pagination.
 		var itemCount = response.page ? response.page.totalrowcount : items.length;
 
-		var o = { count : itemCount };
+		var o = { count: itemCount };
 		// Add 'field' property to response data, this will fix this.getRoot(o) in JSONReader
 		o[field] = items;
 		if (response.error) {

@@ -9,19 +9,19 @@ Zarafa.common.ui.messagepanel.SentInfoLinks = Ext.extend(Ext.Container, {
 	/**
 	 * @cfg {String} senderCls is the CSS class which should be applied to sender Template
 	 */
-	senderCls : 'preview-header-senderbox',
+	senderCls: 'preview-header-senderbox',
 
 	/**
 	 * @cfg {Number} maximum length of text allowed before truncations,
 	 * truncation will be replaced with ellipsis ('...').
 	 */
-	ellipsisStringStartLength : 30,
+	ellipsisStringStartLength: 30,
 
 	/**
 	 * @cfg {Number} maximum length of text allowed after truncations,
 	 * truncation will be replaced with ellipsis ('...').
 	 */
-	ellipsisStringEndLength : 30,
+	ellipsisStringEndLength: 30,
 	/**
 	 * @cfg {Zarafa.core.data.IPMRecord} record Holds the current record
 	 */
@@ -32,7 +32,7 @@ Zarafa.common.ui.messagepanel.SentInfoLinks = Ext.extend(Ext.Container, {
 	 * {@link Zarafa.core.data.IPMRecord record} has been {@link #update updated}.
 	 * The arguments of this template will be the {@link Zarafa.core.data.IPMRecord#data record.data} field.
 	 */
-	senderTemplate :
+	senderTemplate:
 		'<tpl if="!Ext.isEmpty(values.sender_entryid) && !Ext.isEmpty(values.sent_representing_entryid) && !Zarafa.core.EntryId.compareABEntryIds(values.sent_representing_entryid, values.sender_entryid)">' +
 			'<span class="preview-from">' +
 				'<span class="zarafa-emailaddress-link zarafa-sentinfo-link"> ' +
@@ -99,7 +99,7 @@ Zarafa.common.ui.messagepanel.SentInfoLinks = Ext.extend(Ext.Container, {
 	 * @constructor
 	 * @param {Object} config configuration object.
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -108,10 +108,10 @@ Zarafa.common.ui.messagepanel.SentInfoLinks = Ext.extend(Ext.Container, {
 
 		Ext.applyIf(config,{
 			xtype: 'zarafa.sentinfolinks',
-			border : false,
+			border: false,
 			autoScroll:true,
-			anchor : '100%',
-			cls : 'preview-header-sentinfo'
+			anchor: '100%',
+			cls: 'preview-header-sentinfo'
 		});
 
 		Zarafa.common.ui.messagepanel.SentInfoLinks.superclass.constructor.call(this, config);
@@ -119,8 +119,8 @@ Zarafa.common.ui.messagepanel.SentInfoLinks = Ext.extend(Ext.Container, {
 		if (Ext.isString(this.senderTemplate)) {
 			this.senderTemplate = new Ext.XTemplate(this.senderTemplate, {
 				compiled: true,
-				ellipsisStringStartLength : this.ellipsisStringStartLength,
-				ellipsisStringEndLength : this.ellipsisStringEndLength,
+				ellipsisStringStartLength: this.ellipsisStringStartLength,
+				ellipsisStringEndLength: this.ellipsisStringEndLength,
 				/*
 				 * Template member Function
 				 * This function will check if the passed data in the template is a meeting/scheduled items or not
@@ -151,7 +151,7 @@ Zarafa.common.ui.messagepanel.SentInfoLinks = Ext.extend(Ext.Container, {
 		Zarafa.common.ui.messagepanel.SentInfoLinks.superclass.onRender.apply(this, arguments);
 
 		// Setup the HTML structure for the whole recipientLink and get references to the different elements in it
-		this.senderElem  = Ext.DomHelper.append(this.el.dom,{tag:'div', cls:this.senderCls});
+		this.senderElem = Ext.DomHelper.append(this.el.dom,{tag:'div', cls:this.senderCls});
 	},
 
 	/**
@@ -224,8 +224,8 @@ Zarafa.common.ui.messagepanel.SentInfoLinks = Ext.extend(Ext.Container, {
 			var senderElem = Ext.get(this.senderElem);
 			Zarafa.core.data.UIFactory.openHoverCard(recipient, {
 				position: evt.getXY(),
-				recipientView : senderElem,
-				store:this.record.getSubStore('reply-to')
+				recipientView: senderElem,
+				store: this.record.getSubStore('reply-to')
 			});
 		}
 	},
@@ -238,7 +238,7 @@ Zarafa.common.ui.messagepanel.SentInfoLinks = Ext.extend(Ext.Container, {
 	 * @param {Object} obj The options configuration passed to the {@link Ext.Element#addListener} call
  	 * @private
 	 */
-	onDoubleClick : function(evt, elem, obj)
+	onDoubleClick: function(evt, elem, obj)
 	{
 		var recipient = this.convertSenderToRecord(elem);
 		// Don't show hover card if no recipient (happens when there is no sender_entryid)
@@ -253,10 +253,10 @@ Zarafa.common.ui.messagepanel.SentInfoLinks = Ext.extend(Ext.Container, {
 	 * Depending on this check either {@link Zarafa.core.data.MessageRecord#getSender} or {@link Zarafa.core.data.MessageRecord#getSenderRepresenting} is invoked on the current {@link Zarafa.core.data.MessageRecord}.
 	 * @return {Zarafa.core.data.IPMRecipientRecord} or undefined
 	 */
-	convertSenderToRecord : function(elem)
+	convertSenderToRecord: function(elem)
 	{
 		var sender;
-		// Sometimes, the element clicked is the presence status of the user. 
+		// Sometimes, the element clicked is the presence status of the user.
 		// We need the email address link to check for the css classes - zarafa-sentinfo-link or zarafa-sentinfo-on-behalf.
 		// Hence we need the parent of zarafa-presence-status i.e. zarafa-emailaddress-link.
 		var element = Ext.get(elem).hasClass('zarafa-presence-status') ? Ext.get(elem.parentElement) : Ext.get(elem);
@@ -287,8 +287,8 @@ Zarafa.common.ui.messagepanel.SentInfoLinks = Ext.extend(Ext.Container, {
 				var senderElem = Ext.get(scope.senderElem);
 				Zarafa.core.data.UIFactory.openHoverCard(recipient, {
 					position: e.getXY(),
-					recipientView : senderElem,
-					store : scope.record.getSubStore('reply-to')
+					recipientView: senderElem,
+					store: scope.record.getSubStore('reply-to')
 				});
 			}
 		}, 700, this);
@@ -299,7 +299,7 @@ Zarafa.common.ui.messagepanel.SentInfoLinks = Ext.extend(Ext.Container, {
 	 * mouse leaves the sender links. it will
 	 * just clear the timeout.
 	 */
-	onMouseLeave : function ()
+	onMouseLeave: function ()
 	{
 		clearTimeout(this.timer);
 	}

@@ -99,21 +99,21 @@ Zarafa.addressbook.AddressBookRecord = Ext.extend(Zarafa.core.data.MAPIRecord, {
 	 *
 	 * @return {Zarafa.core.data.IPMRecipientRecord} The recipientRecord for this addressbook item
 	 */
-	convertToRecipient : function(recipientType, recordType)
+	convertToRecipient: function(recipientType, recordType)
 	{
 		var recordCustomObjectType = Zarafa.core.data.RecordCustomObjectType;
 		recordType = recordCustomObjectType.get(recordType) ? recordType : recordCustomObjectType.ZARAFA_RECIPIENT;
 		var recipientRecord = Zarafa.core.data.RecordFactory.createRecordObjectByCustomType(recordType, {
-			entryid : this.get('entryid'),
-			search_key : this.get('search_key'),
-			object_type : this.get('object_type'),
-			display_name : this.get('display_name'),
-			display_type : this.get('display_type'),
-			display_type_ex : this.get('display_type_ex'),
-			email_address : this.get('email_address'),
-			smtp_address : this.get('smtp_address'),
-			address_type : this.get('address_type'),
-			recipient_type : recipientType || Zarafa.core.mapi.RecipientType.MAPI_TO
+			entryid: this.get('entryid'),
+			search_key: this.get('search_key'),
+			object_type: this.get('object_type'),
+			display_name: this.get('display_name'),
+			display_type: this.get('display_type'),
+			display_type_ex: this.get('display_type_ex'),
+			email_address: this.get('email_address'),
+			smtp_address: this.get('smtp_address'),
+			address_type: this.get('address_type'),
+			recipient_type: recipientType || Zarafa.core.mapi.RecipientType.MAPI_TO
 		});
 
 		return recipientRecord;
@@ -125,7 +125,7 @@ Zarafa.addressbook.AddressBookRecord = Ext.extend(Zarafa.core.data.MAPIRecord, {
 	 *
 	 * @return {Zarafa.contact.DistlistMemberRecord} The distribution list member for this address book item
 	 */
-	convertToDistlistMember : function()
+	convertToDistlistMember: function()
 	{
 		// by default set it to addressbook user
 		var distlistType = Zarafa.core.mapi.DistlistType.DL_USER_AB;
@@ -148,12 +148,12 @@ Zarafa.addressbook.AddressBookRecord = Ext.extend(Zarafa.core.data.MAPIRecord, {
 		}
 
 		var props = {
-			entryid : entryid,
-			address_type : this.get('address_type'),
-			distlist_type : distlistType,
-			display_name : this.get('display_name'),
-			email_address : this.get('email_address') || this.get('smtp_address'),
-			smtp_address : this.get('smtp_address') || this.get('email_address')
+			entryid: entryid,
+			address_type: this.get('address_type'),
+			distlist_type: distlistType,
+			display_name: this.get('display_name'),
+			email_address: this.get('email_address') || this.get('smtp_address'),
+			smtp_address: this.get('smtp_address') || this.get('email_address')
 		};
 
 		return Zarafa.core.data.RecordFactory.createRecordObjectByCustomType(Zarafa.core.data.RecordCustomObjectType.ZARAFA_DISTLIST_MEMBER, props);
@@ -164,13 +164,13 @@ Zarafa.addressbook.AddressBookRecord = Ext.extend(Zarafa.core.data.MAPIRecord, {
 	 * which can be used to assign permissions to the addressbook item for a particular {@link Zarafa.hierarchy.data.MAPIFolder}.
 	 * @return {Zarafa.hierarchy.data.UserPermissionRecord} The user permission record for this addressbook item
 	 */
-	convertToUserPermission : function()
+	convertToUserPermission: function()
 	{
 		return Zarafa.core.data.RecordFactory.createRecordObjectByCustomType(Zarafa.core.data.RecordCustomObjectType.ZARAFA_USER_PERMISSION, {
-			entryid : this.get('entryid'),
-			display_name : this.get('display_name'),
-			object_type : this.get('object_type'),
-			rights : Zarafa.core.mapi.Rights.RIGHTS_NO_RIGHTS
+			entryid: this.get('entryid'),
+			display_name: this.get('display_name'),
+			object_type: this.get('object_type'),
+			rights: Zarafa.core.mapi.Rights.RIGHTS_NO_RIGHTS
 		});
 	},
 
@@ -180,11 +180,11 @@ Zarafa.addressbook.AddressBookRecord = Ext.extend(Zarafa.core.data.MAPIRecord, {
 	 *
 	 * @return {Zarafa.common.delegates.data.DelegateRecord} The DelegateRecord for this addressbook item.
 	 */
-	convertToDelegate : function()
+	convertToDelegate: function()
 	{
 		var data = {
-			entryid : this.get('entryid'),
-			display_name : this.get('display_name')
+			entryid: this.get('entryid'),
+			display_name: this.get('display_name')
 		};
 
 		return Zarafa.core.data.RecordFactory.createRecordObjectByCustomType(Zarafa.core.data.RecordCustomObjectType.ZARAFA_DELEGATE, data);
@@ -232,7 +232,7 @@ Zarafa.addressbook.AddressBookRecord = Ext.extend(Zarafa.core.data.MAPIRecord, {
 	 * @return {Zarafa.core.data.IPMRecord} The addressbook record which
 	 * is represented by this recipient.
 	 */
-	convertToContactRecord : function()
+	convertToContactRecord: function()
 	{
 		// Entryids of personal contacts are suffixed with email id (1, 2, 3), so remove that id
 		// this is done in php to ensure that we will always have unique entryids
@@ -250,9 +250,9 @@ Zarafa.addressbook.AddressBookRecord = Ext.extend(Zarafa.core.data.MAPIRecord, {
 		}
 
 		return Zarafa.core.data.RecordFactory.createRecordObjectByMessageClass('IPM.Contact', {
-			entryid : entryid,
-			message_class : 'IPM.Contact',
-			object_type : Zarafa.core.mapi.ObjectType.MAPI_MESSAGE
+			entryid: entryid,
+			message_class: 'IPM.Contact',
+			object_type: Zarafa.core.mapi.ObjectType.MAPI_MESSAGE
 		}, entryid);
 	},
 
@@ -263,7 +263,7 @@ Zarafa.addressbook.AddressBookRecord = Ext.extend(Zarafa.core.data.MAPIRecord, {
 	 * @return {Zarafa.core.data.IPMRecord} The addressbook record which
 	 * is represented by this recipient.
 	 */
-	convertToDistListRecord : function()
+	convertToDistListRecord: function()
 	{
 		// Entryids of personal contacts are suffixed with email id (1, 2, 3), so remove that id
 		// this is done in php to ensure that we will always have unique entryids
@@ -281,9 +281,9 @@ Zarafa.addressbook.AddressBookRecord = Ext.extend(Zarafa.core.data.MAPIRecord, {
 		}
 
 		return Zarafa.core.data.RecordFactory.createRecordObjectByMessageClass('IPM.DistList', {
-			entryid : entryid,
-			message_class : 'IPM.DistList',
-			object_type : Zarafa.core.mapi.ObjectType.MAPI_MESSAGE
+			entryid: entryid,
+			message_class: 'IPM.DistList',
+			object_type: Zarafa.core.mapi.ObjectType.MAPI_MESSAGE
 		}, entryid);
 	},
 
@@ -294,7 +294,7 @@ Zarafa.addressbook.AddressBookRecord = Ext.extend(Zarafa.core.data.MAPIRecord, {
 	 * @param {Zarafa.core.data.MAPIRecord} record The Record to compare with
 	 * @return {Boolean} True if the records are the same.
 	 */
-	equals : function(record)
+	equals: function(record)
 	{
 		// Simplest case, do we have the same object...
 		if (this === record) {

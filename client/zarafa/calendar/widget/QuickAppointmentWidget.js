@@ -13,31 +13,31 @@ Zarafa.calendar.widget.QuickAppointmentWidget = Ext.extend(Zarafa.core.ui.widget
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			wrapCfg : {
-				recordComponentPluginConfig : Ext.applyIf(config.recordComponentPluginConfig || {}, {
-					allowWrite : true
+			wrapCfg: {
+				recordComponentPluginConfig: Ext.applyIf(config.recordComponentPluginConfig || {}, {
+					allowWrite: true
 				}),
-				layout : 'fit',
-				items : [{
-					xtype : 'form',
-					ref : 'formPanel',
+				layout: 'fit',
+				items: [{
+					xtype: 'form',
+					ref: 'formPanel',
 					layout: {
 						type: 'vbox',
 						align: 'stretch'
 					},
-					border : false,
+					border: false,
 					bodyStyle: 'background-color: inherit; padding: 5px;',
 					defaults: {
 						border: false,
 						labelLength: 100,
 						style: 'padding-bottom: 2px'
 					},
-					items : [{
+					items: [{
 						xtype: 'zarafa.compositefield',
 						hideLabel: true,
 						anchor: '100%',
@@ -47,8 +47,8 @@ Zarafa.calendar.widget.QuickAppointmentWidget = Ext.extend(Zarafa.core.ui.widget
 							name: 'subject',
 							emptyText: _('Subject') + ':',
 							listeners: {
-								change : this.onChange,
-								scope : this
+								change: this.onChange,
+								scope: this
 							}
 						}]
 					},{
@@ -61,10 +61,10 @@ Zarafa.calendar.widget.QuickAppointmentWidget = Ext.extend(Zarafa.core.ui.widget
 							scope: this
 						},
 						startFieldConfig: {
-							minValue : new Date().clearTime()
+							minValue: new Date().clearTime()
 						},
 						endFieldConfig: {
-							minValue : new Date().clearTime()
+							minValue: new Date().clearTime()
 						}
 					},{
 						xtype: 'zarafa.compositefield',
@@ -73,8 +73,8 @@ Zarafa.calendar.widget.QuickAppointmentWidget = Ext.extend(Zarafa.core.ui.widget
 						items: [{
 							xtype: 'checkbox',
 							name: 'alldayevent',
-							ref : '../../alldayCheck',
-							hideLabel : false,
+							ref: '../../alldayCheck',
+							hideLabel: false,
 							boxLabel: _('All Day Event'),
 							height: 15,
 							handler: this.onToggleAllDay,
@@ -83,30 +83,30 @@ Zarafa.calendar.widget.QuickAppointmentWidget = Ext.extend(Zarafa.core.ui.widget
 					},{
 						xtype: 'zarafa.editorfield',
 						ref: '../editorField',
-						htmlName : 'html_body',
-						plaintextName : 'body',
+						htmlName: 'html_body',
+						plaintextName: 'body',
 						hideLabel: true,
 						flex: 1,
-						useHtml : false,
+						useHtml: false,
 						defaultValue: '',
 						listeners: {
-							change : this.onBodyChange,
-							scope : this
+							change: this.onBodyChange,
+							scope: this
 						}
 					}]
 				}]
 			},
-			buttons : [{
-				text : _('Save'),
-				cls : 'zarafa-action',
+			buttons: [{
+				text: _('Save'),
+				cls: 'zarafa-action',
 				style: 'padding-bottom: 5px',
-				handler : this.onSave,
-				scope : this
+				handler: this.onSave,
+				scope: this
 			},{
-				text : _('Discard'),
+				text: _('Discard'),
 				style: 'padding-bottom: 5px',
-				handler : this.onDiscard,
-				scope : this
+				handler: this.onDiscard,
+				scope: this
 			}]
 		});
 
@@ -121,7 +121,7 @@ Zarafa.calendar.widget.QuickAppointmentWidget = Ext.extend(Zarafa.core.ui.widget
 	 * @param {Mixed} oldValue The original value for the field
 	 * @private
 	 */
-	onDateRangeFieldChange : function(field, newRange, oldRange)
+	onDateRangeFieldChange: function(field, newRange, oldRange)
 	{
 		this.updateStartDueDate(this.wrap.record, newRange);
 	},
@@ -133,7 +133,7 @@ Zarafa.calendar.widget.QuickAppointmentWidget = Ext.extend(Zarafa.core.ui.widget
 	 * @param {Boolean} checked The new checked state of the checkbox.
 	 * @private
 	 */
-	onToggleAllDay : function(checkbox, checked)
+	onToggleAllDay: function(checkbox, checked)
 	{
 		if (this.wrap.record.get('alldayevent') !== checked) {
 			var settingsModel = container.getSettingsModel();
@@ -181,7 +181,7 @@ Zarafa.calendar.widget.QuickAppointmentWidget = Ext.extend(Zarafa.core.ui.widget
 	 * @param {Zarafa.core.DateRange} daterange the Daterange to apply
 	 * @private
 	 */
-	updateStartDueDate : function(record, daterange)
+	updateStartDueDate: function(record, daterange)
 	{
 		var startDate = daterange.getStartDate().clone();
 		var dueDate = daterange.getDueDate().clone();
@@ -205,7 +205,7 @@ Zarafa.calendar.widget.QuickAppointmentWidget = Ext.extend(Zarafa.core.ui.widget
 	 * @return {Ext.data.Record} record The record to load into the {@link #wrap}
 	 * @protected
 	 */
-	createRecord : function()
+	createRecord: function()
 	{
 		var folder = container.getHierarchyStore().getDefaultFolder('calendar');
 		var context = container.getContextByName('calendar');
@@ -221,7 +221,7 @@ Zarafa.calendar.widget.QuickAppointmentWidget = Ext.extend(Zarafa.core.ui.widget
 	 * @param {Boolean} contentReset force the component to perform a full update of the data.
 	 * @protected
 	 */
-	update : function(record, contentReset)
+	update: function(record, contentReset)
 	{
 		if (contentReset === true || record.isModifiedSinceLastUpdate('alldayevent')) {
 			if (record.get('alldayevent')) {
@@ -252,7 +252,7 @@ Zarafa.calendar.widget.QuickAppointmentWidget = Ext.extend(Zarafa.core.ui.widget
 		if (record.get('alldayevent')) {
 			dueDate = dueDate.add(Date.DAY, -1);
 		}
-		
+
 		if (startDateUpdate || dueDateUpdate) {
 			this.wrap.datetimePeriod.getValue().set(startDate, dueDate);
 		}
@@ -264,7 +264,7 @@ Zarafa.calendar.widget.QuickAppointmentWidget = Ext.extend(Zarafa.core.ui.widget
 	 * @param {Zarafa.core.data.IPMRecord} record The record to update
 	 * @protected
 	 */
-	updateRecord : function(record)
+	updateRecord: function(record)
 	{
 		record.beginEdit();
 		this.wrap.formPanel.getForm().updateRecord(record);
@@ -277,9 +277,9 @@ Zarafa.calendar.widget.QuickAppointmentWidget = Ext.extend(Zarafa.core.ui.widget
 
 Zarafa.onReady(function() {
 	container.registerWidget(new Zarafa.core.ui.widget.WidgetMetaData({
-		name : 'quickappt',
+		name: 'quickappt',
 		iconCls: 'icon_widget_new_appointment',
-		displayName : _('Quick Appointment'),
-		widgetConstructor : Zarafa.calendar.widget.QuickAppointmentWidget
+		displayName: _('Quick Appointment'),
+		widgetConstructor: Zarafa.calendar.widget.QuickAppointmentWidget
 	}));
 });

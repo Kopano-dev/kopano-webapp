@@ -39,9 +39,9 @@ define('ENABLE_SHARED_CONTACT_FOLDERS', true);
 set_include_path(BASE_PATH . PATH_SEPARATOR . get_include_path());
 
 // include debug file from test system not from webapp, so test system can provide more stricter debug files
-if (file_exists(getcwd() . '/debug.php')){
+if (file_exists(getcwd() . '/debug.php')) {
 	include(getcwd() . '/debug.php');
-}else{
+} else {
 	// define empty dump function in case we still use it somewhere
 	function dump() {}
 }

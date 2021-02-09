@@ -8,10 +8,10 @@ Zarafa.core.themes.ThemeHighContrast = Ext.extend(Zarafa.core.ThemePlugin, {});
 
 Zarafa.onReady(function() {
 	container.registerPlugin(new Zarafa.core.PluginMetaData({
-		name : 'highcontrast',
-		displayName : _('High Contrast'),
-		allowUserDisable : false,
-		allowUserVisible : false,
-		pluginConstructor : Zarafa.core.themes.ThemeHighContrast
+		name: 'highcontrast',
+		displayName: _('High Contrast'),
+		allowUserDisable: false,
+		allowUserVisible: false,
+		pluginConstructor: Zarafa.core.themes.ThemeHighContrast
 	}));
 });

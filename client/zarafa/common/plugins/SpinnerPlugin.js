@@ -35,7 +35,7 @@ Zarafa.common.plugins.SpinnerPlugin = Ext.extend(Ext.ux.Spinner, {
 	 * @param {Event} event The event object for this event
 	 */
 	onTriggerClick: function(event)
-	{	   
+	{
 		if (this.disabled || this.el.dom.readOnly) {
 			return;
 		}

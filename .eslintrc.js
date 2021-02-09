@@ -282,6 +282,6 @@ module.exports = {
         "Oidc": true,
         "DOMPurify": true,
         "chrome": true,
-        "IS_KUSTOMER_CHECK_ENABLED" : false
+        "IS_KUSTOMER_CHECK_ENABLED": false
     }
 };

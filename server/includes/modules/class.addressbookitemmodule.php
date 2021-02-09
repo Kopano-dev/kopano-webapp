@@ -15,7 +15,7 @@
 			$this->userDetailProperties = $GLOBALS["properties"]->getAddressBookItemMailuserProperties();
 			$this->abObjectDetailProperties = $GLOBALS["properties"]->getAddressBookItemABObjectProperties();
 			$this->groupDetailProperties = $GLOBALS["properties"]->getAddressBookItemDistlistProperties();
-			
+
 			parent::__construct($id, $data);
 		}
 
@@ -24,7 +24,7 @@
 		 * @param object $store MAPI Message Store Object
 		 * @param string $entryid entryid of the message
 		 * @param array $action the action data, sent by the client
-		 * @return boolean true on success or false on failure 
+		 * @return boolean true on success or false on failure
 		 */
 		function open($store, $entryid, $action)
 		{
@@ -96,7 +96,7 @@
 							$managerProps = $this->getManagerDetails($messageprops);
 							if($managerProps!==false){
 								$props['ems_ab_manager'] = array(
-									'item' => $managerProps	
+									'item' => $managerProps
 								);
 							}
 
@@ -104,7 +104,7 @@
 							if (!empty($homePhoneNumbers)){
 								// Add the list of home2_telephone_number_mv in the correct format to $props list to be send to the client
 								$props['home2_telephone_numbers'] = array(
-									'item' => $homePhoneNumbers	
+									'item' => $homePhoneNumbers
 								);
 							}
 
@@ -112,7 +112,7 @@
 							if (!empty($businessPhoneNumbers)){
 								// Add the list of business2_telephone_number_mv in the correct format to $props list to be send to the client
 								$props['business2_telephone_numbers'] = array(
-									'item' => $businessPhoneNumbers	
+									'item' => $businessPhoneNumbers
 								);
 							}
 
@@ -126,7 +126,7 @@
 							}
 
 						// Get the properties for a DISTLIST object and process those DISTLIST specific props that require some more actions
-						}else{
+						} else {
 							$messageprops = mapi_getprops($abentry, $this->groupDetailProperties);
 							$props = Conversion::mapMAPI2XML($this->groupDetailProperties, $messageprops);
 
@@ -188,13 +188,13 @@
 
 						$data["item"] = $props;
 						$this->addActionData("item", $data);
-					}else{
+					} else {
 						// Handling error: not able to handle this type of object
 						$data["error"] = array();
 						$data["error"]["message"] = _("Could not handle this type of object.");
 						$this->addActionData("error", $data);
 					}
-				}else{
+				} else {
 					// Handle not being able to open the object
 					$data["error"] = array();
 					$data["error"]["hresult"] = mapi_last_hresult();
@@ -211,7 +211,7 @@
 		 * Get Business Telephone numbers in the messageprops array when it is set in the
 		 * PR_HOME2_TELEPHONE_NUMBER_MV. This property is poorly documented and in Outlook it checks
 		 * the property with and without the MV flag. The one without a MV flag can contain only one
-		 * entry and the one with MV flag can contain a list. It then merges both into one list. 
+		 * entry and the one with MV flag can contain a list. It then merges both into one list.
 		 * This function has the same behavior and sets the list in the $messageprops.
 		 * @param $messageprops Array Details properties of an user entry.
 		 * @return Array List of telephone numbers
@@ -237,7 +237,7 @@
 		 * Get Business Telephone numbers in the messageprops array when it is set in the
 		 * PR_BUSINESS2_TELEPHONE_NUMBER_MV. This property is poorly documented and in Outlook it checks
 		 * the property with and without the MV flag. The one without a MV flag can contain only one
-		 * entry and the one with MV flag can contain a list. It then merges both into one list. 
+		 * entry and the one with MV flag can contain a list. It then merges both into one list.
 		 * This function has the same behavior and sets the list in the $messageprops.
 		 * @param $messageprops Array Details properties of an user entry.
 		 * @return Array List of telephone numbers
@@ -260,10 +260,10 @@
 		}
 
 		/**
-		 * Get Proxy Addresses in the messageprops array when it is set in the 
-		 * PR_EMS_AB_PROXY_ADDRESSES. This property is poorly documented and in Outlook it checks 
+		 * Get Proxy Addresses in the messageprops array when it is set in the
+		 * PR_EMS_AB_PROXY_ADDRESSES. This property is poorly documented and in Outlook it checks
 		 * the property with and without the MV flag. The one without a MV flag can contain only one
-		 * entry and the one with MV flag can contain a list. It then merges both into one list. 
+		 * entry and the one with MV flag can contain a list. It then merges both into one list.
 		 * This function has the same behavior and sets the list in the $messageprops.
 		 * @param $messageprops Array Details properties of an user entry.
 		 * @return Array List of addresses
@@ -286,7 +286,7 @@
 		}
 
 		/**
-		 * Get the information of the manager from the GAB details of a MAPI_MAILUSER. Will use the 
+		 * Get the information of the manager from the GAB details of a MAPI_MAILUSER. Will use the
 		 * entryid to get the properties. If no entryid if found false is returned.
 		 * @param $messageprops Array Details properties of an user entry.
 		 * @return Boolean|Array List of properties or false if no manager is set
@@ -305,10 +305,10 @@
 		}
 
 		/**
-		 * Get the list of users that have been set in the PR_EMS_AB_REPORTS property in the 
-		 * $messageprops array. This property is poorly documented and in Outlook it checks 
+		 * Get the list of users that have been set in the PR_EMS_AB_REPORTS property in the
+		 * $messageprops array. This property is poorly documented and in Outlook it checks
 		 * the property with and without the MV flag. The one without a MV flag can contain only one
-		 * entry and the one with MV flag can contain a list. It then merges both into one list. 
+		 * entry and the one with MV flag can contain a list. It then merges both into one list.
 		 * This function has the same behavior and sets the list in the $messageprops.
 		 * @param $messageprops Array Details properties of an user entry.
 		 * @return Boolean|Array List of properties or false if no manager is set
@@ -316,7 +316,7 @@
 		function getDirectReportsDetails($messageprops)
 		{
 			/*
-			 * Get the entryIds from the PR_EMS_AB_REPORTS property (with and without MV flag as a 
+			 * Get the entryIds from the PR_EMS_AB_REPORTS property (with and without MV flag as a
 			 * fallback) and put the entryIds in a list.
 			 */
 			$entryids = Array();
@@ -340,10 +340,10 @@
 		}
 
 		/**
-		 * Get the list of users that have been set in the PR_EMS_AB_MEMBER_OF_DL property in the 
-		 * $messageprops array. This property is poorly documented and in Outlook it checks 
+		 * Get the list of users that have been set in the PR_EMS_AB_MEMBER_OF_DL property in the
+		 * $messageprops array. This property is poorly documented and in Outlook it checks
 		 * the property with and without the MV flag. The one without a MV flag can contain only one
-		 * entry and the one with MV flag can contain a list. It then merges both into one list. 
+		 * entry and the one with MV flag can contain a list. It then merges both into one list.
 		 * This function has the same behavior and sets the list in the $messageprops.
 		 * @param $messageprops Array Details properties of an user entry.
 		 * @return Boolean|Array List of properties or false if no manager is set
@@ -367,7 +367,7 @@
 		}
 
 		/**
-		 * Get the information of the owner from the GAB details of a MAPI_DISTLIST. Will use the 
+		 * Get the information of the owner from the GAB details of a MAPI_DISTLIST. Will use the
 		 * entryid to get the properties. If no entryid if found false is returned.
 		 * @param $messageprops Array Details properties of an distlist entry.
 		 * @return Boolean|Array List of properties or false if no owner is set
@@ -386,8 +386,8 @@
 		}
 
 		/**
-		 * Get the information of the members from the GAB details of a MAPI_DISTLIST. The 
-		 * information can be found in the contentstable of the AB entry opened by the user. 
+		 * Get the information of the members from the GAB details of a MAPI_DISTLIST. The
+		 * information can be found in the contentstable of the AB entry opened by the user.
 		 * @param $abentry Resource Reference to the user-opened AB entry
 		 * @return Boolean|Array List of members
 		 */
@@ -398,7 +398,7 @@
 			$table = mapi_folder_getcontentstable($abentry, MAPI_DEFERRED_ERRORS);
 
 			/*
-			 * To prevent loading a huge list that the browser cannot handle, it is possible to 
+			 * To prevent loading a huge list that the browser cannot handle, it is possible to
 			 * limit the maximum number of shown items. Note that when the table doesn't
 			 * contain the requested number of rows, it will not give any errors and simply
 			 * return what is available.

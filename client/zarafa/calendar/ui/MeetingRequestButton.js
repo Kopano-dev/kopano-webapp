@@ -6,7 +6,7 @@ Ext.namespace('Zarafa.calendar.ui');
  * @xtype zarafa.meetingrequestbutton
  *
  * Singleton Base class for all meeting request buttons. It contains common functions of
- * all meeting request buttons and handlers for all meeting request buttons. 
+ * all meeting request buttons and handlers for all meeting request buttons.
  */
 Zarafa.calendar.ui.MeetingRequestButton = Ext.extend(Ext.Button, {
 	/**
@@ -14,7 +14,7 @@ Zarafa.calendar.ui.MeetingRequestButton = Ext.extend(Ext.Button, {
 	 * @property
 	 * @type Ext.data.Record
 	 */
-	record : undefined,
+	record: undefined,
 
 	/**
 	 * This property will keep track whether this component was visible or hidden last.
@@ -22,13 +22,13 @@ Zarafa.calendar.ui.MeetingRequestButton = Ext.extend(Ext.Button, {
 	 * @property
 	 * @type Boolean
 	 */
-	visible : false,
+	visible: false,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -36,21 +36,21 @@ Zarafa.calendar.ui.MeetingRequestButton = Ext.extend(Ext.Button, {
 		config.plugins.push('zarafa.recordcomponentupdaterplugin');
 
 		Ext.applyIf(config, {
-			xtype : 'zarafa.meetingrequestbutton',
-			hidden : true,
-			forceLayout : true,
+			xtype: 'zarafa.meetingrequestbutton',
+			hidden: true,
+			forceLayout: true,
 			cls: 'zarafa-mr-buttons',
 			handler: this.onClickHanlder,
 			scope: this,
-			
+
 			/**
-			 * Note : This is a fix for a bug: when Ext.js converts buttons to menuitems,
+			 * Note: This is a fix for a bug: when Ext.js converts buttons to menuitems,
 			 * it takes button component's initial configs into consideration.
 			 * Initially this button component is hidden so we need to show/hide menuitem
 			 * on the basis of visible config which is being set.
 			 * in {@link #update} function.
-			 */ 
-			beforeShow : function(item) {
+			 */
+			beforeShow: function(item) {
 				item.setVisible(this.visible);
 			}
 		});
@@ -59,12 +59,12 @@ Zarafa.calendar.ui.MeetingRequestButton = Ext.extend(Ext.Button, {
 		/**
 		 * We need to remove 'zarafa.recordcomponentupdaterplugin' plugin from initialConfig.
 		 * Because Ext uses initialConfig to make a menu item from button component.
-		 * This 'zarafa.recordcomponentupdaterplugin' plugin will call update function 
-		 * which will not be found in newly created menuitem. 
-		 * So it will call Ext's update function instead 
-		 * and beacause Ext's update function will get called with wrong parameters, 
-		 * text of menu item will be changed.   
-		 */	 
+		 * This 'zarafa.recordcomponentupdaterplugin' plugin will call update function
+		 * which will not be found in newly created menuitem.
+		 * So it will call Ext's update function instead
+		 * and beacause Ext's update function will get called with wrong parameters,
+		 * text of menu item will be changed.
+		 */
 		this.initialConfig.plugins = [];
 	},
 
@@ -75,7 +75,7 @@ Zarafa.calendar.ui.MeetingRequestButton = Ext.extend(Ext.Button, {
 	 * @param {Boolean} contentReset force the component to perform a full update of the data.
 	 * @private
 	 */
-	update : function(record, contentReset)
+	update: function(record, contentReset)
 	{
 		if (!(record instanceof Zarafa.calendar.AppointmentRecord)) {
 			this.setVisible(false);
@@ -128,26 +128,26 @@ Zarafa.calendar.ui.MeetingRequestButton = Ext.extend(Ext.Button, {
 		}
 
 		switch(this.name) {
-			case Zarafa.calendar.data.MeetingRequestButtonNames.REMOVEFROMCALENDAR : 
+			case Zarafa.calendar.data.MeetingRequestButtonNames.REMOVEFROMCALENDAR:
 				// When the meeting is canceled, the user is allowed to remove the appointment
 				// from the calendar.
 				this.visible = isMeetingCanceled && !isSubMessage && !apptNotFound;
 				break;
-			case Zarafa.calendar.data.MeetingRequestButtonNames.NORESPONSE :
+			case Zarafa.calendar.data.MeetingRequestButtonNames.NORESPONSE:
 				// When this meeting is current, but the user did send this meeting request to himself,
 				// then the user doesn't need to respond.
 				this.visible = isMeetingRequest && !isSubMessage && senderIsReceiver && !isMeetingOutOfDate;
 				break;
-			case Zarafa.calendar.data.MeetingRequestButtonNames.ACCEPT :
-			case Zarafa.calendar.data.MeetingRequestButtonNames.TENTETIVE :
-			case Zarafa.calendar.data.MeetingRequestButtonNames.DECLINE :
+			case Zarafa.calendar.data.MeetingRequestButtonNames.ACCEPT:
+			case Zarafa.calendar.data.MeetingRequestButtonNames.TENTATIVE:
+			case Zarafa.calendar.data.MeetingRequestButtonNames.DECLINE:
 				// When this meeting is current, and the user didn't send the meeting request himself,
 				// then the user is allowed to accept or decline the meeting.
 				this.visible = isMeeting && !isSubMessage && !senderIsReceiver && !isMeetingOutOfDate && !isMeetingCanceled && !senderIsStoreOwner && requestReceived;
-				
+
 				// Determine the action button
-				// @FIXME: find a better solution to determine action button. 
-				// we don't have calendar button access directly as we created seprate buttons for meetingrequests. 
+				// @FIXME: find a better solution to determine action button.
+				// we don't have calendar button access directly as we created seprate buttons for meetingrequests.
 				if (this.name === Zarafa.calendar.data.MeetingRequestButtonNames.ACCEPT) {
 					var calendarButton = this.parentScope ? this.parentScope.calendarButton : false;
 					if (this.visible && calendarButton) {
@@ -157,20 +157,20 @@ Zarafa.calendar.ui.MeetingRequestButton = Ext.extend(Ext.Button, {
 					}
 				}
 				break;
-			case Zarafa.calendar.data.MeetingRequestButtonNames.PROPOSENEWTIME :
+			case Zarafa.calendar.data.MeetingRequestButtonNames.PROPOSENEWTIME:
 				// A user can only propose a new time for non-recurring meetings, or occurrences. For the rest,
 				// the same rules apply as for accepting.
 				this.visible = isMeeting && !isSubMessage && (!isMeetingRecurring || isMeetingOccurence) && !senderIsReceiver && !isMeetingOutOfDate && !isMeetingCanceled && !senderIsStoreOwner && requestReceived;
 				break;
-			case Zarafa.calendar.data.MeetingRequestButtonNames.VIEWPROPOSALS :
-			case Zarafa.calendar.data.MeetingRequestButtonNames.ACCEPTPROPOSAL :
+			case Zarafa.calendar.data.MeetingRequestButtonNames.VIEWPROPOSALS:
+			case Zarafa.calendar.data.MeetingRequestButtonNames.ACCEPTPROPOSAL:
 				this.visible = isMeetingProposal && !isSubMessage && !isMeetingUpdated && !senderIsStoreOwner;
 				break;
-			case Zarafa.calendar.data.MeetingRequestButtonNames.CALENDAR :
+			case Zarafa.calendar.data.MeetingRequestButtonNames.CALENDAR:
 				this.visible = (isMeetingRequest || isMeetingResponse) && !isSubMessage && !apptNotFound;
 				break;
-			default :
-				break;	
+			default:
+				break;
 		}
 
 		this.setVisible(this.visible);
@@ -180,39 +180,39 @@ Zarafa.calendar.ui.MeetingRequestButton = Ext.extend(Ext.Button, {
 	 * This is common handler for meeting requests buttons
 	 * of type {@link Zarafa.calendar.ui.MeetingRequestButton MeetingRequestButton}.
 	 * It will call button's handler based on button's name.
-	 * 
+	 *
 	 * @param {Ext.Button} button button object.
 	 * @param {EventObject} eventObject The click event object.
 	 * @private
 	 */
-	onClickHanlder : function(button, eventObject)
+	onClickHanlder: function(button, eventObject)
 	{
 		switch(button.name) {
-			case Zarafa.calendar.data.MeetingRequestButtonNames.REMOVEFROMCALENDAR : 
+			case Zarafa.calendar.data.MeetingRequestButtonNames.REMOVEFROMCALENDAR:
 				this.onRemoveFromCalendar(button, eventObject);
 				break;
-			case Zarafa.calendar.data.MeetingRequestButtonNames.NORESPONSE :
+			case Zarafa.calendar.data.MeetingRequestButtonNames.NORESPONSE:
 				this.onNoResponseRequired(button, eventObject);
 				break;
-			case Zarafa.calendar.data.MeetingRequestButtonNames.ACCEPT :
-			case Zarafa.calendar.data.MeetingRequestButtonNames.TENTETIVE :
-			case Zarafa.calendar.data.MeetingRequestButtonNames.DECLINE :
+			case Zarafa.calendar.data.MeetingRequestButtonNames.ACCEPT:
+			case Zarafa.calendar.data.MeetingRequestButtonNames.TENTATIVE:
+			case Zarafa.calendar.data.MeetingRequestButtonNames.DECLINE:
 				this.openSendConfirmationContent(button, eventObject);
 				break;
-			case Zarafa.calendar.data.MeetingRequestButtonNames.PROPOSENEWTIME :
+			case Zarafa.calendar.data.MeetingRequestButtonNames.PROPOSENEWTIME:
 				this.openProposeNewTimeContent(button, eventObject);
 				break;
-			case Zarafa.calendar.data.MeetingRequestButtonNames.VIEWPROPOSALS :
+			case Zarafa.calendar.data.MeetingRequestButtonNames.VIEWPROPOSALS:
 				this.viewAllProposals(button, eventObject);
 				break;
-			case Zarafa.calendar.data.MeetingRequestButtonNames.ACCEPTPROPOSAL :
+			case Zarafa.calendar.data.MeetingRequestButtonNames.ACCEPTPROPOSAL:
 				this.acceptProposal(button, eventObject);
 				break;
-			case Zarafa.calendar.data.MeetingRequestButtonNames.CALENDAR :
+			case Zarafa.calendar.data.MeetingRequestButtonNames.CALENDAR:
 				this.showMeetingInCalendar(button, eventObject);
 				break;
-			default :
-				break;	
+			default:
+				break;
 		}
 	},
 
@@ -222,7 +222,7 @@ Zarafa.calendar.ui.MeetingRequestButton = Ext.extend(Ext.Button, {
 	 * @param {EventObject} eventObject The click event object.
 	 * @private
 	 */
-	openSendConfirmationContent : function(button, eventObject)
+	openSendConfirmationContent: function(button, eventObject)
 	{
 		if (this.record.get('appointment_not_found')) {
 			Ext.MessageBox.show({
@@ -235,7 +235,7 @@ Zarafa.calendar.ui.MeetingRequestButton = Ext.extend(Ext.Button, {
 				buttons: Ext.MessageBox.YESNO
 			});
 		} else {
-			Zarafa.calendar.Actions.openSendConfirmationContent(this.record, { responseType : button.responseStatus });
+			Zarafa.calendar.Actions.openSendConfirmationContent(this.record, { responseType: button.responseStatus });
 		}
 	},
 
@@ -246,10 +246,10 @@ Zarafa.calendar.ui.MeetingRequestButton = Ext.extend(Ext.Button, {
 	 * @param {Zarafa.core.mapi.ResponseStatus} responseType The response type which was selected by the user
 	 * @private
 	 */
-	onRespondAppointmentNotFoundConfirmation : function(button, responseType)
+	onRespondAppointmentNotFoundConfirmation: function(button, responseType)
 	{
 		if (button === 'yes') {
-			Zarafa.calendar.Actions.openSendConfirmationContent(this.record, { responseType : responseType });
+			Zarafa.calendar.Actions.openSendConfirmationContent(this.record, { responseType: responseType });
 		}
 	},
 
@@ -259,7 +259,7 @@ Zarafa.calendar.ui.MeetingRequestButton = Ext.extend(Ext.Button, {
 	 * @param {EventObject} eventObject The click event object.
 	 * @private
 	 */
-	acceptProposal : function(button, eventObject)
+	acceptProposal: function(button, eventObject)
 	{
 		// When the button belongs to one of the currently opened popout windows then
 		// it is required to bring the main webapp window to front prior to switching to the calender context.
@@ -276,7 +276,7 @@ Zarafa.calendar.ui.MeetingRequestButton = Ext.extend(Ext.Button, {
 	 * @param {EventObject} eventObject The click event object.
 	 * @private
 	 */
-	showMeetingInCalendar : function(button, eventObject)
+	showMeetingInCalendar: function(button, eventObject)
 	{
 		// When the button belongs to one of the currently opened popout windows then
 		// it is required to bring the main webapp window to front prior to switching to the calender context.
@@ -294,7 +294,7 @@ Zarafa.calendar.ui.MeetingRequestButton = Ext.extend(Ext.Button, {
 	 * @param {EventObject} eventObject The click event object.
 	 * @private
 	 */
-	onNoResponseRequired : function(button, eventObject)
+	onNoResponseRequired: function(button, eventObject)
 	{
 		Ext.MessageBox.show({
 			title: _('No additional response required'),
@@ -305,14 +305,14 @@ Zarafa.calendar.ui.MeetingRequestButton = Ext.extend(Ext.Button, {
 			buttons: Ext.MessageBox.OKCANCEL
 		});
 	},
-    
+
     /**
 	 * @param {String} buttonClicked The ID of the button pressed,
 	 * here, one of: ok cancel.
 	 * @param {String} text Value of the input field, not useful here
 	 * @private
 	 */
-	removeRecordOnOk : function (buttonClicked, text)
+	removeRecordOnOk: function (buttonClicked, text)
 	{
 		if (buttonClicked == 'ok') {
 			var store = this.record.getStore();
@@ -327,7 +327,7 @@ Zarafa.calendar.ui.MeetingRequestButton = Ext.extend(Ext.Button, {
 	 * @param {EventObject} eventObject The click event object
 	 * @private
 	 */
-	openProposeNewTimeContent : function(button, eventObject)
+	openProposeNewTimeContent: function(button, eventObject)
 	{
 		if (this.record.get('appointment_not_found')) {
 			Ext.MessageBox.show({
@@ -343,14 +343,14 @@ Zarafa.calendar.ui.MeetingRequestButton = Ext.extend(Ext.Button, {
 			Zarafa.calendar.Actions.openProposeNewTimeContent(this.record);
 		}
     },
-    
+
     /**
 	 * Callback function for {@link #openProposeNewTimeContent}, which openes a {@link Ext.MessageBox} if
 	 * the appointment is not found in the calendar, but we still wants to propose a new time.
 	 * @param {String} button The button which was clicked by the user
 	 * @private
 	 */
-	onProposeNewTimeAppointmentNotFoundConfirmation : function(button)
+	onProposeNewTimeAppointmentNotFoundConfirmation: function(button)
 	{
 		if (button === 'yes') {
 			Zarafa.calendar.Actions.openProposeNewTimeContent(this.record);
@@ -364,7 +364,7 @@ Zarafa.calendar.ui.MeetingRequestButton = Ext.extend(Ext.Button, {
 	 * @param {EventObject} eventObject The click event object.
 	 * @private
 	 */
-	onRemoveFromCalendar : function(button, eventObject)
+	onRemoveFromCalendar: function(button, eventObject)
 	{
 		this.record.addMessageAction('action_type', 'removeFromCalendar');
 
@@ -372,14 +372,14 @@ Zarafa.calendar.ui.MeetingRequestButton = Ext.extend(Ext.Button, {
 		store.remove(this.record);
 		store.save(this.record);
 	},
-	
+
 	/**
 	 * Opens a {@link Zarafa.calendar.dialogs.openAppointmentContentPanel}
 	 * @param {Ext.Button} button button object.
 	 * @param {EventObject} eventObject The click event object.
 	 * @private
 	 */
-	viewAllProposals : function(button, eventObject)
+	viewAllProposals: function(button, eventObject)
 	{
 		// When the button belongs to one of the currently opened popout windows then
 		// it is required to bring the main webapp window to front prior to switching to the calender context.

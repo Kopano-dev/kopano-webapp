@@ -104,11 +104,11 @@
 			// make user readable string
 			if ($value > (1024 * 1024 * 1024)){
 				$value = round($value / (1024 * 1024 * 1024), 1) ." ". _("GB");
-			}else if ($value > (1024 * 1024)){
+			} else if ($value > (1024 * 1024)){
 				$value = round($value / (1024 * 1024), 1) ." ". _("MB");
-			}else if ($value > 1024){
+			} else if ($value > 1024){
 				$value = round($value / 1024, 1) ." ". _("KB");
-			}else{
+			} else {
 				$value = $value ." ". _("B");
 			}
 		}
@@ -752,13 +752,13 @@
 
 	/**
 	 * Function returns the IP address of the client.
-	 * 
+	 *
 	 * @return String The IP address of the client.
 	 */
 	function getClientIPAddress() {
-		// Here, there is a scenario where the server is behind a proxy, when that 
+		// Here, there is a scenario where the server is behind a proxy, when that
 		// happens, 'REMOTE_ADDR' will not return the real IP, there is another variable
-		// 'HTTP_X_FORWARDED_FOR' which is set by a proxy server. But the risk in using that 
+		// 'HTTP_X_FORWARDED_FOR' which is set by a proxy server. But the risk in using that
 		// is that it can be easily forged. 'REMOTE_ADDR' is the only reliable thing
 		// as it is nearly impossible to be altered.
 		return $_SERVER['REMOTE_ADDR'];

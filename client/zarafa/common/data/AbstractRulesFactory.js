@@ -19,7 +19,7 @@ Zarafa.common.data.AbstractRulesFactory = {
 	 * @property
 	 * @type Object
 	 */
-	factoryDefinitions : {},
+	factoryDefinitions: {},
 
 	/**
 	 * Register a new Factory Definition for the given key value.
@@ -32,7 +32,7 @@ Zarafa.common.data.AbstractRulesFactory = {
 	 * @return {Object} The factory Definition or false if given factory is not registered or
 	 * If there exists factory definition for the key then return it.
 	 */
-	registerFactory : function(key, factoryType)
+	registerFactory: function(key, factoryType)
 	{
 		if (this.factoryDefinitions[key]) {
 			return this.factoryDefinitions[key];
@@ -53,7 +53,7 @@ Zarafa.common.data.AbstractRulesFactory = {
 	 * @return {Function} registered Factory Definition from definitions table
 	 * or false if given factory is not registered.
 	 */
-	getFactoryById : function(key)
+	getFactoryById: function(key)
 	{
 		if (!Ext.isEmpty(this.factoryDefinitions[key])) {
 			return this.factoryDefinitions[key];
@@ -69,7 +69,7 @@ Zarafa.common.data.AbstractRulesFactory = {
 	 * in the definitions table.
 	 * @return {Boolean} The true if successfully definition removed else false.
 	 */
-	unregisterFactory : function(key)
+	unregisterFactory: function(key)
 	{
 		if (!Ext.isEmpty(this.factoryDefinitions[key])) {
 			delete this.factoryDefinitions[key];

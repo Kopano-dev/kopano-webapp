@@ -12,19 +12,19 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 	 * @cfg {Boolean} enableItemDrop true to enable just drag for {@link Zarafa.core.data.MAPIRecord items}
 	 * from a {@Link Ext.grid.GridPanel grid}.
 	 */
-	enableItemDrop : false,
+	enableItemDrop: false,
 
 	/**
 	 * The dropZone used by this tree if drop is enabled (see {@link #enableItemDrop})
 	 * @property
 	 * @type Ext.tree.TreeDropZone
 	 */
-	itemDropZone : undefined,
+	itemDropZone: undefined,
 
 	/**
 	 * @cfg {Object} itemDropConfig Custom config to pass to the {@link Ext.tree.TreeDropZone} instance
 	 */
-	itemDropConfig : undefined,
+	itemDropConfig: undefined,
 
 	/**
 	 * @cfg {Object} bbarConfig Custom config to pass to the {@link Zarafa.hierarchy.ui.HierarchyTreeBottomBar}.
@@ -36,56 +36,56 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 	 * @cfg {Boolean} showAllFoldersDefaultValue True to render the 'Show all folders'
 	 * {@link #showAllFoldersCheckbox checkbox} as {@link Ext.form.Checkbox#checked checked}.
 	 */
-	showAllFoldersDefaultValue : false,
+	showAllFoldersDefaultValue: false,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		var checked = Ext.isDefined(config.showAllFoldersDefaultValue) ?
-				config.showAllFoldersDefaultValue : this.showAllFoldersDefaultValue;
+				config.showAllFoldersDefaultValue: this.showAllFoldersDefaultValue;
 
 		Ext.applyIf(config, {
-			xtype : 'zarafa.hierarchytreepanel',
+			xtype: 'zarafa.hierarchytreepanel',
 			baseCls: 'zarafa-hierarchy-treepanel',
-			flex : 1,
-			minHeight : 100,
-			stateful : true,
-			statefulName : 'hierarchytree',
+			flex: 1,
+			minHeight: 100,
+			stateful: true,
+			statefulName: 'hierarchytree',
 			tbar: {
 				items: [{
 					xtype: 'checkbox',
 					cls: 'zarafa-hierarchy-treepanel-showallfolders',
 					ref: '../showAllFoldersCheckbox',
-					boxLabel : _('Show all folders'),
-					checked : checked,
-					listeners : {
+					boxLabel: _('Show all folders'),
+					checked: checked,
+					listeners: {
 						beforerender: this.reviseCheckboxDisablity,
 						check: this.onCheckShowAllFoldersCheckbox,
 						scope: this
 					}
 				}]
 			},
-			loadMask : true,
-			treeSorter : true,
-			trackMouseOver : true,
+			loadMask: true,
+			treeSorter: true,
+			trackMouseOver: true,
 			containerScroll: true,
 			// Default values for the Drag&Drop objects.
 			// By default is Drag&Drop disabled...
-			dragConfig : {
+			dragConfig: {
 				ddGroup: 'dd.mapifolder'
 			},
-			dropConfig : {
+			dropConfig: {
 				ddGroup: 'dd.mapifolder',
-				expandDelay : 250,
-				allowParentInsert : true
+				expandDelay: 250,
+				allowParentInsert: true
 			},
-			enableItemDrop : true,
-			itemDropConfig : {
+			enableItemDrop: true,
+			itemDropConfig: {
 				ddGroup: 'dd.mapiitem'
 			}
 		});
@@ -93,7 +93,7 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 		if(!Ext.isDefined(config.bbar)){
 			config.bbarConfig = config.bbarConfig || {};
 			config.bbar = Ext.applyIf(config.bbarConfig, {
-				xtype : 'zarafa.hierarchytreebottombar'
+				xtype: 'zarafa.hierarchytreebottombar'
 			});
 		}
 
@@ -170,7 +170,7 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 	 * {@link #itemDropZone} using the {@link Zarafa.hierarchy.ui.HierarchyItemDropZone Item DropZone}.
 	 * @private
 	 */
-	initEvents : function()
+	initEvents: function()
 	{
 		// Capture events that can change the height of the hierarchy tree, or of the containing panel,
 		// so we can add a class and the css can handle the position of the bottombar
@@ -189,7 +189,7 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 		this.mon(container, 'folderselect', this.onFolderSelect, this);
 
 		this.mon(container, 'contextswitch', this.reviseCheckboxDisablity, this);
-		
+
 		// TODO This needs to be fixed by lazy loading the stuff in the mainPanel, then we can do container.getNavigationBar()
 		// But at the moment it is instantiated as getMainPanel is run and so we cannot yet get the navigationBar that way
 		var navigationPanel = this.findParentByType('zarafa.navigationpanel');
@@ -203,8 +203,8 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 		this.mon(this.loader, 'load', this.onHierarchyLoaderLoad, this);
 
 		if (this.stateful === true) {
-			this.on('expandnode', this.saveFolderState, this, { buffer : 5 });
-			this.on('collapsenode', this.saveFolderState, this, { buffer : 5 });
+			this.on('expandnode', this.saveFolderState, this, { buffer: 5 });
+			this.on('collapsenode', this.saveFolderState, this, { buffer: 5 });
 		}
 
 		if (this.enableDD || this.enableDrop) {
@@ -238,7 +238,7 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 	 * Register the {@link #stateEvents state events} to the {@link #saveState} callback function.
 	 * @protected
 	 */
-	initStateEvents : function(){
+	initStateEvents: function(){
 		Zarafa.hierarchy.ui.HierarchyTreePanel.superclass.initStateEvents.call(this);
 		this.mon(this.showAllFoldersCheckbox, 'check', this.saveState, this, {delay: 100});
 	},
@@ -262,7 +262,7 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 			this.ownerCt.getEl().removeClass('fixed-bottombar');
 		}
 	},
-	
+
 	/**
 	 * Fires on {@link Zarafa.core.Container#contextswitch}, or {@link Ext.form.Checkbox#beforerender}.
 	 * Make (@link #showAllFoldersCheckbox) disable if current context is Settings or Zarafa, enable otherwise.
@@ -277,7 +277,7 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 		var context = newContext || container.getCurrentContext();
 		var settingsOrToday = (context == container.getContextByName('settings') || context == container.getContextByName('today'));
 		this.showAllFoldersCheckbox.setDisabled(settingsOrToday);
-		
+
 		var model = context.getModel();
 		if (Ext.isDefined(model)) {
 			this.mon(model, 'beforefolderchange', this.onBeforeFolderChange, this);
@@ -289,7 +289,7 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 	 * @param {Object} dropEvent The object describing the drop information
 	 * @private
 	 */
-	onFolderDrop : function(dropEvent)
+	onFolderDrop: function(dropEvent)
 	{
 		var dropNode = dropEvent.dropNode;
 		if (Ext.isDefined(dropNode)) {
@@ -314,7 +314,7 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 
 			var msg;
 			if (!hasAccess) {
-				msg = hasCtrlKeyPressed ? _("You have insufficient privileges to copy this folder. Ask the folder owner to grant you permissions or contact your system administrator."):
+				msg = hasCtrlKeyPressed ? _("You have insufficient privileges to copy this folder. Ask the folder owner to grant you permissions or contact your system administrator.") :
 					_("You have insufficient privileges to move this folder. Ask the folder owner to grant you permissions or contact your system administrator.");
 				container.getNotifier().notify('error', _("Insufficient privileges"), msg);
 				return false;
@@ -328,7 +328,7 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 					msg = _("You have insufficient privileges to move this folder. Would you like to copy instead?");
 					Zarafa.common.Actions.showMessageBox(sourceFolder, targetFolder, sourceFolder.getMAPIFolderStore(), msg, this);
 					return false;
-				}	
+				}
 				sourceFolder.moveTo(targetFolder);
 			}
 
@@ -341,7 +341,7 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 	 * @param {Object} dropEvent The object describing the drop information
 	 * @private
 	 */
-	onItemDrop : function(dropEvent)
+	onItemDrop: function(dropEvent)
 	{
 		if (!Ext.isEmpty(dropEvent.dropItem)) {
 			var targetNode = dropEvent.target;
@@ -369,7 +369,7 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 				}
 
 				var sourceNode = this.getNodeById(cloneSourceNodes[0].get('parent_entryid'));
-				var sourceFolder =  sourceNode.getFolder();
+				var sourceFolder = sourceNode.getFolder();
 
 				// If targetFolder has create item rights and source folder does not have delete item rights,
 				// in that case move operation is not possible, therefore show message box which indicate that
@@ -434,7 +434,7 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 	 * @param {Zarafa.hierarchy.data.MAPIStoreRecord} storeRecord The store which was deleted
 	 * @private
 	 */
-	onStoreRemove : function(store, storeRecord)
+	onStoreRemove: function(store, storeRecord)
 	{
 		var subFolders = storeRecord.getSubStore('folders');
 
@@ -456,13 +456,13 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder The folder which was removed from the store
 	 * @private
 	 */
-	onFolderRemove : function(store, storeRecord, folder)
+	onFolderRemove: function(store, storeRecord, folder)
 	{
 		if (this.model) {
 			this.model.removeFolder(folder);
 		}
 	},
-	
+
 	/**
 	 * Fires when the {@Link Zarafa.core.ContextModel} fires the
 	 * {@Link Zarafa.core.ContextModel#beforefolderchange} event.
@@ -477,12 +477,12 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 	onBeforeFolderChange: function (folders, folder)
 	{
 		var folderNode, folderToSelect;
-		
+
 		var isSharedFolder = folder.getMAPIStore().isSharedStore();
 		var showAllCheckBox = this.showAllFoldersCheckbox;
 		var isAllFolderHierarchy = showAllCheckBox.checked && this.showAllFoldersDefaultValue;
 		var isContextHierarchy = !this.showAllFoldersDefaultValue && !showAllCheckBox.checked;
-		
+
 		// Return if a folder belongs to a shared store, or the folder is a Calendar item
 		// and the 'Show all folders' checkbox is unchecked, or the container class of folder is
 		// not of the current context hierarchy.
@@ -491,15 +491,15 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 			return;
 		}
 		folderNode = this.getNodeById(folder.get('entryid'));
-		
+
 		// No need to change the current selection if folder is not selected.
 		if (!folderNode.isSelected()) {
 			return;
 		}
-		
+
 		var previousSiblingFolder = folderNode.previousSibling;
 		var nextSiblingFolder = folderNode.nextSibling;
-		
+
 		if (previousSiblingFolder) {
 			folderToSelect = previousSiblingFolder.getFolder();
 		} else if (nextSiblingFolder) {
@@ -507,19 +507,19 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 		} else {
 			folderToSelect = folder.getParentFolder();
 		}
-		
+
 		var context = container.getContextByFolder(folderToSelect);
-		
+
 		// Check if the context is different, if the context of the folder
 		// to be selected is different, then switch context.
 		if (container.getCurrentContext().getName() !== context.getName()) {
 			container.switchContext(context, folderToSelect);
 			return false;
 		}
-		
+
 		folders.push(folderToSelect);
 	},
-	
+
 	/**
 	 * Fires when the {@link Zarafa.core.Container} fires the
 	 * {@link Zarafa.core.Container#folderselect} event. This
@@ -530,7 +530,7 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 	 * is currently selected.
 	 * @private
 	 */
-	onFolderSelect : function(folder)
+	onFolderSelect: function(folder)
 	{
 		if (Array.isArray(folder)) {
 
@@ -557,7 +557,7 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 	 * @param {Object} response The response object containing the data from the server.
 	 * @private
 	 */
-	onHierarchyLoaderLoad : function(loader, node, response)
+	onHierarchyLoaderLoad: function(loader, node, response)
 	{
 		// Use respective model considering the case the current model doesn't belongs to current context
 		var currentContextModel = container.getCurrentContext().getModel();
@@ -581,7 +581,7 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 	 * @param {Ext.EventObject} eventObj The event object with event information
 	 * @private
 	 */
-	onTreeNodeContextMenu : function(treeNode, eventObj)
+	onTreeNodeContextMenu: function(treeNode, eventObj)
 	{
 		// If folder is favorites root folder then disable the right click
 		// as it doesn't support any context menu items.
@@ -603,7 +603,7 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 		if(folder.isFavoritesFolder() && !folder.isSearchFolder()) {
 			folder = folder.getOriginalRecordFromFavoritesRecord();
 		}
-		Zarafa.core.data.UIFactory.openDefaultContextMenu(folder, { position : positionEventObj, contextNode : treeNode });
+		Zarafa.core.data.UIFactory.openDefaultContextMenu(folder, { position: positionEventObj, contextNode: treeNode });
 	},
 
 	/**
@@ -611,7 +611,7 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 	 * It calls container to change folder.
 	 * @param {Ext.tree.TreeNode} node which is clicked
 	 */
-	onFolderClicked : function(treeNode)
+	onFolderClicked: function(treeNode)
 	{
 		var folder = treeNode.getFolder();
 		Zarafa.hierarchy.Actions.openFolder(folder);
@@ -621,7 +621,7 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 	 * @return {Zarafa.hierarchy.ui.TreeEditor} The tree editor which can be used
 	 * @private
 	 */
-	getTreeEditor : function()
+	getTreeEditor: function()
 	{
 		if (!this.treeEditor) {
 			this.treeEditor = new Zarafa.hierarchy.ui.TreeEditor(this);
@@ -633,7 +633,7 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 	 * Triggers node editing
 	 * @param {Zarafa.hierarchy.ui.FolderNode} treeNode node to be edited
 	 */
-	startEditingNode : function(treeNode)
+	startEditingNode: function(treeNode)
 	{
 		this.getTreeEditor().startEditingNode(treeNode);
 	},
@@ -648,7 +648,7 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 	 * @return {Boolean} True if the folder should be expanded by default
 	 * @private
 	 */
-	isFolderOpened : function(folder)
+	isFolderOpened: function(folder)
 	{
 		var opened;
 		if (this.stateful === true) {
@@ -671,14 +671,14 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 	 * @param {Zarafa.hierarchy.ui.FolderNode} node The node which will be saved into the settings
 	 * @private
 	 */
-	saveFolderState : function(node)
+	saveFolderState: function(node)
 	{
 		if (this.stateful === true && !node.isRoot) {
 			var folder = node.getFolder();
 			var state = container.getHierarchyStore().getState(folder, 'tree');
 
 			if (state.is_open !== node.expanded) {
-				container.getHierarchyStore().applyState(folder, 'tree', { is_open : node.expanded });
+				container.getHierarchyStore().applyState(folder, 'tree', { is_open: node.expanded });
 			}
 		}
 	},
@@ -715,7 +715,7 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 	/**
 	 * Called before the panel is being destroyed.
 	 */
-	beforeDestroy : function()
+	beforeDestroy: function()
 	{
 		if (this.rendered) {
 			Ext.destroy(this.itemDropZone);
@@ -730,12 +730,12 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 	 * @return {Object} The state object
 	 * @protected
 	 */
-	getState : function()
+	getState: function()
 	{
 		var state = Zarafa.hierarchy.ui.HierarchyTreePanel.superclass.getState.call(this) || {};
 		var checkboxValue = this.showAllFoldersCheckbox.getValue();
 		return Ext.apply(state, {
-			showallcheckbox : checkboxValue
+			showallcheckbox: checkboxValue
 		});
 	},
 
@@ -746,7 +746,7 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 	 * a custom name.
 	 * @return {String} The unique name for this component by which the {@link #getState state} must be saved.
 	 */
-	getStateName : function()
+	getStateName: function()
 	{
 		return 'sidebars/' + Zarafa.core.ui.MainViewSidebar.superclass.getStateName.call(this);
 	}

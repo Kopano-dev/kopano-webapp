@@ -48,7 +48,7 @@ Zarafa.mail.data.Templates =
 	 * @property
 	 * @type String
 	 */
-	htmlQuotedTemplate : new Ext.XTemplate(
+	htmlQuotedTemplate: new Ext.XTemplate(
 		'<tpl if="!Ext.isEmpty(values.signatureData)">' +
 			'{signatureData}' +
 		'</tpl>' +

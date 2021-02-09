@@ -19,30 +19,30 @@ Zarafa.addressbook.ui.AddressBookContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 	 * @cfg {Boolean} enableSelect Enable the "Select" menu item. This requires a special handler
 	 * to be provided which is called when a particular recipient or recipients have been selected.
 	 */
-	enableSelect : false,
+	enableSelect: false,
 
 	/**
 	 * @cfg {Function} selectHandler Only used when {@link #enableSelect} is true. This function
 	 * is called when the "select" button has been pressed. This function will be called with
 	 * the selected {@link Ext.data.Record records} as argument.
 	 */
-	selectHandler : undefined,
+	selectHandler: undefined,
 
 	/**
 	 * @cfg {Object} selectScope The scope in which {@link #selectHandler} will be called.
 	 */
-	selectScope : undefined,
+	selectScope: undefined,
 
 	/**
 	 * @cfg {Zarafa.core.ui.ContentPanel} contentpanel The content panel from where the contextmenu is requested
 	 */
-	dialog : undefined,
+	dialog: undefined,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -51,7 +51,7 @@ Zarafa.addressbook.ui.AddressBookContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 				xtype: 'zarafa.conditionalitem',
 				text: _('Select'),
 				// iconCls: FIXME
-				beforeShow : function(item, records) { item.setDisabled(!this.enableSelect); },
+				beforeShow: function(item, records) { item.setDisabled(!this.enableSelect); },
 				handler: this.onSelect,
 				scope: this
 			},{
@@ -87,7 +87,7 @@ Zarafa.addressbook.ui.AddressBookContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 	 * will obtain the current {@link #records} and pass them to {@link #selectHandler}.
 	 * @private
 	 */
-	onSelect : function()
+	onSelect: function()
 	{
 		if (Ext.isFunction(this.selectHandler)) {
 			this.selectHandler.call(this.selectScope || this, this.records);
@@ -100,7 +100,7 @@ Zarafa.addressbook.ui.AddressBookContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 	 * {@link Zarafa.addressbook.Actions#openDetailsContent details dialog}.
 	 * @private
 	 */
-	onOpenDetails : function()
+	onOpenDetails: function()
 	{
 		Zarafa.addressbook.Actions.openDetailsContent(this.records);
 	},
@@ -117,7 +117,7 @@ Zarafa.addressbook.ui.AddressBookContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 		var isGABContact = this.selectedFolderType === 'gab';
 		if (isGABContact && records.length > 1) {
 			item.setText(_("Copy contacts"));
-			// When multiple items are selected from the addressbook 
+			// When multiple items are selected from the addressbook
 			// check atleast one GAB contact is selected.
 			var hasGABContact = records.some(function(record){
 				return record.get('object_type') === Zarafa.core.mapi.ObjectType.MAPI_MAILUSER;
@@ -138,7 +138,7 @@ Zarafa.addressbook.ui.AddressBookContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 	 * It will open the {@link Zarafa.hierarchy.dialogs.FolderSelectionContentPanel FolderSelectionContentPanel} to select
 	 * the folder to copy GAB contact.
 	 */
-	onCopyContact: function () 
+	onCopyContact: function ()
 	{
 		Zarafa.hierarchy.Actions.openFolderSelectionContent({
 			folder: container.getHierarchyStore().getDefaultFolder('contact'),
@@ -153,7 +153,7 @@ Zarafa.addressbook.ui.AddressBookContextMenu = Ext.extend(Zarafa.core.ui.menu.Co
 	},
 
 	/**
-	 * Callback function called when ok button pressed of {@link  Zarafa.hierarchy.dialogs.FolderSelectionPanel FolderSelectionPanel}.
+	 * Callback function called when ok button pressed of {@link Zarafa.hierarchy.dialogs.FolderSelectionPanel FolderSelectionPanel}.
 	 * It will create the contact record and set necessary properties from the GAB contact.
 	 *
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} The selected folder

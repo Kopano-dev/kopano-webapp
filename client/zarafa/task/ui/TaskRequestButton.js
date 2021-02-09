@@ -6,7 +6,7 @@ Ext.namespace('Zarafa.task.ui');
  * @xtype zarafa.taskrequestbutton
  *
  * Singleton Base class for all task request buttons which can be added to {@link Ext.Toolbar Toolbar}.
- * It contains common functions of all task request buttons and handlers for all task request buttons. 
+ * It contains common functions of all task request buttons and handlers for all task request buttons.
  */
 Zarafa.task.ui.TaskRequestButton = Ext.extend(Ext.Button, {
 	/**
@@ -22,7 +22,7 @@ Zarafa.task.ui.TaskRequestButton = Ext.extend(Ext.Button, {
 	 * @property
 	 * @type Boolean
 	 */
-	visible : false,
+	visible: false,
 
 	/**
 	 * @constructor
@@ -38,18 +38,18 @@ Zarafa.task.ui.TaskRequestButton = Ext.extend(Ext.Button, {
 			hidden: true,
 			forceLayout: true,
 			cls: 'k-tr-buttons',
-			ref : 'taskRequestButtons',
+			ref: 'taskRequestButtons',
 			handler: this.openSendConfirmationContent,
 			scope: this,
-			
+
 			/**
-			 * Note : This is a fix for a bug: when Ext.js converts buttons to menuitems,
+			 * Note: This is a fix for a bug: when Ext.js converts buttons to menuitems,
 			 * it takes button component's initial configs into consideration.
 			 * Initially this button component is hidden so we need to show/hide menuitem
 			 * on the basis of visible config which is being set.
 			 * in {@link #update} function.
-			 */ 
-			beforeShow : function(item) {
+			 */
+			beforeShow: function(item) {
 				item.setVisible(this.visible);
 			}
 		});
@@ -59,12 +59,12 @@ Zarafa.task.ui.TaskRequestButton = Ext.extend(Ext.Button, {
 		/**
 		 * We need to remove 'zarafa.recordcomponentupdaterplugin' plugin from initialConfig.
 		 * Because Ext uses initialConfig to make a menu item from button component.
-		 * This 'zarafa.recordcomponentupdaterplugin' plugin will call update function 
-		 * which will not be found in newly created menuitem. 
-		 * So it will call Ext's update function instead 
-		 * and beacause Ext's update function will get called with wrong parameters, 
-		 * text of menu item will be changed.   
-		 */	 
+		 * This 'zarafa.recordcomponentupdaterplugin' plugin will call update function
+		 * which will not be found in newly created menuitem.
+		 * So it will call Ext's update function instead
+		 * and beacause Ext's update function will get called with wrong parameters,
+		 * text of menu item will be changed.
+		 */
 		this.initialConfig.plugins = [];
 	},
 
@@ -75,7 +75,7 @@ Zarafa.task.ui.TaskRequestButton = Ext.extend(Ext.Button, {
 	 * @param {Boolean} contentReset force the component to perform a full update of the data.
 	 * @private
 	 */
-	update : function(record, contentReset)
+	update: function(record, contentReset)
 	{
 		if (!(record instanceof Zarafa.task.TaskRecord)) {
 			this.setVisible(false);
@@ -84,7 +84,7 @@ Zarafa.task.ui.TaskRequestButton = Ext.extend(Ext.Button, {
 
 		this.record = record;
 		this.visible = false;
-		var isAcceptbtn =  this.name === Zarafa.task.data.TaskRequestButtonNames.ACCEPT;
+		var isAcceptbtn = this.name === Zarafa.task.data.TaskRequestButtonNames.ACCEPT;
 		var isDeclineBtn = this.name === Zarafa.task.data.TaskRequestButtonNames.DECLINE;
 
 		if (contentReset) {
@@ -110,14 +110,14 @@ Zarafa.task.ui.TaskRequestButton = Ext.extend(Ext.Button, {
 				isTaskReceived = record.isTaskReceived();
 				// isTaskReceived gets true if task is Accepted by user else false.
 				isTaskAccepted = record.isTaskAccepted();
-				
+
 				// showAcceptButton gets true if task is received task, task is assigned to user, user is owner of the task
 				// and task yet not accepted else false.
 				if (isAcceptbtn) {
 					this.visible = (isTaskReceived && isTaskAssigned && isTaskOwner && !isTaskAccepted && !isSubMessage);
 				} else if (isDeclineBtn) {
 					// showDeclineButton get's true if task is received task, user is owner of the task and
-					// task is assigned to user and task is accepted else false.	
+					// task is assigned to user and task is accepted else false.
 					this.visible = (!isSubMessage && isTaskReceived && isTaskOwner && (isTaskAssigned || isTaskAccepted || record.isTaskUpdated()));
 				}
 			}
@@ -125,7 +125,7 @@ Zarafa.task.ui.TaskRequestButton = Ext.extend(Ext.Button, {
 		} else if (record.isModifiedSinceLastUpdate('taskmode')) {
 			this.setVisible(this.visible);
 		}
-		
+
 		if (isAcceptbtn && this.isVisible()) {
 			this.getEl().addClass('zarafa-action');
 		}
@@ -138,10 +138,10 @@ Zarafa.task.ui.TaskRequestButton = Ext.extend(Ext.Button, {
 	 * @param {EventObject} eventObject The click event object.
 	 * @private
 	 */
-	openSendConfirmationContent : function(button, eventObject)
+	openSendConfirmationContent: function(button, eventObject)
 	{
 		if (this.record.isTaskOwner()) {
-			Zarafa.task.Actions.openSendConfirmationContent(this.record, { responseType : button.responseStatus });
+			Zarafa.task.Actions.openSendConfirmationContent(this.record, { responseType: button.responseStatus });
 		}
 	}
 });

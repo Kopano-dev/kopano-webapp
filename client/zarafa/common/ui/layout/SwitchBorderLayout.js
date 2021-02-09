@@ -3,7 +3,7 @@ Ext.namespace('Zarafa.common.ui.layout');
 /**
  * @class Zarafa.common.ui.layout.SwitchBorderLayout
  * @extends Ext.layout.BorderLayout
- * 
+ *
  * Extension to the BorderLayout to support switching a panel between the "north" and "west" panel,
  * or between the "south" and "east" panel. The {@link #orientation} can be controlled by the {@link #setOrientation}
  * and passing it an {@link Zarafa.common.ui.layout.SwitchBorderLayout.Orientation orientation}.
@@ -28,7 +28,7 @@ Zarafa.common.ui.layout.SwitchBorderLayout = Ext.extend(Ext.layout.BorderLayout,
 	 * @property
 	 * @type String
 	 */
-	horizontalRegion : undefined,
+	horizontalRegion: undefined,
 
 	/**
 	 * The region of the non-centered {@link Ext.Component} for the vertical orientation
@@ -36,25 +36,25 @@ Zarafa.common.ui.layout.SwitchBorderLayout = Ext.extend(Ext.layout.BorderLayout,
 	 * @property
 	 * @type String
 	 */
-	verticalRegion : undefined,
+	verticalRegion: undefined,
 
 	/**
 	 * @cfg {Object} switchMap The switchMap on how {@link #horizontalRegion} and {@link #verticalRegion}
 	 * relate to eachother. A vertical region always maps to a horizontal region, so 'north' can
 	 * be mapped to 'east' or 'west' and 'west' can be mapped to 'north' and 'south'.
 	 */
-	switchMap : {
-		'north' : 'west',
-		'west' : 'north',
-		'south' : 'east',
-		'east' : 'south'
+	switchMap: {
+		'north': 'west',
+		'west': 'north',
+		'south': 'east',
+		'east': 'south'
 	},
 
 	/**
 	 * @cfg {Zarafa.common.ui.layout.SwitchBorderLayout.Orientation} orientation The currently active
 	 * orientation mode.
 	 */
-	orientation : undefined,
+	orientation: undefined,
 
 	/**
 	 * This will layout the entire container, if the component has not been rendered yet
@@ -65,7 +65,7 @@ Zarafa.common.ui.layout.SwitchBorderLayout = Ext.extend(Ext.layout.BorderLayout,
 	 * @param {Ext.Element} target The target Element in which the layout occurs
 	 * @private
 	 */
-	onLayout : function(ct, target)
+	onLayout: function(ct, target)
 	{
 		if (!this.rendered) {
 			var collapsed = [];
@@ -85,7 +85,7 @@ Zarafa.common.ui.layout.SwitchBorderLayout = Ext.extend(Ext.layout.BorderLayout,
 
 				// Allocate the region
 				this[pos] = pos != 'center' && c.split ?
-					new Zarafa.common.ui.layout.SwitchBorderLayout.SwitchSplitRegion(this, c.initialConfig, pos) :
+					new Zarafa.common.ui.layout.SwitchBorderLayout.SwitchSplitRegion(this, c.initialConfig, pos):
 					new Zarafa.common.ui.layout.SwitchBorderLayout.SwitchRegion(this, c.initialConfig, pos);
 				this[pos].render(target, c);
 
@@ -95,7 +95,7 @@ Zarafa.common.ui.layout.SwitchBorderLayout = Ext.extend(Ext.layout.BorderLayout,
 					var altPos = this.switchMap[pos];
 
 					this[altPos] = this[pos].split ?
-						new Zarafa.common.ui.layout.SwitchBorderLayout.SwitchSplitRegion(this, c.initialConfig, altPos) :
+						new Zarafa.common.ui.layout.SwitchBorderLayout.SwitchSplitRegion(this, c.initialConfig, altPos):
 						new Zarafa.common.ui.layout.SwitchBorderLayout.SwitchRegion(this, c.initialConfig, altPos);
 					this[altPos].render(target, c, true);
 
@@ -132,7 +132,7 @@ Zarafa.common.ui.layout.SwitchBorderLayout = Ext.extend(Ext.layout.BorderLayout,
 	 * @param {Zarafa.common.ui.layout.SwitchBorderLayout.Orientation} orientation The new orientation which
 	 * should be applied to the container.
 	 */
-	setOrientation : function(orientation)
+	setOrientation: function(orientation)
 	{
 		if (this.orientation === orientation) {
 			return;

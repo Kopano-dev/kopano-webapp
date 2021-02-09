@@ -16,17 +16,17 @@ Zarafa.addressbook.AddressBookHierarchyStore = Ext.extend(Zarafa.core.data.ListM
 	 * @constructor
 	 * @param config Configuration structure
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			preferredMessageClass : 'addressbook',
+			preferredMessageClass: 'addressbook',
 			standalone: true,
-			proxy : new Zarafa.addressbook.AddressBookHierarchyProxy(),
-			sortInfo : {
-				field : 'display_name',
-				direction : 'desc'
+			proxy: new Zarafa.addressbook.AddressBookHierarchyProxy(),
+			sortInfo: {
+				field: 'display_name',
+				direction: 'desc'
 			}
 		});
 
@@ -41,7 +41,7 @@ Zarafa.addressbook.AddressBookHierarchyStore = Ext.extend(Zarafa.core.data.ListM
 	 * @param {String} b The second id to compare
 	 * @protected
 	 */
-	idComparison : function(a, b)
+	idComparison: function(a, b)
 	{
 		return Zarafa.core.EntryId.compareABEntryIds(a, b);
 	},
@@ -75,7 +75,7 @@ Zarafa.addressbook.AddressBookHierarchyStore = Ext.extend(Zarafa.core.data.ListM
 	 * @param {Boolean} success The success status, True if the notification was successfully received.
 	 * @private
 	 */
-	onNotifyObjectmodified : function(action, records, data, timestamp, success)
+	onNotifyObjectmodified: function(action, records, data, timestamp, success)
 	{
 		this.loadAddressBookHierarchy();
 	}

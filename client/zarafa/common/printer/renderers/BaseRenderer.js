@@ -11,7 +11,7 @@ Zarafa.common.printer.renderers.BaseRenderer = Ext.extend(Object, {
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		Ext.apply(this, config);
 	},
@@ -94,7 +94,7 @@ Zarafa.common.printer.renderers.BaseRenderer = Ext.extend(Object, {
 	 * @return {String} The clean template
 	 * @private
 	 */
-	cleanTemplate : function(template)
+	cleanTemplate: function(template)
 	{
 		// Conversions:
 		// - \r is an illegal character which cannot be present in a string

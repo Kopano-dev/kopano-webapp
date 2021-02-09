@@ -13,29 +13,29 @@ Zarafa.calendar.widget.CalendarFolderSelectionLink = Ext.extend(Ext.BoxComponent
 	 * @cfg {String} fieldLabel The label which must be applied to template
 	 * as a prefix to the list of attachments.
 	 */
-	emptyText :_('Select one...'),
+	emptyText:_('Select one...'),
 
 	/**
 	 * The folder which was selected by the user
 	 * @property
 	 * @type Zarafa.hierarchy.data.MAPIFolderRecord
 	 */
-	folder : undefined,
+	folder: undefined,
 
 	/**
 	 * @constructor
 	 * @param {Object} config configuration object.
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config,{
 			xtype: 'zarafa.calendarfolderselectionlink',
-			border : false,
-			autoScroll :true,
-			anchor : '100%',
-			tpl : new Ext.XTemplate(
+			border: false,
+			autoScroll:true,
+			anchor: '100%',
+			tpl: new Ext.XTemplate(
 				'<div class="k-folder-link">' +
 					'<tpl if="!Ext.isEmpty(values.display_name)">' +
 						'&quot;{display_name:htmlEncode}&quot;' +
@@ -45,7 +45,7 @@ Zarafa.calendar.widget.CalendarFolderSelectionLink = Ext.extend(Ext.BoxComponent
 					'</tpl>' +
 				'</div>',
 				{
-					compiled : true
+					compiled: true
 				}
 			)
 		});
@@ -59,7 +59,7 @@ Zarafa.calendar.widget.CalendarFolderSelectionLink = Ext.extend(Ext.BoxComponent
 	 * and will register {@link #onClick} event handler.
 	 * @private
 	 */
-	afterRender : function()
+	afterRender: function()
 	{
 		Zarafa.calendar.widget.CalendarFolderSelectionLink.superclass.afterRender.apply(this, arguments);
 
@@ -76,17 +76,17 @@ Zarafa.calendar.widget.CalendarFolderSelectionLink = Ext.extend(Ext.BoxComponent
 	 * @param {Ext.EventObject} evt The mouse event
  	 * @protected
 	 */
-	onClick : function(dataView, index, node, evt)
+	onClick: function(dataView, index, node, evt)
 	{
 		var defaultCalendar = container.getHierarchyStore().getDefaultFolder('calendar');
 		var folder = Ext.isEmpty(this.folder) ? defaultCalendar : this.folder;
 		Zarafa.hierarchy.Actions.openFolderSelectionContent({
-			folder : folder,
+			folder: folder,
 			hideTodoList: true,
 			IPMFilter: 'IPF.Appointment',
-			callback : this.update,
-			scope : this,
-			modal : true
+			callback: this.update,
+			scope: this,
+			modal: true
 		});
 	},
 
@@ -95,7 +95,7 @@ Zarafa.calendar.widget.CalendarFolderSelectionLink = Ext.extend(Ext.BoxComponent
 	 * the {@link #folder}.
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder The folder to show
 	 */
-	update : function(folder)
+	update: function(folder)
 	{
 		// Avoid 'folderupdate' for the first time when this component loads.
 		if (folder) {
@@ -105,7 +105,7 @@ Zarafa.calendar.widget.CalendarFolderSelectionLink = Ext.extend(Ext.BoxComponent
 			folder = this.folder;
 		}
 
- 		var data = folder ? folder.data : { display_name : this.emptyText };
+ 		var data = folder ? folder.data : { display_name: this.emptyText };
 		Zarafa.calendar.widget.CalendarFolderSelectionLink.superclass.update.call(this, this.tpl.apply(data));
 	}
 });

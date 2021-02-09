@@ -23,7 +23,7 @@ Zarafa.common.plugins.SplitFieldLabeler = Ext.extend(Ext.util.Observable, {
 	 * @cfg {Object} labelCfg The labelConfiguration which must be
 	 * applied to all generated labels.
 	 */
-	labelCfg : {
+	labelCfg: {
 		style: 'text-align: left; padding: 3px 3px 3px 3px'
 	},
 	/**
@@ -32,7 +32,7 @@ Zarafa.common.plugins.SplitFieldLabeler = Ext.extend(Ext.util.Observable, {
 	 * displayed item inside the field!). This configuration applied after
 	 * the {@link #labelCfg}.
 	 */
-	firstLabelCfg : {
+	firstLabelCfg: {
 		style: 'text-align: left; padding: 3px 3px 3px 0px'
 	},
 	/**
@@ -41,7 +41,7 @@ Zarafa.common.plugins.SplitFieldLabeler = Ext.extend(Ext.util.Observable, {
 	 * displayed item inside the field!). This configuration applied after
 	 * the {@link #labelCfg}.
 	 */
-	lastLabelCfg : {
+	lastLabelCfg: {
 		style: 'text-align: left; padding: 3px 3px 3px 3px'
 	},
 
@@ -49,7 +49,7 @@ Zarafa.common.plugins.SplitFieldLabeler = Ext.extend(Ext.util.Observable, {
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		Ext.apply(this, config);
 	},
@@ -58,7 +58,7 @@ Zarafa.common.plugins.SplitFieldLabeler = Ext.extend(Ext.util.Observable, {
 	 * Plugin initializer for the SplitFieldLabeler.
 	 * @param {Ext.Component} field The field for which the fieldlabeler is initialized
 	 */
-	init : function(field)
+	init: function(field)
 	{
 		// This is not a container, or no label has been assigned.
 		if (!Ext.isDefined(field.items) || !Ext.isDefined(field.fieldLabel) || field.hideLabel === true) {
@@ -77,7 +77,7 @@ Zarafa.common.plugins.SplitFieldLabeler = Ext.extend(Ext.util.Observable, {
 		} else {
 			field.items.clear();
 			field.items.addAll(labeledItems);
-			// The innerCt has already been created at this point so the items 
+			// The innerCt has already been created at this point so the items
 			// need to be added to that Component as well
 			field.innerCt.items.clear();
 			field.innerCt.items.addAll(labeledItems);
@@ -98,10 +98,10 @@ Zarafa.common.plugins.SplitFieldLabeler = Ext.extend(Ext.util.Observable, {
 	 * @param {String} label The label which must be distributed over the items.
 	 * @return {Array} The array of labelstrings which must be applied to the components.
 	 */
-	createLabelDistribution : function(items, label)
+	createLabelDistribution: function(items, label)
 	{
 		var splitters = [];
-		var generateSplitters = function(item) {   
+		var generateSplitters = function(item) {
 			if (Ext.isDefined(item.labelSplitter)) {
 				splitters.push(item.labelSplitter);
 			}
@@ -130,7 +130,7 @@ Zarafa.common.plugins.SplitFieldLabeler = Ext.extend(Ext.util.Observable, {
 	 * @return {Array} items The array of items with the labels applied, and in the
 	 * order in which they must be shown.
 	 */
-	applyLabelDistribution : function(items, labels)
+	applyLabelDistribution: function(items, labels)
 	{
 		var labeledItems = [];
 
@@ -192,7 +192,7 @@ Zarafa.common.plugins.SplitFieldLabeler = Ext.extend(Ext.util.Observable, {
 	 * @param {Ext.Component} labeledItems The components which contain the
 	 * fieldLabels for which the lengths must be calculated.
 	 */
-	applyLabelWidths : function(totalWidth, labeledItems)
+	applyLabelWidths: function(totalWidth, labeledItems)
 	{
 		// No width configured, all labels have autoWidth
 		if (!Ext.isNumber(totalWidth)) {
@@ -203,7 +203,7 @@ Zarafa.common.plugins.SplitFieldLabeler = Ext.extend(Ext.util.Observable, {
 		var labelLength = 0;
 
 		// Loop over all items to see what labels have been
-		// applied, and if a width has already been specified. 
+		// applied, and if a width has already been specified.
 		for (var i = 0; i < labeledItems.length; i++) {
 			var item = labeledItems[i];
 
@@ -222,7 +222,7 @@ Zarafa.common.plugins.SplitFieldLabeler = Ext.extend(Ext.util.Observable, {
 			}
 		}
 
-		// Calculate the labelWidth 
+		// Calculate the labelWidth
 		for (var i = 0; i < labeledItems.length; i++) {
 			var item = labeledItems[i];
 

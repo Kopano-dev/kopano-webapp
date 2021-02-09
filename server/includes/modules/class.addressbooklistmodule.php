@@ -139,7 +139,7 @@
 
 				if (!empty($action['entryid'])) {
 					$entryid = hex2bin($action['entryid']);
-				}else{
+				} else {
 					$entryid = mapi_ab_getdefaultdir($ab);
 				}
 

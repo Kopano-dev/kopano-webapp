@@ -10,7 +10,7 @@
 		private $languagetable = array("en_GB"=>"eng_ENG");
 		private $lang;
 		private $loaded = false;
-			
+
 		/**
 		 * Default constructor
 		 *
@@ -21,7 +21,7 @@
 		function __construct()
 		{
 		}
-		
+
 		/**
 		* Loads languages from disk
 		*
@@ -64,7 +64,7 @@
 					}
 				}
 			}
-			$this->loaded = true;		
+			$this->loaded = true;
 		}
 
 		/**
@@ -84,7 +84,7 @@
 
 			if ($this->is_language($lang)){
 				$this->lang = $lang;
-		
+
 				setlocale(LC_MESSAGES, $lang);
 				bindtextdomain('zarafa_webapp' , LANGUAGE_DIR);
 
@@ -103,7 +103,7 @@
 				}
 
 				textdomain('zarafa_webapp');
-			}else{
+			} else {
 				error_log(sprintf("Unknown language: '%s'", $lang));
 			}
 		}
@@ -139,7 +139,7 @@
 			}
 			return json_encode($json);
 		}
-	
+
 		/**
 		* Returns the ID of the currently selected language
 		*
@@ -149,11 +149,11 @@
 		{
 			return $this->lang;
 		}
-	
+
 		/**
 		* Returns if the specified language is valid or not
 		*
-		* @param string $lang 
+		* @param string $lang
 		* @return boolean TRUE if the language is valid
 		*/
 		function is_language($lang)
@@ -162,8 +162,8 @@
 		}
 
 		/**
-		 * Returns the resolved language code, i.e. ending on UTF-8. 
-		 * Examples: 
+		 * Returns the resolved language code, i.e. ending on UTF-8.
+		 * Examples:
 		 *  - en_GB => en.GB.UTF-8
 		 *  - en_GB.utf8 => en_GB.UTF-8
 		 *  - en_GB.UTF-8 => en_GB.UTF-8 (no changes)
@@ -178,7 +178,7 @@
 				// Make sure we will use the format UTF-8 (capitals and hyphen)
 				return $normalizedLang .= '.UTF-8';
 			}
-			
+
 			$normalizedLang = stristr($lang, '.utf8', true);
 			if ( !empty($normalizedLang) && $normalizedLang !== $lang ) {
 				// Make sure we will use the format UTF-8 (capitals and hyphen)
@@ -204,18 +204,18 @@
 					}
 				}
 			}
-			
+
 			return $translations;
 		}
 
 		/**
 		 * getTranslationsFromFile
-		 * 
+		 *
 		 * This file reads the translations from the binary .mo file and returns
 		 * them in an array containing the original and the translation variant.
 		 * The .mo file format is described on the following URL.
 		 * http://www.gnu.org/software/gettext/manual/gettext.html#MO-Files
-		 * 
+		 *
 		 *          byte
 		 *               +------------------------------------------+
 		 *            0  | magic number = 0x950412de                |
@@ -263,7 +263,7 @@
 		 *                ...                                    ...
 		 *               |                                          |
 		 *               +------------------------------------------+
-		 * 
+		 *
 		 * @param $filename string Name of the .mo file.
 		 * @return array|boolean false when file is missing otherwise array with
 		 *                             translations.
@@ -295,7 +295,7 @@
 			$data_transl_strs = Array();
 
 			/**
-			 * Get the length and offset to the original strings by using the table 
+			 * Get the length and offset to the original strings by using the table
 			 * with original strings
 			 */
 			// Set pointer to start of orig string table
@@ -308,7 +308,7 @@
 			}
 
 			/**
-			 * Get the length and offset to the translation strings by using the table 
+			 * Get the length and offset to the translation strings by using the table
 			 * with translation strings
 			 */
 			// Set pointer to start of translations string table
@@ -351,7 +351,7 @@
 						$translation_data[$i]['msgid'] = $original[0];
 						$translation_data[$i]['msgid_plural'] = $original[1];
 					}
-				}else{
+				} else {
 					$translation_data[$i]['msgid'] = '';
 				}
 			}
@@ -374,7 +374,7 @@
 					if($translation_data[$i]['msgid_plural'] !== false) {
 						$translation_data[$i]['msgstr'] = explode("\0", $translation_data[$i]['msgstr']);
 					}
-				}else{
+				} else {
 					$translation_data[$i]['msgstr'] = '';
 				}
 			}

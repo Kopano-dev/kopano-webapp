@@ -12,37 +12,37 @@ Zarafa.mail.widgets.QuickMailWidget = Ext.extend(Zarafa.core.ui.widget.AbstractQ
 	/**
 	 * @cfg {Boolean} Enable the HTML editor
 	 */
-	useHtml : false,
+	useHtml: false,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			wrapCfg : {
-				recordComponentPluginConfig : Ext.applyIf(config.recordComponentPluginConfig || {}, {
-					allowWrite : true
+			wrapCfg: {
+				recordComponentPluginConfig: Ext.applyIf(config.recordComponentPluginConfig || {}, {
+					allowWrite: true
 				}),
-				layout : 'fit',
-				items : [{
-					xtype : 'form',
-					ref : 'formPanel',
+				layout: 'fit',
+				items: [{
+					xtype: 'form',
+					ref: 'formPanel',
 					layout: {
 						type: 'vbox',
 						align: 'stretch'
 					},
-					border : false,
+					border: false,
 					bodyStyle: 'background-color: inherit; padding: 5px;',
 					defaults: {
 						border: false,
 						labelLength: 100,
 						style: 'padding-bottom: 2px'
 					},
-					items : [{
+					items: [{
 						xtype: 'zarafa.resizablecompositefield',
 						hideLabel: true,
 						anchor: '100%',
@@ -58,7 +58,7 @@ Zarafa.mail.widgets.QuickMailWidget = Ext.extend(Zarafa.core.ui.widget.AbstractQ
 							flex: 1,
 							autoHeight: true,
 							defaultRecipientType: Zarafa.core.mapi.RecipientType.MAPI_TO
-						}]			
+						}]
 					},{
 						xtype: 'zarafa.compositefield',
 						hideLabel: true,
@@ -70,37 +70,37 @@ Zarafa.mail.widgets.QuickMailWidget = Ext.extend(Zarafa.core.ui.widget.AbstractQ
 							name: 'subject',
 							emptyText: _('Subject') + ':',
 							listeners: {
-								change : this.onChange,
-								scope : this
+								change: this.onChange,
+								scope: this
 							}
 						}]
 					},{
 						xtype: 'zarafa.editorfield',
 						ref: '../editorField',
-						htmlName : 'html_body',
-						plaintextName : 'body',
+						htmlName: 'html_body',
+						plaintextName: 'body',
 						hideLabel: true,
 						flex: 1,
-						useHtml : config.useHtml,
+						useHtml: config.useHtml,
 						defaultValue: '',
 						listeners: {
-							change : this.onBodyChange,
-							scope : this
+							change: this.onBodyChange,
+							scope: this
 						}
 					}]
 				}]
 			},
-			buttons : [{
-				text : _('Send'),
-				cls : 'zarafa-action',
+			buttons: [{
+				text: _('Send'),
+				cls: 'zarafa-action',
 				style: 'padding-bottom: 5px',
-				handler : this.onSend,
-				scope : this
+				handler: this.onSend,
+				scope: this
 			},{
-				text : _('Discard'),
+				text: _('Discard'),
 				style: 'padding-bottom: 5px',
-				handler : this.onDiscard,
-				scope : this
+				handler: this.onDiscard,
+				scope: this
 			}]
 		});
 
@@ -112,7 +112,7 @@ Zarafa.mail.widgets.QuickMailWidget = Ext.extend(Zarafa.core.ui.widget.AbstractQ
 	 * @return {Ext.data.Record} record The record to load into the {@link #wrap}
 	 * @protected
 	 */
-	createRecord : function()
+	createRecord: function()
 	{
 		var folder = container.getHierarchyStore().getDefaultFolder('drafts');
 		var context = container.getContextByName('mail');
@@ -128,7 +128,7 @@ Zarafa.mail.widgets.QuickMailWidget = Ext.extend(Zarafa.core.ui.widget.AbstractQ
 	 * @param {Boolean} contentReset force the component to perform a full update of the data.
 	 * @protected
 	 */
-	update : function(record, contentReset)
+	update: function(record, contentReset)
 	{
 		this.wrap.formPanel.getForm().loadRecord(record);
 		if (contentReset) {
@@ -142,7 +142,7 @@ Zarafa.mail.widgets.QuickMailWidget = Ext.extend(Zarafa.core.ui.widget.AbstractQ
 	 * @param {Zarafa.core.data.IPMRecord} record The record to update
 	 * @protected
 	 */
-	updateRecord : function(record)
+	updateRecord: function(record)
 	{
 		record.beginEdit();
 		this.wrap.formPanel.getForm().updateRecord(record);
@@ -156,7 +156,7 @@ Zarafa.mail.widgets.QuickMailWidget = Ext.extend(Zarafa.core.ui.widget.AbstractQ
         * sending the mail.
         * @private
         */
-       onSend : function()
+       onSend: function()
        {
                this.wrap.sendRecord();
        }
@@ -164,9 +164,9 @@ Zarafa.mail.widgets.QuickMailWidget = Ext.extend(Zarafa.core.ui.widget.AbstractQ
 
 Zarafa.onReady(function() {
 	container.registerWidget(new Zarafa.core.ui.widget.WidgetMetaData({
-		name : 'quickmail',
+		name: 'quickmail',
 		iconCls: 'icon_widget_email',
-		displayName : _('Quick Mail'),
-		widgetConstructor : Zarafa.mail.widgets.QuickMailWidget
+		displayName: _('Quick Mail'),
+		widgetConstructor: Zarafa.mail.widgets.QuickMailWidget
 	}));
 });

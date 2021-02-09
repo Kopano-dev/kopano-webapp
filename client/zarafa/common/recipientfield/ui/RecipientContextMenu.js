@@ -16,13 +16,13 @@ Zarafa.common.recipientfield.ui.RecipientContextMenu = Ext.extend(Zarafa.core.ui
 	 * @cfg {Boolean} editable
 	 * False to prevent any menu item to edit the record on which this menu is shown.
 	 */
-	editable : true,
+	editable: true,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -40,36 +40,36 @@ Zarafa.common.recipientfield.ui.RecipientContextMenu = Ext.extend(Zarafa.core.ui
 			items: [{
 				xtype: 'zarafa.conditionalitem',
 				text: _('Edit Recipient'),
-				iconCls : 'icon_edit_recipient',
-				hidden : !editable || resolved,
+				iconCls: 'icon_edit_recipient',
+				hidden: !editable || resolved,
 				handler: this.editRecipient,
 				scope: this
 			},{
 				xtype: 'zarafa.conditionalitem',
 				text: _('Show Details'),
-				iconCls : 'icon_contact',
-				hidden : !resolved,
+				iconCls: 'icon_contact',
+				hidden: !resolved,
 				handler: this.openDetailsContent,
 				scope: this
 			},{
 				xtype: 'zarafa.conditionalitem',
 				text: _('Copy email address'),
-				iconCls : 'icon_copy',
-				hidden : !resolved,
+				iconCls: 'icon_copy',
+				hidden: !resolved,
 				handler: this.copyEmail,
 				scope: this
 			},{
 				xtype: 'zarafa.conditionalitem',
 				text: _('Copy email addresses'),
-				iconCls : 'icon_copy_all',
-				beforeShow : this.onMenuItemBeforeShow,
-				name : 'copyEmailAddresses',
+				iconCls: 'icon_copy_all',
+				beforeShow: this.onMenuItemBeforeShow,
+				name: 'copyEmailAddresses',
 				handler: this.copyEmail,
 				scope: this
 			},{
 				xtype: 'zarafa.conditionalitem',
 				text: _('Send email'),
-				iconCls : 'icon_new_email',
+				iconCls: 'icon_new_email',
 				handler: this.onEmailRecipient,
 				scope: this
 			},
@@ -87,10 +87,10 @@ Zarafa.common.recipientfield.ui.RecipientContextMenu = Ext.extend(Zarafa.core.ui
 	 *
 	 * @private
 	 */
-	editRecipient : function()
+	editRecipient: function()
 	{
 		Zarafa.core.data.UIFactory.openCreateRecord(this.records, {
-			manager : Ext.WindowMgr
+			manager: Ext.WindowMgr
 		});
 	},
 
@@ -102,7 +102,7 @@ Zarafa.common.recipientfield.ui.RecipientContextMenu = Ext.extend(Zarafa.core.ui
 	 *
 	 * @private
 	 */
-	openDetailsContent : function()
+	openDetailsContent: function()
 	{
 		Zarafa.common.Actions.openViewRecipientContent(this.records);
 	},
@@ -114,7 +114,7 @@ Zarafa.common.recipientfield.ui.RecipientContextMenu = Ext.extend(Zarafa.core.ui
 	 * @param {Zarafa.core.ui.menu.ConditionalItem} item The item to enable/disable
 	 * @private
 	 */
-	onMenuItemBeforeShow : function(item)
+	onMenuItemBeforeShow: function(item)
 	{
 		var record = this.records;
 		// Hide the context menu if selected recipient is not resolved.
@@ -123,7 +123,7 @@ Zarafa.common.recipientfield.ui.RecipientContextMenu = Ext.extend(Zarafa.core.ui
 			return;
 		}
 
-		var recipients =  Zarafa.common.Actions.getRecipientsByType(record.store, record.get('recipient_type'));
+		var recipients = Zarafa.common.Actions.getRecipientsByType(record.store, record.get('recipient_type'));
 		item.setVisible(recipients.length !== 1);
 	},
 
@@ -132,7 +132,7 @@ Zarafa.common.recipientfield.ui.RecipientContextMenu = Ext.extend(Zarafa.core.ui
 	 * copy email address(es) of the resolved recipient(s).
 	 * @param {Zarafa.core.ui.menu.ConditionalItem} item The item which was clicked.
 	 */
-	copyEmail : function (item)
+	copyEmail: function (item)
 	{
 		var copyAll = item.name === 'copyEmailAddresses';
 		Zarafa.common.Actions.copyEmailAddress(this.records, this.records.store, copyAll);
@@ -146,7 +146,7 @@ Zarafa.common.recipientfield.ui.RecipientContextMenu = Ext.extend(Zarafa.core.ui
 	 *
 	 * @private
 	 */
-	onEmailRecipient : function()
+	onEmailRecipient: function()
 	{
 		Zarafa.common.Actions.onEmailRecipient(this.records);
 	}

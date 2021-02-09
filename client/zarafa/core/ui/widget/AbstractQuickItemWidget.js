@@ -16,13 +16,13 @@ Zarafa.core.ui.widget.AbstractQuickItemWidget = Ext.extend(Zarafa.core.ui.widget
 	 * @type Ext.data.Record
 	 * @protected
 	 */
-	record : undefined,
+	record: undefined,
 
 	/**
 	 * @cfg {Object} Configuration object for the instantiation of the
 	 * {@link Zarafa.core.ui.MessageContentPanel} in the {@link #wrap} property.
 	 */
-	wrapCfg : undefined,
+	wrapCfg: undefined,
 
 	/**
 	 * The embedded {@link Zarafa.core.ui.MessageContentPanel} which handles
@@ -31,41 +31,41 @@ Zarafa.core.ui.widget.AbstractQuickItemWidget = Ext.extend(Zarafa.core.ui.widget
 	 * @type Zarafa.core.ui.MessageContentPanel
 	 * @protected
 	 */
-	wrap : undefined,
+	wrap: undefined,
 
 	/**
 	 * @cfg {Boolean} resetOnSave {@link #reset} the widget when client receives confirmation of message is saved.
 	 */
-	resetOnSave : true,
+	resetOnSave: true,
 
 	/**
 	 * @cfg {Boolean} resetOnSend {@link #reset} the widget when client receives confirmation of message is sent.
 	 */
-	resetOnSend : true,
+	resetOnSend: true,
 
 	/**
 	 * @cfg {Boolean} hasDialog True if a {@link #tools} button should be added for opening the record
 	 * inside a dialog (See {@link #dialog}).
 	 */
-	hasDialog : true,
+	hasDialog: true,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		config.wrapCfg = Ext.applyIf(config.wrapCfg || {}, {
-			stateful : false,
-			height : 200,
-			closeOnSave : false,
-			closeOnSend : false
+			stateful: false,
+			height: 200,
+			closeOnSave: false,
+			closeOnSend: false
 		});
 
 		config.wrapCfg.recordComponentPluginConfig = Ext.applyIf(config.wrapCfg.recordComponentPluginConfig || {}, {
-			useShadowStore : false // We put the record into the shadowstore ourselves.
+			useShadowStore: false // We put the record into the shadowstore ourselves.
 		});
 
 		this.wrap = new Zarafa.core.ui.MessageContentPanel(config.wrapCfg);
@@ -76,9 +76,9 @@ Zarafa.core.ui.widget.AbstractQuickItemWidget = Ext.extend(Zarafa.core.ui.widget
 		this.wrap.updateRecord = this.updateRecord.createDelegate(this);
 
 		Ext.applyIf(config, {
-			name : 'quickitem',
-			layout : 'fit',
-			items : [this.wrap]
+			name: 'quickitem',
+			layout: 'fit',
+			items: [this.wrap]
 		});
 
 		Zarafa.core.ui.widget.AbstractQuickItemWidget.superclass.constructor.call(this, config);
@@ -89,16 +89,16 @@ Zarafa.core.ui.widget.AbstractQuickItemWidget = Ext.extend(Zarafa.core.ui.widget
 	 * which can open the record in a new content panel.
 	 * @protected
 	 */
-	initWidget : function()
+	initWidget: function()
 	{
 		Zarafa.core.ui.widget.AbstractQuickItemWidget.superclass.initWidget.apply(this, arguments);
 
 		if (this.hasDialog) {
 			this.tools.unshift({
-				id : 'plus',
+				id: 'plus',
 				qtip: _('Open in new tab'),
-				handler : this.dialog,
-				scope : this
+				handler: this.dialog,
+				scope: this
 			});
 		}
 	},
@@ -107,21 +107,21 @@ Zarafa.core.ui.widget.AbstractQuickItemWidget = Ext.extend(Zarafa.core.ui.widget
 	 * Initialize the events
 	 * @protected
 	 */
-	initEvents : function()
+	initEvents: function()
 	{
 		Zarafa.core.ui.widget.AbstractQuickItemWidget.superclass.initEvents.apply(this, arguments);
 
-		this.mon(this, 'afterlayout', this.onAfterFirstLayout, this, { single : true });
+		this.mon(this, 'afterlayout', this.onAfterFirstLayout, this, { single: true });
 
 		if (this.resetOnSave) {
 			// Defer to ensure the all 'aftersaverecord' event handlers have completed
 			// before we reset the content of the widget.
-			this.mon(this.wrap, 'aftersaverecord', this.reset, this, { buffer : 1 });
+			this.mon(this.wrap, 'aftersaverecord', this.reset, this, { buffer: 1 });
 		}
 		if (this.resetOnSend) {
 			// Defer to ensure the all 'aftersendrecord' event handlers have completed
 			// before we reset the content of the widget.
-			this.mon(this.wrap, 'aftersendrecord', this.reset, this, { buffer : 1 });
+			this.mon(this.wrap, 'aftersendrecord', this.reset, this, { buffer: 1 });
 		}
 	},
 
@@ -131,7 +131,7 @@ Zarafa.core.ui.widget.AbstractQuickItemWidget = Ext.extend(Zarafa.core.ui.widget
 	 * Afterwards it will {@link #reset} this widget.
 	 * @private
 	 */
-	dialog : function()
+	dialog: function()
 	{
 		this.wrap.inputAutoFocusPlugin.beginFocusEl.focus();
 		this.wrap.saveRecord(false);
@@ -147,7 +147,7 @@ Zarafa.core.ui.widget.AbstractQuickItemWidget = Ext.extend(Zarafa.core.ui.widget
 	 * {@link Zarafa.core.ui.MessageContentPanel#setRecord set it} to the {@link #wrap}.
 	 * protected
 	 */
-	reset : function()
+	reset: function()
 	{
 		var store = container.getShadowStore();
 
@@ -170,7 +170,7 @@ Zarafa.core.ui.widget.AbstractQuickItemWidget = Ext.extend(Zarafa.core.ui.widget
 	 * @return {Ext.data.Record} record The record to load into the {@link #wrap}
 	 * @protected
 	 */
-	createRecord : Ext.emptyFn,
+	createRecord: Ext.emptyFn,
 
 	/**
 	 * Updates the widget by loading data from the record into the {@link #wrap}.
@@ -180,7 +180,7 @@ Zarafa.core.ui.widget.AbstractQuickItemWidget = Ext.extend(Zarafa.core.ui.widget
 	 * @param {Boolean} contentReset force the component to perform a full update of the data.
 	 * @protected
 	 */
-	update : Ext.emptyFn,
+	update: Ext.emptyFn,
 
 	/**
 	 * Updates the widget by loading data from the record into the {@link #wrap}.
@@ -189,7 +189,7 @@ Zarafa.core.ui.widget.AbstractQuickItemWidget = Ext.extend(Zarafa.core.ui.widget
 	 * @param {Zarafa.core.data.IPMRecord} record The record to update
 	 * @protected
 	 */
-	updateRecord : Ext.emptyFn,
+	updateRecord: Ext.emptyFn,
 
 	/**
 	 * Event handler which is fired for the first {@link #afterlayout} event.
@@ -198,11 +198,11 @@ Zarafa.core.ui.widget.AbstractQuickItemWidget = Ext.extend(Zarafa.core.ui.widget
 	 * loaded the widget will be {@link #reset}.
 	 * @private
 	 */
-	onAfterFirstLayout : function()
+	onAfterFirstLayout: function()
 	{
 		var hierarchy = container.getHierarchyStore();
 		if (!hierarchy.getDefaultStore()) {
-			this.mon(hierarchy, 'load', this.reset, this, { single : true });
+			this.mon(hierarchy, 'load', this.reset, this, { single: true });
 		} else {
 			this.reset();
 		}
@@ -214,7 +214,7 @@ Zarafa.core.ui.widget.AbstractQuickItemWidget = Ext.extend(Zarafa.core.ui.widget
 	 * {@link #record} from the {@link Zarafa.core.data.ShadowStore ShadowStore}.
 	 * @protected
 	 */
-	onDestroy : function()
+	onDestroy: function()
 	{
 		Zarafa.core.ui.widget.AbstractQuickItemWidget.superclass.onDestroy.apply(this, arguments);
 
@@ -231,7 +231,7 @@ Zarafa.core.ui.widget.AbstractQuickItemWidget = Ext.extend(Zarafa.core.ui.widget
 	 * @param {Object} value The value of the field updated
 	 * @private
 	 */
-	onChange : function(field, value)
+	onChange: function(field, value)
 	{
 		this.wrap.record.set(field.name, value);
 	},
@@ -245,7 +245,7 @@ Zarafa.core.ui.widget.AbstractQuickItemWidget = Ext.extend(Zarafa.core.ui.widget
 	 * @param {Mixed} oldValue The old value
 	 * @private
 	 */
-	onBodyChange : function(field, newValue, oldValue)
+	onBodyChange: function(field, newValue, oldValue)
 	{
 		this.wrap.record.beginEdit();
 		if (field instanceof Ext.form.HtmlEditor) {
@@ -263,7 +263,7 @@ Zarafa.core.ui.widget.AbstractQuickItemWidget = Ext.extend(Zarafa.core.ui.widget
 	 * sending the mail.
 	 * @private
 	 */
-	onSave : function()
+	onSave: function()
 	{
 		this.wrap.saveRecord();
 	},
@@ -273,7 +273,7 @@ Zarafa.core.ui.widget.AbstractQuickItemWidget = Ext.extend(Zarafa.core.ui.widget
 	 * This will call {@link #reset} to clear the contents.
 	 * @private
 	 */
-	onDiscard : function()
+	onDiscard: function()
 	{
 		this.reset();
 	}

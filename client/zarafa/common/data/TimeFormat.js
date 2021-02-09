@@ -15,13 +15,13 @@ Zarafa.common.data.TimeFormat = Zarafa.core.Enum.create({
 	 * @property
 	 * @type Number
 	 */
-    TWELVEHOUR : 'g:i A',
-    
-    /**
+  TWELVEHOUR: 'g:i A',
+
+  /**
 	 * TWENTYFOURHOUR which used to for 'G:i' format.
 	 *
 	 * @property
 	 * @type Number
 	 */
-    TWENTYFOURHOUR : 'G:i'
+  TWENTYFOURHOUR: 'G:i'
 });

@@ -12,13 +12,13 @@ Zarafa.calendar.printer.MonthViewRenderer = Ext.extend(Zarafa.calendar.printer.A
 	/**
 	 * @cfg {String} folderColor The color of the selected calendar folder.
 	 */
-	folderColor : '#FFF',
+	folderColor: '#FFF',
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 		Zarafa.calendar.printer.MonthViewRenderer.superclass.constructor.call(this, config);
@@ -61,7 +61,7 @@ Zarafa.calendar.printer.MonthViewRenderer = Ext.extend(Zarafa.calendar.printer.A
 	 * @param {Zarafa.calendar.CalendarContextModel} model The {@link Zarafa.calendar.CalendarContextModel CalendarContextModel}.
 	 * @return {Array} nested array which contains the weeks and days information.
 	 */
-	prepareCalendarDays : function(startDate, numDays, model)
+	prepareCalendarDays: function(startDate, numDays, model)
 	{
 		var weeks = [];
 		var appointments = this.prepareAppointments(model);
@@ -75,9 +75,9 @@ Zarafa.calendar.printer.MonthViewRenderer = Ext.extend(Zarafa.calendar.printer.A
 				// push day into week array.
 				week.push({
 					"date": this.getFormattedDate(date, startDate),
-					"appointments" : result.items,
-					"overflowAppointment" : result.overflowAppointment,
-					"color" : this.folderColor
+					"appointments": result.items,
+					"overflowAppointment": result.overflowAppointment,
+					"color": this.folderColor
 				});
 			}
 
@@ -94,7 +94,7 @@ Zarafa.calendar.printer.MonthViewRenderer = Ext.extend(Zarafa.calendar.printer.A
 	 * @param {Zarafa.calendar.CalendarContextModel} model The {@link Zarafa.calendar.CalendarContextModel CalendarContextModel}.
 	 * @return {Array} an appointments of selected month.
 	 */
-	prepareAppointments : function(model)
+	prepareAppointments: function(model)
 	{
 		var appointments = [];
 		var dateRange = new Zarafa.core.DateRange();
@@ -115,10 +115,10 @@ Zarafa.calendar.printer.MonthViewRenderer = Ext.extend(Zarafa.calendar.printer.A
 			if(dateRange.getNumDays() > 1) {
 				for(var i = 0; i < dateRange.getNumDays(); i++) {
 					var date = startDate.add(Date.DAY, i).clearTime(true).getTime();
-					appointments.push({startDate : date, text: text, busyStatus: status});
+					appointments.push({startDate: date, text: text, busyStatus: status});
 				}
 			} else {
-				appointments.push({startDate : startDate.clearTime(true).getTime(), text:text, busyStatus: status});
+				appointments.push({startDate: startDate.clearTime(true).getTime(), text:text, busyStatus: status});
 			}
 		}, this);
 
@@ -134,7 +134,7 @@ Zarafa.calendar.printer.MonthViewRenderer = Ext.extend(Zarafa.calendar.printer.A
 	 * @param {Date} date The Date of the month for which we have to prepare the appointment bounds.
 	 * @return {Object} an object contains an appointment bounds which belongs to selected date.
 	 */
-	findAppointmentsByDate : function(records, date)
+	findAppointmentsByDate: function(records, date)
 	{
 		var items = [];
 		var overflowAppointment = false;
@@ -163,15 +163,15 @@ Zarafa.calendar.printer.MonthViewRenderer = Ext.extend(Zarafa.calendar.printer.A
 
 				var item = {};
 				item["appointment"] = {
-					text : appointments[i].text,
+					text: appointments[i].text,
 					bottom: bottom,
-					color : this.folderColor,
-					busyStatus : this.getAppointmentStatus(appointments[i].busyStatus)
+					color: this.folderColor,
+					busyStatus: this.getAppointmentStatus(appointments[i].busyStatus)
 				};
 				items.push(item);
 			}
 		}
-		return {"items" : items, "overflowAppointment": overflowAppointment};
+		return {"items": items, "overflowAppointment": overflowAppointment};
 	},
 
 	/**
@@ -180,7 +180,7 @@ Zarafa.calendar.printer.MonthViewRenderer = Ext.extend(Zarafa.calendar.printer.A
 	 * @param {Zarafa.core.mapi.BusyStatus} busyStatus the {@link Zarafa.core.mapi.BusyStatus busyStatus} of an appointment.
 	 * @return {String} return the svg icon which used to indicate the status of an appointment.
 	 */
-	getAppointmentStatus : function(busyStatus)
+	getAppointmentStatus: function(busyStatus)
 	{
 		switch (busyStatus) {
 			case Zarafa.core.mapi.BusyStatus.FREE:
@@ -215,7 +215,7 @@ Zarafa.calendar.printer.MonthViewRenderer = Ext.extend(Zarafa.calendar.printer.A
 	 * @param {Date} startDate The start date of date range.
 	 * @return {String} return formatted date.
 	 */
-	getFormattedDate : function(date, startDate)
+	getFormattedDate: function(date, startDate)
 	{
 		if (date.getTime() === startDate.getTime() || date.getTime() === date.getFirstDateOfMonth().getTime()) {
 			return date.format(_('M j'));
@@ -227,7 +227,7 @@ Zarafa.calendar.printer.MonthViewRenderer = Ext.extend(Zarafa.calendar.printer.A
 	 * Returns the HTML that will be placed into the <body> part of the print window.
 	 * @return {String} The HTML fragment to place inside the print window's <body> element
 	 */
-	generateBodyTemplate : function()
+	generateBodyTemplate: function()
 	{
 		var html = '<table class="k-calendar-header" cellpadding=0 cellspacing=0>\n';
 

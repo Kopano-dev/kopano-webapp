@@ -3,15 +3,15 @@ Ext.namespace('Zarafa.hierarchy.ui');
 /**
  * @class Zarafa.hierarchy.ui.RootFolderNode
  * @extends Zarafa.hierarchy.ui.FolderNode
- * 
- * This will register itself as 'rootfolder' nodetype in the {@link Ext.tree.TreePanel#nodeTypes} object. 
+ *
+ * This will register itself as 'rootfolder' nodetype in the {@link Ext.tree.TreePanel#nodeTypes} object.
  */
-Zarafa.hierarchy.ui.RootFolderNode = Ext.extend(Zarafa.hierarchy.ui.FolderNode, {	
+Zarafa.hierarchy.ui.RootFolderNode = Ext.extend(Zarafa.hierarchy.ui.FolderNode, {
 	/*
 	 * @constructor
 	 * @param {Object} config configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -29,10 +29,10 @@ Zarafa.hierarchy.ui.RootFolderNode = Ext.extend(Zarafa.hierarchy.ui.FolderNode, 
 		}
 
 		Ext.applyIf(config, {
-			containerCls : containerCls,
-			cls : nodeCls,
-			allowDrag : false,
-			draggable : false
+			containerCls: containerCls,
+			cls: nodeCls,
+			allowDrag: false,
+			draggable: false
 		});
 
 		Zarafa.hierarchy.ui.RootFolderNode.superclass.constructor.call(this, config);
@@ -45,7 +45,7 @@ Zarafa.hierarchy.ui.RootFolderNode = Ext.extend(Zarafa.hierarchy.ui.FolderNode, 
 	 * be called just before the event handlers will run to allow the default action to be cancelled.
 	 *
 	 * When the folder is the {@link Zarafa.hierarchy.data.MAPIFolderRecord#isIPMSubtree subtree} of
-	 * a non-{@link Zarafa.hierarchy.data.MAPIStoreRecord#isDefaultStore default} store or 
+	 * a non-{@link Zarafa.hierarchy.data.MAPIStoreRecord#isDefaultStore default} store or
 	 * {@link Zarafa.hierarchy.data.MAPIFolderRecord#isFavoritesRootFolder FavoritesRootFolder} then click
 	 * action will be cancelled. The reason is that by default there are no actions possible on
 	 * a IPM_SUBTREE or Favorites(IPM_COMMON_VIEWS) folder.
@@ -57,7 +57,7 @@ Zarafa.hierarchy.ui.RootFolderNode = Ext.extend(Zarafa.hierarchy.ui.FolderNode, 
 	 * @param {Zarafa.hierarchy.ui.RootFolderNode} node The node which is being clicked
 	 * @private
 	 */
-	onBeforeClick : function(node)
+	onBeforeClick: function(node)
 	{
 		var folder = node.getFolder();
 		if (folder.isFavoritesRootFolder()) {

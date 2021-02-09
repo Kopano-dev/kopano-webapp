@@ -9,35 +9,35 @@ Zarafa.hierarchy.dialogs.FolderSelectionPanel = Ext.extend(Ext.Panel, {
 	/**
 	 * @cfg {Boolean} hideTodoList True to hide the To-do list.
 	 */
-	hideTodoList : false,
+	hideTodoList: false,
 
 	/**
 	 * @cfg {Zarafa.hierarchy.data.MAPIFolderRecord} folder The Folder object
 	 * which is selected by default.
 	 */
-	folder : undefined,
+	folder: undefined,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration structure
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		config = Ext.applyIf(config, {
-			layout : 'fit',
+			layout: 'fit',
 			border: false,
 			items: [{
-				xtype : 'zarafa.hierarchytree',
-				ref : 'hierarchyTree',
+				xtype: 'zarafa.hierarchytree',
+				ref: 'hierarchyTree',
 				IPMSubTreeFilter: config.IPMSubTreeFilter,
 				IPMFilter: config.IPMFilter ? config.IPMFilter : undefined,
 				permissionFilter: config.permissionFilter ? config.permissionFilter : undefined,
 				border: true,
 				hideFavorites: true,
-				forceLayout : true,
-				treeSorter : true,
+				forceLayout: true,
+				treeSorter: true,
 				hideTodoList: !!config.hideTodoList,
 			}]
 		});
@@ -49,7 +49,7 @@ Zarafa.hierarchy.dialogs.FolderSelectionPanel = Ext.extend(Ext.Panel, {
 	 * Initialize the events
 	 * @private
 	 */
-	initEvents : function()
+	initEvents: function()
 	{
 		Zarafa.hierarchy.dialogs.FolderSelectionPanel.superclass.initEvents.apply(this, arguments);
 
@@ -66,7 +66,7 @@ Zarafa.hierarchy.dialogs.FolderSelectionPanel = Ext.extend(Ext.Panel, {
 	 *
 	 * @private
 	 */
-	onTreeNodeLoad : function()
+	onTreeNodeLoad: function()
 	{
 		// If the folder could be selected, then unregister the event handler.
 		if (this.hierarchyTree.selectFolderInTree(this.folder)) {
@@ -78,7 +78,7 @@ Zarafa.hierarchy.dialogs.FolderSelectionPanel = Ext.extend(Ext.Panel, {
 	 * Obtain the currently selected {@link Zarafa.hierarchy.data.MAPIFolderRecord folder}
 	 * @return {Zarafa.hierarchy.data.MAPIFolderRecord} The selected folder
 	 */
-	getFolder : function()
+	getFolder: function()
 	{
 		return this.hierarchyTree.getSelectionModel().getSelectedNode().getFolder();
 	}

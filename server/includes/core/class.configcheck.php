@@ -1,10 +1,10 @@
 <?php
 
 /**
- * This class will check the server configuration and it stops the 
+ * This class will check the server configuration and it stops the
  * webapp from working until this is fixed
  */
-class ConfigCheck 
+class ConfigCheck
 {
 	public $result;
 	public $errorMessage = "";
@@ -45,7 +45,7 @@ class ConfigCheck
 				<div class="wrapper">
 					<div class="header">
 						<h1>Invalid configuration</h1>
-					</div>	
+					</div>
 					<div class="action">
 						<p class="intro">Don’t worry, we’ll help you get to the bottom of this problem.</p>
 						<p>First of all if you see this message and aren't the administrator, please contact your system administrator for assistance.</p>
@@ -70,14 +70,14 @@ class ConfigCheck
 	}
 
 	/**
-	 * This function throws all the errors, make sure that the check-function 
+	 * This function throws all the errors, make sure that the check-function
 	 * will call this in case of an error.
 	 */
 	function error($string, $help)
 	{
 		if ($this->haltOnError) {
 			$this->errorMessage = $string . ". <br>". $help;
-		} else{
+		} else {
 			trigger_error(strip_tags($string), E_USER_NOTICE);
 		}
 		$this->result = false;
@@ -160,7 +160,7 @@ class ConfigCheck
 		}
 
 		$result = "php.ini";
-	
+
 		ob_start();
 		phpinfo(INFO_GENERAL);
 		$phpinfo = ob_get_contents();
@@ -203,7 +203,7 @@ class ConfigCheck
 				$this->error_version("PHP ".$name." extension",phpversion($name), $version, $help_msg);
 				$result = false;
 			}
-		}else{
+		} else {
 			$this->error_notfound("PHP ".$name." extension", $help_msg);
 			$result = false;
 		}
@@ -222,9 +222,9 @@ class ConfigCheck
 		}
 		return $result;
 	}
-	
+
 	/**
-	 * This function checks if a specific php setting (php.ini) is set to a 
+	 * This function checks if a specific php setting (php.ini) is set to a
 	 * value we need, for example register_globals
 	 */
 	function checkPHPsetting($setting,$value_needed, $help_msg=""){
@@ -255,7 +255,7 @@ class ConfigCheck
 	}
 
 	/**
-	 * This function checks if a specific php setting (php.ini) is set to a 
+	 * This function checks if a specific php setting (php.ini) is set to a
 	 * value we need, for example register_globals
 	 */
 	function checkPHPsecurity($setting,$value_needed, $help_msg=""){
@@ -315,7 +315,7 @@ class ConfigCheck
 					$result = false;
 				}
 			}
-		}else{
+		} else {
 			$this->error_directory($dir, "doesn't exist", $help_msg);
 			$result = false;
 		}
@@ -329,16 +329,16 @@ class ConfigCheck
 	function checkLoader($loader, $help_msg="")
 	{
 		$result = true;
-		
+
 		$releaseFiles = is_file(BASE_PATH . '/client/kopano.js');
 		$sourceFiles = is_dir(BASE_PATH . '/client/zarafa');
 		$debugFiles = is_file(BASE_PATH . '/client/zarafa-debug.js');
-	
+
 		switch ($loader) {
 		case LOAD_RELEASE:
 			if ($sourceFiles) {
 				$this->error('LOAD_RELEASE set, but source files were found', $help_msg);
-				$result = false; 
+				$result = false;
 			} else if (!$releaseFiles) {
 				$this->error('LOAD_RELEASE set, but no release files found', $help_msg);
 				$result = false;
