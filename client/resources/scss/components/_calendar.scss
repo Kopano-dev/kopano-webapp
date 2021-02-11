@@ -206,7 +206,7 @@ $calendar-tab-height: 30px;
 	position: absolute;
 	color: $font-color-dark;
 	box-sizing: border-box;
-	border: 1px solid $white;
+	border: 2px solid transparent;
 	cursor: move;
 	z-index: 100;
 
