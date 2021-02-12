@@ -103,6 +103,12 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 		'<tpl if="values.meeting !== Zarafa.core.mapi.MeetingStatus.NONMEETING && !Ext.isEmpty(this.formatOrganizer(values))">',
 			_('Organizer') + ': {[this.formatOrganizer(values)]}<br>',
 		'</tpl>',
+		'<tpl if="values.meeting !== Zarafa.core.mapi.MeetingStatus.NONMEETING && !Ext.isEmpty(this.formatAttendees(values))">',
+			_('Attendees') + ': {[this.formatAttendees(values)]}<br>',
+		'</tpl>',
+		'<tpl if="values.meeting !== Zarafa.core.mapi.MeetingStatus.NONMEETING && !Ext.isEmpty(this.formatOptionalAttendees(values))">',
+			_('Optional attendees') + ': {[this.formatOptionalAttendees(values)]}<br>',
+		'</tpl>',
 		'<tpl if="values.alldayevent != true">',
 			_('Time') + ': {[this.formatTime(values.startdate, values.duedate)]}<br>',
 		'</tpl>',
@@ -126,6 +132,31 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 				}
 
 				return Ext.util.Format.htmlEncode(value);
+			},
+
+			// Format the attendees of the meeting
+			formatAttendees: function(values)
+			{
+				var organizer = this.formatOrganizer(values);
+				var value = values.display_to;
+
+				// If the value is empty or value is only the organizer
+				// Set value to empty
+				if (Ext.isEmpty(value) || value === organizer) {
+					value = "";
+				} else {
+					// Remove the organizer from the "display_to" user
+					value = value.replace("; "+organizer,'');
+				}
+
+				return Ext.util.Format.htmlEncode(value);
+			},
+
+			// Format the attendees of the meeting
+			formatOptionalAttendees: function(values)
+			{
+				var value = values.display_cc;
+				return Ext.isEmpty(value) === false ?  Ext.util.Format.htmlEncode(value) : "";
 			},
 			// Format the times for a normal appointment.
 			formatTime: function(start, due)
