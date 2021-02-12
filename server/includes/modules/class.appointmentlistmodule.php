@@ -122,7 +122,7 @@
 							// and user B 'categories' => -2062610402,
 							$GLOBALS["properties"]->setActiveStore($store[$index]);
 							$this->properties = $GLOBALS["properties"]->getAppointmentListProperties();
-							
+
 							$data["item"] = array_merge($data["item"], $this->getCalendarItems($store[$index], $entryid[$index], $this->startdate, $this->enddate));
 						}
 					} else {
@@ -337,6 +337,8 @@
 					$item['props']['reminder'] = 0;
 					$item['props']['access'] = 0;
 					$item['props']['sent_representing_name'] = '';
+					$item['props']['display_to'] = '';
+					$item['props']['display_cc'] = '';
 					$item['props']['sender_name'] = '';
 
 					return $item;
