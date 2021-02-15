@@ -79,7 +79,7 @@ Zarafa.settings.ui.SettingsCategoryWidgetPanel = Ext.extend(Ext.Container, {
 	{
 		var activeTab = 0;
 		if (Ext.isDefined(this.context.defaultActiveTab)) {
-			var activeTab = this.context.defaultActiveTab;
+			activeTab = this.context.defaultActiveTab;
 			delete this.context.defaultActiveTab;
 		}
 		return activeTab;
