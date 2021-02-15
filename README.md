@@ -10,6 +10,7 @@ The following dependencies are required:
 
 * PHP - with json, xml and gettext modules
 * php-mapi
+* php-gd - for image related functions.
 * gettext - for msgfmt (translations)
 * libxml2-utils - for xmllint
 * ant, ant-contrib - for deploying JavaScript
