@@ -170,13 +170,53 @@ Zarafa.task.dialogs.TaskDetailTab = Ext.extend(Ext.form.FormPanel, {
 				xtype: 'textfield',
 				fieldLabel: _('Companies'),
 				anchor: '100%',
+				emptyText : _('Multiple companies name must be separated by') + ' \';\'.',
 				name: 'companies',
+				beforeBlur: this.onBeforeBlurCompanies,
+				scope: this,
 				listeners: {
 					'change': this.onPropertyChange,
 					scope: this
 				}
 			}]
 		};
+	},
+
+	/**
+	 * Function called before the 'blur' event triggred. It will process the companies name
+	 * to '; ' separated and set the value to {@link Ext.form.Filed companies} text field.
+	 */
+	onBeforeBlurCompanies : function()
+	{
+		/**
+		 * Helper function which process the companies names.
+		 *
+		 * @param {String} value The companies names.
+		 * @return {String} return the companies names by '; ' separated.
+		 */
+		function processCompaniesValue(value) {
+			value = value.trim();
+
+			if (Ext.isEmpty(value)) {
+				return value;
+			}
+
+			if (/;/.test(value.slice(-1)) === false){
+				value +=";";
+			}
+
+			var result = value.split(";").reduce(function(acc, item, index){
+				if (index == 0) {
+					acc = item.trim() + "; ";
+				} else if (Ext.isEmpty(item) === false) {
+					acc += item.trim() + "; ";
+				}
+				return acc;
+			},"");
+			return result;
+		}
+
+		this.setValue(processCompaniesValue(this.getValue()));
 	},
 
 	/**
