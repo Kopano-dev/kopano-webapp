@@ -18,7 +18,8 @@ $serverConfig = array(
 	'iconsets'						=> Iconsets::getIconsets(),
 	'active_iconset'				=> Iconsets::getActiveIconset(),
 	'enable_themes'					=> ENABLE_THEMES,
-	'enable_iconsets'               => ENABLE_ICONSETS
+	'enable_iconsets'               => ENABLE_ICONSETS,
+	'enable_widgets'				=> ENABLE_WIDGETS
 );
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

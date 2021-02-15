@@ -101,6 +101,7 @@ Zarafa.core.ui.MainViewport = Ext.extend(Ext.Viewport, {
 	 */
 	createTodayPanel: function()
 	{
+		var hide = container.getServerConfig().isWidgetEnabled() ? container.getSettingsModel().get('zarafa/v1/widgets/sidebar/hide_widgetpanel', true, false) : true;
 		this.widgetPanel = new Zarafa.core.ui.widget.WidgetPanel({
 			region: 'east',
 			title: _('Widgets'),
@@ -109,7 +110,7 @@ Zarafa.core.ui.MainViewport = Ext.extend(Ext.Viewport, {
 			statefulName: 'todaybar',
 			statefulRelativeDimensions: false,
 			settingsPath: 'zarafa/v1/contexts/today/sidebar',
-			hidden: container.getSettingsModel().get('zarafa/v1/widgets/sidebar/hide_widgetpanel', true, false),
+			hidden: hide,
 			collapsed: true
 		});
 		return this.widgetPanel;

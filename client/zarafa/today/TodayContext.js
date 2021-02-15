@@ -24,8 +24,10 @@ Zarafa.today.TodayContext = Ext.extend(Zarafa.core.Context, {
 	 */
 	constructor: function(config)
 	{
-		// The tab in the top tabbar
-		this.registerInsertionPoint('main.maintabbar.left', this.createMainTab, this);
+		if (container.getServerConfig().isWidgetEnabled()){
+			// The tab in the top tabbar
+			this.registerInsertionPoint('main.maintabbar.left', this.createMainTab, this);
+		}
 		Zarafa.today.TodayContext.superclass.constructor.call(this, config);
 	},
 
@@ -49,7 +51,7 @@ Zarafa.today.TodayContext = Ext.extend(Zarafa.core.Context, {
 	 */
 	bid: function(folder)
 	{
-		if (folder.isOwnRoot()) {
+		if (folder.isOwnRoot() && container.getServerConfig().isWidgetEnabled()) {
 			return 2;
 		}
 

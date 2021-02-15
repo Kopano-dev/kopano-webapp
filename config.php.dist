@@ -168,6 +168,9 @@
 	// Set true to default soft delete the shared store items
 	define("ENABLE_DEFAULT_SOFT_DELETE", false);
 
+ 	// Enable widgets/today context.
+	define("ENABLE_WIDGETS", true);
+
 	// Additional color schemes for the calendars can be added by uncommenting and editing the following define.
 	// The format is the same as the format of COLOR_SCHEMES which is defined in default.php
 	// To change the default colors, COLOR_SCHEMES can also be defined here.
