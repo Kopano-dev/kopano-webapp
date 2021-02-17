@@ -175,6 +175,19 @@ $calendar-tab-height: 30px;
 	.k-html-header-appointment {
 		position: absolute;
 		top: 0;
+
+		/*
+		 * Appointments in the header-appointment needs a non transparent border
+		 * due to the background color of {k-html-header-appointment}
+		 * which is the same color of the appointment
+		 */
+		.k-appointment-box {
+			border: 1px solid white;
+
+			&.k-selected {
+				border-color: #000000;
+			}
+		}
 	}
 }
 
