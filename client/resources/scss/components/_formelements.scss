@@ -27,7 +27,7 @@ body.Firefox input:focus {
 
 /* inputs and textareas */
 .x-form-text, textarea.x-form-field {
-	background: white;
+	background: $white;
 	border: 1px solid $grey;
 	padding: $padding-medium;
 }

@@ -19,7 +19,7 @@
 }
 
 .x-panel-ghost .x-window-header-text {
-	color: $dark-grey !important;	
+	color: $dark-grey !important;
 }
 
 // Error and warning dialog border colors
@@ -196,7 +196,7 @@
 
 			.x-window-bc {
 				background: none;
-				
+
 				.x-window-footer {
 					padding-top: 20px;
 				}
@@ -462,14 +462,14 @@
 }
 
 .k-recipient-card-view {
-		
+
 	padding: 10px 5px 5px 5px;
-	background-color: white;
-	
+	background-color: $white;
+
 	.k-hover-card-recipient-detail-panel {
 		padding-top: 2px;
-	}	
-	
+	}
+
 	/* Initials */
 	.preview-header-sender-initial {
 		width: 55px;
@@ -481,7 +481,7 @@
 		min-height : 55px;
 		width: 55px;
 	}
-	
+
 	/* Display name */
 	.x-form-display-field.x-form-item.x-box-item {
 		font-size: 18px;
@@ -490,7 +490,7 @@
 		overflow: hidden;
 		white-space: nowrap;
 	}
-	
+
 	/* Email address */
 	.k-hover-card-email-text {
 		font-size: 14px;

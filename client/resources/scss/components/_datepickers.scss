@@ -26,7 +26,7 @@
 		padding: ($header-height - $button-small-height)/2 $padding-medium ($header-height - $button-small-height)/2 $padding-medium;
 
 		.x-btn-small {
-			background-color: white;
+			background-color: $white;
 			box-shadow: none;
 
 			em {
@@ -34,7 +34,7 @@
 				border: 1px solid $grey;
 
 				button {
-					background-color: white;
+					background-color: $white;
 					color: $font-color-dark;
 					border-right: 1px solid $grey;
 					height: $button-small-height - 2px;
@@ -46,7 +46,7 @@
 		}
 
 		.x-btn-small:active {
-			background-color: white !important;
+			background-color: $white !important;
 			box-shadow: none;
 		}
 	}
@@ -56,7 +56,7 @@
 		width: 100%;
 
 		th {
-			background: white;
+			background: $white;
 			font-weight: bold;
 			color: $font-color-dark;
 			border-bottom: 1px solid $grey;
@@ -153,7 +153,7 @@
 
 	/* the month picker */
 	.x-date-mp {
-		background: white;
+		background: $white;
 
 		table {
 			td {
@@ -243,5 +243,5 @@
 .x-date-picker .x-date-left,
 .x-date-picker .x-date-middle,
 .x-date-picker .x-date-right {
-	background: #ffffff;
+	background: $white;
 }
