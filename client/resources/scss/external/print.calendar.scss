@@ -1,4 +1,5 @@
 @import '_print';
+@import 'base/_colors';
 
 table {
   width: 100%;
@@ -25,7 +26,7 @@ table td {
 	color: transparent;
 }
 .x-date-active a {
-	color: black;
+	color: $black;
 	text-decoration: none;
 }
 .x-date-active {
@@ -53,12 +54,12 @@ th.date-header-center {
 }
 
 table.print-calendar {
-	border: 1px solid black;
+	border: 1px solid $black;
 	border-collapse: collapse;
     height: 95%;
 }
 .print-calendar th {
-	border: 1px solid black;
+	border: 1px solid $black;
 }
 
 #top th {
@@ -70,7 +71,7 @@ table.inner {
 
 .calendar-allday td {
 	text-align: center;
-	border: 1px solid black;
+	border: 1px solid $black;
 }
 .calendar-normal td {
 	text-align: left;
@@ -80,14 +81,14 @@ td.calendar-item {
 }
 
 .k-calendar-header {
-	border: 1px solid black;
+	border: 1px solid $black;
 }
 
 table.k-calendar-days {
 	margin-top: 5px;
 
 	th {
-		border: 1px solid black;
+		border: 1px solid $black;
 		text-align: center;
 		background-color: lightgrey;
 		width: 14.28% !important;

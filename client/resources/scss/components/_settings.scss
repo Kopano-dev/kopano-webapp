@@ -10,7 +10,7 @@
 		&:hover {
 			overflow : auto !important;
 		}
-		
+
 		.zarafa-settings-category-tab {
 			padding: ($settings-category-tab-height - $font-default-line-height) $padding-medium;
 			padding-left: 4px;
@@ -74,7 +74,7 @@
 			.x-panel-body .x-panel .x-grid3-header {
 				border-bottom: none;
 			}
-		
+
 			.x-panel-body .x-panel .x-grid3-scroller {
 				border: 1px solid $grey;
 			}
@@ -143,7 +143,7 @@
 
 			a {
 				background: $kopano-blue;
-				color: white;
+				color: $white;
 				padding: $padding-small;
 				text-decoration: none;
 			}
@@ -184,7 +184,7 @@
 	padding: $padding-medium $padding-medium $padding-medium 2*$padding-medium;
 	font-size: $font-size-large !important;
 }
-	
+
 .k-signature-editor textarea {
 	padding: $padding-extra-large;
 	font-family: monospace !important;
@@ -203,7 +203,7 @@
 	line-height: $font-line-height-large;
 	border: solid 1px $grey;
 	border-radius: 2px;
-	background-color: white;
+	background-color: $white;
 	display: inline-block;
 }
 
@@ -242,7 +242,7 @@
 	}
 
 	.zarafa-settings-pluginavailable {
-	
+
 		.x-panel-body {
 			border-top: none;
 			padding: 0 !important;
@@ -255,7 +255,7 @@
 		.k-settings-plugingrid .x-grid3-row .x-grid3-check-col-td, .x-grid3-row .x-grid3-td-checker {
 			padding-left: 10px;
 		}
-	
+
 		.zarafa-settings-pluginavailable-fixed {
 			.x-grid3-col-display_name {
 				span {

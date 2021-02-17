@@ -13,7 +13,7 @@
 }
 .k-colorpicker .k-colorpicker-box:hover::after {
 	display: block;
-    background-color: black;
+    background-color: $black;
     content: " ";
     opacity: 0.1;
     top: 0;

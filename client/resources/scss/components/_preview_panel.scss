@@ -34,7 +34,7 @@
 		background-color : $white;
 		font-size : $font-size-large;
 	}
-} 
+}
 
 /***************************************
  *  scrollbars for Webkit
@@ -45,8 +45,8 @@
 }
 
 .preview-header ::-webkit-scrollbar-button:vertical {
-	border: 1px solid #fff;
-	background-color: #fff;
+	border: 1px solid $white;
+	background-color: $white;
 	background-repeat: no-repeat;
 	height: 15px;
 	border-radius: 2px;
@@ -313,14 +313,14 @@ span.zarafa-emailaddress-link:hover {
 	}
 
 	.preview-body .x-plain {
-	
+
 		.x-plain-body {
 
 			.x-fieldset {
 				padding: 10px;
 				border: none;
 			}
-	
+
 			.x-form-item-label {
 				text-align: left;
 				font-weight: bold;
@@ -380,7 +380,7 @@ span.zarafa-emailaddress-link:hover {
 
 				.k-avatar {
 					background: red;
-					color: white;
+					color: $white;
 					font-size: $font-size-large + 1;
 					font-weight: bold;
 					border-radius: $font-line-height-extra-large / 2;

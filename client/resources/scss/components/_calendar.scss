@@ -8,8 +8,8 @@ $calendar-tab-height: 30px;
 .zarafa-calendar-verticalline
 {
 	position: absolute;
-	overfow: hidden;
-	background-color: black;
+	overflow: hidden;
+	background-color: $black;
 }
 
 .zarafa-calendar-column
@@ -54,7 +54,7 @@ $calendar-tab-height: 30px;
 .zarafa-calendar-textedit-body,
 .zarafa-calendar-textedit-header
 {
-	border: 1px solid #000000;
+	border: 1px solid $black;
 	position : absolute;
 	z-index : 999;
 	overflow: hidden;
@@ -79,7 +79,7 @@ $calendar-tab-height: 30px;
 			position: relative;
 			overflow : hidden;
 			white-space:nowrap;
-			color: white;
+			color: $white;
 			/* the float is needed because safari lowers the title otherwise (and I have no idea why)*/
 			float: left;
 		}
@@ -135,7 +135,7 @@ $calendar-tab-height: 30px;
 
 	.zarafa-calendar-tab-contents.light-background {
 		.zarafa-calendar-tab-title {
-			color: black;
+			color: $black;
 		}
 	}
 }
@@ -236,7 +236,7 @@ $calendar-tab-height: 30px;
 	}
 
 	&.k-selected {
-		border-color: #000000;
+		border-color: $black;
 		z-index: 110;
 
 		.k-resizehandle {
@@ -250,7 +250,7 @@ $calendar-tab-height: 30px;
 		top: -3.5px;
 		display: none;
 		background: $white;
-		border: 1px solid black;
+		border: 1px solid $black;
 		box-sizing: border-box;
 		width: 7px;
 		height: 7px;
@@ -438,7 +438,7 @@ $calendar-tab-height: 30px;
 	background-color : #9fbf00;
 	background-color: #f7f3f7;
 	overflow : hidden;
-	border-left: 1px solid black;
+	border-left: 1px solid $black;
 }
 
 .zarafa-calendar-timestrip-element

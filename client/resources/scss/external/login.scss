@@ -149,7 +149,7 @@ body.login > #form-container {
 	input[type="password"] {
 		display: block;
 		width: 245 - 2* $padding-medium - 2;
-		background: white !important;
+		background: $white !important;
 		border: 1px solid $grey;
 		padding: 0 $padding-medium;
 		margin-bottom: 15px;
@@ -157,7 +157,7 @@ body.login > #form-container {
 	}
 
 	input:-webkit-autofill {
-		-webkit-box-shadow: 0 0 0px 1000px white inset;
+		-webkit-box-shadow: 0 0 0px 1000px $white inset;
 	}
 
 	input:focus {
@@ -175,7 +175,7 @@ body.login > #form-container {
 
 	#submitbutton {
 		background: $kopano-blue;
-		color: white;
+		color: $white;
 		height: 24px;
 		line-height: 24px;
 		border: 1px solid transparent;
@@ -203,7 +203,7 @@ body.login > .container {
 	align-items: center;
 
 	.form-container{
-		background-color: #fff;
+		background-color: $white;
 		padding: 20px;
 		width: 400px;
 		height: 350px;
@@ -225,7 +225,7 @@ body.login > .container {
 			outline: none;
 			border: 1px solid $grey5;
 			border-radius: 3px;
-			background-color: white;
+			background-color: $white;
 			font-size: 14px;
 			font-family: sans-serif;
 			cursor: pointer;
@@ -266,7 +266,7 @@ body.login > .container {
 
       .btn {
         background: $kopano-blue;
-        color: white;
+        color: $white;
         line-height: $button-small-height;
         border: 1px solid transparent;
         padding: 0 $padding-large;

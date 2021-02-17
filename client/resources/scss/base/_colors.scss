@@ -4,7 +4,6 @@
  */
 
 /* First we define some colors */
-
 $kopano-blue              : #0f70bd;
 $kopano-blue-hover        : #065fa5;
 $kopano-blue-active       : #065fa5;
@@ -26,6 +25,7 @@ $green-hover              : #59b147;
 $green-bright             : #23cb02;
 
 $white                    : #ffffff;
+$black                    : #000000;
 $red                      : #FF0000;
 $red1                     : #e30022;
 $red2                     : #fbdde1;
@@ -66,7 +66,7 @@ $grid-info-bg-color       : $yellow-light;
 
 /* fonts */
 $font-color-light         : $white;
-$font-color-dark          : black;
+$font-color-dark          : $black;
 
 /* Tooltip */
 $tooltip-dark             : rgba(0, 0, 0, 0.8);
