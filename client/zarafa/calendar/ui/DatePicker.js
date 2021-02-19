@@ -60,8 +60,8 @@ Zarafa.calendar.ui.DatePicker = Ext.extend(Ext.DatePicker, {
 	{
 		Zarafa.calendar.ui.DatePicker.superclass.afterRender.call(this);
 
-		//attach event handlers
-		//when store has finished loading, apply data from newly loaded appointments
+		// Attach event handlers
+		// When store has finished loading, apply data from newly loaded appointments
 		this.mon(this.store, 'load', this.onLoad, this);
 	},
 
