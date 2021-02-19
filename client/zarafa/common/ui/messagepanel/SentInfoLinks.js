@@ -91,7 +91,7 @@ Zarafa.common.ui.messagepanel.SentInfoLinks = Ext.extend(Ext.Container, {
 			'<span class="preview-timestamp-title"></span>' +
 				'<tpl if="Ext.isDate(values.client_submit_time)">' +
 					'<tpl if="this.isShortDateFormat()">'+
-						'{client_submit_time:formatDefaultTimeString("' + _("D {0}") + '")}' +
+						'{client_submit_time:getNiceFormat()}' +
 					'</tpl>' +
 					// # TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 					'<tpl if="!this.isShortDateFormat()">'+
@@ -199,7 +199,7 @@ Zarafa.common.ui.messagepanel.SentInfoLinks = Ext.extend(Ext.Container, {
 					record.data.sent_representing_presence_status = Zarafa.core.PresenceManager.getPresenceStatusForUser(user);
 				}
 
-				if (Ext.isFunction(record.getSenderInitials)) {
+				if (Ext.isFunction(record.getSenderInitials) && record.isOpened()) {
 					record.data.sender_initials = record.getSenderInitials();
 				}
 

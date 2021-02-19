@@ -271,6 +271,22 @@
 			if (value) {
 				return value.formatDefaultTime(formatString);
 			}
+		},
+
+		/**
+		 * Returns the date in a 'nicely' formatted string.
+		 *
+		 * @param {Ext.Date} value The Date object to be formatted
+		 * @param {Boolean} includeTime The time will be added to the nicely
+		 * formatted string when true, or omitted otherwise. Default is true.
+		 *
+		 * @return {String} The nicely formatted date string.
+		 */
+		getNiceFormat: function(value, includeTime)
+		{
+			if (value){
+				return value.getNiceFormat(includeTime)
+			}
 		}
 	});
 })();
