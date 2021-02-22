@@ -30,7 +30,7 @@ Zarafa.task.printer.TaskListViewRenderer = Ext.extend(Zarafa.common.printer.rend
 		// +----------------------------------------------------+
 		// [name]                  [print date]
 
-		html += '<table id="printlist" cellpadding=0 cellspacing=0>\n';
+		html += '<table id="k-printlist" cellpadding=0 cellspacing=0>\n';
 
 		html += '<tr>'
 			+ '<th>' + _('Priority') + '</th>'
@@ -55,7 +55,7 @@ Zarafa.task.printer.TaskListViewRenderer = Ext.extend(Zarafa.common.printer.rend
 		html += '</table>\n';
 
 		// Bottom table with username and date
-		html += '<table id="printlistbottom">'
+		html += '<table id="k-printlistbottom">'
 		+ '<tr>'
 		+ '<td>' + _('Printed by: ') +'{fullname:htmlEncode}</td>'
 		// # TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions

@@ -1,8 +1,17 @@
+@import 'base/_colors';
 
-#printlist {
+#k-listview {
+        font-family: arial, tahoma, helvetica, sans-serif;
+}
+
+#k-name {
+	font-size: 16px;
+	padding: 15px 0 15px 15px;
+}
+
+#k-printlist {
 
 	width: 100%;
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	border-collapse: collapse;
 
 	/* Table header */
@@ -10,31 +19,27 @@
 		border: 1px solid #ddd;
 		padding: 8px;
 		font-size: 13px;
-		background-color: lightgrey;
+		background-color: $whiteSmoke;
 		text-align: left;
-		color: #222;
+		color: $dark-grey2;
 	}
 
 	td {
 		padding: 8px;
 		font-size: 11px;
-		color: #222;
+		color: $dark-grey2;
 		border: 1px solid #ddd;
 	}
 
-	tr:nth-child(even) {
-		background-color: #f2f2f2;
+	tr:nth-child(odd) {
+		background-color: $whiteSmoke;
 	}
 }
 
-#printlistbottom {
+#k-printlistbottom {
 	width: 100%;
 	padding-top: 5px;
-	color: #222;
+	color: $dark-grey2;
 	font-size: 12px;
-	
-	.right {
-		float: right;
-	}
 }
 
