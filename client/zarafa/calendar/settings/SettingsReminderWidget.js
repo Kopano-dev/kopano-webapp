@@ -98,7 +98,9 @@ Zarafa.calendar.settings.SettingsReminderWidget = Ext.extend(Zarafa.settings.ui.
 		this.alldayTimeCombo.setValue(settingsModel.get(this.alldayTimeCombo.name));
 
 		this.timeCombo.setDisabled(!enabled);
+		this.timeCombo.disableLabel(!enabled);
 		this.alldayTimeCombo.setDisabled(!enabled);
+		this.alldayTimeCombo.disableLabel(!enabled);
 	},
 
 	/**
@@ -133,7 +135,9 @@ Zarafa.calendar.settings.SettingsReminderWidget = Ext.extend(Zarafa.settings.ui.
 		}
 
 		this.timeCombo.setDisabled(!check);
+		this.timeCombo.disableLabel(!check);
 		this.alldayTimeCombo.setDisabled(!check);
+		this.alldayTimeCombo.disableLabel(!check);
 	},
 
 	/**

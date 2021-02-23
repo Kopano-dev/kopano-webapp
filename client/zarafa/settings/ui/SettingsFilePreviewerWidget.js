@@ -21,27 +21,105 @@ Zarafa.settings.ui.SettingsFilePreviewerWidget = Ext.extend(Zarafa.settings.ui.S
 	 */
 	constructor: function (config)
 	{
-		config = config || {};
+	    config = config || {};
 
-		Ext.applyIf(config, {
-			xtype: 'zarafa.settingsdisplaywidget',
-			title: _('File previewing'),
-			layout: 'form',
-			hidden: !container.getServerConfig().isFilePreviewerEnabled(),
-			items:[{
-				xtype: 'checkbox',
-				name: 'zarafa/v1/main/file_previewer/enable',
-				pluginSettingPath: 'zarafa/v1/plugins/filepreviewer/enable',
-				ref: 'enableFilePreviewer',
-				boxLabel: _('Attachment preview (PDF, Open formats and images)'),
-				hideLabel: true,
-				listeners: {
-					change: this.onFieldChange,
-					scope: this
-				}
-			}]
-		});
-		Zarafa.settings.ui.SettingsFilePreviewerWidget.superclass.constructor.call(this, config);
+	    var zoomStore = new Ext.data.JsonStore({
+	        fields: ['name', 'value'],
+	        data: [{
+	            'name': _('Auto'),
+	            'value': 'auto'
+	        },{
+	            'name': _('Actual size'),
+	            'value': 'page-actual'
+	        },{
+	            'name': _('Page width'),
+	            'value': 'page-width'
+	        }]
+	    });
+
+	    var items = [{
+	        xtype: 'checkbox',
+	        name: 'zarafa/v1/main/file_previewer/enable',
+	        pluginSettingPath: 'zarafa/v1/plugins/filepreviewer/enable',
+	        ref: 'enableFilePreviewer',
+	        boxLabel: _('Attachment preview (PDF and Open formats)'),
+			handler: this.onClickEnableFilePreviewer,
+	        hideLabel: true,
+			scope: this,
+	        listeners: {
+	            change: this.onFieldChange,
+	            scope: this
+	        }
+	    }];
+
+	    items = items.concat(this.createZoomDropdownBox([{
+	            name:'zarafa/v1/main/file_previewer/odf_zoom',
+	            ref: 'odfZoom',
+	            store: zoomStore,
+	            fieldLabel: _('Document default zoom'),
+	        },{
+	            name:'zarafa/v1/main/file_previewer/pdf_zoom',
+	            ref: 'pdfZoom',
+	            store: zoomStore,
+	            fieldLabel: _('PDF zoom')
+	        }
+	    ]));
+
+	    Ext.applyIf(config, {
+	        xtype: 'zarafa.settingsdisplaywidget',
+	        title: _('File previewing'),
+	        layout: 'form',
+	        hidden: !container.getServerConfig().isFilePreviewerEnabled(),
+	        items: items
+	    });
+	    Zarafa.settings.ui.SettingsFilePreviewerWidget.superclass.constructor.call(this, config);
+	},
+
+	/**
+	 * Creates and returns a dropdown box for the required combo.
+	 *
+	 * @param {Object} configs The configuration object used for the combo.
+	 */
+	createZoomDropdownBox: function(configs)
+	{
+	    var items = [];
+	    for (var config of configs) {
+	        items.push(
+				Object.assign(config, {
+	            	xtype: 'combo',
+	            	width: 125,
+	            	mode: 'local',
+	            	triggerAction: 'all',
+	            	displayField: 'name',
+	            	valueField: 'value',
+	            	lazyInit: false,
+	            	forceSelection: true,
+	            	editable: false,
+	            	autoSelect: true,
+	            	listeners: {
+	            	    change: this.onDefaultZoomSelect,
+	            	    scope: this
+	            	}
+	        	})
+			);
+	    }
+	    return items;
+	},
+
+	/**
+	 * Handler can uncheck and disable the {@link #odfZoom Document default Zoom} and {@link #pdfZoom PDF Zoom}
+	 * combo if {@link #enableFilePreviewer Enable File Previewer} checkbox is unchecked and vice versa
+	 * based on user settings.
+	 *
+	 * @param {Ext.form.CheckBox} checkbox The Enable File Previewer checkbox element
+	 * @param {Boolean} checked State of the checkbox
+	 */
+	onClickEnableFilePreviewer: function(checkbox, checked)
+	{
+		this.odfZoom.setDisabled(!checked);
+		this.pdfZoom.setDisabled(!checked);
+		this.odfZoom.disableLabel(!checked);
+		this.pdfZoom.disableLabel(!checked);
 	},
 
 	/**
@@ -54,10 +132,22 @@ Zarafa.settings.ui.SettingsFilePreviewerWidget = Ext.extend(Zarafa.settings.ui.S
 	update: function (settingsModel)
 	{
 		this.model = settingsModel;
-		// Check if filepreviewer plugion's setings are available then apply them on UI.
+		// Check if filepreviewer plugin's setings are available then apply them on UI.
 		var pluginSetting = settingsModel.get('zarafa/v1/plugins/filepreviewer/enable');
 		this.pluginSettingsApplied = Ext.isDefined(pluginSetting);
-		this.enableFilePreviewer.setValue(this.pluginSettingsApplied ? pluginSetting : settingsModel.get(this.enableFilePreviewer.name));
+
+		var enableFilePreviewer = this.pluginSettingsApplied ? pluginSetting : settingsModel.get(this.enableFilePreviewer.name);
+		this.enableFilePreviewer.setValue(enableFilePreviewer);
+
+		// PDF zoom
+		this.pdfZoom.setValue(settingsModel.get(this.pdfZoom.name));
+		this.pdfZoom.setDisabled(!enableFilePreviewer);
+		this.pdfZoom.disableLabel(!enableFilePreviewer);
+
+		// ODF zoom
+		this.odfZoom.setValue(settingsModel.get(this.odfZoom.name));
+		this.odfZoom.setDisabled(!enableFilePreviewer);
+		this.odfZoom.disableLabel(!enableFilePreviewer);
 	},
 
 	/**
@@ -74,6 +164,12 @@ Zarafa.settings.ui.SettingsFilePreviewerWidget = Ext.extend(Zarafa.settings.ui.S
 			settingsModel.remove('zarafa/v1/plugins/filepreviewer', {type: 'deprecated'});
 		}
 		settingsModel.set(this.enableFilePreviewer.name, this.enableFilePreviewer.getValue());
+
+		// Set the value for PDF zoom
+		settingsModel.set(this.pdfZoom.name, this.pdfZoom.getValue());
+
+		// Set the value for ODFzoom
+		settingsModel.set(this.odfZoom.name, this.odfZoom.getValue());
 	},
 
 	/**
@@ -93,7 +189,23 @@ Zarafa.settings.ui.SettingsFilePreviewerWidget = Ext.extend(Zarafa.settings.ui.S
 				this.model.set(field[property], value);
 			}
 		}
+	},
+
+	/**
+	 * Event handler which is fired when a default zoom in the {@link Ext.form.ComboBox combobox}
+	 * has been selected.
+	 * @param {Ext.form.ComboBox} field The field which fired the event
+	 * @param {Ext.data.Record} record The selected record
+	 */
+	onDefaultZoomSelect : function(field, record)
+	{
+		if (this.model) {
+			if (this.model.get(field.name) !== field.getValue()) {
+				this.model.set(field.name, field.getValue());
+			}
+		}
 	}
+
 });
 
 Ext.reg('zarafa.settingsfilepreviewerwidget', Zarafa.settings.ui.SettingsFilePreviewerWidget);

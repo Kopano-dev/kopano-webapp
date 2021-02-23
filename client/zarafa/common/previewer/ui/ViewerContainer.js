@@ -171,6 +171,8 @@ Zarafa.common.previewer.ui.ViewerContainer = Ext.extend(Zarafa.core.ui.ContentPa
 			} else if((/(od[tps])$/i).test(extension)) {
 				options += '?zoom=' + container.getSettingsModel().get('zarafa/v1/main/file_previewer/odf_zoom');
 			} else {
+				// ViewerJS does not provide zooming options for images, instead sets the width. 
+				// Hence, we only keep the 'auto' option for images.
 				options += '?zoom=auto';
 			}
 			options += '&type=' + extension;

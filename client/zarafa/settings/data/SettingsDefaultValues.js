@@ -480,7 +480,7 @@ Zarafa.settings.data.SettingsDefaultValue = function(){
 								 * zarafa/v1/main/file_previewer/odf_zoom
 								 * Default zoom mode for ODF documents. (default: auto) [Allowed: "auto", "page-actual", "page-width"]
 								 */
-								'odf_zoom': 'auto'
+								'odf_zoom': 'page-width'
 							}
 						},
 
