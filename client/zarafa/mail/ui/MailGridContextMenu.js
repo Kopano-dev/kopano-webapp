@@ -150,7 +150,7 @@ Zarafa.mail.ui.MailGridContextMenu = Ext.extend(Zarafa.core.ui.menu.ConditionalM
 
 	/**
 	 * Create the Categorized context menu items
- 	 * @param {Zarafa.core.data.IPMRecord[]} records The records on which this context menu acts.
+	 * @param {Zarafa.core.data.IPMRecord[]} records The records on which this context menu acts.
 	 * @return {Zarafa.core.ui.menu.ConditionalItem[]} The list of Categorized context menu items
 	 * @private
 	 */
@@ -273,7 +273,8 @@ Zarafa.mail.ui.MailGridContextMenu = Ext.extend(Zarafa.core.ui.menu.ConditionalM
 			singleSelectOnly: true,
 			handler: this.onContextItemOptions,
 			scope: this
-		},container.populateInsertionPoint('context.mail.contextmenu.options', this)];
+		},
+			container.populateInsertionPoint('context.mail.contextmenu.options', this)];
 	},
 
 	/**
@@ -433,7 +434,7 @@ Zarafa.mail.ui.MailGridContextMenu = Ext.extend(Zarafa.core.ui.menu.ConditionalM
 		Zarafa.mail.Actions.openMailOptionsContent(this.records, {
 			autoSave: true
 		});
-	}
+	},
 });
 
 Ext.reg('zarafa.mailgridcontextmenu', Zarafa.mail.ui.MailGridContextMenu);

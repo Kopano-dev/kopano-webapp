@@ -105,7 +105,11 @@ Zarafa.ABOUT = ""
 	+ "<p>Copyright 2015 Mario Heiderich. Licensed under the Apache License, version 2.0.</p>"
 
 	+ "<h1>oidc-client-js</h1>"
-	+ "<p>Copyright 2018, Brock Allen, Dominick Baier. Licensed under the Apache License, version 2.0.</p>";
+	+ "<p>Copyright 2018, Brock Allen, Dominick Baier. Licensed under the Apache License, version 2.0.</p>"
+
+	+ "<h1>Item data</h1>"
+	+ "<p>Copyright (C) 2018 Martijn Alberts, released under AGPLv3<br>"
+	+ "Copyright (C) 2021 Kopano and its licensors</p>";
 
 if (!Ext.isIE) {
 	Zarafa.ABOUT += ""

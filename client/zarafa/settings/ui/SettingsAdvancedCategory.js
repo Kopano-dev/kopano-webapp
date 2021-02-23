@@ -46,13 +46,23 @@ Zarafa.settings.ui.SettingsAdvancedCategory = Ext.extend(Zarafa.settings.ui.Sett
 				}, {
 					xtype: 'zarafa.settingswidget',
 					title: _('Developer tools'),
-					height:80,
+					height: 100,
 					region: 'north',
 					items:[{
 						xtype: 'checkbox',
 						name: 'zarafa/v1/main/kdeveloper_tool/kdeveloper',
 						boxLabel: _('Show insertion points in WebApp'),
 						ref: '../../showInsertionCheck',
+						hideLabel: true,
+						listeners: {
+							change: this.onFieldChange,
+							scope: this
+						}
+					},{
+						xtype: 'checkbox',
+						name: 'zarafa/v1/main/kdeveloper_tool/itemdata',
+						boxLabel: _('Show "item data" button in context menu (mail only)'),
+						ref: '../../showItemData',
 						hideLabel: true,
 						listeners: {
 							change: this.onFieldChange,
@@ -80,6 +90,7 @@ Zarafa.settings.ui.SettingsAdvancedCategory = Ext.extend(Zarafa.settings.ui.Sett
 		this.treePanel.bindModel(settingsModel);
 
 		this.showInsertionCheck.setValue(settingsModel.get(this.showInsertionCheck.name));
+		this.showItemData.setValue(settingsModel.get(this.showItemData.name));
 	},
 
 	/**
@@ -93,6 +104,7 @@ Zarafa.settings.ui.SettingsAdvancedCategory = Ext.extend(Zarafa.settings.ui.Sett
 		Zarafa.settings.ui.SettingsAdvancedCategory.superclass.updateSettings.apply(this, arguments);
 
 		settingsModel.set(this.showInsertionCheck.name, this.showInsertionCheck.getValue());
+		settingsModel.set(this.showItemData.name, this.showItemData.getValue());
 	},
 
 	/**
