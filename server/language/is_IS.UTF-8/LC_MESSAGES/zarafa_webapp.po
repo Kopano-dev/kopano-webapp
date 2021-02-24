@@ -367,8 +367,8 @@ msgstr "Nánari notandalýsing"
 msgid "First"
 msgstr "Fyrsta"
 
-msgid "Initial"
-msgstr "Upphaflegt"
+msgid "Initials"
+msgstr ""
 
 msgid "Display"
 msgstr "Sýna"
@@ -1318,6 +1318,9 @@ msgstr "Afrita valið atriði"
 msgid "Paste selected item"
 msgstr "Líma valið atriði"
 
+msgid "An overview of"
+msgstr ""
+
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "Start"
 msgstr "Upphaf"
@@ -1326,20 +1329,31 @@ msgstr "Upphaf"
 msgid "End"
 msgstr "Lok"
 
-msgid "Printed by: "
-msgstr "Umbeiðandi prentunar: "
-
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-msgid "Printed on: "
-msgstr "Prentunardagsetning: "
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
+msgid "Printed by"
+msgstr ""
+
+msgid "at"
+msgstr ""
+
+msgid "of"
+msgstr ""
 
 msgid "Location: "
 msgstr "Staðsetning: "
 
-#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-msgid "l jS F Y"
-msgstr "l jS F Y"
+msgid "j M {0}"
+msgstr ""
 
+msgid "l jS M Y {0}"
+msgstr ""
+
+msgid "All day: "
+msgstr ""
+
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "l jS F"
 msgstr "l jS F"
@@ -1370,10 +1384,6 @@ msgstr "M j"
 
 msgid "j"
 msgstr "j"
-
-#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-msgid "l d/m/Y"
-msgstr "l d/m/Y"
 
 msgid "General calendar settings"
 msgstr "Almennar dagatalsstillingar"
@@ -1572,6 +1582,12 @@ msgstr "Raða eftir öryggi"
 msgid "Loading appointments"
 msgstr "Hleð tímabókunum"
 
+msgid "Attendees"
+msgstr ""
+
+msgid "Optional attendees"
+msgstr ""
+
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "jS F {0}"
 msgstr ""
@@ -1689,6 +1705,8 @@ msgstr "Í dag {0} - {1}"
 msgid "Today (all day)"
 msgstr "Í dag (heill dagur)"
 
+#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
+#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
 msgid "{0} - {1}"
 msgstr "{0} - {1}"
 
@@ -2030,11 +2048,9 @@ msgid "Delete Category"
 msgstr "Eyða flokki"
 
 msgid ""
-"Are you sure you want to delete the category \"{0}\"? Items already assigned "
-"this category won't be affected."
+"Are you sure you want to delete the category \"{0}\"? Other items keep this "
+"category, but lose the assigned color."
 msgstr ""
-"Ertu viss um að þú viljir eyða flokknum \"{0}\"? Atriði tengd þessum flokki "
-"verða ekki fyrir neinum breytingum."
 
 msgid "Rename Category"
 msgstr "Endurnefna flokk"
@@ -2310,6 +2326,10 @@ msgstr "Engar upplýsingar um laust/bókað fyrir þessa dagsetningu"
 msgid "No suggestions available"
 msgstr "Engar tillögur"
 
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+msgid "l jS F Y"
+msgstr "l jS F Y"
+
 msgid "Switch between different contexts e.g. inbox, calendar, etc."
 msgstr "Breyta milli samhengis, t.d. innhólf, dagatal o.s.frv."
 
@@ -2405,6 +2425,9 @@ msgstr "Hjálp"
 msgid "WebApp Manual"
 msgstr "Leiðbeiningar Kopano vefviðmóts"
 
+msgid "Item data"
+msgstr ""
+
 msgid "INSERT"
 msgstr "SETJA INN"
 
@@ -2413,9 +2436,6 @@ msgstr "Raða eftir context.mail.griddefaultcolumn"
 
 msgid "ZDeveloper"
 msgstr "ZForritari"
-
-msgid "Kopano WebApp print"
-msgstr "Útprentun úr Kopano vefviðmóti"
 
 msgid "Display name"
 msgstr "Þekkjanlegt nafn"
@@ -2977,6 +2997,9 @@ msgstr "d-m-Y"
 msgid "Original message"
 msgstr "Upprunaleg skilaboð"
 
+msgid "l d/m/Y"
+msgstr "l d/m/Y"
+
 msgid "Sent Items"
 msgstr ""
 
@@ -3206,9 +3229,6 @@ msgstr "Viðtakendur"
 msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr "fyrir hönd"
-
-msgid "D {0}"
-msgstr ""
 
 #. TRANSLATORS: This message is used to indicate that no sent date is available for the message (because it has not been sent yet).
 msgctxt "mail.previewpanel"
@@ -3517,11 +3537,21 @@ msgstr "Aðstoðarmanneskja"
 msgid "Loading contacts"
 msgstr "Hleð tengiliðum"
 
-msgid "Group"
-msgstr "Hópur"
+msgid ""
+"There are no items to show in this list. Update the filter for more results."
+msgstr ""
 
-msgid "Work"
-msgstr "Starf"
+msgid "[Group]"
+msgstr ""
+
+msgid "Work:"
+msgstr ""
+
+msgid "Primary:"
+msgstr ""
+
+msgid "Mobile:"
+msgstr ""
 
 msgid "Sort by: Full Name"
 msgstr "Raða eftir fullu nafni"
@@ -3717,6 +3747,9 @@ msgstr "Y"
 
 msgid "Important"
 msgstr "Mikilvægt"
+
+msgid "Work"
+msgstr "Starf"
 
 msgid "Personal"
 msgstr "Einkamál"
@@ -3961,6 +3994,9 @@ msgstr "Opna græjuskika"
 msgid "Your changes will be lost if you leave this page now."
 msgstr "Þú glatar breytingunum þínum ef þú ferð af síðunni núna."
 
+msgid "D {0}"
+msgstr ""
+
 msgid "D d-m"
 msgstr "D d-m"
 
@@ -4004,14 +4040,6 @@ msgid ""
 "The installed license key(s) have expired or are being over used. Please "
 "contact your system administrator for further information."
 msgstr ""
-
-#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
-msgid "{0} in {1}"
-msgstr "{0} í {1}"
-
-#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
-msgid "{0} of {1}"
-msgstr "{0} af {1}"
 
 msgid "Full control"
 msgstr "Algjör stjórn"
@@ -4401,9 +4429,6 @@ msgstr "Sýna reit fyrir dulið afrit"
 msgid "Show From field"
 msgstr "Sýna reit fyrir sendanda"
 
-msgid "No signatures configured"
-msgstr "Engar undirskriftir uppsettar"
-
 msgid "Cannot save while attachment is being uploaded"
 msgstr "Gat ekki vistað á meðan upphal viðhengis er í gangi"
 
@@ -4618,6 +4643,9 @@ msgstr ""
 msgid "Signatures"
 msgstr "Undirskriftir"
 
+msgid "No signatures configured"
+msgstr "Engar undirskriftir uppsettar"
+
 msgid "New messages"
 msgstr ""
 
@@ -4806,6 +4834,9 @@ msgstr ""
 msgid "Show insertion points in WebApp"
 msgstr ""
 
+msgid "Show \"item data\" button in context menu (mail only)"
+msgstr ""
+
 msgid "Edit setting"
 msgstr "Breyta stillingu"
 
@@ -4860,10 +4891,25 @@ msgstr ""
 msgid "Hide widget panel"
 msgstr ""
 
-msgid "File previewing"
+msgid "Auto"
 msgstr ""
 
-msgid "Attachment preview (PDF, Open formats and images)"
+msgid "Actual size"
+msgstr ""
+
+msgid "Page width"
+msgstr ""
+
+msgid "Attachment preview (PDF and Open formats)"
+msgstr ""
+
+msgid "Document default zoom"
+msgstr ""
+
+msgid "PDF zoom"
+msgstr ""
+
+msgid "File previewing"
 msgstr ""
 
 msgid "Inbox navigation"
@@ -5075,6 +5121,9 @@ msgstr "Senda svarið núna"
 msgid "Date Complete"
 msgstr "Dagsetning þegar klárað"
 
+msgid "Multiple companies name must be separated by"
+msgstr ""
+
 msgid "Update List"
 msgstr "Uppfæra lista"
 
@@ -5146,6 +5195,13 @@ msgstr "Nýtt verk"
 
 msgid "Completed"
 msgstr "Klárað"
+
+msgid "Printed by: "
+msgstr "Umbeiðandi prentunar: "
+
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+msgid "Printed on: "
+msgstr "Prentunardagsetning: "
 
 msgid "Percent complete"
 msgstr "Hlutfall kláraðra"
@@ -5320,6 +5376,9 @@ msgstr "Fyrri"
 
 msgid "Next"
 msgstr "Næsta"
+
+msgid "Click the link to open the URL in a new window."
+msgstr "Smelltu á tengilinn til að opna vefslóðina í nýjum glugga."
 
 msgid "The server reported an unknown error on your request."
 msgstr "Vefþjónninn tilkynnti óþekkta villu í beiðninni þinni."
@@ -5627,9 +5686,6 @@ msgstr ""
 
 msgid "Unknown MAPI Error"
 msgstr "Óþekkt MAPI-villa"
-
-msgid "Click the link to open the URL in a new window."
-msgstr "Smelltu á tengilinn til að opna vefslóðina í nýjum glugga."
 
 msgid "This external link will open in a new window"
 msgstr "Þessi ytri tengill mun opnast í nýjum glugga"
@@ -6220,6 +6276,9 @@ msgstr "Lykilorð"
 
 msgid "Sign in"
 msgstr "Innskrá"
+
+msgid "Caps lock is on"
+msgstr ""
 
 msgid "File is not imported successfully"
 msgstr "Tókst ekki að flytja inn skrá"

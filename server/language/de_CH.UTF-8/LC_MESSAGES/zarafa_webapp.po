@@ -370,8 +370,8 @@ msgstr "Benutzerdetails"
 msgid "First"
 msgstr "Vorname"
 
-msgid "Initial"
-msgstr "Initialen"
+msgid "Initials"
+msgstr ""
 
 msgid "Display"
 msgstr "Anzeige"
@@ -1388,6 +1388,9 @@ msgstr "Selektion kopieren"
 msgid "Paste selected item"
 msgstr "Selektion einfügen"
 
+msgid "An overview of"
+msgstr ""
+
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "Start"
 msgstr "Beginn"
@@ -1396,23 +1399,32 @@ msgstr "Beginn"
 msgid "End"
 msgstr "Ende"
 
-# 76%
-msgid "Printed by: "
-msgstr "Gedruckt von: "
-
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-msgid "Printed on: "
-msgstr "Gedruckt am: "
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
+msgid "Printed by"
+msgstr ""
+
+msgid "at"
+msgstr ""
+
+msgid "of"
+msgstr ""
 
 msgid "Location: "
 msgstr "Ort: "
 
-# 87%
-#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-msgid "l jS F Y"
-msgstr "I j. F Y"
+msgid "j M {0}"
+msgstr ""
+
+msgid "l jS M Y {0}"
+msgstr ""
+
+msgid "All day: "
+msgstr ""
 
 # small L, not capital i
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "l jS F"
 msgstr "l, j. F Y"
@@ -1449,11 +1461,6 @@ msgstr "M j"
 
 msgid "j"
 msgstr "j"
-
-# This is translated wrong, it should probably be l instead of I; also check all other occurrences of this
-#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-msgid "l d/m/Y"
-msgstr "l, d.m.Y"
 
 msgid "General calendar settings"
 msgstr "Allgemeine Kalendereinstellungen"
@@ -1666,6 +1673,12 @@ msgstr "Sortieren nach: Vertraulichkeit"
 msgid "Loading appointments"
 msgstr "Termine werden geladen"
 
+msgid "Attendees"
+msgstr ""
+
+msgid "Optional attendees"
+msgstr ""
+
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "jS F {0}"
 msgstr "j. F {0}"
@@ -1791,6 +1804,8 @@ msgid "Today (all day)"
 msgstr "Heute (ganztägig)"
 
 # 100%
+#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
+#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
 msgid "{0} - {1}"
 msgstr "{0} - {1}"
 
@@ -2142,11 +2157,9 @@ msgid "Delete Category"
 msgstr "Kategorie löschen"
 
 msgid ""
-"Are you sure you want to delete the category \"{0}\"? Items already assigned "
-"this category won't be affected."
+"Are you sure you want to delete the category \"{0}\"? Other items keep this "
+"category, but lose the assigned color."
 msgstr ""
-"Möchten Sie die Kategorie \"{0}\" wirklich löschen? Dies hat keinen Einfluss "
-"auf Elemente mit dieser Kategorie."
 
 msgid "Rename Category"
 msgstr "Kategorie umbenennen"
@@ -2440,6 +2453,11 @@ msgstr ""
 msgid "No suggestions available"
 msgstr "Keine Vorschläge vorhanden"
 
+# 87%
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+msgid "l jS F Y"
+msgstr "I j. F Y"
+
 msgid "Switch between different contexts e.g. inbox, calendar, etc."
 msgstr ""
 "Zwischen verschiedenen Bereichen wechseln - z.B. Posteingang, Kalender, etc."
@@ -2543,6 +2561,9 @@ msgstr "Hilfe"
 msgid "WebApp Manual"
 msgstr "WebApp-Handbuch"
 
+msgid "Item data"
+msgstr ""
+
 msgid "INSERT"
 msgstr "INSERT"
 
@@ -2551,9 +2572,6 @@ msgstr "Sortieren nach: context.mail.griddefaultcolumn"
 
 msgid "ZDeveloper"
 msgstr "ZEntwickler"
-
-msgid "Kopano WebApp print"
-msgstr "Kopano WebApp drucken"
 
 # 91%
 msgid "Display name"
@@ -3159,6 +3177,10 @@ msgstr "d.m.Y"
 msgid "Original message"
 msgstr "Ursprüngliche Nachricht"
 
+# This is translated wrong, it should probably be l instead of I; also check all other occurrences of this
+msgid "l d/m/Y"
+msgstr "l, d.m.Y"
+
 msgid "Sent Items"
 msgstr "Gesendete Objekte"
 
@@ -3400,9 +3422,6 @@ msgstr "Empfänger"
 msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr "im Auftrag von"
-
-msgid "D {0}"
-msgstr "D {0}"
 
 # 75%
 # 100%
@@ -3747,11 +3766,21 @@ msgstr "Assistent"
 msgid "Loading contacts"
 msgstr "Lade Kontakte"
 
-msgid "Group"
-msgstr "Gruppe"
+msgid ""
+"There are no items to show in this list. Update the filter for more results."
+msgstr ""
 
-msgid "Work"
-msgstr "Arbeit"
+msgid "[Group]"
+msgstr ""
+
+msgid "Work:"
+msgstr ""
+
+msgid "Primary:"
+msgstr ""
+
+msgid "Mobile:"
+msgstr ""
 
 msgid "Sort by: Full Name"
 msgstr "Sortieren nach: Vollständiger Name"
@@ -3962,6 +3991,9 @@ msgstr "Y"
 
 msgid "Important"
 msgstr "Wichtig"
+
+msgid "Work"
+msgstr "Arbeit"
 
 msgid "Personal"
 msgstr "Persönlich"
@@ -4218,6 +4250,9 @@ msgstr "Widgets anzeigen"
 msgid "Your changes will be lost if you leave this page now."
 msgstr "Ihre Änderungen werden beim Schliessen dieser Seite verloren gehen."
 
+msgid "D {0}"
+msgstr "D {0}"
+
 msgid "D d-m"
 msgstr "D, d.m.Y"
 
@@ -4261,17 +4296,6 @@ msgid ""
 "The installed license key(s) have expired or are being over used. Please "
 "contact your system administrator for further information."
 msgstr ""
-
-# 100%
-#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
-msgid "{0} in {1}"
-msgstr "{0} in {1}"
-
-# 80%
-# 100%
-#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
-msgid "{0} of {1}"
-msgstr "{0} von {1}"
 
 msgid "Full control"
 msgstr "Volle Kontrolle"
@@ -4679,9 +4703,6 @@ msgstr "BCC anzeigen"
 msgid "Show From field"
 msgstr "Von anzeigen"
 
-msgid "No signatures configured"
-msgstr "Keine Signaturen konfiguriert"
-
 msgid "Cannot save while attachment is being uploaded"
 msgstr "Es kann nicht gespeichert werden, während ein Anhang hochlädt"
 
@@ -4913,6 +4934,9 @@ msgstr "Alle löschen"
 msgid "Signatures"
 msgstr "Signaturen"
 
+msgid "No signatures configured"
+msgstr "Keine Signaturen konfiguriert"
+
 msgid "New messages"
 msgstr "Neue Nachrichten"
 
@@ -5119,6 +5143,9 @@ msgstr ""
 msgid "Show insertion points in WebApp"
 msgstr ""
 
+msgid "Show \"item data\" button in context menu (mail only)"
+msgstr ""
+
 msgid "Edit setting"
 msgstr "Einstellungen bearbeiten"
 
@@ -5174,10 +5201,25 @@ msgstr ""
 msgid "Hide widget panel"
 msgstr ""
 
-msgid "File previewing"
+msgid "Auto"
 msgstr ""
 
-msgid "Attachment preview (PDF, Open formats and images)"
+msgid "Actual size"
+msgstr ""
+
+msgid "Page width"
+msgstr ""
+
+msgid "Attachment preview (PDF and Open formats)"
+msgstr ""
+
+msgid "Document default zoom"
+msgstr ""
+
+msgid "PDF zoom"
+msgstr ""
+
+msgid "File previewing"
 msgstr ""
 
 msgid "Inbox navigation"
@@ -5396,6 +5438,9 @@ msgstr "Antwort jetzt senden"
 msgid "Date Complete"
 msgstr "Datum des Abschlusses"
 
+msgid "Multiple companies name must be separated by"
+msgstr ""
+
 msgid "Update List"
 msgstr "Liste aktualisieren"
 
@@ -5478,6 +5523,14 @@ msgstr "Neue Aufgabe"
 
 msgid "Completed"
 msgstr "Erledigt"
+
+# 76%
+msgid "Printed by: "
+msgstr "Gedruckt von: "
+
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+msgid "Printed on: "
+msgstr "Gedruckt am: "
 
 msgid "Percent complete"
 msgstr "Prozent erledigt"
@@ -5667,6 +5720,9 @@ msgstr "Zurück"
 
 msgid "Next"
 msgstr "Weiter"
+
+msgid "Click the link to open the URL in a new window."
+msgstr "Klicken Sie auf den Link, um die URL in einem neuen Fenster zu öffnen."
 
 msgid "The server reported an unknown error on your request."
 msgstr "Der Server hat Ihre Anfrage mit unbekanntem Fehler zurückgewiesen."
@@ -5997,9 +6053,6 @@ msgstr ""
 
 msgid "Unknown MAPI Error"
 msgstr "Unbekannter MAPI-Fehler"
-
-msgid "Click the link to open the URL in a new window."
-msgstr "Klicken Sie auf den Link, um die URL in einem neuen Fenster zu öffnen."
 
 msgid "This external link will open in a new window"
 msgstr "Der externe Link wird in einem neuen Fenster geöffnet"
@@ -6734,6 +6787,9 @@ msgstr "Passwort"
 
 msgid "Sign in"
 msgstr "Anmelden"
+
+msgid "Caps lock is on"
+msgstr ""
 
 msgid "File is not imported successfully"
 msgstr "Die Datei konnte nicht erfolgreich importiert werden"

@@ -384,8 +384,8 @@ msgstr "Detaily uživatele"
 msgid "First"
 msgstr "První"
 
-msgid "Initial"
-msgstr "Výchozí"
+msgid "Initials"
+msgstr ""
 
 msgid "Display"
 msgstr "Zobrazit"
@@ -1381,6 +1381,9 @@ msgstr "Kopírovat vybranou položku"
 msgid "Paste selected item"
 msgstr "Vložit vybranou položku"
 
+msgid "An overview of"
+msgstr ""
+
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "Start"
 msgstr "Začátek"
@@ -1389,24 +1392,32 @@ msgstr "Začátek"
 msgid "End"
 msgstr "Konec"
 
-# 76%
-#, fuzzy
-msgid "Printed by: "
-msgstr "Třídit podle: Komu"
-
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-#, fuzzy
-msgid "Printed on: "
-msgstr "Vytisknout tuto poznámku"
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
+msgid "Printed by"
+msgstr ""
+
+msgid "at"
+msgstr ""
+
+msgid "of"
+msgstr ""
 
 #, fuzzy
 msgid "Location: "
 msgstr "Místo"
 
-#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-msgid "l jS F Y"
-msgstr "l j. F Y"
+msgid "j M {0}"
+msgstr ""
 
+msgid "l jS M Y {0}"
+msgstr ""
+
+msgid "All day: "
+msgstr ""
+
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "l jS F"
 msgstr "l j. F"
@@ -1444,10 +1455,6 @@ msgstr ""
 #, fuzzy
 msgid "j"
 msgstr "j."
-
-#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-msgid "l d/m/Y"
-msgstr "l d. m. Y"
 
 msgid "General calendar settings"
 msgstr "Všeobecné nastavení kalendáře"
@@ -1663,6 +1670,12 @@ msgstr "Třídit podle: Důvěrnost"
 msgid "Loading appointments"
 msgstr "Načítání schůzek"
 
+msgid "Attendees"
+msgstr ""
+
+msgid "Optional attendees"
+msgstr ""
+
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "jS F {0}"
 msgstr ""
@@ -1787,6 +1800,8 @@ msgid "Today (all day)"
 msgstr ""
 
 # 100%
+#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
+#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
 #, fuzzy
 msgid "{0} - {1}"
 msgstr "{0} v {1}"
@@ -2150,13 +2165,10 @@ msgstr "Nové"
 msgid "Delete Category"
 msgstr "Odstranit kategorii"
 
-#, fuzzy
 msgid ""
-"Are you sure you want to delete the category \"{0}\"? Items already assigned "
-"this category won't be affected."
+"Are you sure you want to delete the category \"{0}\"? Other items keep this "
+"category, but lose the assigned color."
 msgstr ""
-"Opravdu chcete smazat kategorii \"{0}\"? Položky, které již byly přiřazeny "
-"do této kategorie, nebudou ovlivněny."
 
 msgid "Rename Category"
 msgstr "Přejmenovat kategorii"
@@ -2439,6 +2451,10 @@ msgstr "Žádné informace o dostupnosti k tomto datu"
 msgid "No suggestions available"
 msgstr "Žádné dostupné návrhy"
 
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+msgid "l jS F Y"
+msgstr "l j. F Y"
+
 msgid "Switch between different contexts e.g. inbox, calendar, etc."
 msgstr "Přepnout mezi kontexty, např. doručená pošta, kalendář, atd."
 
@@ -2546,6 +2562,9 @@ msgstr "Nápověda"
 msgid "WebApp Manual"
 msgstr ""
 
+msgid "Item data"
+msgstr ""
+
 msgid "INSERT"
 msgstr "VLOŽIT"
 
@@ -2554,10 +2573,6 @@ msgstr ""
 
 msgid "ZDeveloper"
 msgstr ""
-
-#, fuzzy
-msgid "Kopano WebApp print"
-msgstr "Vytisknout Kopano WebbApp"
 
 # 91%
 msgid "Display name"
@@ -3180,6 +3195,9 @@ msgstr "d-m-r"
 msgid "Original message"
 msgstr "Původní zpráva"
 
+msgid "l d/m/Y"
+msgstr "l d. m. Y"
+
 msgid "Sent Items"
 msgstr ""
 
@@ -3425,9 +3443,6 @@ msgstr "Příjemci"
 msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr "v zastoupení za"
-
-msgid "D {0}"
-msgstr ""
 
 # 100%
 #. TRANSLATORS: This message is used to indicate that no sent date is available for the message (because it has not been sent yet).
@@ -3765,11 +3780,21 @@ msgstr "Asistent"
 msgid "Loading contacts"
 msgstr "Načítání kontaktů"
 
-msgid "Group"
-msgstr "Skupina"
+msgid ""
+"There are no items to show in this list. Update the filter for more results."
+msgstr ""
 
-msgid "Work"
-msgstr "Práce"
+msgid "[Group]"
+msgstr ""
+
+msgid "Work:"
+msgstr ""
+
+msgid "Primary:"
+msgstr ""
+
+msgid "Mobile:"
+msgstr ""
 
 msgid "Sort by: Full Name"
 msgstr "Třídit podle: Celé jméno"
@@ -3967,6 +3992,9 @@ msgstr "Y"
 
 msgid "Important"
 msgstr "Důležitý"
+
+msgid "Work"
+msgstr "Práce"
 
 msgid "Personal"
 msgstr "Osobní"
@@ -4231,6 +4259,9 @@ msgstr ""
 msgid "Your changes will be lost if you leave this page now."
 msgstr ""
 
+msgid "D {0}"
+msgstr ""
+
 #, fuzzy
 msgid "D d-m"
 msgstr "d-m-r"
@@ -4280,16 +4311,6 @@ msgid ""
 "The installed license key(s) have expired or are being over used. Please "
 "contact your system administrator for further information."
 msgstr ""
-
-# 100%
-#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
-msgid "{0} in {1}"
-msgstr "{0} v {1}"
-
-# 100%
-#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
-msgid "{0} of {1}"
-msgstr "{0} z {1}"
 
 msgid "Full control"
 msgstr "Úplné řízení"
@@ -4707,9 +4728,6 @@ msgstr "Ukázat Skryté kopie"
 msgid "Show From field"
 msgstr "Ukázat Od koho"
 
-msgid "No signatures configured"
-msgstr "Nejsou nastaveny podpisy"
-
 msgid "Cannot save while attachment is being uploaded"
 msgstr ""
 
@@ -4941,6 +4959,9 @@ msgstr ""
 msgid "Signatures"
 msgstr "Podpisy"
 
+msgid "No signatures configured"
+msgstr "Nejsou nastaveny podpisy"
+
 msgid "New messages"
 msgstr ""
 
@@ -5145,6 +5166,9 @@ msgstr ""
 msgid "Show insertion points in WebApp"
 msgstr ""
 
+msgid "Show \"item data\" button in context menu (mail only)"
+msgstr ""
+
 msgid "Edit setting"
 msgstr "Upravit nastavení"
 
@@ -5203,10 +5227,25 @@ msgstr ""
 msgid "Hide widget panel"
 msgstr ""
 
-msgid "File previewing"
+msgid "Auto"
 msgstr ""
 
-msgid "Attachment preview (PDF, Open formats and images)"
+msgid "Actual size"
+msgstr ""
+
+msgid "Page width"
+msgstr ""
+
+msgid "Attachment preview (PDF and Open formats)"
+msgstr ""
+
+msgid "Document default zoom"
+msgstr ""
+
+msgid "PDF zoom"
+msgstr ""
+
+msgid "File previewing"
 msgstr ""
 
 msgid "Inbox navigation"
@@ -5418,6 +5457,9 @@ msgstr "Odeslat odpověď nyní."
 msgid "Date Complete"
 msgstr "Datum dokončení"
 
+msgid "Multiple companies name must be separated by"
+msgstr ""
+
 msgid "Update List"
 msgstr "Aktualizovat seznam"
 
@@ -5506,6 +5548,16 @@ msgstr ""
 #, fuzzy
 msgid "Completed"
 msgstr "Dokončeno"
+
+# 76%
+#, fuzzy
+msgid "Printed by: "
+msgstr "Třídit podle: Komu"
+
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+#, fuzzy
+msgid "Printed on: "
+msgstr "Vytisknout tuto poznámku"
 
 msgid "Percent complete"
 msgstr "Dokončeno procent"
@@ -5685,6 +5737,9 @@ msgid "Previous"
 msgstr ""
 
 msgid "Next"
+msgstr ""
+
+msgid "Click the link to open the URL in a new window."
 msgstr ""
 
 msgid "The server reported an unknown error on your request."
@@ -5998,9 +6053,6 @@ msgstr ""
 #, fuzzy
 msgid "Unknown MAPI Error"
 msgstr "Neznámá MAPI chyba: %s"
-
-msgid "Click the link to open the URL in a new window."
-msgstr ""
 
 msgid "This external link will open in a new window"
 msgstr "Tento externí odkaz se otevře v novém okně"
@@ -6654,6 +6706,9 @@ msgid "Password"
 msgstr "Heslo"
 
 msgid "Sign in"
+msgstr ""
+
+msgid "Caps lock is on"
 msgstr ""
 
 #, fuzzy

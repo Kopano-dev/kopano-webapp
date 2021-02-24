@@ -374,8 +374,8 @@ msgstr "Kullanıcı detaylar"
 msgid "First"
 msgstr "Isim"
 
-msgid "Initial"
-msgstr "Baş harf"
+msgid "Initials"
+msgstr ""
 
 msgid "Display"
 msgstr "Görüntüle"
@@ -1393,6 +1393,9 @@ msgstr ""
 msgid "Paste selected item"
 msgstr ""
 
+msgid "An overview of"
+msgstr ""
+
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "Start"
 msgstr "Başlangıç"
@@ -1401,27 +1404,34 @@ msgstr "Başlangıç"
 msgid "End"
 msgstr "Son"
 
-# 76%
-#, fuzzy
-msgid "Printed by: "
-msgstr "Sıralama: Kime"
-
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-#, fuzzy
-msgid "Printed on: "
-msgstr "Bu notu yazdır"
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
+msgid "Printed by"
+msgstr ""
+
+msgid "at"
+msgstr ""
+
+msgid "of"
+msgstr ""
 
 #, fuzzy
 msgid "Location: "
 msgstr "Konum"
 
-# 87%
-#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-msgid "l jS F Y"
-msgstr "l j F Y"
+msgid "j M {0}"
+msgstr ""
+
+msgid "l jS M Y {0}"
+msgstr ""
+
+msgid "All day: "
+msgstr ""
 
 # 87%
 # 75%
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "l jS F"
 msgstr "l j F"
@@ -1459,10 +1469,6 @@ msgstr ""
 #, fuzzy
 msgid "j"
 msgstr "j"
-
-#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-msgid "l d/m/Y"
-msgstr "l d-m-Y"
 
 msgid "General calendar settings"
 msgstr "Genel takvim ayarları"
@@ -1679,6 +1685,12 @@ msgstr "Sıralama: Önem Derecesi"
 msgid "Loading appointments"
 msgstr "Randevular yükleniyor"
 
+msgid "Attendees"
+msgstr ""
+
+msgid "Optional attendees"
+msgstr ""
+
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "jS F {0}"
 msgstr ""
@@ -1804,6 +1816,8 @@ msgid "Today (all day)"
 msgstr ""
 
 # 100%
+#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
+#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
 #, fuzzy
 msgid "{0} - {1}"
 msgstr "{0} - {1}"
@@ -2154,8 +2168,8 @@ msgid "Delete Category"
 msgstr ""
 
 msgid ""
-"Are you sure you want to delete the category \"{0}\"? Items already assigned "
-"this category won't be affected."
+"Are you sure you want to delete the category \"{0}\"? Other items keep this "
+"category, but lose the assigned color."
 msgstr ""
 
 msgid "Rename Category"
@@ -2436,6 +2450,11 @@ msgstr "Bu tarih için serbest meşgul bilgileri mevcut değil"
 msgid "No suggestions available"
 msgstr "Öneri yok"
 
+# 87%
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+msgid "l jS F Y"
+msgstr "l j F Y"
+
 msgid "Switch between different contexts e.g. inbox, calendar, etc."
 msgstr "Farklı içerikler arasında geçiş yap, örn. gelen kutusu, takvim, vb."
 
@@ -2540,6 +2559,9 @@ msgstr "yardım"
 msgid "WebApp Manual"
 msgstr "WebApp kılavuzu"
 
+msgid "Item data"
+msgstr ""
+
 msgid "INSERT"
 msgstr "ekle"
 
@@ -2548,10 +2570,6 @@ msgstr "Sıralama: context.mail.griddefaultcolumn"
 
 msgid "ZDeveloper"
 msgstr "zdeveloper"
-
-#, fuzzy
-msgid "Kopano WebApp print"
-msgstr "Kopano WebApp"
 
 # 91%
 msgid "Display name"
@@ -3181,6 +3199,9 @@ msgstr "d-m-Y"
 msgid "Original message"
 msgstr "Orijinal mesaj"
 
+msgid "l d/m/Y"
+msgstr "l d-m-Y"
+
 msgid "Sent Items"
 msgstr ""
 
@@ -3424,9 +3445,6 @@ msgstr "Alıcılar"
 msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr "adına yazıyorum"
-
-msgid "D {0}"
-msgstr ""
 
 # 75%
 #. TRANSLATORS: This message is used to indicate that no sent date is available for the message (because it has not been sent yet).
@@ -3772,11 +3790,21 @@ msgstr "Asistan"
 msgid "Loading contacts"
 msgstr "Kişiler yükleniyor"
 
-msgid "Group"
-msgstr "Grup"
+msgid ""
+"There are no items to show in this list. Update the filter for more results."
+msgstr ""
 
-msgid "Work"
-msgstr "İş"
+msgid "[Group]"
+msgstr ""
+
+msgid "Work:"
+msgstr ""
+
+msgid "Primary:"
+msgstr ""
+
+msgid "Mobile:"
+msgstr ""
 
 msgid "Sort by: Full Name"
 msgstr "Sıralama: Ad"
@@ -3984,6 +4012,9 @@ msgstr "Y"
 
 msgid "Important"
 msgstr "Önemli"
+
+msgid "Work"
+msgstr "İş"
 
 msgid "Personal"
 msgstr "Kişisel"
@@ -4255,6 +4286,9 @@ msgstr "widget panosunu genişlet"
 msgid "Your changes will be lost if you leave this page now."
 msgstr "Bu sayfadan şimdi çıkarsanız değişiklikleriniz kaybolacaktır."
 
+msgid "D {0}"
+msgstr ""
+
 #, fuzzy
 msgid "D d-m"
 msgstr "d-m-Y"
@@ -4301,16 +4335,6 @@ msgid ""
 "The installed license key(s) have expired or are being over used. Please "
 "contact your system administrator for further information."
 msgstr ""
-
-# 100%
-#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
-msgid "{0} in {1}"
-msgstr "{0} - {1}"
-
-# 100%
-#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
-msgid "{0} of {1}"
-msgstr "{0} {1}"
 
 msgid "Full control"
 msgstr "Tam Denetim"
@@ -4731,9 +4755,6 @@ msgstr "Bcc göster"
 msgid "Show From field"
 msgstr "Gönderen göster"
 
-msgid "No signatures configured"
-msgstr "Yapılandırılmış imzalar yok"
-
 msgid "Cannot save while attachment is being uploaded"
 msgstr ""
 
@@ -4961,6 +4982,9 @@ msgstr ""
 msgid "Signatures"
 msgstr "Imzalar"
 
+msgid "No signatures configured"
+msgstr "Yapılandırılmış imzalar yok"
+
 msgid "New messages"
 msgstr ""
 
@@ -5164,6 +5188,9 @@ msgstr ""
 msgid "Show insertion points in WebApp"
 msgstr ""
 
+msgid "Show \"item data\" button in context menu (mail only)"
+msgstr ""
+
 msgid "Edit setting"
 msgstr "Ayar düzenle"
 
@@ -5222,10 +5249,25 @@ msgstr ""
 msgid "Hide widget panel"
 msgstr ""
 
-msgid "File previewing"
+msgid "Auto"
 msgstr ""
 
-msgid "Attachment preview (PDF, Open formats and images)"
+msgid "Actual size"
+msgstr ""
+
+msgid "Page width"
+msgstr ""
+
+msgid "Attachment preview (PDF and Open formats)"
+msgstr ""
+
+msgid "Document default zoom"
+msgstr ""
+
+msgid "PDF zoom"
+msgstr ""
+
+msgid "File previewing"
 msgstr ""
 
 msgid "Inbox navigation"
@@ -5444,6 +5486,9 @@ msgstr "Yanıtı şimdi gönder"
 msgid "Date Complete"
 msgstr "Tarih Tamamlandı"
 
+msgid "Multiple companies name must be separated by"
+msgstr ""
+
 msgid "Update List"
 msgstr "Listeyi Güncelle"
 
@@ -5531,6 +5576,16 @@ msgstr "yeni görev"
 #, fuzzy
 msgid "Completed"
 msgstr "Tamamlandı"
+
+# 76%
+#, fuzzy
+msgid "Printed by: "
+msgstr "Sıralama: Kime"
+
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+#, fuzzy
+msgid "Printed on: "
+msgstr "Bu notu yazdır"
 
 msgid "Percent complete"
 msgstr "Yüzde kaç tamamlama"
@@ -5714,6 +5769,9 @@ msgid "Previous"
 msgstr ""
 
 msgid "Next"
+msgstr ""
+
+msgid "Click the link to open the URL in a new window."
 msgstr ""
 
 msgid "The server reported an unknown error on your request."
@@ -6031,9 +6089,6 @@ msgstr ""
 
 msgid "Unknown MAPI Error"
 msgstr "Bilinmeyen MAPI hatası"
-
-msgid "Click the link to open the URL in a new window."
-msgstr ""
 
 msgid "This external link will open in a new window"
 msgstr "Bu dış bağlantı yeni bir pencerede açılacaktır"
@@ -6711,6 +6766,9 @@ msgstr "Şifre"
 
 msgid "Sign in"
 msgstr "oturum aç"
+
+msgid "Caps lock is on"
+msgstr ""
 
 #, fuzzy
 msgid "File is not imported successfully"
