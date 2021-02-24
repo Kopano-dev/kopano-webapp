@@ -372,8 +372,8 @@ msgstr "ユーザー詳細情報"
 msgid "First"
 msgstr "最初"
 
-msgid "Initial"
-msgstr "初期"
+msgid "Initials"
+msgstr ""
 
 msgid "Display"
 msgstr "表示"
@@ -1367,6 +1367,9 @@ msgstr ""
 msgid "Paste selected item"
 msgstr ""
 
+msgid "An overview of"
+msgstr ""
+
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "Start"
 msgstr "開始日"
@@ -1375,25 +1378,32 @@ msgstr "開始日"
 msgid "End"
 msgstr "終了"
 
-# 76%
-#, fuzzy
-msgid "Printed by: "
-msgstr "並べ替え：宛先"
-
-# 80%
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-#, fuzzy
-msgid "Printed on: "
-msgstr "このメモを印刷する"
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
+msgid "Printed by"
+msgstr ""
+
+msgid "at"
+msgstr ""
+
+msgid "of"
+msgstr ""
 
 #, fuzzy
 msgid "Location: "
 msgstr "場所"
 
-#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-msgid "l jS F Y"
-msgstr "Y年Fj日 l"
+msgid "j M {0}"
+msgstr ""
 
+msgid "l jS M Y {0}"
+msgstr ""
+
+msgid "All day: "
+msgstr ""
+
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "l jS F"
 msgstr "F j日 l"
@@ -1427,10 +1437,6 @@ msgstr ""
 #, fuzzy
 msgid "j"
 msgstr "j日"
-
-#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-msgid "l d/m/Y"
-msgstr "Y/m/d l"
 
 msgid "General calendar settings"
 msgstr "カレンダーの一般設定"
@@ -1634,6 +1640,12 @@ msgstr "並べ替え：Sensitivity"
 msgid "Loading appointments"
 msgstr "予定を読み込み中"
 
+msgid "Attendees"
+msgstr ""
+
+msgid "Optional attendees"
+msgstr ""
+
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "jS F {0}"
 msgstr ""
@@ -1752,6 +1764,8 @@ msgstr "今日: {1} {0}"
 msgid "Today (all day)"
 msgstr ""
 
+#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
+#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
 #, fuzzy
 msgid "{0} - {1}"
 msgstr "{0}内の{1}"
@@ -2104,8 +2118,8 @@ msgid "Delete Category"
 msgstr ""
 
 msgid ""
-"Are you sure you want to delete the category \"{0}\"? Items already assigned "
-"this category won't be affected."
+"Are you sure you want to delete the category \"{0}\"? Other items keep this "
+"category, but lose the assigned color."
 msgstr ""
 
 msgid "Rename Category"
@@ -2381,6 +2395,10 @@ msgstr "この日は空き時間の参照ができません。"
 msgid "No suggestions available"
 msgstr "提案機能は使えません。"
 
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+msgid "l jS F Y"
+msgstr "Y年Fj日 l"
+
 msgid "Switch between different contexts e.g. inbox, calendar, etc."
 msgstr ""
 
@@ -2485,6 +2503,9 @@ msgstr "ヘルプ"
 msgid "WebApp Manual"
 msgstr "WebAppマニュアル"
 
+msgid "Item data"
+msgstr ""
+
 msgid "INSERT"
 msgstr "挿入"
 
@@ -2493,10 +2514,6 @@ msgstr ""
 
 msgid "ZDeveloper"
 msgstr "ZDeveloper"
-
-#, fuzzy
-msgid "Kopano WebApp print"
-msgstr "Kopano WebApp"
 
 # 91%
 msgid "Display name"
@@ -3120,6 +3137,9 @@ msgstr "Y/m/d"
 msgid "Original message"
 msgstr "オリジナル本文"
 
+msgid "l d/m/Y"
+msgstr "Y/m/d l"
+
 msgid "Sent Items"
 msgstr ""
 
@@ -3359,9 +3379,6 @@ msgstr "受信者"
 msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr "代理人"
-
-msgid "D {0}"
-msgstr ""
 
 # 75%
 # 100%
@@ -3699,11 +3716,21 @@ msgstr "アシスタント"
 msgid "Loading contacts"
 msgstr "コンタクトを読み込み中"
 
-msgid "Group"
-msgstr "グループ"
+msgid ""
+"There are no items to show in this list. Update the filter for more results."
+msgstr ""
 
-msgid "Work"
-msgstr "仕事"
+msgid "[Group]"
+msgstr ""
+
+msgid "Work:"
+msgstr ""
+
+msgid "Primary:"
+msgstr ""
+
+msgid "Mobile:"
+msgstr ""
 
 msgid "Sort by: Full Name"
 msgstr "並べ替え：氏名"
@@ -3906,6 +3933,9 @@ msgstr "Y年"
 
 msgid "Important"
 msgstr "重要"
+
+msgid "Work"
+msgstr "仕事"
 
 msgid "Personal"
 msgstr "個人"
@@ -4170,6 +4200,9 @@ msgstr ""
 msgid "Your changes will be lost if you leave this page now."
 msgstr ""
 
+msgid "D {0}"
+msgstr ""
+
 #, fuzzy
 msgid "D d-m"
 msgstr "Y/m/d"
@@ -4215,14 +4248,6 @@ msgid ""
 "The installed license key(s) have expired or are being over used. Please "
 "contact your system administrator for further information."
 msgstr ""
-
-#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
-msgid "{0} in {1}"
-msgstr "{0}内の{1}"
-
-#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
-msgid "{0} of {1}"
-msgstr "{1}の{0}"
 
 msgid "Full control"
 msgstr "フルコントロール"
@@ -4639,9 +4664,6 @@ msgstr "Bccを表示"
 msgid "Show From field"
 msgstr "送信者を表示"
 
-msgid "No signatures configured"
-msgstr "署名が設定されていません。"
-
 msgid "Cannot save while attachment is being uploaded"
 msgstr ""
 
@@ -4866,6 +4888,9 @@ msgstr ""
 msgid "Signatures"
 msgstr "署名"
 
+msgid "No signatures configured"
+msgstr "署名が設定されていません。"
+
 msgid "New messages"
 msgstr ""
 
@@ -5070,6 +5095,9 @@ msgstr ""
 msgid "Show insertion points in WebApp"
 msgstr ""
 
+msgid "Show \"item data\" button in context menu (mail only)"
+msgstr ""
+
 msgid "Edit setting"
 msgstr "編集設定"
 
@@ -5128,10 +5156,25 @@ msgstr ""
 msgid "Hide widget panel"
 msgstr ""
 
-msgid "File previewing"
+msgid "Auto"
 msgstr ""
 
-msgid "Attachment preview (PDF, Open formats and images)"
+msgid "Actual size"
+msgstr ""
+
+msgid "Page width"
+msgstr ""
+
+msgid "Attachment preview (PDF and Open formats)"
+msgstr ""
+
+msgid "Document default zoom"
+msgstr ""
+
+msgid "PDF zoom"
+msgstr ""
+
+msgid "File previewing"
 msgstr ""
 
 msgid "Inbox navigation"
@@ -5348,6 +5391,9 @@ msgstr "返信を今すぐ送信"
 msgid "Date Complete"
 msgstr "完了日"
 
+msgid "Multiple companies name must be separated by"
+msgstr ""
+
 msgid "Update List"
 msgstr "更新リスト"
 
@@ -5436,6 +5482,17 @@ msgstr ""
 #, fuzzy
 msgid "Completed"
 msgstr "完了"
+
+# 76%
+#, fuzzy
+msgid "Printed by: "
+msgstr "並べ替え：宛先"
+
+# 80%
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+#, fuzzy
+msgid "Printed on: "
+msgstr "このメモを印刷する"
 
 msgid "Percent complete"
 msgstr "完成度"
@@ -5612,6 +5669,9 @@ msgid "Previous"
 msgstr ""
 
 msgid "Next"
+msgstr ""
+
+msgid "Click the link to open the URL in a new window."
 msgstr ""
 
 msgid "The server reported an unknown error on your request."
@@ -5930,9 +5990,6 @@ msgstr ""
 #, fuzzy
 msgid "Unknown MAPI Error"
 msgstr "不明なMAPIエラー:%s"
-
-msgid "Click the link to open the URL in a new window."
-msgstr ""
 
 msgid "This external link will open in a new window"
 msgstr "この外部リンクは新しいウィンドウで開きます。"
@@ -6577,6 +6634,9 @@ msgid "Password"
 msgstr ""
 
 msgid "Sign in"
+msgstr ""
+
+msgid "Caps lock is on"
 msgstr ""
 
 #, fuzzy

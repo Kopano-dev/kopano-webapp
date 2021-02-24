@@ -384,8 +384,8 @@ msgstr "פרטי משתמש"
 msgid "First"
 msgstr "שם פרטי"
 
-msgid "Initial"
-msgstr "ר\"ת"
+msgid "Initials"
+msgstr ""
 
 msgid "Display"
 msgstr "שם תצוגה"
@@ -1411,6 +1411,9 @@ msgstr ""
 msgid "Paste selected item"
 msgstr ""
 
+msgid "An overview of"
+msgstr ""
+
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "Start"
 msgstr "התחלה"
@@ -1419,31 +1422,34 @@ msgstr "התחלה"
 msgid "End"
 msgstr ""
 
-#, fuzzy
-msgid "Printed by: "
-msgstr "מיין לפי: אל"
-
-# 77%
-# 78%
-# 100%
-# 84%
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-#, fuzzy
-msgid "Printed on: "
-msgstr "נבחר פריט {0}"
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
+msgid "Printed by"
+msgstr ""
+
+msgid "at"
+msgstr ""
+
+msgid "of"
+msgstr ""
 
 #, fuzzy
 msgid "Location: "
 msgstr "מיקום"
 
-# 87%
-#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-#, fuzzy
-msgid "l jS F Y"
-msgstr "l j F Y"
+msgid "j M {0}"
+msgstr ""
+
+msgid "l jS M Y {0}"
+msgstr ""
+
+msgid "All day: "
+msgstr ""
 
 # 87%
 # 75%
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 #, fuzzy
 msgid "l jS F"
@@ -1485,10 +1491,6 @@ msgid "M j"
 msgstr ""
 
 msgid "j"
-msgstr ""
-
-#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-msgid "l d/m/Y"
 msgstr ""
 
 msgid "General calendar settings"
@@ -1700,6 +1702,12 @@ msgstr ""
 msgid "Loading appointments"
 msgstr ""
 
+msgid "Attendees"
+msgstr ""
+
+msgid "Optional attendees"
+msgstr ""
+
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "jS F {0}"
 msgstr ""
@@ -1823,6 +1831,8 @@ msgstr "היום: {1} {0}"
 msgid "Today (all day)"
 msgstr ""
 
+#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
+#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
 msgid "{0} - {1}"
 msgstr ""
 
@@ -2156,8 +2166,8 @@ msgid "Delete Category"
 msgstr ""
 
 msgid ""
-"Are you sure you want to delete the category \"{0}\"? Items already assigned "
-"this category won't be affected."
+"Are you sure you want to delete the category \"{0}\"? Other items keep this "
+"category, but lose the assigned color."
 msgstr ""
 
 msgid "Rename Category"
@@ -2438,6 +2448,12 @@ msgstr "אין מידע זמין אודות עסוק/פנוי בתאריך זה"
 msgid "No suggestions available"
 msgstr "אין הצעות זמינות"
 
+# 87%
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+#, fuzzy
+msgid "l jS F Y"
+msgstr "l j F Y"
+
 msgid "Switch between different contexts e.g. inbox, calendar, etc."
 msgstr ""
 
@@ -2544,6 +2560,9 @@ msgstr ""
 msgid "WebApp Manual"
 msgstr ""
 
+msgid "Item data"
+msgstr ""
+
 msgid "INSERT"
 msgstr ""
 
@@ -2552,10 +2571,6 @@ msgstr ""
 
 msgid "ZDeveloper"
 msgstr ""
-
-#, fuzzy
-msgid "Kopano WebApp print"
-msgstr "הווב אפ של זראפה"
 
 # 91%
 msgid "Display name"
@@ -3160,6 +3175,9 @@ msgstr "ש-ח-י"
 msgid "Original message"
 msgstr "הודעה מקורית"
 
+msgid "l d/m/Y"
+msgstr ""
+
 msgid "Sent Items"
 msgstr ""
 
@@ -3394,9 +3412,6 @@ msgstr ""
 #. TRANSLATORS: check if the mail is send by some delegator or not. if then display "on behalf of".
 msgctxt "mail.previewpanel"
 msgid "on behalf of"
-msgstr ""
-
-msgid "D {0}"
 msgstr ""
 
 # 100%
@@ -3752,11 +3767,21 @@ msgstr "עוזר"
 msgid "Loading contacts"
 msgstr ""
 
-msgid "Group"
-msgstr "קבוצה"
+msgid ""
+"There are no items to show in this list. Update the filter for more results."
+msgstr ""
 
-msgid "Work"
-msgstr "עבודה"
+msgid "[Group]"
+msgstr ""
+
+msgid "Work:"
+msgstr ""
+
+msgid "Primary:"
+msgstr ""
+
+msgid "Mobile:"
+msgstr ""
 
 # 76%
 # 82%
@@ -3960,6 +3985,9 @@ msgstr "Y"
 
 msgid "Important"
 msgstr "חשוב"
+
+msgid "Work"
+msgstr "עבודה"
 
 msgid "Personal"
 msgstr "אישי "
@@ -4225,6 +4253,9 @@ msgstr ""
 msgid "Your changes will be lost if you leave this page now."
 msgstr ""
 
+msgid "D {0}"
+msgstr ""
+
 #, fuzzy
 msgid "D d-m"
 msgstr "ש-ח-י"
@@ -4267,14 +4298,6 @@ msgstr ""
 msgid ""
 "The installed license key(s) have expired or are being over used. Please "
 "contact your system administrator for further information."
-msgstr ""
-
-#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
-msgid "{0} in {1}"
-msgstr ""
-
-#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
-msgid "{0} of {1}"
 msgstr ""
 
 msgid "Full control"
@@ -4696,9 +4719,6 @@ msgstr "הצג את שדה עותק סודי"
 msgid "Show From field"
 msgstr ""
 
-msgid "No signatures configured"
-msgstr ""
-
 msgid "Cannot save while attachment is being uploaded"
 msgstr ""
 
@@ -4929,6 +4949,9 @@ msgstr ""
 msgid "Signatures"
 msgstr ""
 
+msgid "No signatures configured"
+msgstr ""
+
 msgid "New messages"
 msgstr ""
 
@@ -5140,6 +5163,9 @@ msgstr ""
 msgid "Show insertion points in WebApp"
 msgstr ""
 
+msgid "Show \"item data\" button in context menu (mail only)"
+msgstr ""
+
 msgid "Edit setting"
 msgstr ""
 
@@ -5197,10 +5223,25 @@ msgstr ""
 msgid "Hide widget panel"
 msgstr ""
 
-msgid "File previewing"
+msgid "Auto"
 msgstr ""
 
-msgid "Attachment preview (PDF, Open formats and images)"
+msgid "Actual size"
+msgstr ""
+
+msgid "Page width"
+msgstr ""
+
+msgid "Attachment preview (PDF and Open formats)"
+msgstr ""
+
+msgid "Document default zoom"
+msgstr ""
+
+msgid "PDF zoom"
+msgstr ""
+
+msgid "File previewing"
 msgstr ""
 
 msgid "Inbox navigation"
@@ -5412,6 +5453,9 @@ msgstr "שלח את התגובה כעת."
 msgid "Date Complete"
 msgstr "תאריך השלמה"
 
+msgid "Multiple companies name must be separated by"
+msgstr ""
+
 msgid "Update List"
 msgstr "עדכן רשימה"
 
@@ -5501,6 +5545,19 @@ msgstr ""
 #, fuzzy
 msgid "Completed"
 msgstr "הושלם"
+
+#, fuzzy
+msgid "Printed by: "
+msgstr "מיין לפי: אל"
+
+# 77%
+# 78%
+# 100%
+# 84%
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+#, fuzzy
+msgid "Printed on: "
+msgstr "נבחר פריט {0}"
 
 msgid "Percent complete"
 msgstr ""
@@ -5693,6 +5750,9 @@ msgid "Previous"
 msgstr ""
 
 msgid "Next"
+msgstr ""
+
+msgid "Click the link to open the URL in a new window."
 msgstr ""
 
 msgid "The server reported an unknown error on your request."
@@ -6007,9 +6067,6 @@ msgstr ""
 #, fuzzy
 msgid "Unknown MAPI Error"
 msgstr "שם משתמש/קבוצה לא ידוע"
-
-msgid "Click the link to open the URL in a new window."
-msgstr ""
 
 msgid "This external link will open in a new window"
 msgstr "הקישור החיצוני ייפתח בחלון חדש"
@@ -6652,6 +6709,9 @@ msgid "Password"
 msgstr ""
 
 msgid "Sign in"
+msgstr ""
+
+msgid "Caps lock is on"
 msgstr ""
 
 # 94%

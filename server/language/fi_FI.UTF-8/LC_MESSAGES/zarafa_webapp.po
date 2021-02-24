@@ -374,8 +374,8 @@ msgstr "Käyttäjätiedot"
 msgid "First"
 msgstr "Ensimmäinen"
 
-msgid "Initial"
-msgstr "Alkukirjain"
+msgid "Initials"
+msgstr ""
 
 msgid "Display"
 msgstr "Näytä"
@@ -1396,6 +1396,9 @@ msgstr ""
 msgid "Paste selected item"
 msgstr ""
 
+msgid "An overview of"
+msgstr ""
+
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "Start"
 msgstr "Aloita"
@@ -1404,25 +1407,33 @@ msgstr "Aloita"
 msgid "End"
 msgstr "Päättyminen"
 
-# 76%
-#, fuzzy
-msgid "Printed by: "
-msgstr "Järjestä: Vastaanottaja"
-
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-#, fuzzy
-msgid "Printed on: "
-msgstr "Tulosta tämä merkintä"
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
+msgid "Printed by"
+msgstr ""
+
+msgid "at"
+msgstr ""
+
+msgid "of"
+msgstr ""
 
 #, fuzzy
 msgid "Location: "
 msgstr "Sijainti"
 
-#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-msgid "l jS F Y"
-msgstr "l j F Y"
+msgid "j M {0}"
+msgstr ""
+
+msgid "l jS M Y {0}"
+msgstr ""
+
+msgid "All day: "
+msgstr ""
 
 # 75%
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "l jS F"
 msgstr "l jS F Y"
@@ -1457,10 +1468,6 @@ msgstr ""
 #, fuzzy
 msgid "j"
 msgstr "j"
-
-#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-msgid "l d/m/Y"
-msgstr "l d/m/Y"
 
 msgid "General calendar settings"
 msgstr "Yleiset kalenteriasetukset"
@@ -1674,6 +1681,12 @@ msgstr "Järjestä: Herkkyys"
 msgid "Loading appointments"
 msgstr "Ladataan tapaamisia"
 
+msgid "Attendees"
+msgstr ""
+
+msgid "Optional attendees"
+msgstr ""
+
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "jS F {0}"
 msgstr ""
@@ -1793,6 +1806,8 @@ msgstr "Tänään: {1} {0}"
 msgid "Today (all day)"
 msgstr ""
 
+#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
+#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
 #, fuzzy
 msgid "{0} - {1}"
 msgstr "{0} {1}"
@@ -2146,8 +2161,8 @@ msgid "Delete Category"
 msgstr ""
 
 msgid ""
-"Are you sure you want to delete the category \"{0}\"? Items already assigned "
-"this category won't be affected."
+"Are you sure you want to delete the category \"{0}\"? Other items keep this "
+"category, but lose the assigned color."
 msgstr ""
 
 msgid "Rename Category"
@@ -2424,6 +2439,10 @@ msgstr "Päivälle ei ole saatavissa vapaa/varattu-tietoja"
 msgid "No suggestions available"
 msgstr "Ehdotuksia ei saatavilla"
 
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+msgid "l jS F Y"
+msgstr "l j F Y"
+
 msgid "Switch between different contexts e.g. inbox, calendar, etc."
 msgstr ""
 
@@ -2530,6 +2549,9 @@ msgstr "Ohje"
 msgid "WebApp Manual"
 msgstr "WebApp-opas"
 
+msgid "Item data"
+msgstr ""
+
 msgid "INSERT"
 msgstr "SYÖTÄ"
 
@@ -2538,10 +2560,6 @@ msgstr ""
 
 msgid "ZDeveloper"
 msgstr "ZDeveloper"
-
-#, fuzzy
-msgid "Kopano WebApp print"
-msgstr "Kopano WebApp"
 
 # 91%
 msgid "Display name"
@@ -3165,6 +3183,9 @@ msgstr "d-m-Y"
 msgid "Original message"
 msgstr "Alkuperäinen viesti"
 
+msgid "l d/m/Y"
+msgstr "l d/m/Y"
+
 msgid "Sent Items"
 msgstr ""
 
@@ -3402,9 +3423,6 @@ msgstr "Vastaanottajat"
 msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr "puolesta"
-
-msgid "D {0}"
-msgstr ""
 
 # 100%
 #. TRANSLATORS: This message is used to indicate that no sent date is available for the message (because it has not been sent yet).
@@ -3750,11 +3768,21 @@ msgstr "Assistentti"
 msgid "Loading contacts"
 msgstr "Ladataan yhteystietoja"
 
-msgid "Group"
-msgstr "Ryhmä"
+msgid ""
+"There are no items to show in this list. Update the filter for more results."
+msgstr ""
 
-msgid "Work"
-msgstr "Työ"
+msgid "[Group]"
+msgstr ""
+
+msgid "Work:"
+msgstr ""
+
+msgid "Primary:"
+msgstr ""
+
+msgid "Mobile:"
+msgstr ""
 
 msgid "Sort by: Full Name"
 msgstr "Järjestä: Koko nimi"
@@ -3947,6 +3975,9 @@ msgstr "Y"
 
 msgid "Important"
 msgstr "Tärkeä"
+
+msgid "Work"
+msgstr "Työ"
 
 msgid "Personal"
 msgstr "Henkilökohtainen"
@@ -4211,6 +4242,9 @@ msgstr ""
 msgid "Your changes will be lost if you leave this page now."
 msgstr ""
 
+msgid "D {0}"
+msgstr ""
+
 #, fuzzy
 msgid "D d-m"
 msgstr "d-m-Y"
@@ -4258,14 +4292,6 @@ msgid ""
 "The installed license key(s) have expired or are being over used. Please "
 "contact your system administrator for further information."
 msgstr ""
-
-#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
-msgid "{0} in {1}"
-msgstr "{0} {1}"
-
-#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
-msgid "{0} of {1}"
-msgstr "{0} {1}"
 
 msgid "Full control"
 msgstr "Täysi hallinta"
@@ -4685,9 +4711,6 @@ msgstr "Näytä piilokopiot"
 msgid "Show From field"
 msgstr "Näytä lähettäjä"
 
-msgid "No signatures configured"
-msgstr "Allekirjoituksia ei asetettu"
-
 msgid "Cannot save while attachment is being uploaded"
 msgstr ""
 
@@ -4919,6 +4942,9 @@ msgstr ""
 msgid "Signatures"
 msgstr "Allekirjoitukset"
 
+msgid "No signatures configured"
+msgstr "Allekirjoituksia ei asetettu"
+
 msgid "New messages"
 msgstr ""
 
@@ -5123,6 +5149,9 @@ msgstr ""
 msgid "Show insertion points in WebApp"
 msgstr ""
 
+msgid "Show \"item data\" button in context menu (mail only)"
+msgstr ""
+
 msgid "Edit setting"
 msgstr "Muokkaa asetusta"
 
@@ -5181,10 +5210,25 @@ msgstr ""
 msgid "Hide widget panel"
 msgstr ""
 
-msgid "File previewing"
+msgid "Auto"
 msgstr ""
 
-msgid "Attachment preview (PDF, Open formats and images)"
+msgid "Actual size"
+msgstr ""
+
+msgid "Page width"
+msgstr ""
+
+msgid "Attachment preview (PDF and Open formats)"
+msgstr ""
+
+msgid "Document default zoom"
+msgstr ""
+
+msgid "PDF zoom"
+msgstr ""
+
+msgid "File previewing"
 msgstr ""
 
 msgid "Inbox navigation"
@@ -5396,6 +5440,9 @@ msgstr "Lähetä vastaus."
 msgid "Date Complete"
 msgstr "Valmistumis päivä"
 
+msgid "Multiple companies name must be separated by"
+msgstr ""
+
 msgid "Update List"
 msgstr "Päivitä lista"
 
@@ -5484,6 +5531,16 @@ msgstr ""
 #, fuzzy
 msgid "Completed"
 msgstr "Valmis"
+
+# 76%
+#, fuzzy
+msgid "Printed by: "
+msgstr "Järjestä: Vastaanottaja"
+
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+#, fuzzy
+msgid "Printed on: "
+msgstr "Tulosta tämä merkintä"
 
 msgid "Percent complete"
 msgstr "Prosenttia valmiina"
@@ -5660,6 +5717,9 @@ msgid "Previous"
 msgstr ""
 
 msgid "Next"
+msgstr ""
+
+msgid "Click the link to open the URL in a new window."
 msgstr ""
 
 msgid "The server reported an unknown error on your request."
@@ -5980,9 +6040,6 @@ msgstr ""
 #, fuzzy
 msgid "Unknown MAPI Error"
 msgstr "Tuntematon MAPI-virhe: %s"
-
-msgid "Click the link to open the URL in a new window."
-msgstr ""
 
 msgid "This external link will open in a new window"
 msgstr "Ulkopuolinen linkki avataan uudessa ikkunassa"
@@ -6678,6 +6735,9 @@ msgid "Password"
 msgstr ""
 
 msgid "Sign in"
+msgstr ""
+
+msgid "Caps lock is on"
 msgstr ""
 
 #, fuzzy

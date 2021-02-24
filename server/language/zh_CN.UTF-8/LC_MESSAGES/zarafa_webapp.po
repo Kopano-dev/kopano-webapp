@@ -362,8 +362,8 @@ msgstr "用户详细信息"
 msgid "First"
 msgstr "第一个"
 
-msgid "Initial"
-msgstr "初始"
+msgid "Initials"
+msgstr ""
 
 msgid "Display"
 msgstr "显示"
@@ -1315,6 +1315,9 @@ msgstr "复制所选项目"
 msgid "Paste selected item"
 msgstr "粘贴所选项目"
 
+msgid "An overview of"
+msgstr ""
+
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "Start"
 msgstr "开始"
@@ -1323,24 +1326,33 @@ msgstr "开始"
 msgid "End"
 msgstr "结束"
 
-msgid "Printed by: "
-msgstr "\"打印机构： "
-
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-msgid "Printed on: "
-msgstr "打印日期： "
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
+msgid "Printed by"
+msgstr ""
+
+msgid "at"
+msgstr ""
+
+msgid "of"
+msgstr ""
 
 msgid "Location: "
 msgstr "地点： "
 
-# 83%
-# 75%
-#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-msgid "l jS F Y"
-msgstr "l jS F Y"
+msgid "j M {0}"
+msgstr ""
+
+msgid "l jS M Y {0}"
+msgstr ""
+
+msgid "All day: "
+msgstr ""
 
 # 83%
 # 75%
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "l jS F"
 msgstr "l jS F"
@@ -1372,10 +1384,6 @@ msgstr "M j"
 
 msgid "j"
 msgstr "j"
-
-#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-msgid "l d/m/Y"
-msgstr "l 日/月/年"
 
 msgid "General calendar settings"
 msgstr "常规日历设置"
@@ -1570,6 +1578,12 @@ msgstr "排序方式：敏感性"
 msgid "Loading appointments"
 msgstr "加载预约"
 
+msgid "Attendees"
+msgstr ""
+
+msgid "Optional attendees"
+msgstr ""
+
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "jS F {0}"
 msgstr "jS F {0}"
@@ -1689,6 +1703,8 @@ msgstr "今天（全天）"
 
 # 86%
 # 100%
+#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
+#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
 msgid "{0} - {1}"
 msgstr "{0}-{1}"
 
@@ -1999,9 +2015,9 @@ msgid "Delete Category"
 msgstr "删除类别"
 
 msgid ""
-"Are you sure you want to delete the category \"{0}\"? Items already assigned "
-"this category won't be affected."
-msgstr "您是否确定删除类别\"{0}\"？已分配给该类别的项目将不受影响。"
+"Are you sure you want to delete the category \"{0}\"? Other items keep this "
+"category, but lose the assigned color."
+msgstr ""
 
 msgid "Rename Category"
 msgstr "重命名类别"
@@ -2273,6 +2289,12 @@ msgstr "此日期无可用的忙/闲信息"
 msgid "No suggestions available"
 msgstr "无任何可用的建议"
 
+# 83%
+# 75%
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+msgid "l jS F Y"
+msgstr "l jS F Y"
+
 msgid "Switch between different contexts e.g. inbox, calendar, etc."
 msgstr "在不同上下文之间切换，例如收件箱、日历等"
 
@@ -2367,6 +2389,9 @@ msgstr "帮助"
 msgid "WebApp Manual"
 msgstr "WebApp手册"
 
+msgid "Item data"
+msgstr ""
+
 msgid "INSERT"
 msgstr "插入"
 
@@ -2375,9 +2400,6 @@ msgstr "排序方式：context.mail.griddefaultcolumn"
 
 msgid "ZDeveloper"
 msgstr "Z开发者"
-
-msgid "Kopano WebApp print"
-msgstr "Kopano WebApp打印"
 
 msgid "Display name"
 msgstr "显示名称"
@@ -2938,6 +2960,9 @@ msgstr "d-m-Y"
 msgid "Original message"
 msgstr "原始消息"
 
+msgid "l d/m/Y"
+msgstr "l 日/月/年"
+
 msgid "Sent Items"
 msgstr "已发送的项目"
 
@@ -3164,9 +3189,6 @@ msgstr "收件人"
 msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr "代表"
-
-msgid "D {0}"
-msgstr "D {0}"
 
 # 75%
 # 100%
@@ -3484,11 +3506,21 @@ msgstr "助理"
 msgid "Loading contacts"
 msgstr "加载联系人"
 
-msgid "Group"
-msgstr "群组"
+msgid ""
+"There are no items to show in this list. Update the filter for more results."
+msgstr ""
 
-msgid "Work"
-msgstr "工作"
+msgid "[Group]"
+msgstr ""
+
+msgid "Work:"
+msgstr ""
+
+msgid "Primary:"
+msgstr ""
+
+msgid "Mobile:"
+msgstr ""
 
 msgid "Sort by: Full Name"
 msgstr "排序方式：全名"
@@ -3679,6 +3711,9 @@ msgstr "Y"
 
 msgid "Important"
 msgstr "重要的"
+
+msgid "Work"
+msgstr "工作"
 
 msgid "Personal"
 msgstr "个人的"
@@ -3930,6 +3965,9 @@ msgstr "展开小部件面板"
 msgid "Your changes will be lost if you leave this page now."
 msgstr "如果您现在离开此页面，您的更改将丢失。"
 
+msgid "D {0}"
+msgstr "D {0}"
+
 msgid "D d-m"
 msgstr "D d-m"
 
@@ -3967,14 +4005,6 @@ msgid ""
 "The installed license key(s) have expired or are being over used. Please "
 "contact your system administrator for further information."
 msgstr ""
-
-#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
-msgid "{0} in {1}"
-msgstr "{1}中的{0}"
-
-#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
-msgid "{0} of {1}"
-msgstr "{1}的{0}"
 
 msgid "Full control"
 msgstr "完全控制"
@@ -4359,9 +4389,6 @@ msgstr "显示暗抄送对象字段"
 msgid "Show From field"
 msgstr "显示来源字段"
 
-msgid "No signatures configured"
-msgstr "未配置签名"
-
 msgid "Cannot save while attachment is being uploaded"
 msgstr "附件上传时无法保存"
 
@@ -4575,6 +4602,9 @@ msgstr "全部删除"
 msgid "Signatures"
 msgstr "签名"
 
+msgid "No signatures configured"
+msgstr "未配置签名"
+
 msgid "New messages"
 msgstr "新消息"
 
@@ -4764,6 +4794,9 @@ msgstr "开发者工具"
 msgid "Show insertion points in WebApp"
 msgstr "在WebApp中显示插入点"
 
+msgid "Show \"item data\" button in context menu (mail only)"
+msgstr ""
+
 msgid "Edit setting"
 msgstr "编辑设置"
 
@@ -4818,10 +4851,25 @@ msgstr "在应用程序标题中显示未读邮件计数器"
 msgid "Hide widget panel"
 msgstr ""
 
-msgid "File previewing"
+msgid "Auto"
 msgstr ""
 
-msgid "Attachment preview (PDF, Open formats and images)"
+msgid "Actual size"
+msgstr ""
+
+msgid "Page width"
+msgstr ""
+
+msgid "Attachment preview (PDF and Open formats)"
+msgstr ""
+
+msgid "Document default zoom"
+msgstr ""
+
+msgid "PDF zoom"
+msgstr ""
+
+msgid "File previewing"
 msgstr ""
 
 msgid "Inbox navigation"
@@ -5021,6 +5069,9 @@ msgstr "立即发送回复"
 msgid "Date Complete"
 msgstr "完成日期"
 
+msgid "Multiple companies name must be separated by"
+msgstr ""
+
 msgid "Update List"
 msgstr "更新列表"
 
@@ -5099,6 +5150,13 @@ msgstr "新任务"
 
 msgid "Completed"
 msgstr "已完成"
+
+msgid "Printed by: "
+msgstr "\"打印机构： "
+
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+msgid "Printed on: "
+msgstr "打印日期： "
 
 msgid "Percent complete"
 msgstr "已完成比例"
@@ -5266,6 +5324,9 @@ msgstr "前一个"
 
 msgid "Next"
 msgstr "下一个"
+
+msgid "Click the link to open the URL in a new window."
+msgstr "点击此链接以在新窗口中打开URL。"
 
 msgid "The server reported an unknown error on your request."
 msgstr "针对您的请求，服务器报告了一个未知错误。"
@@ -5568,9 +5629,6 @@ msgstr "由于会话重复，登录功能无法正常运行。该问题已自动
 
 msgid "Unknown MAPI Error"
 msgstr "未知的应用程序编程接口（MAPI）错误"
-
-msgid "Click the link to open the URL in a new window."
-msgstr "点击此链接以在新窗口中打开URL。"
 
 msgid "This external link will open in a new window"
 msgstr "此外部链接将在新窗口中打开"
@@ -6145,6 +6203,9 @@ msgstr "密码"
 
 msgid "Sign in"
 msgstr "登录"
+
+msgid "Caps lock is on"
+msgstr ""
 
 # 94%
 msgid "File is not imported successfully"

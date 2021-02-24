@@ -373,8 +373,8 @@ msgstr "Bruger detaljer"
 msgid "First"
 msgstr "Fornavn"
 
-msgid "Initial"
-msgstr "Initialer"
+msgid "Initials"
+msgstr ""
 
 msgid "Display"
 msgstr "Visning"
@@ -1340,6 +1340,9 @@ msgstr "Kopier det valgte element"
 msgid "Paste selected item"
 msgstr "Sæt det valgte element ind"
 
+msgid "An overview of"
+msgstr ""
+
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "Start"
 msgstr "Start"
@@ -1348,23 +1351,32 @@ msgstr "Start"
 msgid "End"
 msgstr "Slut"
 
-#, fuzzy
-msgid "Printed by: "
-msgstr "Sorter efter: Til"
-
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-#, fuzzy
-msgid "Printed on: "
-msgstr "Udskriv note"
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
+msgid "Printed by"
+msgstr ""
+
+msgid "at"
+msgstr ""
+
+msgid "of"
+msgstr ""
 
 #, fuzzy
 msgid "Location: "
 msgstr "Placering"
 
-#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-msgid "l jS F Y"
-msgstr "l j F Y"
+msgid "j M {0}"
+msgstr ""
 
+msgid "l jS M Y {0}"
+msgstr ""
+
+msgid "All day: "
+msgstr ""
+
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "l jS F"
 msgstr "l j F"
@@ -1396,10 +1408,6 @@ msgstr ""
 #, fuzzy
 msgid "j"
 msgstr "j"
-
-#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-msgid "l d/m/Y"
-msgstr "l d/m/Y"
 
 msgid "General calendar settings"
 msgstr "Grundlæggende kalender indstillinger"
@@ -1604,6 +1612,12 @@ msgstr "Sorter efter: Følsomhed"
 msgid "Loading appointments"
 msgstr "Henter aftaler"
 
+msgid "Attendees"
+msgstr ""
+
+msgid "Optional attendees"
+msgstr ""
+
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "jS F {0}"
 msgstr ""
@@ -1726,6 +1740,8 @@ msgstr "I dag: {1} {0}"
 msgid "Today (all day)"
 msgstr ""
 
+#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
+#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
 #, fuzzy
 msgid "{0} - {1}"
 msgstr "{0} i {1}"
@@ -2073,8 +2089,8 @@ msgid "Delete Category"
 msgstr "Slet kategori"
 
 msgid ""
-"Are you sure you want to delete the category \"{0}\"? Items already assigned "
-"this category won't be affected."
+"Are you sure you want to delete the category \"{0}\"? Other items keep this "
+"category, but lose the assigned color."
 msgstr ""
 
 msgid "Rename Category"
@@ -2348,6 +2364,10 @@ msgstr "Ingen fri/optaget information er tilgængelig for denne dato"
 msgid "No suggestions available"
 msgstr "Ingen forslag er tilgængelig"
 
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+msgid "l jS F Y"
+msgstr "l j F Y"
+
 msgid "Switch between different contexts e.g. inbox, calendar, etc."
 msgstr "Skift mellem forskellige kontekster, f.eks. indbakke, kalender, osv."
 
@@ -2447,6 +2467,9 @@ msgstr "Hjælp"
 msgid "WebApp Manual"
 msgstr "WebApp håndbog"
 
+msgid "Item data"
+msgstr ""
+
 msgid "INSERT"
 msgstr "INSERT"
 
@@ -2455,10 +2478,6 @@ msgstr ""
 
 msgid "ZDeveloper"
 msgstr ""
-
-#, fuzzy
-msgid "Kopano WebApp print"
-msgstr "Kopano WebApp"
 
 msgid "Display name"
 msgstr "Vist navn"
@@ -3052,6 +3071,9 @@ msgstr "d.m.Y"
 msgid "Original message"
 msgstr "Original meddelelse"
 
+msgid "l d/m/Y"
+msgstr "l d/m/Y"
+
 msgid "Sent Items"
 msgstr ""
 
@@ -3280,9 +3302,6 @@ msgstr "Modtagere"
 msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr "på vegne af"
-
-msgid "D {0}"
-msgstr ""
 
 #. TRANSLATORS: This message is used to indicate that no sent date is available for the message (because it has not been sent yet).
 msgctxt "mail.previewpanel"
@@ -3601,11 +3620,21 @@ msgstr "Assistent"
 msgid "Loading contacts"
 msgstr "Henter kontakter"
 
-msgid "Group"
-msgstr "Gruppe"
+msgid ""
+"There are no items to show in this list. Update the filter for more results."
+msgstr ""
 
-msgid "Work"
-msgstr "Arbejde"
+msgid "[Group]"
+msgstr ""
+
+msgid "Work:"
+msgstr ""
+
+msgid "Primary:"
+msgstr ""
+
+msgid "Mobile:"
+msgstr ""
 
 msgid "Sort by: Full Name"
 msgstr "Sorter efter: Fulde navn"
@@ -3805,6 +3834,9 @@ msgstr "Y"
 
 msgid "Important"
 msgstr "Vigtigt"
+
+msgid "Work"
+msgstr "Arbejde"
 
 msgid "Personal"
 msgstr "Personlig"
@@ -4073,6 +4105,9 @@ msgstr "Udvid widget panel"
 msgid "Your changes will be lost if you leave this page now."
 msgstr "Dine ændringer vil gå tabt hvis du forlader siden nu."
 
+msgid "D {0}"
+msgstr ""
+
 #, fuzzy
 msgid "D d-m"
 msgstr "D, d.m.Y"
@@ -4120,14 +4155,6 @@ msgid ""
 "The installed license key(s) have expired or are being over used. Please "
 "contact your system administrator for further information."
 msgstr ""
-
-#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
-msgid "{0} in {1}"
-msgstr "{0} i {1}"
-
-#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
-msgid "{0} of {1}"
-msgstr "{0} af {1}"
 
 msgid "Full control"
 msgstr "Fuld kontrol"
@@ -4538,9 +4565,6 @@ msgstr "Vis Bcc"
 msgid "Show From field"
 msgstr "Vis fra"
 
-msgid "No signatures configured"
-msgstr "Ingen signatur er konfigureret"
-
 msgid "Cannot save while attachment is being uploaded"
 msgstr ""
 
@@ -4760,6 +4784,9 @@ msgstr ""
 msgid "Signatures"
 msgstr "Signaturer"
 
+msgid "No signatures configured"
+msgstr "Ingen signatur er konfigureret"
+
 msgid "New messages"
 msgstr ""
 
@@ -4954,6 +4981,9 @@ msgstr ""
 msgid "Show insertion points in WebApp"
 msgstr ""
 
+msgid "Show \"item data\" button in context menu (mail only)"
+msgstr ""
+
 msgid "Edit setting"
 msgstr "Rediger indstilling"
 
@@ -5011,10 +5041,25 @@ msgstr ""
 msgid "Hide widget panel"
 msgstr ""
 
-msgid "File previewing"
+msgid "Auto"
 msgstr ""
 
-msgid "Attachment preview (PDF, Open formats and images)"
+msgid "Actual size"
+msgstr ""
+
+msgid "Page width"
+msgstr ""
+
+msgid "Attachment preview (PDF and Open formats)"
+msgstr ""
+
+msgid "Document default zoom"
+msgstr ""
+
+msgid "PDF zoom"
+msgstr ""
+
+msgid "File previewing"
 msgstr ""
 
 msgid "Inbox navigation"
@@ -5224,6 +5269,9 @@ msgstr "Send svaret nu"
 msgid "Date Complete"
 msgstr "Dato fuldført"
 
+msgid "Multiple companies name must be separated by"
+msgstr ""
+
 msgid "Update List"
 msgstr "Opdater liste"
 
@@ -5297,6 +5345,15 @@ msgstr "Ny opgave"
 #, fuzzy
 msgid "Completed"
 msgstr "Komplet"
+
+#, fuzzy
+msgid "Printed by: "
+msgstr "Sorter efter: Til"
+
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+#, fuzzy
+msgid "Printed on: "
+msgstr "Udskriv note"
 
 msgid "Percent complete"
 msgstr "Procent udført"
@@ -5467,6 +5524,9 @@ msgstr "Forrige"
 
 msgid "Next"
 msgstr "Næste"
+
+msgid "Click the link to open the URL in a new window."
+msgstr ""
 
 msgid "The server reported an unknown error on your request."
 msgstr "Serveren svarede med en ukendt fejl på din forespørgsel."
@@ -5773,9 +5833,6 @@ msgstr ""
 
 msgid "Unknown MAPI Error"
 msgstr "Ukendt MAPI fejl"
-
-msgid "Click the link to open the URL in a new window."
-msgstr ""
 
 msgid "This external link will open in a new window"
 msgstr "Det eksterne link vil blive åbnet i et nyt vindue"
@@ -6353,6 +6410,9 @@ msgstr "Password"
 
 msgid "Sign in"
 msgstr "Log på"
+
+msgid "Caps lock is on"
+msgstr ""
 
 #, fuzzy
 msgid "File is not imported successfully"

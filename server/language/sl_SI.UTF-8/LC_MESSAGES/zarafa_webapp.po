@@ -394,8 +394,8 @@ msgstr "Podrobnosti o uporabniku"
 msgid "First"
 msgstr "Prvi"
 
-msgid "Initial"
-msgstr "Začetnica"
+msgid "Initials"
+msgstr ""
 
 msgid "Display"
 msgstr "Prikaz"
@@ -1421,6 +1421,9 @@ msgstr ""
 msgid "Paste selected item"
 msgstr ""
 
+msgid "An overview of"
+msgstr ""
+
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "Start"
 msgstr "Začetek"
@@ -1429,25 +1432,33 @@ msgstr "Začetek"
 msgid "End"
 msgstr "Konec"
 
-# 76%
-#, fuzzy
-msgid "Printed by: "
-msgstr "Razvrsti po: Za"
-
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-#, fuzzy
-msgid "Printed on: "
-msgstr "Natisni to opombo"
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
+msgid "Printed by"
+msgstr ""
+
+msgid "at"
+msgstr ""
+
+msgid "of"
+msgstr ""
 
 #, fuzzy
 msgid "Location: "
 msgstr "Lokacija"
 
-#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-msgid "l jS F Y"
-msgstr "1 jS F Y"
+msgid "j M {0}"
+msgstr ""
+
+msgid "l jS M Y {0}"
+msgstr ""
+
+msgid "All day: "
+msgstr ""
 
 # 75%
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "l jS F"
 msgstr "1 jS F"
@@ -1484,10 +1495,6 @@ msgstr ""
 #, fuzzy
 msgid "j"
 msgstr "jS"
-
-#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
-msgid "l d/m/Y"
-msgstr "1 d/m/L"
 
 msgid "General calendar settings"
 msgstr "Splošne nastavitve koledarja"
@@ -1698,6 +1705,12 @@ msgstr "Razvrsti po: Občutljivost"
 msgid "Loading appointments"
 msgstr "Nalagam sestanke"
 
+msgid "Attendees"
+msgstr ""
+
+msgid "Optional attendees"
+msgstr ""
+
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "jS F {0}"
 msgstr ""
@@ -1819,6 +1832,8 @@ msgstr "Danes: {1} {0}"
 msgid "Today (all day)"
 msgstr ""
 
+#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
+#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
 #, fuzzy
 msgid "{0} - {1}"
 msgstr "{0} v {1}"
@@ -2174,8 +2189,8 @@ msgid "Delete Category"
 msgstr ""
 
 msgid ""
-"Are you sure you want to delete the category \"{0}\"? Items already assigned "
-"this category won't be affected."
+"Are you sure you want to delete the category \"{0}\"? Other items keep this "
+"category, but lose the assigned color."
 msgstr ""
 
 msgid "Rename Category"
@@ -2458,6 +2473,10 @@ msgstr "Informacije prosto-zasedeno niso na voljo za ta datum"
 msgid "No suggestions available"
 msgstr "Ni na voljo predlogov"
 
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+msgid "l jS F Y"
+msgstr "1 jS F Y"
+
 msgid "Switch between different contexts e.g. inbox, calendar, etc."
 msgstr "Menjaj med različnimi konteksti kot npr. Prejeto, koledar, itd.."
 
@@ -2564,6 +2583,9 @@ msgstr "Pomoč"
 msgid "WebApp Manual"
 msgstr "Navodila za Web aplikacijo"
 
+msgid "Item data"
+msgstr ""
+
 msgid "INSERT"
 msgstr "VSTAVI"
 
@@ -2572,10 +2594,6 @@ msgstr "Razvrsti po: context.mail.griddefaultcolumn"
 
 msgid "ZDeveloper"
 msgstr "ZRazvijalec"
-
-#, fuzzy
-msgid "Kopano WebApp print"
-msgstr "Kopano Spletna aplikacija"
 
 # 91%
 msgid "Display name"
@@ -3205,6 +3223,9 @@ msgstr "d-m-Y"
 msgid "Original message"
 msgstr "Originalno sporočilo"
 
+msgid "l d/m/Y"
+msgstr "1 d/m/L"
+
 msgid "Sent Items"
 msgstr ""
 
@@ -3447,9 +3468,6 @@ msgstr "Prejemniki"
 msgctxt "mail.previewpanel"
 msgid "on behalf of"
 msgstr "v imenu"
-
-msgid "D {0}"
-msgstr ""
 
 # 100%
 #. TRANSLATORS: This message is used to indicate that no sent date is available for the message (because it has not been sent yet).
@@ -3803,11 +3821,21 @@ msgstr "Asistent"
 msgid "Loading contacts"
 msgstr "Nalaganje kontaktov"
 
-msgid "Group"
-msgstr "Skupina"
+msgid ""
+"There are no items to show in this list. Update the filter for more results."
+msgstr ""
 
-msgid "Work"
-msgstr "Delo"
+msgid "[Group]"
+msgstr ""
+
+msgid "Work:"
+msgstr ""
+
+msgid "Primary:"
+msgstr ""
+
+msgid "Mobile:"
+msgstr ""
 
 msgid "Sort by: Full Name"
 msgstr "Razvrsti po: Polno ime"
@@ -4019,6 +4047,9 @@ msgstr "Y"
 
 msgid "Important"
 msgstr "Pomembno"
+
+msgid "Work"
+msgstr "Delo"
 
 msgid "Personal"
 msgstr "Osebno"
@@ -4289,6 +4320,9 @@ msgstr ""
 msgid "Your changes will be lost if you leave this page now."
 msgstr ""
 
+msgid "D {0}"
+msgstr ""
+
 #, fuzzy
 msgid "D d-m"
 msgstr "d-m-Y"
@@ -4340,14 +4374,6 @@ msgid ""
 "The installed license key(s) have expired or are being over used. Please "
 "contact your system administrator for further information."
 msgstr ""
-
-#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
-msgid "{0} in {1}"
-msgstr "{0} v {1}"
-
-#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
-msgid "{0} of {1}"
-msgstr "{0} od {1}"
 
 msgid "Full control"
 msgstr "Popolni nadzor"
@@ -4768,9 +4794,6 @@ msgstr "Pokaži Skp"
 msgid "Show From field"
 msgstr "Pokaži Od"
 
-msgid "No signatures configured"
-msgstr "Ni nastavljenih podpisov"
-
 msgid "Cannot save while attachment is being uploaded"
 msgstr ""
 
@@ -5002,6 +5025,9 @@ msgstr ""
 msgid "Signatures"
 msgstr "Podpisi"
 
+msgid "No signatures configured"
+msgstr "Ni nastavljenih podpisov"
+
 msgid "New messages"
 msgstr ""
 
@@ -5206,6 +5232,9 @@ msgstr ""
 msgid "Show insertion points in WebApp"
 msgstr ""
 
+msgid "Show \"item data\" button in context menu (mail only)"
+msgstr ""
+
 msgid "Edit setting"
 msgstr "Uredi nastavitve"
 
@@ -5264,10 +5293,25 @@ msgstr ""
 msgid "Hide widget panel"
 msgstr ""
 
-msgid "File previewing"
+msgid "Auto"
 msgstr ""
 
-msgid "Attachment preview (PDF, Open formats and images)"
+msgid "Actual size"
+msgstr ""
+
+msgid "Page width"
+msgstr ""
+
+msgid "Attachment preview (PDF and Open formats)"
+msgstr ""
+
+msgid "Document default zoom"
+msgstr ""
+
+msgid "PDF zoom"
+msgstr ""
+
+msgid "File previewing"
 msgstr ""
 
 msgid "Inbox navigation"
@@ -5487,6 +5531,9 @@ msgstr "Pošlji odziv sedaj."
 msgid "Date Complete"
 msgstr "Datum zaključka"
 
+msgid "Multiple companies name must be separated by"
+msgstr ""
+
 msgid "Update List"
 msgstr "Posodobi listo"
 
@@ -5575,6 +5622,16 @@ msgstr "Nova naloga"
 #, fuzzy
 msgid "Completed"
 msgstr "Končano"
+
+# 76%
+#, fuzzy
+msgid "Printed by: "
+msgstr "Razvrsti po: Za"
+
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+#, fuzzy
+msgid "Printed on: "
+msgstr "Natisni to opombo"
 
 msgid "Percent complete"
 msgstr "Dokončan procent"
@@ -5751,6 +5808,9 @@ msgid "Previous"
 msgstr ""
 
 msgid "Next"
+msgstr ""
+
+msgid "Click the link to open the URL in a new window."
 msgstr ""
 
 msgid "The server reported an unknown error on your request."
@@ -6064,9 +6124,6 @@ msgstr ""
 #, fuzzy
 msgid "Unknown MAPI Error"
 msgstr "Neznana MAPI napaka: %s"
-
-msgid "Click the link to open the URL in a new window."
-msgstr ""
 
 msgid "This external link will open in a new window"
 msgstr "Ta zunanji link se bo odprl v novem oknu"
@@ -6751,6 +6808,9 @@ msgid "Password"
 msgstr ""
 
 msgid "Sign in"
+msgstr ""
+
+msgid "Caps lock is on"
 msgstr ""
 
 #, fuzzy
