@@ -1398,7 +1398,7 @@ If it is the first time this attendee has proposed a new date/time, increment th
 			$resourceRecipData = $this->bookResources($this->message, $cancel, $prefix);
 
 			if (!$this->errorSetResource) {
-				$recurr = new Recurrence($this->openDefaultStore(), $this->message);
+				$recurr = new Recurrence($this->store, $this->message);
 
 				// First send meetingrequest for recurring item
 				$this->submitMeetingRequest($this->message, $cancel, $prefix, false, $recurr, false, $modifiedRecips, $deletedRecips);
@@ -1420,7 +1420,7 @@ If it is the first time this attendee has proposed a new date/time, increment th
 		} else {
 			// Basedate found, an exception is to be send
 			if ($basedate) {
-				$recurr = new Recurrence($this->openDefaultStore(), $this->message);
+				$recurr = new Recurrence($this->store, $this->message);
 
 				if ($cancel) {
 					//@TODO: remove occurrence from Resource's Calendar if resource was booked for whole series
