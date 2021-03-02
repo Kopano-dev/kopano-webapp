@@ -371,11 +371,30 @@ Zarafa.contact.dialogs.ContactGeneralTab = Ext.extend(Ext.form.FormPanel, {
 					scope: this,
 					menu: this.initAddressButtonMenu('business_address', 'business_address')
 					// @TODO add checkbox for email address selection
-				}, {
+				},{
 					xtype: 'textarea',
 					flex: 1,
 					name: 'business_address',
-					height: 120,
+					height: 100,
+					listeners: {
+						scope: this,
+						change: this.onAddressChange
+					}
+				}]
+			},{
+				items: [{
+					xtype: 'splitbutton',
+					width: config.labelWidth-1,
+					text: _('Home') + ':',
+					handler: this.handleAddressButtonClick,
+					scope: this,
+					menu: this.initAddressButtonMenu('home_address', 'home_address')
+					// @TODO add checkbox for email address selection
+				},{
+					xtype: 'textarea',
+					flex: 1,
+					name: 'home_address',
+					height: 100,
 					listeners: {
 						scope: this,
 						change: this.onAddressChange
