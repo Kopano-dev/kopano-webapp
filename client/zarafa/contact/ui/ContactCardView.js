@@ -55,7 +55,7 @@ Zarafa.contact.ui.ContactCardView = Ext.extend(Zarafa.common.ui.DraggableDataVie
 			loadingText: _('Loading contacts') + '...',
 			deferEmptyText: false,
 			emptyText: '<div class="emptytext-context">' +_('There are no items to show in this list. Update the filter for more results.') +'</div>',
-			tpl: this.initTemplate(),
+			tpl: this.initTemplate(config.store),
 
 			/*
 			 * this is a required property
@@ -150,10 +150,12 @@ Zarafa.contact.ui.ContactCardView = Ext.extend(Zarafa.common.ui.DraggableDataVie
 
 	/**
 	 * Function will initialize {@link Ext.XTemplate XTemplate} and create layout for data view
+	 *
+	 * @param {Zarafa.contact.ContactStore} store The {@link Zarafa.contact.ContactStore} which contains all contacts.
 	 * @return {Ext.XTemplate} xtemplate for layout
 	 * @private
 	 */
-	initTemplate: function()
+	initTemplate: function(store)
 	{
 		var templateStrArr = [
 			'<div class="zarafa-contact-cardview">',
@@ -203,9 +205,7 @@ Zarafa.contact.ui.ContactCardView = Ext.extend(Zarafa.common.ui.DraggableDataVie
 										'</tpl>',
 									'</table>',
 								'</div>',
-								'<div class="k-contact-cardview-initials contact_photo_box">',
-									'{[this.getInitials(values)]}',
-								'</div>',
+								'{[this.getInitials(values)]}',
 							'</div>',
 						'</div>',
 					'</div>',
@@ -216,18 +216,43 @@ Zarafa.contact.ui.ContactCardView = Ext.extend(Zarafa.common.ui.DraggableDataVie
 		return new Ext.XTemplate(templateStrArr.join(''), {
 			compiled: true, // compile immediately
 
+			store: store,
+
 			getInitials: function(values)
 			{
-				// Contacts can have empty display names. Fall back to question mark.
-				var contactInitials = "?";
-				var displayName = values.display_name;
-				if (!Ext.isEmpty(displayName)) {
-			 		displayName = displayName.replace(/\(.*?\)/g, '').trim().split(' ');
-					contactInitials = displayName.length > 1 ? displayName.shift().charAt(0) + displayName.pop().charAt(0) : displayName.shift().charAt(0);
-				}
-				return contactInitials.toUpperCase();
-			}
+				var record = this.store.getById(values.entryid);
+				if (record.isOpened() && record.get('has_picture')){
+					var attachmentStore = record.getAttachmentStore();
+					var index = attachmentStore.findBy(function(item) {
+						return item.get('attachment_contactphoto') === true && item.get('hidden') === true;
+					});
+					var contactPhoto = attachmentStore.getAt(index);
 
+					return `<div class="k-contact_cardview_photo">
+						<img src=${contactPhoto.getInlineImageUrl()} alt = "contact photo">
+					</div>`;
+				} else if (values.contact_photo_attach_num !== -1){
+					var url = container.getBaseURL();
+					url = Ext.urlAppend(url, 'store=' + values.store_entryid);
+					url = Ext.urlAppend(url, 'entryid=' + values.entryid);
+					url = Ext.urlAppend(url, 'load=download_attachment');
+					url = Ext.urlAppend(url, 'attachNum[]=' + values.contact_photo_attach_num);
+					url = Ext.urlAppend(url, 'contentDispositionType=inline');
+
+					return `<div class="k-contact_cardview_photo">
+						<img src=${url} alt = "contact photo">
+					</div>`;
+				} else {
+					// Contacts can have empty display names. Fall back to question mark.
+					var contactInitials = "?";
+					var displayName = `${values.given_name} ${values.surname}`;
+					if (!Ext.isEmpty(displayName)) {
+						 displayName = displayName.replace(/\(.*?\)/g, '').trim().split(' ');
+						contactInitials = displayName.length > 1 ? displayName.shift().charAt(0) + displayName.pop().charAt(0) : displayName.shift().charAt(0);
+					}
+					return `<div class="k-contact-cardview-initials"> ${contactInitials.toUpperCase()} </div>`;
+				}
+			},
 		});
 	}
 });

@@ -115,6 +115,7 @@ Zarafa.contact.ContactRecordFields = [
 	{name: 'nickname'},
 	{name: 'has_picture'},
 	{name: 'hide_attachments'},
+	{name: 'contact_photo_attach_num', defaultValue: -1},
 	{name: 'spouse_name'},
 	{name: 'birthday', type: 'date', dateFormat: 'timestamp', defaultValue: null},
 	{name: 'wedding_anniversary', type: 'date', dateFormat: 'timestamp', defaultValue: null},

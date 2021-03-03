@@ -809,8 +809,9 @@ Zarafa.contact.dialogs.ContactGeneralTab = Ext.extend(Ext.form.FormPanel, {
 		if(imageField && attachmentStore.getCount() > 0) {
 			attachmentStore.each(function(attach) {
 				if(attach.isContactPhoto()) {
-					imgEl.set({'src': attach.getInlineImageUrl()});
-					imageField.setStyle({'background-image': 'url(' + encodeURI(attach.getInlineImageUrl()) + ')'});
+					var inlineAttachmentUrl = attach.getInlineImageUrl();
+					imgEl.set({'src': inlineAttachmentUrl});
+					imageField.setStyle({'background-image': 'url(' + encodeURI(inlineAttachmentUrl) + ')'});
 					this.hasContactPhoto = true;
 					this.record.set('has_picture', true);
 					this.contactPhotoBox.removeClass('default_contact_photo');
@@ -965,6 +966,7 @@ Zarafa.contact.dialogs.ContactGeneralTab = Ext.extend(Ext.form.FormPanel, {
 		var imageField = this.contactPhotoBox.getEl();
 		this.hasContactPhoto = false;
 		this.record.set('has_picture', false);
+		this.record.set('contact_photo_attach_num', -1);
 		var ct = this.contactPhotoBox.el.up('.contact_photo_box_ct');
 		var maxWidth = ct.getWidth() - ct.getPadding('lr') - 2; //subtracting 2px for the border
 		imageField.set({src: Ext.BLANK_IMAGE_URL});

@@ -75,6 +75,18 @@
 			font-size: 30px;
 			user-select: none;
 		}
+
+    .k-contact_cardview_photo {
+      width: 76px;
+      height: 76px;
+      float: right;
+      margin-right: 20px;
+      img {
+        width: inherit;
+        height: inherit;
+        border-radius: 50%;
+      }
+    }
 	}
 	
 	/* Buttons to switched between contacts */
