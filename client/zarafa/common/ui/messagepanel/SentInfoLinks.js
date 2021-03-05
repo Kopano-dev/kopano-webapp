@@ -199,8 +199,7 @@ Zarafa.common.ui.messagepanel.SentInfoLinks = Ext.extend(Ext.Container, {
 					record.data.sent_representing_presence_status = Zarafa.core.PresenceManager.getPresenceStatusForUser(user);
 				}
 				
-				var isSubMessage = record.isSubMessage();
-				if (Ext.isFunction(record.getSenderInitials) && (!isSubMessage || isSubMessage && record.isOpened())) {
+				if (Ext.isFunction(record.getSenderInitials)) {
 					record.data.sender_initials = record.getSenderInitials();
 				}
 
