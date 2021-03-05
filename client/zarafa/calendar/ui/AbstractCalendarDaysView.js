@@ -49,6 +49,22 @@ Zarafa.calendar.ui.AbstractCalendarDaysView = Ext.extend(Zarafa.calendar.ui.Abst
 	longDayHeaderFormat: _('l jS F'),
 
 	/**
+	 * It will apply a right margin to the appointment box to prevent them from filling up the entire width of a day box.
+	 * default is 10px.
+	 * @property
+	 * @type Number
+	 */
+	appointmentBodyRightMargin: 10,
+
+	/**
+	 * It will apply the left margin to the appointment box to prevents the appointment to overlap with the border.
+	 *
+	 * @property
+	 * @type Number
+	 */
+	appointmentBodyLeftMargin: 1,
+
+	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
@@ -59,7 +75,8 @@ Zarafa.calendar.ui.AbstractCalendarDaysView = Ext.extend(Zarafa.calendar.ui.Abst
 		Ext.applyIf(config, {
 			// Add 1 pixel to the left margin, this prevents the appointment
 			// to overlap with the border.
-			appointmentBodyLeftMargin: 1
+			appointmentBodyLeftMargin: config.appointmentBodyLeftMargin || this.appointmentBodyLeftMargin,
+			appointmentBodyRightMargin: config.appointmentBodyRightMargin || this.appointmentBodyRightMargin
 		});
 
 		Zarafa.calendar.ui.AbstractCalendarDaysView.superclass.constructor.call(this, config);
