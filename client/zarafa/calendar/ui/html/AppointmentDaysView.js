@@ -155,7 +155,7 @@ Zarafa.calendar.ui.html.AppointmentDaysView = Ext.extend(Zarafa.calendar.ui.Appo
 			this.getAdjustedDateRange(),
 			this.slot,
 			this.slotCount,
-			false
+			true
 		);
 
 		var bodyAppointmentLayer = this.parentView.getBodyAppointmentLayer();
