@@ -90,7 +90,12 @@
 						// Get the properties for a MAILUSER object and process those MAILUSER specific props that require some more actions
 						if($objecttypeprop[PR_OBJECT_TYPE] == MAPI_MAILUSER){
 							$messageprops = mapi_getprops($abentry, $this->userDetailProperties);
+
 							$props = Conversion::mapMAPI2XML($this->userDetailProperties, $messageprops);
+
+							if(isset($messageprops[PR_EMS_AB_THUMBNAIL_PHOTO])){
+								$props['props']['ems_ab_thumbnail_photo'] = $GLOBALS['operations']->compressedImage($messageprops[PR_EMS_AB_THUMBNAIL_PHOTO]);
+							}
 
 							// Get the properties of the manager
 							$managerProps = $this->getManagerDetails($messageprops);

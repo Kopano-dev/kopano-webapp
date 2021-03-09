@@ -23,6 +23,7 @@ Zarafa.addressbook.dialogs.ABUserOrganizationTab = Ext.extend(Ext.form.FormPanel
 			xtype: 'zarafa.abuserorganizationtab',
 			title: _('Organization'),
 			selModel: this.initSelectionModel(),
+			padding: 5,
 			layout: {
 				type: 'vbox',
 				align: 'stretch'
@@ -46,6 +47,7 @@ Zarafa.addressbook.dialogs.ABUserOrganizationTab = Ext.extend(Ext.form.FormPanel
 	{
 		return [{
 			xtype: 'displayfield',
+			margins: '0 0 5 0',
 			value: _('Manager') + ':',
 			hideLabel: true
 		},{
@@ -76,6 +78,7 @@ Zarafa.addressbook.dialogs.ABUserOrganizationTab = Ext.extend(Ext.form.FormPanel
 	{
 		return [{
 			xtype: 'displayfield',
+			margins: '5 0',
 			value: _('Direct reports') + ':',
 			hideLabel: true
 		},{

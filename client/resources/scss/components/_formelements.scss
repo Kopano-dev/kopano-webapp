@@ -190,3 +190,31 @@ body.Firefox input:focus {
 	@extend .zarafa-delayeddeliverypanel-fields;
 	margin-left: 32px !important;
 }
+
+.k-fieldset {
+  min-height: 162px;
+  margin: 5px;
+  border: none;
+  .contact_photo_box_ct {
+    width: 94px !important;
+    height: 94px !important;
+    background: $dark-grey2;
+    box-shadow: inset 0px 0px 0px $padding-small $white;
+    border : 1px solid $grey;
+    padding: $padding-small;
+    user-select: none;
+  }
+  .contact_photo_box {
+    margin: $padding-small 0 0 $padding-small;
+    width: 94px;
+    height: 94px;
+    cursor: pointer;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-color: $white;
+  }
+  .default_contact_photo {
+    background: url(../images/default_contact_profile.png) no-repeat center center;
+  }
+}
