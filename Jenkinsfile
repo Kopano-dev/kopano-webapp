@@ -4,6 +4,7 @@ pipeline {
 	agent none
     	environment {
         	CHROME_BIN = 'chromium-browser'
+        	NPM_CONFIG_CACHE = '/tmp/npm-cache'
     	}
 	options { buildDiscarder(logRotator(numToKeepStr: '50')) }
 
