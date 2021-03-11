@@ -91,7 +91,7 @@ Ext.apply(Zarafa, {
 
 	/**
 	 * True if the user is running DeskApp to view WebApp, false otherwise.
-	 *
+	 * <br> Note: Similar check exists in oidc-kopano.js file, In case of change in check, must be synced there too.
 	 * @property
 	 * @type {Boolean}
 	 */
