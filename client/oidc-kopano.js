@@ -1,9 +1,11 @@
-const userManager = (function(){
-	"use strict"; 
+const userManager = (function() {
+	"use strict";
 	var onLogonPage = false;
 	var mgr;
 	const MAX_TRY = 5;
 	var CURRENT_ATTEMPT = 0;
+	// This property must be sync with isDeskApp property of Zarafa.js
+	const isDeskApp = window.nw !== undefined;
 
 	Oidc.Log.logger = console;
 	Oidc.Log.level = Oidc.Log.WARN;
@@ -14,7 +16,7 @@ const userManager = (function(){
 	 * @param {Object} options Then options which used to generate markup.
 	 * @return {string} html markup.
 	 */
-	function generateMarkup(options){
+	function generateMarkup(options) {
 		const {message = "Unknown error", title, buttons = []} = options;
 		const btns = buttons.map((button) => {
 			return `<div id=${button.id} class="btn"> 
@@ -45,7 +47,7 @@ const userManager = (function(){
 	function showMessageBox(options) {
 		document.body.innerHTML = DOMPurify.sanitize(generateMarkup(options));
 		const {buttons = []} = options;
-		for(const button of buttons) {
+		for (const button of buttons) {
 			if (button.id) {
 				const btnEl = document.getElementById(button.id);
 				btnEl.addEventListener("click", button.handler);
@@ -53,8 +55,7 @@ const userManager = (function(){
 		}
 	}
 
-	function remove_hash_from_url()
-	{
+	function remove_hash_from_url() {
 		var uri = window.location.toString();
 		if (uri.indexOf("#") > 0) {
 			var clean_uri = uri.substring(0, uri.indexOf("#"));
@@ -64,15 +65,15 @@ const userManager = (function(){
 
 	/**
 	 * Function which is used to handle an error which received as a response of 'postToken' .
-	 * @param {Object} data Then error object 
+	 * @param {Object} data Then error object
 	 */
 	function handleError(data) {
 		// Configuration Object for the custom message box.
 		const cfg = {
-			title :'Authorization failed',
-			message : data.error.message,
+			title: 'Authorization failed',
+			message: data.error.message,
 			// handler used by the Ext.messageBox.
-			handler : function (btnId) {
+			handler: function(btnId) {
 				if (btnId === "retry") {
 					retryPostToken(data, false);
 				} else if (btnId === "signout") {
@@ -80,15 +81,15 @@ const userManager = (function(){
 				}
 			},
 			buttons: [{
-				text : "Retry",
+				text: "Retry",
 				id: "btnRetry",
-				handler : function () {
+				handler: function() {
 					retryPostToken(data, false);
 				}
-			},{
-				text : "Signout",
+			}, {
+				text: "Signout",
 				id: "btnSignout",
-				handler : signOut
+				handler: signOut
 			}]
 		};
 
@@ -108,9 +109,9 @@ const userManager = (function(){
 					return;
 				}
 
-				window.setTimeout(function(){
+				window.setTimeout(function() {
 					postToken(user);
-				},3000);
+				}, 3000);
 			} else {
 				handleError(data);
 			}
@@ -120,7 +121,7 @@ const userManager = (function(){
 	function onLoad() {
 		try {
 			var data = JSON.parse(this.responseText);
-		} catch(e) {
+		} catch (e) {
 			console.error('oidc unable to parse post token response', e);
 		}
 
@@ -128,22 +129,23 @@ const userManager = (function(){
 			console.error('oidc post token failed', data);
 
 			switch (data.error.hcode) {
-				case 'MAPI_E_LOGON_FAILED' :
-				case 'MAPI_E_UNCONFIGURED' :
-				case 'MAPI_E_NETWORK_ERROR'	:
+				case 'MAPI_E_LOGON_FAILED':
+				case 'MAPI_E_UNCONFIGURED':
+				case 'MAPI_E_NETWORK_ERROR':
 					if (++CURRENT_ATTEMPT <= MAX_TRY) {
 						retryPostToken(data, true);
 						return;
 					} else {
 						handleError(data);
 					}
-				default: break;
+				default:
+					break;
 			}
 		} else if (onLogonPage) {
 			window.location.href = window.location.origin + window.location.pathname;
 		} else if (data && data.authenticated === false) {
 			wrapperHandler('AUTHENTICATION_FAILURE', {
-				handler : function() {
+				handler: function() {
 					reauthenticateWithRedirect();
 				}
 			});
@@ -198,7 +200,7 @@ const userManager = (function(){
 
 	/**
 	 * Middleware function used to show the proper message box based on the action type.
-	 * 
+	 *
 	 * @param {String} actionType The constant action type which used to show the message box.
 	 * @param {Object} cfg The configuration object used by 'showMessageBox' to compose custom message box.
 	 */
@@ -207,7 +209,7 @@ const userManager = (function(){
 			switch (actionType) {
 				case "ACCESS_TOKEN_EXPIRED":
 				case "AUTHENTICATION_FAILURE":
-					var title = actionType === "ACCESS_TOKEN_EXPIRED" ?  _('Access token expired') : _('Authorization failed');
+					var title = actionType === "ACCESS_TOKEN_EXPIRED" ? _('Access token expired') : _('Authorization failed');
 					window.Zarafa.core.Util.showMessageBox({
 						title: title,
 						msg: _('Failed to renew session, re-authentication is required.'),
@@ -232,7 +234,7 @@ const userManager = (function(){
 							text: _('Signout'),
 							name: 'signout'
 						}],
-						scope : this
+						scope: this
 					}, true);
 					break;
 				default:
@@ -269,13 +271,13 @@ const userManager = (function(){
 	}
 
 	/**
-	 * Helper function which used to silently renew the access token. In case it failed to renew
-	 * it will redirect to prompt select_account logon page.
+	 * Helper function which used to silently renew the access token.
 	 *
 	 * @param {Object} mgr The instance of user manager.
+	 * @return {Promise} return the promise.
 	 */
 	function silentRenewAccessToken(mgr) {
-		mgr.signinSilent().then(function(user) {
+		return mgr.signinSilent().then(function(user) {
 			if (isUserNotExpired(user)) {
 				console.debug('oidc sign-in silent successfully.');
 				postToken(user);
@@ -284,17 +286,6 @@ const userManager = (function(){
 		}).catch(function(err) {
 			console.debug('oidc silent sign-in failed', err);
 			return null;
-		}).then(function(user) {
-			if (!user) {
-				console.debug('oidc sign-in silent did not return a user');
-				// Silent sign-in failed, show message box which further
-				// redirect to interactive login page.
-				wrapperHandler("ACCESS_TOKEN_EXPIRED",{
-					handler : function (){
-						reauthenticateWithRedirect();
-					}
-				});
-			}
 		});
 	}
 
@@ -309,15 +300,21 @@ const userManager = (function(){
 		oidcSettings.silent_redirect_uri = url + "?oidc-silent-refresh";
 		oidcSettings.accessTokenExpiringNotificationTime = 120;
 
+		// Add 'offline scope' for DeskApp OIDC.
+		if (isDeskApp) {
+			oidcSettings.userStore = new Oidc.WebStorageStateStore({store: window.localStorage});
+			oidcSettings.scope += ' offline_access';
+		}
+
 		mgr = new Oidc.UserManager(oidcSettings);
 		mgr.clearStaleState();
 
-		mgr.events.addUserSignedOut(function (){
+		mgr.events.addUserSignedOut(function() {
 			console.debug('oidc user signed out at OP');
 			mgr.removeUser();
 
 			// clear php session and redirect to interactive sign in page.
-			clearSession(function (){
+			clearSession(function() {
 				console.debug('webapp php session cleared.');
 
 				Zarafa.core.Util.disableLeaveRequester();
@@ -325,7 +322,7 @@ const userManager = (function(){
 			});
 		});
 
-		mgr.events.addAccessTokenExpiring(function () {
+		mgr.events.addAccessTokenExpiring(function() {
 			console.debug('oidc token expiring');
 		});
 
@@ -334,14 +331,40 @@ const userManager = (function(){
 		// it will redirect to interactive logon page.
 		var accessTokenExpiredHandler = function() {
 			console.warn('oidc access token expired');
-			mgr.removeUser();
-			mgr.getUser().then(function (user) {
-				if (isUserNotExpired(user)) {
-					postToken(user);
-					return;
-				}
+			mgr.getUser().then(function(user) {
+				if (user) {
+					// If the access token is not expired, then post the token to the PHP server.
+					if (isUserNotExpired(user)) {
+						console.debug('oidc sign-in silent successfully.');
+						postToken(user);
+					} else {
+						var refreshToken = user.refresh_token;
+						// Remove user from storage if refresh_token is
+						// not configured in user object.
+						if (!refreshToken) {
+							mgr.removeUser();
+						}
 
-				silentRenewAccessToken(mgr);
+						silentRenewAccessToken(mgr).then(function(user) {
+							if (!user) {
+								console.debug('oidc sign-in silent did not return a user');
+								if (refreshToken) {
+									setTimeout(function(mgr) {
+										getUser(mgr);
+									}, 5000, mgr);
+								} else {
+									// Silent sign-in failed, show message box which further redirects
+									// to the interactive login page.
+									wrapperHandler("ACCESS_TOKEN_EXPIRED", {
+										handler: function() {
+											reauthenticateWithRedirect();
+										}
+									});
+								}
+							}
+						});
+					}
+				}
 			});
 		};
 
@@ -350,8 +373,8 @@ const userManager = (function(){
 
 		// Event handler triggered when getting error
 		// while silently renewing access token.
-		mgr.events.addSilentRenewError(function (err) {
-			console.error("oidc silent renew error", err.error);
+		mgr.events.addSilentRenewError(function(err) {
+			console.error("oidc silent renew error", err);
 			if (err) {
 				switch (err.error) {
 					case 'interaction_required':
@@ -362,14 +385,15 @@ const userManager = (function(){
 			}
 
 			// if there is not error
-			setTimeout(function (){
+			setTimeout(function() {
 				console.debug('oidc retrying silent renew');
-				mgr.getUser().then(function (user) {
+				mgr.getUser().then(function(user) {
 					console.debug('oidc retrying silent renew of user');
 					if (isUserNotExpired(user)) {
 						console.debug('oidc start silent renew', user);
 						mgr.startSilentRenew();
 					} else {
+						var refreshToken = user.refresh_token;
 						console.debug('oidc failed to renew in time so try once to silently renew user.');
 						mgr.signinSilent().catch(function(err) {
 							console.debug('oidc silent sign-in failed', err);
@@ -377,13 +401,19 @@ const userManager = (function(){
 						}).then(function(user) {
 							if (user === null) {
 								console.debug('oidc sign-in silent did not return a user');
-								// Silent sign-in failed, show message box which further
-								// redirect to interactive login page.
-								wrapperHandler("ACCESS_TOKEN_EXPIRED",{
-									handler : function (){
-										reauthenticateWithRedirect();
-									}
-								});
+								if (refreshToken) {
+									setTimeout(function(mgr) {
+										getUser(mgr);
+									}, 5000, mgr);
+								} else {
+									// Silent sign-in failed, show message box which further
+									// redirect to interactive login page.
+									wrapperHandler("ACCESS_TOKEN_EXPIRED", {
+										handler: function() {
+											reauthenticateWithRedirect();
+										}
+									});
+								}
 							}
 						});
 					}
@@ -391,9 +421,9 @@ const userManager = (function(){
 			}, 5000);
 		});
 
-		mgr.events.addUserLoaded(function (user) {
+		mgr.events.addUserLoaded(function(user) {
 			console.debug('oidc user loaded', user);
-			mgr.getUser().then(function(user){
+			mgr.getUser().then(function(user) {
 				postToken(user);
 			});
 		});
@@ -411,7 +441,7 @@ const userManager = (function(){
 					console.error('oidc failed to complete authentication', err);
 					error = err;
 					return null;
-				}).then(function (user){
+				}).then(function(user) {
 					remove_hash_from_url();
 					if (!user) {
 						var msg = `Unable to complete the login. Please try again.
@@ -420,15 +450,15 @@ const userManager = (function(){
 						Error: ${(error && error.message) || "Unable to complete login."}`;
 
 						showMessageBox({
-							title : 'Incomplete login',
+							title: 'Incomplete login',
 							message: msg,
 							buttons: [{
-								text : "Retry",
+								text: "Retry",
 								id: "btnRetry",
-								handler : function () {
+								handler: function() {
 									remove_hash_from_url();
 									mgr.removeUser();
-									signinRedirect({"prompt" : "select_account"});
+									signinRedirect({"prompt": "select_account"});
 								}
 							}]
 						});
@@ -442,7 +472,7 @@ const userManager = (function(){
 				if (onLogonPage) {
 					console.debug('oidc sign-in silent did not return a user');
 					// Silent sign-in failed, login normal
-					signinRedirect().catch(function (err) {
+					signinRedirect().catch(function(err) {
 						console.error("Unreachable kopano konnect service.", err)
 						showMessageBox({
 							title: 'Connection error',
@@ -450,7 +480,7 @@ const userManager = (function(){
 							buttons: [{
 								text: "OK",
 								id: "btnOk",
-								handler: function () {
+								handler: function() {
 									signinRedirect();
 								}
 							}]
@@ -467,7 +497,7 @@ const userManager = (function(){
 	 */
 	function signOut() {
 		// clear php session and do signout.
-		clearSession(function (){
+		clearSession(function(){
 			// We assume php session was clear successfully
 			mgr.signoutRedirect();
 		});
@@ -480,9 +510,35 @@ const userManager = (function(){
 	 */
 	function reauthenticateWithRedirect() {
 		// clear php session and do signout.
-		clearSession(function (){
+		clearSession(function() {
 			// We assume php session was clear successfully
-			signinRedirect({"prompt" : "select_account"});
+			signinRedirect({"prompt": "select_account"});
+		});
+	}
+
+	/**
+	 * Function used get the User object for the currently authenticated user. It will redirect to
+	 * interactive signin page in case of it fails to retrieve user from store.
+	 *
+	 * @param {Object} mgr The instance of user manager.
+	 * @returns {Object} return user object if user info exists in store else null.
+	 */
+	function getUser(mgr) {
+		// mgr.getUser() function internally called the event.load which further
+		// more called the addSilentRenewError and addAccessTokenExpired
+		// as an callback. This block only execute when offline access scope
+		// was configured.
+		return mgr.getUser().then(function(user) {
+			if (!user) {
+				clearSession(function() {
+					console.debug('webapp php session cleared.');
+
+					Zarafa.core.Util.disableLeaveRequester();
+					window.location = "?oidclogin";
+				});
+			}
+
+			return user;
 		});
 	}
 
@@ -501,7 +557,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		var uri = [location.protocol, '//', location.host, location.pathname].join('');
 		window.history.replaceState({}, document.title, uri);
 
-		document.getElementById("signin-btn").addEventListener("click", function (){
+		document.getElementById("signin-btn").addEventListener("click", function() {
 			window.location.reload();
 		});
 		return;
