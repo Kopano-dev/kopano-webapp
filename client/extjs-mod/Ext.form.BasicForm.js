@@ -38,7 +38,7 @@
 					record.set(f.name, value);
 				}
 			}, this);
-			record.endEdit();
+			record.endEdit(this.isValid());
 			return this;
 		},
 
