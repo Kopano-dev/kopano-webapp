@@ -126,6 +126,14 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 		this.mon(this.getSelectionModel(), 'rowselect', this.onRowSelect, this, { buffer: 1 });
 		this.mon(this.getSelectionModel(), 'selectionchange', this.onSelectionChange, this, { buffer: 1 });
 
+		this.mon(container, 'afterrendercontentpanel', function(tabPanel){
+			this.mon(tabPanel, {
+				'tabchange': this.onTabChange,
+				'close': this.onTabClose,
+				scope: this
+			});
+		}, this);
+
 		this.mon(this.context, 'viewmodechange', this.onContextViewModeChange, this);
 		this.mon(this.context, 'viewchange', this.onContextViewChange, this);
 		this.onContextViewModeChange(this.context, this.context.getCurrentViewMode());
@@ -810,6 +818,31 @@ Zarafa.mail.ui.MailGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessageGrid, {
 		}
 
 		Zarafa.mail.ui.MailGrid.superclass.onRowRemoved.call(this, rowIndex);
+	},
+
+	/**
+	 * Event handler triggers when content tab panel is changed, it's used to
+	 * set the focus on selected row.
+	 *
+	 * @param {Ext.TabPanel} tabPanel the tab panel which contains tabs.
+	 * @param {Ext.Panel} activeTab the activeTab from tab panel
+	 */
+	onTabChange: function(tabPanel, activeTab)
+	{
+		if (activeTab.id === "zarafa-mainpanel-content") {
+			this.getView().setFocus();
+		}
+	},
+
+	/**
+	 * Event handler triggers when tab was close. Which call {@link Zarafa.mail.ui.MailGridView#setFocus setFocus} function
+	 * to set the focus on mail grid. 
+	 */
+	onTabClose: function()
+	{
+		if (container.getTabPanel().getActiveTab().id === "zarafa-mainpanel-content") {
+			this.getView().setFocus();
+		}
 	}
 });
 

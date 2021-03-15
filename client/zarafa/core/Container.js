@@ -105,7 +105,13 @@ Zarafa.core.Container = Ext.extend(Ext.util.Observable, {
 			 * Fires when the user logs out from the webapp.
 			 * @event logout
 			 */
-			'logout'
+			'logout',
+			/**
+			 * Fires when the {@link Zarafa.core.ui.MainContentTabPanel MainContentTabPanel} rendered successfully.
+			 * @event afterrendercontentpanel
+			 * @param {Zarafa.core.ui.MainContentTabPanel} MainContentTabPanel The main content tab panel.
+			 */
+			'afterrendercontentpanel'
 		]);
 
 		Zarafa.core.Container.superclass.constructor.call(this);

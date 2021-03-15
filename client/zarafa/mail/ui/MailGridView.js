@@ -25,6 +25,18 @@ Zarafa.mail.ui.MailGridView = Ext.extend(Zarafa.common.ui.grid.GridView, {
 		if (this.grid.enableColumnMove) {
 			this.columnDrop = new Zarafa.mail.ui.MailGridHeaderDropZone(this.grid, this.mainHd.dom);
 		}
+	},
+
+	/**
+	 * Function used to set the focus on {@link Zarafa.mail.ui.MailGrid MailGrid}.
+	 */
+	setFocus : function()
+	{
+        if (Ext.isGecko) {
+            this.focusEl.focus();
+        } else {
+        	this.focusEl.focus.defer(1, this.focusEl);
+        }
 	}
 });
 
