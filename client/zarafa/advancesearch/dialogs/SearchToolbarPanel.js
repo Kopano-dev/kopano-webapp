@@ -46,14 +46,12 @@ Zarafa.advancesearch.dialogs.SearchToolbarPanel = Ext.extend(Ext.Panel, {
 				cls: 'zarafa-previewpanel-toolbar zarafa-search-previewpanel-toolbar zarafa-context-mainpanel', // change the css class name
 				ref: 'rightSearchToolbar',
 				hidden: true,
-				items: [container.populateInsertionPoint('previewpanel.toolbar.left', {scope: this, model: config.model}), {
-					xtype: 'tbfill'
-				},
-				container.populateInsertionPoint('previewpanel.toolbar.right.first', {scope: this, model: config.model}),
+				items: [container.populateInsertionPoint('previewpanel.toolbar.left', {scope: this, model: config.model}),
 				{
 					xtype: 'button',
 					tooltip: _('Reply') + ' (Ctrl + R)',
 					overflowText: _('Reply'),
+					text: _('Reply'),
 					iconCls: 'icon_reply',
 					ref: 'replyBtn',
 					responseMode: Zarafa.mail.data.ActionTypes.REPLY,
@@ -63,6 +61,7 @@ Zarafa.advancesearch.dialogs.SearchToolbarPanel = Ext.extend(Ext.Panel, {
 					xtype: 'button',
 					tooltip: _('Reply All') + ' (Ctrl + Alt + R)',
 					overflowText: _('Reply All'),
+					text: _('Reply All'),
 					iconCls: 'icon_reply_all',
 					ref: 'replyAllBtn',
 					responseMode: Zarafa.mail.data.ActionTypes.REPLYALL,
@@ -72,12 +71,17 @@ Zarafa.advancesearch.dialogs.SearchToolbarPanel = Ext.extend(Ext.Panel, {
 					xtype: 'button',
 					tooltip: _('Forward') + ' (Ctrl + F)',
 					overflowText: _('Forward'),
+					text: _('Forward'),
 					iconCls: 'icon_forward',
 					ref: 'forwardBtn',
 					responseMode: Zarafa.mail.data.ActionTypes.FORWARD,
 					handler: this.onResponse,
 					scope: this
 				},{
+					xtype: 'tbfill'
+				},
+				container.populateInsertionPoint('previewpanel.toolbar.right.first', {scope: this, model: config.model}),
+				{
 					xtype: 'button',
 					tooltip: _('Edit as New') + ' (Ctrl + E)',
 					overflowText: _('Edit as New'),

@@ -79,7 +79,7 @@ Zarafa.calendar.CalendarContext = Ext.extend(Zarafa.core.Context, {
 		// Register the calendar category for the settings
 		this.registerInsertionPoint('context.settings.categories', this.createSettingCategories, this);
 
-		this.registerInsertionPoint('previewpanel.toolbar.right.first', this.getMeetingRequestToolbarButtons, this);
+		this.registerInsertionPoint('previewpanel.toolbar.left', this.getMeetingRequestToolbarButtons, this);
 		this.registerInsertionPoint('previewpanel.toolbar.detaillinks', this.getMeetingRequestDetailLinks, this);
 
 		// Add meeting request related button in the showmeeting ContentPanel
@@ -503,7 +503,7 @@ Zarafa.calendar.CalendarContext = Ext.extend(Zarafa.core.Context, {
 				title: _('View in calendar'),
 				text: _('View in calendar')
 			},
-			cls: 'tb-calendar-btn-calendar zarafa-action',
+			cls: 'tb-calendar-btn-calendar',
 			iconCls: 'icon_calendar'
 		}];
 	},
