@@ -150,7 +150,12 @@ Zarafa.core.ui.MainViewport = Ext.extend(Ext.Viewport, {
 			layoutOnTabChange: true,
 			items: [ cc ].concat(lazyItems),
 			plugins: [ 'zarafa.tabclosemenuplugin' ],
-			cls: 'zarafa-body-tabbar'
+			cls: 'zarafa-body-tabbar',
+			listeners: {
+				"afterrender": function() {
+					container.fireEvent('afterrendercontentpanel', this);
+				}
+			}
 		});
 		return this.contentPanel;
 	},
