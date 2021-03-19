@@ -818,7 +818,11 @@ Zarafa.calendar.dialogs.AppointmentTab = Ext.extend(Ext.form.FormPanel, {
 			this.editorField.setValue(record.getBody(this.editorField.isHtmlEditor()));
 		}
 
-		if (contentReset){
+		if (contentReset && this.comboCreateIn.isVisible()) {
+			if (record.isSubMessage()) {
+				this.createInPanel.setVisible(false);
+				return;
+			}
             const folderToSelect = record.get('parent_entryid');
             const folder = container.getHierarchyStore().getFolder(folderToSelect);
             const hasCreateRight = folder.hasCreateRights();
