@@ -121,7 +121,7 @@ Zarafa.common.ui.ResizableCompositeField = Ext.extend(Zarafa.common.ui.Composite
     		item.mon(item, 'resizeheight', function(){
     			this.onResize();
     			this.ownerCt.doLayout(false);
-    		}, this, { delay: 0 });
+    		}, this, { delay: 2 });
     	}
     }, this);
   },
