@@ -91,9 +91,9 @@ Zarafa.core.ui.PreviewPanel = Ext.extend(Ext.Panel, {
 
 		var tbarItems = [
 			container.populateInsertionPoint('previewpanel.toolbar.left', this, config.model),
+			config.tbar.items, // Default items in toolbar should be left aligned.
 			{xtype: 'tbfill'},
 			container.populateInsertionPoint('previewpanel.toolbar.right.first', {scope: this, model: config.model}),
-			config.tbar.items, // Default items in toolbar should be right aligned.
 			container.populateInsertionPoint('previewpanel.toolbar.right', {scope: this, model: config.model})
 		];
 
