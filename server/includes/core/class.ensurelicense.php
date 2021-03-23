@@ -22,6 +22,13 @@ class EnsureLicense
 	static $kustomerCheckEnabled = false;
 
 	/**
+	 * The flag true to indicate pay per use it enabled and false to disable.
+	 * default is null.
+	 * @var bool
+	 */
+	static $isPayPerUse = null;
+
+	/**
 	 * Function which ensure the license if '$kustomerCheckEnabled' flag is true.
 	 * if license is not 'payperuse' then check license is ensure ok or not.
 	 *
@@ -31,11 +38,8 @@ class EnsureLicense
 	{
 		if (EnsureLicense::$kustomerCheckEnabled) {
 			$beginEnsure = kustomer_instant_ensure(null, EnsureLicense::$productUserAgent . getWebappVersion(), 5);
-			$isPayPerUse = kustomer_ensure_get_bool($beginEnsure, $productName, "payperuse");
-
-			if ($isPayPerUse === false) {
-				kustomer_ensure_ok($beginEnsure, $productName);
-			}
+			EnsureLicense::$isPayPerUse = kustomer_ensure_get_bool($beginEnsure, $productName, "payperuse");
+			kustomer_ensure_ok($beginEnsure, $productName);
 			kustomer_end_ensure($beginEnsure);
 
 			// Validated license by KC
