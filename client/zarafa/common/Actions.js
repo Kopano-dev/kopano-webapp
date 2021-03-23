@@ -717,22 +717,29 @@ Zarafa.common.Actions = {
 			records = [ records ];
 		}
 
-		var parentEntryID = records[0].get('parent_entryid');
-		var folder = container.getHierarchyStore().getFolder(parentEntryID);
-		if (folder && folder.hasDeleteOwnRights() === false) {
-			Ext.MessageBox.show({
-				title : _('Insufficient permissions'),
-				msg : _("You have insufficient privileges to delete items in this folder."),
-				cls: Ext.MessageBox.ERROR_CLS,
-				buttons: Ext.MessageBox.OK
-			});
-			return;
-		}
+		// entryId is undefined if store is shadow store object.
+		var folderEntryid = records[0].getStore().entryId;
+		var folder = container.getHierarchyStore().getFolder(folderEntryid);
 
 		// Check if the records are deleted from the todolist
 		if (folder && folder.isTodoListFolder()) {
 			Zarafa.task.Actions.deleteRecordsFromTodoList(records);
 		} else {
+			if (Zarafa.core.EntryId.compareEntryIds(records[0].get('parent_entryid'), folderEntryid) === false) {
+				folderEntryid = records[0].get('parent_entryid');
+				folder = container.getHierarchyStore().getFolder(folderEntryid);
+			}
+
+			if (folder && folder.hasDeleteOwnRights() === false) {
+				Ext.MessageBox.show({
+					title : _('Insufficient permissions'),
+					msg : _("You have insufficient privileges to delete items in this folder."),
+					cls: Ext.MessageBox.ERROR_CLS,
+					buttons: Ext.MessageBox.OK
+				});
+				return;
+			}
+
 			this.doDeleteRecords(records, askOcc, softDelete);
 		}
 	},

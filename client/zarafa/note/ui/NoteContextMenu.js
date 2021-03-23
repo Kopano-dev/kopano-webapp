@@ -157,9 +157,7 @@ Zarafa.note.ui.NoteContextMenu = Ext.extend(Zarafa.core.ui.menu.ConditionalMenu,
 	 */
 	onContextItemDelete: function()
 	{
-		var store = this.records[0].getStore();
-		store.remove(this.records);
-		store.save();
+		Zarafa.common.Actions.deleteRecords(this.records);
 	}
 });
 
