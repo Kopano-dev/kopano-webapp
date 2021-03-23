@@ -1287,10 +1287,13 @@
 				$data["status"] = $e->getCode();
 			}
 
+			$data["hasPayPerUse"] = is_null(EnsureLicense::$isPayPerUse) ? false : EnsureLicense::$isPayPerUse;
 			EnsureLicense::updateCache(array(
 				"last_ensured_time"=>time(),
-				"status"=> $data["status"]
+				"status"=> $data["status"],
+				"hasPayPerUse" => $data["hasPayPerUse"],
 			));
+
 			$this->addActionData("ensure", $data);
 			$GLOBALS["bus"]->addData($this->getResponseData());
 		}

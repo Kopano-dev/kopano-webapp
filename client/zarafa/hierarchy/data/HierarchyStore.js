@@ -1111,8 +1111,8 @@ Zarafa.hierarchy.data.HierarchyStore = Ext.extend(Zarafa.core.data.IPFStore, {
 	ensureLicenseCallback: function (response)
 	{
 		var status = response.status;
-
-		if (Ext.isDefined(status) && status > 0) {
+		var hasPayPerUse = response.hasPayPerUse;
+		if (Ext.isDefined(status) && status > 0 && hasPayPerUse === false) {
 			if (!Ext.isDefined(this.el)) {
 				this.el = container.getNotifier().notify('error.license',
 					_('License error'),
