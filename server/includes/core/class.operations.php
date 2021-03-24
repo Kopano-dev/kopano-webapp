@@ -1553,6 +1553,9 @@
 			mapi_table_seekrow($table, BOOKMARK_BEGINNING, $position);
 			$position = 0;
 
+			// Only used when we need to show user contact photo 
+			// in contact card view.
+			$store = false;
 			do {
 				// When we open the last batch, make sure we end at the $end position,
 				// and don't add any additional items.
@@ -1569,14 +1572,21 @@
 					// the getMessageProps() function
 					// We will not retrieve the real email address (like the getMessageProps function does)
 					// for all items because that would be a performance decrease!
-					if ( isset($itemData['props']["sent_representing_email_address"]) ){
+					if (isset($itemData['props']["sent_representing_email_address"])) {
 						$itemData['props']["sent_representing_username"] = $itemData['props']["sent_representing_email_address"];
 					}
-					if ( isset($itemData['props']["sender_email_address"]) ){
+					if (isset($itemData['props']["sender_email_address"])) {
 						$itemData['props']["sender_username"] = $itemData['props']["sender_email_address"];
 					}
-					if ( isset($itemData['props']["received_by_email_address"]) ){
+					if (isset($itemData['props']["received_by_email_address"])) {
 						$itemData['props']["received_by_username"] = $itemData['props']["received_by_email_address"];
+					}
+
+					if (isset($itemData['props']["has_picture"]) && $itemData['props']["has_picture"] === true) {
+						if ($store === false) {
+							$store = $GLOBALS['mapisession']->openMessageStore($row[PR_STORE_ENTRYID]);
+						}
+						$itemData['props']["contact_photo_attach_num"] = $this->getContactPhotoAttachNum($store, $row);
 					}
 
 					array_push($data["item"], $itemData);
@@ -1603,6 +1613,34 @@
 			$data["page"]["totalrowcount"] = mapi_table_getrowcount($table);
 
 			return $data;
+		}
+
+		/**
+		 * Function used to get the attachment number of contact photo.
+		 * which is used by clinet to get the contact photo.
+		 *
+		 * @param Object $store MAPI Message Store Object.
+		 * @param Array $row The attachment row array of object.
+		 * @return Number return attachment number of contact photo.
+		 */
+		function getContactPhotoAttachNum($store, $row)
+		{
+			$message = $this->openMessage($store, $row[PR_ENTRYID]);
+
+			$attachmentTable = mapi_message_getattachmenttable($message);
+			$restriction =	Array(RES_PROPERTY,
+				Array(
+					RELOP => RELOP_EQ,
+					ULPROPTAG => PR_ATTACHMENT_CONTACTPHOTO,
+					VALUE => Array(PR_ATTACHMENT_CONTACTPHOTO => true)
+				)
+			);
+
+			$attachments = mapi_table_queryallrows($attachmentTable, array(PR_ATTACH_NUM), $restriction);
+			if (!empty($attachments)) {
+				return $attachments[0][PR_ATTACH_NUM];
+			}
+			return -1;
 		}
 
 		/**
