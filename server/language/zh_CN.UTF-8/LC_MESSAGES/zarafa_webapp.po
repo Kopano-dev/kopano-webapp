@@ -1843,6 +1843,12 @@ msgstr "删除并发送回复给会议组织者"
 msgid "Delete without sending"
 msgstr "删除而不发送"
 
+msgid "Insufficient permissions"
+msgstr "权限不足"
+
+msgid "You have insufficient privileges to delete items in this folder."
+msgstr ""
+
 msgid "Notify recipients"
 msgstr "通知收件人"
 
@@ -3970,9 +3976,6 @@ msgstr "D {0}"
 
 msgid "D d-m"
 msgstr "D d-m"
-
-msgid "Insufficient permissions"
-msgstr "权限不足"
 
 msgid ""
 "Not enough permissions to open this store, do you want to remove it from the "

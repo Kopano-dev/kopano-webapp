@@ -1966,6 +1966,12 @@ msgstr "Löschen und dem Organisator eine Antwort schicken"
 msgid "Delete without sending"
 msgstr "Löschen ohne Antwort"
 
+msgid "Insufficient permissions"
+msgstr "Nicht genügend Berechtigungen"
+
+msgid "You have insufficient privileges to delete items in this folder."
+msgstr ""
+
 msgid "Notify recipients"
 msgstr "Empfänger benachrichtigen"
 
@@ -4255,9 +4261,6 @@ msgstr "D {0}"
 
 msgid "D d-m"
 msgstr "D, d.m.Y"
-
-msgid "Insufficient permissions"
-msgstr "Nicht genügend Berechtigungen"
 
 msgid ""
 "Not enough permissions to open this store, do you want to remove it from the "

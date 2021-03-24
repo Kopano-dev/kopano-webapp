@@ -1936,6 +1936,12 @@ msgstr "Slett og send svar til møtearrangør"
 msgid "Delete without sending"
 msgstr "Slett uten å sende"
 
+msgid "Insufficient permissions"
+msgstr "Ikke tilstrekkelige rettigheter"
+
+msgid "You have insufficient privileges to delete items in this folder."
+msgstr ""
+
 msgid "Notify recipients"
 msgstr "Informer mottakere"
 
@@ -4140,9 +4146,6 @@ msgstr "D {0}"
 
 msgid "D d-m"
 msgstr "D, d.m.Y"
-
-msgid "Insufficient permissions"
-msgstr "Ikke tilstrekkelige rettigheter"
 
 msgid ""
 "Not enough permissions to open this store, do you want to remove it from the "

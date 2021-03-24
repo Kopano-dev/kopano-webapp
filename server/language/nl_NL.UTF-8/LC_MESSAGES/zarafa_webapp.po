@@ -1990,6 +1990,12 @@ msgstr "Verwijder en stuur een antwoord naar de organisator"
 msgid "Delete without sending"
 msgstr "Verwijder zonder te versturen"
 
+msgid "Insufficient permissions"
+msgstr "Onvoldoende rechten"
+
+msgid "You have insufficient privileges to delete items in this folder."
+msgstr ""
+
 msgid "Notify recipients"
 msgstr "Stel genodigden op de hoogte"
 
@@ -4303,9 +4309,6 @@ msgstr ""
 
 msgid "D d-m"
 msgstr "D d-m"
-
-msgid "Insufficient permissions"
-msgstr "Onvoldoende rechten"
 
 msgid ""
 "Not enough permissions to open this store, do you want to remove it from the "
