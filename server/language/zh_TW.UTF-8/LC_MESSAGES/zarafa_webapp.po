@@ -1898,6 +1898,13 @@ msgid "Delete without sending"
 msgstr "刪除不發送"
 
 #, fuzzy
+msgid "Insufficient permissions"
+msgstr "資料夾權限"
+
+msgid "You have insufficient privileges to delete items in this folder."
+msgstr ""
+
+#, fuzzy
 msgid "Notify recipients"
 msgstr "編輯收件者"
 
@@ -4146,10 +4153,6 @@ msgstr ""
 #, fuzzy
 msgid "D d-m"
 msgstr "d-m-Y"
-
-#, fuzzy
-msgid "Insufficient permissions"
-msgstr "資料夾權限"
 
 msgid ""
 "Not enough permissions to open this store, do you want to remove it from the "

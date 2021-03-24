@@ -1992,6 +1992,13 @@ msgid "Delete without sending"
 msgstr "Izbriši brez pošiljanja"
 
 #, fuzzy
+msgid "Insufficient permissions"
+msgstr "Dovoljenja mape"
+
+msgid "You have insufficient privileges to delete items in this folder."
+msgstr ""
+
+#, fuzzy
 msgid "Notify recipients"
 msgstr "Uredi prejemnika"
 
@@ -4326,10 +4333,6 @@ msgstr ""
 #, fuzzy
 msgid "D d-m"
 msgstr "d-m-Y"
-
-#, fuzzy
-msgid "Insufficient permissions"
-msgstr "Dovoljenja mape"
 
 msgid ""
 "Not enough permissions to open this store, do you want to remove it from the "

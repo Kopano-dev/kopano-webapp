@@ -1985,6 +1985,15 @@ msgstr "Borrar y enviar una respuesta al organizador de la reunión"
 msgid "Delete without sending"
 msgstr "Borrar sin enviar"
 
+# 80%
+# 84%
+#, fuzzy
+msgid "Insufficient permissions"
+msgstr "No tiene privilegios necesarios para guardar objetos en esta carpeta"
+
+msgid "You have insufficient privileges to delete items in this folder."
+msgstr ""
+
 #, fuzzy
 msgid "Notify recipients"
 msgstr "Editar recipiente"
@@ -4300,12 +4309,6 @@ msgstr ""
 #, fuzzy
 msgid "D d-m"
 msgstr "d-m-A"
-
-# 80%
-# 84%
-#, fuzzy
-msgid "Insufficient permissions"
-msgstr "No tiene privilegios necesarios para guardar objetos en esta carpeta"
 
 msgid ""
 "Not enough permissions to open this store, do you want to remove it from the "

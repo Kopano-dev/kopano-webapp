@@ -1978,6 +1978,13 @@ msgid "Delete without sending"
 msgstr "Borrar sin enviar"
 
 #, fuzzy
+msgid "Insufficient permissions"
+msgstr "Permisos de carpeta"
+
+msgid "You have insufficient privileges to delete items in this folder."
+msgstr ""
+
+#, fuzzy
 msgid "Notify recipients"
 msgstr "Editar recipiente"
 
@@ -4329,10 +4336,6 @@ msgstr ""
 #, fuzzy
 msgid "D d-m"
 msgstr "d-m-A"
-
-#, fuzzy
-msgid "Insufficient permissions"
-msgstr "Permisos de carpeta"
 
 msgid ""
 "Not enough permissions to open this store, do you want to remove it from the "

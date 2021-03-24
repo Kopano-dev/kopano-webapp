@@ -1852,6 +1852,13 @@ msgstr ""
 msgid "Delete without sending"
 msgstr ""
 
+#, fuzzy
+msgid "Insufficient permissions"
+msgstr "У вас недостатньо прав, щоб скопіювати папку."
+
+msgid "You have insufficient privileges to delete items in this folder."
+msgstr ""
+
 msgid "Notify recipients"
 msgstr ""
 
@@ -3963,10 +3970,6 @@ msgstr ""
 
 msgid "D d-m"
 msgstr ""
-
-#, fuzzy
-msgid "Insufficient permissions"
-msgstr "У вас недостатньо прав, щоб скопіювати папку."
 
 msgid ""
 "Not enough permissions to open this store, do you want to remove it from the "

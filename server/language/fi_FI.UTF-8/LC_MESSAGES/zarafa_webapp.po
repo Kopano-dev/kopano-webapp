@@ -1965,6 +1965,13 @@ msgid "Delete without sending"
 msgstr "Poista ilman lähetystä"
 
 #, fuzzy
+msgid "Insufficient permissions"
+msgstr "Kansion oikeudet"
+
+msgid "You have insufficient privileges to delete items in this folder."
+msgstr ""
+
+#, fuzzy
 msgid "Notify recipients"
 msgstr "Muokkaa vastaanottajia"
 
@@ -4248,10 +4255,6 @@ msgstr ""
 #, fuzzy
 msgid "D d-m"
 msgstr "d-m-Y"
-
-#, fuzzy
-msgid "Insufficient permissions"
-msgstr "Kansion oikeudet"
 
 msgid ""
 "Not enough permissions to open this store, do you want to remove it from the "

@@ -1861,6 +1861,12 @@ msgstr "Eyða og senda svar til skipuleggjanda fundarins"
 msgid "Delete without sending"
 msgstr "Eyða án þess að senda"
 
+msgid "Insufficient permissions"
+msgstr "Ónæg réttindi"
+
+msgid "You have insufficient privileges to delete items in this folder."
+msgstr ""
+
 msgid "Notify recipients"
 msgstr "Láta viðtakendur vita"
 
@@ -3999,9 +4005,6 @@ msgstr ""
 
 msgid "D d-m"
 msgstr "D d-m"
-
-msgid "Insufficient permissions"
-msgstr "Ónæg réttindi"
 
 msgid ""
 "Not enough permissions to open this store, do you want to remove it from the "

@@ -1946,6 +1946,13 @@ msgstr "Supprimer et envoyer une réponse à l'organisateur de la réunion"
 msgid "Delete without sending"
 msgstr "Supprimer sans envoi"
 
+#, fuzzy
+msgid "Insufficient permissions"
+msgstr "Vous ne disposez pas des droits nécessaires pour cette action"
+
+msgid "You have insufficient privileges to delete items in this folder."
+msgstr ""
+
 msgid "Notify recipients"
 msgstr "Notifier les destinataires"
 
@@ -4288,10 +4295,6 @@ msgstr ""
 #, fuzzy
 msgid "D d-m"
 msgstr "d-m-Y"
-
-#, fuzzy
-msgid "Insufficient permissions"
-msgstr "Vous ne disposez pas des droits nécessaires pour cette action"
 
 msgid ""
 "Not enough permissions to open this store, do you want to remove it from the "

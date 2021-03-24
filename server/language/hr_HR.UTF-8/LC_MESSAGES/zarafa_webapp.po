@@ -1834,6 +1834,12 @@ msgstr ""
 msgid "Delete without sending"
 msgstr ""
 
+msgid "Insufficient permissions"
+msgstr ""
+
+msgid "You have insufficient privileges to delete items in this folder."
+msgstr ""
+
 msgid "Notify recipients"
 msgstr ""
 
@@ -3920,9 +3926,6 @@ msgid "D {0}"
 msgstr ""
 
 msgid "D d-m"
-msgstr ""
-
-msgid "Insufficient permissions"
 msgstr ""
 
 msgid ""
