@@ -290,10 +290,10 @@ Zarafa.hierarchy.data.MAPIFolderRecord = Ext.extend(Zarafa.core.data.IPFRecord, 
 		if (this.isIPMSubTree()) {
 			return this.getDisplayName();
 		} else if (store.isPublicStore()) {
-			/* # TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME". */
+			/* # TRANSLATORS: Display name of a folder: "FOLDERNAME - STORENAME". */
 			return String.format(_('{0} - {1}'), this.getDisplayName(), store.get('display_name'));
 		} else if (store.isSharedStore()) {
-			/* # TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME". */
+			/* # TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME - USERNAME". */
 			return String.format(_('{0} - {1}'), this.getDisplayName(), store.get('mailbox_owner_name'));
 		} else {
 			return this.getDisplayName();

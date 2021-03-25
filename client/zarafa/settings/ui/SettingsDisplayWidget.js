@@ -155,6 +155,17 @@ Zarafa.settings.ui.SettingsDisplayWidget = Ext.extend(Zarafa.settings.ui.Setting
 					change: this.onFieldChange,
 					scope: this
 				}
+			},{
+				xtype: 'checkbox',
+				name: 'zarafa/v1/contexts/hierarchy/show_searchbar',
+				ref: 'showSearchBar',
+				requiresReload: true,
+				hideLabel: true,
+				boxLabel: _('Show search bar above folder list'),
+				listeners: {
+					change: this.onFieldChange,
+					scope: this
+				}
 			},
 
 			// Insertion point at the end of the display widget
@@ -180,6 +191,7 @@ Zarafa.settings.ui.SettingsDisplayWidget = Ext.extend(Zarafa.settings.ui.Setting
 		this.scrollFavorites.setValue(settingsModel.get(this.scrollFavorites.name));
 		this.unreadBorders.setValue(settingsModel.get(this.unreadBorders.name));
 		this.hideWidgetpanel.setValue(settingsModel.get(this.hideWidgetpanel.name));
+		this.showSearchBar.setValue(settingsModel.get(this.showSearchBar.name));
 
 		// Check if help manual plugin's settings available else check main settings.
 		var helpManualPluginSetting = settingsModel.get(this.helpManual.pluginSettingPath);
@@ -208,6 +220,7 @@ Zarafa.settings.ui.SettingsDisplayWidget = Ext.extend(Zarafa.settings.ui.Setting
 		settingsModel.set(this.scrollFavorites.name, this.scrollFavorites.getValue());
 		settingsModel.set(this.unreadBorders.name, this.unreadBorders.getValue());
 		settingsModel.set(this.hideWidgetpanel.name, this.hideWidgetpanel.getValue());
+		settingsModel.set(this.showSearchBar.name, this.showSearchBar.getValue());
 
 		// Remove webapp manual plugin settings.
 		if (this.helpManual.appliedPluginSetting) {

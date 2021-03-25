@@ -192,7 +192,7 @@ Zarafa.core.ui.NavigationPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 	{
 		this.activeContext = newContext;
 
-		this.toggleVisibilityNavigationComponents();
+		this.toggleVisibilityNavigationComponents(true);
 
 		var title = newContext.getDisplayName() || _('Folders List');
 		this.setTitle(title);
@@ -203,10 +203,16 @@ Zarafa.core.ui.NavigationPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 	 * ones. The {@link #centerPanel centerPanel} is always visible and contains a card layout. It
 	 * will switch to the tab that is related to the active Context as well. If no tab is related
 	 * than it will show the {@link #AllFoldersPanel AllFoldersPanel} by default.
+	 * @param {Boolean} isContextSwitched true if the context is switched else false.
+	 * 
 	 * @private
 	 */
-	toggleVisibilityNavigationComponents: function()
+	toggleVisibilityNavigationComponents: function(isContextSwitched)
 	{
+		if (!Ext.isDefined(isContextSwitched)) {
+			isContextSwitched = false;
+		}
+
 		// Loop through all items in the navigation panel and determine whether to hide or show them
 		for (var i = 0, len = this.items.length; i < len; i++){
 			var item = this.items.itemAt(i);
@@ -224,6 +230,7 @@ Zarafa.core.ui.NavigationPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 		var center = this.centerPanel;
 		var layout = center.getLayout();
 
+		var previousActiveSearchFilter = layout.activeItem && layout.activeItem.filterSearchTextBox;
 		// Use this variable to see if we have to switch to the default one if none is found
 		var contextNavPanelFound = false;
 		// Loop through all items to find the one for the active Context
@@ -251,8 +258,39 @@ Zarafa.core.ui.NavigationPanel = Ext.extend(Zarafa.core.ui.MainViewSidebar, {
 				layout.setActiveItem(0);
 			}
 		}
-
+		
+		var currentActiveSearchFilter = layout.activeItem && layout.activeItem.filterSearchTextBox;
+		this.setHierarchySearchFilterValue(isContextSwitched, previousActiveSearchFilter, currentActiveSearchFilter);
 		this.doLayout();
+	},
+
+	/**
+	 * Function will conditionally set the value of {@link Ext.form.textfield filterSearchTextBox} resides 
+	 * in {@link Zarafa.hierarchy.ui.HierarchyTreePanel HierarchyTreePanel} of currently active panel in {@link #centerPanel centerPanel}.
+	 * 
+	 * @param {Boolean} isContextSwitched true if the context is switched else false.
+	 * @param {Ext.form.textfield} previousActiveSearchFilter search filter text field of previously active panel in {@link #centerPanel centerPanel}
+	 * @param {Ext.form.textfield} currentActiveSearchFilter search filter text field of currently active panel in {@link #centerPanel centerPanel}
+	 * @private
+	 */
+	setHierarchySearchFilterValue: function(isContextSwitched, previousActiveSearchFilter, currentActiveSearchFilter)
+	{
+		if (Ext.isDefined(currentActiveSearchFilter)) {
+			// If context is switched and "Show All" is not checked then clear currently active hierarchy search text field.
+			if (isContextSwitched && !this.showFolderList) {
+				currentActiveSearchFilter.reset();
+			} else if (!isContextSwitched && Ext.isDefined(previousActiveSearchFilter)) {
+				// If "Show All" toggle occured then pass the previous filterSearchTextBox's value to the current filterSearchTextBox.
+				var currSearchValue = currentActiveSearchFilter.getValue();
+				var prevSearchValue = previousActiveSearchFilter.getValue();
+				
+				// Only change the value of active hierarchy filterSearchTextBox 
+				// when previously active filterSearchTextBox's value is different.
+				if (currSearchValue !== prevSearchValue) {
+					currentActiveSearchFilter.setValue(previousActiveSearchFilter.getValue());
+				}
+			}	
+		}
 	},
 
 	/**

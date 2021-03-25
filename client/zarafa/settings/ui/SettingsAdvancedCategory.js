@@ -23,6 +23,7 @@ Zarafa.settings.ui.SettingsAdvancedCategory = Ext.extend(Zarafa.settings.ui.Sett
 			title: _('Advanced'),
 			categoryIndex: 9999,
 			iconCls: 'zarafa-settings-category-advanced',
+			cls: 'k-settings-category-advanced-container',
 			layout: 'fit',
 			// scrolling is supplied by the treepanel
 			autoScroll: false,
@@ -37,11 +38,32 @@ Zarafa.settings.ui.SettingsAdvancedCategory = Ext.extend(Zarafa.settings.ui.Sett
 				items: [{
 					xtype: 'zarafa.settingswidget',
 					title: _('Advanced settings'),
-					layout:'fit',
+					layout:{
+						type: 'vbox',
+						align: 'stretch'
+					},
 					region:'center',
 					items: [{
+						xtype: 'textfield',
+						emptyText: _('Search...'),
+						anchor: '100%',
+						cls: 'k-settings-search-field',
+						enableKeyEvents: true,
+						listeners: {
+							scope: this,
+							keyup: {
+								fn: this.onSearchTextFiledKeyUp,
+								buffer: 250
+							}
+						}
+					}, {
+						xtype: 'tbspacer',
+						height: 10
+					},{
 						xtype: 'zarafa.settingstreepanel',
-						ref: '../../treePanel'
+						treeFilter: true,
+						ref: '../../treePanel',
+						flex: 1
 					}]
 				}, {
 					xtype: 'zarafa.settingswidget',
@@ -105,6 +127,25 @@ Zarafa.settings.ui.SettingsAdvancedCategory = Ext.extend(Zarafa.settings.ui.Sett
 
 		settingsModel.set(this.showInsertionCheck.name, this.showInsertionCheck.getValue());
 		settingsModel.set(this.showItemData.name, this.showItemData.getValue());
+	},
+
+	/**
+	 * Event handler which is triggered when
+	 * a key is pressed in the filterSearchTextBox.
+	 *
+	 * @param {Ext.form.TextField} field
+	 * @param {Ext.EventObject} eventObj
+	 * @private
+	 */
+	onSearchTextFiledKeyUp: function (field, eventObj)
+	{
+		var value = field.getRawValue();
+		if (Ext.isEmpty(value) && !Ext.isEmpty(this.treePanel.treeFilter)) {
+			this.treePanel.treeFilter.clear();
+			return;
+		}
+		var re = new RegExp('' + value + '', 'i');
+		this.treePanel.treeFilter.filter(re);
 	},
 
 	/**

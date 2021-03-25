@@ -31,13 +31,19 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 	 * By default the xtype in this object is set to zarafa.hierarchytreebottombar.
 	 */
 	bbarConfig: undefined,
+	
+	/**
+	 *@cfg {String} filterSearchBoxValue will contain the current value of {@link Ext.form.textfield filterSearchTextBox}.
+	 * This will be used in {@link #setSearchFilter} to check whether the value is changed.
+	 */
+	 filterSearchBoxValue: undefined,
 
 	/**
 	 * @cfg {Boolean} showAllFoldersDefaultValue True to render the 'Show all folders'
 	 * {@link #showAllFoldersCheckbox checkbox} as {@link Ext.form.Checkbox#checked checked}.
 	 */
 	showAllFoldersDefaultValue: false,
-
+	
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
@@ -47,8 +53,11 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 		config = config || {};
 
 		var checked = Ext.isDefined(config.showAllFoldersDefaultValue) ?
-				config.showAllFoldersDefaultValue: this.showAllFoldersDefaultValue;
+			config.showAllFoldersDefaultValue: this.showAllFoldersDefaultValue;
 
+		// Check user setting to add treeFIlter.
+		var treeFilter = container.getSettingsModel().get('zarafa/v1/contexts/hierarchy/show_searchbar', true, false);
+		
 		Ext.applyIf(config, {
 			xtype: 'zarafa.hierarchytreepanel',
 			baseCls: 'zarafa-hierarchy-treepanel',
@@ -56,22 +65,40 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 			minHeight: 100,
 			stateful: true,
 			statefulName: 'hierarchytree',
-			tbar: {
-				items: [{
-					xtype: 'checkbox',
-					cls: 'zarafa-hierarchy-treepanel-showallfolders',
-					ref: '../showAllFoldersCheckbox',
-					boxLabel: _('Show all folders'),
-					checked: checked,
-					listeners: {
-						beforerender: this.reviseCheckboxDisablity,
-						check: this.onCheckShowAllFoldersCheckbox,
-						scope: this
+			tbar: [{
+				xtype: 'checkbox',
+				cls: 'zarafa-hierarchy-treepanel-showallfolders',
+				ref: '../showAllFoldersCheckbox',
+				boxLabel: treeFilter ? _('Show All'): _('Show all folders'),
+				checked: checked,
+				listeners: {
+					beforerender: this.reviseCheckboxDisablity,
+					check: this.onCheckShowAllFoldersCheckbox,
+					scope: this
+				}
+			}, {
+				xtype: 'tbspacer',
+				hidden: !treeFilter,
+				width: 20
+			}, {
+				xtype: 'textfield',
+				emptyText: _('Search...'),
+				cls: 'k-searchfolder-field',
+				doLayout: this.onLayoutSearchField.createDelegate(this),
+				hidden: !treeFilter,
+				enableKeyEvents: true,
+				ref: '../../../filterSearchTextBox',
+				listeners: {
+					scope: this,
+					keyup: {
+						fn: this.onSearchTextFiledKeyUp,
+						buffer: 250
 					}
-				}]
-			},
+				}
+			}],
 			loadMask: true,
 			treeSorter: true,
+			treeFilter: treeFilter,
 			trackMouseOver: true,
 			containerScroll: true,
 			// Default values for the Drag&Drop objects.
@@ -160,7 +187,6 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 		this.mon(this.store, 'removeFolder', this.onFolderRemove, this);
 	},
 
-
 	/**
 	 * Called after the tree has been {@link #render rendered} This will initialize
 	 * all event handlers and when {@link #enableDD Drag & Drop} has been enabled,
@@ -232,6 +258,62 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 		}
 
 		Zarafa.hierarchy.ui.HierarchyTreePanel.superclass.initEvents.call(this);
+	},
+
+	/**
+	 * Event handler which is triggered when
+	 * a key is pressed in the filterSearchTextBox.
+	 *
+	 * @param {Ext.form.TextField} field
+	 * @param {Ext.EventObject} eventObj
+	 * @private
+	 */
+	onSearchTextFiledKeyUp: function (field, eventObj)
+	{
+		var value = field.getRawValue();
+		this.setSearchFilter(value);
+	},
+
+	/**
+	 * Function will apply or clear the search filter based on {@link Ext.form.textfield filterSearchTextBox value}.
+	 * @param {String} value which needs to be search in the tree.
+	 */
+	setSearchFilter: function(value)
+	{
+		// Check if search text value is changed.
+		if  (value !== this.filterSearchBoxValue) {
+			this.filterSearchBoxValue = value;
+			if (Ext.isEmpty(value) && !Ext.isEmpty(this.treeFilter)) {
+				this.treeFilter.clear();
+				this.checkTreeHeight();
+				return;
+			}
+			var regEx = new RegExp('' + value + '', 'i');
+			this.treeFilter.filter(regEx);
+			this.checkTreeHeight();
+		}
+	},
+
+	/**
+	 * Function is used to resize the {@link Ext.form.textfield filterSearchTextBox}
+	 * and set the search filter.
+	 */
+	onLayoutSearchField: function()
+	{
+		var filterSearchTextBox = this.getTopToolbar().findByType('textfield')[0];
+
+		if (filterSearchTextBox.isVisible()) {
+			// Get the width of the container without the padding
+			var containerWidth = this.el.getStyleSize().width;
+			var tbspacer = 20;
+			var showFolderCheckFieldWidth = this.showAllFoldersCheckbox.getWidth();
+			var extraContainerPadding = 24;
+			var adjWidth = containerWidth - showFolderCheckFieldWidth;
+
+			filterSearchTextBox.setWidth(adjWidth - extraContainerPadding - tbspacer);
+
+			this.setSearchFilter(filterSearchTextBox.getValue());
+		}
 	},
 
 	/**
