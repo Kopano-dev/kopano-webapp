@@ -494,15 +494,20 @@
 			// this is a encrypted message. decode it.
 			$attachTable = mapi_message_getattachmenttable($message);
 
-			$rows = mapi_table_queryallrows($attachTable, Array(PR_ATTACH_MIME_TAG, PR_ATTACH_NUM));
+			$rows = mapi_table_queryallrows($attachTable, Array(PR_ATTACH_MIME_TAG, PR_ATTACH_NUM, PR_ATTACH_LONG_FILENAME));
 			$attnum = false;
-
+			$smimeAttach = false;
 			foreach($rows as $row) {
 				if(isset($row[PR_ATTACH_MIME_TAG]) && in_array($row[PR_ATTACH_MIME_TAG],array('application/x-pkcs7-mime','application/pkcs7-mime')) ) {
 					$attnum = $row[PR_ATTACH_NUM];
 				}
+
+				if (isset($row[PR_ATTACH_LONG_FILENAME]) && $row[PR_ATTACH_LONG_FILENAME] === 'smime.p7m') {
+					$smimeAttach = $row[PR_ATTACH_NUM];
+				}
 			}
-			if($attnum !== false){
+
+			if($attnum !== false) {
 				$att = mapi_message_openattach($message, $attnum);
 				$data = mapi_openproperty($att, PR_ATTACH_DATA_BIN);
 
@@ -512,11 +517,24 @@
 					'props' => $props,
 					'message' => &$message,
 					'data' => &$data
-					));
+				));
 
-				mapi_message_deleteattach($message, $attnum);
+				if (isSmimePluginEnabled()) {
+					mapi_message_deleteattach($message, $attnum);
+				} else if($smimeAttach !== false) {
+					mapi_message_deleteattach($message, $smimeAttach);
+				}
 			}
 		}
+	}
+
+	/**
+	 * Helper function which used to check smime plugin is enabled.
+	 * 
+	 * @return Boolean true if smime plugin is enabled else false.
+	 */
+	function isSmimePluginEnabled() {
+		return $GLOBALS['settings']->get("zarafa/v1/plugins/smime/enable", false);
 	}
 
 	/**
