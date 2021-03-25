@@ -1705,8 +1705,8 @@ msgstr "Í dag {0} - {1}"
 msgid "Today (all day)"
 msgstr "Í dag (heill dagur)"
 
-#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
-#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
+#. TRANSLATORS: Display name of a folder: "FOLDERNAME - STORENAME".
+#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME - USERNAME".
 msgid "{0} - {1}"
 msgstr "{0} - {1}"
 
@@ -4304,6 +4304,9 @@ msgstr "Eyða möppu"
 msgid "Are you sure you want to empty {0}?"
 msgstr "Ertu viss um að þú viljir tæma {0}?"
 
+msgid "Show All"
+msgstr ""
+
 msgid "Show all folders"
 msgstr "Sýna allar möppur"
 
@@ -4892,6 +4895,9 @@ msgid "Show unread mail counter in application title"
 msgstr ""
 
 msgid "Hide widget panel"
+msgstr ""
+
+msgid "Show search bar above folder list"
 msgstr ""
 
 msgid "Auto"

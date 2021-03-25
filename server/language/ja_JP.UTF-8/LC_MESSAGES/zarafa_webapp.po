@@ -1764,8 +1764,8 @@ msgstr "今日: {1} {0}"
 msgid "Today (all day)"
 msgstr ""
 
-#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
-#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
+#. TRANSLATORS: Display name of a folder: "FOLDERNAME - STORENAME".
+#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME - USERNAME".
 #, fuzzy
 msgid "{0} - {1}"
 msgstr "{0}内の{1}"
@@ -4532,6 +4532,9 @@ msgstr "フォルダ削除"
 msgid "Are you sure you want to empty {0}?"
 msgstr "{0}を空にしますがよろしいですか？"
 
+msgid "Show All"
+msgstr ""
+
 msgid "Show all folders"
 msgstr "全フォルダを表示する"
 
@@ -5157,6 +5160,9 @@ msgid "Show unread mail counter in application title"
 msgstr ""
 
 msgid "Hide widget panel"
+msgstr ""
+
+msgid "Show search bar above folder list"
 msgstr ""
 
 msgid "Auto"

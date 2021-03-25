@@ -1828,8 +1828,8 @@ msgid "Today (all day)"
 msgstr "Vandaag (gehele dag)"
 
 # 100%
-#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
-#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
+#. TRANSLATORS: Display name of a folder: "FOLDERNAME - STORENAME".
+#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME - USERNAME".
 msgid "{0} - {1}"
 msgstr "{0} - {1}"
 
@@ -4621,6 +4621,9 @@ msgstr "Verwijder map"
 msgid "Are you sure you want to empty {0}?"
 msgstr "Weet u zeker dat u {0} wilt leegmaken?"
 
+msgid "Show All"
+msgstr ""
+
 # 75%
 msgid "Show all folders"
 msgstr "Toon alle mappen"
@@ -5241,6 +5244,9 @@ msgid "Show unread mail counter in application title"
 msgstr "Laat ongelezen email teller zien in applicatie titel"
 
 msgid "Hide widget panel"
+msgstr ""
+
+msgid "Show search bar above folder list"
 msgstr ""
 
 msgid "Auto"

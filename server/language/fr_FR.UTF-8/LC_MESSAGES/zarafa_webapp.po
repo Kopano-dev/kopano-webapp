@@ -1785,8 +1785,8 @@ msgid "Today (all day)"
 msgstr ""
 
 # 100%
-#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
-#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
+#. TRANSLATORS: Display name of a folder: "FOLDERNAME - STORENAME".
+#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME - USERNAME".
 #, fuzzy
 msgid "{0} - {1}"
 msgstr "{0} dans {1}"
@@ -4620,6 +4620,9 @@ msgstr "Effacer le dossier"
 msgid "Are you sure you want to empty {0}?"
 msgstr "Désirez-vous vraiment vider {0}?"
 
+msgid "Show All"
+msgstr ""
+
 # 75%
 msgid "Show all folders"
 msgstr "Afficher tous les répertoires"
@@ -5247,6 +5250,9 @@ msgid "Show unread mail counter in application title"
 msgstr ""
 
 msgid "Hide widget panel"
+msgstr ""
+
+msgid "Show search bar above folder list"
 msgstr ""
 
 msgid "Auto"
