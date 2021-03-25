@@ -1832,8 +1832,8 @@ msgstr ""
 
 # 80%
 # 100%
-#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
-#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
+#. TRANSLATORS: Display name of a folder: "FOLDERNAME - STORENAME".
+#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME - USERNAME".
 #, fuzzy
 msgid "{0} - {1}"
 msgstr "{1} - {0}"
@@ -4620,6 +4620,9 @@ msgstr "Mappa törlése"
 msgid "Are you sure you want to empty {0}?"
 msgstr "Biztosan ki szeretné üríteni {0}?"
 
+msgid "Show All"
+msgstr ""
+
 msgid "Show all folders"
 msgstr "Minden mappa megjelenítése"
 
@@ -5246,6 +5249,9 @@ msgid "Show unread mail counter in application title"
 msgstr ""
 
 msgid "Hide widget panel"
+msgstr ""
+
+msgid "Show search bar above folder list"
 msgstr ""
 
 msgid "Auto"

@@ -1711,8 +1711,8 @@ msgstr ""
 
 # 86%
 # 100%
-#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
-#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
+#. TRANSLATORS: Display name of a folder: "FOLDERNAME - STORENAME".
+#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME - USERNAME".
 #, fuzzy
 msgid "{0} - {1}"
 msgstr "Стор. {A} з {0}"
@@ -4266,6 +4266,9 @@ msgstr "Не вдається видалити папку."
 msgid "Are you sure you want to empty {0}?"
 msgstr ""
 
+msgid "Show All"
+msgstr ""
+
 msgid "Show all folders"
 msgstr ""
 
@@ -4852,6 +4855,9 @@ msgid "Show unread mail counter in application title"
 msgstr ""
 
 msgid "Hide widget panel"
+msgstr ""
+
+msgid "Show search bar above folder list"
 msgstr ""
 
 msgid "Auto"
