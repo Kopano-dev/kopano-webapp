@@ -96,6 +96,7 @@
 	// General WebApp theme. This will be loaded by default for every user
 	// (if the theme is installed as a plugin)
 	// Users can override the 'logged-in' theme in the settings.
+    // The theme directory should be added here, not the display name.
 	define("THEME", "");
 
 	// Enable themes.
