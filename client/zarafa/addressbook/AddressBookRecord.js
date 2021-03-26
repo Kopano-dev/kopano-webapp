@@ -31,6 +31,7 @@ Zarafa.addressbook.AddressBookRecordFields = [
 	{name: 'surname'},
 	{name: 'display_name'},
 	{name: 'account'},
+	{name: 'ems_ab_thumbnail_photo', defaultValue: ""},
 	{name: 'street_address'},
 	{name: 'locality'},
 	{name: 'state_or_province'},
