@@ -3530,8 +3530,8 @@
 						}
 
 						$smimeTags = array('multipart/signed', 'application/pkcs7-mime', 'application/x-pkcs7-mime');
-						if(in_array($attachmentRow[PR_ATTACH_MIME_TAG], $smimeTags)) {
-							// Ignore the message with attachment types set as smime as they are for smime
+						if(in_array($attachmentRow[PR_ATTACH_MIME_TAG], $smimeTags) && isSmimePluginEnabled()) {
+							// Ignore the message if smime plugin is enabled and attachment types set as smime.
 							continue;
 						}
 					}
