@@ -7,10 +7,10 @@ msgstr ""
 "Project-Id-Version: Kopano Webapp Norwegian (Bokmål)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-25 14:32+0200\n"
-"PO-Revision-Date: 2020-09-08 15:05+0000\n"
+"PO-Revision-Date: 2021-04-01 20:08+0000\n"
 "Last-Translator: Klaus <klaus@linuxavdelingen.no>\n"
-"Language-Team: Norwegian Bokmål <http://translate.kopano.io/projects/kopano/"
-"kopano-webapp/nb_NO/>\n"
+"Language-Team: Norwegian Bokmål <http://translate.kopano.io/projects/kopano"
+"/kopano-webapp/nb_NO/>\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -377,7 +377,7 @@ msgid "Last name"
 msgstr ""
 
 msgid "Initials"
-msgstr ""
+msgstr "Initialer"
 
 msgid "Display"
 msgstr "Visning"
@@ -917,7 +917,7 @@ msgid "End Date"
 msgstr "Sluttdato"
 
 msgid "Sort by: End Date"
-msgstr ""
+msgstr "Sorter på: Sluttdato"
 
 msgid "Organizer"
 msgstr "Arrangør"
@@ -1378,7 +1378,7 @@ msgid "Paste selected item"
 msgstr "Lim inn valgt element"
 
 msgid "An overview of"
-msgstr ""
+msgstr "Oversikt over"
 
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "Start"
@@ -1391,13 +1391,13 @@ msgstr "Slutt"
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
 msgid "Printed by"
-msgstr ""
+msgstr "Skrevet ut av"
 
 msgid "at"
-msgstr ""
+msgstr "på"
 
 msgid "of"
-msgstr ""
+msgstr "av"
 
 msgid "Location: "
 msgstr "Sted: "
@@ -1409,7 +1409,7 @@ msgid "l jS M Y {0}"
 msgstr ""
 
 msgid "All day: "
-msgstr ""
+msgstr "Heldag: "
 
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
@@ -1633,16 +1633,16 @@ msgid "Sort by: Resources"
 msgstr "Sorter på: ressurser"
 
 msgid "Recurring Start Date"
-msgstr ""
+msgstr "Gjentakende startdato"
 
 msgid "Sort by: Recurring Start Date"
-msgstr ""
+msgstr "Sorter på: Gjentakende startdato"
 
 msgid "Recurring End Date"
-msgstr ""
+msgstr "Gjentakende sluttdato"
 
 msgid "Sort by: Recurring End Date"
-msgstr ""
+msgstr "Sorter på: Gjentakende sluttdato"
 
 # 77%
 msgid "Recurring Pattern"
@@ -1662,10 +1662,10 @@ msgid "Loading appointments"
 msgstr "Laster inn avtaler"
 
 msgid "Attendees"
-msgstr ""
+msgstr "Deltakere"
 
 msgid "Optional attendees"
-msgstr ""
+msgstr "Valgfrie deltakere"
 
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "jS F {0}"
@@ -2575,7 +2575,7 @@ msgid "Delete recipient from suggestion list"
 msgstr "Slett mottakeren fra forslagslisten"
 
 msgid "Copy all email addresses"
-msgstr ""
+msgstr "Kopier alle e-post adresser"
 
 msgid "View recipient"
 msgstr "Vis mottakere"
@@ -3021,7 +3021,7 @@ msgid "Loading from addresses"
 msgstr "Laster inn avsenderadresse"
 
 msgid "Forward Mail"
-msgstr ""
+msgstr "Videresend e-post"
 
 msgid "Please select a from address record."
 msgstr "Velg en avsenderadresse."
@@ -3045,10 +3045,10 @@ msgid "Delegate settings"
 msgstr "Representant innstillinger"
 
 msgid "Desktop Notifications Settings"
-msgstr ""
+msgstr "Skrivebordsvarsler innstillinger"
 
 msgid "We need permissions to enable desktop notifications."
-msgstr ""
+msgstr "Vi trenger din tillatelse for å aktivere skrivebordsvarsler."
 
 msgid "Request Permissions"
 msgstr ""
@@ -3060,7 +3060,7 @@ msgid "Enable desktop notifications for reminders"
 msgstr ""
 
 msgid "{A} Auto hide desktop notification after second(s) {B}"
-msgstr ""
+msgstr "{A} Skjul automatisk Skriverbordsvarsler etter sekunder {B}"
 
 msgid "Disable sound"
 msgstr "Skru av lyd"
@@ -3677,13 +3677,13 @@ msgid "[Group]"
 msgstr ""
 
 msgid "Work:"
-msgstr ""
+msgstr "Jobb:"
 
 msgid "Primary:"
-msgstr ""
+msgstr "Primær:"
 
 msgid "Mobile:"
-msgstr ""
+msgstr "Mobil:"
 
 msgid "Sort by: Full Name"
 msgstr "Sorter på: fullt navn"
@@ -4136,7 +4136,7 @@ msgid "Expand widget"
 msgstr "Utvid miniprogram"
 
 msgid "About this widget"
-msgstr ""
+msgstr "Om dette minprogram"
 
 msgid "Add new widget"
 msgstr "Legg til miniprogram"
@@ -4187,7 +4187,7 @@ msgstr[0] "Det er {0} ulest melding i mappen {1}"
 msgstr[1] "Det er {0} uleste meldinger i mappen {1}"
 
 msgid "License error"
-msgstr ""
+msgstr "Lisensfeil"
 
 msgid ""
 "The installed license key(s) have expired or are being over used. Please "
@@ -4461,7 +4461,7 @@ msgid "Are you sure you want to empty {0}?"
 msgstr "Er du sikker på at du vil tømme {0}?"
 
 msgid "Show All"
-msgstr ""
+msgstr "Vis alt"
 
 msgid "Show all folders"
 msgstr "Vis alle mapper"
@@ -4819,7 +4819,7 @@ msgid "Replies/forwards"
 msgstr "Svar/videresendinger"
 
 msgid "Signature name:"
-msgstr ""
+msgstr "Signatur navn:"
 
 msgid "Save Signature"
 msgstr "Lagre signatur"
@@ -5000,7 +5000,7 @@ msgid "Advanced settings"
 msgstr "Avanserte innstillinger"
 
 msgid "Developer tools"
-msgstr ""
+msgstr "Utviklerverktøy"
 
 msgid "Show insertion points in WebApp"
 msgstr ""
@@ -5085,7 +5085,7 @@ msgid "PDF zoom"
 msgstr ""
 
 msgid "File previewing"
-msgstr ""
+msgstr "Forhåndsvisning av fil"
 
 msgid "Inbox navigation"
 msgstr "Navigasjon i Innboks"
@@ -6540,7 +6540,7 @@ msgid "Sign in"
 msgstr "Logg inn"
 
 msgid "Caps lock is on"
-msgstr ""
+msgstr "Caps Lock er på"
 
 msgid "File is not imported successfully"
 msgstr "Filen ble ikke vellykket importert"
