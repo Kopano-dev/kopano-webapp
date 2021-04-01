@@ -36,5 +36,8 @@
 	".icon_unread_mail" : [
 		".icon_widget_unread_mail",
 		".zarafa-settings-category-mail"
+	],
+	".icon_flag_Reminder": [
+		".zarafa-settings-category-notifications"
 	]
 }
