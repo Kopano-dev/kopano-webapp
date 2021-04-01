@@ -47,7 +47,7 @@ Zarafa.core.ContextModel = Ext.extend(Zarafa.core.data.StatefulObservable, {
 	 * @cfg {Zarafa.core.data.IPMRecord[]} selectedRecords The records
 	 * which are currently selected within this {@link Zarafa.core.Context context}.
 	 */
-	selectedRecords: undefined,
+	selectedRecords: [],
 
 	/**
 	 * @cfg {Zarafa.hierarchy.data.MAPIFolderRecord[]} defaultFolder default folder for the contextModel.
@@ -754,7 +754,15 @@ Zarafa.core.ContextModel = Ext.extend(Zarafa.core.data.StatefulObservable, {
 	 */
 	getSelectedRecords: function()
 	{
-		return this.selectedRecords;
+		var selectedRecords = [];
+		this.selectedRecords.forEach(function(item) {
+			if (Ext.isEmpty(item.store)) {
+				selectedRecords.push(this.getById(item.id));
+			 } else {
+				selectedRecords.push(item);
+			 }
+		}, this.getStore());
+		return selectedRecords;
 	},
 
 	/**

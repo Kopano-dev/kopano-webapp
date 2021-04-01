@@ -165,14 +165,7 @@ Zarafa.contact.ui.ContactContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditiona
 	 */
 	onContextItemDelete: function()
 	{
-		var store;
-
-		Ext.each(this.records, function(record) {
-			store = record.store;
-			store.remove(record);
-		});
-
-		store.save(this.records);
+		Zarafa.common.Actions.deleteRecords(this.records);
 	}
 });
 
