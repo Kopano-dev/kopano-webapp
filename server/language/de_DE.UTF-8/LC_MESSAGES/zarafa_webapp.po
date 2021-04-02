@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Kopano Webapp German (Germany)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-25 14:32+0200\n"
-"PO-Revision-Date: 2021-04-02 13:25+0000\n"
+"PO-Revision-Date: 2021-04-02 13:45+0000\n"
 "Last-Translator: Felix <f.bartels@kopano.com>\n"
 "Language-Team: German <http://translate.kopano.io/projects/kopano/kopano-"
 "webapp/de/>\n"
@@ -5189,7 +5189,7 @@ msgid "Show insertion points in WebApp"
 msgstr "Einfügepunkte in WebApp anzeigen"
 
 msgid "Show \"item data\" button in context menu (mail only)"
-msgstr ""
+msgstr "Zeige \"Elementdaten\" Schaltfläche im Kontextmenü (nur E-Mail)"
 
 msgid "Edit setting"
 msgstr "Einstellungen bearbeiten"
@@ -5244,28 +5244,28 @@ msgid "Show unread mail counter in application title"
 msgstr "Zeige Anzahl ungelesener Nachrichten im Titel"
 
 msgid "Hide widget panel"
-msgstr ""
+msgstr "Widget Panel verstecken"
 
 msgid "Show search bar above folder list"
-msgstr ""
+msgstr "Zeige Suchleiste über der Ordnerliste"
 
 msgid "Auto"
-msgstr ""
+msgstr "Auto"
 
 msgid "Actual size"
-msgstr ""
+msgstr "Tatsächliche Größe"
 
 msgid "Page width"
-msgstr ""
+msgstr "Seitenbreite"
 
 msgid "Attachment preview (PDF and Open formats)"
-msgstr ""
+msgstr "Vorschau für Anhänge (PDF und offene Formate)"
 
 msgid "Document default zoom"
-msgstr ""
+msgstr "Standardzoom für Dokumente"
 
 msgid "PDF zoom"
-msgstr ""
+msgstr "PDF Zoom"
 
 msgid "File previewing"
 msgstr "Dateivorschau"
@@ -5348,6 +5348,8 @@ msgstr "{0} des Postfachs sind belegt."
 
 msgid "You have exceeded hard quota, you can not send or receive mails."
 msgstr ""
+"Sie haben Ihre Quota überschritten, Sie können keine weiteren Mails senden "
+"oder empfangen."
 
 msgid "At {0} you won't be able to send mails."
 msgstr "Ab {0} können Sie keine E-Mails mehr senden."
@@ -5356,9 +5358,11 @@ msgid ""
 "You can not send mails as you have exceeded soft quota, at {0} you won't be "
 "able to receive mails."
 msgstr ""
+"Sie können keine Mails schicken, da Sie Ihre Quota überschritten haben, bei "
+"{0} werden Sie ebenfalls keine zusätzlichen Mails empfangen können."
 
 msgid "At {0} you won't be able to send or receive mails."
-msgstr ""
+msgstr "Bei {0} werden Sie keine Mails senden oder empfangen können."
 
 msgid "You can not send mails as you have exceeded soft quota."
 msgstr ""
@@ -5486,8 +5490,9 @@ msgstr "Antwort jetzt senden"
 msgid "Date Complete"
 msgstr "Datum des Abschlusses"
 
+#, fuzzy
 msgid "Multiple companies name must be separated by"
-msgstr ""
+msgstr "Mehreren Formen müssen mit dem folgenden Zeichen separiert werden"
 
 msgid "Update List"
 msgstr "Liste aktualisieren"
@@ -6244,7 +6249,9 @@ msgstr "Findet jeden %s %s statt, beginnend am %s."
 msgid "Occurs every %s effective %s for %s occurrence from %s to %s."
 msgid_plural "Occurs every %s effective %s for %s occurrences from %s to %s."
 msgstr[0] ""
+"Findet jeden %s statt, beginnend am %s für %s Wiederholung von %s bis %s."
 msgstr[1] ""
+"Findet jeden %s statt, beginnend am %s für %s Wiederholungen von %s bis %s."
 
 #, php-format
 msgid "Occurs every %s %s effective %s for %s occurrence from %s to %s."
