@@ -369,8 +369,11 @@ msgstr "アドレス帳"
 msgid "User details"
 msgstr "ユーザー詳細情報"
 
-msgid "First"
-msgstr "最初"
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
 
 msgid "Initials"
 msgstr ""
@@ -378,9 +381,8 @@ msgstr ""
 msgid "Display"
 msgstr "表示"
 
-# 75%
-msgid "Last"
-msgstr "一覧"
+msgid "Addresses"
+msgstr "住所"
 
 msgid "Address"
 msgstr "住所"
@@ -396,6 +398,9 @@ msgstr "郵便番号"
 
 msgid "Country"
 msgstr "国"
+
+msgid "Professional"
+msgstr ""
 
 msgid "Title"
 msgstr "役職"
@@ -3613,9 +3618,6 @@ msgstr "記念日"
 msgid "Photo"
 msgstr "写真"
 
-msgid "Addresses"
-msgstr "住所"
-
 msgid "Additional information"
 msgstr "追加情報"
 
@@ -3641,8 +3643,15 @@ msgstr "TTY/TDD"
 msgid "Check full name"
 msgstr "氏名の確認"
 
+msgid "First"
+msgstr "最初"
+
 msgid "Middle"
 msgstr "中"
+
+# 75%
+msgid "Last"
+msgstr "一覧"
 
 # 88%
 msgid "Show this again when name is incomplete or unclear."

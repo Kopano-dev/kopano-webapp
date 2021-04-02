@@ -391,8 +391,11 @@ msgstr "Imenik"
 msgid "User details"
 msgstr "Podrobnosti o uporabniku"
 
-msgid "First"
-msgstr "Prvi"
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
 
 msgid "Initials"
 msgstr ""
@@ -400,9 +403,9 @@ msgstr ""
 msgid "Display"
 msgstr "Prikaz"
 
-# 75%
-msgid "Last"
-msgstr "Zadnji"
+# 77%
+msgid "Addresses"
+msgstr "Naslovi"
 
 msgid "Address"
 msgstr "Naslov"
@@ -418,6 +421,9 @@ msgstr "Poštna številka"
 
 msgid "Country"
 msgstr "Država"
+
+msgid "Professional"
+msgstr ""
 
 msgid "Title"
 msgstr "Naziv"
@@ -3715,10 +3721,6 @@ msgstr "Obletnica"
 msgid "Photo"
 msgstr "Slika"
 
-# 77%
-msgid "Addresses"
-msgstr "Naslovi"
-
 msgid "Additional information"
 msgstr "Dodatne informacije"
 
@@ -3745,8 +3747,15 @@ msgstr "TTY/TDD"
 msgid "Check full name"
 msgstr "Preveri polno ime"
 
+msgid "First"
+msgstr "Prvi"
+
 msgid "Middle"
 msgstr "Srednje"
+
+# 75%
+msgid "Last"
+msgstr "Zadnji"
 
 msgid "Show this again when name is incomplete or unclear."
 msgstr "Prikaži to sporočilo, ko je ime nepopolno ali nejasno."

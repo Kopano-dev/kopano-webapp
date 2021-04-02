@@ -371,8 +371,11 @@ msgstr "Adres rehberi"
 msgid "User details"
 msgstr "Kullanıcı detaylar"
 
-msgid "First"
-msgstr "Isim"
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
 
 msgid "Initials"
 msgstr ""
@@ -380,8 +383,9 @@ msgstr ""
 msgid "Display"
 msgstr "Görüntüle"
 
-msgid "Last"
-msgstr "Soyadı"
+# 77%
+msgid "Addresses"
+msgstr "Adres"
 
 msgid "Address"
 msgstr "Adres"
@@ -397,6 +401,9 @@ msgstr "Posta Kodu"
 
 msgid "Country"
 msgstr "Ülke"
+
+msgid "Professional"
+msgstr ""
 
 msgid "Title"
 msgstr "Başlık"
@@ -3684,10 +3691,6 @@ msgstr "Yıldönümü"
 msgid "Photo"
 msgstr "Fotoğraf"
 
-# 77%
-msgid "Addresses"
-msgstr "Adres"
-
 msgid "Additional information"
 msgstr "Ek bilgiler"
 
@@ -3715,8 +3718,14 @@ msgstr "TTY/TDD"
 msgid "Check full name"
 msgstr "Tam adını kontrol edin"
 
+msgid "First"
+msgstr "Isim"
+
 msgid "Middle"
 msgstr "Orta"
+
+msgid "Last"
+msgstr "Soyadı"
 
 msgid "Show this again when name is incomplete or unclear."
 msgstr "Adı eksik veya belirsiz olduğunda tekrar göster."

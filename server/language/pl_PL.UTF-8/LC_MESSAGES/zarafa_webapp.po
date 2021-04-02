@@ -379,8 +379,11 @@ msgstr "Książka adresowa"
 msgid "User details"
 msgstr "Szczegóły użytkownika"
 
-msgid "First"
-msgstr "Imię"
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
 
 msgid "Initials"
 msgstr ""
@@ -388,8 +391,8 @@ msgstr ""
 msgid "Display"
 msgstr "Pokaż"
 
-msgid "Last"
-msgstr "Nazwisko"
+msgid "Addresses"
+msgstr "Adresy"
 
 msgid "Address"
 msgstr "Adres"
@@ -405,6 +408,9 @@ msgstr "Kod pocztowy"
 
 msgid "Country"
 msgstr "Kraj"
+
+msgid "Professional"
+msgstr ""
 
 msgid "Title"
 msgstr "Tytuł"
@@ -3479,9 +3485,6 @@ msgstr "Rocznica"
 msgid "Photo"
 msgstr "Zdjęcie"
 
-msgid "Addresses"
-msgstr "Adresy"
-
 msgid "Additional information"
 msgstr "Informacje dodatkowe"
 
@@ -3506,8 +3509,14 @@ msgstr "Telefon TTY/TDD"
 msgid "Check full name"
 msgstr "Sprawdź nazwę"
 
+msgid "First"
+msgstr "Imię"
+
 msgid "Middle"
 msgstr "Kolejne imiona"
+
+msgid "Last"
+msgstr "Nazwisko"
 
 msgid "Show this again when name is incomplete or unclear."
 msgstr "Pokaż ponownie, jeśli nazwa jest niepełna lub niejasna."

@@ -381,8 +381,11 @@ msgstr "Adresář"
 msgid "User details"
 msgstr "Detaily uživatele"
 
-msgid "First"
-msgstr "První"
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
 
 msgid "Initials"
 msgstr ""
@@ -390,9 +393,8 @@ msgstr ""
 msgid "Display"
 msgstr "Zobrazit"
 
-# 75%
-msgid "Last"
-msgstr "Poslední"
+msgid "Addresses"
+msgstr "Adresy"
 
 msgid "Address"
 msgstr "Adresa"
@@ -408,6 +410,9 @@ msgstr "PSČ"
 
 msgid "Country"
 msgstr "Země"
+
+msgid "Professional"
+msgstr ""
 
 msgid "Title"
 msgstr "Titul"
@@ -3679,9 +3684,6 @@ msgstr "Výročí"
 msgid "Photo"
 msgstr "Fotografie"
 
-msgid "Addresses"
-msgstr "Adresy"
-
 msgid "Additional information"
 msgstr "Dodatečné informace"
 
@@ -3707,8 +3709,15 @@ msgstr "TTY/TDD"
 msgid "Check full name"
 msgstr "Ověřit celé jméno"
 
+msgid "First"
+msgstr "První"
+
 msgid "Middle"
 msgstr "Střední"
+
+# 75%
+msgid "Last"
+msgstr "Poslední"
 
 msgid "Show this again when name is incomplete or unclear."
 msgstr "Ukázat toto znovu, pokud je jméno nekompletní nebo nejasné."

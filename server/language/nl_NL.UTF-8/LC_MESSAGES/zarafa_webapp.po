@@ -380,8 +380,11 @@ msgstr "Adresboek"
 msgid "User details"
 msgstr "Gebruikersdetails"
 
-msgid "First"
-msgstr "Voornaam"
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
 
 msgid "Initials"
 msgstr ""
@@ -389,9 +392,9 @@ msgstr ""
 msgid "Display"
 msgstr "Tonen als"
 
-# 75%
-msgid "Last"
-msgstr "Achternaam"
+# 77%
+msgid "Addresses"
+msgstr "Adressen"
 
 msgid "Address"
 msgstr "Adres"
@@ -407,6 +410,9 @@ msgstr "Postcode"
 
 msgid "Country"
 msgstr "Land"
+
+msgid "Professional"
+msgstr ""
 
 msgid "Title"
 msgstr "Titel"
@@ -3665,10 +3671,6 @@ msgstr "Jubileum"
 msgid "Photo"
 msgstr "Foto"
 
-# 77%
-msgid "Addresses"
-msgstr "Adressen"
-
 msgid "Additional information"
 msgstr "Extra informatie"
 
@@ -3695,8 +3697,15 @@ msgstr "TTY/TDD"
 msgid "Check full name"
 msgstr "Controleer volledige naam"
 
+msgid "First"
+msgstr "Voornaam"
+
 msgid "Middle"
 msgstr "Tussen"
+
+# 75%
+msgid "Last"
+msgstr "Achternaam"
 
 msgid "Show this again when name is incomplete or unclear."
 msgstr "Opnieuw tonen als de naam incompleet of onduidelijk is."

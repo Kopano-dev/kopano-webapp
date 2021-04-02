@@ -381,8 +381,11 @@ msgstr "ספר כתובות"
 msgid "User details"
 msgstr "פרטי משתמש"
 
-msgid "First"
-msgstr "שם פרטי"
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
 
 msgid "Initials"
 msgstr ""
@@ -390,9 +393,8 @@ msgstr ""
 msgid "Display"
 msgstr "שם תצוגה"
 
-# 75%
-msgid "Last"
-msgstr "שם משפחה"
+msgid "Addresses"
+msgstr "כתובות"
 
 msgid "Address"
 msgstr "כתובת"
@@ -408,6 +410,9 @@ msgstr "מיקוד "
 
 msgid "Country"
 msgstr "מדינה"
+
+msgid "Professional"
+msgstr ""
 
 msgid "Title"
 msgstr "כותרת"
@@ -3662,9 +3667,6 @@ msgstr ""
 msgid "Photo"
 msgstr "תמונה"
 
-msgid "Addresses"
-msgstr "כתובות"
-
 msgid "Additional information"
 msgstr "מידע נוסף"
 
@@ -3690,8 +3692,15 @@ msgstr "TTY/TDD"
 msgid "Check full name"
 msgstr "בדוק שם מלא"
 
+msgid "First"
+msgstr "שם פרטי"
+
 msgid "Middle"
 msgstr "אמצעי"
+
+# 75%
+msgid "Last"
+msgstr "שם משפחה"
 
 msgid "Show this again when name is incomplete or unclear."
 msgstr "הצג הודעה זו שוב כאשר השם אינו שלם או אינו ברור."

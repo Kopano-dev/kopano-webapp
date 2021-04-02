@@ -367,8 +367,11 @@ msgstr "Adressbuch"
 msgid "User details"
 msgstr "Benutzerdetails"
 
-msgid "First"
-msgstr "Vorname"
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
 
 msgid "Initials"
 msgstr ""
@@ -376,9 +379,9 @@ msgstr ""
 msgid "Display"
 msgstr "Anzeige"
 
-# 75%
-msgid "Last"
-msgstr "Nachname"
+# 77%
+msgid "Addresses"
+msgstr "Adressen"
 
 msgid "Address"
 msgstr "Adresse"
@@ -394,6 +397,9 @@ msgstr "Postleitzahl"
 
 msgid "Country"
 msgstr "Land"
+
+msgid "Professional"
+msgstr ""
 
 msgid "Title"
 msgstr "Titel"
@@ -3661,10 +3667,6 @@ msgstr "Jahrestag"
 msgid "Photo"
 msgstr "Foto"
 
-# 77%
-msgid "Addresses"
-msgstr "Adressen"
-
 msgid "Additional information"
 msgstr "Zusätzliche Informationen"
 
@@ -3693,8 +3695,15 @@ msgstr "Texttelefon"
 msgid "Check full name"
 msgstr "Namen überprüfen"
 
+msgid "First"
+msgstr "Vorname"
+
 msgid "Middle"
 msgstr "Weitere Vornamen"
+
+# 75%
+msgid "Last"
+msgstr "Nachname"
 
 msgid "Show this again when name is incomplete or unclear."
 msgstr "Dies wieder anzeigen, wenn der Name unvollständig oder unklar ist."

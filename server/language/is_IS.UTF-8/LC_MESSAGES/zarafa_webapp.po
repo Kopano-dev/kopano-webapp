@@ -364,8 +364,11 @@ msgstr "Vistfangaskrá"
 msgid "User details"
 msgstr "Nánari notandalýsing"
 
-msgid "First"
-msgstr "Fyrsta"
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
 
 msgid "Initials"
 msgstr ""
@@ -373,8 +376,8 @@ msgstr ""
 msgid "Display"
 msgstr "Sýna"
 
-msgid "Last"
-msgstr "Síðasta"
+msgid "Addresses"
+msgstr "Heimilisföng"
 
 msgid "Address"
 msgstr "Vistfang"
@@ -390,6 +393,9 @@ msgstr "Póstnúmer"
 
 msgid "Country"
 msgstr "Land"
+
+msgid "Professional"
+msgstr ""
 
 msgid "Title"
 msgstr "Titill"
@@ -3447,9 +3453,6 @@ msgstr "Afmæli"
 msgid "Photo"
 msgstr "Mynd"
 
-msgid "Addresses"
-msgstr "Heimilisföng"
-
 msgid "Additional information"
 msgstr "Viðbótarupplýsingar"
 
@@ -3474,8 +3477,14 @@ msgstr "Útstöð"
 msgid "Check full name"
 msgstr "Athuga fullt nafn"
 
+msgid "First"
+msgstr "Fyrsta"
+
 msgid "Middle"
 msgstr "Mið"
+
+msgid "Last"
+msgstr "Síðasta"
 
 msgid "Show this again when name is incomplete or unclear."
 msgstr "Sýna þetta aftur þegar nafn er í ólagi eða óskýrt."

@@ -378,7 +378,10 @@ msgstr "Aadressiraamat"
 msgid "User details"
 msgstr "Kasutaja andmed"
 
-msgid "First"
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
 msgstr ""
 
 msgid "Initials"
@@ -387,8 +390,11 @@ msgstr ""
 msgid "Display"
 msgstr ""
 
-msgid "Last"
-msgstr ""
+# 77%
+# 100%
+#, fuzzy
+msgid "Addresses"
+msgstr "Aadress"
 
 msgid "Address"
 msgstr "Aadress"
@@ -404,6 +410,9 @@ msgstr "Postiindeks"
 
 msgid "Country"
 msgstr "Riik"
+
+msgid "Professional"
+msgstr ""
 
 msgid "Title"
 msgstr "Tiitel"
@@ -3555,12 +3564,6 @@ msgstr ""
 msgid "Photo"
 msgstr ""
 
-# 77%
-# 100%
-#, fuzzy
-msgid "Addresses"
-msgstr "Aadress"
-
 msgid "Additional information"
 msgstr ""
 
@@ -3591,7 +3594,13 @@ msgstr ""
 msgid "Check full name"
 msgstr ""
 
+msgid "First"
+msgstr ""
+
 msgid "Middle"
+msgstr ""
+
+msgid "Last"
 msgstr ""
 
 msgid "Show this again when name is incomplete or unclear."

@@ -376,8 +376,11 @@ msgstr "Rubrica"
 msgid "User details"
 msgstr "Dettagli utente"
 
-msgid "First"
-msgstr "Primo"
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
 
 msgid "Initials"
 msgstr ""
@@ -385,9 +388,9 @@ msgstr ""
 msgid "Display"
 msgstr "Visualizza"
 
-# 75%
-msgid "Last"
-msgstr "Ultimo"
+# 77%
+msgid "Addresses"
+msgstr "Indirizzi"
 
 msgid "Address"
 msgstr "Indirizzo"
@@ -403,6 +406,9 @@ msgstr "CAP"
 
 msgid "Country"
 msgstr "Nazione"
+
+msgid "Professional"
+msgstr ""
 
 msgid "Title"
 msgstr "Titolo"
@@ -3657,10 +3663,6 @@ msgstr "Anniversario"
 msgid "Photo"
 msgstr "Foto"
 
-# 77%
-msgid "Addresses"
-msgstr "Indirizzi"
-
 msgid "Additional information"
 msgstr "Informazioni addizionali"
 
@@ -3688,8 +3690,15 @@ msgstr "TTY/TDD"
 msgid "Check full name"
 msgstr "Verifica nome completo"
 
+msgid "First"
+msgstr "Primo"
+
 msgid "Middle"
 msgstr "Altri nomi"
+
+# 75%
+msgid "Last"
+msgstr "Ultimo"
 
 msgid "Show this again when name is incomplete or unclear."
 msgstr "Mostra di nuovo se il nome è incompleto o poco chiaro."

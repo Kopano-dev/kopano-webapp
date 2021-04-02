@@ -371,8 +371,11 @@ msgstr "Osoitekirja"
 msgid "User details"
 msgstr "Käyttäjätiedot"
 
-msgid "First"
-msgstr "Ensimmäinen"
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
 
 msgid "Initials"
 msgstr ""
@@ -380,9 +383,8 @@ msgstr ""
 msgid "Display"
 msgstr "Näytä"
 
-# 75%
-msgid "Last"
-msgstr "Viimeinen"
+msgid "Addresses"
+msgstr "Osoitteet"
 
 msgid "Address"
 msgstr "Osoite"
@@ -398,6 +400,9 @@ msgstr "Postinumero"
 
 msgid "Country"
 msgstr "Maa"
+
+msgid "Professional"
+msgstr ""
 
 msgid "Title"
 msgstr "Titteli"
@@ -3666,9 +3671,6 @@ msgstr "Vuosipäivä"
 msgid "Photo"
 msgstr "Valokuva"
 
-msgid "Addresses"
-msgstr "Osoitteet"
-
 msgid "Additional information"
 msgstr "Lisätiedot"
 
@@ -3694,8 +3696,15 @@ msgstr "Tekstipuhelin (TTY/TDD)"
 msgid "Check full name"
 msgstr "Tarkista koko nimi"
 
+msgid "First"
+msgstr "Ensimmäinen"
+
 msgid "Middle"
 msgstr "Keskimmäinen"
+
+# 75%
+msgid "Last"
+msgstr "Viimeinen"
 
 msgid "Show this again when name is incomplete or unclear."
 msgstr "Näytä tämä uudelleen, kun nimi on puutteellinen tai epäselvä."

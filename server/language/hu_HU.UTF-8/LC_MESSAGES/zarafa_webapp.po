@@ -380,8 +380,11 @@ msgstr "Címjegyzék"
 msgid "User details"
 msgstr "Felhasználói adatlap"
 
-msgid "First"
-msgstr "Keresztnév"
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
 
 msgid "Initials"
 msgstr ""
@@ -389,9 +392,8 @@ msgstr ""
 msgid "Display"
 msgstr "Megjelenő"
 
-# 75%
-msgid "Last"
-msgstr "Vezetéknév"
+msgid "Addresses"
+msgstr "Címek"
 
 msgid "Address"
 msgstr "Cím"
@@ -407,6 +409,9 @@ msgstr "Irányítószám"
 
 msgid "Country"
 msgstr "Ország"
+
+msgid "Professional"
+msgstr ""
 
 msgid "Title"
 msgstr "Titulus"
@@ -3682,9 +3687,6 @@ msgstr "Évforduló"
 msgid "Photo"
 msgstr "Fotó"
 
-msgid "Addresses"
-msgstr "Címek"
-
 msgid "Additional information"
 msgstr "Kiegészítő információk"
 
@@ -3710,8 +3712,15 @@ msgstr "TTY/TDD"
 msgid "Check full name"
 msgstr "Ellenőrizze a teljes nevet"
 
+msgid "First"
+msgstr "Keresztnév"
+
 msgid "Middle"
 msgstr "Középső"
+
+# 75%
+msgid "Last"
+msgstr "Vezetéknév"
 
 msgid "Show this again when name is incomplete or unclear."
 msgstr "Jelenítse meg újra, amennyiben a név nem teljes, vagy nem tiszta."
