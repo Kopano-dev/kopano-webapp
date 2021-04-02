@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Kopano Webapp Dutch\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-25 14:32+0200\n"
-"PO-Revision-Date: 2020-10-13 12:22+0000\n"
+"PO-Revision-Date: 2021-04-02 10:57+0000\n"
 "Last-Translator: martijn <m.alberts@zarafa.com>\n"
 "Language-Team: Dutch <http://translate.kopano.io/projects/kopano/kopano-"
 "webapp/nl/>\n"
@@ -381,13 +381,13 @@ msgid "User details"
 msgstr "Gebruikersdetails"
 
 msgid "First name"
-msgstr ""
+msgstr "Voornaam"
 
 msgid "Last name"
-msgstr ""
+msgstr "Achternaam"
 
 msgid "Initials"
-msgstr ""
+msgstr "Initialen"
 
 msgid "Display"
 msgstr "Tonen als"
@@ -412,7 +412,7 @@ msgid "Country"
 msgstr "Land"
 
 msgid "Professional"
-msgstr ""
+msgstr "Professioneel"
 
 msgid "Title"
 msgstr "Titel"
@@ -880,24 +880,25 @@ msgstr "Elke {0} {1} met ingang van {2}."
 msgid "Occurs every {0} effective {1} for {2} occurrence from {3} to {4}."
 msgid_plural ""
 "Occurs every {0} effective {1} for {2} occurrences from {3} to {4}."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Elke {0} met ingang van {1} voor {2} gebeurtenis van {3} tot {4}."
+msgstr[1] "Elke {0} met ingang van {1} voor {2} gebeurtenissen van {3} tot {4}."
 
 msgid "Occurs every {0} {1} effective {2} for {3} occurrence from {4} to {5}."
 msgid_plural ""
 "Occurs every {0} {1} effective {2} for {3} occurrences {4} to {5}."
-msgstr[0] ""
+msgstr[0] "Elke {0} {1} met ingang van {2} voor {3} gebeurtenis van {4} tot {5}."
 msgstr[1] ""
+"Elke {0} {1} met ingang van {2} voor {3} gebeurtenissen van {4} tot {5}."
 
 msgid "Occurs every {0} effective {1} for {2} occurrence."
 msgid_plural "Occurs every {0} effective {1} for {2} occurrences."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Elke {0} met ingang van {1} voor {2} gebeurtenis."
+msgstr[1] "Elke {0} met ingang van {1} voor {2} gebeurtenissen."
 
 msgid "Occurs every {0} {1} effective {2} for {3} occurrence."
 msgid_plural "Occurs every {0} {1} effective {2} for {3} occurrences."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Elke {0} {1} met ingang van {2} voor {3} gebeurtenis."
+msgstr[1] "Elke {0} {1} met ingang van {2} voor {3} gebeurtenissen."
 
 msgid "Occurs every {0} effective {1} until {2} from {3} to {4}."
 msgstr "Elke {0} met ingang van {1} tot en met {2}, van {3} tot {4}."
@@ -917,7 +918,7 @@ msgstr "Op"
 
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "l jS F Y {0}"
-msgstr ""
+msgstr "l j F Y {0}"
 
 msgid "Where"
 msgstr "Locatie"
@@ -952,7 +953,7 @@ msgid "End Date"
 msgstr "Einddatum"
 
 msgid "Sort by: End Date"
-msgstr ""
+msgstr "Sorteren op: einddatum"
 
 msgid "Organizer"
 msgstr "Organisator"
@@ -1246,7 +1247,7 @@ msgstr "Wilt u de locatie \"{0}\" bijwerken met de nieuwe locatie \"{1}\"?"
 
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "jS F Y {0}"
-msgstr ""
+msgstr "j F Y {0}"
 
 # 75%
 msgid "None"
@@ -1416,7 +1417,7 @@ msgid "Paste selected item"
 msgstr "Plak geselecteerd item"
 
 msgid "An overview of"
-msgstr ""
+msgstr "Een overzicht van"
 
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "Start"
@@ -1429,25 +1430,25 @@ msgstr "Einde"
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
 msgid "Printed by"
-msgstr ""
+msgstr "Geprint door"
 
 msgid "at"
-msgstr ""
+msgstr "op"
 
 msgid "of"
-msgstr ""
+msgstr "van"
 
 msgid "Location: "
 msgstr "Locatie: "
 
 msgid "j M {0}"
-msgstr ""
+msgstr "j M {0}"
 
 msgid "l jS M Y {0}"
-msgstr ""
+msgstr "l j M Y {0}"
 
 msgid "All day: "
-msgstr ""
+msgstr "Gehele dag: "
 
 # 87%
 # 75%
@@ -1676,16 +1677,16 @@ msgid "Sort by: Resources"
 msgstr "Sorteer op: Resources"
 
 msgid "Recurring Start Date"
-msgstr ""
+msgstr "Terugkerende startdatum"
 
 msgid "Sort by: Recurring Start Date"
-msgstr ""
+msgstr "Sorteren op: terugkerende startdatum"
 
 msgid "Recurring End Date"
-msgstr ""
+msgstr "Terugkerende einddatum"
 
 msgid "Sort by: Recurring End Date"
-msgstr ""
+msgstr "Sorteren op: terugkerende einddatum"
 
 msgid "Recurring Pattern"
 msgstr "Terugkeerpatroon"
@@ -1706,14 +1707,14 @@ msgid "Loading appointments"
 msgstr "Afspraken laden"
 
 msgid "Attendees"
-msgstr ""
+msgstr "Aanwezigen"
 
 msgid "Optional attendees"
-msgstr ""
+msgstr "Optionele aanwezigen"
 
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "jS F {0}"
-msgstr ""
+msgstr "j F {0}"
 
 # 83%
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
@@ -1840,7 +1841,7 @@ msgid "{0} - {1}"
 msgstr "{0} - {1}"
 
 msgid "d/m/y {0}"
-msgstr ""
+msgstr "d/m/y {0}"
 
 msgid "{0} - {1} (all day)"
 msgstr "{0} - {1} (gehele dag)"
@@ -2000,7 +2001,7 @@ msgid "Insufficient permissions"
 msgstr "Onvoldoende rechten"
 
 msgid "You have insufficient privileges to delete items in this folder."
-msgstr ""
+msgstr "U heeft onvoldoende rechten om iets te verwijderen in deze folder."
 
 msgid "Notify recipients"
 msgstr "Stel genodigden op de hoogte"
