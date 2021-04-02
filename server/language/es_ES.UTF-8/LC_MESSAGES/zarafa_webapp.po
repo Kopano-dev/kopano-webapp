@@ -372,8 +372,11 @@ msgstr "Libreta de direcciones"
 msgid "User details"
 msgstr "Detalles de usuario"
 
-msgid "First"
-msgstr "Primero"
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
 
 msgid "Initials"
 msgstr ""
@@ -381,9 +384,9 @@ msgstr ""
 msgid "Display"
 msgstr "Mostrar"
 
-# 75%
-msgid "Last"
-msgstr "Último"
+# 77%
+msgid "Addresses"
+msgstr "Dirección"
 
 msgid "Address"
 msgstr "Dirección"
@@ -399,6 +402,9 @@ msgstr "Código Postal"
 
 msgid "Country"
 msgstr "País"
+
+msgid "Professional"
+msgstr ""
 
 msgid "Title"
 msgstr "Título"
@@ -3714,10 +3720,6 @@ msgstr "Aniversario"
 msgid "Photo"
 msgstr "Foto"
 
-# 77%
-msgid "Addresses"
-msgstr "Dirección"
-
 msgid "Additional information"
 msgstr "Información adicional"
 
@@ -3745,8 +3747,15 @@ msgstr "TTY/TDD"
 msgid "Check full name"
 msgstr "Comprobar nombre completo"
 
+msgid "First"
+msgstr "Primero"
+
 msgid "Middle"
 msgstr "Medio"
+
+# 75%
+msgid "Last"
+msgstr "Último"
 
 # 88%
 #, fuzzy

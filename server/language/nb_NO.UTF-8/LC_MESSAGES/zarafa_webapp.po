@@ -370,8 +370,11 @@ msgstr "Adressebok"
 msgid "User details"
 msgstr "Brukerdetaljer"
 
-msgid "First"
-msgstr "Fornavn"
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
 
 msgid "Initials"
 msgstr ""
@@ -379,8 +382,8 @@ msgstr ""
 msgid "Display"
 msgstr "Visning"
 
-msgid "Last"
-msgstr "Etternavn"
+msgid "Addresses"
+msgstr "Adresser"
 
 msgid "Address"
 msgstr "Adresse"
@@ -396,6 +399,9 @@ msgstr "Postnummer"
 
 msgid "Country"
 msgstr "Land"
+
+msgid "Professional"
+msgstr ""
 
 msgid "Title"
 msgstr "Tittel"
@@ -3558,9 +3564,6 @@ msgstr "Merkedag"
 msgid "Photo"
 msgstr "Foto"
 
-msgid "Addresses"
-msgstr "Adresser"
-
 msgid "Additional information"
 msgstr "Ytterligere informasjon"
 
@@ -3586,8 +3589,14 @@ msgstr "TTY/TDD"
 msgid "Check full name"
 msgstr "Kontroller fullt navn"
 
+msgid "First"
+msgstr "Fornavn"
+
 msgid "Middle"
 msgstr "Mellomnavn"
+
+msgid "Last"
+msgstr "Etternavn"
 
 msgid "Show this again when name is incomplete or unclear."
 msgstr "Vis denne dialogen når navnet er ufullstendig eller uklart."

@@ -368,8 +368,11 @@ msgstr "Livro de Endereços"
 msgid "User details"
 msgstr "Detalhes do utilizador"
 
-msgid "First"
-msgstr "Primeiro"
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
 
 msgid "Initials"
 msgstr "Iniciais"
@@ -377,8 +380,8 @@ msgstr "Iniciais"
 msgid "Display"
 msgstr "Mostrar"
 
-msgid "Last"
-msgstr "Sobrenome"
+msgid "Addresses"
+msgstr "Moradas"
 
 msgid "Address"
 msgstr "Morada"
@@ -394,6 +397,9 @@ msgstr "Código Postal"
 
 msgid "Country"
 msgstr "País"
+
+msgid "Professional"
+msgstr ""
 
 msgid "Title"
 msgstr "Título"
@@ -3451,9 +3457,6 @@ msgstr "Aniversário"
 msgid "Photo"
 msgstr "Fotografia"
 
-msgid "Addresses"
-msgstr "Moradas"
-
 msgid "Additional information"
 msgstr "Informação adicional"
 
@@ -3478,8 +3481,14 @@ msgstr "TTY/TDD"
 msgid "Check full name"
 msgstr "Verificar nome completo"
 
+msgid "First"
+msgstr "Primeiro"
+
 msgid "Middle"
 msgstr "Segundo nome"
+
+msgid "Last"
+msgstr "Sobrenome"
 
 msgid "Show this again when name is incomplete or unclear."
 msgstr "Mostar outra vez quando o nome estiver incompleto ou for ilegível."

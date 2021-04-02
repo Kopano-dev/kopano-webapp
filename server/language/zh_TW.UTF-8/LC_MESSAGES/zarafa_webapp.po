@@ -361,8 +361,11 @@ msgstr "通訊錄"
 msgid "User details"
 msgstr "使用者詳細"
 
-msgid "First"
-msgstr "第一"
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
 
 msgid "Initials"
 msgstr ""
@@ -370,8 +373,8 @@ msgstr ""
 msgid "Display"
 msgstr "顯示"
 
-msgid "Last"
-msgstr "最後"
+msgid "Addresses"
+msgstr "地址"
 
 msgid "Address"
 msgstr "地址"
@@ -387,6 +390,9 @@ msgstr "郵遞區號"
 
 msgid "Country"
 msgstr "國家"
+
+msgid "Professional"
+msgstr ""
 
 msgid "Title"
 msgstr "職稱"
@@ -3575,9 +3581,6 @@ msgstr "紀念日"
 msgid "Photo"
 msgstr "相片"
 
-msgid "Addresses"
-msgstr "地址"
-
 msgid "Additional information"
 msgstr "額外資訊"
 
@@ -3602,8 +3605,14 @@ msgstr "TTY/TDD"
 msgid "Check full name"
 msgstr "檢查全名"
 
+msgid "First"
+msgstr "第一"
+
 msgid "Middle"
 msgstr "中間"
+
+msgid "Last"
+msgstr "最後"
 
 msgid "Show this again when name is incomplete or unclear."
 msgstr "當名稱不完整或不清楚時再次顯示"

@@ -406,8 +406,11 @@ msgstr "دفتر العنواين"
 msgid "User details"
 msgstr "تفاصيل المستخدم"
 
-msgid "First"
-msgstr "الاول"
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
 
 msgid "Initials"
 msgstr ""
@@ -415,8 +418,8 @@ msgstr ""
 msgid "Display"
 msgstr "الظاهر"
 
-msgid "Last"
-msgstr "الاخير"
+msgid "Addresses"
+msgstr ""
 
 msgid "Address"
 msgstr "العناوين"
@@ -432,6 +435,9 @@ msgstr "الرقم البريدي"
 
 msgid "Country"
 msgstr "البلد"
+
+msgid "Professional"
+msgstr ""
 
 msgid "Title"
 msgstr "اللقب"
@@ -3458,9 +3464,6 @@ msgstr ""
 msgid "Photo"
 msgstr ""
 
-msgid "Addresses"
-msgstr ""
-
 msgid "Additional information"
 msgstr ""
 
@@ -3485,8 +3488,14 @@ msgstr ""
 msgid "Check full name"
 msgstr ""
 
+msgid "First"
+msgstr "الاول"
+
 msgid "Middle"
 msgstr ""
+
+msgid "Last"
+msgstr "الاخير"
 
 msgid "Show this again when name is incomplete or unclear."
 msgstr ""

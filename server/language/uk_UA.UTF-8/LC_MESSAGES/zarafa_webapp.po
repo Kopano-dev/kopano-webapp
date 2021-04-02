@@ -377,7 +377,10 @@ msgstr ""
 msgid "User details"
 msgstr ""
 
-msgid "First"
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
 msgstr ""
 
 msgid "Initials"
@@ -386,7 +389,7 @@ msgstr ""
 msgid "Display"
 msgstr ""
 
-msgid "Last"
+msgid "Addresses"
 msgstr ""
 
 msgid "Address"
@@ -402,6 +405,9 @@ msgid "Zip Code"
 msgstr ""
 
 msgid "Country"
+msgstr ""
+
+msgid "Professional"
 msgstr ""
 
 msgid "Title"
@@ -3413,9 +3419,6 @@ msgstr ""
 msgid "Photo"
 msgstr ""
 
-msgid "Addresses"
-msgstr ""
-
 msgid "Additional information"
 msgstr ""
 
@@ -3440,7 +3443,13 @@ msgstr ""
 msgid "Check full name"
 msgstr ""
 
+msgid "First"
+msgstr ""
+
 msgid "Middle"
+msgstr ""
+
+msgid "Last"
 msgstr ""
 
 msgid "Show this again when name is incomplete or unclear."

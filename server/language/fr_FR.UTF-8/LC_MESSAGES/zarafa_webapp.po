@@ -372,8 +372,11 @@ msgstr "Carnet d'adresses"
 msgid "User details"
 msgstr "Données détaillés de l'utilisateur"
 
-msgid "First"
-msgstr "Premier"
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
 
 msgid "Initials"
 msgstr ""
@@ -381,8 +384,8 @@ msgstr ""
 msgid "Display"
 msgstr "1. Affichage (n) 2. Afficher (v)"
 
-msgid "Last"
-msgstr "Nom"
+msgid "Addresses"
+msgstr "Adresses"
 
 msgid "Address"
 msgstr "Adresse"
@@ -398,6 +401,9 @@ msgstr "Code postal"
 
 msgid "Country"
 msgstr "Pays"
+
+msgid "Professional"
+msgstr ""
 
 msgid "Title"
 msgstr "Titre"
@@ -3658,9 +3664,6 @@ msgstr "Anniversaire"
 msgid "Photo"
 msgstr "Photo"
 
-msgid "Addresses"
-msgstr "Adresses"
-
 msgid "Additional information"
 msgstr "Informations complémentaires"
 
@@ -3685,8 +3688,14 @@ msgstr "TTY/TDD"
 msgid "Check full name"
 msgstr "Vérifier le nom et prénom"
 
+msgid "First"
+msgstr "Premier"
+
 msgid "Middle"
 msgstr "Second prénom"
+
+msgid "Last"
+msgstr "Nom"
 
 msgid "Show this again when name is incomplete or unclear."
 msgstr "Montrer de nouveau si le nom est incomplet ou indistinct."

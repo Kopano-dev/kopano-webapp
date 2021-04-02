@@ -381,8 +381,11 @@ msgstr "Адресная книга"
 msgid "User details"
 msgstr "Информация о пользователе"
 
-msgid "First"
-msgstr "Имя"
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
 
 msgid "Initials"
 msgstr ""
@@ -390,8 +393,8 @@ msgstr ""
 msgid "Display"
 msgstr "Отображать как"
 
-msgid "Last"
-msgstr "Фамилия"
+msgid "Addresses"
+msgstr "Адреса"
 
 msgid "Address"
 msgstr "Адрес"
@@ -407,6 +410,9 @@ msgstr "Индекс"
 
 msgid "Country"
 msgstr "Страна"
+
+msgid "Professional"
+msgstr ""
 
 msgid "Title"
 msgstr "Должность"
@@ -3633,9 +3639,6 @@ msgstr "Годовщина"
 msgid "Photo"
 msgstr "Фото"
 
-msgid "Addresses"
-msgstr "Адреса"
-
 msgid "Additional information"
 msgstr "Доп. информация"
 
@@ -3660,8 +3663,14 @@ msgstr "TTY/TDD"
 msgid "Check full name"
 msgstr "Проверить полное имя"
 
+msgid "First"
+msgstr "Имя"
+
 msgid "Middle"
 msgstr "Среднее"
+
+msgid "Last"
+msgstr "Фамилия"
 
 msgid "Show this again when name is incomplete or unclear."
 msgstr "Показать снова, когда имя будет неполным или неясным."
