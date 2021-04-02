@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Kopano Webapp German (Germany)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-25 14:32+0200\n"
-"PO-Revision-Date: 2021-04-02 11:42+0000\n"
-"Last-Translator: Mathias <m.kuemmerle@kopano.com>\n"
+"PO-Revision-Date: 2021-04-02 13:25+0000\n"
+"Last-Translator: Felix <f.bartels@kopano.com>\n"
 "Language-Team: German <http://translate.kopano.io/projects/kopano/kopano-"
 "webapp/de/>\n"
 "Language: de_DE\n"
@@ -402,8 +402,9 @@ msgstr "Postleitzahl"
 msgid "Country"
 msgstr "Land"
 
+#, fuzzy
 msgid "Professional"
-msgstr ""
+msgstr "Professionell"
 
 msgid "Title"
 msgstr "Titel"
@@ -867,23 +868,31 @@ msgid "Occurs every {0} effective {1} for {2} occurrence from {3} to {4}."
 msgid_plural ""
 "Occurs every {0} effective {1} for {2} occurrences from {3} to {4}."
 msgstr[0] ""
+"Findet jeden {0} statt, beginnend am {1} von {2} Wiederholung von {3} bis "
+"{4}."
 msgstr[1] ""
+"Findet jeden {0} statt, beginnend am {1} von {2} Wiederholung von {3} bis "
+"{4}."
 
 msgid "Occurs every {0} {1} effective {2} for {3} occurrence from {4} to {5}."
 msgid_plural ""
 "Occurs every {0} {1} effective {2} for {3} occurrences {4} to {5}."
 msgstr[0] ""
+"Findet jeden {0} {1} statt, beginnend am {2} von {3} Wiederholung von {4} "
+"bis {5}."
 msgstr[1] ""
+"Findet jeden {0} {1} statt, beginnend am {2} von {3} Wiederholung von {4} "
+"bis {5}."
 
 msgid "Occurs every {0} effective {1} for {2} occurrence."
 msgid_plural "Occurs every {0} effective {1} for {2} occurrences."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Findet jeden {0} statt, beginnend am {1} für {2} Wiederholungen."
+msgstr[1] "Findet jeden {0} statt, beginnend am {1} für {2} Wiederholungen."
 
 msgid "Occurs every {0} {1} effective {2} for {3} occurrence."
 msgid_plural "Occurs every {0} {1} effective {2} for {3} occurrences."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Findet jeden {0} {1} statt, beginnend am {2} für {3} Wiederholungen."
+msgstr[1] "Findet jeden {0} {1} statt, beginnend am {2} für {3} Wiederholungen."
 
 msgid "Occurs every {0} effective {1} until {2} from {3} to {4}."
 msgstr "Findet jeden {0} statt, beginnend am {1} bis {2} von {3} bis {4}."
@@ -936,7 +945,7 @@ msgid "End Date"
 msgstr "Enddatum"
 
 msgid "Sort by: End Date"
-msgstr ""
+msgstr "Sortieren nach: Enddatum"
 
 msgid "Organizer"
 msgstr "Organisator"
@@ -1398,8 +1407,9 @@ msgstr "Selektion kopieren"
 msgid "Paste selected item"
 msgstr "Selektion einfügen"
 
+#, fuzzy
 msgid "An overview of"
-msgstr ""
+msgstr "Eine Übersicht von"
 
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "Start"
@@ -1412,25 +1422,30 @@ msgstr "Ende"
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
 msgid "Printed by"
-msgstr ""
+msgstr "Gedruckt von"
 
+#, fuzzy
 msgid "at"
-msgstr ""
+msgstr "bei"
 
+#, fuzzy
 msgid "of"
-msgstr ""
+msgstr "von"
 
 msgid "Location: "
 msgstr "Ort: "
 
+#, fuzzy
 msgid "j M {0}"
-msgstr ""
+msgstr "j M {0}"
 
+#, fuzzy
 msgid "l jS M Y {0}"
-msgstr ""
+msgstr "l jS M Y {0}"
 
+#, fuzzy
 msgid "All day: "
-msgstr ""
+msgstr "Ganztägig: "
 
 # small L, not capital i
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
@@ -1656,16 +1671,16 @@ msgid "Sort by: Resources"
 msgstr "Sortieren nach: Ressourcen"
 
 msgid "Recurring Start Date"
-msgstr ""
+msgstr "Start der Wiederholung"
 
 msgid "Sort by: Recurring Start Date"
-msgstr ""
+msgstr "Sortieren nach: Start der Wiederholung"
 
 msgid "Recurring End Date"
-msgstr ""
+msgstr "Enddatum der Wiederholung"
 
 msgid "Sort by: Recurring End Date"
-msgstr ""
+msgstr "Sortieren nach: Enddatum der Wiederholung"
 
 msgid "Recurring Pattern"
 msgstr "Serienmuster"
@@ -1684,10 +1699,10 @@ msgid "Loading appointments"
 msgstr "Termine werden geladen"
 
 msgid "Attendees"
-msgstr ""
+msgstr "Teilnehmer"
 
 msgid "Optional attendees"
-msgstr ""
+msgstr "Optionale Teilnehmer"
 
 #. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "jS F {0}"
@@ -1981,6 +1996,7 @@ msgstr "Nicht genügend Berechtigungen"
 
 msgid "You have insufficient privileges to delete items in this folder."
 msgstr ""
+"Sie haben keine ausreichenden Berechtigungen zum Löschen in diesem Ordner."
 
 msgid "Notify recipients"
 msgstr "Empfänger benachrichtigen"
@@ -2175,6 +2191,8 @@ msgid ""
 "Are you sure you want to delete the category \"{0}\"? Other items keep this "
 "category, but lose the assigned color."
 msgstr ""
+"Wollen Sie die Kategorie \"{0}\" wirklich löschen? Andere Elemente behalten "
+"die Kategorie, aber verlieren die festgelegte Farbe."
 
 msgid "Rename Category"
 msgstr "Kategorie umbenennen"
@@ -2577,7 +2595,7 @@ msgid "WebApp Manual"
 msgstr "WebApp-Handbuch"
 
 msgid "Item data"
-msgstr ""
+msgstr "Daten des Elements"
 
 msgid "INSERT"
 msgstr "INSERT"
@@ -2622,7 +2640,7 @@ msgid "Delete recipient from suggestion list"
 msgstr "Empfänger von der Liste mit Empfehlungen löschen"
 
 msgid "Copy all email addresses"
-msgstr ""
+msgstr "Alle E-Mail Adresse kopieren"
 
 msgid "View recipient"
 msgstr "Empfänger anzeigen"
@@ -3096,16 +3114,17 @@ msgid "Loading from addresses"
 msgstr "Lade Absenderadressen"
 
 msgid "Forward Mail"
-msgstr ""
+msgstr "E-Mail weiterleiten"
 
 msgid "Please select a from address record."
 msgstr "Bitte wählen Sie eine Absenderadresse."
 
 msgid "Add/Edit From recipient"
-msgstr ""
+msgstr "Empfänger hinzufügen/bearbeiten"
 
+#, fuzzy
 msgid "Manage the recipients used in the 'From' field"
-msgstr ""
+msgstr "Adressen für das \"Von\" Feld verwalten"
 
 msgid "View"
 msgstr "Ansicht"
@@ -3788,18 +3807,20 @@ msgstr "Lade Kontakte"
 msgid ""
 "There are no items to show in this list. Update the filter for more results."
 msgstr ""
+"In dieser Liste gibt es keine Elemente zum Anzeigen. Aktualisieren Sie den "
+"Filter für mehr Ergebnisse."
 
 msgid "[Group]"
-msgstr ""
+msgstr "[Gruppe]"
 
 msgid "Work:"
-msgstr ""
+msgstr "Arbeit:"
 
 msgid "Primary:"
-msgstr ""
+msgstr "Primär:"
 
 msgid "Mobile:"
-msgstr ""
+msgstr "Mobil:"
 
 msgid "Sort by: Full Name"
 msgstr "Sortieren nach: Vollständiger Name"
@@ -4255,7 +4276,7 @@ msgid "Expand widget"
 msgstr "Widget erweitern"
 
 msgid "About this widget"
-msgstr ""
+msgstr "Über dieses Widget"
 
 msgid "Add new widget"
 msgstr "Widgets hinzufügen"
@@ -4587,7 +4608,7 @@ msgid "Are you sure you want to empty {0}?"
 msgstr "Sind Sie sicher, dass {0} geleert werden soll?"
 
 msgid "Show All"
-msgstr ""
+msgstr "Alle Anzeigen"
 
 # 75%
 msgid "Show all folders"
@@ -4597,6 +4618,8 @@ msgid ""
 "You have insufficient privileges to move this folder. Would you like to copy "
 "instead?"
 msgstr ""
+"Sie haben nicht genügend Berechtigungen zum verschieben dieses Ordners. "
+"Wollen Sie ihn stattdessen kopieren?"
 
 msgid "CC"
 msgstr "CC"
