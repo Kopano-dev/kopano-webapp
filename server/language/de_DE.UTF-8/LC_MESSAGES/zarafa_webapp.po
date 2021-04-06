@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Kopano Webapp German (Germany)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-25 14:32+0200\n"
-"PO-Revision-Date: 2021-04-02 13:45+0000\n"
-"Last-Translator: Felix <f.bartels@kopano.com>\n"
+"PO-Revision-Date: 2021-04-06 15:25+0000\n"
+"Last-Translator: Mathias <m.kuemmerle@kopano.com>\n"
 "Language-Team: German <http://translate.kopano.io/projects/kopano/kopano-"
 "webapp/de/>\n"
 "Language: de_DE\n"
@@ -402,7 +402,6 @@ msgstr "Postleitzahl"
 msgid "Country"
 msgstr "Land"
 
-#, fuzzy
 msgid "Professional"
 msgstr "Professionell"
 
@@ -1407,7 +1406,6 @@ msgstr "Selektion kopieren"
 msgid "Paste selected item"
 msgstr "Selektion einfügen"
 
-#, fuzzy
 msgid "An overview of"
 msgstr "Eine Übersicht von"
 
@@ -1424,26 +1422,21 @@ msgstr "Ende"
 msgid "Printed by"
 msgstr "Gedruckt von"
 
-#, fuzzy
 msgid "at"
 msgstr "bei"
 
-#, fuzzy
 msgid "of"
 msgstr "von"
 
 msgid "Location: "
 msgstr "Ort: "
 
-#, fuzzy
 msgid "j M {0}"
 msgstr "j M {0}"
 
-#, fuzzy
 msgid "l jS M Y {0}"
 msgstr "l jS M Y {0}"
 
-#, fuzzy
 msgid "All day: "
 msgstr "Ganztägig: "
 
@@ -3122,7 +3115,6 @@ msgstr "Bitte wählen Sie eine Absenderadresse."
 msgid "Add/Edit From recipient"
 msgstr "Empfänger hinzufügen/bearbeiten"
 
-#, fuzzy
 msgid "Manage the recipients used in the 'From' field"
 msgstr "Adressen für das \"Von\" Feld verwalten"
 
@@ -5490,9 +5482,8 @@ msgstr "Antwort jetzt senden"
 msgid "Date Complete"
 msgstr "Datum des Abschlusses"
 
-#, fuzzy
 msgid "Multiple companies name must be separated by"
-msgstr "Mehreren Formen müssen mit dem folgenden Zeichen separiert werden"
+msgstr "Mehreren Firmen müssen mit dem folgenden Zeichen getrennt werden"
 
 msgid "Update List"
 msgstr "Liste aktualisieren"
@@ -6257,19 +6248,24 @@ msgstr[1] ""
 msgid "Occurs every %s %s effective %s for %s occurrence from %s to %s."
 msgid_plural "Occurs every %s %s effective %s for %s occurrences %s to %s."
 msgstr[0] ""
+"Findet jeden %s %s statt, beginnend am %s für %s Wiederholung von %s bis %s."
 msgstr[1] ""
+"Findet jeden %s %s statt, beginnend am %s für %s Wiederholungen von %s bis "
+"%s."
 
 #, php-format
 msgid "Occurs every %s effective %s for %s occurrence."
 msgid_plural "Occurs every %s effective %s for %s occurrences."
 msgstr[0] ""
+"Findet jeden %s statt, beginnend am %s für %s Wiederholung von %s bis %s."
 msgstr[1] ""
+"Findet jeden %s statt, beginnend am %s für %s Wiederholungen von %s bis %s."
 
 #, php-format
 msgid "Occurs every %s %s effective %s for %s occurrence."
 msgid_plural "Occurs every %s %s effective %s for %s occurrences."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Findet jeden %s %s statt, beginnend am %s für %s Wiederholung."
+msgstr[1] "Findet jeden %s %s statt, beginnend am %s für %s Wiederholungen."
 
 # 96%
 # 76%
@@ -6366,6 +6362,10 @@ msgid ""
 "enter the name as a required or optional attendee or talk to your "
 "administrator about giving you permission to schedule '%s'."
 msgstr ""
+"Sie haben %s als Resource markiert. Sie können keine Besprechung mit '%s' "
+"planen, da Sie nicht über die nötigen Berechtigungen verfügen. Bitte fügen "
+"Sie den Teilnehmer als erforderlich oder optional ein oder bitten Sie den "
+"Administrator um ausreichende Berechtigungen für die Terminplanung mit '%s'."
 
 #, php-format
 msgid ""
@@ -6843,7 +6843,7 @@ msgid "Sign in"
 msgstr "Anmelden"
 
 msgid "Caps lock is on"
-msgstr ""
+msgstr "Großstelltaste ist an"
 
 msgid "File is not imported successfully"
 msgstr "Die Datei konnte nicht erfolgreich importiert werden"
