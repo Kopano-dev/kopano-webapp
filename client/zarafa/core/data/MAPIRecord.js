@@ -767,11 +767,19 @@ Zarafa.core.data.MAPIRecord = Ext.extend(Ext.data.Record, {
 					// the "add", "modify" and "delete" changes in the subStore.
 
 					var prop = name === 'attachments' ? 'attach_id' : 'entryid';
+					var isPermissionSubStore = name === 'permissions';
 					// Go over the current store, and start searching for the corresponding
 					// record in the remote store.
 					subStore.each(function(record) {
 						var remoteRecordIndex = remoteSubStore.findBy(function (remoteRecord) {
-							return this.idComparison(record.get(prop), remoteRecord.get(prop));
+							var isRecordEqual = this.idComparison(record.get(prop), remoteRecord.get(prop));
+							// If substore is permissions substore then check both the copy of record 
+							// having same rights if not it means substore has old copy of user permission record 
+							// which needs to remove from substore.
+							if (isPermissionSubStore && isRecordEqual) {
+								return record.get("rights") === remoteRecord.get("rights");
+							}
+							return isRecordEqual;
 						}, this);
 
 						if (remoteRecordIndex < 0) {
