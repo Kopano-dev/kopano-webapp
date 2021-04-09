@@ -198,22 +198,17 @@ Zarafa.mail.dialogs.MailCreateContentPanel = Ext.extend(Zarafa.core.ui.MessageCo
 		 * 2) When record has set delegator in sent_representing_* info.
 		 */
 		if (contentReset) {
+			var delegatorFieldStore = this.mainPanel.fromRecipientField.getBoxStore();
 			if(!record.userIsStoreOwner()) {
 				var delegator = container.getHierarchyStore().getById(record.get('store_entryid'));
 				record.setDelegatorInfo(delegator);
 			}
+			
+			// Get the recipeint for the from field.
+			var delegatorRecord = record.getDefaultFromRecipeint();
 
-			if(record.get('sent_representing_email_address')) {
+			if(Ext.isDefined(delegatorRecord) && delegatorRecord) {
 				hasFrom = true;
-				var delegatorFieldStore = this.mainPanel.fromRecipientField.getBoxStore();
-
-				var delegatorRecord = Zarafa.core.data.RecordFactory.createRecordObjectByCustomType(Zarafa.core.data.RecordCustomObjectType.ZARAFA_RECIPIENT, {
-					display_name: record.get('sent_representing_name'),
-					email_address: record.get('sent_representing_email_address'),
-					address_type: record.get('sent_representing_address_type'),
-					entryid: record.get('sent_representing_entryid')
-				});
-
 				// We need to maintain that in from field there should be only one user,
 				// So remove earlier added user.
 				delegatorFieldStore.removeAll();

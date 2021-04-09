@@ -550,33 +550,80 @@ Zarafa.core.data.MessageRecord = Ext.extend(Zarafa.core.data.IPMRecord, {
 	 * in 'sendas' settings widget.
 	 * @private
 	 */
-	setDefaultFromRecipeint: function()
+	 setDefaultFromRecipeint: function()
+	 {
+		 var actionType = this.getMessageAction('action_type');
+		 var isCreateAction = !this.hasMessageAction('action_type') && this.phantom;
+		 var isReplyAction = actionType === Zarafa.mail.data.ActionTypes.REPLY || actionType === Zarafa.mail.data.ActionTypes.REPLYALL;
+		 var isForwarsAction = actionType === Zarafa.mail.data.ActionTypes.FORWARD;
+ 
+		 // return if mail is not reply, new or forward mail.
+		 if (isCreateAction === false && isReplyAction === false && isForwarsAction === false) {
+			 return;
+		 }
+ 
+		 var settingsModel = container.getSettingsModel();
+		 var defaultFromRecipients = settingsModel.get('zarafa/v1/contexts/mail/sendas', []);
+		 if (!Ext.isEmpty(defaultFromRecipients)) {
+			 for (var i = 0; i < defaultFromRecipients.length; i++) {
+				 var recipient = defaultFromRecipients[i];
+				 if (isCreateAction && recipient['new_mail'] || isReplyAction && recipient['reply_mail'] || isForwarsAction && recipient['forward_mail']) {
+					 this.set('sent_representing_name', recipient['display_name']);
+					 this.set('sent_representing_email_address', recipient['email_address'] || recipient['smtp_address']);
+					 this.set('sent_representing_address_type', recipient['address_type']);
+					 this.set('sent_representing_entryid', recipient['entryid']);
+					 this.set('sent_representing_search_key', recipient['search_key']);
+					 break;
+				 }
+			 }
+		 }
+	 },
+
+	/**
+	 * Function will use 'sendas' data and return the default {@link Zarafa.core.data.IPMRecipientRecord recipient} for the from field.
+	 * If not found then it will create {@link Zarafa.core.data.IPMRecipientRecord recipient} using sent_representing_* properties if available.
+	 * It will return false if no default from recipient has been set.
+	 * 
+	 * @return {Zarafa.core.data.IPMRecipientRecord}
+	 * @private
+	 */
+	getDefaultFromRecipeint: function ()
 	{
-		var actionType = this.getMessageAction('action_type');
-		var isCreateAction = !this.hasMessageAction('action_type') && this.phantom;
-		var isReplyAction = actionType === Zarafa.mail.data.ActionTypes.REPLY || actionType === Zarafa.mail.data.ActionTypes.REPLYALL;
-		var isForwarsAction = actionType === Zarafa.mail.data.ActionTypes.FORWARD;
-
-		// return if mail is not reply, new or forward mail.
-		if (isCreateAction === false && isReplyAction === false && isForwarsAction === false) {
-			return;
-		}
-
 		var settingsModel = container.getSettingsModel();
 		var defaultFromRecipients = settingsModel.get('zarafa/v1/contexts/mail/sendas', []);
-		if (!Ext.isEmpty(defaultFromRecipients)) {
-			for (var i = 0; i < defaultFromRecipients.length; i++) {
-				var recipient = defaultFromRecipients[i];
-				if (isCreateAction && recipient['new_mail'] || isReplyAction && recipient['reply_mail'] || isForwarsAction && recipient['forward_mail']) {
-					this.set('sent_representing_name', recipient['display_name']);
-					this.set('sent_representing_email_address', recipient['email_address'] || recipient['smtp_address']);
-					this.set('sent_representing_address_type', recipient['address_type']);
-					this.set('sent_representing_entryid', recipient['entryid']);
-					this.set('sent_representing_search_key', recipient['search_key']);
-					break;
-				}
-			}
+		
+		if (Ext.isEmpty(this.get('sent_representing_email_address'))) {
+			return false;
 		}
+
+		// Default config to create recipient record.
+		var recipeintConfig = {
+			display_name: this.get('sent_representing_name'),
+			email_address: this.get('sent_representing_email_address'),
+			address_type: this.get('sent_representing_address_type'),
+			entryid: this.get('sent_representing_entryid')
+		};
+		
+		// Check whether the sent_representing_* properties had been set by 'from addresses' functionality.
+		// If so then get that recipient details from the 'sendas' settings and create config object accordingly.
+		var recipient = defaultFromRecipients.find(function (recipient) {
+			var sentRepresentingEmail = this.get('sent_representing_email_address');
+			return sentRepresentingEmail === recipient['email_address'] || sentRepresentingEmail === recipient['smtp_address'];
+		}, this);
+
+		if (Ext.isDefined(recipient)) {
+			Ext.apply(recipeintConfig, {
+				display_name: recipient['display_name'],
+				email_address: recipient['email_address'] || recipient['smtp_address'],
+				address_type: recipient['address_type'],
+				entryid: recipient['entryid'],
+				object_type: recipient['object_type'],
+				display_type: recipient['display_type'],
+				display_type_ex: recipient['display_type_ex']
+			});
+		}
+
+		return Zarafa.core.data.RecordFactory.createRecordObjectByCustomType(Zarafa.core.data.RecordCustomObjectType.ZARAFA_RECIPIENT, recipeintConfig);
 	},
 
 	/**
