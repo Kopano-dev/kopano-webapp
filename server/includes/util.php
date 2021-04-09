@@ -496,14 +496,9 @@
 
 			$rows = mapi_table_queryallrows($attachTable, Array(PR_ATTACH_MIME_TAG, PR_ATTACH_NUM, PR_ATTACH_LONG_FILENAME));
 			$attnum = false;
-			$smimeAttach = false;
 			foreach($rows as $row) {
 				if(isset($row[PR_ATTACH_MIME_TAG]) && in_array($row[PR_ATTACH_MIME_TAG],array('application/x-pkcs7-mime','application/pkcs7-mime')) ) {
 					$attnum = $row[PR_ATTACH_NUM];
-				}
-
-				if (isset($row[PR_ATTACH_LONG_FILENAME]) && $row[PR_ATTACH_LONG_FILENAME] === 'smime.p7m') {
-					$smimeAttach = $row[PR_ATTACH_NUM];
 				}
 			}
 
@@ -521,8 +516,6 @@
 
 				if (isSmimePluginEnabled()) {
 					mapi_message_deleteattach($message, $attnum);
-				} else if($smimeAttach !== false) {
-					mapi_message_deleteattach($message, $smimeAttach);
 				}
 			}
 		}
