@@ -65,6 +65,7 @@ Zarafa.hierarchy.ui.HierarchyTreePanel = Ext.extend(Zarafa.hierarchy.ui.Tree, {
 			minHeight: 100,
 			stateful: true,
 			statefulName: 'hierarchytree',
+			ref: '../hierarchytree',
 			tbar: [{
 				xtype: 'checkbox',
 				cls: 'zarafa-hierarchy-treepanel-showallfolders',

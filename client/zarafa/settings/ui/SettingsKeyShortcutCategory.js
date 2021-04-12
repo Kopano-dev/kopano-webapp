@@ -183,6 +183,8 @@ Zarafa.settings.ui.SettingsKeyShortcutCategory = Ext.extend(Zarafa.settings.ui.S
 			} else {
 				if (key === Ext.EventObject.F5) {
 					keyCombination.push('F5');
+				} else if (key === Ext.EventObject.F2) {
+					keyCombination.push('F2');
 				} else if (key === Ext.EventObject.LEFT) {
 					keyCombination.push('LEFT ARROW');
 				} else if (key === Ext.EventObject.RIGHT) {

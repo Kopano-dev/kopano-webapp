@@ -40,9 +40,60 @@ Zarafa.hierarchy.KeyMapping = Ext.extend(Object, {
 				description: _('Open shared folder/store'),
 				category: _('Basic navigation')
 			}
+		},{
+			key: Ext.EventObject.F2,
+			ctrl: false,
+			alt: false,
+			shift: false,
+			stopEvent: true,
+			handler: this.onRenameFolder,
+			scope: this,
+			settingsCfg: {
+				description: _('Rename folder'),
+				category: _('All views')
+			},
+			basic: true
 		}];
 
 		Zarafa.core.KeyMapMgr.register('global', newItemKeys);
+	},
+
+	/**
+	 * Event handler for the keydown event of the {@link Zarafa.core.KeyMap KeyMap} when the user wants to
+	 * rename the folder.
+	 */
+	onRenameFolder : function()
+	{
+		var navigationBar = container.getNavigationBar();
+		var centerPanel = navigationBar.centerPanel;
+		var currentContextName = navigationBar.activeContext.getName();
+
+		var hierarchyTree;
+		if (navigationBar.showFolderList || currentContextName === 'today') {
+			hierarchyTree = centerPanel.allFoldersPanel.allFoldersHierarchyTree;
+		} else if (currentContextName === "calendar") {
+			hierarchyTree = centerPanel.multiSelectHierarchyTree;
+		} else {
+			var activeItem = centerPanel.layout.activeItem;
+			hierarchyTree = activeItem.hierarchytree;
+		}
+
+		var selectedNode = hierarchyTree.getSelectionModel().getSelectedNode();
+		if (this.forbiddenToRenameFolder(selectedNode.getFolder())) {
+			return;
+		}
+		hierarchyTree.startEditingNode(selectedNode);
+	},
+
+	/**
+	 * Helper function used to identify that folder is not specical/default folder which we can't rename folder.
+	 * 
+	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder The folder which is currently selected in hieararchy.
+	 * @returns {Boolean} return true if folder is not allow to change the name else false.
+	 */
+	forbiddenToRenameFolder : function(folder)
+	{
+		return folder.isDefaultFolder() || folder.isIPMSubTree() || folder.isTodoListFolder() || folder.isRSSFolder() || folder.isSearchFolder();
 	},
 
 	/**
