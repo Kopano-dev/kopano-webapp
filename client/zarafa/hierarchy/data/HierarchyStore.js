@@ -157,8 +157,9 @@ Zarafa.hierarchy.data.HierarchyStore = Ext.extend(Zarafa.core.data.IPFStore, {
 	 * from the Hierarchy.
 	 * @param {Zarafa.hierarchy.data.MAPIStore} record The MAPIStore which must be
 	 * removed from the HierarchyStore.
+	 * @param {boolean} removeFavorites false to not remove favoirts folder from hierarchy store. default is true.
 	 */
-	remove: function(record)
+	remove: function(record, removeFavorites)
 	{
 		if (Array.isArray(record)) {
 			Ext.each(record, this.remove, this);
@@ -167,13 +168,15 @@ Zarafa.hierarchy.data.HierarchyStore = Ext.extend(Zarafa.core.data.IPFStore, {
 
 		// Only allow Shared Stores to be removed
 		if (record.isSharedStore()) {
-			// Remove all favorites marked folders which are
-			// belongs to shared user because we are going to
-			// close the shared user hierarchy store.
-			var favoritesStore = record.getFavoritesStore();
-			var records = favoritesStore.query('store_entryid',record.get('store_entryid'));
-			favoritesStore.remove(records.getRange());
-
+			// removeFavorites is true in case when user try to open the entire store
+			// where some of the folders are already opened in that case we don't need to
+			// remove exsiting favoirtes folder else  Remove all favorites marked folders which are
+			// belongs to shared user because we are going to close the shared user hierarchy store.
+			if (removeFavorites !== false){
+				var favoritesStore = record.getFavoritesStore();
+				var records = favoritesStore.query('store_entryid',record.get('store_entryid'));
+				favoritesStore.remove(records.getRange());
+			}
 			Zarafa.hierarchy.data.HierarchyStore.superclass.remove.call(this, record);
 		}
 	},
@@ -248,10 +251,9 @@ Zarafa.hierarchy.data.HierarchyStore = Ext.extend(Zarafa.core.data.IPFStore, {
 				// us the new folders only. So we obtain the previously loaded folders
 				// and inject them into the response.
 				if (existingStore) {
-					// If we are opening full store of the user then close all the shared folder first.
 					if(options.params.folder_type === 'all') {
-						this.remove(existingStore);
-						this.save(existingStore);
+						this.remove(existingStore, false);
+						this.save(existingStore, false);
 					} else {
 						record.createSubStores();
 
@@ -431,10 +433,13 @@ Zarafa.hierarchy.data.HierarchyStore = Ext.extend(Zarafa.core.data.IPFStore, {
 	 * </pre>
 	 * @TODO: Create extensions of Error class and send associated Record with thrown exceptions.
 	 * e.g.: Ext.data.DataReader.Error or Ext.data.Error or Ext.data.DataProxy.Error, etc.
+	 * 
+	 * @param {Zarafa.hierarchy.data.MAPIStore} record The MAPIStore which is going save.
+	 * @param {boolean} removeFavorites false to not remove favoirts folder from server. default is true.
 	 * @return {Number} batch Returns a number to uniquely identify the "batch" of saves occurring. -1 will be returned
 	 * if there are no items to save or the save was cancelled.
 	 */
-	save: function()
+	save: function(record, removeFavorites)
 	{
 		// If stores have been removed we have to provide a special
 		// treatment, as stores can't be deleted, but only 'closed'.
@@ -448,7 +453,15 @@ Zarafa.hierarchy.data.HierarchyStore = Ext.extend(Zarafa.core.data.IPFStore, {
 			if (this.fireEvent('beforesave', this, data) !== false) {
 				try {
 					var batch = ++this.batchCounter;
-					this.execute('destroy', data['close'], { actionType: 'closesharedfolder' }, batch);
+					this.execute('destroy', data['close'], {
+						actionType: 'closesharedfolder',
+						params : {
+							// removeFavorites is false when user try to open entire store and some of the folders
+							// are already been open in that case we don't need to remove favorites marks folders as we 
+							// are opening entire store.
+							remove_favorites: Ext.isDefined(removeFavorites) ? removeFavorites : true
+						}
+					}, batch);
 				} catch (e) {
 					this.handleException(e);
 				}
