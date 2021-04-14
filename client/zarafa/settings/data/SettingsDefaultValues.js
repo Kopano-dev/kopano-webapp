@@ -124,7 +124,7 @@ Zarafa.settings.data.SettingsDefaultValue = function(){
 							 * @property
 							 * @type Boolean
 							 */
-							'unread_borders': false,
+							'unread_borders': true,
 
 							'notifier': {
 								/**
@@ -507,7 +507,7 @@ Zarafa.settings.data.SettingsDefaultValue = function(){
 								 * @type Boolean
 								 */
 								'scroll_favorites': false,
-								
+
 								/**
 								 * zarafa/v1/contexts/hierarchy/show_searchbar
 								 * @property
