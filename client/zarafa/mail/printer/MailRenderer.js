@@ -50,8 +50,17 @@ Zarafa.mail.printer.MailRenderer = Ext.extend(Zarafa.common.printer.renderers.Re
 	prepareData: function(record) {
 		var data = Zarafa.mail.printer.MailRenderer.superclass.prepareData(record);
 
-		// add printer specific tags
-		data['formatted_from'] = Ext.util.Format.htmlEncode(record.get('sender_name') +' <'+ record.get('sender_email_address') +'>;');
+		if (!Ext.isEmpty(record.get('sender_entryid')) && !Ext.isEmpty(record.get('sent_representing_entryid')) 
+		&& !Zarafa.core.EntryId.compareABEntryIds(record.get('sent_representing_entryid'), record.get('sender_entryid'))) {
+			data['formatted_from'] = Ext.util.Format.htmlEncode(record.get('sender_name') +' <'+ record.get('sender_email_address') +'> ');
+			data['formatted_from'] += _('on behalf of') + ' ';
+			data['formatted_from'] += Ext.util.Format.htmlEncode(record.get('sent_representing_name') +' <'+ record.get('sent_representing_email_address') +'>;');
+			
+		} else {
+			// add printer specific tags
+			data['formatted_from'] = Ext.util.Format.htmlEncode(record.get('sender_name') +' <'+ record.get('sender_email_address') +'>;');
+		}
+
 		var recipientStore = record.getSubStore('recipients');
 		data['formatted_to'] = "";
 		data['formatted_Cc'] = "";
