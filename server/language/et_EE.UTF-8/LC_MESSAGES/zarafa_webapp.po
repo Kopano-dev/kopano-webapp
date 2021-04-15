@@ -4438,6 +4438,9 @@ msgstr ""
 msgid "Open shared folder/store"
 msgstr ""
 
+msgid "Rename folder"
+msgstr ""
+
 #, fuzzy
 msgid "Empty folder"
 msgstr "Kadunud kaustad"
@@ -4746,6 +4749,9 @@ msgid "FW"
 msgstr ""
 
 msgid "RE"
+msgstr ""
+
+msgid "on behalf of"
 msgstr ""
 
 msgid "Safe Senders list is empty"

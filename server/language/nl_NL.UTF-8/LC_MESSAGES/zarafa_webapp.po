@@ -881,12 +881,14 @@ msgid "Occurs every {0} effective {1} for {2} occurrence from {3} to {4}."
 msgid_plural ""
 "Occurs every {0} effective {1} for {2} occurrences from {3} to {4}."
 msgstr[0] "Elke {0} met ingang van {1} voor {2} gebeurtenis van {3} tot {4}."
-msgstr[1] "Elke {0} met ingang van {1} voor {2} gebeurtenissen van {3} tot {4}."
+msgstr[1] ""
+"Elke {0} met ingang van {1} voor {2} gebeurtenissen van {3} tot {4}."
 
 msgid "Occurs every {0} {1} effective {2} for {3} occurrence from {4} to {5}."
 msgid_plural ""
 "Occurs every {0} {1} effective {2} for {3} occurrences {4} to {5}."
-msgstr[0] "Elke {0} {1} met ingang van {2} voor {3} gebeurtenis van {4} tot {5}."
+msgstr[0] ""
+"Elke {0} {1} met ingang van {2} voor {3} gebeurtenis van {4} tot {5}."
 msgstr[1] ""
 "Elke {0} {1} met ingang van {2} voor {3} gebeurtenissen van {4} tot {5}."
 
@@ -4547,6 +4549,9 @@ msgstr "Toon submappen"
 msgid "Open shared folder/store"
 msgstr "Open gedeelde map of opslag"
 
+msgid "Rename folder"
+msgstr ""
+
 msgid "Empty folder"
 msgstr "Leeg folder"
 
@@ -4848,6 +4853,9 @@ msgstr "FW"
 
 msgid "RE"
 msgstr "AW"
+
+msgid "on behalf of"
+msgstr ""
 
 msgid "Safe Senders list is empty"
 msgstr "Lijst van veilige afzenders is leeg"

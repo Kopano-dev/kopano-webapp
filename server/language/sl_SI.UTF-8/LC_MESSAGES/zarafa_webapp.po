@@ -4574,6 +4574,9 @@ msgstr "Pokaži podmape"
 msgid "Open shared folder/store"
 msgstr "Odpri mapo v skupni rabi/hrambo"
 
+msgid "Rename folder"
+msgstr ""
+
 #, fuzzy
 msgid "Empty folder"
 msgstr "Izprazni mapo"
@@ -4890,6 +4893,9 @@ msgstr "Posreduj"
 
 msgid "RE"
 msgstr "Ponovno"
+
+msgid "on behalf of"
+msgstr ""
 
 msgid "Safe Senders list is empty"
 msgstr ""

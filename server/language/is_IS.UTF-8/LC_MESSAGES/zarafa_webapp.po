@@ -4230,6 +4230,9 @@ msgstr "Sýna undirmöppur"
 msgid "Open shared folder/store"
 msgstr "Opna sameiginlega möppu/geymslu"
 
+msgid "Rename folder"
+msgstr ""
+
 msgid "Empty folder"
 msgstr "Tæma möppu"
 
@@ -4515,6 +4518,9 @@ msgstr "ÁFRAM"
 
 msgid "RE"
 msgstr "SVAR"
+
+msgid "on behalf of"
+msgstr ""
 
 msgid "Safe Senders list is empty"
 msgstr ""

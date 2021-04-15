@@ -4117,6 +4117,9 @@ msgstr ""
 msgid "Open shared folder/store"
 msgstr ""
 
+msgid "Rename folder"
+msgstr ""
+
 msgid "Empty folder"
 msgstr ""
 
@@ -4395,6 +4398,9 @@ msgid "FW"
 msgstr ""
 
 msgid "RE"
+msgstr ""
+
+msgid "on behalf of"
 msgstr ""
 
 msgid "Safe Senders list is empty"

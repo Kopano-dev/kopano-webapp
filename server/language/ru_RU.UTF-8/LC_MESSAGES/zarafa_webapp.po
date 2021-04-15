@@ -4456,6 +4456,9 @@ msgstr "Показать подкаталоги"
 msgid "Open shared folder/store"
 msgstr "Открыть общий каталог/хранилище"
 
+msgid "Rename folder"
+msgstr ""
+
 msgid "Empty folder"
 msgstr "Очистить папку"
 
@@ -4759,6 +4762,9 @@ msgstr "FW"
 
 msgid "RE"
 msgstr "RE"
+
+msgid "on behalf of"
+msgstr ""
 
 msgid "Safe Senders list is empty"
 msgstr ""

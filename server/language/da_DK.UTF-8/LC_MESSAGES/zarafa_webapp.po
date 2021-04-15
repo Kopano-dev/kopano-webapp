@@ -4353,6 +4353,9 @@ msgstr "Vis undermapper"
 msgid "Open shared folder/store"
 msgstr "Åbn delt folder/lager"
 
+msgid "Rename folder"
+msgstr ""
+
 #, fuzzy
 msgid "Empty folder"
 msgstr "Tøm mappe"
@@ -4654,6 +4657,9 @@ msgstr "VS"
 
 msgid "RE"
 msgstr "SV"
+
+msgid "on behalf of"
+msgstr ""
 
 msgid "Safe Senders list is empty"
 msgstr ""

@@ -4264,6 +4264,9 @@ msgstr "Pokaż subfolder"
 msgid "Open shared folder/store"
 msgstr "Otówrz wspólny folder lub pocztę"
 
+msgid "Rename folder"
+msgstr ""
+
 msgid "Empty folder"
 msgstr "Opróżnij folder"
 
@@ -4549,6 +4552,9 @@ msgstr "PD"
 
 msgid "RE"
 msgstr "RE"
+
+msgid "on behalf of"
+msgstr ""
 
 msgid "Safe Senders list is empty"
 msgstr "Lista bezpiecznych nadawców jest pusta"

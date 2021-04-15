@@ -4574,6 +4574,9 @@ msgstr "Mostrar subcarpetas"
 msgid "Open shared folder/store"
 msgstr "Abrir directorio/buzón compartido"
 
+msgid "Rename folder"
+msgstr ""
+
 #, fuzzy
 msgid "Empty folder"
 msgstr "Vaciar Carpeta"
@@ -4890,6 +4893,9 @@ msgstr "RV"
 
 msgid "RE"
 msgstr "RE"
+
+msgid "on behalf of"
+msgstr ""
 
 msgid "Safe Senders list is empty"
 msgstr ""

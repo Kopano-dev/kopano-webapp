@@ -4381,6 +4381,9 @@ msgstr "顯示子資料夾"
 msgid "Open shared folder/store"
 msgstr ""
 
+msgid "Rename folder"
+msgstr ""
+
 #, fuzzy
 msgid "Empty folder"
 msgstr "空的資料夾"
@@ -4690,6 +4693,9 @@ msgstr "轉寄"
 
 msgid "RE"
 msgstr "回覆"
+
+msgid "on behalf of"
+msgstr ""
 
 msgid "Safe Senders list is empty"
 msgstr ""
