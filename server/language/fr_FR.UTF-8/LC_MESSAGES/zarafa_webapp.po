@@ -4533,6 +4533,9 @@ msgstr "Afficher les sous-répertoires"
 msgid "Open shared folder/store"
 msgstr "Ouvrir un dossier / magasin partagé"
 
+msgid "Rename folder"
+msgstr ""
+
 #, fuzzy
 msgid "Empty folder"
 msgstr "Vider le dossier"
@@ -4846,6 +4849,9 @@ msgstr "TR"
 
 msgid "RE"
 msgstr "RE"
+
+msgid "on behalf of"
+msgstr ""
 
 msgid "Safe Senders list is empty"
 msgstr ""

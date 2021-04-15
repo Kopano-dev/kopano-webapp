@@ -4500,6 +4500,9 @@ msgstr "Mostra sottocartelle"
 msgid "Open shared folder/store"
 msgstr "Apri cartella condivisa"
 
+msgid "Rename folder"
+msgstr ""
+
 #, fuzzy
 msgid "Empty folder"
 msgstr "Importa nella cartella"
@@ -4813,6 +4816,9 @@ msgstr "I"
 
 msgid "RE"
 msgstr "R"
+
+msgid "on behalf of"
+msgstr ""
 
 msgid "Safe Senders list is empty"
 msgstr ""

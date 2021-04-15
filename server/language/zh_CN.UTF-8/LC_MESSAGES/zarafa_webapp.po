@@ -4195,6 +4195,9 @@ msgstr "显示子文件夹"
 msgid "Open shared folder/store"
 msgstr "打开共享文件夹/存储器"
 
+msgid "Rename folder"
+msgstr ""
+
 msgid "Empty folder"
 msgstr "空文件夹"
 
@@ -4475,6 +4478,9 @@ msgstr "转发"
 
 msgid "RE"
 msgstr "回复"
+
+msgid "on behalf of"
+msgstr ""
 
 msgid "Safe Senders list is empty"
 msgstr "安全发件人列表为空"

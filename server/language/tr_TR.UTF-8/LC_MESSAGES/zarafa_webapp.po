@@ -4538,6 +4538,9 @@ msgstr "Alt klasörleri göster"
 msgid "Open shared folder/store"
 msgstr "paylaşılan klasör/mağaza aç"
 
+msgid "Rename folder"
+msgstr ""
+
 #, fuzzy
 msgid "Empty folder"
 msgstr "Klasörü boşalt"
@@ -4850,6 +4853,9 @@ msgstr "İLT"
 
 msgid "RE"
 msgstr "YNT"
+
+msgid "on behalf of"
+msgstr ""
 
 msgid "Safe Senders list is empty"
 msgstr ""

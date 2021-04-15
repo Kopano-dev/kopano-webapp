@@ -9,8 +9,8 @@ msgstr ""
 "POT-Creation-Date: 2019-09-25 14:32+0200\n"
 "PO-Revision-Date: 2021-04-01 20:08+0000\n"
 "Last-Translator: Klaus <klaus@linuxavdelingen.no>\n"
-"Language-Team: Norwegian Bokmål <http://translate.kopano.io/projects/kopano"
-"/kopano-webapp/nb_NO/>\n"
+"Language-Team: Norwegian Bokmål <http://translate.kopano.io/projects/kopano/"
+"kopano-webapp/nb_NO/>\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4376,6 +4376,9 @@ msgstr "Vis undermapper"
 msgid "Open shared folder/store"
 msgstr "Åpne delt mappe/e-postboks"
 
+msgid "Rename folder"
+msgstr ""
+
 msgid "Empty folder"
 msgstr "Tøm mappen"
 
@@ -4666,6 +4669,9 @@ msgstr "FW"
 
 msgid "RE"
 msgstr "RE"
+
+msgid "on behalf of"
+msgstr ""
 
 msgid "Safe Senders list is empty"
 msgstr "Liste over klarerte avsendere er tom"

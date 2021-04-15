@@ -4502,6 +4502,9 @@ msgstr "הצג תיקיות משנה"
 msgid "Open shared folder/store"
 msgstr ""
 
+msgid "Rename folder"
+msgstr ""
+
 #, fuzzy
 msgid "Empty folder"
 msgstr "תיקיה ריקה"
@@ -4823,6 +4826,9 @@ msgstr "הועבר"
 
 msgid "RE"
 msgstr "תגובה"
+
+msgid "on behalf of"
+msgstr ""
 
 msgid "Safe Senders list is empty"
 msgstr ""

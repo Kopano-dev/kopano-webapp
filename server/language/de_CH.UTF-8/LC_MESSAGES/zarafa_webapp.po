@@ -4491,6 +4491,9 @@ msgstr "Unterordner anzeigen"
 msgid "Open shared folder/store"
 msgstr "Gemeinsamen Ordner oder Postfach öffnen"
 
+msgid "Rename folder"
+msgstr ""
+
 msgid "Empty folder"
 msgstr "Ordner leeren"
 
@@ -4798,6 +4801,9 @@ msgstr "WG"
 
 msgid "RE"
 msgstr "AW"
+
+msgid "on behalf of"
+msgstr ""
 
 msgid "Safe Senders list is empty"
 msgstr "Liste sicherer Absender ist leer"

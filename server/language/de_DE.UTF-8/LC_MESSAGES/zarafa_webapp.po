@@ -890,8 +890,10 @@ msgstr[1] "Findet jeden {0} statt, beginnend am {1} für {2} Wiederholungen."
 
 msgid "Occurs every {0} {1} effective {2} for {3} occurrence."
 msgid_plural "Occurs every {0} {1} effective {2} for {3} occurrences."
-msgstr[0] "Findet jeden {0} {1} statt, beginnend am {2} für {3} Wiederholungen."
-msgstr[1] "Findet jeden {0} {1} statt, beginnend am {2} für {3} Wiederholungen."
+msgstr[0] ""
+"Findet jeden {0} {1} statt, beginnend am {2} für {3} Wiederholungen."
+msgstr[1] ""
+"Findet jeden {0} {1} statt, beginnend am {2} für {3} Wiederholungen."
 
 msgid "Occurs every {0} effective {1} until {2} from {3} to {4}."
 msgstr "Findet jeden {0} statt, beginnend am {1} bis {2} von {3} bis {4}."
@@ -4511,6 +4513,9 @@ msgstr "Unterordner anzeigen"
 msgid "Open shared folder/store"
 msgstr "Gemeinsamen Ordner oder Postfach öffnen"
 
+msgid "Rename folder"
+msgstr ""
+
 msgid "Empty folder"
 msgstr "Ordner leeren"
 
@@ -4820,6 +4825,9 @@ msgstr "WG"
 
 msgid "RE"
 msgstr "AW"
+
+msgid "on behalf of"
+msgstr ""
 
 msgid "Safe Senders list is empty"
 msgstr "Liste sicherer Absender ist leer"

@@ -4534,6 +4534,9 @@ msgstr "Almappák megjelenítése"
 msgid "Open shared folder/store"
 msgstr "Megosztott mappa/tárhely megnyitása"
 
+msgid "Rename folder"
+msgstr ""
+
 #, fuzzy
 msgid "Empty folder"
 msgstr "Importálás mappába"
@@ -4848,6 +4851,9 @@ msgstr "FW"
 
 msgid "RE"
 msgstr "RE"
+
+msgid "on behalf of"
+msgstr ""
 
 msgid "Safe Senders list is empty"
 msgstr ""

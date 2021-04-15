@@ -4447,6 +4447,9 @@ msgstr "サブフォルダ表示"
 msgid "Open shared folder/store"
 msgstr ""
 
+msgid "Rename folder"
+msgstr ""
+
 #, fuzzy
 msgid "Empty folder"
 msgstr "フォルダを空にする"
@@ -4758,6 +4761,9 @@ msgstr "FW"
 
 msgid "RE"
 msgstr "RE"
+
+msgid "on behalf of"
+msgstr ""
 
 msgid "Safe Senders list is empty"
 msgstr ""

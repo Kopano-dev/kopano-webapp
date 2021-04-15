@@ -4465,6 +4465,9 @@ msgstr "Mostrar subpastas"
 msgid "Open shared folder/store"
 msgstr ""
 
+msgid "Rename folder"
+msgstr ""
+
 #, fuzzy
 msgid "Empty folder"
 msgstr "Esvaziar pastas"
@@ -4780,6 +4783,9 @@ msgstr "ENC"
 
 msgid "RE"
 msgstr "RES"
+
+msgid "on behalf of"
+msgstr ""
 
 msgid "Safe Senders list is empty"
 msgstr ""
