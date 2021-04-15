@@ -233,8 +233,8 @@ Ext.apply(Zarafa, {
 
 		// Set up DOMPurify
 		DOMPurify.setConfig({
-			FORBID_TAGS: ['iframe', 'webview', 'meta', 'html', 'head', 'link'],
-			WHOLE_DOCUMENT: false,
+			FORBID_TAGS: ['iframe', 'webview', 'meta', 'html', 'head', 'title' ,'link'],
+			FORCE_BODY: true,
 			// Default regEx of DOMPurify for uri does not allow some protocols like file, smb, etc.
 			// So we need to whitelist them by this new regEx.
 			ALLOWED_URI_REGEXP: Object.seal(/^(?:(?:(?:f|ht)tps?|mailto|tel|callto|cid|xmpp|smb|file):|[^a-z]|[a-z]:|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i),
