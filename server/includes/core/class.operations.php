@@ -4681,7 +4681,16 @@
 		*/
 		function getCompressedUserImage($userEntryId, $compressedQuaity = 10)
 		{
-			$user = $GLOBALS['mapisession']->getUser($userEntryId);
+			try {
+				$user = $GLOBALS['mapisession']->getUser($userEntryId);
+			} catch (Exception $e) {
+				$msg = "Problem while getting a user from the addressbook. Error %s : %s.";
+				$formattedMsg = sprintf($msg, $e->getCode(), $e->getMessage());
+				error_log($formattedMsg);
+				Log::Write(LOGLEVEL_ERROR, "Operations:getCompressedUserImage() ". $formattedMsg);
+				return "";
+			}
+
 			$userImageProp = mapi_getprops($user, array(PR_EMS_AB_THUMBNAIL_PHOTO));
 			if (isset($userImageProp[PR_EMS_AB_THUMBNAIL_PHOTO])) {
 				return $this->compressedImage($userImageProp[PR_EMS_AB_THUMBNAIL_PHOTO], $compressedQuaity);
