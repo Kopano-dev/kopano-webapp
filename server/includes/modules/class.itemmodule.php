@@ -728,7 +728,17 @@
 				$storeprops = mapi_getprops($store, array(PR_ENTRYID));
 				$props[PR_STORE_ENTRYID] = $storeprops[PR_ENTRYID];
 
-				$result = $GLOBALS["operations"]->copyMessages($store, $parententryid, $dest_store, $dest_folderentryid, $entryids, $moveMessages ? array() : $this->skipCopyProperties, $moveMessages, $copyProps);
+				$skipCopyProperties = array();
+				if (isset($action["message_action"]["unset_Private"])) {
+					if ($moveMessages) {
+						array_push($skipCopyProperties, $this->properties["private"], $this->properties["sensitivity"]);
+					} else {
+						array_push($this->skipCopyProperties, $this->properties["private"], $this->properties["sensitivity"]);
+					}
+				}
+					
+									
+				$result = $GLOBALS["operations"]->copyMessages($store, $parententryid, $dest_store, $dest_folderentryid, $entryids, $moveMessages ? $skipCopyProperties : $this->skipCopyProperties, $moveMessages, $copyProps);
 
 				if($result) {
 					if($moveMessages) {

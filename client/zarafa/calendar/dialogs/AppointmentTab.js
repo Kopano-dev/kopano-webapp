@@ -1075,8 +1075,10 @@ Zarafa.calendar.dialogs.AppointmentTab = Ext.extend(Ext.form.FormPanel, {
 	onCreateInSelect: function(combo, record, index)
 	{
 		if (this.record.phantom) {
+			this.record.beginEdit();
 			this.record.set('parent_entryid', record.get('entryid'));
 			this.record.set('store_entryid', record.get('store_entryid'));
+			this.record.endEdit();
 			this.resetOrganizer();
 		} else {
 			this.record.moveTo(record);

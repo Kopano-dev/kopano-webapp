@@ -522,7 +522,23 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	 */
 	onDropCopyOrMoveAppointment: function(appointment, store, sourceFolder, targetFolder, dateRange, event)
 	{
+		var mapiStore = targetFolder.getMAPIStore();
 		if (event.ctrlKey) {
+			// Show notification when user try to copy a private appointment to 
+			// shared or public store.
+			if (appointment.get('private') && (mapiStore.isPublicStore() || mapiStore.isSharedStore())){
+				const callBack = function() {
+					this.fireEvent('appointmentcalendardrop', this, appointment, sourceFolder, targetFolder, dateRange);
+				};
+				appointment.unsetPrivate();
+				var msg = _('Copying this appointment will unset it as private. Are you sure you want to continue?');
+				Zarafa.common.Actions.showMessageBox(appointment, targetFolder, store, msg, this, callBack, {
+					title: _('Private item'),
+					actionBtn: _('Copy')
+				});
+				return;
+			}
+
 			appointment.copyTo(targetFolder);
 		} else {
 			// If user wants to perform 'move' operation and source folder has not delete right
@@ -534,6 +550,21 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 					this.fireEvent('appointmentcalendardrop', this, appointment, sourceFolder, targetFolder, dateRange);
 				};
 				Zarafa.common.Actions.showMessageBox(appointment, targetFolder, store, undefined, this, callBack);
+				return;
+			}
+
+			// Show notification when user try to move a private appointment to 
+			// shared or public store.
+			if (appointment.get('private') && (mapiStore.isPublicStore() || mapiStore.isSharedStore())) {
+				const callBack = function() {
+					this.fireEvent('appointmentcalendardrop', this, appointment, sourceFolder, targetFolder, dateRange);
+				};
+				appointment.unsetPrivate();
+				var msg = _('Moving this appointment will unset it as private. Are you sure you want to continue?');
+				Zarafa.common.Actions.showMessageBox(appointment, targetFolder, store, msg, this, callBack, {
+					title: _('Private item'),
+					actionBtn: _('Move')
+				});
 				return;
 			}
 
@@ -1022,7 +1053,10 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	},
 
 	/**
-	 * Function which is used to paste the copied item into calendar.
+	 * Function which is used to paste the copied item into calendar. If copied item 
+	 * is private and paste this item in shared or public store then 
+	 * show {@link Zarafa.common.dialogs.MessageBox#addCustomButtons message box} to intimate that
+	 * new copy will no more private item.
 	 *
 	 * @param {Zarafa.core.data.IPMRecord} clipBoardRecord copied calender item which will paste in calender view.
 	 * @private
@@ -1030,6 +1064,50 @@ Zarafa.calendar.ui.CalendarPanel = Ext.extend(Ext.Panel, {
 	doPaste: function(clipBoardRecord)
 	{
 		var record = this.createRecordCopy(clipBoardRecord);
+		var store = container.getHierarchyStore().getById(record.get("store_entryid"));
+
+		if (clipBoardRecord.isPrivate() && (store.isPublicStore() || store.isSharedStore())){
+			var msg = _("Copying this appointment will unset it as private. Are you sure you want to continue?");
+			Zarafa.common.dialogs.MessageBox.addCustomButtons({
+				title: _('Private item'),
+				msg: msg,
+				cls: Ext.MessageBox.WARNING_CLS,
+				width: 400,
+				fn: function(button, clipBoardRecord, record) {
+					if (button === 'cancel') {
+						return;
+					}
+					record.unsetPrivate();
+					record.beginEdit();
+					record.set('private', false);
+					record.endEdit();
+
+					this.paste(clipBoardRecord, record);
+				}.createDelegate(this, [clipBoardRecord, record], true),
+				customButton: [{
+					text: _('Copy'),
+					name: 'copy'
+				},{
+					text: _('Cancel'),
+					name: 'cancel'
+				}],
+				scope: this
+			});
+			return;
+		}
+
+		this.paste(clipBoardRecord, record);
+	},
+
+	/**
+	 * Function used to set MessageAction and save the record in store.
+	 *
+	 * @param {Zarafa.core.data.IPMRecord} clipBoardRecord copied calender item which will paste in calender view.
+	 * @param {Zarafa.core.data.IPMRecord} record new calender item which will paste in calender view.
+	 * @private
+	 */
+	paste : function(clipBoardRecord, record)
+	{
 		// Added source record info in message action. which used to
 		// copy attachments and recipients related information from source message to
 		// new pasted record.

@@ -1730,8 +1730,9 @@ Zarafa.common.Actions = {
 	 * @param {String} message The message which we show in message box.
 	 * @param {Object} scope The scope in which this function was called.
 	 * @param {Function} callBack function which needs to be called after performing copy action.
+	 * @param {Object} options optional config items.
 	 */
-	showMessageBox: function(records, targetFolder, store, message, scope, callBack)
+	showMessageBox: function(records, targetFolder, store, message, scope, callBack, options)
 	{
 		if (!Ext.isDefined(message)) {
 			if (records.length > 1) {
@@ -1741,36 +1742,50 @@ Zarafa.common.Actions = {
 			}
 		}
 
+		var title = _('Insufficient privileges');
+		var actionButton = _('Copy');
+		if (!Ext.isEmpty(options)) {
+			title = Ext.isDefined(options.title) ? options.title : title;
+			actionButton = Ext.isDefined(options.actionBtn) ? options.actionBtn : actionButton;
+		}
+
 		Zarafa.common.dialogs.MessageBox.addCustomButtons({
-			title: _('Insufficient privileges'),
+			title: title,
 			msg: message,
 			cls: Ext.MessageBox.WARNING_CLS,
 			width:400,
 			dialog: this.dialog,
 			fn: function(button) {
-				if (button === 'copy') {
-					Ext.each(records, function(record, index) {
-						// When we have this panel open and we receive a new email, the records store is
-						// not accessible anymore, so we need to get a new record by the entryid of the old record.
-						if(this.objectType === Zarafa.core.mapi.ObjectType.MAPI_MESSAGE && !record.getStore()) {
-							record = records[index] = store.getById(record.id);
-						}
+				if (button === 'cancel') {
+					return;
+				}
+
+				Ext.each(records, function(record, index) {
+					// When we have this panel open and we receive a new email, the records store is
+					// not accessible anymore, so we need to get a new record by the entryid of the old record.
+					if(this.objectType === Zarafa.core.mapi.ObjectType.MAPI_MESSAGE && !record.getStore()) {
+						record = records[index] = store.getById(record.id);
+					}
+
+					if (Ext.isFunction(record[button + "To"])) {
+						record[button + "To"](targetFolder);
+					} else {
 						record.copyTo(targetFolder);
-					}, this);
-					store.save(records);
-
-					if (this.dialog) {
-						this.dialog.close();
 					}
+				}, this);
+				store.save(records);
 
-					if (Ext.isFunction(callBack)) {
-						callBack.call(this);
-					}
+				if (this.dialog) {
+					this.dialog.close();
+				}
+
+				if (Ext.isFunction(callBack)) {
+					callBack.call(this);
 				}
 			},
 			customButton: [{
-				text: _('Copy'),
-				name: 'copy'
+				text: actionButton,
+				name: actionButton.toLowerCase()
 			}, {
 				text: _('Cancel'),
 				name: 'cancel'

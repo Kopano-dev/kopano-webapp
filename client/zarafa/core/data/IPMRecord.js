@@ -591,6 +591,15 @@ Zarafa.core.data.IPMRecord = Ext.extend(Zarafa.core.data.MAPIRecord, {
 		}
 
 		return this.get('conversation_count') == 0 && this.get('depth') === 0;
+	},
+
+	/**
+	 * Checks if record is private record or not.
+	 * @returns {Boolean} True if the record is private item else false.
+	 */
+	isPrivate: function()
+	{
+		return Ext.isDefined(this.get('private')) ? this.get('private') : false;
 	}
 });
 

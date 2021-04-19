@@ -385,14 +385,32 @@ Zarafa.common.dialogs.CopyMovePanel = Ext.extend(Ext.Panel, {
 	 */
 	onCopy: function(records, folder)
 	{
+		var isCalendarFolder = folder.isCalendarFolder();
+		var showPrivateWarning = false;
 		Ext.each(records, function(record, index) {
 			// When we have this panel open and we receive a new email, the records store is
 			// not accessible anymore, so we need to get a new record by the entryid of the old record.
-			if(this.objectType === Zarafa.core.mapi.ObjectType.MAPI_MESSAGE && !record.getStore()) {
-				record = records[index] = this.store.getById(record.id);
+			if (this.objectType === Zarafa.core.mapi.ObjectType.MAPI_MESSAGE) {
+				if (!record.getStore()) {
+					record = records[index] = this.store.getById(record.id);	
+				}
+
+				if (isCalendarFolder && record.isPrivate()) {
+					record.unsetPrivate();
+					showPrivateWarning = true;
+				}	
 			}
 			record.copyTo(folder);
 		}, this);
+
+		if (showPrivateWarning) {
+			var msg = _("Copying this appointment will unset it as private. Are you sure you want to continue?");
+			Zarafa.common.Actions.showMessageBox(records, folder, this.store, msg, this, undefined, {
+				title: _('Private item'),
+				actionBtn : _('Copy')
+			});
+			return;
+		}
 
 		this.dialog.selectFolder(folder);
 
@@ -413,6 +431,8 @@ Zarafa.common.dialogs.CopyMovePanel = Ext.extend(Ext.Panel, {
 	 */
 	onMove: function(records, folder)
 	{
+		var isCalendarFolder = folder.isCalendarFolder();
+		var showPrivateWaring = false;
 		var sourceFolder = container.getHierarchyStore().getFolder(records[0].get('parent_entryid'));
 		// If targetFolder has create item rights and source folder does not have delete item rights,
 		// in that case move operation is not possible, therefore show message box which indicate that
@@ -426,9 +446,17 @@ Zarafa.common.dialogs.CopyMovePanel = Ext.extend(Ext.Panel, {
 		Ext.each(records, function(record, index) {
 			// When we have this panel open and we receive a new email, the records store is
 			// not accessible anymore, so we need to get a new record by the entryid of the old record.
-			if(this.objectType === Zarafa.core.mapi.ObjectType.MAPI_MESSAGE && !record.getStore()) {
-				record = records[index] = this.store.getById(record.id);
+			if(this.objectType === Zarafa.core.mapi.ObjectType.MAPI_MESSAGE) {
+				if (!record.getStore()) {
+					record = records[index] = this.store.getById(record.id);
+				}
+
+				if (isCalendarFolder && record.isPrivate()) {
+					record.unsetPrivate();
+					showPrivateWaring = true;
+				}
 			}
+
 			// Check record access. If record has no delete access (record not belongs to user)
 			// user can't move this item.
 			if (!record.hasDeleteAccess()) {
@@ -460,6 +488,16 @@ Zarafa.common.dialogs.CopyMovePanel = Ext.extend(Ext.Panel, {
 			var noAccessRecords = Ext.pluck(noAccessRecord, "record");
 
 			Zarafa.common.Actions.showMessageBox(noAccessRecords, folder, this.store, msg, this);
+			return;
+		}
+
+		// Show warning message when user try to move private calendar items.
+		if (showPrivateWaring) {
+			var msg = _("Moving this appointment will unset it as private. Are you sure you want to continue?");
+			Zarafa.common.Actions.showMessageBox(records, folder, this.store, msg, this, undefined, {
+				title: _('Private item'),
+				actionBtn : _('Move')
+			});
 			return;
 		}
 
