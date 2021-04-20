@@ -203,6 +203,7 @@ Zarafa.contact.ui.ContactCardView = Ext.extend(Zarafa.common.ui.DraggableDataVie
 										'<tpl if="!Ext.isEmpty(values.email_address_3) && Ext.isEmpty(values.email_address_2) && Ext.isEmpty(values.email_address_1)">',
 											'<tr><td>{email_address_3:htmlEncode}</td></tr>',
 										'</tpl>',
+										'<tr><td>{[this.getCategories(values)]}</td></tr>',
 									'</table>',
 								'</div>',
 								'{[this.getInitials(values)]}',
@@ -253,6 +254,13 @@ Zarafa.contact.ui.ContactCardView = Ext.extend(Zarafa.common.ui.DraggableDataVie
 					return `<div class="k-contact-cardview-initials"> ${contactInitials.toUpperCase()} </div>`;
 				}
 			},
+
+			getCategories: function(values)
+			{
+				var record = this.store.getById(values.entryid);
+				var categories = Zarafa.common.categories.Util.getCategories(record);
+				return Zarafa.common.categories.Util.getCategoriesHtml(categories);
+			}
 		});
 	}
 });
