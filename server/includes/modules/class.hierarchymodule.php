@@ -269,7 +269,10 @@
 								} else {
 									// We're closing a Shared Store, simply remove it from the session.
 									$entryid = $GLOBALS["mapisession"]->removeUserStore($action["user_name"]);
-									$this->removeFromFavorite(hex2bin($action["store_entryid"]), $store, PR_WLINK_STORE_ENTRYID, false);
+
+									if (isset($action["remove_favorites"]) && $action["remove_favorites"]) {
+										$this->removeFromFavorite(hex2bin($action["store_entryid"]), $store, PR_WLINK_STORE_ENTRYID, false);
+									}
 								}
 
 								$data = array();
