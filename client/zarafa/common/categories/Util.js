@@ -435,7 +435,7 @@ Zarafa.common.categories.Util = {
 	 */
 	getCategoryIconSVG: function(color)
 	{
-		return '<svg width="13" height="13">' +
+		return '<svg width="15" height="13">' +
 					'<g transform="translate(-333.71338,-339.93452)">' +
 						'<path ' +
 							'style="color:'+color+';fill:currentColor;fill-opacity:1;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" ' +
