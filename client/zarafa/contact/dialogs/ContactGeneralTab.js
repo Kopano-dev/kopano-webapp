@@ -318,10 +318,7 @@ Zarafa.contact.dialogs.ContactGeneralTab = Ext.extend(Ext.form.FormPanel, {
 				name: 'email_address_display_name_1',
 				fieldLabel: _('Display name'),
 				ref: '../mailDisplayNameField',
-				listeners: {
-					scope: this,
-					change: this.onFieldChange
-				}
+				readOnly: true
 			}, {
 				xtype: 'textfield',
 				ref: '../webpageField',
