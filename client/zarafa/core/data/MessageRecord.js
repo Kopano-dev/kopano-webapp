@@ -590,7 +590,7 @@ Zarafa.core.data.MessageRecord = Ext.extend(Zarafa.core.data.IPMRecord, {
 	getDefaultFromRecipeint: function ()
 	{
 		var settingsModel = container.getSettingsModel();
-		var defaultFromRecipients = settingsModel.get('zarafa/v1/contexts/mail/sendas', []);
+		var defaultFromRecipients = settingsModel.get('zarafa/v1/contexts/mail/sendas');
 		
 		if (Ext.isEmpty(this.get('sent_representing_email_address'))) {
 			return false;
@@ -642,7 +642,7 @@ Zarafa.core.data.MessageRecord = Ext.extend(Zarafa.core.data.IPMRecord, {
 		}
 
 		var settingsModel = container.getSettingsModel();
-		var defaultCcRecipients = settingsModel.get('zarafa/v1/contexts/mail/cc_recipients', []);
+		var defaultCcRecipients = settingsModel.get('zarafa/v1/contexts/mail/cc_recipients');
 		var recipientStore = this.getRecipientStore();
 
 		for (var i = 0; i < defaultCcRecipients.length; i++) {
