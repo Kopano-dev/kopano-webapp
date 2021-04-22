@@ -612,6 +612,12 @@ Zarafa.settings.data.SettingsDefaultValue = function(){
 							},
 
 							'mail': {
+								/**
+								 * zarafa/v1/contexts/mail/sendas
+								 * @property
+								 * @type Array
+								 */
+								'sendas': [],
 
 								/**
 								 * zarafa/v1/contexts/mail/enable_live_scroll
