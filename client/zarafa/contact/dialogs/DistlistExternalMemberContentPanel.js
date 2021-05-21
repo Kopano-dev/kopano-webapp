@@ -34,6 +34,11 @@ Zarafa.contact.dialogs.DistlistExternalMemberContentPanel = Ext.extend(Zarafa.co
 	 */
 	constructor: function(config)
 	{
+		// Remove old state settings.
+		if (Ext.isDefined(container.getSettingsModel().get("zarafa/v1/state/dialogs/distlistexternalmembercontentpanel"))) {
+			container.getSettingsModel().remove("zarafa/v1/state/dialogs/distlistexternalmembercontentpanel");
+		}
+
 		config = config || {};
 
 		Ext.applyIf(config, {
