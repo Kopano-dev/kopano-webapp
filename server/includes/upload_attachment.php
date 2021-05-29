@@ -284,6 +284,7 @@ class UploadAttachment
 	{
 		$this->destinationFolder = $this->getDestinationFolder();
 		try {
+			processVCFStream($attachmentStream);
 			// Convert vCard 1.0 to a MAPI contact.
 			$contacts = $this->convertVCFContactsToMapi($this->destinationFolder, $attachmentStream);
 		} catch (ZarafaException $e){
