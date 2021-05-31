@@ -784,4 +784,36 @@
 	{
 		return trim(file_get_contents('version'));
 	}
+
+	/**
+	 * function which remove double quotes or PREF from vcf stream
+	 * if it has.
+	 *
+	 * @param {String} $attachmentStream The attachment stream.
+	 */
+	function processVCFStream(&$attachmentStream)
+	{
+		/**
+		 * https://github.com/libical/libical/issues/488
+		 * https://github.com/libical/libical/issues/490
+		 *
+		 * Because of above issues we need to remove
+		 * double qoutes or PREF from vcf stream if
+		 * it exists in vcf stream.
+		 */
+		if (preg_match('/"/', $attachmentStream) > 0) {
+			$attachmentStream = str_replace('"', '', $attachmentStream);
+		}
+
+		if (preg_match('/PREF/', $attachmentStream) > 0) {
+			$rows = explode("\n", $attachmentStream);
+			foreach($rows as $key => $row) {
+				if(preg_match("/PREF/", $row)) {
+					unset($rows[$key]);
+				}
+			}
+
+			$attachmentStream = join("\n", $rows);
+		}
+	}
 ?>

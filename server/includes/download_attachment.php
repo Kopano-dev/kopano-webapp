@@ -556,6 +556,7 @@ class DownloadAttachment extends DownloadBase
 
 			case 'vcf':
 				try {
+					processVCFStream($attachmentStream);
 					// Convert an RFC6350-formatted vCard to a MAPI Contact
 					$ok = mapi_vcftomapi($GLOBALS['mapisession']->getSession(), $this->store, $newMessage, $attachmentStream);
 				} catch(Exception $e) {
