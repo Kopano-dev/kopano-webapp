@@ -1547,13 +1547,9 @@ Zarafa.common.Actions = {
 		// The version of the vCard is required and it should be specified immediately after 'BEGIN:' property.
 		var hasVersion = this.isPropertyExists(rawHeaders, ['VERSION:']) && (rawHeaders.indexOf('VERSION:') === 1);
 
-		// Properties 'FN:' (The formatted name string associated with the vCard object) and
-		// 'N:' (Name of the person, place or thing associated with the vCard object) are required.
-		var hasNameProperties = this.isPropertyExists(rawHeaders, ['FN:', 'N:']);
-
 		// If any of the above mentioned properties are not present, we consider
 		// the vCard to be invalid.
-		if (!begin || !end || !hasVersion || !hasNameProperties) {
+		if (!begin || !end || !hasVersion) {
 			this.brokenFiles.push(file);
 		}
 	},
