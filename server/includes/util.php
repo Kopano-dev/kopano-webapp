@@ -805,10 +805,10 @@
 			$attachmentStream = str_replace('"', '', $attachmentStream);
 		}
 
-		if (preg_match('/PREF/', $attachmentStream) > 0) {
+		if (preg_match('/EMAIL;PREF=/', $attachmentStream) > 0) {
 			$rows = explode("\n", $attachmentStream);
 			foreach($rows as $key => $row) {
-				if(preg_match("/PREF/", $row)) {
+				if(preg_match("/EMAIL;PREF=/", $row)) {
 					unset($rows[$key]);
 				}
 			}
