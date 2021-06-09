@@ -121,10 +121,12 @@
 					$storeData["props"]["mailbox_owner_name"] = $msgstore_props[PR_MAILBOX_OWNER_NAME];
 				}
 
-				// public store doesn't have inbox
 				try {
-					$inbox = mapi_msgstore_getreceivefolder($store);
-					$inboxProps = mapi_getprops($inbox, array(PR_ENTRYID));
+					// public store doesn't have inbox
+					if ($storeType != ZARAFA_STORE_PUBLIC_GUID) {
+						$inbox = mapi_msgstore_getreceivefolder($store);
+						$inboxProps = mapi_getprops($inbox, array(PR_ENTRYID));
+					}
 				} catch (MAPIException $e) {
 					// don't propagate this error to parent handlers, if store doesn't support it
 					if($e->getCode() === MAPI_E_NO_SUPPORT) {
