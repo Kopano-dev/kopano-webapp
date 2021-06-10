@@ -3638,7 +3638,7 @@
 					$props['display_type_ex'] = DT_REMOTE_MAILUSER;
 
 					// If recipient found in local contact folder then no need to search in global addressbook.
-					if (!$this->isExternalContactItem($recipientRow[PR_ENTRYID])) {
+					if ($GLOBALS['entryid']->hasContactProviderGUID(bin2hex($recipientRow[PR_ENTRYID]))) {
 						$props['display_type_ex'] = DT_MAILUSER;
 					} else if($props['address_type'] === 'ZARAFA') {
 						// PR_DISPLAY_TYPE_EX is special property and is not present in ContentsTable so we need to
