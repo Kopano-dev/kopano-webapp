@@ -520,7 +520,19 @@ Zarafa.calendar.dialogs.AppointmentToolbar = Ext.extend(Zarafa.core.ui.ContentPa
 
 			layout = true;
 		} else {
-			this.setPrivate.setVisible(true);
+			if (record.isModifiedSinceLastUpdate('store_entryid')) {
+				var store = container.getHierarchyStore().getById(record.get('store_entryid'));
+				if ((store.isSharedStore() || store.isPublicStore()) && this.setPrivate.pressed) {
+					this.setPrivate.toggle(!this.setPrivate.pressed, true);
+					this.onPrivateGroupToggle(this.setPrivate);
+				}
+				this.setPrivate.setDisabled(store.isSharedStore() || store.isPublicStore());	
+			} else {
+				var store = container.getHierarchyStore().getById(record.get('store_entryid'));
+				this.setPrivate.setDisabled(store.isSharedStore() || store.isPublicStore());
+				this.setPrivate.setVisible(true);
+			}
+
 			this.highPriority.setVisible(true);
 			this.lowPriority.setVisible(true);
 

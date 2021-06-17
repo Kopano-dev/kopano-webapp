@@ -644,6 +644,16 @@ Zarafa.core.data.MAPIRecord = Ext.extend(Ext.data.Record, {
 	},
 
 	/**
+	 * Unset private the {@link Zarafa.core.data.MAPIRecord record} to a different
+	 * {@link Zarafa.hierarchy.data.MAPIFolderRecord folder}.
+	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder The folder to copy/move the record to
+	 */
+	unsetPrivate: function()
+	{
+		this.addMessageAction('unset_Private', true);
+	},
+
+	/**
 	 * Copy the {@link Zarafa.core.data.MAPIRecord record} to a different
 	 * {@link Zarafa.hierarchy.data.MAPIFolderRecord folder}.
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder The folder to copy the record to
