@@ -121,10 +121,12 @@
 					$storeData["props"]["mailbox_owner_name"] = $msgstore_props[PR_MAILBOX_OWNER_NAME];
 				}
 
-				// public store doesn't have inbox
 				try {
-					$inbox = mapi_msgstore_getreceivefolder($store);
-					$inboxProps = mapi_getprops($inbox, array(PR_ENTRYID));
+					// public store doesn't have inbox
+					if ($storeType != ZARAFA_STORE_PUBLIC_GUID) {
+						$inbox = mapi_msgstore_getreceivefolder($store);
+						$inboxProps = mapi_getprops($inbox, array(PR_ENTRYID));
+					}
 				} catch (MAPIException $e) {
 					// don't propagate this error to parent handlers, if store doesn't support it
 					if($e->getCode() === MAPI_E_NO_SUPPORT) {
@@ -3636,7 +3638,7 @@
 					$props['display_type_ex'] = DT_REMOTE_MAILUSER;
 
 					// If recipient found in local contact folder then no need to search in global addressbook.
-					if (!$this->isExternalContactItem($recipientRow[PR_ENTRYID])) {
+					if ($GLOBALS['entryid']->hasContactProviderGUID(bin2hex($recipientRow[PR_ENTRYID]))) {
 						$props['display_type_ex'] = DT_MAILUSER;
 					} else if($props['address_type'] === 'ZARAFA') {
 						// PR_DISPLAY_TYPE_EX is special property and is not present in ContentsTable so we need to
