@@ -481,16 +481,20 @@ Zarafa.core.data.NoSyncStore = Ext.extend(Ext.util.Observable, {
 	/**
 	 * Destroys a record or records. Should not be used directly. It's called by Store#remove automatically
 	 * @param {Store} store
-	 * @param {Ext.data.Record/Ext.data.Record[]} record
+	 * @param {Ext.data.Record} record
 	 * @param {Number} index
 	 * @private
 	 */
 	destroyRecord: function(store, record, index)
 	{
-		if (this.modified.indexOf(record) !== -1) {
-			this.modified.remove(record);
+		var modifiedRecord = this.modified.find(function(item){
+			return item.get("entryid") === record.get("entryid");
+		});
+			 
+		if (Ext.isDefined(modifiedRecord)) {
+			this.modified.remove(modifiedRecord);
 		}
-
+ 
 		if (!record.phantom) {
 			this.removed.push(record);
 		}
