@@ -4215,7 +4215,13 @@
 					return true; // no RTF is found, so we use plain text
 
 				// get first line of the RTF (removing all other lines after opening/decompressing)
-				$rtf = preg_replace("/(\n.*)/m","", mapi_decompressrtf($rtf));
+				try {
+					$rtf = preg_replace("/(\n.*)/m","", mapi_decompressrtf($rtf));
+				} catch (MAPIException $e) {
+					$props = mapi_getprops($message, array(PR_ENTRYID));
+					Log::Write(LOGLEVEL_WARN, sprintf("Corrupt RTF data found in item: '%s'", bin2hex($props[PR_ENTRYID])));
+					return true; // invalid RTF provided, use plain text.
+				}
 
 				// check if "\fromtext" exists, if so, it was plain text
 				return strpos($rtf,"\\fromtext") !== false;
