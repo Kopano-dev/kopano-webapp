@@ -2,7 +2,8 @@
 @page
 {
     size: auto; /* auto is the initial value */
-    margin: 1.3cm;
+    margin: 0.5cm;
+
 }
 
 @media print {
@@ -19,18 +20,13 @@
 }
 
 /* common css to make some tags clear on paper */
-body,html,div,dl,dt,dd,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,p,blockquote,th,td {
+html,div,dl,dt,dd,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,p,blockquote,th,td {
 	margin: 0;
 	padding: 0;
 }
 
-img,body,html {
+img,html {
 	border: 0;
-}
-
-html, body{
-    height: 100%;
-    width: 100%;
 }
 
 address,caption,cite,code,dfn,th,var {
