@@ -103,7 +103,7 @@ Zarafa.calendar.ui.html.AppointmentDaysView = Ext.extend(Zarafa.calendar.ui.Appo
 						'left:' + (bound.left + 0) + 'px;' +
 						'top:' + bound.top + 'px;' +
 						'width:' + (width - 2) + 'px;' +
-						'height:' + height + 'px;'
+						'height:' + (height - 2) + 'px;'
 			});
 
 			// Relay some events to the parent view

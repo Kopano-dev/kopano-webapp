@@ -397,7 +397,7 @@ Zarafa.calendar.ui.AbstractCalendarDaysView = Ext.extend(Zarafa.calendar.ui.Abst
 			ret.push(new Zarafa.calendar.data.AppointmentBounds({
 				left: Math.round(left),
 				right: Math.round(left + columnWidth),
-				top: startDatePos + 2,
+				top: startDatePos,
 				bottom: dueDatePos,
 				firstBox: true,
 				lastBox: true
@@ -410,7 +410,7 @@ Zarafa.calendar.ui.AbstractCalendarDaysView = Ext.extend(Zarafa.calendar.ui.Abst
 				ret.push(new Zarafa.calendar.data.AppointmentBounds({
 					left: Math.round(left),
 					right: Math.round(left + columnWidth),
-					top: startDatePos + 2,
+					top: startDatePos,
 					bottom: stripHeight,
 					firstBox: true
 				}));
