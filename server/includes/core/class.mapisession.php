@@ -979,18 +979,15 @@
 		{
 			$storeProps = mapi_getprops($store, array(PR_ENTRYID, PR_MDB_PROVIDER, PR_IPM_SUBTREE_ENTRYID, PR_IPM_PUBLIC_FOLDERS_ENTRYID));
 
+			$isPublicStore = $storeProps[PR_MDB_PROVIDER] == ZARAFA_STORE_PUBLIC_GUID;
 			// For the public store we need to use the PR_IPM_PUBLIC_FOLDERS_ENTRYID instead of the
 			// PR_IPM_SUBTREE_ENTRYID that can be used on your own and delegate stores.
-			if($storeProps[PR_MDB_PROVIDER] == ZARAFA_STORE_PUBLIC_GUID){
-				$subtreeEntryid = $storeProps[PR_IPM_PUBLIC_FOLDERS_ENTRYID];
-			} else {
-				$subtreeEntryid = $storeProps[PR_IPM_SUBTREE_ENTRYID];
-			}
+			$subtreeEntryid = $isPublicStore ? $storeProps[PR_IPM_PUBLIC_FOLDERS_ENTRYID] : $storeProps[PR_IPM_SUBTREE_ENTRYID];
 
 			$contactFolders = array();
 			try{
-				// Only searches one level deep, otherwise deleted contact folders will also be included.
-				$contactFolders = $this->getContactFolders($store, $subtreeEntryid, false);
+				// Search contact folder in more then one level.
+				$contactFolders = $this->getContactFolders($store, $subtreeEntryid, true, $isPublicStore);
 			}catch (Exception $e) {
 				return $contactFolders;
 			}
@@ -999,7 +996,7 @@
 			$firstLevelHierarchyNodes = $contactFolders;
 			foreach ($firstLevelHierarchyNodes as $key => $firstLevelNode) {
 				// To search for multiple levels CONVENIENT_DEPTH needs to be passed as well.
-				$contactFolders = array_merge($contactFolders, $this->getContactFolders($store, $firstLevelNode[PR_ENTRYID], true));
+				$contactFolders = array_merge($contactFolders, $this->getContactFolders($store, $firstLevelNode[PR_ENTRYID], true, $isPublicStore));
 			}
 			return $contactFolders;
 		}
@@ -1016,9 +1013,10 @@
 		 * @param mapiStore $store The mapi store of the user
 		 * @param string $folderEntryid EntryID of the folder to look for contact folders in
 		 * @param int $depthSearch flag to search into all the folder levels
+		 * @param boolean $isPublicStore flag to indicate given store is public store.
 		 * @return Array an array in which founded contact-folders will be pushed
 		 */
-		function getContactFolders($store, $folderEntryid, $depthSearch)
+		function getContactFolders($store, $folderEntryid, $depthSearch, $isPublicStore = false)
 		{
 			$restriction = array(RES_CONTENT,
 				array(
@@ -1038,13 +1036,67 @@
 				$depthFlag |= CONVENIENT_DEPTH;
 			}
 
-			$hierarchyFolder = mapi_msgstore_openentry($store, $folderEntryid);
+			// Public store does not have Deleted items(PR_IPM_WASTEBASKET_ENTRYID) folder so
+			// no need to execute below code.
+			if (!$isPublicStore) {
+				// Get all the deleted contact folder entryids.
+				$deletedContactFoldersEntryIDs = $this->getDeletedContactFolderEntryids($store, $restriction);
 
-			// Filter-out contact folders only
-			$contactFolderTable = mapi_folder_gethierarchytable($hierarchyFolder, $depthFlag);
-			mapi_table_restrict($contactFolderTable, $restriction, TBL_BATCH);
+				// Create a restriction which skeep the deleted conftact folder in final result.
+				if (!empty($deletedContactFoldersEntryIDs)) {
+					$deletedItems = array();
+					foreach($deletedContactFoldersEntryIDs as $key => $entryid) {
+						array_push($deletedItems, array(RES_PROPERTY,
+								array(
+									RELOP => RELOP_NE,
+									ULPROPTAG => PR_ENTRYID,
+									VALUE => array(PR_ENTRYID => $entryid)
+								)
+							)
+						);
+					}
 
-			return mapi_table_queryallrows($contactFolderTable, array(PR_STORE_ENTRYID, PR_ENTRYID, PR_DISPLAY_NAME));
+					$restriction = Array(RES_AND,
+						Array(
+							array(RES_PROPERTY,
+								array(
+									RELOP => RELOP_EQ,
+									ULPROPTAG => PR_CONTAINER_CLASS,
+									VALUE => array(PR_CONTAINER_CLASS => "IPF.Contact")
+								)
+							),
+							Array(RES_OR, $deletedItems)
+						)
+					);
+				}
+			}
+
+			$folder = mapi_msgstore_openentry($store, $folderEntryid);
+			$hierarchyTable = mapi_folder_gethierarchytable($folder, $depthFlag);
+			mapi_table_restrict($hierarchyTable, $restriction, TBL_BATCH);
+
+			return mapi_table_queryallrows($hierarchyTable, array(PR_STORE_ENTRYID, PR_ENTRYID, PR_DISPLAY_NAME));
+		}
+
+		/**
+		 * Function is used to get the deleted contact folders.
+		 * 
+		 * @param mapiStore $store The mapi store of the user
+		 * @param Array $restriction The search restriction to get only deleted contact folders.
+		 * 
+		 * @return Array an array of deleted contact folders entryids if any else return empty array.
+		 */
+		private function getDeletedContactFolderEntryids($store, $restriction)
+		{
+			$props = mapi_getprops($store, array(PR_IPM_WASTEBASKET_ENTRYID));
+			$deleteFolder = mapi_msgstore_openentry($store, $props[PR_IPM_WASTEBASKET_ENTRYID]);
+			$hierarchyTable = mapi_folder_gethierarchytable($deleteFolder, MAPI_DEFERRED_ERRORS | CONVENIENT_DEPTH);
+
+			mapi_table_restrict($hierarchyTable, $restriction, TBL_BATCH);
+			$deletedContactFolders = mapi_table_queryallrows($hierarchyTable, array(PR_ENTRYID));
+
+			$deletedContactFoldersEntryIDs = array_column($deletedContactFolders, PR_ENTRYID);
+			return !is_null($deletedContactFoldersEntryIDs) ? $deletedContactFoldersEntryIDs : [];
 		}
 
 		/**
