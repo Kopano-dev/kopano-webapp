@@ -870,5 +870,31 @@ Zarafa.core.Util =
 			[dateArray[0], dateArray[1]] = [dateArray[1], dateArray[0]];
 		}
 		return dateArray;
+	},
+
+		/**
+	 * Helper function which gives the default css for iframe used in
+	 * {@link Zarafa.core.ui.PreviewPanel PreviewPanel} and html editor.
+	 *
+	 * @returns {string} default css for iframe.
+	 */
+	iFrameCSSRules: function ()
+	{
+		var fontSize = Zarafa.common.ui.htmleditor.Fonts.getFonts()[container.getSettingsModel().get("zarafa/v1/main/default_font_size")];
+		var fontFamily = container.getSettingsModel().get("zarafa/v1/main/default_font");
+
+		return 'html{' +
+			'margin:0;' +
+			'padding: 0;' +
+		'}' +
+
+		'body{' +
+			'box-sizing: border-box;' +
+			'line-height: 1.2;' +
+			'padding: 9px;' +
+			'margin: inherit;' +
+			'font-size: ' + fontSize + 'pt;' +
+			'font-family: ' + fontFamily + ';' +
+		'}';
 	}
 };
