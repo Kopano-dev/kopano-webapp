@@ -1117,6 +1117,10 @@
 									}
 
 									for($i = 0; $i < 7; $i++) {
+										$weeks = gmdate("w", $occenddate) - $i;
+										if ($weeks < 0) {
+											break;
+										}
 										if( $nday == 5 && (1<<( (gmdate("w", $occenddate)-$i)%7) ) & $weekdays) {
 											$occenddate -= $i * 24 * 60 * 60;
 											break;
