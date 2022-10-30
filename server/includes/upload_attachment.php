@@ -566,8 +566,8 @@ class UploadAttachment
 	 */
 	function importEMLFile($attachmentStream, $filename)
 	{
-		if (isBrokenEml($attachmentStream)) {
-			throw new ZarafaException(sprintf(_("Unable to import '%s'"), $filename) . ". ". _("The EML is not valid"));
+		if (empty($attachmentStream)) {
+			return false;
 		}
 
 		$this->destinationFolder = $this->getDestinationFolder();

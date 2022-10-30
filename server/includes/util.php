@@ -739,29 +739,6 @@
 	}
 
 	/**
-	 * Check if the eml stream is corrupted or not
-	 * @param String $attachment Content fetched from PR_ATTACH_DATA_BIN property of an attachment.
-	 * @return True if eml is broken, false otherwise.
-	 */
-	function isBrokenEml($attachment)
-	{
-		// Get header part to process further
-		$splittedContent = preg_split("/\r?\n\r?\n/", $attachment);
-
-		// Fetch raw header
-		if (preg_match_all('/([^\n^:]+:)/', $splittedContent[0], $matches)) {
-			$rawHeaders = $matches[1];
-		}
-
-		// Compare if necessary headers are present or not
-		if (isset($rawHeaders) && in_array('From:', $rawHeaders) && in_array('Date:', $rawHeaders)) {
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
 	 * Function returns the IP address of the client.
 	 *
 	 * @return String The IP address of the client.
