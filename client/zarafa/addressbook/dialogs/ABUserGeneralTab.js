@@ -78,11 +78,6 @@ Zarafa.addressbook.dialogs.ABUserGeneralTab = Ext.extend(Ext.form.FormPanel, {
 				flex: 1,
 				fieldLabel:_('Display'),
 				name: 'display_name'
-			},{
-				xtype: 'textfield',
-				flex: 1,
-				fieldLabel: _('Alias'),
-				name: 'account'
 			}]
 		};
 	},
