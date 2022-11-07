@@ -225,7 +225,6 @@ Zarafa.core.data.NoSyncStore = Ext.extend(Ext.util.Observable, {
 			record.join(null);
 
 			this.data.removeAt(index);
-			this.modified.remove(record);
 
 			if (silent !== true) {
 				this.fireEvent('remove', this, record, index);
