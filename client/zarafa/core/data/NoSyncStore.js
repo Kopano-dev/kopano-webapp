@@ -487,7 +487,7 @@ Zarafa.core.data.NoSyncStore = Ext.extend(Ext.util.Observable, {
 	destroyRecord: function(store, record, index)
 	{
 		var modifiedRecord = this.modified.find(function(item){
-			return item.get("entryid") === record.get("entryid");
+			return item.get("entryid") === record.get("entryid") && item.phantom === record.phantom;
 		});
 			 
 		if (Ext.isDefined(modifiedRecord)) {
