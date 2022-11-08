@@ -78,7 +78,7 @@ describe('HTMLParser', function() {
 			});
 
 			it('can block src attribute links with quotes', function() {
-				expect(blockExternalContent('<img alt=\'text\' src=\'http://www.google.com/images/icon.gif\' width=\'120\' height=\'500\' />')).toEqual('<img alt=\'text\' src=\'\' width=\'120\' height=\'500\' />');
+				expect(blockExternalContent('<img alt=\'text\' src=\'http://www.google.com/images/icon.gif\' width=\'120\' height=\'500\' />')).toEqual('<img alt=\'text\' src=\"\" width=\'120\' height=\'500\' />');
 			});
 
 			it('can block src attribute links with double quotes', function() {
