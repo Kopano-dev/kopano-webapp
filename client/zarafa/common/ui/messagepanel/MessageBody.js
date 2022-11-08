@@ -212,12 +212,8 @@ Zarafa.common.ui.messagepanel.MessageBody = Ext.extend(Ext.Container, {
 			// otherwise we have to surround it with HTML tags for displaying plain-text.
 			html = record.get('isHTML');
 			body = record.getBody(html);
-			if (html) {
-				if (container.getServerConfig().getDOMPurifyEnabled()) {
-					body = record.cleanupOutlookStyles(DOMPurify.sanitize(body, {USE_PROFILES: {html: true}}));
-				} else {
-					body = record.cleanupOutlookStyles(body);
-				}
+			if (html && container.getServerConfig().getDOMPurifyEnabled()) {
+				body = DOMPurify.sanitize(body, {USE_PROFILES: {html: true}});
 			}
 
 			if (!body) {
@@ -255,7 +251,6 @@ Zarafa.common.ui.messagepanel.MessageBody = Ext.extend(Ext.Container, {
 		// Add listener to enlarge image
 		this.setImageClickHandler(iframeDocument);
 
-		this.scanDOMForLinks(iframeDocument);
 		this.handleMailToLinks(iframeDocumentElement);
 
 		var rootContainer = this.recordComponentUpdaterPlugin.rootContainer;
@@ -265,31 +260,6 @@ Zarafa.common.ui.messagepanel.MessageBody = Ext.extend(Ext.Container, {
 			// rootContainer as an argument in callback function.
 			Zarafa.core.KeyMapMgr.activate(rootContainer, 'global', iframeDocumentElement);
 			Zarafa.core.KeyMapMgr.activate(rootContainer, 'contentpanel.record.message.showmail', iframeDocumentElement);
-		}
-	},
-
-	/**
-	 * Function recursively scans dom to get text nodes which contain email addresses or URLs so we can
-	 * replace them with an anchor tag.
-	 * @param {HTMLElement} node The parent node that will be examined to find the child text nodes
-	 * @private
-	 */
-	scanDOMForLinks: function(node)
-	{
-		for(var i = 0; i < node.childNodes.length; i++) {
-			var cnode = node.childNodes[i];
-			if(cnode.nodeType == 1) { // Tag-node
-				if(cnode.nodeName != 'A') { // Igonre Anchor-node as they are already linified
-					this.scanDOMForLinks(cnode);
-				}
-			} else if(cnode.nodeType == 3) { // Text-node
-				if(cnode.nodeValue.trim().length > 0) {
-					// check if this text node is HTML link or email address
-					if(cnode.nodeValue.search(this.emailPattern) != -1 || cnode.nodeValue.search(this.linkPattern) != -1) {
-						this.linkifyDOMNode(cnode, node);
-					}
-				}
-			}
 		}
 	},
 
