@@ -127,10 +127,10 @@
 						"direction" => $sortingDir
 					),
 				);
-
-				// Parse incoming sort order
-				$this->parseSortOrder($action, $map, true);
 			}
+
+			// Parse incoming sort order
+			$this->parseSortOrder($action, $map, true);
 
 			$folderType = $action['folderType'];
 
@@ -413,10 +413,11 @@
 				if ( $sortingOnName ){
 					// Sort the items here, because full_name is not a real property, so we can not use the regular sorting
 					// Note: This hack only works becaue the GAB does not work with paging!
-					function cmpAsc($a, $b){
+					function cmpDesc($a, $b) {
 						return strcasecmp($b['props']['full_name'], $a['props']['full_name']);
 					}
-					function cmpDesc($a, $b){
+
+					function cmpAsc($a, $b) {
 						return strcasecmp($a['props']['full_name'], $b['props']['full_name']);
 					}
 
