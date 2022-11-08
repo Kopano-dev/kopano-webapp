@@ -542,18 +542,13 @@ class DownloadAttachment extends DownloadBase
 		switch(strtolower(pathinfo($attachmentProps[PR_ATTACH_LONG_FILENAME], PATHINFO_EXTENSION)))
 		{
 			case 'eml':
-				if (isBrokenEml($attachmentStream)) {
-					throw new ZarafaException(_("Eml is corrupted"));
-				} else {
-					try {
-						// Convert an RFC822-formatted e-mail to a MAPI Message
-						$ok = mapi_inetmapi_imtomapi($GLOBALS['mapisession']->getSession(), $this->store, $addrBook, $newMessage, $attachmentStream, array());
-					} catch(Exception $e) {
-						throw new ZarafaException(_("The eml Attachment is not imported successfully"));
-					}
+				try {
+					// Convert an RFC822-formatted e-mail to a MAPI Message
+					$ok = mapi_inetmapi_imtomapi($GLOBALS['mapisession']->getSession(), $this->store, $addrBook, $newMessage, $attachmentStream, array());
+				} catch (Exception $e) {
+					throw new ZarafaException(_("The eml Attachment is not imported successfully"));
 				}
 				break;
-
 			case 'vcf':
 				try {
 					processVCFStream($attachmentStream);

@@ -1489,7 +1489,7 @@ Zarafa.common.Actions = {
 				rawHeaders = contact.match(rawHeaderRegEx);
 				this.isBrokenVCF(files[index], contact, rawHeaders);
 			}, this);
-		} else if (!this.isVCFFile(files[index]) && (rawHeaders.indexOf('From:') === -1 || rawHeaders.indexOf('Date:') === -1)) {
+		} else if (!this.isVCFFile(files[index]) && !this.isEmlFile(files[index]) && (rawHeaders.indexOf('From:') === -1 || rawHeaders.indexOf('Date:') === -1)) {
 			this.brokenFiles.push(files[index]);
 		}
 
