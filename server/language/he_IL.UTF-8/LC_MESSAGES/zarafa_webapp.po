@@ -1,21 +1,22 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Kopano Webapp Hebrew (Israel) translation.
+# Copyright (C) 2017
+# This file is distributed under the same license as the kopano-webapp package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Kopano Webapp Hebrew (Israel)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-18 15:31+0200\n"
-"PO-Revision-Date: 2012-06-01 09:31+0200\n"
+"POT-Creation-Date: 2019-09-25 14:32+0200\n"
+"PO-Revision-Date: 2017-10-03 22:09+0200\n"
 "Last-Translator: Maria <m.ulyashyn@Kopano.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: he\n"
+"Language-Team: Hebrew <https://translate.kopano.io/projects/kopano/kopano-"
+"webapp/he/>\n"
+"Language: he_IL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.6\n"
+"X-Generator: Poedit 2.0.4\n"
 
 #. TRANSLATORS: This message is used as label for the column which indicates the week number of the month in date picker. and 'Wk' stands for week
 msgid "Wk"
@@ -112,6 +113,27 @@ msgstr "יום שישי"
 msgid "Saturday"
 msgstr "יום שבת"
 
+msgid "Sun"
+msgstr ""
+
+msgid "Mon"
+msgstr ""
+
+msgid "Tue"
+msgstr ""
+
+msgid "Wed"
+msgstr ""
+
+msgid "Thu"
+msgstr ""
+
+msgid "Fri"
+msgstr ""
+
+msgid "Sat"
+msgstr ""
+
 msgid "January"
 msgstr "ינואר"
 
@@ -190,7 +212,7 @@ msgstr "תאריך זה קודם לתאריך המינימלי"
 msgid "This date is after the maximum date"
 msgstr "תאריך זה מאוחר יותר מהתאריך המקסמילי"
 
-#. TRANSLATORS: See http://docs.sencha.com/ext-js/3-4/#!/api/Date for the meaning of these formatting instructions
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "d/m/Y"
 msgstr ""
 
@@ -281,7 +303,7 @@ msgstr "הזמן בשדה זה חייב להיות מוקדם מ או שווה �
 msgid "{0} is not a valid time"
 msgstr "{0} אינו זמן תקף"
 
-#. TRANSLATORS: See http://docs.sencha.com/ext-js/3-4/#!/api/Date for the meaning of these formatting instructions
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "G:i"
 msgstr "G:i"
 
@@ -311,11 +333,13 @@ msgid "This field should only contain letters, numbers and _"
 msgstr "שדה זה צריך להכיל רק אותיות, מספרים ו _"
 
 # 81%
-msgid "E-mail Addresses"
+#, fuzzy
+msgid "Email Addresses"
 msgstr "כתובות דואר אלקטרני"
 
 # 75%
-msgid "E-mail addresses"
+#, fuzzy
+msgid "Email addresses"
 msgstr "כתובות דואר אלקטרוני"
 
 msgid "Group details"
@@ -357,18 +381,20 @@ msgstr "ספר כתובות"
 msgid "User details"
 msgstr "פרטי משתמש"
 
-msgid "First"
-msgstr "שם פרטי"
+msgid "First name"
+msgstr ""
 
-msgid "Initial"
-msgstr "ר\"ת"
+msgid "Last name"
+msgstr ""
+
+msgid "Initials"
+msgstr ""
 
 msgid "Display"
 msgstr "שם תצוגה"
 
-# 75%
-msgid "Last"
-msgstr "שם משפחה"
+msgid "Addresses"
+msgstr "כתובות"
 
 msgid "Address"
 msgstr "כתובת"
@@ -384,6 +410,9 @@ msgstr "מיקוד "
 
 msgid "Country"
 msgstr "מדינה"
+
+msgid "Professional"
+msgstr ""
 
 msgid "Title"
 msgstr "כותרת"
@@ -437,8 +466,9 @@ msgstr "נייד"
 msgid "Pager"
 msgstr "איתורית"
 
-msgid "Kopano WebApp"
-msgstr "הווב אפ של זראפה"
+#, fuzzy
+msgid "No user selected"
+msgstr "תיקיית '{0}' נבחרה."
 
 msgid "You must select one or more users."
 msgstr ""
@@ -451,6 +481,16 @@ msgstr "בחר"
 
 msgid "Show Details"
 msgstr "הצג פרטים"
+
+msgid "Copy contact"
+msgstr ""
+
+msgid "Copy contacts"
+msgstr ""
+
+msgid ""
+"Showing only the first {0} names. Use search to find more specific results."
+msgstr ""
 
 msgid "Use the search bar to get results"
 msgstr ""
@@ -508,6 +548,18 @@ msgstr "מיין לפי: גודל"
 msgid "Sort by: Email Address"
 msgstr ""
 
+msgid "Job Title"
+msgstr "הגדרת התפקיד"
+
+msgid "Sort by: Job Title"
+msgstr ""
+
+msgid "Company Name"
+msgstr "שם החברה"
+
+msgid "Sort by: Company Name"
+msgstr ""
+
 msgid "Sort by: Department"
 msgstr ""
 
@@ -549,6 +601,31 @@ msgstr "מיין לפי: שינוי"
 msgid "Sort by: Fax"
 msgstr "מיין לפי: מאת"
 
+msgid "Print single item"
+msgstr ""
+
+# 77%
+# 78%
+# 100%
+#, fuzzy
+msgid "Print selected item"
+msgstr "נבחר פריט {0}"
+
+msgid "Print"
+msgstr "הדפס"
+
+msgid "No item selected"
+msgstr ""
+
+msgid "No preview"
+msgstr "ללא תצוגה"
+
+msgid "Right preview"
+msgstr "תצוגה מימין"
+
+msgid "Bottom preview"
+msgstr "תצוגה מלמטה"
+
 # 87%
 #, fuzzy
 msgid "Any date"
@@ -580,6 +657,10 @@ msgstr ""
 msgid "Add"
 msgstr "הוסף"
 
+#, fuzzy
+msgid "Empty folder name"
+msgstr "תיקיה ריקה"
+
 msgid "You must specify a name."
 msgstr "עליך לציין שם."
 
@@ -587,6 +668,13 @@ msgid "Add a folder to favorites based on your search query"
 msgstr ""
 
 msgid "Folder name"
+msgstr ""
+
+#, fuzzy
+msgid "Select Category"
+msgstr "הגדר קטגוריה"
+
+msgid "Apply"
 msgstr ""
 
 #, fuzzy
@@ -602,7 +690,7 @@ msgstr "השב לכולם"
 msgid "Forward"
 msgstr "העבר"
 
-msgid "Edit as New Message"
+msgid "Edit as New"
 msgstr ""
 
 msgid "Search tools"
@@ -627,40 +715,40 @@ msgid "Mails"
 msgstr "דואר"
 
 #, fuzzy
-msgid "Calendar items"
-msgstr "פריטי לוח השנה"
+msgid "Appointments"
+msgstr "פגישה"
 
-#, fuzzy
-msgid "Contact items"
-msgstr "פריטי אנשי קשר"
+msgid "Contacts"
+msgstr "אנשי קשר"
 
-#, fuzzy
-msgid "Task items"
-msgstr "פריטי משימה"
-
-#, fuzzy
-msgid "Note items"
-msgstr "פריטי פתקים"
+msgid "Tasks"
+msgstr "משימות"
 
 msgid "Filter.."
 msgstr ""
 
-#, fuzzy
-msgid "Unread items"
-msgstr "פריטים שנקראו"
+msgid "Unread"
+msgstr "לא נקרא"
 
-#, fuzzy
-msgid "With attachments"
+msgid "Attachments"
 msgstr "קבצים מצורפים"
 
 msgid "Date"
 msgstr ""
 
+#, fuzzy
+msgctxt "search.date"
 msgid "From"
 msgstr "מאת"
 
+#, fuzzy
+msgctxt "search.date"
 msgid "To"
 msgstr "אל"
+
+#, fuzzy
+msgid "Filter category.."
+msgstr "הגדר קטגוריה"
 
 #, fuzzy
 msgid "Search.."
@@ -700,15 +788,24 @@ msgstr ""
 msgid "Loading Search results"
 msgstr ""
 
-msgid "Sorting not possible"
+msgid "Sorting tip"
 msgstr ""
 
 msgid ""
-"The search results could not be sorted because the number of items is higher "
-"than {0}. Narrow down your results by specifying your input."
+"You can sort by date if you narrow down your search results. Enable filters "
+"or adjust your input."
 msgstr ""
 
 msgid "Did you mean"
+msgstr ""
+
+msgid "With"
+msgstr ""
+
+msgid "To"
+msgstr "אל"
+
+msgid "No date"
 msgstr ""
 
 msgid "Error"
@@ -783,31 +880,27 @@ msgstr "מופיע כל {0} החל מ{1}"
 msgid "Occurs every {0} {1} effective {2}."
 msgstr "מופיע כל {0}{1} החל מ{2}."
 
-# 76%
-#, fuzzy
-msgid "Occurs every {0} effective {1} for {2} occurence from {3} to {4}."
+msgid "Occurs every {0} effective {1} for {2} occurrence from {3} to {4}."
 msgid_plural ""
-"Occurs every {0} effective {1} for {2} occurences from {3} to {4}."
-msgstr[0] "מופיע כל {0} החל מ{1} עד {2} בין {3} ל {4}."
+"Occurs every {0} effective {1} for {2} occurrences from {3} to {4}."
+msgstr[0] ""
 msgstr[1] ""
 
-# 78%
-#, fuzzy
-msgid "Occurs every {0} {1} effective {2} for {3} occurence from {4} to {5}."
+msgid "Occurs every {0} {1} effective {2} for {3} occurrence from {4} to {5}."
 msgid_plural ""
-"Occurs every {0} {1} effective {2} for {3} occurences {4} to {5}."
-msgstr[0] "מופיע כל {0}{1} החל מ{2} עד {3} בין {4} ל {5}."
+"Occurs every {0} {1} effective {2} for {3} occurrences {4} to {5}."
+msgstr[0] ""
 msgstr[1] ""
 
-msgid "Occurs every {0} effective {1} for {2} occurence."
-msgid_plural "Occurs every {0} effective {1} for {2} occurences."
-msgstr[0] "מופיע כל {0} החל מ {1} למופע {2}."
-msgstr[1] "מופיע כל {0} החל מ {1} ל {2} מופעים."
+msgid "Occurs every {0} effective {1} for {2} occurrence."
+msgid_plural "Occurs every {0} effective {1} for {2} occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
-msgid "Occurs every {0} {1} effective {2} for {3} occurence."
-msgid_plural "Occurs every {0} {1} effective {2} for {3} occurences."
-msgstr[0] "מופיע כל {0}{1} החל מ{2} למופע {3}."
-msgstr[1] "מופיע כל {0}{1} החל מ{2} ל {3} מופעים."
+msgid "Occurs every {0} {1} effective {2} for {3} occurrence."
+msgid_plural "Occurs every {0} {1} effective {2} for {3} occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Occurs every {0} effective {1} until {2} from {3} to {4}."
 msgstr "מופיע כל {0} החל מ{1} עד {2} בין {3} ל {4}."
@@ -824,11 +917,9 @@ msgstr "מופיע כל {0}{1} החל מ{2} עד {3}."
 msgid "When"
 msgstr "מתי"
 
-# 75%
-#. TRANSLATORS: See http://docs.sencha.com/ext-js/3-4/#!/api/Date for the meaning of these formatting instructions
-#, fuzzy
-msgid "l jS F Y G:i"
-msgstr "D j F Y H:i"
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+msgid "l jS F Y {0}"
+msgstr ""
 
 msgid "Where"
 msgstr "היכן"
@@ -849,16 +940,18 @@ msgstr ""
 msgid "Sort by: Subject"
 msgstr "מיין לפי: נושא"
 
-msgid "Startdate"
+msgid "Start Date"
 msgstr "תאריך התחלה"
 
-msgid "Sort by: Startdate"
+msgid "Sort by: Start Date"
 msgstr ""
 
-msgid "Enddate"
+# 87%
+#, fuzzy
+msgid "End Date"
 msgstr "תאריך סיום"
 
-msgid "Sort by: Enddate"
+msgid "Sort by: End Date"
 msgstr ""
 
 msgid "Organizer"
@@ -873,14 +966,6 @@ msgstr "משתתף אופציונלי"
 msgid "Show Time As"
 msgstr ""
 
-msgid "Start Date"
-msgstr "תאריך התחלה"
-
-# 87%
-#, fuzzy
-msgid "End Date"
-msgstr "תאריך סיום"
-
 # 77%
 msgid "Recurrence pattern"
 msgstr "תבנית מופע חוזר"
@@ -894,6 +979,48 @@ msgstr "אירוע של יום שלם"
 #, fuzzy
 msgid "Add Shared Calendar"
 msgstr "פתח תיקיות משותפות"
+
+msgid "Remove From Calendar"
+msgstr "הסר מלוח השנה"
+
+msgid "No Response Required"
+msgstr "אין צורך בתגובה"
+
+msgid "Accept"
+msgstr "קבל"
+
+msgid "Accept Meeting Request"
+msgstr "קבל את בקשת הפגישה"
+
+msgid "Tentative"
+msgstr "זמני"
+
+msgid "Tentatively Accept Meeting Request"
+msgstr "קבל בהיסוס את בקשת הפגישה"
+
+msgid "Decline"
+msgstr "סרב"
+
+msgid "Decline Meeting Request"
+msgstr "סרב לבקשת הפגישה"
+
+msgid "Propose New Time"
+msgstr "הצע זמן חדש"
+
+msgid "Propose New Time for Meeting Request"
+msgstr "הצע זמן חדש לבקשת הפגישה"
+
+msgid "View All Proposals"
+msgstr "הצג את כל ההצעות"
+
+msgid "Accept Proposal"
+msgstr "קבל הצעה"
+
+msgid "Accept Proposed Time"
+msgstr "קבל את הצעת הזמן"
+
+msgid "View in calendar"
+msgstr ""
 
 msgid "Day"
 msgstr "יום"
@@ -919,20 +1046,40 @@ msgstr "בקשת פגישה"
 msgid "Print selected appointment"
 msgstr ""
 
+msgid "No appointment selected"
+msgstr ""
+
 msgid "Print overview"
 msgstr ""
 
-msgid "Print"
-msgstr "הדפס"
-
-msgid "No appointment selected"
-msgstr ""
+#, fuzzy
+msgid "Create Appointment"
+msgstr "פגישה פרטית"
 
 msgid "Calendar"
 msgstr "לוח שנה"
 
+msgid "Create in other calendar"
+msgstr ""
+
+msgid ""
+"The selected calendar has \"read-only\" permissions. Instead you can create "
+"an item in your own calendar."
+msgstr ""
+
+msgid "What would you like?"
+msgstr ""
+
+#, fuzzy
+msgid "Own calendar"
+msgstr "לוח שנה"
+
 msgid "F Y"
 msgstr "F Y"
+
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+msgid "l"
+msgstr ""
 
 msgid "All text fields"
 msgstr "כל שדות הטקסט"
@@ -949,19 +1096,24 @@ msgstr "שדה אל או שדה עותק נוסף"
 msgid "Meeting"
 msgstr "פגישה"
 
+#, fuzzy
 msgctxt "calendar.dialog"
-msgid "Resources have been planned."
+msgid "Resources have been planned"
 msgstr "תוכננו משאבים"
 
-msgid ""
-"An update message will be sent to all recipients, do you wish to continue?"
-msgstr "הודעת עדכון יישלח לכל הנמענים, אתה רוצה להמשיך?"
+# 87%
+#, fuzzy
+msgid "Send update"
+msgstr "תאריך סיום"
+
+msgid "Do you want to send an update to all recipients?"
+msgstr ""
 
 msgid "Send update to attendees"
 msgstr ""
 
 msgid ""
-"You have made changes to the list of attendees, Choose one of the following"
+"You have made changes to the list of attendees. What would you like to do?"
 msgstr ""
 
 msgid "Send updates to only added or deleted attendees."
@@ -970,8 +1122,12 @@ msgstr ""
 msgid "Send updates to all attendees."
 msgstr ""
 
-msgid ""
-"One or more attendees you have invited are busy. Are you sure to invite?"
+#, fuzzy
+msgid "Busy attendees"
+msgstr "הזמן משתתפים"
+
+#, fuzzy
+msgid "One or more attendees are busy. Are you sure to invite?"
 msgstr "אחד או יותר מהמשתתפים שהזמנת עסוקים. האם אתה בטוח שברצונך להזמין?"
 
 msgid "Scheduling"
@@ -1050,6 +1206,10 @@ msgid ""
 "request is updated by the organizer"
 msgstr ""
 
+#, fuzzy
+msgid "Create in"
+msgstr "נוצר ב"
+
 msgid "Time"
 msgstr "זמן"
 
@@ -1065,9 +1225,6 @@ msgstr "תזכורת"
 msgid "Show as"
 msgstr "הראה כ"
 
-msgid "Attachments"
-msgstr "קבצים מצורפים"
-
 msgid "Warning"
 msgstr ""
 
@@ -1077,81 +1234,52 @@ msgstr ""
 msgid "Type your message here..."
 msgstr ""
 
+#, fuzzy
+msgid "Update location"
+msgstr "עדכן רשימה"
+
 msgid ""
 "Do you want to update the location \"{0}\" with the new location \"{1}\"?"
 msgstr "האם ברצונך לעדכן את המיקום \"{0}\" עם המיקום החדש \"{1}\"?"
 
-# 75%
-# 83%
-#. TRANSLATORS: See http://docs.sencha.com/ext-js/3-4/#!/api/Date for the meaning of these formatting instructions
-#, fuzzy
-msgid "jS F Y G:i"
-msgstr "D j F Y H:i"
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+msgid "jS F Y {0}"
+msgstr ""
 
 msgid "None"
 msgstr "אף אחד"
-
-msgid "Send invitation"
-msgstr "שלח הזמנה"
 
 # 75%
 #, fuzzy
 msgid "Send"
 msgstr "נשלח"
 
-msgid "Send invitation to recipients"
-msgstr ""
-
 msgid "Save"
 msgstr "שמור"
 
-msgid "Save & Close"
-msgstr "שמור & סגור"
-
-msgid "Save appointment and close dialog"
-msgstr "שמור מינוי שיח קרוב"
-
-msgid "Save without sending an invitation to recipients"
-msgstr ""
+msgid "Close"
+msgstr "סגור"
 
 msgid "Delete"
 msgstr "מחק"
 
-msgid "Delete this appointment"
-msgstr "מחק פגישה זו"
-
 msgid "Add attachment"
 msgstr "הוסף קובץ מצורף"
-
-msgid "Add attachments to this appointment"
-msgstr "הוסף קבצים מצורפים לפגישה זו"
-
-msgid "Cannot add attachment"
-msgstr ""
-
-msgid "Print this appointment"
-msgstr "הדפס את פגישה זו"
 
 msgid "Check names"
 msgstr "בדוק שמות"
 
-msgid "Check all recipient names"
-msgstr "בדוק את שמות כל המקבלים"
+msgid "Addressbook"
+msgstr ""
 
-msgid "Open the recurrence dialog"
-msgstr "פתח את תיבת דו שיח מופע חוזר"
+msgid "Open addressbook"
+msgstr ""
 
 msgid "Invite attendees"
 msgstr "הזמן משתתפים"
 
-msgid "Invite attendees for this appointment"
-msgstr "הזמן משתתפים לפגישה זו"
-
 msgid "Cancel invitation"
 msgstr "בטל הזמנה"
-
-msgid "Convert this meeting request to an appointment by removing attendees"
-msgstr ""
 
 msgid "High priority"
 msgstr "עדיפות גובהה"
@@ -1177,13 +1305,6 @@ msgstr "פרטי"
 msgid "Mark this appointment as private"
 msgstr "סמן פגישה זו כפרטית"
 
-# 78%
-# 82%
-# 100%
-#, fuzzy
-msgid "Save meeting request and close dialog"
-msgstr "שמור מינוי שיח קרוב"
-
 msgid "Proposed Date and Time"
 msgstr "תאריך וזמן הוצעו"
 
@@ -1198,9 +1319,6 @@ msgstr "זמן פגישה נוכחי"
 
 msgid "Show only working hours"
 msgstr "הראה רק את שעות העבודה"
-
-msgid "Propose New Time"
-msgstr "הצע זמן חדש"
 
 msgid "Start time"
 msgstr "זמן התחלה"
@@ -1230,27 +1348,31 @@ msgstr ""
 msgid "Send Meeting Request Confirmation"
 msgstr "שלח אישור בקשת פגישה"
 
+#, fuzzy
 msgid ""
-"This meeting has been accepted and will be moved to your Calendar. Do you "
-"want to include comments with your response?"
+"This meeting will be accepted and moved to your calendar. Do you want to "
+"include comments with your response?"
 msgstr ""
 "פגישה זו התקבלה ותועבר ללוח השנה שלך. האם אתה רוצה לכלול הערות עם התגובה שלך?"
 
+#, fuzzy
 msgid ""
-"This meeting has been tentatively accepted and will be moved to your "
-"Calendar. Do you want to include comments with your response?"
+"This meeting will be tentatively accepted and moved to your calendar. Do you "
+"want to include comments with your response?"
 msgstr ""
 "פגשיה זו התקבלה בהיסוס ומועברת ללוח השנה שלך. האם אתה רוצה לכלול הערות עם "
 "התגובה שלך?"
 
+#, fuzzy
 msgid ""
-"This meeting has been declined and will be moved to the Deleted Items "
-"folder. Do you want to include comments with your response?"
+"This meeting will be declined and moved to your Deleted Items folder. Do you "
+"want to include comments with your response?"
 msgstr ""
 "פגישה זו סורבה ותועבר לתיקית \"פריטים שנמחקו\". האם אתה רוצה לכלול הערות עם "
 "התגובה שלך?"
 
-msgid "Edit the response before Sending."
+#, fuzzy
+msgid "Edit the response before sending"
 msgstr "ערוך את התגבוה לפני שליחה."
 
 msgid "Send the response now."
@@ -1294,26 +1416,49 @@ msgstr ""
 msgid "Paste selected item"
 msgstr ""
 
-# 87%
-#. TRANSLATORS: See http://docs.sencha.com/ext-js/3-4/#!/api/Date for the meaning of these formatting instructions
-#, fuzzy
-msgid "l jS F Y"
-msgstr "l j F Y"
+msgid "An overview of"
+msgstr ""
 
-# 87%
-# 75%
-#. TRANSLATORS: See http://docs.sencha.com/ext-js/3-4/#!/api/Date for the meaning of these formatting instructions
-#, fuzzy
-msgid "l jS F"
-msgstr "l j F Y"
-
-#. TRANSLATORS: See http://docs.sencha.com/ext-js/3-4/#!/api/Date for the meaning of these formatting instructions
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "Start"
 msgstr "התחלה"
 
-#. TRANSLATORS: See http://docs.sencha.com/ext-js/3-4/#!/api/Date for the meaning of these formatting instructions
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "End"
 msgstr ""
+
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
+msgid "Printed by"
+msgstr ""
+
+msgid "at"
+msgstr ""
+
+msgid "of"
+msgstr ""
+
+#, fuzzy
+msgid "Location: "
+msgstr "מיקום"
+
+msgid "j M {0}"
+msgstr ""
+
+msgid "l jS M Y {0}"
+msgstr ""
+
+msgid "All day: "
+msgstr ""
+
+# 87%
+# 75%
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for formatting instructions
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+#, fuzzy
+msgid "l jS F"
+msgstr "l j F Y"
 
 # 88%
 #, fuzzy
@@ -1347,8 +1492,10 @@ msgstr "רגישות"
 msgid "Importance"
 msgstr "חשיבות"
 
-#. TRANSLATORS: See http://docs.sencha.com/ext-js/3-4/#!/api/Date for the meaning of these formatting instructions
-msgid "l d/m/Y"
+msgid "M j"
+msgstr ""
+
+msgid "j"
 msgstr ""
 
 msgid "General calendar settings"
@@ -1366,46 +1513,35 @@ msgstr ""
 msgid "Calendar resolution"
 msgstr ""
 
+msgid "Default appointment duration {A} minutes"
+msgstr ""
+
+msgid "Duration must be between 1 and 120 minutes."
+msgstr ""
+
+msgid "Default status for all day appointment"
+msgstr ""
+
 msgid "Working days"
-msgstr ""
-
-msgid "Mon"
-msgstr ""
-
-msgid "Tue"
-msgstr ""
-
-msgid "Wed"
-msgstr ""
-
-msgid "Thu"
-msgstr ""
-
-msgid "Fri"
-msgstr ""
-
-msgid "Sat"
-msgstr ""
-
-msgid "Sun"
 msgstr ""
 
 msgid "Show busy dates as bold in the date picker"
 msgstr ""
 
-msgid "Free/busy information is used by people sending meeting requests, "
+msgid ""
+"Free/Busy information is used by people sending meeting requests, to "
+"determine when you are available for meetings."
 msgstr ""
 
-msgid "to determine when you are available for meetings."
+msgid "Free/Busy publishing"
 msgstr ""
 
-msgid "Free/Busy permission"
+msgid "Publish {A} month(s) of Calendar Free/Busy information on the server."
 msgstr ""
 
-msgid "Publish {A} month(s) of Calendar free/busy information on the server."
-msgstr ""
-
-msgid "You can only publish a free/busy period from 1 to 36 months."
+msgid ""
+"You can only publish a Free/Busy period from 0 to 36 months. 0 means Free/"
+"Busy information is not published."
 msgstr ""
 
 msgid "Side-by-side mode"
@@ -1432,11 +1568,7 @@ msgstr ""
 msgid "Default all-day appointment reminder time"
 msgstr ""
 
-#. TRANSLATORS: See http://docs.sencha.com/ext-js/3-4/#!/api/Date for the meaning of these formatting instructions
-msgid "l"
-msgstr ""
-
-#. TRANSLATORS: See http://docs.sencha.com/ext-js/3-4/#!/api/Date for the meaning of these formatting instructions
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "jS"
 msgstr ""
 
@@ -1454,14 +1586,16 @@ msgstr "בקשה לפגישה חדשה"
 msgid "Open"
 msgstr "פתח"
 
-msgid "Accept"
-msgstr "קבל"
+msgid "Copy/Move"
+msgstr "העתק/העבר"
 
-msgid "Tentative"
-msgstr "זמני"
+# 75%
+#, fuzzy
+msgid "Send to..."
+msgstr "נשלח"
 
-msgid "Decline"
-msgstr "סרב"
+msgid "Export as"
+msgstr ""
 
 # 80%
 # 100%
@@ -1471,6 +1605,10 @@ msgstr "מופע חוזר"
 
 msgid "Series"
 msgstr ""
+
+#, fuzzy
+msgid "Appointment not found"
+msgstr "פגישה"
 
 msgid "This appointment has been moved or deleted, do you want to continue?"
 msgstr ""
@@ -1542,16 +1680,16 @@ msgstr ""
 msgid "Sort by: Resources"
 msgstr ""
 
-msgid "Recurring Startdate"
-msgstr "תאריך התחלה חוזר"
-
-msgid "Sort by: Recurring Startdate"
+msgid "Recurring Start Date"
 msgstr ""
 
-msgid "Recurring Enddate"
-msgstr "תאריך סיום חוזר"
+msgid "Sort by: Recurring Start Date"
+msgstr ""
 
-msgid "Sort by: Recurring Enddate"
+msgid "Recurring End Date"
+msgstr ""
+
+msgid "Sort by: Recurring End Date"
 msgstr ""
 
 msgid "Recurring Pattern"
@@ -1569,21 +1707,40 @@ msgstr ""
 msgid "Loading appointments"
 msgstr ""
 
-# 75%
-# 83%
-# 80%
-#. TRANSLATORS: See http://docs.sencha.com/ext-js/3-4/#!/api/Date for the meaning of these formatting instructions
-#, fuzzy
-msgid "jS F G:i"
-msgstr "D j F Y H:i"
+msgid "Attendees"
+msgstr ""
+
+msgid "Optional attendees"
+msgstr ""
+
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+msgid "jS F {0}"
+msgstr ""
 
 # 83%
-#. TRANSLATORS: See http://docs.sencha.com/ext-js/3-4/#!/api/Date for the meaning of these formatting instructions
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 #, fuzzy
 msgid "jS F Y"
 msgstr "j F Y"
 
-msgid "The time of the meeting has changed. Choose one of the following:"
+msgid ""
+"You have insufficient privileges to move and copy this item. Ask the folder "
+"owner to grant you permissions or contact your system administrator."
+msgstr ""
+
+msgid ""
+"You have insufficient privileges to copy this item. Ask the folder owner to "
+"grant you permissions or contact your system administrator."
+msgstr ""
+
+msgid "Insufficient privileges"
+msgstr ""
+
+#, fuzzy
+msgid "Update recipients"
+msgstr "ערוך נמען"
+
+msgid "The time of the meeting has changed. What would you like to do?"
 msgstr ""
 
 msgid "Save changes and send an update to all recipients"
@@ -1595,28 +1752,23 @@ msgstr ""
 msgid "Copy"
 msgstr "העתק"
 
-# 89%
-# 100%
-# 84%
 #, fuzzy
-msgid "a meeting request"
-msgstr "בקשה לפגישה חדשה"
+msgid "Kopano Webapp"
+msgstr "הווב אפ של זראפה"
 
-# 93%
-# 100%
-# 80%
-#, fuzzy
-msgid "an appointment"
-msgstr "פגישה חדשה"
-
-msgid "Insufficient privileges"
+msgid ""
+"Please note that any changes you make will be overwritten when this meeting "
+"request is updated by the organizer. Would you like to move this meeting?"
 msgstr ""
 
-# 79%
-# 100%
-#, fuzzy
-msgid "You have insufficient privileges to move "
-msgstr "אין ברשותך הרשאות מספקות בכדי להעתיק תיקיה."
+msgid "Move"
+msgstr "העבר"
+
+msgid "Don't move"
+msgstr ""
+
+msgid "Switch to day view to see all appointments"
+msgstr ""
 
 #. TRANSLATORS: This message is used as label for the field which to indicates to whom the given mail was sent.
 msgctxt "mail.previewpanel"
@@ -1633,52 +1785,81 @@ msgctxt "mail.previewpanel"
 msgid "Location"
 msgstr "מיקום"
 
-msgid "Remove From Calendar"
-msgstr "הסר מלוח השנה"
-
-msgid "Not Current"
-msgstr "לא כרגע"
-
-msgid "Meeting Request is out of date"
-msgstr "בקשת הפגשיה כבר אינה תקפה"
-
-msgid "No Response Required"
+#, fuzzy
+msgid "No additional response required"
 msgstr "אין צורך בתגובה"
-
-msgid "Accept Meeting Request"
-msgstr "קבל את בקשת הפגישה"
-
-msgid "Tentatively Accept Meeting Request"
-msgstr "קבל בהיסוס את בקשת הפגישה"
-
-msgid "Decline Meeting Request"
-msgstr "סרב לבקשת הפגישה"
-
-msgid "Propose New Time for Meeting Request"
-msgstr "הצע זמן חדש לבקשת הפגישה"
-
-msgid "View All Proposals"
-msgstr "הצג את כל ההצעות"
-
-msgid "Accept Proposal"
-msgstr "קבל הצעה"
-
-msgid "Accept Proposed Time"
-msgstr "קבל את הצעת הזמן"
-
-msgid "View in calendar"
-msgstr ""
-
-msgid "This meeting request is out-of-date and will now be deleted."
-msgstr "בקשה זו לפגישה כבר לא תקפה והיא תימחק עכשיו."
 
 msgid ""
 "Your calendar has been updated automatically. This meeting request will now "
 "be deleted."
 msgstr "לוח השנה שלך עודכן אוטומטית. בקשת פגישה זו תמחק עכשיו."
 
-#. TRANSLATORS: See http://docs.sencha.com/ext-js/3-4/#!/api/Date for the meaning of these formatting instructions
-msgid "G"
+# 93%
+# 100%
+# 80%
+#, fuzzy
+msgid "Loading appointments..."
+msgstr "פגישה חדשה"
+
+msgid "Please select a calendar via widget settings"
+msgstr ""
+
+msgid "Number of days"
+msgstr ""
+
+msgid "day(s)"
+msgstr ""
+
+msgid "{0}"
+msgstr ""
+
+#, fuzzy
+msgid "Upcoming Appointments"
+msgstr "מופע חוזר של פגישה"
+
+msgid "Appointments of {0}"
+msgstr ""
+
+msgid "Appointments of {0} - {1}"
+msgstr ""
+
+# 93%
+# 100%
+#, fuzzy
+msgid "No appointments"
+msgstr "פגישה חדשה"
+
+#, fuzzy
+msgid "Today {0} - {1}"
+msgstr "היום: {1} {0}"
+
+msgid "Today (all day)"
+msgstr ""
+
+#. TRANSLATORS: Display name of a folder: "FOLDERNAME - STORENAME".
+#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME - USERNAME".
+msgid "{0} - {1}"
+msgstr ""
+
+msgid "d/m/y {0}"
+msgstr ""
+
+msgid "{0} - {1} (all day)"
+msgstr ""
+
+msgid "d/m/y"
+msgstr ""
+
+msgid "Select one..."
+msgstr ""
+
+msgid "Unnamed folder"
+msgstr ""
+
+msgid "Discard"
+msgstr ""
+
+msgid "Quick Appointment"
 msgstr ""
 
 msgid "Printing of multiple items has not been implemented."
@@ -1796,6 +1977,17 @@ msgstr "מחק ושלח תגובה למארגן הפגישה"
 msgid "Delete without sending"
 msgstr "מחק בלי לשלוח"
 
+#, fuzzy
+msgid "Insufficient permissions"
+msgstr "הרשאות תיקיה"
+
+msgid "You have insufficient privileges to delete items in this folder."
+msgstr ""
+
+#, fuzzy
+msgid "Notify recipients"
+msgstr "ערוך נמען"
+
 msgid ""
 "A cancellation message will be sent to all recipients, do you wish to "
 "continue?"
@@ -1816,12 +2008,58 @@ msgstr "סרב לבקשת הפגישה"
 msgid "Mark complete and delete"
 msgstr "סמן כהושלמה"
 
+#, fuzzy
+msgid "Following recipients are already exists"
+msgstr "לא ניתן היה להגיע אל המיועדים הבאים:"
+
+#, fuzzy
+msgid "Duplicate recipients"
+msgstr "ערוך נמען"
+
+#, fuzzy
+msgid "Duplicate recipient"
+msgstr "ערוך נמען"
+
+msgid "Recipient already exists."
+msgstr ""
+
+msgid "Notify sender"
+msgstr ""
+
+#, fuzzy
 msgid ""
-"The sender of this message has asked to be notified when you read this "
-"message. Do you wish to notify the sender?"
+"The sender of this email has requested a read receipt. Do you wish to notify "
+"the sender?"
 msgstr ""
 "שולח ההודעה ביקש להיות מיודע כשאר אתה קורא את ההודעה. האם ברצונך ליידע את "
 "השולח?"
+
+#, fuzzy
+msgid "Import"
+msgstr "חשוב"
+
+msgid "Successfully imported item(s) to {0}"
+msgstr ""
+
+msgid "Failed to import item(s) to {0}"
+msgstr ""
+
+#, fuzzy
+msgid "Import error"
+msgstr "חשוב"
+
+msgid "Unable to import \"{0}\". The file is not valid"
+msgstr ""
+
+msgid ""
+"You have insufficient privileges to move these items. Would you like to copy "
+"instead?"
+msgstr ""
+
+msgid ""
+"You have insufficient privileges to move this item. Would you like to copy "
+"instead?"
+msgstr ""
 
 msgid "Cc"
 msgstr "עותק נוסף"
@@ -1829,15 +2067,10 @@ msgstr "עותק נוסף"
 msgid "Bcc"
 msgstr "עותק סודי"
 
+msgid "From"
+msgstr "מאת"
+
 msgid "Insert item"
-msgstr ""
-
-# 83%
-#, fuzzy
-msgid "Items:"
-msgstr "פריטים"
-
-msgid "Look in:"
 msgstr ""
 
 msgid "Insert as"
@@ -1856,6 +2089,16 @@ msgstr ""
 
 msgid "No message selected"
 msgstr ""
+
+#, fuzzy
+msgid "Import to"
+msgstr "חשוב"
+
+# 90%
+# 100%
+#, fuzzy
+msgid "New folder"
+msgstr "תיקיה חדשה"
 
 msgid "Download as ZIP"
 msgstr ""
@@ -1890,10 +2133,27 @@ msgstr ""
 msgid "Download all as ZIP"
 msgstr ""
 
+#, fuzzy
+msgid "Import to folder"
+msgstr "תיקיה ריקה"
+
+msgid ""
+"In order to use the vCard import feature, upgrade your Kopano Core to "
+"version 8.3 or higher."
+msgstr ""
+
+msgid ""
+"In order to use the ICS / VCS import feature, upgrade your Kopano Core to "
+"version 8.3 or higher."
+msgstr ""
+
 msgid "Attachment error"
 msgstr "שגיאת קובץ מצורף"
 
 msgid "Cannot create ZIP, The allowed maximum size is 30 MB."
+msgstr ""
+
+msgid "Unable to download"
 msgstr ""
 
 msgid "Picture format is not supported. "
@@ -1911,9 +2171,6 @@ msgstr "שגיאת קובץ מצורף"
 msgid "Manage Categories"
 msgstr ""
 
-msgid "Apply"
-msgstr ""
-
 msgid "New"
 msgstr "חדש"
 
@@ -1921,8 +2178,8 @@ msgid "Delete Category"
 msgstr ""
 
 msgid ""
-"Are you sure you want to delete the category \"{0}\"? Items already assigned "
-"this category won't be affected."
+"Are you sure you want to delete the category \"{0}\"? Other items keep this "
+"category, but lose the assigned color."
 msgstr ""
 
 msgid "Rename Category"
@@ -2037,7 +2294,7 @@ msgstr ""
 msgid "Other"
 msgstr "אחר"
 
-msgid "No delegate exists"
+msgid "No delegates configured"
 msgstr ""
 
 msgid "Loading delegates"
@@ -2046,17 +2303,22 @@ msgstr ""
 msgid "Please select a delegate."
 msgstr ""
 
+msgid "Delegates can send items on your behalf."
+msgstr ""
+
 msgid ""
-"Delegates can send items on your behalf. To grant permission to others to "
-"access your folders without also giving them send-on-behalf-of privileges, "
-"go to properties for each folder and change the options on the Permissions "
-"Tab."
+"If you only want to set folder permissions, right-click on a folder to open "
+"the context menu and click on \"Share Folder...\""
 msgstr ""
 
 # 90%
 #, fuzzy
 msgid "Permission"
 msgstr "הרשאות"
+
+#, fuzzy
+msgid "Duplicate delegate"
+msgstr "סרב לבקשת הפגישה"
 
 msgid "Delegate already exists in the list."
 msgstr ""
@@ -2066,15 +2328,6 @@ msgstr "העתק/העבר תיקיה"
 
 msgid "Copy/Move Messages"
 msgstr "העתק/העבר הודעות"
-
-msgid "Move"
-msgstr "העבר"
-
-# 90%
-# 100%
-#, fuzzy
-msgid "New folder"
-msgstr "תיקיה חדשה"
 
 msgid "Destination folder"
 msgstr ""
@@ -2087,8 +2340,45 @@ msgstr[1] "{0} הודעות נבחרו."
 msgid "Folder '{0}' selected."
 msgstr "תיקיית '{0}' נבחרה."
 
+msgid ""
+"You have insufficient privileges to move this folder. Ask the folder owner "
+"to grant you permissions or contact your system administrator."
+msgstr ""
+
+msgid ""
+"You have insufficient privileges to copy this folder. Ask the folder owner "
+"to grant you permissions or contact your system administrator."
+msgstr ""
+
+msgid "You have insufficient privileges to move following items."
+msgstr ""
+
+msgid "Subject:"
+msgstr ""
+
+msgid "Would you like to copy instead?"
+msgstr ""
+
+msgid "Kopano WebApp"
+msgstr "הווב אפ של זראפה"
+
 msgid "Do not show this message again."
 msgstr ""
+
+msgid "ICS"
+msgstr ""
+
+#, fuzzy
+msgid "Set custom flag"
+msgstr "הגדר דגל"
+
+# 90%
+msgid "Start date"
+msgstr "תאריך התחלה"
+
+# 87%
+msgid "End date"
+msgstr "תאריך סיום"
 
 msgid "Tomorrow"
 msgstr ""
@@ -2099,11 +2389,14 @@ msgstr ""
 msgid "Next week"
 msgstr ""
 
-msgid "No date"
-msgstr ""
+# 87%
+#, fuzzy
+msgid "Custom"
+msgstr "תאריך היעד"
 
-msgid "Edit reminder"
-msgstr ""
+#, fuzzy
+msgid "Set reminder"
+msgstr "תזכורת"
 
 msgid "Complete"
 msgstr "הושלם"
@@ -2122,6 +2415,22 @@ msgstr ""
 
 msgid "Edit recipient"
 msgstr "ערוך נמען"
+
+#, fuzzy
+msgid "Copy email address"
+msgstr "כתובת דואר אלקטרוני חדשה"
+
+#, fuzzy
+msgid "Set as required"
+msgstr "יש למלא שדה זה"
+
+#, fuzzy
+msgid "Set as optional"
+msgstr "אופציונלי"
+
+#, fuzzy
+msgid "Set as resource"
+msgstr "הגדר קבלת קריאה"
 
 msgid "Select attendees"
 msgstr "בחר משתתפים"
@@ -2150,6 +2459,12 @@ msgstr "אין מידע זמין אודות עסוק/פנוי בתאריך זה"
 
 msgid "No suggestions available"
 msgstr "אין הצעות זמינות"
+
+# 87%
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+#, fuzzy
+msgid "l jS F Y"
+msgstr "l j F Y"
 
 msgid "Switch between different contexts e.g. inbox, calendar, etc."
 msgstr ""
@@ -2201,13 +2516,6 @@ msgstr ""
 msgid "Print list"
 msgstr ""
 
-# 77%
-# 78%
-# 100%
-#, fuzzy
-msgid "Print selected item"
-msgstr "נבחר פריט {0}"
-
 msgid "Open copy/move dialog"
 msgstr ""
 
@@ -2223,13 +2531,73 @@ msgid ""
 "deleted item can still be restored."
 msgstr ""
 
+#, fuzzy
+msgid "Add/Edit Cc recipient"
+msgstr "ערוך נמען"
+
+#, fuzzy
+msgid "No Cc recipient configured"
+msgstr "לא ניתן היה להגיע לכל הנמענים"
+
+#, fuzzy
+msgid "Loading Cc recipients"
+msgstr "ערוך נמען"
+
+# 88%
+# 100%
+#, fuzzy
+msgid "Reply Mail"
+msgstr "השב לכולם"
+
+msgid "New Mail"
+msgstr "דואר חדש"
+
+# 80%
+#, fuzzy
+msgid "Please select a Cc recipient record."
+msgstr "אנא בחר מען"
+
+#, fuzzy
+msgid "Manage Cc recipients"
+msgstr "ערוך נמען"
+
+msgid ""
+"Cc recipients can be used to set a default Cc user in new mail, replies or "
+"both."
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "WebApp Manual"
+msgstr ""
+
+msgid "Item data"
+msgstr ""
+
+msgid "INSERT"
+msgstr ""
+
+msgid "Sort by: context.mail.griddefaultcolumn"
+msgstr ""
+
+msgid "ZDeveloper"
+msgstr ""
+
 # 91%
 msgid "Display name"
 msgstr "שם תצוגה"
 
-# 85%
-msgid "E-mail address"
+# 92%
+msgid "Email address"
 msgstr "כתובת דואר אלקטרוני"
+
+# 75%
+# 78%
+# 100%
+#, fuzzy
+msgid "Expand distribution list"
+msgstr "צור רשימת תפוצה"
 
 msgid ""
 "Distribution list will be replaced with its members. You will not be able to "
@@ -2239,14 +2607,19 @@ msgstr ""
 msgid "Edit Recipient"
 msgstr "ערוך נמען"
 
-# 90%
 #, fuzzy
-msgid "Send e-mail"
+msgid "Copy email addresses"
+msgstr "כתובת דואר אלקטרוני חדשה"
+
+msgid "Send email"
 msgstr "שלח דואר"
 
 #, fuzzy
 msgid "Delete recipient from suggestion list"
 msgstr "מחק את רשימת תפוצה זו."
+
+msgid "Copy all email addresses"
+msgstr ""
 
 msgid "View recipient"
 msgstr "הצג נמען"
@@ -2296,9 +2669,11 @@ msgstr "מפוע חוזר של פגישה"
 msgid "Remove Recurrence"
 msgstr "הסר מופע חוזר"
 
-msgid ""
-"This will discard any exceptions which might have been made for this "
-"recurring series. Do you wish to continue?"
+#, fuzzy
+msgid "Reset recurring"
+msgstr "מופע חוזר"
+
+msgid "This will reset every exception. Do you want to continue?"
 msgstr ""
 
 msgid "Task Recurrence"
@@ -2354,19 +2729,23 @@ msgstr ""
 msgid "Not supported at the moment."
 msgstr ""
 
+#, fuzzy
 msgid "There is {0} reminder"
 msgid_plural "There are {0} reminders"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ישנה הודעה {0} שלא נקראה בתיקיה {1}"
+msgstr[1] "ישנן {0} הודעות שלא נקראו בתיקיה {1}"
 
 # 88%
 msgid "Reminders"
 msgstr "תזכורות"
 
+msgid "There are no reminders"
+msgstr ""
+
 msgid "Due In"
 msgstr ""
 
-#. TRANSLATORS: See http://docs.sencha.com/ext-js/3-4/#!/api/Date for the meaning of these formatting instructions
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "Due"
 msgstr ""
 
@@ -2420,11 +2799,22 @@ msgstr ""
 msgid "Messages"
 msgstr "הודעה"
 
-msgid "Are you sure you want to Permanently Delete all items?"
-msgstr ""
+#, fuzzy
+msgid "Delete all items"
+msgstr "מחק פריטים"
 
-msgid "Are you sure you want to Restore all items?"
+#, fuzzy
+msgid "Are you sure you want to permanently delete all items?"
 msgstr ""
+"האם אתה בטוח כי ברצוך למחוק את כל הפריטים ותיקיות המשנה בתיקיית \"{0}\""
+
+#, fuzzy
+msgid "Restore all items"
+msgstr "שחזר פריטים"
+
+#, fuzzy
+msgid "Are you sure you want to restore all items?"
+msgstr "האם אתה בטוח כי ברצונך לרוקן את {0}?"
 
 msgid "Total {0} recoverable item"
 msgid_plural "Total {0} recoverable items"
@@ -2458,44 +2848,63 @@ msgstr "גודל"
 msgid "Sort by: Size"
 msgstr "מיין לפי: גודל"
 
-msgid "Move the message to folder ..."
-msgstr ""
+#, fuzzy
+msgid "Move the message to folder..."
+msgstr "סמן את כל ההודעות כנקראו"
 
-msgid "Copy the message to folder ..."
-msgstr ""
+#, fuzzy
+msgid "Copy the message to folder..."
+msgstr "סמן את כל ההודעות כנקראו"
 
 msgid "Delete the message"
 msgstr ""
 
-msgid "Redirect the message to ..."
+#, fuzzy
+msgid "Redirect the message to..."
+msgstr "סמן את כל ההודעות כנקראו"
+
+#, fuzzy
+msgid "Forward the message to..."
+msgstr "סמן את כל ההודעות כנקראו"
+
+#, fuzzy
+msgid "Forward the message as attachment to..."
+msgstr "סמן את כל ההודעות כנקראו"
+
+#, fuzzy
+msgid "Mark the message as read..."
+msgstr "סמן את כל ההודעות כנקראו"
+
+msgid "is received from..."
 msgstr ""
 
-msgid "Forward the message to ..."
+msgid "includes these words in the sender's address..."
 msgstr ""
 
-msgid "Forward the message as attachment to ..."
+msgid "includes these words in the recipient's address..."
 msgstr ""
 
-msgid "is received from ..."
+msgid "includes these words in the subject..."
 msgstr ""
 
-msgid "includes these words in the sender's address ..."
+msgid "includes these words in the body..."
 msgstr ""
 
-msgid "includes these words in the subject ..."
+msgid "includes these words in the transport-headers..."
 msgstr ""
 
-msgid "includes these words in the body ..."
-msgstr ""
-
-msgid "has importance ..."
-msgstr ""
+# 80%
+#, fuzzy
+msgid "has importance..."
+msgstr "חשיבות"
 
 msgid "has an attachment"
 msgstr ""
 
-msgid "is sent to ..."
-msgstr ""
+# 75%
+#, fuzzy
+msgid "is sent to..."
+msgstr "נשלח"
 
 msgid "is sent only to me"
 msgstr ""
@@ -2503,16 +2912,26 @@ msgstr ""
 msgid "has my name in the Cc field"
 msgstr ""
 
+msgid "does not have my name in the To or Cc field"
+msgstr ""
+
 msgid "has my name in the To or Cc field"
 msgstr ""
 
-msgid "has sensitivity"
+#, fuzzy
+msgid "has sensitivity..."
+msgstr "רגישות"
+
+msgid "is received after..."
 msgstr ""
 
-msgid "is received after"
+msgid "is received before..."
 msgstr ""
 
-msgid "is received before"
+msgid "size is at least..."
+msgstr ""
+
+msgid "size is at most..."
 msgstr ""
 
 msgid "has my name in the To field"
@@ -2521,10 +2940,10 @@ msgstr ""
 msgid "is received (all messages)"
 msgstr ""
 
-msgid "Select one..."
+msgid "Unknown condition"
 msgstr ""
 
-msgid "Unnamed folder"
+msgid "This condition for the current rule is unknown"
 msgstr ""
 
 msgid "Add action"
@@ -2545,12 +2964,6 @@ msgstr ""
 msgid "Remove condition"
 msgstr ""
 
-msgid "Unknown condition"
-msgstr ""
-
-msgid "This condition for the current rule is unknown"
-msgstr ""
-
 msgid "Inbox Rule"
 msgstr ""
 
@@ -2563,8 +2976,22 @@ msgstr ""
 msgid "Do the following"
 msgstr ""
 
+#, fuzzy
+msgid "Exceptions"
+msgstr "אפשרויות"
+
+msgid "Apply only when Out of Office is active"
+msgstr ""
+
 msgid "Stop processing more rules"
 msgstr ""
+
+msgid "Add exception"
+msgstr ""
+
+#, fuzzy
+msgid "Remove exception"
+msgstr "הסר מופע חוזר"
 
 msgid "Specify Words or Phrases"
 msgstr ""
@@ -2589,6 +3016,10 @@ msgstr ""
 msgid "Active"
 msgstr ""
 
+#, fuzzy
+msgid "Out of office"
+msgstr "מחוץ למשרד"
+
 # 80%
 #, fuzzy
 msgid "Rule"
@@ -2606,10 +3037,25 @@ msgstr ""
 msgid "Rule already has lowest priority."
 msgstr ""
 
+msgid "Always move messages from {0}"
+msgstr ""
+
+msgid "Always move messages that are sent to <recipients>"
+msgstr ""
+
+msgid "Always move messages with this subject"
+msgstr ""
+
+msgid "Create rule..."
+msgstr ""
+
 msgid "myself"
 msgstr ""
 
 msgid "Update rules for"
+msgstr ""
+
+msgid "Apply changes"
 msgstr ""
 
 msgid "Do you wish to apply the changes?"
@@ -2628,6 +3074,10 @@ msgstr "אחר"
 msgid "Search in.."
 msgstr "מרץ"
 
+#, fuzzy
+msgid "Folder does not exist"
+msgstr "תיקייה מכילה"
+
 msgid ""
 "The folder you are searching through no longer exists. Please select another "
 "folder"
@@ -2642,10 +3092,16 @@ msgstr ""
 msgid "Loading from addresses"
 msgstr ""
 
+msgid "Forward Mail"
+msgstr ""
+
 msgid "Please select a from address record."
 msgstr ""
 
-msgid "Here you can setup your alias email addresses."
+msgid "Add/Edit From recipient"
+msgstr ""
+
+msgid "Manage the recipients used in the 'From' field"
 msgstr ""
 
 msgid "View"
@@ -2660,6 +3116,30 @@ msgstr ""
 msgid "Delegate settings"
 msgstr ""
 
+msgid "Desktop Notifications Settings"
+msgstr ""
+
+msgid "We need permissions to enable desktop notifications."
+msgstr ""
+
+msgid "Request Permissions"
+msgstr ""
+
+msgid "Enable desktop notifications for new mail"
+msgstr ""
+
+msgid "Enable desktop notifications for reminders"
+msgstr ""
+
+msgid "{A} Auto hide desktop notification after second(s) {B}"
+msgstr ""
+
+msgid "Disable sound"
+msgstr ""
+
+msgid "Notifications"
+msgstr ""
+
 # 80%
 #, fuzzy
 msgid "Rules"
@@ -2671,20 +3151,8 @@ msgstr ""
 msgid "From Addresses settings"
 msgstr ""
 
-msgid "No preview"
-msgstr "ללא תצוגה"
-
-msgid "Right preview"
-msgstr "תצוגה מימין"
-
-msgid "Bottom preview"
-msgstr "תצוגה מלמטה"
-
 msgid "Full name"
 msgstr ""
-
-msgid "Job Title"
-msgstr "הגדרת התפקיד"
 
 msgid "Phone Numbers"
 msgstr "מספרי טלפון"
@@ -2700,16 +3168,8 @@ msgstr "כתובת אתר אינטרנט"
 msgid "IM Address"
 msgstr "כתובות SMTP"
 
-msgid "Copy/Move"
-msgstr "העתק/העבר"
-
-# 90%
-msgid "Start date"
-msgstr "תאריך התחלה"
-
-# 87%
-msgid "End date"
-msgstr "תאריך סיום"
+msgid "D, d-m-Y, {0}"
+msgstr ""
 
 # 76%
 #, fuzzy
@@ -2718,8 +3178,25 @@ msgid_plural "{0} selected rows"
 msgstr[0] "נבחר פריט {0}"
 msgstr[1] "נבחר פריט {1}"
 
-#. TRANSLATORS: See http://docs.sencha.com/ext-js/3-4/#!/api/Date for the meaning of these formatting instructions
-msgid "l d/m/Y G:i"
+msgid "Reminder is set on: {0}, {1}"
+msgstr ""
+
+msgid "d-m-Y"
+msgstr "ש-ח-י"
+
+msgid "Original message"
+msgstr "הודעה מקורית"
+
+msgid "l d/m/Y"
+msgstr ""
+
+msgid "Sent Items"
+msgstr ""
+
+msgid "l d/m/Y {0}"
+msgstr ""
+
+msgid "d-m-Y {0}"
 msgstr ""
 
 msgid "Unknown"
@@ -2734,7 +3211,7 @@ msgstr ""
 msgid "Loading..."
 msgstr "טוען..."
 
-msgid "Failed"
+msgid "Message could not be loaded"
 msgstr ""
 
 # 100%
@@ -2910,13 +3387,13 @@ msgstr ""
 msgid "{0} has updated on behalf of {1} {2}."
 msgstr ""
 
+#, fuzzy
+msgid "Fix message"
+msgstr "הודעה מקורית"
+
 msgid ""
 "We are going to try to fix a corrupted mail message, do you wish to continue?"
 msgstr ""
-
-#, fuzzy
-msgid "d-m-Y g:i a"
-msgstr "ש-ח-י"
 
 msgid "The matching task was not found in your task list."
 msgstr ""
@@ -2950,27 +3427,20 @@ msgid "on behalf of"
 msgstr ""
 
 # 100%
-#. TRANSLATORS: This message is used as label for the field which indicates the date/time on which the given message was sent.
-msgctxt "mail.previewpanel"
-msgid "Sent"
-msgstr "נשלח"
-
-# 100%
 #. TRANSLATORS: This message is used to indicate that no sent date is available for the message (because it has not been sent yet).
 msgctxt "mail.previewpanel"
 msgid "None"
 msgstr "ללא"
 
-msgid "Open in new browser window"
+msgid "Pop-out"
 msgstr ""
 
-msgid "Pop-Out"
-msgstr ""
+#, fuzzy
+msgid "Mark as read"
+msgstr "סמן כלא נקרא"
 
-msgid "Mark Read"
-msgstr "סמן כנקרא"
-
-msgid "Mark Unread"
+#, fuzzy
+msgid "Mark as unread"
 msgstr "סמן כלא נקרא"
 
 msgid "in"
@@ -2979,19 +3449,13 @@ msgstr ""
 msgid "Root"
 msgstr ""
 
+msgid "Datepicker"
+msgstr ""
+
 # 85%
 #, fuzzy
 msgid "File As"
 msgstr "תייק כ"
-
-msgid "Company Name"
-msgstr "שם החברה"
-
-msgid "Sort by: Company Name"
-msgstr ""
-
-msgid "Sort by: Job Title"
-msgstr ""
 
 msgid "Full Name"
 msgstr "שם מלא"
@@ -3074,7 +3538,7 @@ msgstr "דואר אלקטורני 3"
 msgid "Email3 Display As"
 msgstr ""
 
-#. TRANSLATORS: See http://docs.sencha.com/ext-js/3-4/#!/api/Date for the meaning of these formatting instructions
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "Birthday"
 msgstr "יום הולדת"
 
@@ -3127,9 +3591,6 @@ msgstr ""
 msgid "Distribution list"
 msgstr "רשימת תפוצה"
 
-msgid "Contacts"
-msgstr "אנשי קשר"
-
 msgid "Dr."
 msgstr "ד\"ר"
 
@@ -3153,10 +3614,6 @@ msgstr "הבן"
 
 msgid "Sr."
 msgstr "האב"
-
-# 92%
-msgid "Email address"
-msgstr "כתובת דואר אלקטרוני"
 
 msgid "Phone number"
 msgstr "מזפר טלפון"
@@ -3203,15 +3660,12 @@ msgstr "כינוי"
 msgid "Suffix"
 msgstr "סיומת"
 
-#. TRANSLATORS: See http://docs.sencha.com/ext-js/3-4/#!/api/Date for the meaning of these formatting instructions
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 msgid "Anniversary"
 msgstr ""
 
 msgid "Photo"
 msgstr "תמונה"
-
-msgid "Addresses"
-msgstr "כתובות"
 
 msgid "Additional information"
 msgstr "מידע נוסף"
@@ -3238,8 +3692,15 @@ msgstr "TTY/TDD"
 msgid "Check full name"
 msgstr "בדוק שם מלא"
 
+msgid "First"
+msgstr "שם פרטי"
+
 msgid "Middle"
 msgstr "אמצעי"
+
+# 75%
+msgid "Last"
+msgstr "שם משפחה"
 
 msgid "Show this again when name is incomplete or unclear."
 msgstr "הצג הודעה זו שוב כאשר השם אינו שלם או אינו ברור."
@@ -3259,33 +3720,17 @@ msgstr "מספר מקומי"
 msgid "Extension"
 msgstr "תוספת"
 
-# 78%
-#, fuzzy
-msgid "Save contact and close dialog"
-msgstr "שמור מינוי שיח קרוב"
-
-msgid "Delete contact"
-msgstr "מחק איש קשר"
-
-msgid "Delete this contact."
-msgstr "מחק איש קשר זה"
-
 msgid "Add Attachment"
 msgstr "הוסף קובץ מצורף"
 
 # 81%
-msgid "Add attachments to this contact."
+#, fuzzy
+msgid "Add attachments to this contact"
 msgstr "הוסף קבצים מצורפים עבור איש קשר זה."
 
-msgid "Print this contact"
-msgstr ""
-
-# 96%
-msgid "Open the categories dialog."
-msgstr "פתח את תיבת דו שיח הקטגוריות"
-
 # 75%
-msgid "Mark this contact as private."
+#, fuzzy
+msgid "Mark this contact as private"
 msgstr "סמן את איש קשר זה כפרטי."
 
 # 94%
@@ -3293,37 +3738,17 @@ msgstr "סמן את איש קשר זה כפרטי."
 msgid "Distribution List"
 msgstr "רשימת תפוצה"
 
-msgid "Save distribution list and close dialog"
-msgstr ""
-
-msgid "Delete Distributionlist"
-msgstr "מחק רשימת תפוצה"
-
-msgid "Delete the Distribution list."
-msgstr "מחק את רשימת תפוצה זו."
-
-# 75%
 #, fuzzy
-msgid "Print distribution list"
-msgstr "צור רשימת תפוצה"
-
-# 79%
-#, fuzzy
-msgid "Print this distribution list."
-msgstr "שמור את רשימת תפוצה זו"
-
-msgid "Mark this Distribution list as private."
+msgid "Mark this Distribution list as private"
 msgstr "סמן את רשימת תפוצה זו כפרטית."
 
-msgid "New e-mail address"
+#, fuzzy
+msgid "New email address"
 msgstr "כתובת דואר אלקטרוני חדשה"
 
-msgid "Please input a valid email address!"
+#, fuzzy
+msgid "Please enter a valid email address"
 msgstr "אנא הזן כתובת דואר אלקטרוני תקפה!"
-
-# 92%
-msgid "E-mail Address"
-msgstr "כתובת דואר אלקטרוני"
 
 msgid "Select Members"
 msgstr ""
@@ -3344,28 +3769,10 @@ msgstr ""
 msgid "New distribution list"
 msgstr "צור רשימת תפוצה"
 
-# 83%
-#, fuzzy
-msgid "E-mail"
-msgstr "דואר אלקטורני"
-
-msgid "E-mail Display As"
+msgid "Email 2 Display As"
 msgstr ""
 
-# 87%
-#, fuzzy
-msgid "E-mail 2"
-msgstr "דואר אלקטורני 2"
-
-msgid "E-mail 2 Display As"
-msgstr ""
-
-# 87%
-#, fuzzy
-msgid "E-mail 3"
-msgstr "דואר אלקטורני 3"
-
-msgid "E-mail 3 Display As"
+msgid "Email 3 Display As"
 msgstr ""
 
 # 88%
@@ -3376,11 +3783,21 @@ msgstr "עוזר"
 msgid "Loading contacts"
 msgstr ""
 
-msgid "Group"
-msgstr "קבוצה"
+msgid ""
+"There are no items to show in this list. Update the filter for more results."
+msgstr ""
 
-msgid "Work"
-msgstr "עבודה"
+msgid "[Group]"
+msgstr ""
+
+msgid "Work:"
+msgstr ""
+
+msgid "Primary:"
+msgstr ""
+
+msgid "Mobile:"
+msgstr ""
 
 # 76%
 # 82%
@@ -3389,9 +3806,6 @@ msgstr "עבודה"
 #, fuzzy
 msgid "Sort by: Full Name"
 msgstr "מיין לפי: גודל"
-
-msgid "Sort by: Email Address 1"
-msgstr ""
 
 msgid "Sort by: Email Address 2"
 msgstr ""
@@ -3531,6 +3945,15 @@ msgstr ""
 msgid "Remove Picture"
 msgstr ""
 
+msgid "VCF file(s)"
+msgstr ""
+
+msgid "Quick Contact"
+msgstr ""
+
+msgid "Open in new browser window"
+msgstr ""
+
 msgid ""
 "Your browser seems to have blocked one or more pop-ups. Please change your "
 "browser's settings to always allow pop-ups from WebApp."
@@ -3568,7 +3991,7 @@ msgid "{0} on behalf of {1}"
 msgstr ""
 
 # 75%
-#. TRANSLATORS: See http://docs.sencha.com/ext-js/3-4/#!/api/Date for the meaning of these formatting instructions
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
 #, fuzzy
 msgid "jS F"
 msgstr "j F"
@@ -3578,6 +4001,9 @@ msgstr "Y"
 
 msgid "Important"
 msgstr "חשוב"
+
+msgid "Work"
+msgstr "עבודה"
 
 msgid "Personal"
 msgstr "אישי "
@@ -3656,9 +4082,6 @@ msgstr "חכה לאדם השני"
 msgid "Deferred"
 msgstr "דחוי"
 
-msgid "Close"
-msgstr "סגור"
-
 msgid "Dark"
 msgstr ""
 
@@ -3681,20 +4104,25 @@ msgstr ""
 msgid "Switch view"
 msgstr ""
 
-msgid "Kopano"
+msgid "Widgets"
 msgstr ""
 
-msgid "Sending"
-msgstr ""
-
-#. TRANSLATORS: See http://docs.sencha.com/ext-js/3-4/#!/api/Date for the meaning of these formatting instructions
-msgid "Sent"
-msgstr "נשלח"
+#, fuzzy
+msgid "Sending..."
+msgstr "שומר..."
 
 # 94%
 #, fuzzy
 msgid "Sent successfully"
 msgstr "נשלח בהצלחה"
+
+#, fuzzy
+msgid "No recipient"
+msgstr "ערוך נמען"
+
+#, fuzzy
+msgid "Please specify at least one recipient"
+msgstr "אנא ציין מען"
 
 msgid "Please specify a recipient"
 msgstr "אנא ציין מען"
@@ -3705,14 +4133,27 @@ msgstr ""
 msgid "Do you want to send this message without attachments?"
 msgstr ""
 
+# 81%
+#, fuzzy
+msgid "Attachments not uploaded yet"
+msgstr "הוסף קבצים מצורפים עבור איש קשר זה."
+
 msgid "Don't Send"
 msgstr ""
 
 msgid "Send Anyway"
 msgstr ""
 
+#, fuzzy
+msgid "No subject"
+msgstr "נושא"
+
 msgid "Send this message without a subject?"
 msgstr "לשלוח הודעה זו ללא נושא?"
+
+#, fuzzy
+msgid "Unresolved recipients"
+msgstr "ערוך נמען"
 
 msgid "Not all recipients could be resolved"
 msgstr "לא ניתן היה להגיע לכל הנמענים"
@@ -3728,6 +4169,17 @@ msgstr ""
 msgid "Folders List"
 msgstr "רשימת תיקיות"
 
+#, fuzzy
+msgid "Copy Details"
+msgstr "הצג פרטים"
+
+#, fuzzy
+msgid "Hide Details"
+msgstr "פרטים"
+
+msgid "Loaded {0} of {1}"
+msgstr ""
+
 msgid "Saving"
 msgstr ""
 
@@ -3740,22 +4192,47 @@ msgid "Saved successfully"
 msgstr "נשמר בהצלחה"
 
 msgid ""
-"You are going to lose all unsaved changes. Are you sure you want to close "
-"this window?"
+"You will lose all unsaved work. Are you sure you want to close this window?"
 msgstr ""
 
 msgid "Kopano Content Panel"
 msgstr ""
 
+#, fuzzy
+msgid "Delete item"
+msgstr "מחק פריטים"
+
 msgid "This item has been changed. Are you sure you want to delete it?"
+msgstr ""
+
+msgid "Unsaved changes"
 msgstr ""
 
 msgid "Welcome to Kopano WebApp"
 msgstr ""
 
-msgid ""
-"This is the first time you are using WebApp. <br />Please check the "
-"following settings before continuing."
+msgid "This is the first time you are using WebApp. "
+msgstr ""
+
+msgid "Please check the following settings before continuing."
+msgstr ""
+
+msgid "Widget height"
+msgstr ""
+
+msgid "pixels"
+msgstr ""
+
+msgid "Configure widget"
+msgstr "להגדיר יישומון"
+
+msgid "Reload interval"
+msgstr ""
+
+msgid "seconds"
+msgstr ""
+
+msgid "Open in new tab"
 msgstr ""
 
 msgid "Add widgets"
@@ -3763,6 +4240,25 @@ msgstr ""
 
 msgid "No widgets installed."
 msgstr ""
+
+#, fuzzy
+msgid "Remove widget"
+msgstr "הסר"
+
+# 86%
+#, fuzzy
+msgid "Collapse widget"
+msgstr "לא ניתן לטעון את ההיררכיה."
+
+msgid "Expand widget"
+msgstr ""
+
+msgid "About this widget"
+msgstr ""
+
+#, fuzzy
+msgid "Add new widget"
+msgstr "להגדיר יישומון"
 
 msgid "Collapse widget panel"
 msgstr ""
@@ -3772,6 +4268,13 @@ msgstr ""
 
 msgid "Your changes will be lost if you leave this page now."
 msgstr ""
+
+msgid "D {0}"
+msgstr ""
+
+#, fuzzy
+msgid "D d-m"
+msgstr "ש-ח-י"
 
 msgid ""
 "Not enough permissions to open this store, do you want to remove it from the "
@@ -3783,29 +4286,42 @@ msgid ""
 "the hierarchy?"
 msgstr ""
 
+#, fuzzy
+msgid "Insufficient Permissions"
+msgstr "הרשאות"
+
 msgid "Not enough permissions to open this folder."
 msgstr ""
+
+#, fuzzy
+msgid "There is {0} unread message in the folder {1} of {2}"
+msgid_plural "There are {0} unread messages in the folder {1} of {2}"
+msgstr[0] "ישנה הודעה {0} שלא נקראה בתיקיה {1}"
+msgstr[1] "ישנן {0} הודעות שלא נקראו בתיקיה {1}"
 
 msgid "There is {0} unread message in the folder {1}"
 msgid_plural "There are {0} unread messages in the folder {1}"
 msgstr[0] "ישנה הודעה {0} שלא נקראה בתיקיה {1}"
 msgstr[1] "ישנן {0} הודעות שלא נקראו בתיקיה {1}"
 
-msgid "New Mail"
-msgstr "דואר חדש"
-
-#. TRANSLATORS: Display name of a folder: "FOLDERNAME in STORENAME".
-msgid "{0} in {1}"
+msgid "License error"
 msgstr ""
 
-#. TRANSLATORS: Displayed on top of a tree with folders: "FOLDERNAME of USERNAME".
-msgid "{0} of {1}"
+msgid ""
+"The installed license key(s) have expired or are being over used. Please "
+"contact your system administrator for further information."
 msgstr ""
 
 msgid "Full control"
 msgstr ""
 
 msgid "No rights"
+msgstr ""
+
+msgid "Unable to import:"
+msgstr ""
+
+msgid "The files are not valid"
 msgstr ""
 
 msgid "Create New Folder"
@@ -3832,6 +4348,16 @@ msgstr "פריטי משימה"
 msgid "Select where to place the folder"
 msgstr "בחר היכן למקם את התיקיה"
 
+# 90%
+# 100%
+#, fuzzy
+msgid "No folder name"
+msgstr "תיקיה חדשה"
+
+#, fuzzy
+msgid "No destination"
+msgstr "אין מידע"
+
 msgid "You must select a destination folder."
 msgstr "עליך לבחור תיקיית יעד."
 
@@ -3843,9 +4369,6 @@ msgstr "סוג"
 
 msgid "Description"
 msgstr "תיאור"
-
-msgid "Unread"
-msgstr "לא נקרא"
 
 msgid "Folder size"
 msgstr "גודל התיקיה"
@@ -3936,21 +4459,38 @@ msgstr ""
 msgid "Open Shared Folders"
 msgstr "פתח תיקיות משותפות"
 
+msgid "Unresolved user"
+msgstr ""
+
 msgid "Username '{0}' could not be resolved."
+msgstr ""
+
+msgid "Invalid user"
 msgstr ""
 
 msgid "Username '{0}' is not a valid user."
 msgstr ""
 
-msgid "It is not possible to open your own store twice"
+#, fuzzy
+msgid "Own store"
+msgstr "שחזר"
+
+msgid "It is not possible to open your own store twice."
 msgstr ""
+
+#, fuzzy
+msgid "Folder already open"
+msgstr "סוג תיקיה"
 
 msgid "This shared folder is already open."
 msgstr ""
 
+msgid "No user"
+msgstr ""
+
 # 85%
 #, fuzzy
-msgid "You must specify a username."
+msgid "You must specify a user"
 msgstr "עליך לציין שם."
 
 msgid "Folder type"
@@ -3961,6 +4501,21 @@ msgstr "הצג תיקיות משנה"
 
 msgid "Open shared folder/store"
 msgstr ""
+
+msgid "Rename folder"
+msgstr ""
+
+#, fuzzy
+msgid "Empty folder"
+msgstr "תיקיה ריקה"
+
+msgid "Empty Junk Email"
+msgstr ""
+
+# 92%
+#, fuzzy
+msgid "Empty Deleted Items"
+msgstr "מחק פריטים"
 
 msgid "Rename Folder"
 msgstr "קבע שם חדש לתיקיה"
@@ -3973,9 +4528,6 @@ msgstr "סמן את כל ההודעות כנקראו"
 
 msgid "Delete Folder"
 msgstr "מחק תיקיה"
-
-msgid "Empty folder"
-msgstr "תיקיה ריקה"
 
 msgid "Close store"
 msgstr "סגור אחסון"
@@ -4003,6 +4555,35 @@ msgstr "הוסף לתיקיית המועדפים"
 msgid "Remove From Favorites"
 msgstr "הסר מלוח השנה"
 
+# 86%
+#, fuzzy
+msgid "Share folder..."
+msgstr "פתח תיקיות משותפות"
+
+#, fuzzy
+msgid "Import emails"
+msgstr "חשוב"
+
+# 93%
+# 100%
+#, fuzzy
+msgid "Import appointments"
+msgstr "פגישה חדשה"
+
+msgid "Import contacts"
+msgstr ""
+
+#, fuzzy
+msgid "Properties of {0}"
+msgstr "מאפיינים"
+
+msgid "Share {0} with..."
+msgstr ""
+
+#, fuzzy
+msgid "Properties of {0} - {1}"
+msgstr "מאפיינים"
+
 msgid ""
 "Are you sure you want to permanently delete all the items and subfolders in "
 "the \"{0}\" folder?"
@@ -4016,13 +4597,25 @@ msgstr ""
 "האם אתה בטוח כי ברצונך למחוק את תיקיית \"{0}\" ולהעביר את כל תוכנה לתיקיית "
 "הפריטים שנמחקו?"
 
+#, fuzzy
+msgid "Delete folder"
+msgstr "מחק תיקיה"
+
 msgid "Are you sure you want to empty {0}?"
 msgstr "האם אתה בטוח כי ברצונך לרוקן את {0}?"
+
+msgid "Show All"
+msgstr ""
 
 # 75%
 #, fuzzy
 msgid "Show all folders"
 msgstr "הצג תיקיות משנה"
+
+msgid ""
+"You have insufficient privileges to move this folder. Would you like to copy "
+"instead?"
+msgstr ""
 
 msgid "CC"
 msgstr "עותק נוסף"
@@ -4036,11 +4629,12 @@ msgstr "מיין לפי: חשיבות"
 msgid "Sort by: To"
 msgstr "מיין לפי: אל"
 
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+msgid "Sent"
+msgstr "נשלח"
+
 msgid "Red"
 msgstr "אדום"
-
-msgid "Original message"
-msgstr "הודעה מקורית"
 
 msgid "Schedule mail to be sent out"
 msgstr ""
@@ -4051,13 +4645,10 @@ msgstr ""
 msgid "Your message will be sent at "
 msgstr ""
 
-msgid "Go to your <b>Outbox</b> to edit your email."
+msgid "Go to your Outbox to edit your email."
 msgstr ""
 
 msgid "hour(s)"
-msgstr ""
-
-msgid "day(s)"
 msgstr ""
 
 msgid "month(s)"
@@ -4084,53 +4675,26 @@ msgstr ""
 msgid "Your email will be sent {0}{1}"
 msgstr ""
 
-# 83%
-#, fuzzy
-msgid "E-Mail"
-msgstr "דואר אלקטורני"
-
 msgid "Saving..."
 msgstr "שומר..."
 
-msgid "Message saving failed."
+msgid "Saved at {0}"
 msgstr ""
 
-msgid "Message Saved at {0}."
+msgid "Saving failed"
 msgstr ""
-
-msgid "g:i A"
-msgstr "g:i A"
 
 msgid "Message Options"
 msgstr "אפשרויות הודעה"
 
-msgid "No from addresses configured!"
-msgstr ""
-
 msgid "This message will be flagged for follow up when it is sent."
 msgstr ""
-
-msgid "Send email"
-msgstr "שלח דואר"
-
-msgid "Send email to recipients"
-msgstr "שלח דואר לנמענים"
 
 msgid "Send Later"
 msgstr ""
 
-msgid "Schedule your mail to be sent on a specific date and time."
+msgid "Schedule your mail to be sent on a specific date and time"
 msgstr ""
-
-msgid "Save email"
-msgstr "שמור דואר"
-
-# 94%
-# 76%
-# 100%
-#, fuzzy
-msgid "Delete this mail"
-msgstr "מחק פריט זה."
 
 # 86%
 msgid "Add attachments to this email"
@@ -4138,9 +4702,6 @@ msgstr "הוסף קבצים מצורפים לדואר זה"
 
 msgid "Add signature"
 msgstr "הוסף חתימה"
-
-msgid "Add signature to this mail"
-msgstr ""
 
 msgid "Options"
 msgstr "אפשרויות"
@@ -4166,40 +4727,27 @@ msgstr "הגדר קבלת קריאה"
 msgid "Request read receipt from recipients"
 msgstr "בקש קבלת קריאה מהמשתמש"
 
-msgid "Show bcc"
-msgstr "הצג את שדה עותק סודי"
-
 msgid "Show Bcc"
 msgstr "הצג את שדה עותק סודי"
 
-msgid ""
-"Show Bcc field in which you can specify the people who will recieve this "
-"message"
-msgstr "הצג את שדה עותק סודי שבו תוכל לציין את האנשים שיקבלו את הודעה זו"
+#, fuzzy
+msgid "Show Bcc field"
+msgstr "הצג את שדה עותק סודי"
 
-msgid "Show From"
+msgid "Show From field"
 msgstr ""
 
-msgid ""
-"Show From field, If you have delegate access to another person's account, "
-"you can send e-mail that looks like that came from them by entering their "
-"name into the From field"
+msgid "Cannot save while attachment is being uploaded"
 msgstr ""
-
-msgid "No signatures configured"
-msgstr ""
-
-msgid "E-Mail Flags"
-msgstr "דגלי דואר אלקטרוני"
-
-msgid "Color of Flag"
-msgstr "צבע הדגל"
 
 msgid "Miscellaneous Options"
 msgstr "אפשרויות שונות"
 
 msgid "Internet Headers"
 msgstr "כותרות אינטרנט"
+
+msgid "EntryID"
+msgstr ""
 
 msgid "Message Settings"
 msgstr "הגדרות הודעה"
@@ -4213,22 +4761,17 @@ msgstr "בקש קבלת קריאה עבור הודעה זו"
 msgid "no subject"
 msgstr ""
 
-# 94%
-msgid "Delete this item."
-msgstr "מחק פריט זה."
-
-msgid "Delete mail"
-msgstr ""
-
-# 94%
-# 76%
-# 100%
-#, fuzzy
-msgid "Delete this mail."
-msgstr "מחק פריט זה."
-
 msgid "Set Category"
 msgstr "הגדר קטגוריה"
+
+msgid "Pop-Out"
+msgstr ""
+
+msgid "Mark Read"
+msgstr "סמן כנקרא"
+
+msgid "Mark Unread"
+msgstr "סמן כלא נקרא"
 
 # 87%
 # 100%
@@ -4251,6 +4794,9 @@ msgstr ""
 msgid "Toggle red/complete flag"
 msgstr ""
 
+msgid "Close a conversation"
+msgstr ""
+
 # 86%
 # 78%
 # 76%
@@ -4258,20 +4804,21 @@ msgstr ""
 msgid "Open Shared Mails"
 msgstr "פתח תיקיות משותפות"
 
-msgid "Email message"
-msgstr "הודעת דואר אלקטרוני"
-
-# 90%
+# 77%
+# 78%
+# 100%
 #, fuzzy
-msgid "Send E-mail"
-msgstr "שלח דואר"
+msgid "Print single email"
+msgstr "נבחר פריט {0}"
 
-# 87%
+# 77%
+# 78%
+# 100%
 #, fuzzy
-msgid "Create a new email message addressed to this recipient."
-msgstr "צור הודעה חדשה המיועדת לאיש קשר זה."
+msgid "Print selected email"
+msgstr "נבחר פריט {0}"
 
-msgid "Print single e-mail"
+msgid "Filter"
 msgstr ""
 
 msgid "FW"
@@ -4279,6 +4826,21 @@ msgstr "הועבר"
 
 msgid "RE"
 msgstr "תגובה"
+
+msgid "on behalf of"
+msgstr ""
+
+msgid "Safe Senders list is empty"
+msgstr ""
+
+msgid "Please select a safe sender record."
+msgstr ""
+
+msgid "Delete all safe senders"
+msgstr ""
+
+msgid "Are you sure you want to delete all safe senders?"
+msgstr ""
 
 msgid "HTML"
 msgstr ""
@@ -4290,6 +4852,9 @@ msgid "Compose mail settings"
 msgstr ""
 
 msgid "Compose mail in this format"
+msgstr ""
+
+msgid "Editor"
 msgstr ""
 
 msgid "Default font"
@@ -4304,6 +4869,15 @@ msgstr ""
 #. TRANSLATORS: The {A} _must_ always be at the start of the translation
 #. The '{B}' represents the number of minutes which the user will type in.
 msgid "{A}AutoSave unsent mail every {B} minute(s)"
+msgstr ""
+
+msgid "Conversation view settings"
+msgstr ""
+
+msgid "Enable conversation view"
+msgstr ""
+
+msgid "Collapse conversation when selecting a different email"
 msgstr ""
 
 msgid "Incoming mail"
@@ -4335,13 +4909,16 @@ msgstr "ימינה"
 msgid "Bottom"
 msgstr "תחתית"
 
-msgid "General mail settings"
-msgstr ""
-
 msgid "Location of preview pane"
 msgstr ""
 
+msgid "Use English abbreviations for forward (FW:) and reply (RE:)"
+msgstr ""
+
 msgid "Close original message on reply or forward"
+msgstr ""
+
+msgid "General mail settings"
 msgstr ""
 
 msgid "Open or compose a mail item in a"
@@ -4354,6 +4931,9 @@ msgstr ""
 msgid "Browser window"
 msgstr "דפדף"
 
+msgid "Update Out of Office settings for"
+msgstr ""
+
 msgid "I am currently in the office"
 msgstr ""
 
@@ -4363,7 +4943,10 @@ msgstr ""
 msgid "I will be back on"
 msgstr ""
 
-msgid "AutoReply only once to each sender with the following text"
+msgid "I am out of office"
+msgstr ""
+
+msgid "Automatically reply once per day, per sender with the following text"
 msgstr ""
 
 msgid "User is currently out of office."
@@ -4373,17 +4956,36 @@ msgid ""
 "The time you entered is before the out of office date. Please reschedule."
 msgstr ""
 
+msgid "Safe Senders"
+msgstr ""
+
+msgid ""
+"To protect your privacy email addresses or domains can only be added via the "
+"\"Add to safe sender list\" functionality in an opened email."
+msgstr ""
+
+msgid "Delete all"
+msgstr ""
+
 msgid "Signatures"
 msgstr ""
 
-msgid "Signature for new messages"
+msgid "No signatures configured"
 msgstr ""
 
-msgid "Signature for replies and forwards"
+msgid "New messages"
 msgstr ""
 
-msgid "<None>"
+msgid "Replies/forwards"
 msgstr ""
+
+msgid "Signature name:"
+msgstr ""
+
+# 76%
+#, fuzzy
+msgid "Save Signature"
+msgstr "הוסף חתימה"
 
 msgid "You have unsaved changes. Do you wish to save the changes?"
 msgstr ""
@@ -4392,6 +4994,16 @@ msgstr ""
 #, fuzzy
 msgid "New signature"
 msgstr "הוסף חתימה"
+
+msgid "EML file(s)"
+msgstr ""
+
+#, fuzzy
+msgid "ZIP file"
+msgstr "פרופיל"
+
+msgid "max. "
+msgstr ""
 
 msgid "Sort by: Sent"
 msgstr "מיין לפי: נשלחו"
@@ -4408,7 +5020,42 @@ msgstr ""
 msgid "Sort by: flag"
 msgstr ""
 
-msgid "Forward as Attachment"
+# 85%
+# 100%
+#, fuzzy
+msgid "Older"
+msgstr "תיקיה"
+
+msgid "Yesterday"
+msgstr ""
+
+#, fuzzy
+msgid "Last Week"
+msgstr "עמוד אחרון"
+
+msgid "Two Weeks Ago"
+msgstr ""
+
+msgid "Three Weeks Ago"
+msgstr ""
+
+#, fuzzy
+msgid "Last Month"
+msgstr "חודש"
+
+msgid "Small"
+msgstr ""
+
+msgid "Medium"
+msgstr ""
+
+msgid "Large"
+msgstr ""
+
+msgid "Very large"
+msgstr ""
+
+msgid "Huge"
 msgstr ""
 
 msgid "Follow up"
@@ -4417,34 +5064,30 @@ msgstr ""
 msgid "Move to Junk Folder"
 msgstr "העבר לתיקית זבל"
 
-msgid "max. "
-msgstr ""
+# 75%
+#, fuzzy
+msgid "Send to"
+msgstr "נשלח"
 
 msgid "Loading mail"
 msgstr ""
 
-msgid "Loaded {0} of {1}"
+msgid "No unread mail."
 msgstr ""
 
-msgid "Save Note"
-msgstr "שמור פתק"
-
-# 88%
-#, fuzzy
-msgid "Save note"
-msgstr "שמור פתק"
-
-msgid "Delete Note"
+msgid "Unread Mail"
 msgstr ""
 
-# 81%
+msgid "Quick Mail"
+msgstr ""
+
+# 77%
+# 78%
 # 100%
+# 84%
 #, fuzzy
-msgid "Delete this note"
-msgstr "מחק פריט זה"
-
-msgid "Print this note"
-msgstr ""
+msgid "Print note"
+msgstr "נבחר פריט {0}"
 
 msgid "Color"
 msgstr "צבע"
@@ -4496,11 +5139,17 @@ msgstr ""
 msgid "Loading notes"
 msgstr ""
 
-msgid "In order for the changes to take effect, please reload WebApp."
+msgid "Quick Note"
 msgstr ""
 
-msgid "NOTE: Any unsaved changes will be lost."
+msgid ""
+"You must reload WebApp for the changes to take effect. Unsaved changes will "
+"be lost."
 msgstr ""
+
+#, fuzzy
+msgid "Reload WebApp"
+msgstr "הווב אפ של זראפה"
 
 msgid "Settings"
 msgstr ""
@@ -4508,7 +5157,7 @@ msgstr ""
 msgid "Basic"
 msgstr ""
 
-msgid "Account information - {0}"
+msgid "Account information"
 msgstr ""
 
 msgid "Language"
@@ -4520,9 +5169,6 @@ msgstr ""
 msgid "Theme"
 msgstr ""
 
-msgid "This change requires a reload of the WebApp"
-msgstr ""
-
 msgid "Select Default Folder"
 msgstr ""
 
@@ -4530,6 +5176,15 @@ msgid "Advanced"
 msgstr ""
 
 msgid "Advanced settings"
+msgstr ""
+
+msgid "Developer tools"
+msgstr ""
+
+msgid "Show insertion points in WebApp"
+msgstr ""
+
+msgid "Show \"item data\" button in context menu (mail only)"
 msgstr ""
 
 msgid "Edit setting"
@@ -4541,7 +5196,76 @@ msgstr ""
 msgid "Delete settings"
 msgstr ""
 
+#, fuzzy
+msgid "{0} Iconset"
+msgstr "סמלים"
+
 msgid "About"
+msgstr ""
+
+msgid "I want to display date and time in this format:"
+msgstr ""
+
+msgid "Short"
+msgstr ""
+
+msgid "Long"
+msgstr ""
+
+msgid "Time format:"
+msgstr ""
+
+msgid "12h clock"
+msgstr ""
+
+msgid "24h clock"
+msgstr ""
+
+#, fuzzy
+msgid "Favorite settings"
+msgstr "מועדפים"
+
+#, fuzzy
+msgid "Hide favorites"
+msgstr "מועדפים"
+
+msgid "Unpin favorites from top"
+msgstr ""
+
+msgid "Give unread items a colored border"
+msgstr ""
+
+msgid "Show 'help' button in top-right corner"
+msgstr ""
+
+msgid "Show unread mail counter in application title"
+msgstr ""
+
+msgid "Hide widget panel"
+msgstr ""
+
+msgid "Show search bar above folder list"
+msgstr ""
+
+msgid "Auto"
+msgstr ""
+
+msgid "Actual size"
+msgstr ""
+
+msgid "Page width"
+msgstr ""
+
+msgid "Attachment preview (PDF and Open formats)"
+msgstr ""
+
+msgid "Document default zoom"
+msgstr ""
+
+msgid "PDF zoom"
+msgstr ""
+
+msgid "File previewing"
 msgstr ""
 
 msgid "Inbox navigation"
@@ -4586,20 +5310,13 @@ msgstr ""
 msgid "All keyboard shortcuts on"
 msgstr ""
 
-msgid "Discard"
+msgid "This change requires a reload of the WebApp"
 msgstr ""
 
 msgid "Plugins"
 msgstr ""
 
 msgid "Available plugins"
-msgstr ""
-
-msgid ""
-"The following plugins are available in the WebApp. It is possible to select "
-"and/or deselect different plugins to indicate which plugins should be "
-"enabled. When any plugin is enabled or disabled, the WebApp must be reloaded "
-"in order for the changes to take effect."
 msgstr ""
 
 msgid "No plugins available"
@@ -4617,13 +5334,13 @@ msgstr ""
 msgid "Mailbox Usage"
 msgstr ""
 
-msgid "Quota information is not set on the user's store."
+msgid "A quota is not set on your store."
 msgstr ""
 
 msgid "{0} of mailbox space is used."
 msgstr ""
 
-msgid "You have exceeded hard quota, you can not send or recieve mails."
+msgid "You have exceeded hard quota, you can not send or receive mails."
 msgstr ""
 
 msgid "At {0} you won't be able to send mails."
@@ -4631,34 +5348,35 @@ msgstr ""
 
 msgid ""
 "You can not send mails as you have exceeded soft quota, at {0} you won't be "
-"able to recieve mails."
+"able to receive mails."
 msgstr ""
 
-msgid "At {0} you won't be able to send or recieve mails."
+msgid "At {0} you won't be able to send or receive mails."
 msgstr ""
 
 msgid "You can not send mails as you have exceeded soft quota."
 msgstr ""
 
-msgid "Reset WebApp settings"
-msgstr ""
+#, fuzzy
+msgid "Reset settings"
+msgstr "הגדרות הודעה"
 
-msgid "Resets WebApp's settings to their original defaults"
-msgstr ""
-
-msgid ""
-"Your WebApp settings will be restored to their default condition. Are you "
-"sure you want to reset all WebApp settings?"
+msgid "Reset settings to their original defaults."
 msgstr ""
 
 msgid ""
-"WebApp will automatically restart in order for these changes to take effect"
+"This will close all opened shared stores and resets all settings to the "
+"default value."
+msgstr ""
+
+msgid ""
+"WebApp will automatically reload in order for these changes to take effect"
 msgstr ""
 
 msgid "Reset"
 msgstr ""
 
-msgid "Webapp is reloading, Please wait."
+msgid "Reloading, Please wait."
 msgstr ""
 
 msgid "Setting"
@@ -4739,8 +5457,8 @@ msgstr ""
 
 #, fuzzy
 msgid ""
-"This task will be accepted and moved into the Tasks folder. Do you want to "
-"edit the response before sending it?"
+"This task will be accepted and moved to your task folder. Do you want to "
+"include comments with your response?"
 msgstr ""
 "פגישה זו התקבלה ותועבר ללוח השנה שלך. האם אתה רוצה לכלול הערות עם התגובה שלך?"
 
@@ -4759,6 +5477,9 @@ msgstr "שלח את התגובה כעת."
 msgid "Date Complete"
 msgstr "תאריך השלמה"
 
+msgid "Multiple companies name must be separated by"
+msgstr ""
+
 msgid "Update List"
 msgstr "עדכן רשימה"
 
@@ -4768,8 +5489,15 @@ msgstr "צור העתק לא מוקצה"
 msgid "copy"
 msgstr ""
 
+msgid "Unable to send task request"
+msgstr ""
+
 msgid "You cannot send a task request to yourself."
 msgstr ""
+
+#, fuzzy
+msgid "Multiple recipients"
+msgstr "הצג נמען"
 
 msgid "A task request can only have one recipient."
 msgstr ""
@@ -4796,29 +5524,9 @@ msgstr ""
 msgid "Send task to assignees"
 msgstr "שלח משימה לנמחה"
 
-msgid "Send assignment"
-msgstr "שלח מטלה"
-
-#, fuzzy
-msgid "Save without sending a task request to assignees"
-msgstr "שלח משימה לנמחה"
-
-msgid "Save task"
-msgstr "שמור משימה"
-
-# 78%
-# 82%
-# 100%
-#, fuzzy
-msgid "Save task and close dialog"
-msgstr "שמור מינוי שיח קרוב"
-
 #, fuzzy
 msgid "Restore to Task List"
 msgstr "שחזר פריטים"
-
-msgid "Restore this item to your task list"
-msgstr ""
 
 # 94%
 # 76%
@@ -4845,14 +5553,8 @@ msgstr "הדפס דואר זה"
 msgid "Assign Task"
 msgstr "הקצה משימה"
 
-msgid "Assign this task to someone else."
-msgstr ""
-
 msgid "Cancel Assignment"
 msgstr "בטל משימה"
-
-msgid "Convert this task request to a regular task by removing assignees."
-msgstr ""
 
 # 75%
 # 79%
@@ -4863,6 +5565,23 @@ msgstr "סמן את איש קשר זה כפרטי."
 
 msgid "New task"
 msgstr ""
+
+#, fuzzy
+msgid "Completed"
+msgstr "הושלם"
+
+#, fuzzy
+msgid "Printed by: "
+msgstr "מיין לפי: אל"
+
+# 77%
+# 78%
+# 100%
+# 84%
+#. TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+#, fuzzy
+msgid "Printed on: "
+msgstr "נבחר פריט {0}"
 
 msgid "Percent complete"
 msgstr ""
@@ -4909,23 +5628,34 @@ msgstr "בקשת משימה:"
 msgid "Print selected task"
 msgstr "נבחר פריט {0}"
 
-msgid "Print task list"
+msgid "No task selected"
 msgstr ""
 
-msgid "No task selected"
+msgid "Print task list"
 msgstr ""
 
 msgid "Create task"
 msgstr ""
 
-msgid "Tasks"
-msgstr "משימות"
+msgid "Upcoming"
+msgstr ""
+
+msgid "Overdue"
+msgstr ""
 
 msgid "Mark Complete"
 msgstr ""
 
 msgid "Mark Incomplete"
 msgstr ""
+
+#, fuzzy
+msgid "Remove from To-Do List"
+msgstr "הסר מלוח השנה"
+
+#, fuzzy
+msgid "Changes to assigned task"
+msgstr "שלח משימה לנמחה"
 
 msgid ""
 "Please note that assigned task(s) will be overwritten when the assignee "
@@ -4947,14 +5677,19 @@ msgstr "משויך אל"
 msgid "Sort by: Assignee"
 msgstr ""
 
-msgid "Sort by: Start Date"
-msgstr ""
-
 # 76%
 # 78%
 #, fuzzy
 msgid "Sort by: Owner"
 msgstr "מיין לפי: גודל"
+
+#, fuzzy
+msgid "Sort by: Percentage Completed"
+msgstr "מיין לפי: התקבלו"
+
+#, fuzzy
+msgid "Assigned task changes"
+msgstr "הקצה משימה"
 
 msgid "Loading tasks"
 msgstr ""
@@ -4979,56 +5714,51 @@ msgstr "עדכן רשימה"
 msgid "D d-m-Y"
 msgstr "ש-ח-י"
 
-msgid "Improved categories"
+msgid "none"
+msgstr ""
+
+msgid "Quick Task"
+msgstr ""
+
+msgid "No tasks."
+msgstr ""
+
+msgid "Tasks / To-Do"
+msgstr ""
+
+#, fuzzy
+msgid "Import / Export"
+msgstr "חשוב"
+
+msgid ""
+"Calendar, contact and mail items can be imported and exported from and to "
+"WebApp."
 msgstr ""
 
 msgid ""
-"Categories now have a prominent place in your overviews of Mail, Calendar, "
-"Tasks and more."
+"Right-click a folder and select the import button. Additionally, items can "
+"be imported from the attachment context menu."
+msgstr ""
+
+msgid "Exporting can be done from the context menu of an item."
+msgstr ""
+
+#, fuzzy
+msgid "Icon packs"
+msgstr "סמלים"
+
+msgid ""
+"You can now choose between different icons. By default the new Breeze icons "
+"are enabled, but if you prefer the classic icons you can change this in the "
+"settings."
 msgstr ""
 
 msgid ""
-"Adding a category is easy and can be done from the overview. Move your mouse "
-"over an email to see the \"Add category\" icon and click it, or right-click "
-"an item to open the context menu."
+"Go to your settings, open the general tab and select an icon pack to your "
+"liking."
 msgstr ""
 
-msgid "Flag item for follow up"
-msgstr ""
-
-msgid ""
-"You can now mark email items for follow-up by setting a flag. In the new "
-"flags menu you can select the follow-up date. A reminder will be shown that "
-"day."
-msgstr ""
-
-msgid ""
-"The Tasks context provides a complete overview of your to-do's. All tasks "
-"and flagged emails will be shown in this to-do list."
-msgstr ""
-
-msgid "Transformation of flags into follow-ups and categories"
-msgstr ""
-
-msgid ""
-"Your former flagged items are transformed into items with a color category "
-"and a \"No date\" follow-up flag. For example: an item with a blue flag will "
-"now have a category named \"Blue\"."
-msgstr ""
-
-msgid ""
-" You have the option to rename a color category when you first use it and "
-"all items with this category will get updated."
-msgstr ""
-
-msgid "Search folders"
-msgstr ""
-
-msgid ""
-"If there is a search query you use frequently you are in luck! After you "
-"have completed a search you can now save it as a \"search folder\" which "
-"will show up in your favorites! You can then do the same search again with a "
-"single click."
+msgid "Left: Breeze - Right: Classic"
 msgstr ""
 
 msgid "What's new"
@@ -5046,6 +5776,9 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
+msgid "Click the link to open the URL in a new window."
+msgstr ""
+
 msgid "The server reported an unknown error on your request."
 msgstr "השרת דיווח על שגיאה לא ידועה בבקשתך."
 
@@ -5060,10 +5793,10 @@ msgid ""
 "browser window or tab."
 msgstr ""
 
-msgid "Do you wish to be redirected to the logon page?"
+msgid "Session expired"
 msgstr ""
 
-msgid "Session expired"
+msgid "Do you wish to be redirected to the logon page?"
 msgstr ""
 
 msgid "Reauthentication required, click here to go to back to logon page."
@@ -5084,12 +5817,18 @@ msgstr ""
 msgid "Connection with server has been restored"
 msgstr ""
 
-#. TRANSLATORS: Example: HTTP 404
-msgid "HTTP {0}"
-msgstr "{0} HTTP"
+msgid "Please contact your administrator if this problem persists."
+msgstr ""
 
-msgid "Invalid data received from the server"
-msgstr "נתונים לא תקפים התקבלו מהשרת"
+#. TRANSLATORS: Example: HTTP 404
+msgid "Error HTTP {0}"
+msgstr ""
+
+msgid "HTTP status text is: "
+msgstr ""
+
+msgid "Invalid data received from the server. HTTP status text is: "
+msgstr ""
 
 msgid "Missing store"
 msgstr ""
@@ -5149,9 +5888,10 @@ msgctxt "hierarchy.foldername"
 msgid "Tasks"
 msgstr "משימות"
 
+#, fuzzy
 msgctxt "hierarchy.foldername"
-msgid "Junk E-mail"
-msgstr ""
+msgid "Junk Email"
+msgstr "דואר אלקטורני"
 
 msgid "Missing folders"
 msgstr ""
@@ -5164,7 +5904,7 @@ msgstr[1] ""
 msgid "Loading model from server failed"
 msgstr "טעינת מודל מן השרת נכשלה"
 
-msgid "Out of Office currently on. Would you like to turn it off?"
+msgid "Out of Office is currently activated. Would you like to turn it off?"
 msgstr ""
 
 msgid "Out of office off"
@@ -5177,42 +5917,6 @@ msgid "Send Fax"
 msgstr ""
 
 msgid "Contact Fax"
-msgstr ""
-
-msgid "Configure widget"
-msgstr "להגדיר יישומון"
-
-msgid "Reload interval"
-msgstr ""
-
-msgid "seconds."
-msgstr ""
-
-msgid "No appointments for today."
-msgstr "אין פגישות היום"
-
-#. TRANSLATORS: {0} is the subject of an all-day
-#. appointment, {1} is the html code to display
-#. icons.
-msgid "Today: {1} {0}"
-msgstr "היום: {1} {0}"
-
-#. TRANSLATORS: {0} is the subject of an
-#. appointment; {1} is the start time, {2} is the
-#. end time, {3} is the html code to display icons.
-msgid "{1}&minus;{2}: {3} {0}"
-msgstr ""
-
-msgid "Today's Appointments"
-msgstr "פגישות היום"
-
-msgid "No unread mail."
-msgstr ""
-
-msgid "Unread Mail"
-msgstr ""
-
-msgid "No tasks."
 msgstr ""
 
 msgid "Google Maps"
@@ -5241,39 +5945,6 @@ msgid "Select another folder"
 msgstr ""
 
 msgid "E-mails are moved to {0}"
-msgstr ""
-
-msgid "Quick Appointment"
-msgstr ""
-
-msgid "Quick Contact"
-msgstr ""
-
-msgid "Quick Mail"
-msgstr ""
-
-msgid "Quick Note"
-msgstr ""
-
-msgid "Quick Task"
-msgstr ""
-
-msgid "Title Counter Plugin"
-msgstr ""
-
-msgid "Help"
-msgstr ""
-
-msgid "WebApp Manual"
-msgstr ""
-
-msgid "INSERT"
-msgstr ""
-
-msgid "Sort by: context.mail.griddefaultcolumn"
-msgstr ""
-
-msgid "ZDeveloper"
 msgstr ""
 
 msgid "Charm pink"
@@ -5357,6 +6028,11 @@ msgstr "ממתין"
 msgid "You have been automatically logged out"
 msgstr "בוצעה עבורך התנתקות אוטומטית"
 
+msgid ""
+"Sorry, access to WebApp is not available with this user account. Please "
+"contact your system administrator."
+msgstr ""
+
 msgid "Can't add data to bus, same action type is present in bus"
 msgstr "לא ניתן להוסיף מידע"
 
@@ -5365,11 +6041,12 @@ msgstr "לא ניתן לקבל מידע"
 
 #, php-format
 msgid "Unknown module '%s' with id '%s'"
-msgstr "מודול לא ידוע 's%' עם ת.ז 's%'"
+msgstr "Unknown module '%s' with id '%s'"
 
 msgid ""
-"Server encountered some problem, so it was not able to handle the request."
-msgstr "השרת נתקל בבעיה, ולכן לא ניתן היה לטפל בבקשה."
+"We encountered a problem. This might be caused by upgrading a plugin. Please "
+"re-login to resolve the issue."
+msgstr ""
 
 #, php-format
 msgid "Unknown notifier '%s'"
@@ -5378,8 +6055,9 @@ msgstr ""
 msgid "An unexpected error has occurred"
 msgstr ""
 
-msgid "To-do list"
-msgstr ""
+#, fuzzy
+msgid "To-Do List"
+msgstr "רישמת טלפונים"
 
 #. TRANSLATORS: This indicates that the opened folder belongs to a particular user,
 #. * for example: 'Calendar of Holiday', in this case %1$s is 'Calendar' (the foldername)
@@ -5387,9 +6065,6 @@ msgstr ""
 #.
 #, php-format
 msgid "%1$s of %2$s"
-msgstr ""
-
-msgid "Settings object is not initialized"
 msgstr ""
 
 msgid "Error retrieving existing settings"
@@ -5408,18 +6083,59 @@ msgstr "התחברות נכשלה , אנא בדוק את השם/סיסמא של�
 msgid "Cannot connect to Kopano Core."
 msgstr "לא ניתן להתחבר לשרת של Kopano."
 
-msgid "Logon failed, another session already exists."
+msgid ""
+"Login did not work due to a duplicate session. The issue was automatically "
+"resolved, please log in again."
 msgstr ""
 
 #, fuzzy
 msgid "Unknown MAPI Error"
 msgstr "שם משתמש/קבוצה לא ידוע"
 
-msgid "Click the link to open the URL in a new window."
-msgstr ""
-
 msgid "This external link will open in a new window"
 msgstr "הקישור החיצוני ייפתח בחלון חדש"
+
+msgid "Destination folder not found."
+msgstr ""
+
+msgid "Eml is corrupted"
+msgstr ""
+
+msgid "The eml Attachment is not imported successfully"
+msgstr ""
+
+msgid "The vcf attachment is not imported successfully"
+msgstr ""
+
+#, php-format
+msgid "Unable to import '%s' to '%s'. "
+msgstr ""
+
+#, fuzzy
+msgid "There is no appointment found in this file."
+msgstr "פגישה זו מתרחשת בעבר"
+
+msgid "The file is corrupt."
+msgstr ""
+
+#, fuzzy
+msgid "The file is invalid."
+msgstr "{0} אינו זמן תקף"
+
+#, php-format
+msgid "Unable to import '%s'. "
+msgstr ""
+
+msgid "Please contact your system administrator if the problem persists."
+msgstr ""
+
+msgid "Attachment is not imported successfully"
+msgstr ""
+
+# 81%
+#, fuzzy
+msgid "Embedded attachment not found."
+msgstr "הוסף קבצים מצורפים עבור איש קשר זה."
 
 msgid "ZIP is not created successfully"
 msgstr ""
@@ -5436,10 +6152,6 @@ msgstr "לא ניתן להעלות את הקובץ המצורף."
 msgid "Operation failed"
 msgstr ""
 
-#, php-format
-msgid "Eml creation of '%s' is not supported"
-msgstr ""
-
 msgid "Sticky Note"
 msgstr ""
 
@@ -5452,8 +6164,8 @@ msgstr "בקשת משימה:"
 msgid "Could not find message, either it has been moved or deleted."
 msgstr ""
 
-msgid "Action is not performed correctly."
-msgstr "הפעולה לא מבוצעת כהלכה."
+msgid "Request is not available."
+msgstr ""
 
 # 94%
 # 90%
@@ -5487,14 +6199,14 @@ msgstr ""
 msgid "Unknown MAPI Error: %s"
 msgstr ""
 
+msgid "Action is not performed correctly."
+msgstr "הפעולה לא מבוצעת כהלכה."
+
 msgid "Tentatively accepted"
 msgstr ""
 
 msgid "New Time Proposed"
 msgstr ""
-
-msgid "d-m-Y"
-msgstr "ש-ח-י"
 
 # 78%
 # 76%
@@ -5517,34 +6229,29 @@ msgstr "מופיע כל {0} החל מ{1}"
 msgid "Occurs every %s %s effective %s."
 msgstr "מופיע כל {0} החל מ{1}"
 
-# 76%
-#, fuzzy, php-format
-msgid "Occurs every %s effective %s for %s occurence from %s to %s."
-msgid_plural "Occurs every %s effective %s for %s occurences from %s to %s."
-msgstr[0] "מופיע כל {0} החל מ{1} עד {2} בין {3} ל {4}."
+#, php-format
+msgid "Occurs every %s effective %s for %s occurrence from %s to %s."
+msgid_plural "Occurs every %s effective %s for %s occurrences from %s to %s."
+msgstr[0] ""
 msgstr[1] ""
 
-# 76%
-# 95%
-#, fuzzy, php-format
-msgid "Occurs every %s %s effective %s for %s occurence from %s to %s."
-msgid_plural "Occurs every %s %s effective %s for %s occurences %s to %s."
-msgstr[0] "מופיע כל {0} החל מ{1} עד {2} בין {3} ל {4}."
+#, php-format
+msgid "Occurs every %s %s effective %s for %s occurrence from %s to %s."
+msgid_plural "Occurs every %s %s effective %s for %s occurrences %s to %s."
+msgstr[0] ""
 msgstr[1] ""
 
-# 81%
-#, fuzzy, php-format
-msgid "Occurs every %s effective %s for %s occurence."
-msgid_plural "Occurs every %s effective %s for %s occurences."
-msgstr[0] "מופיע כל {0} החל מ {1} למופע {2}."
-msgstr[1] "מופיע כל {0} החל מ {1} ל {2} מופעים."
+#, php-format
+msgid "Occurs every %s effective %s for %s occurrence."
+msgid_plural "Occurs every %s effective %s for %s occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
-# 77%
-#, fuzzy, php-format
-msgid "Occurs every %s %s effective %s for %s occurence."
-msgid_plural "Occurs every %s %s effective %s for %s occurences."
-msgstr[0] "מופיע כל {0} החל מ {1} למופע {2}."
-msgstr[1] "מופיע כל {0} החל מ {1} ל {2} מופעים."
+#, php-format
+msgid "Occurs every %s %s effective %s for %s occurrence."
+msgid_plural "Occurs every %s %s effective %s for %s occurrences."
+msgstr[0] ""
+msgstr[1] ""
 
 # 76%
 # 75%
@@ -5582,6 +6289,14 @@ msgstr "משימה עודכנה:"
 msgid "Task Completed:"
 msgstr "משימה הושלמה: "
 
+msgid "Contact not found"
+msgstr ""
+
+msgid ""
+"Contact information could not be displayed because the server had trouble "
+"retrieving the information."
+msgstr ""
+
 msgid "Could not handle this type of object."
 msgstr "לא ניתן לטפל בסוג זה של אובייקט."
 
@@ -5594,6 +6309,26 @@ msgstr ""
 msgid "Could not open occurrence, specific occurrence is probably deleted."
 msgstr ""
 
+# 89%
+# 100%
+# 84%
+#, fuzzy
+msgid "a meeting request"
+msgstr "בקשה לפגישה חדשה"
+
+# 93%
+# 100%
+# 80%
+#, fuzzy
+msgid "an appointment"
+msgstr "פגישה חדשה"
+
+# 79%
+# 100%
+#, fuzzy
+msgid "You have insufficient privileges to move "
+msgstr "אין ברשותך הרשאות מספקות בכדי להעתיק תיקיה."
+
 msgid ""
 "Cannot set a reminder to appear before the previous occurrence. Reset "
 "reminder to save the change"
@@ -5605,7 +6340,7 @@ msgstr "שני מופעים לא יכולים להופיע באותו היום."
 #, php-format
 msgid ""
 "You marked '%s' as a resource. You cannot schedule a meeting with '%s' "
-"because you do not have the appropiate permissions for that account. Either "
+"because you do not have the appropriate permissions for that account. Either "
 "enter the name as a required or optional attendee or talk to your "
 "administrator about giving you permission to schedule '%s'."
 msgstr ""
@@ -5642,11 +6377,11 @@ msgstr "פגישה פרטית"
 
 #, php-format
 msgid "%s's Birthday"
-msgstr "יום ההולדת של s%"
+msgstr "יום ההולדת של %s"
 
 #, php-format
 msgid "%s's Anniversary"
-msgstr "יום הנישואין של s%"
+msgstr "יום הנישואין של %s"
 
 msgid "Unknown user/group"
 msgstr "שם משתמש/קבוצה לא ידוע"
@@ -5800,12 +6535,17 @@ msgstr "לא ניתן לשמור את הודעה זו."
 msgid "You have insufficient privileges to remove item from the calendar."
 msgstr "אין ברשותך הרשאות מספקות בכדי להסיר פריטים מלוח השנה."
 
+msgid ""
+"Message is no longer in the outgoing queue, typically because it has already "
+"been sent."
+msgstr ""
+
+msgid "Message cannot be aborted"
+msgstr ""
+
 #, fuzzy
 msgid "You have insufficient privileges to delete items in this folder"
 msgstr "אין ברשותך הרשאות מספקות בכדי לשמור פריטים בתיקיה זו"
-
-msgid "Could not resolve conflict."
-msgstr "לא ניתן לפתור את הבעיה."
 
 msgid "You have insufficient privileges to attach item as an attachment."
 msgstr "אין ברשותך הרשאות מספקות בכדי לצרף פריט כקובץ מצורף."
@@ -5995,8 +6735,30 @@ msgstr ""
 msgid "Sign in"
 msgstr ""
 
-msgid "Could not upload attachment."
-msgstr "לא ניתן להעלות את הקובץ המצורף."
+msgid "Caps lock is on"
+msgstr ""
+
+# 94%
+#, fuzzy
+msgid "File is not imported successfully"
+msgstr "נשלח בהצלחה"
+
+msgid "There is no contact found in this file."
+msgstr ""
+
+msgid "WebApp does not support importing multiple VCF with this version."
+msgstr ""
+
+msgid "WebApp does not support importing multiple ICS with this version."
+msgstr ""
+
+#, php-format
+msgid "Unable to import '%s'"
+msgstr ""
+
+#, fuzzy
+msgid "The EML is not valid"
+msgstr "{0} אינו זמן תקף"
 
 msgid "GB"
 msgstr "ג'יגה בייט"
@@ -6029,6 +6791,3 @@ msgstr "שגיאת בקרה, ייתכן שקודד באופן לא נכון"
 #, php-format
 msgid "JSON Error: - %s"
 msgstr "שגיאת JSON: - %s"
-
-msgid "Some problem encountered when encoding/decoding JSON data."
-msgstr "התרחשו שגיאות מסוימות בעת ההצפנה/פיענוח של נתוני ה JSON."

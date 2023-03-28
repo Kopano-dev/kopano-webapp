@@ -104,11 +104,11 @@
 			// make user readable string
 			if ($value > (1024 * 1024 * 1024)){
 				$value = round($value / (1024 * 1024 * 1024), 1) ." ". _("GB");
-			}else if ($value > (1024 * 1024)){
+			} else if ($value > (1024 * 1024)){
 				$value = round($value / (1024 * 1024), 1) ." ". _("MB");
-			}else if ($value > 1024){
+			} else if ($value > 1024){
 				$value = round($value / 1024, 1) ." ". _("KB");
-			}else{
+			} else {
 				$value = $value ." ". _("B");
 			}
 		}
@@ -260,24 +260,44 @@
 
 	/**
 	 * This function will encode the input string for the header based on the browser that makes the
-	 * HTTP request. MSIE has an issue with unicode filenames. All browsers do not seem to follow
-	 * the RFC specification. Firefox requires an unencoded string in the HTTP header. MSIE will
+	 * HTTP request. MSIE and Edge has an issue with unicode filenames. All browsers do not seem to follow
+	 * the RFC specification. Firefox requires an unencoded string in the HTTP header. MSIE and Edge will
 	 * break on this and requires encoding.
 	 * @param String $input Unencoded string
 	 * @return String Encoded string
 	 */
-	function browserDependingHTTPHeaderEncode($input){
-		if(strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') === false){
+	function browserDependingHTTPHeaderEncode($input)
+	{
+		$input = preg_replace("/\r|\n/", "", $input);
+		if(!isIE11() && !isEdge()) {
 			return $input;
-		}else{
+		} else {
 			return rawurlencode($input);
 		}
 	}
 
 	/**
+	 * Helps to detect if the request came from IE11 or not.
+	 * @return Boolean True if IE11 is the requester, position of the word otherwise.
+	 */
+	function isIE11()
+	{
+		return strpos($_SERVER['HTTP_USER_AGENT'], 'Trident') !== false;
+	}
+
+	/**
+	 * Helps to detect if the request came from Edge or not.
+	 * @return Boolean True if Edge is the requester, position of the word otherwise.
+	 */
+	function isEdge()
+	{
+		return strpos($_SERVER['HTTP_USER_AGENT'], 'Edge') !== false;
+	}
+
+	/**
 	 * This function will return base name of the file from the full path of the file.
 	 * PHP's basename() does not properly support streams or filenames beginning with a non-US-ASCII character.
-	 * The default implementation in php for basename is locale aware. so it will truncate umlauts which can not be
+	 * The default implementation in php for basename is locale aware. So it will truncate umlauts which can not be
 	 * parsed by the current set locale.
 	 * This problem only occurs with PHP < 5.2
 	 * @see http://bugs.php.net/bug.php?id=37738, https://bugs.php.net/bug.php?id=37268
@@ -474,15 +494,15 @@
 			// this is a encrypted message. decode it.
 			$attachTable = mapi_message_getattachmenttable($message);
 
-			$rows = mapi_table_queryallrows($attachTable, Array(PR_ATTACH_MIME_TAG, PR_ATTACH_NUM));
+			$rows = mapi_table_queryallrows($attachTable, Array(PR_ATTACH_MIME_TAG, PR_ATTACH_NUM, PR_ATTACH_LONG_FILENAME));
 			$attnum = false;
-
 			foreach($rows as $row) {
 				if(isset($row[PR_ATTACH_MIME_TAG]) && in_array($row[PR_ATTACH_MIME_TAG],array('application/x-pkcs7-mime','application/pkcs7-mime')) ) {
 					$attnum = $row[PR_ATTACH_NUM];
 				}
 			}
-			if($attnum !== false){
+
+			if($attnum !== false) {
 				$att = mapi_message_openattach($message, $attnum);
 				$data = mapi_openproperty($att, PR_ATTACH_DATA_BIN);
 
@@ -492,11 +512,22 @@
 					'props' => $props,
 					'message' => &$message,
 					'data' => &$data
-					));
+				));
 
-				mapi_message_deleteattach($message, $attnum);
+				if (isSmimePluginEnabled()) {
+					mapi_message_deleteattach($message, $attnum);
+				}
 			}
 		}
+	}
+
+	/**
+	 * Helper function which used to check smime plugin is enabled.
+	 * 
+	 * @return Boolean true if smime plugin is enabled else false.
+	 */
+	function isSmimePluginEnabled() {
+		return $GLOBALS['settings']->get("zarafa/v1/plugins/smime/enable", false);
 	}
 
 	/**
@@ -553,23 +584,20 @@
 		}
 
 		if(!empty($errorString)) {
-			throw new JSONException(sprintf(_("JSON Error: - %s") , $errorString), json_last_error(), null, _("Some problem encountered when encoding/decoding JSON data."));
+			throw new JSONException(sprintf(_("JSON Error: - %s") , $errorString), json_last_error(), null);
 		}
 
 		return $data;
 	}
 
 	/**
-	 * Fetches the full hierarchy and returns an array with a cache of the state
-	 * of the folders in the hierarchy.
-	 *
-	 * @return {Array} folderStatCache a cache of the hierarchy folders.
+	 * Tries to open the IPM subtree. If opening fails, it will try to fix it by
+	 * trying to find the correct entryid of the IPM subtree in the hierarchy.
+	 * @param {MAPIObject} $store the store to retrieve IPM subtree from
+	 * @return {mixed} false if the subtree is broken beyond quick repair,
+	 * the IPM subtree resource otherwise
 	 */
-	function update_hierarchy_counters()
-	{
-		$props = array(PR_DISPLAY_NAME, PR_LOCAL_COMMIT_TIME_MAX, PR_CONTENT_COUNT, PR_CONTENT_UNREAD, PR_ENTRYID, PR_STORE_ENTRYID);
-
-		$store = $GLOBALS["mapisession"]->getDefaultMessageStore();
+	function getSubTree($store) {
 		$storeProps = mapi_getprops($store, array(PR_IPM_SUBTREE_ENTRYID));
 		try {
 			$ipmsubtree = mapi_msgstore_openentry($store, $storeProps[PR_IPM_SUBTREE_ENTRYID]);
@@ -580,8 +608,52 @@
 				$ipmsubtree = fix_ipmsubtree($store);
 			}
 		}
-		$hierarchy =  mapi_folder_gethierarchytable($ipmsubtree, CONVENIENT_DEPTH);
+
+		return $ipmsubtree;
+	}
+
+	/**
+	 * Fetches the full hierarchy and returns an array with a cache of the stat
+	 * of the folders in the hierarchy. Passing the folderType is required for cases where
+	 * the user has permission on the inbox folder, but no folder visible
+	 * rights on the rest of the store.
+	 *
+	 * @param {String} $username the user who's store to retrieve hierarchy counters from.
+	 * If no username is given, the currently logged in user's store will be used.
+	 * @param {String} $folderType if inbox use the inbox as root folder.
+	 * @return {Array} folderStatCache a cache of the hierarchy folders.
+	 */
+	function updateHierarchyCounters($username='', $folderType='')
+	{
+		// Open the correct store
+		if ($username) {
+			$userEntryid = $GLOBALS["mapisession"]->getStoreEntryIdOfUser($username);
+			$store = $GLOBALS["mapisession"]->openMessageStore($userEntryid);
+		} else {
+			$store = $GLOBALS["mapisession"]->getDefaultMessageStore();
+		}
+
+		$props = array(PR_DISPLAY_NAME, PR_LOCAL_COMMIT_TIME_MAX, PR_CONTENT_COUNT, PR_CONTENT_UNREAD, PR_ENTRYID, PR_STORE_ENTRYID);
+
+		if ($folderType === 'inbox') {
+			try {
+				$rootFolder = mapi_msgstore_getreceivefolder($store);
+			} catch (MAPIException $e) {
+				$username = $GLOBALS["mapisession"]->getUserName();
+				error_log(sprintf("Unable to open Inbox for %s. MAPI Error '%s'", $username, get_mapi_error_name($e->getCode())));
+				return [];
+			}
+		} else {
+			$rootFolder = getSubTree($store);
+		}
+
+		$hierarchy = mapi_folder_gethierarchytable($rootFolder, CONVENIENT_DEPTH | MAPI_DEFERRED_ERRORS);
 		$rows = mapi_table_queryallrows($hierarchy, $props);
+
+		// Append the Inbox folder itself.
+		if ($folderType === 'inbox') {
+			array_push($rows, mapi_getprops($rootFolder, $props));
+		}
 
 		$folderStatCache = array();
 		foreach($rows as $folder) {
@@ -602,7 +674,7 @@
 	 * by looking up the IPM_SUBTREE in the Hierarchytable and fetching the entryid
 	 * and if found, setting the PR_IPM_SUBTREE_ENTRYID to that found entryid.
 	 *
-	 * @param {Object} store the users MAPI Store
+	 * @param {Object} $store the users MAPI Store
 	 * @return {mixed} false if unable to correct otherwise return the subtree.
 	 */
 	function fix_ipmsubtree($store)
@@ -626,7 +698,7 @@
 
 		try {
 			$entryid = $folders[0][PR_ENTRYID];
-			mapi_msgstore_openentry($store, $entryid);
+			$ipmsubtree = mapi_msgstore_openentry($store, $entryid);
 		} catch (MAPIException $e) {
 			error_log(sprintf('Unable to open IPM_SUBTREE for %s, IPM_SUBTREE folder can not be opened. MAPI error: %s',
 					$username, get_mapi_error_name($e->getCode())));
@@ -635,5 +707,90 @@
 
 		mapi_setprops($store, [PR_IPM_SUBTREE_ENTRYID => $entryid]);
 		error_log(sprintf('Fixed PR_IPM_SUBTREE_ENTRYID for %s', $username));
+
+		return $ipmsubtree;
+	}
+
+	/**
+	 * Helper function which provide protocol used by current request.
+	 * @return string It can be either https or http.
+	 */
+	function getRequestProtocol()
+	{
+		if(!empty($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
+			return $_SERVER['HTTP_X_FORWARDED_PROTO'];
+		} else {
+			return !empty($_SERVER['HTTPS']) ? "https" : "http";
+		}
+	}
+
+	/**
+	 * Helper function which defines that webapp has to use secure cookies
+	 * or not. by default webapp always use secure cookies whether or not
+	 * 'SECURE_COOKIES' defined. webapp only use insecure cookies
+	 * where a user has explicitly set 'SECURE_COOKIES' to false.
+	 *
+	 * @return Boolean return false only when a user has explicitly set
+	 * 'SECURE_COOKIES' to false else returns true.
+	 */
+	function useSecureCookies()
+	{
+		return !defined('SECURE_COOKIES') || SECURE_COOKIES !== false;
+	}
+
+	/**
+	 * Function returns the IP address of the client.
+	 *
+	 * @return String The IP address of the client.
+	 */
+	function getClientIPAddress() {
+		// Here, there is a scenario where the server is behind a proxy, when that
+		// happens, 'REMOTE_ADDR' will not return the real IP, there is another variable
+		// 'HTTP_X_FORWARDED_FOR' which is set by a proxy server. But the risk in using that
+		// is that it can be easily forged. 'REMOTE_ADDR' is the only reliable thing
+		// as it is nearly impossible to be altered.
+		return $_SERVER['REMOTE_ADDR'];
+	}
+
+	/**
+	 * Helper function which return the webapp version.
+	 *
+	 * @returns String webapp version.
+	 */
+	function getWebappVersion()
+	{
+		return trim(file_get_contents('version'));
+	}
+
+	/**
+	 * function which remove double quotes or PREF from vcf stream
+	 * if it has.
+	 *
+	 * @param {String} $attachmentStream The attachment stream.
+	 */
+	function processVCFStream(&$attachmentStream)
+	{
+		/**
+		 * https://github.com/libical/libical/issues/488
+		 * https://github.com/libical/libical/issues/490
+		 *
+		 * Because of above issues we need to remove
+		 * double qoutes or PREF from vcf stream if
+		 * it exists in vcf stream.
+		 */
+		if (preg_match('/"/', $attachmentStream) > 0) {
+			$attachmentStream = str_replace('"', '', $attachmentStream);
+		}
+
+		if (preg_match('/EMAIL;PREF=/', $attachmentStream) > 0) {
+			$rows = explode("\n", $attachmentStream);
+			foreach($rows as $key => $row) {
+				if(preg_match("/EMAIL;PREF=/", $row)) {
+					unset($rows[$key]);
+				}
+			}
+
+			$attachmentStream = join("\n", $rows);
+		}
 	}
 ?>

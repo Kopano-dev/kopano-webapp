@@ -9,35 +9,42 @@ Ext.namespace('Zarafa.common.ui.grid');
  * which could not be resolved by plugins or directly in extjs.
  */
 Zarafa.common.ui.grid.GridView = Ext.extend(Ext.grid.GroupingView, {
+
 	/**
 	 * @cfg {Boolean} disableScrollToTop {@link Ext.grid.GridView} by default scrolls to top when data is loaded in
 	 * {@link Zarafa.core.data.MAPIStore MAPIStore}, but in our case {@link Zarafa.core.ContextModel ContextModel} handles
 	 * selection of records based on settings. so this flag will disable default functionality of {@link Ext.grid.GridView}.
 	 */
-	disableScrollToTop : undefined,
+	disableScrollToTop: undefined,
 
 	/**
-	 * @cfg {Boolean} isBuffering by default it was false which represent that no more rows are in buffer to 
-	 * insert in to {@link Zarafa.mail.ui.MailGrid mailgrid} and if it is true means there are some rows 
-	 * in buffer which are going to inser in {@link Zarafa.mail.ui.MailGrid mailgrid}, also it will not allow 
+	 * @cfg {Boolean} isBuffering by default it was false which represent that no more rows are in buffer to
+	 * insert in to {@link Zarafa.mail.ui.MailGrid mailgrid} and if it is true means there are some rows
+	 * in buffer which are going to inser in {@link Zarafa.mail.ui.MailGrid mailgrid}, also it will not allow
 	 * to fire {@link #livescrollstart} event till {@link #isBuffering} get false.
 	 */
-	isBuffering : false,
+	isBuffering: false,
+
+	/**
+	 * @cfg {Boolean} enableGrouping true will enable grouping grid, false otherwise.
+	 */
+	enableGrouping: false,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		Ext.applyIf(config, {
-			enableGrouping : true,
-			enableGroupingMenu : false,
-			groupTextTpl : '{text:htmlEncode} ({values.rs.length} {[ngettext("Item","Items", values.rs.length)]})',
-			disableScrollToTop : false,
-			deferEmptyText : true,
-			emptyText : '<div class="emptytext">' + _('There are no items to show in this list') + '</div>',
-			forceFit : true
+			enableGroupingMenu: false,
+			groupTextTpl: '{text:htmlEncode}',
+			disableScrollToTop: false,
+			deferEmptyText: true,
+			emptyText: '<div class="emptytext">' + _('There are no items to show in this list') + '</div>',
+			forceFit: true,
+			autoFill: true,
+			showGroupName: false
 		});
 
 		this.addEvents(
@@ -62,19 +69,6 @@ Zarafa.common.ui.grid.GridView = Ext.extend(Ext.grid.GroupingView, {
 			'beforesort'
 		);
 		Zarafa.common.ui.grid.GridView.superclass.constructor.call(this, config);
-
-		this.initEvents();
-	},
-
-	/**
-	 * Initialize event handlers
-	 * @private
-	 */
-	initEvents : function()
-	{
-		Zarafa.common.ui.grid.GridView.superclass.initEvents.call(this);
-
-		this.on('rowremoved', this.onRowRemoved, this);
 	},
 
 	/**
@@ -84,7 +78,7 @@ Zarafa.common.ui.grid.GridView = Ext.extend(Ext.grid.GroupingView, {
 	 * @param {Ext.grid.ColumnModel} newColModel The new ColumnModel instance
 	 * @private
 	 */
-	initData : function(newStore, newColModel)
+	initData: function(newStore, newColModel)
 	{
 		if (this.ds) {
 			this.ds.un('exception', this.onException, this);
@@ -116,7 +110,7 @@ Zarafa.common.ui.grid.GridView = Ext.extend(Ext.grid.GroupingView, {
 	 * available.
 	 * @private
 	 */
-	onException : function(proxy, type, action, options, response, arg)
+	onException: function(proxy, type, action, options, response, arg)
 	{
 		if (options && options.actionType === 'list') {
 			this.mainBody.update('<div class="x-grid-empty"><div class="emptytext">' + response.error.info.display_message + '</div></div>');
@@ -132,7 +126,7 @@ Zarafa.common.ui.grid.GridView = Ext.extend(Ext.grid.GroupingView, {
 	 * @param {Ext.data.Record[]} records The records which were loaded into the store
 	 * @param {Object} options The options which were used to load the data
 	 */
-	onLoad : function(store, record, options)
+	onLoad: function(store, record, options)
 	{
 		// if grid view is destroyed then we shouldn't call this function.
 		// if reload/search is called than we don't want to scroll, and if load is called than we should scroll to top.
@@ -147,7 +141,7 @@ Zarafa.common.ui.grid.GridView = Ext.extend(Ext.grid.GroupingView, {
 	 * here manually again.
 	 * @private
 	 */
-	onDataChange : function()
+	onDataChange: function()
 	{
 		Zarafa.common.ui.grid.GridView.superclass.onDataChange.apply(this, arguments);
 		this.applyEmptyText();
@@ -157,7 +151,7 @@ Zarafa.common.ui.grid.GridView = Ext.extend(Ext.grid.GroupingView, {
 	 * Displays the configured emptyText if there are currently no rows to display
 	 * @private
 	 */
-	applyEmptyText : function()
+	applyEmptyText: function()
 	{
 		// When we are reloading, do not apply the empty text, we do not
 		// want to confuse the user by indicating no items are found, while we in fact
@@ -173,17 +167,42 @@ Zarafa.common.ui.grid.GridView = Ext.extend(Ext.grid.GroupingView, {
 	 * and sets up options like column menus, moving and resizing.
 	 * This function is overridden to use a {@link Zarafa.common.ui.grid.GridDragZone} for the {@link #dragZone},
 	 * rather then the default {@link Ext.grid.GridDragZone}.
+	 * This is always intended to be called after renderUI. Sets up listeners on the UI elements
+	 * and sets up options like column menus, moving and resizing. It will overwrite to hide the
+	 * 'Group By This Field' button from header menu and change css class for the check box.
 	 * @private
 	 */
-	afterRenderUI : function()
+	afterRenderUI: function()
 	{
-		Zarafa.common.ui.grid.GridView.superclass.afterRenderUI.apply(this, arguments);
+		// Called parent function of grouping view because
+		// we have to override the header menu items for
+		// grouping views.
+		Ext.grid.GroupingView.superclass.afterRenderUI.call(this);
+
+		if (this.enableGroupingMenu && this.hmenu) {
+			if (this.enableNoGroups) {
+				this.hmenu.add({
+					itemId: 'sortSepOne',
+					xtype: 'menuseparator'
+				}, {
+					itemId:'showGroups',
+					text: this.showGroupsText,
+					checked: true,
+					cls: 'showGroups',
+					iconCls: this.enableGrouping ? '' : 'k-hide-img',
+					checkHandler: this.onShowGroupsClick,
+					scope: this
+				});
+			}
+
+			this.hmenu.on('beforeshow', this.beforeMenuShow, this);
+		}
 
 		if (this.dragZone) {
 			this.dragZone.destroy();
 
 			this.dragZone = new Zarafa.common.ui.grid.GridDragZone(this.grid, {
-				ddGroup : this.grid.ddGroup || 'GridDD'
+				ddGroup: this.grid.ddGroup || 'GridDD'
 			});
 		}
 	},
@@ -196,7 +215,7 @@ Zarafa.common.ui.grid.GridView = Ext.extend(Ext.grid.GroupingView, {
 	 * @param {HtmlElement} target The target of the event.
 	 * @param {Object} option The options configuration passed to the {@link #addListener} call.
 	 */
-	onScroll : function(event, target, option) 
+	onScroll: function(event, target, option)
 	{
 		if(this.fireEvent('beforelivescrollstart', this, target) !== false) {
 			// chrome dose not support scrollTopMax so we have to find the scrollTopMax manually.
@@ -218,15 +237,15 @@ Zarafa.common.ui.grid.GridView = Ext.extend(Ext.grid.GroupingView, {
 	},
 
 	/**
-	 * Function was used to reset the scroller position to top if it is not. also it will 
+	 * Function was used to reset the scroller position to top if it is not. also it will
 	 * set the focus to first line of grid.
 	 */
-	resetScroll : function()
+	resetScroll: function()
 	{
 		if(this.getScrollState().top > 0) {
 			this.scrollToTop();
-			// it is required in case when user load all records in grid and switch the 
-			// view of grid, then it will show the extra space in grid. once user click on grid 
+			// it is required in case when user load all records in grid and switch the
+			// view of grid, then it will show the extra space in grid. once user click on grid
 			// it will resize grid and remove the extra space. it happens because focus element of grid
 			// will not resize when user switch the view so we have to set the focus on grid.
 			this.focusRow(1);
@@ -239,7 +258,7 @@ Zarafa.common.ui.grid.GridView = Ext.extend(Ext.grid.GroupingView, {
 	 * the emptyText if needed.
 	 * @private
 	 */
-	afterRender : function()
+	afterRender: function()
 	{
 		Zarafa.common.ui.grid.GridView.superclass.afterRender.apply(this, arguments);
 
@@ -257,44 +276,53 @@ Zarafa.common.ui.grid.GridView = Ext.extend(Ext.grid.GroupingView, {
 	},
 
 	/**
-	 * Called after a row has been removed for the GridView.
-	 * This will check if the store has a next/previous row to select in the Grid
-	 * @private
-	 */
-	onRowRemoved : function(view, rowIndex, record)
-	{
-		var sm = this.grid.getSelectionModel();
-		var itemCount = this.grid.store.getCount();
-
-		if (itemCount > 0) {
-			// check for the next item in store else select the previous item
-			if(rowIndex < itemCount) {
-				sm.selectRow(rowIndex);
-			} else {
-				sm.selectRow(rowIndex - 1);
-			}
-		} else {
-			sm.clearSelections();
-			// When the store is empty, sm.clearSelections will not
-			// fire any events to indicate that the selections have
-			// changed...
-			sm.fireEvent('selectionchange', sm);
-		}
-	},
-
-	/**
 	 * Event handler triggered when header of {@link Ext.grid.GridPanel Grid}
 	 * was clicked for sort the data of {@link Ext.grid.GridPanel Grid}.
 	 * also it will fire the {@link #beforesort} event.
 	 * @param {Ext.grid.GridPanel} grid The grid on which the user clicked
-	 * @param {Number} The index number of the header which clicked.
+	 * @param {Number} index The index number of the header which clicked.
 	 * @private
 	 */
-	onHeaderClick : function(grid, index) 
+	onHeaderClick: function(grid, index)
 	{
-		if(this.fireEvent('beforesort', this) !== false) {
+		var store = grid.getStore();
+		if (this.enableGrouping) {
+			this.hdCtxIndex = index;
+			var colModel = grid.colModel;
+			var dataIndex = colModel.getColumnAt(index).dataIndex;
+			if (!this.isAllowGrouping(dataIndex)) {
+				this.clearGrouping();
+			} else {
+				store.remoteGroup = false;
+				store.remoteSort = false;
+				this.applyGrouping();
+				store.remoteGroup = true;
+				store.remoteSort = true;
+			}
+		}
+
+		if (this.fireEvent('beforesort', this) !== false) {
 			Zarafa.common.ui.grid.GridView.superclass.onHeaderClick.apply(this, arguments);
 		}
+	},
+
+	/**
+	 * Check that given field support grouping. default sorted fields are by default
+	 * support grouping.
+	 *
+	 * @param {String} dataIndex The dataIndex of field which needs to check
+	 * field support grouping.
+	 *
+	 * @return return true if given field is supported groupings else false.
+	 */
+	isAllowGrouping: function(dataIndex)
+	{
+		var supportedColumns = ['message_size', 'sent_representing_name'];
+		var store = this.grid.getStore();
+		if (store.defaultSortInfo.field != dataIndex && supportedColumns.indexOf(dataIndex) === -1) {
+			return false;
+		}
+		return true;
 	},
 
 	/**
@@ -304,7 +332,7 @@ Zarafa.common.ui.grid.GridView = Ext.extend(Ext.grid.GroupingView, {
 	 * @param {Ext.menu.Item} item The item which is being clicked
 	 * @private
 	 */
-	handleHdMenuClick : function(item) 
+	handleHdMenuClick: function(item)
 	{
 		if(this.fireEvent('beforesort', this) !== false) {
 			Zarafa.common.ui.grid.GridView.superclass.handleHdMenuClick.apply(this, arguments);
@@ -314,18 +342,18 @@ Zarafa.common.ui.grid.GridView = Ext.extend(Ext.grid.GroupingView, {
 	/**
 	 * Function used to insert the dummy row in grid and warp the loading mask on it.
 	 * also it was {@link #isBuffering} set to true.
-	 * 
+	 *
 	 * @param {String} msg the message which load mask shows while loading.
 	 */
-	showGridRowLoadMask : function(msg)
+	showGridRowLoadMask: function(msg)
 	{
 		this.isBuffering = true;
-		var height  = this.getRow(1).offsetHeight;
+		var height = this.getRow(1).offsetHeight;
 		var width = this.getTotalWidth();
 
 		// add dummy row at bottom of the grid.
-		var style = {styles : 'width :'+width+'px; height :'+height+'px'};
-		var tpl = new Ext.Template('<div  id="dummy-row" style = "{styles}"> </div>');
+		var style = {styles: 'width:'+width+'px; height:'+height+'px'};
+		var tpl = new Ext.Template('<div id="dummy-row" style = "{styles}"> </div>');
 		var html = tpl.apply(style);
 		var dom = Ext.DomHelper.insertHtml('beforeEnd',this.mainBody.dom, html);
 
@@ -339,14 +367,100 @@ Zarafa.common.ui.grid.GridView = Ext.extend(Ext.grid.GroupingView, {
 	 * Function use to remove the dummy row which use to show the loading mask and
 	 * {@link #isBuffering} set to false.
 	 */
-	removeGridRowLoadMask : function()
+	removeGridRowLoadMask: function()
 	{
 		var rowMask = Ext.query('div#dummy-row', this.mainBody.dom)[0];
 		if(Ext.isDefined(rowMask)) {
 			Ext.get(rowMask).remove();
 		}
 		this.isBuffering = false;
-	}
+	},
+
+	/**
+	 * Handler triggers when 'Show in groups' button was clicked.
+	 * It is toggle the 'Show in groups' button and set the enable_grouping
+	 * user settings.
+	 *
+	 * @param {Ext.menu.Item} mi The menu item which clicked.
+	 * @param {Boolean} checked The checked true grouping is enabled else false.
+	 */
+	onShowGroupsClick: function(mi, checked)
+	{
+		if (!this.isAllowGrouping(this.cm.getDataIndex(this.hdCtxIndex))) {
+			return true;
+		}
+
+		if (checked && this.enableGrouping) {
+			checked = false;
+		}
+		Zarafa.common.ui.grid.GridView.superclass.onShowGroupsClick.apply(this, arguments);
+
+		var imgTag = mi.el.child('img');
+		if(checked) {
+			imgTag.addClass('x-menu-item-icon');
+			imgTag.removeClass('k-hide-img');
+		} else {
+			imgTag.removeClass('x-menu-item-icon');
+		}
+		container.getSettingsModel().set('zarafa/v1/contexts/mail/enable_grouping', checked);
+	},
+
+	/**
+	 * Handler triggers only when grouping is going to enable.
+	 * @override
+	 * @private
+	 */
+	onGroupByClick: function ()
+	{
+		this.applyGrouping();
+		// Make sure the checkboxes get properly set when changing groups
+		this.beforeMenuShow();
+	},
+
+	/**
+	 * Apply grouping on store.
+	 * It will apply grouping on default sort field.
+	 */
+	applyGrouping: function ()
+	{
+		var grid = this.grid;
+		this.enableGrouping = true;
+
+		// Grouping is allowed on default sort fields and message_size field
+		// e.g For Inbox = message_delivery_time, Draft = last_modification_time
+		// and message_size so on.
+		var store = grid.getStore();
+
+		var clickHeader = this.cm.getDataIndex(this.hdCtxIndex);
+		var groupField = this.isAllowGrouping(clickHeader) ? clickHeader : store.defaultSortInfo.field;
+		store.sortInfo.field = groupField;
+
+		var direction = store.sortToggle[groupField];
+		store.sortInfo.direction = Ext.isDefined(direction)? direction : 'DESC';
+		store.groupField = groupField;
+		store.applyGrouping();
+		grid.fireEvent('groupchange', grid, store.getGroupState());
+		this.refresh();
+	},
+
+	/**
+	 * Clear grouping from store.
+	 */
+	clearGrouping: function ()
+	{
+		var store = this.grid.getStore();
+		store.remoteGroup = false;
+		store.remoteSort = false;
+		store.clearGrouping();
+		store.remoteGroup = true;
+		store.remoteSort = true;
+		this.grid.fireEvent('groupchange', this, null);
+	},
+
+	/**
+	 * Function which stop toggle the grouping.
+	 */
+	toggleGroup: Ext.emptyFn
 });
 
 Ext.reg('zarafa.gridview', Zarafa.common.ui.grid.GridView);

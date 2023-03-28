@@ -22,12 +22,13 @@
 		 */
 		function __construct($id, $data)
 		{
-			$this->properties = $GLOBALS['properties']->getRulesProperties();
+			parent::__construct($id, $data);
 
 			$this->rulesTable = null;
 			$this->rulesModifyTable = null;
 
-			parent::__construct($id, $data);
+			$this->properties = $GLOBALS['properties']->getRulesProperties();
+
 		}
 
 		/**
@@ -38,24 +39,25 @@
 		{
 			foreach($this->data as $actionType => $action)
 			{
-				// Determine if the request contains items or not. We couldn't add the storeEntryId to
+
+				// Determine if the request contains multiple items or not. We couldn't add the storeEntryId to
 				// the action data if it contained items because it was an array, so the storeEntryId
 				// was added to all the items. We will pick it from the first item.
 				if (isset($action[0])) {
-					$storeGuid = $action[0]['message_action']['store'];
+					$storeEntryid = $action[0]['message_action']['store_entryid'];
 				} else {
-					$storeGuid = $action['store'];
+					$storeEntryid = $action['store_entryid'];
 				}
 
-				$ownStoreEntryId = bin2hex($GLOBALS['mapisession']->defaultstore);
+				$ownStoreEntryId = $GLOBALS['mapisession']->getDefaultMessageStoreEntryId();
 
 				try {
-					if ( ENABLE_SHARED_RULES !== true && !$GLOBALS['entryid']->compareEntryIds($storeGuid, $ownStoreEntryId) ){
+					if ( ENABLE_SHARED_RULES !== true && !$GLOBALS['entryid']->compareStoreEntryIds($storeEntryid, $ownStoreEntryId) ){
 						// When the admin does not allow a user to set rules on the store of other users, but somehow
 						// the user still tries this (probably hacking) we will not allow this
 						throw new MAPIException(_('Setting mail filters on the stores of other users is not allowed.'));
 					} else {
-						$store = $GLOBALS['mapisession']->openMessageStore(hex2bin($storeGuid));
+						$store = $GLOBALS['mapisession']->openMessageStore(hex2bin($storeEntryid));
 					}
 
 					switch($actionType) {
@@ -74,8 +76,11 @@
 							// delete all existing rules.
 							$this->deleteRules($store);
 
-							// Now can save all rules
-							$this->saveRules($store, $action);
+							// Now can save all rules, note that $action can contain just a store key when
+							// all rules are removed.
+							if (count($action) > 1) {
+								$this->saveRules($store, $action);
+							}
 
 							// delete (outlook) client rules
 							$this->deleteOLClientRules($store);

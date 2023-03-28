@@ -1,6 +1,7 @@
 $category-block-height : $font-default-size + 2px;
 
 .k-category-block {
+	color: $font-color-dark;
 	padding: 0 $padding-medium;
 	line-height: $category-block-height;
 	background-color: $grey;
@@ -17,7 +18,7 @@ $category-block-height : $font-default-size + 2px;
 	cursor: default;
 }
 .k-category-block.zarafa-dark {
-	color: #ffffff;
+	color: $font-color-light;
 }
 body .k-category-block {
 	font-size: $font-default-size - 2px !important;
@@ -52,17 +53,10 @@ body .k-category-block {
 	visibility: hidden;
 	width: 21px;
 	height: $category-block-height;
-	@extend .icon_category_add;
-	background-position: sprite-position($iconsmap, icon_category_add, $offset-y: 1px, $offset-x: 2px);
 	cursor: pointer;
 }
 .x-grid3-row-over .k-category-add {
 	visibility: visible;
-}
-
-.k-category-add:hover {
-	@extend .icon_category_add_hover;
-	background-position: sprite-position($iconsmap, icon_category_add_hover, $offset-y: 1px, $offset-x: 2px);
 }
 
 /* In the (pre) view panel */
@@ -104,5 +98,71 @@ body .k-category-block {
 .k-renamecategorypanel {
 	.k-colorpicker {
 		padding-right: $padding-medium;
+	}
+}
+
+/** Search category filter **/
+.k-category-filter {
+	.k-category-add-container {
+		float: left !important;
+	}
+
+	.k-category-container {
+		float: left;
+		max-width: 80%;
+		text-align: left;
+		max-height: none;
+	}
+
+	.k-category-add-button, .k-category-filter-label {
+		float: left;
+
+		.x-btn-small {
+			display: block;
+			background: transparent !important;
+			cursor: pointer;
+			box-shadow: none !important;
+			margin-right: $padding-small;
+		}
+	}
+
+	.k-category-add-button.x-btn-over {
+		.x-btn-small {
+			border: 1px solid #dadada;
+		}
+	}
+
+	.k-category-block {
+		max-width: 14em;
+		margin-top: $padding-small;
+		padding: 0 $padding-small;
+	}
+
+	.k-category-close {
+		display: inline-block;
+		cursor: pointer;
+		padding-right: $padding-medium;
+		width: 7px;
+		height: 7px;
+	}
+
+	.k-category-add-button-icon {
+		width: $padding-extra-extra-large !important;
+		height: $padding-extra-extra-large !important;
+	}
+
+	.k-category-filter-label {
+		.x-btn-small {
+			background: $grey5 !important;
+			margin-top: $padding-small;
+			text-align: center;
+		}
+
+		.x-btn-text, .x-btn-click {
+			color: $white !important;
+			height: $padding-extra-large + 2px !important;
+			padding: 0 !important;
+			font-size: $font-default-size - 2px !important
+		}
 	}
 }

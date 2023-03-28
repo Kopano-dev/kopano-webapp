@@ -1,25 +1,43 @@
+/* Favorites settings */
+body.hideFavorites .zarafa-tree-ipm-subtree-favorites-container {
+	display: none !important;	
+}
+
+/* Set the position to relative when scrollFavorites class is added AND when favorites is shown in an x-window */
+body.scrollFavorites .zarafa-tree-ipm-subtree-favorites-container, .x-window .zarafa-tree-ipm-subtree-favorites-container {
+	position: relative !important;
+}
+
 /* hierarchy toolbar (Show all folders panel) */
 #zarafa-navigationpanel .zarafa-hierarchy-treepanel .zarafa-hierarchy-treepanel-tbar {
+	
 	.x-toolbar{
 		/* Bottom has -1 pixel since we have a bottom-border of 1px */
-		padding: ($toolbar-height - $font-default-line-height)/2 $padding-extra-large (($toolbar-height - $font-default-line-height)/2 - 1) $padding-extra-large;
-
-		.x-form-check-wrap{
-
-			input, label{
-				line-height: $font-default-line-height;
-				vertical-align: middle;
-			}
-		}
+		padding: ($toolbar-height - $font-default-line-height)/2 + 1 $padding-extra-large (($toolbar-height - $font-default-line-height)/2 - 1) $padding-extra-large;
 
 		.x-form-item {
 			margin-bottom: 0;
+			display: flex;
+			align-items: center;
 		}
 	}
 }
 
+/* Always show the favorites container when screen is at least 768 pixels height
+Note: Does not work in IE11 */
+@media (min-height: 768px) {
+
+	.zarafa-tree-ipm-subtree-favorites-container {
+		position: sticky;
+		top: 0;
+		background: $white;
+		border-bottom: 1px solid $grey;
+		z-index: 99;	
+	}
+}
+
 .zarafa-tree-ipm-subtree-container, .zarafa-tree-ipm-subtree-favorites-container {
-  padding: $padding-extra-large 0 $padding-medium;
+	padding: $padding-extra-large 0 $padding-medium;
 }
 
 .zarafa-tree-ipm-subtree-container:last-child, .zarafa-tree-ipm-subtree-favorites-container:last-child{
@@ -39,28 +57,20 @@
 	background-image: none;
 }
 
-/* Hierarchy tree arrow down */
-.x-tree-lines .x-tree-elbow-end-minus,
-.x-tree-lines .x-tree-elbow-minus {
-	background-image: sprite-url($iconsmap) !important;
-	background-repeat: no-repeat;
-	background-position: sprite-position($iconsmap, 'arrow_down_l', $offset_y: 7px, $offset_x: 3px);
-}
-
-/* Hierarchy tree arrow right */
-.x-tree-lines .x-tree-elbow-end-plus,
-.x-tree-lines .x-tree-elbow-plus {
-	background-image: sprite-url($icons) !important;
-	background-repeat: no-repeat;
-	background-position: sprite-position($icons, 'arrow_right_l', $offset_y: 5px, $offset_x: 6px);
-}
-
 #zarafa-navigationpanel .zarafa-context-navigation-block:not(.fixed-bottombar) .zarafa-hierarchy-treepanel-body{
 	height: auto !important;
 }
 
+.zarafa-hierarchy-treepanel-body {
+	overflow: hidden !important;
+}
+
+.zarafa-hierarchy-treepanel-body:hover {
+	overflow: auto !important;
+}
+
 .zarafa-hierarchy-treepanel-bottombar{
-	border-top: 1px solid #e6e6e6;
+	border-top: 1px solid $grey;
 	padding: 10px 0;
 
 	table {
@@ -98,13 +108,6 @@
 	padding-left: $padding-extra-large - 3px;
 }
 
-/* adjust the width of the icon */
-.x-tree-node-collapsed .x-tree-node-icon,
-.x-tree-node-expanded .x-tree-node-icon,
-.x-tree-node-leaf .x-tree-node-icon {
-	width: 15px;
-}
-
 /* Selection in tree */
 .x-tree-node .zarafa-hierarchy-node.x-tree-selected {
 	background-color: $grid-active-color;
@@ -119,12 +122,27 @@
 	padding: 0 0 0 0;
 	margin: 0 0 0 0;
 }
-
-/* counters */
-.zarafa-hierarchy-node-total-count span.zarafa-hierarchy-node-counter,
-.zarafa-hierarchy-node-unread-count span.zarafa-hierarchy-node-counter {
-	color: $green;
+.k-searchfolder-field {
+	padding: 0 5px 0 !important;
 }
+/* counters */
+.zarafa-hierarchy-node-total-count span.zarafa-hierarchy-node-counter {
+	color: $green-hover;
+}
+.zarafa-hierarchy-node-unread-count span.zarafa-hierarchy-node-counter {
+	color: $kopano-blue;
+}
+span.zarafa-hierarchy-node-counter {
+	padding-right: 0px !important;
+	padding-left: $padding-small !important;
+}
+span.zarafa-hierarchy-node-nopadding {
+	padding: 0 !important;
+}
+span.zarafa-hierarchy-node-foldername {
+	padding-right: 0px !important;
+}
+
 .zarafa-hierarchy-node-owner {
   font-weight: normal;
   color: $grey6 !important;
@@ -134,108 +152,7 @@
 	font-weight: bold;
 }
 
-/********************************************************
- * Icons
- *******************************************************/
-
-    .x-tree-node-el .x-tree-node-icon {
-      @extend .icons-sprite;
-    }
-
-    @each $img in sprite-names($iconsmap) {
-      .x-tree-node-el .x-tree-node-icon.#{$img} {
-        background-position: sprite-position($iconsmap, $img, $offset-y: 1, $offset-x: 0);
-      }
-    }
-
-    .x-tree-node-el .x-tree-node-icon.icon_folder_store {
-      @extend .icon_inbox;
-      background-position: sprite-position($iconsmap, icon_inbox, $offset-y: 2, $offset-x: 0);
-    }
-
-    .x-tree-node-el .x-tree-node-icon.icon_folder_favorites {
-      @extend .icon_favorites;
-      background-position: sprite-position($iconsmap, icon_favorites, $offset-y: 2, $offset-x: -2);
-    }
-
-    .x-tree-node-el .x-tree-node-icon.icon_magnifier {
-      @extend .icon_magnifier;
-      background-position: sprite-position($icons, icon_magnifier, $offset-y: 2px, $offset-x: 0px);
-    }
-
-    .x-tree-node-el .x-tree-node-icon.icon_folder_appointment ,
-    .x-tree-node-el .x-tree-node-icon.icon_folder_default_calendar ,
-    .x-tree-node-el .x-tree-node-icon.icon_folder_shared_calendar {
-      @extend .icon_folder_calendar;
-    }
-
-    .x-tree-node-el .x-tree-node-icon.icon_folder_task ,
-    .x-tree-node-el .x-tree-node-icon.icon_folder_default_task ,
-    .x-tree-node-el .x-tree-node-icon.icon_folder_default_todolist ,
-    .x-tree-node-el .x-tree-node-icon.icon_folder_shared_task {
-      @extend .icon_folder_task;
-      background-position: sprite-position($iconsmap, icon_folder_task, $offset-y: 2px, $offset-x: 1px);
-    }
-
-    .x-tree-node-el .x-tree-node-icon.icon_folder_default_contact ,
-    .x-tree-node-el .x-tree-node-icon.icon_folder_shared_contact {
-      @extend .icon_folder_contact;
-    }
-
-    .x-tree-node-el .x-tree-node-icon.icon_folder_stickynote ,
-    .x-tree-node-el .x-tree-node-icon.icon_folder_default_note ,
-    .x-tree-node-el .x-tree-node-icon.icon_folder_shared_note {
-      @extend .icon_note_yellow;
-    }
-
-    .x-tree-node-el .x-tree-node-icon.icon_folder ,
-    .x-tree-node-el .x-tree-node-icon.icon_folder_note , /* This is not for StickyNote folders, but for normal message folders. */
-    .x-tree-node-el .x-tree-node-icon.icon_folder_folder ,
-    .x-tree-node-el .x-tree-node-icon.icon_folder_default_publicfolders ,
-    .x-tree-node-el .x-tree-node-icon.icon_folder_default_syncissues ,
-    .x-tree-node-el .x-tree-node-icon.icon_folder_default_conflicts ,
-    .x-tree-node-el .x-tree-node-icon.icon_folder_default_localfailures ,
-    .x-tree-node-el .x-tree-node-icon.icon_folder_default_serverfailures ,
-    .x-tree-node-el .x-tree-node-icon.icon_open {
-		@extend .folder;
-        background-position: sprite-position($iconsmap, folder, $offset-y: 2, $offset-x: 0);
-    }
-
-    .x-tree-node-el .x-tree-node-icon.icon_folder_default_drafts {
-        background-position: sprite-position($iconsmap, icon_folder_default_drafts, $offset-y: 2, $offset-x: 0);
-    }
-
-    .x-tree-node-el .x-tree-node-icon.icon_folder_shared_store ,
-    .x-tree-node-el .x-tree-node-icon.icon_folder_public_store ,
-    .x-tree-node-el .x-tree-node-icon.icon_folder_shared_undefined {
-      @extend .folder_public;
-    }
-
-    .x-tree-node-el .x-tree-node-icon.icon_folder_default_inbox {
-      background-position: sprite-position($iconsmap, icon_folder_default_inbox, $offset-y: 3, $offset-x: 0);
-    }
-
-    .x-tree-node-el .x-tree-node-icon.icon_folder_shared_inbox {
-      @extend .icon_folder_default_inbox;
-    }
-
-    .x-tree-node-el .x-tree-node-icon.icon_folder_default_wastebasket,
-    .icon_folder_delete,
-    .icon_empty_trash {
-      @extend .trash;
-    }
-
-/*
-    .x-tree-node-el .x-tree-node-icon.icon_folder_default_wastebasket{
-      @extend .trash;
-    }
-*/
-
-    .x-tree-node-el .x-tree-node-icon.icon_folder_journal{
-      @extend .icon_folder_default_journal;
-    }
-
-/* make the whole hierarchy tree entry's clickable */
+/* make the whole hierarchy tree entry's look clickable */
 .x-tree-node-el {
 	span, img, a {
 		cursor: pointer;

@@ -1,81 +1,263 @@
 @import '_print';
+@import 'base/_colors';
 
-table {
-  width: 100%;
-  text-align: left;
-  font-size: 11px;
-  font-family: arial;
-  border-collapse: collapse;
-}
+#print-calendar {
 
-table th {
-  font-weight: bold;
-  padding: 2px 3px 2px 0px;
-}
+	table {
+		width: 100%;
+		text-align: left;
+		font-size: 12px;
+		font-family: arial, tahoma, helvetica, sans-serif;
+		border-collapse: collapse;
 
-table td {
-  padding: 2px 3px 2px 0px;
-}
+		.time, td.k-calendar-normal-time {
+			width: 30%;
+		}
+	}
 
-/* date picker css */
-.x-date-prevday a {
-	color: transparent;
-}
-.x-date-nextday a {
-	color: transparent;
-}
-.x-date-active a {
-	color: black;
-	text-decoration: none;
-}
-.x-date-active {
-	text-align: right;
-}
-.x-date-left {
-	display: none;
-}
-.x-date-right {
-	display: none;
-}
-.x-btn button {
-	background: none repeat scroll 0 0 transparent;
-	border: 0 none;
-}
+	#top-calendar-info  {
 
-th.date-header {
-	text-align: right;
-    background-color: lightgrey;
-	width: 50%;
-}
-th.date-header-center {
-	text-align: center;
-    background-color: lightgrey;
-}
+		padding: 30px 0 0 10px;
+		float: left;
+		max-width: 39%;
 
-table.print-calendar {
-	border: 1px solid black;
-	border-collapse: collapse;
-    height: 95%;
-}
-.print-calendar th {
-	border: 1px solid black;
-}
+		tr {
+			font-size: 16px;
+		}
 
-#top th {
-	border: none;
-}
-table.inner {
-	border: none;
-}
+		/* Circle used in month view, to indicate calendar color */
+		.circle {
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			display: inline-block;
+			margin: 0 3px 0 3px;
+			-webkit-print-color-adjust: exact;
+		 }
+	}
 
-.calendar-allday td {
-	text-align: center;
-	border: 1px solid black;
-}
-.calendar-normal td {
-	text-align: left;
-}
-td.calendar-item {
-	width: 100%;
-}
+	#top-calendar-datepicker {
+		float: right;
+	}
 
+	/* Date pickers */
+	#datepicker_left, #datepicker_right {
+
+		float: right;
+		padding: 10px;
+
+		/* Date picker days of the week */
+		table th {
+			color: $dark-grey2;
+			font-weight: bold;
+			padding: 2px 0 2px 0;
+			border: none;
+			text-align: center;
+		}
+
+		/* Padding for the inner dates */
+		table td {
+			color: $black;
+			padding: 2px 0 2px 0;
+			text-align: center;
+		}
+
+		/* Dates with appointments */
+		.x-date-busy span {
+			font-weight: bold;
+		}
+
+		/* Active days from the current month */
+		.x-date-active a {
+			color: $dark-grey2;
+		}
+
+		/* Days from the previous and next month */
+		.x-date-prevday a, .x-date-nextday a {
+			color: $lightgrey;
+			-webkit-print-color-adjust: exact;
+		}
+
+		/* Arrow keys to switch between months */
+		.x-date-left, .x-date-right {
+			display: none;
+		}
+
+		/* Text of the month above the datepicker */
+		.x-btn button {
+			background: none repeat scroll 0 0 transparent;
+			border: 0 none;
+		}
+
+		/* Deactivate links in datepicker */
+		a, a:hover, a:visited, a:focus, a:link, a:active {
+			outline: none;
+			text-decoration: none;
+			pointer-events: none;
+			cursor: default;
+			display: block;
+		}
+
+		/* Display the font style as normal. If not set dates are italic */
+		.x-date-picker .x-date-inner td:not(.x-date-weeknumber) a em span {
+			font-style: normal;
+		}
+	}
+
+	#middle {
+
+		tr {
+			page-break-after: auto;
+		}
+
+		td {
+			vertical-align: top;
+		}
+
+		padding-top: 10px;
+
+		/* Table in week/workweek views */
+		table.k-week-view {
+			min-height: 200px;
+			border: 1px solid $whiteSmoke;
+			border-collapse: collapse;
+			table-layout: fixed;
+		}
+
+		/* Table in day view */
+		table.k-day-view {
+			min-height: 75%;
+			border: 1px solid $whiteSmoke;
+			border-collapse: collapse;
+		}
+
+		/* Date headers */
+		th.date-header-center {
+			text-align: center;
+			background-color: transparent;
+			color: $dark-grey2;
+			font-size: 14px;
+			font-weight: bold;
+			padding: 10px 0 10px 0;
+		}
+
+		/* All day appointments */
+		.calendar-allday td {
+			text-align: center;
+			padding: 5px;
+			border: 1px solid $whiteSmoke;
+		}
+
+		/* Normal appointments */
+		.calendar-normal td {
+			text-align: left;
+			padding: 10px;
+			border: 1px solid $whiteSmoke;
+		}
+
+		.calendar-normal:nth-child(even) .folder-location, .calendar-allday:nth-child(even) .folder-location {
+			color: grey; /* TODO sassify me, but $grey is already taken */
+		}
+
+		.calendar-normal:nth-child(even), .calendar-allday:nth-child(even) {
+			background-color: $whiteSmoke;
+			-webkit-print-color-adjust:exact;
+		}
+
+		td i.folder-location {
+			color: $lightgrey;
+			-webkit-print-color-adjust: exact;
+		}
+
+		/************
+		 * Month view
+		 ************/
+
+		/* Table containing data of the month view */
+		table.k-calendar-days {
+
+			/* Set the width to 99% to show all the borders */
+			width: 99%;
+
+			/* Set table layout to fixed */
+			table-layout: fixed;
+
+			/* In Firefox the border is cut off,
+			 * So a new border is added just for Firefox */
+			@-moz-document url-prefix() {
+            	border-left: 1px solid $lightgrey;
+            }
+
+			tr {
+				page-break-inside: avoid;
+				page-break-after: auto;
+			}
+
+			/* Days of the week (Mo, Tue etc) */
+			th.date-header-days {
+				text-align: center;
+				font-weight: bold;
+				padding: 0 0 5px 0;
+
+				/* Hide part of the previous added border from sight in this element Firefox only */
+				@-moz-document url-prefix() {
+        	    	border-left: 1px solid transparent !important;
+					margin-left: -1px;
+	            }
+			}
+
+			/* Appointment block containing all appointment info */
+			.k-appointment-block {
+				height: 120px;
+
+				td {
+					border: 1px solid $lightgrey;
+					vertical-align: top;
+					text-align: left;
+
+
+					/* Current day of the month (in numbers) */
+					.k-day {
+						display: block;
+						text-align: center;
+						font-weight: bold;
+						padding-top: 2px;
+					}
+
+					/* The busy status of the appointment */
+					svg.k-appointment-status {
+						position: absolute;
+						display: inline-block;
+						width: 7px;
+						top: 0;
+						left: 0;
+						bottom: 0;
+					}
+
+					/* Element holding appointment text */
+					.k-appointment {
+						font-size: 14px;
+						border-radius: 1px;
+						line-height: 1.5;
+						background-color: $white;
+						position: relative;
+						margin-bottom: 1px;
+
+						p {
+							margin-left: 10px;
+							white-space: normal;
+							word-break: break-all;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.bottom {
+		display: inline-block;
+		height: 20px;
+		width: 90%;
+		padding-top: 20px;
+	}
+}

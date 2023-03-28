@@ -18,6 +18,8 @@ describe('ServerConfig', function() {
     client_time: 1,
     active_theme: 'mexico',
     version_info: {'mexico': 1},
+    is_vcfimport_supported: true,
+    is_icsimport_supported: true,
     color_schemes: {'blue': '#FFFFF'},
     additional_color_schemes: [],
     default_categories: [],
@@ -61,6 +63,14 @@ describe('ServerConfig', function() {
 
   it('getPluginsVersion', function() {
     expect(serverConfig.getPluginsVersion()).toEqual(data['version_info']);
+  });
+
+  it('isVCfImportSupported', function() {
+    expect(serverConfig.isVCfImportSupported()).toEqual(data['is_vcfimport_supported']);
+  });
+
+  it('isICSImportSupported', function() {
+    expect(serverConfig.isICSImportSupported()).toEqual(data['is_icsimport_supported']);
   });
 
   it('getActiveTheme', function() {

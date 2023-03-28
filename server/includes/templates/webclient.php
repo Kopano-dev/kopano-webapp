@@ -1,41 +1,86 @@
 <?php
 include(BASE_PATH . 'server/includes/loader.php');
+include(BASE_PATH . 'server/includes/templates/serverinfo.php');
 
 $loader = new FileLoader();
 
-$version = trim(file_get_contents('version'));
-$versionInfo = array(
-	'webapp'	=> $version,
-	'zcp'		=> phpversion('mapi'),
-	'git'		=> DEBUG_LOADER === LOAD_SOURCE ? gitversion() : '',
-);
-
-$serverConfig = array(
-	'base_url'						=> BASE_URL,
-	'webapp_title'					=> WEBAPP_TITLE,
-	'using_sso'						=> WebAppAuthentication::isUsingSingleSignOn() ? true : false,
-	'disable_full_gab'				=> DISABLE_FULL_GAB,
-	'enable_shared_rules'			=> ENABLE_SHARED_RULES,
-	'enable_plugins'				=> ENABLE_PLUGINS ? true : false,
-	'always_enabled_plugins'		=> $GLOBALS['PluginManager']->expandPluginList(ALWAYS_ENABLED_PLUGINS_LIST),
-	'enable_advanced_settings'		=> ENABLE_ADVANCED_SETTINGS ? true : false,
-	'max_attachment_size'			=> getMaxUploadSize(),
-	'post_max_size'					=> getMaxPostRequestSize(),
-	'max_file_uploads'				=> getMaxFileUploads(),
-	'freebusy_load_start_offset'	=> FREEBUSY_LOAD_START_OFFSET,
-	'freebusy_load_end_offset' 		=> FREEBUSY_LOAD_END_OFFSET,
-	'client_timeout' 				=> defined('CLIENT_TIMEOUT') && is_numeric(CLIENT_TIMEOUT) && CLIENT_TIMEOUT>0 ? CLIENT_TIMEOUT : false,
-	'active_theme'					=> Theming::getActiveTheme(),
-	'version_info'					=> $GLOBALS['PluginManager']->getPluginsVersion(),
-	'color_schemes'					=> json_decode(COLOR_SCHEMES),
-	'default_categories'			=> json_decode(DEFAULT_CATEGORIES),
-	'maximum_eml_files_in_zip'		=> MAX_EML_FILES_IN_ZIP,
-	'powerpaste'					=> array(
-											'powerpaste_word_import' => POWERPASTE_WORD_IMPORT,
-											'powerpaste_html_import' => POWERPASTE_HTML_IMPORT,
-											'powerpaste_allow_local_images' => POWERPASTE_ALLOW_LOCAL_IMAGES,
-										)
-);
+$versionInfo['cachebuster'] = $loader->getCachebuster();
+$versionInfo['webapp'] = getWebappVersion();
+$serverConfig = array_merge($serverConfig, array(
+        'base_url'                              => BASE_URL,
+        'webapp_title'                          => WEBAPP_TITLE,
+        'using_sso'                             => WebAppAuthentication::isUsingSingleSignOn() ? true : false,
+        'disable_full_gab'                      => !ENABLE_FULL_GAB,
+        'plugin_webappmanual_url'               => PLUGIN_WEBAPPMANUAL_URL,
+        'enable_shared_rules'                   => ENABLE_SHARED_RULES,
+        'always_enabled_plugins'                => $GLOBALS['PluginManager']->expandPluginList(ALWAYS_ENABLED_PLUGINS_LIST),
+        'enable_whats_new_dialog'               => ENABLE_WHATS_NEW_DIALOG,
+        'enable_advanced_settings'              => ENABLE_ADVANCED_SETTINGS ? true : false,
+        'post_max_size'                         => getMaxPostRequestSize(),
+        'max_file_uploads'                      => getMaxFileUploads(),
+        'client_timeout'                        => defined('CLIENT_TIMEOUT') && is_numeric(CLIENT_TIMEOUT) && CLIENT_TIMEOUT>0 ? CLIENT_TIMEOUT : false,
+        'active_theme'                          => Theming::getActiveTheme(),
+        'icons_primary_color'                   => Theming::getPrimaryIconColor(),
+        'icons_secondary_color'                 => Theming::getSecondaryIconColor(),
+        'json_themes'                           => Theming::getJsonThemes(),
+        'iconsets'                              => Iconsets::getIconsets(),
+        'active_iconset'                        => Iconsets::getActiveIconset(),
+        'iconsets_about'                        => Iconsets::getAboutTexts(),
+        'version_info'                          => $GLOBALS['PluginManager']->getPluginsVersion(),
+        'is_vcfimport_supported'                => function_exists('mapi_vcftomapi'),
+        'is_icsimport_supported'                => function_exists('mapi_mapitoical'),
+        'color_schemes'                         => json_decode(COLOR_SCHEMES),
+        'default_categories'                    => json_decode(DEFAULT_CATEGORIES),
+        'maximum_eml_files_in_zip'              => MAX_EML_FILES_IN_ZIP,
+        'powerpaste'                            => array(
+                                                        'powerpaste_word_import' => POWERPASTE_WORD_IMPORT,
+                                                        'powerpaste_html_import' => POWERPASTE_HTML_IMPORT,
+                                                        'powerpaste_allow_local_images' => POWERPASTE_ALLOW_LOCAL_IMAGES,
+                                                ),
+        'shared_store_polling_interval'         => SHARED_STORE_POLLING_INTERVAL,
+        'prefetch_email_count'                  => PREFETCH_EMAIL_COUNT,
+        'prefetch_email_interval'               => PREFETCH_EMAIL_INTERVAL,
+        'oidc_enabled'                          => OIDC_ISS,
+        'enable_dompurify'                      => ENABLE_DOMPURIFY_FILTER,
+        'enable_file_previewer'                 => ENABLE_FILE_PREVIEWER,
+        'base_url'                              => BASE_URL,
+        'webapp_title'                          => WEBAPP_TITLE,
+        'using_sso'                             => WebAppAuthentication::isUsingSingleSignOn() ? true : false,
+        'plugin_webappmanual_url'               => PLUGIN_WEBAPPMANUAL_URL,
+        'enable_shared_rules'                   => ENABLE_SHARED_RULES,
+        'always_enabled_plugins'                => $GLOBALS['PluginManager']->expandPluginList(ALWAYS_ENABLED_PLUGINS_LIST),
+        'enable_advanced_settings'              => ENABLE_ADVANCED_SETTINGS ? true : false,
+        'post_max_size'                         => getMaxPostRequestSize(),
+        'max_file_uploads'                      => getMaxFileUploads(),
+        'client_timeout'                        => defined('CLIENT_TIMEOUT') && is_numeric(CLIENT_TIMEOUT) && CLIENT_TIMEOUT>0 ? CLIENT_TIMEOUT : false,
+        'active_theme'                          => Theming::getActiveTheme(),
+        'icons_primary_color'                   => Theming::getPrimaryIconColor(),
+        'icons_secondary_color'                 => Theming::getSecondaryIconColor(),
+        'json_themes'                           => Theming::getJsonThemes(),
+        'iconsets'                              => Iconsets::getIconsets(),
+        'active_iconset'                        => Iconsets::getActiveIconset(),
+        'iconsets_about'                        => Iconsets::getAboutTexts(),
+        'version_info'                          => $GLOBALS['PluginManager']->getPluginsVersion(),
+        'is_vcfimport_supported'                => function_exists('mapi_vcftomapi'),
+        'is_icsimport_supported'                => function_exists('mapi_mapitoical'),
+        'color_schemes'                         => json_decode(COLOR_SCHEMES),
+        'default_categories'                    => json_decode(DEFAULT_CATEGORIES),
+        'maximum_eml_files_in_zip'              => MAX_EML_FILES_IN_ZIP,
+        'powerpaste'                            => array(
+                                                        'powerpaste_word_import' => POWERPASTE_WORD_IMPORT,
+                                                        'powerpaste_html_import' => POWERPASTE_HTML_IMPORT,
+                                                        'powerpaste_allow_local_images' => POWERPASTE_ALLOW_LOCAL_IMAGES,
+                                                ),
+        'shared_store_polling_interval'         => SHARED_STORE_POLLING_INTERVAL,
+        'prefetch_email_count'                  => PREFETCH_EMAIL_COUNT,
+        'prefetch_email_interval'               => PREFETCH_EMAIL_INTERVAL,
+        'oidc_enabled'                          => OIDC_ISS,
+        'enable_dompurify'                      => ENABLE_DOMPURIFY_FILTER,
+        'enable_file_previewer'                 => ENABLE_FILE_PREVIEWER,
+        'enable_themes'                         => ENABLE_THEMES,
+        'enable_iconsets'                       => ENABLE_ICONSETS,
+        'enable_widgets'                        => ENABLE_WIDGETS
+));
 if ( CONTACT_PREFIX ){
 	$serverConfig['contact_prefix'] = json_decode(CONTACT_PREFIX);
 }
@@ -53,7 +98,7 @@ if ( defined('ADDITIONAL_CATEGORIES') ){
 <html>
 
 	<head>
-		<meta name="Generator" content="Kopano WebApp v<?php echo $version?>">
+		<meta name="Generator" content="Kopano WebApp v<?php echo getWebappVersion()?>">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<title><?php echo $webappTitle; ?></title>
@@ -64,17 +109,26 @@ if ( defined('ADDITIONAL_CATEGORIES') ){
 
 		<!-- load the login css first as we need it immediately! -->
 		<link rel="stylesheet" href="client/resources/css/external/login.css" >
-		<?php $loader->cssOrder(); ?>
+		<?php
+			$loader->cssOrder();
+			echo Theming::getStyles($theme);
+			$iconsetStylesheet = Iconsets::getActiveStylesheet();
+
+			// Load OIDC JavaScript for refreshing of the token.
+			if (OIDC_ISS !== "") {
+				require_once(BASE_PATH . 'client/oidc.js.php');
+			}
+		?>
+		<link id="kopano-iconset-stylesheet" rel="stylesheet" href="<?php echo $iconsetStylesheet; ?>" >
 	</head>
 
-	<body class="zarafa-webclient">
+	<body class="zarafa-webclient theme-<?php echo strtolower($theme ? $theme : 'basic'); echo ' '. $hideFavorites; echo ' '. $scrollFavorites; echo ' '. $unreadBorders ?>">
 		<div id="loading-mask">
 			<div id="form-container" class="loading" style="visibility: hidden;">
 				<div id="bg"></div>
 				<div id="content">
 					<div class="left">
 						<div id="logo"></div>
-						<h2>WebApp <?php echo $version; ?></h2>
 					</div>
 					<div class="right">
 					</div>
@@ -83,7 +137,7 @@ if ( defined('ADDITIONAL_CATEGORIES') ){
 		</div>
 
 		<!-- Translations -->
-		<script type="text/javascript" src="index.php?version=<?php echo $version ?>&load=translations.js&lang=<?php echo $Language->getSelected() ?>"></script>
+		<script type="text/javascript" src="index.php?version=<?php echo getWebappVersion() ?>&load=translations.js&lang=<?php echo $Language->getSelected() ?>"></script>
 		<!-- JS Files -->
 		<?php
 			$loader->jsOrder();
@@ -106,6 +160,7 @@ if ( defined('ADDITIONAL_CATEGORIES') ){
 			version 		= <?php echo json_encode($versionInfo); ?>;
 			serverconfig 		= <?php echo json_encode($serverConfig); ?>;
 			urlActionData 		= <?php echo json_encode($urlActionData); ?>;
+			const IS_KUSTOMER_CHECK_ENABLED = false;
 
 			Ext.onReady(Zarafa.loadWebclient, Zarafa);
 		</script>

@@ -40,7 +40,7 @@ Zarafa.mail.dialogs.DelayedDeliveryContentPanel = Ext.extend(Zarafa.core.ui.Cont
                 buttons: [{
                     text: _('Send'),
                     cls: 'zarafa-action',
-                    iconCls: 'buttons_icon_send_later_white',
+                    iconCls: 'icon_send_later_white',
                     ref: '../sendButton',
                     disabled: true,
                     handler: this.onSend,
@@ -135,7 +135,7 @@ Zarafa.mail.dialogs.DelayedDeliveryContentPanel = Ext.extend(Zarafa.core.ui.Cont
     {
         var messageDateTime = this.deferredSendTime.format('d/m/y H:i');
         var upperMessage = _('Your message will be sent at ');
-        var lowerMessage = _('Go to your <b>Outbox</b> to edit your email.');
+        var lowerMessage = _('Go to your Outbox to edit your email.');
 
         // return html string which show message and close button
         return String.format("{0}<b>{1}.</b> <br>{2}", upperMessage, messageDateTime, lowerMessage);

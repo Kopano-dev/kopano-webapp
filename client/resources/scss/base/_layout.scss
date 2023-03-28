@@ -16,12 +16,13 @@ body {
 }
 
 .x-panel-body {
-	background-color: white !important;
+	background-color: $white !important;
 }
 
 #zarafa-navigationpanel > div {
-	border-right: 1px solid $grey;
+	border-right: none;
 }
+
 .zarafa-widgetpanel > div {
 	border-left: 1px solid $grey;
 }
@@ -35,11 +36,34 @@ ul.x-tab-strip-top {
 .x-layout-split {
 	width: $padding-small;
 	height: $padding-small;
+	z-index: 9002;
 }
 
-/* Common emptytext for example empty task list */
+/* Common emptytext for empty grids. Overwriting x-grid-empty in some cases */
 .emptytext {
 	text-align: center;
+	font-size: $font-size-large;
+	margin-top: 5%;
+}
+
+/* Empty text for empty contexts */
+.emptytext-context {
+	font-size: $font-size-extra-large;
+	color: $grey7;
+	text-align: center;
+	margin-top: 10%;
+}
+
+/* Exclude bigger font and margin for x-window empty texts
+ * Example: permission tab
+ */
+.x-window .emptytext {
+	font-size: $font-default-size !important;
+	margin-top: 0;
+}
+
+#note-iconview .emptytext {
+	color: grey;
 }
 
 /* TODO: move to general scss file */

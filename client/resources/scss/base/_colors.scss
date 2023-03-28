@@ -4,7 +4,6 @@
  */
 
 /* First we define some colors */
-
 $kopano-blue              : #0f70bd;
 $kopano-blue-hover        : #065fa5;
 $kopano-blue-active       : #065fa5;
@@ -15,6 +14,8 @@ $grey3                    : #f8f8f8;
 $grey4                    : #f2f2f2;
 $grey5                    : #b6b6b6;
 $grey6                    : #777777;
+$grey7                    : #4c4c4c;
+$lightgrey                : lightgrey;
 
 $dark-grey                : #333333;
 $dark-grey2               : #222222;
@@ -22,15 +23,21 @@ $dark-grey2               : #222222;
 $green                    : #5ebb4b;
 $green-hover              : #59b147;
 
-$green-bright			  : #23cb02;
+$green-bright             : #23cb02;
 
 $white                    : #ffffff;
+$whiteSmoke               : whiteSmoke;
+$black                    : #000000;
 $red                      : #FF0000;
 $red1                     : #e30022;
 $red2                     : #fbdde1;
+$sky-blue                 : #3094e3;
 
 $light-blue               : #d5e8f7;
-$seperator-color	  : #aca889;
+$seperator-color          : #aca889;
+
+$yellow-light             : #fff3cd;
+$yellow-dark              : #856404;
 
 /* Now we define which color we use for different elements */
 
@@ -56,8 +63,14 @@ $border-color-menu        : $grey5;
 $grid-hover-color         : $grey4;
 $grid-active-color        : $light-blue;
 $grid-subject-color       : $grey6;
+$grid-info-font-color     : $yellow-dark;
+$grid-info-bg-color       : $yellow-light;
 
 /* fonts */
 $font-color-light         : $white;
-$font-color-dark          : black;
+$font-color-dark          : $black;
 
+/* Tooltip */
+$tooltip-dark             : rgba(0, 0, 0, 0.8);
+
+$preview-panel-timestamp     : $grey7;

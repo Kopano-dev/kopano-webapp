@@ -5,7 +5,7 @@ Ext.namespace('Zarafa.core.data');
  * @extends Ext.util.Observable
  *
  * The NotificationResolver is used when the {@link Zarafa.core.ResponseRouter ResponseRouter}
- * finds Responses which were not a reponse to a direct Request. This is usually the case,
+ * finds Responses which were not a response to a direct Request. This is usually the case,
  * when the PHP-side generated a Notification to update particular UI components based on
  * a server-side change.
  *
@@ -14,6 +14,12 @@ Ext.namespace('Zarafa.core.data');
  * be needed to handle the response correctly.
  */
 Zarafa.core.data.NotificationResolver = Ext.extend(Ext.util.Observable, {
+	/**
+	 * @cfg {Array} IPFNotificationModules The IPFNotificationModules contains the IPF notification
+	 * module names.
+	 */
+	IPFNotificationModules: ['hierarchynotifier', 'newmailnotifier', 'addressbooknotifier', 'newtodotasknotifier'],
+
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object.
@@ -28,6 +34,18 @@ Zarafa.core.data.NotificationResolver = Ext.extend(Ext.util.Observable, {
 	},
 
 	/**
+	 * Function which used to add the IPF notification module name to {@link #IPFNotificationModules}.
+	 * function mainly used by the external as well as internal plugins when plugins required to
+	 * implement server side notification.
+	 *
+	 * @param {String} module The module is name of IPF notification module.
+	 */
+	addIPFNotificationModule: function(module)
+	{
+		this.IPFNotificationModules.push(module);
+	},
+
+	/**
 	 * Obtain the {@link Zarafa.core.data.AbstractNotificationResponseHandler ResponseHandler}
 	 * which can be used for handling the given response in a correct way. This will look into
 	 * the response data to determine what kind of Notifications are in there, and will look
@@ -38,7 +56,7 @@ Zarafa.core.data.NotificationResolver = Ext.extend(Ext.util.Observable, {
 	 * @return {Zarafa.core.data.AbstractResponseHandler} The response handler
 	 * which is suitable for handling the given response object.
 	 */
-	getHandlerForResponse : function(moduleName, response)
+	getHandlerForResponse: function(moduleName, response)
 	{
 		var handlers;
 
@@ -46,11 +64,7 @@ Zarafa.core.data.NotificationResolver = Ext.extend(Ext.util.Observable, {
 			return null;
 		}
 
-		if (moduleName == 'hierarchynotifier' ||
-			moduleName == 'newmailnotifier' ||
-			moduleName =='addressbooknotifier' ||
-			moduleName =='newtodotasknotifier'
-		) {
+		if (this.IPFNotificationModules.indexOf(moduleName) !== -1) {
 			handlers = this.getHandlersForIPFResponse(response);
 		} else {
 			handlers = this.getHandlersForIPMResponse(response);
@@ -78,7 +92,7 @@ Zarafa.core.data.NotificationResolver = Ext.extend(Ext.util.Observable, {
 	 * @return {Zarafa.core.data.AbstractResponseHandler[]} The response handlers
 	 * which are suitable for handling the given response object.
 	 */
-	getHandlersForIPFResponse : function(response)
+	getHandlersForIPFResponse: function(response)
 	{
 		var folderParents = [];
 		var folderStores = [];
@@ -101,9 +115,9 @@ Zarafa.core.data.NotificationResolver = Ext.extend(Ext.util.Observable, {
 				var responseHandlers = [];
 				for (var i = 0, len = folderStores.length; i < len; i++) {
 					responseHandlers.push(new Zarafa.hierarchy.data.HierarchyNotificationResponseHandler({
-						store : folderStores[i],
-						reader : folderStores[i].reader,
-						notifyObject : folderStores[i]
+						store: folderStores[i],
+						reader: folderStores[i].reader,
+						notifyObject: folderStores[i]
 					}));
 				}
 
@@ -113,9 +127,9 @@ Zarafa.core.data.NotificationResolver = Ext.extend(Ext.util.Observable, {
 			// get handlers for stores's notifications.
 			var hierarchyStore = container.getHierarchyStore();
 			return new Zarafa.hierarchy.data.HierarchyNotificationResponseHandler({
-				store : hierarchyStore,
-				reader : hierarchyStore.reader,
-				notifyObject : hierarchyStore
+				store: hierarchyStore,
+				reader: hierarchyStore.reader,
+				notifyObject: hierarchyStore
 			});
 		} else if(response['addressbook']) {
 			var addressBookStore = Zarafa.addressbook.AddressBookHierarchyStore;
@@ -141,7 +155,7 @@ Zarafa.core.data.NotificationResolver = Ext.extend(Ext.util.Observable, {
 	 * @return {Zarafa.core.data.AbstractResponseHandler[]} The response handlers
 	 * which are suitable for handling the given response object.
 	 */
-	getHandlersForIPMResponse : function(response)
+	getHandlersForIPMResponse: function(response)
 	{
 		var messageParents = [];
 		var messageStores;
@@ -167,18 +181,18 @@ Zarafa.core.data.NotificationResolver = Ext.extend(Ext.util.Observable, {
 			var responseHandlers = [];
 			for (var i = 0, len = messageStores.length; i < len; i++) {
 				responseHandlers.push(new Zarafa.core.data.IPMNotificationResponseHandler({
-					store : messageStores[i],
-					reader : messageStores[i].reader,
-					notifyObject : messageStores[i]
+					store: messageStores[i],
+					reader: messageStores[i].reader,
+					notifyObject: messageStores[i]
 				}));
 			}
 
 			return responseHandlers;
 		} else {
 			return new Zarafa.core.data.IPMNotificationResponseHandler({
-				store : messageStores,
-				reader : messageStores.reader,
-				notifyObject : messageStores
+				store: messageStores,
+				reader: messageStores.reader,
+				notifyObject: messageStores
 			});
 		}
 	}

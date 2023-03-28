@@ -10,7 +10,7 @@ Zarafa.common.delegates.ui.DelegatesPanel = Ext.extend(Ext.Panel, {
 	/**
 	 * @cfg {Zarafa.common.delegates.data.DelegateStore} store Delegate store that will be used to load delegates data
 	 */
-	store : undefined,
+	store: undefined,
 
 	/**
 	 * The LoadMask object which will be shown when the {@link #record} is being opened, and
@@ -18,13 +18,13 @@ Zarafa.common.delegates.ui.DelegatesPanel = Ext.extend(Ext.Panel, {
 	 * @property
 	 * @type Zarafa.common.ui.LoadMask
 	 */
-	loadMask : undefined,
+	loadMask: undefined,
 
 	/**
 	 * @constructor
 	 * @param config Configuration structure
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -34,14 +34,14 @@ Zarafa.common.delegates.ui.DelegatesPanel = Ext.extend(Ext.Panel, {
 
 		Ext.applyIf(config, {
 			// Override from Ext.Component
-			xtype : 'zarafa.delegatespanel',
-			border : false,
-			layout : {
-				type : 'vbox',
-				align : 'stretch',
-				pack  : 'start'
+			xtype: 'zarafa.delegatespanel',
+			border: false,
+			layout: {
+				type: 'vbox',
+				align: 'stretch',
+				pack: 'start'
 			},
-			items : this.createPanelItems(config.store)
+			items: this.createPanelItems(config.store)
 		});
 
 		Zarafa.common.delegates.ui.DelegatesPanel.superclass.constructor.call(this, config);
@@ -53,59 +53,59 @@ Zarafa.common.delegates.ui.DelegatesPanel = Ext.extend(Ext.Panel, {
 	 * @param {Zarafa.common.delegates.data.DelegateStore} store store that will be used to load delegates data.
 	 * @private
 	 */
-	createPanelItems : function(store)
+	createPanelItems: function(store)
 	{
 		return [{
-			xtype : 'displayfield',
-			value : _('Delegates can send items on your behalf. To grant permission to others to access your folders without also giving them send-on-behalf-of privileges, go to properties for each folder and change the options on the Permissions Tab.'),
-			fieldClass : 'x-form-display-field zarafa-settings-widget-extrainfo'
+			xtype: 'displayfield',
+			value: '<b>' + _('Delegates can send items on your behalf.') + '</b> <br>' + _('If you only want to set folder permissions, right-click on a folder to open the context menu and click on "Share Folder..."'),
+			fieldClass: 'x-form-display-field zarafa-settings-widget-extrainfo'
 		}, {
-			xtype : 'container',
-			flex : 1,
-			layout : {
-				type : 'hbox',
-				align : 'stretch',
-				pack  : 'start'
+			xtype: 'container',
+			flex: 1,
+			layout: {
+				type: 'hbox',
+				align: 'stretch',
+				pack: 'start'
 			},
-			items : [{
-				xtype : 'zarafa.delegatesgrid',
-				ref : '../delegatesGrid',
-				store : store,
-				flex : 1
+			items: [{
+				xtype: 'zarafa.delegatesgrid',
+				ref: '../delegatesGrid',
+				store: store,
+				flex: 1
 			}, {
-				xtype : 'container',
-				width : 160,
-				layout : {
-					type : 'vbox',
-					align : 'center',
-					pack  : 'start'
+				xtype: 'container',
+				width: 160,
+				layout: {
+					type: 'vbox',
+					align: 'center',
+					pack: 'start'
 				},
-				items : [{
-					xtype : 'button',
-					text : _('Add') + '...',
-					handler : this.onDelegateAdd,
-					ref : '../../addButton',
-					scope : this
+				items: [{
+					xtype: 'button',
+					text: _('Add') + '...',
+					handler: this.onDelegateAdd,
+					ref: '../../addButton',
+					scope: this
 				}, {
-					xtype : 'spacer',
-					height : 20
+					xtype: 'spacer',
+					height: 20
 				}, {
-					xtype : 'button',
-					text : _('Remove') + '...',
-					disabled : true,
-					ref : '../../removeButton',
-					handler : this.onDelegateRemove,
-					scope : this
+					xtype: 'button',
+					text: _('Remove') + '...',
+					disabled: true,
+					ref: '../../removeButton',
+					handler: this.onDelegateRemove,
+					scope: this
 				}, {
-					xtype : 'spacer',
-					height : 20
+					xtype: 'spacer',
+					height: 20
 				}, {
-					xtype : 'button',
-					text : _('Permission') + '...',
-					disabled : true,
-					ref : '../../permissionButton',
-					handler : this.onDelegatePermission,
-					scope : this
+					xtype: 'button',
+					text: _('Permission') + '...',
+					disabled: true,
+					ref: '../../permissionButton',
+					handler: this.onDelegatePermission,
+					scope: this
 				}]
 			}]
 		}];
@@ -115,7 +115,7 @@ Zarafa.common.delegates.ui.DelegatesPanel = Ext.extend(Ext.Panel, {
 	 * initialize events for the panel.
 	 * @private
 	 */
-	initEvents : function()
+	initEvents: function()
 	{
 		Zarafa.common.delegates.ui.DelegatesPanel.superclass.initEvents.call(this);
 
@@ -130,7 +130,7 @@ Zarafa.common.delegates.ui.DelegatesPanel = Ext.extend(Ext.Panel, {
 	 * If {@link #showLoadMask} is enabled, this function will display the {@link #loadMask}.
 	 * @protected
 	 */
-	showLoadMask : function()
+	showLoadMask: function()
 	{
 		if (!this.loadMask) {
 			this.loadMask = new Zarafa.common.ui.LoadMask(this.el);
@@ -144,7 +144,7 @@ Zarafa.common.delegates.ui.DelegatesPanel = Ext.extend(Ext.Panel, {
 	 * called to display the {@link #loadMask} this function will disable the loadMask.
 	 * @protected
 	 */
-	hideLoadMask : function()
+	hideLoadMask: function()
 	{
 		if (this.loadMask) {
 			this.loadMask.hide();
@@ -156,16 +156,16 @@ Zarafa.common.delegates.ui.DelegatesPanel = Ext.extend(Ext.Panel, {
 	 * this will show addressbook dialog to select delegate user.
 	 * @private
 	 */
-	onDelegateAdd : function()
+	onDelegateAdd: function()
 	{
 		Zarafa.common.Actions.openABUserSelectionContent({
-			callback : this.abCallBack,
-			scope : this,
+			callback: this.abCallBack,
+			scope: this,
 			hideContactsFolders: true,
-			listRestriction : {
-				hide_users : ['contact', 'system', 'non_security', 'room', 'equipment', 'non_active'],
-				hide_groups : ['non_security'],
-				hide_companies : true
+			listRestriction: {
+				hide_users: ['contact', 'system', 'non_security', 'room', 'equipment', 'non_active'],
+				hide_groups: ['non_security'],
+				hide_companies: true
 			}
 		});
 	},
@@ -175,13 +175,12 @@ Zarafa.common.delegates.ui.DelegatesPanel = Ext.extend(Ext.Panel, {
 	 * @param {Ext.data.Record} record user selected from AddressBook
 	 * @private
 	 */
-	abCallBack : function(record)
+	abCallBack: function(record)
 	{
 		record = record.convertToDelegate();
 
 		if(this.store.getById(record.get('entryid'))) {
-			Ext.Msg.alert(_('Alert'), _('Delegate already exists in the list.'));
-			return;
+			return Ext.Msg.alert(_('Duplicate delegate'), _('Delegate already exists in the list.'));
 		}
 
 		this.store.add(record);
@@ -195,7 +194,7 @@ Zarafa.common.delegates.ui.DelegatesPanel = Ext.extend(Ext.Panel, {
 	 * @param {Zarafa.common.delegates.data.DelegateRecord[]} record array of records that are added in store.
 	 * @param {Number} index index of the store at where records are added in store.
 	 */
-	afterDelegateAdd : function(store, record, index)
+	afterDelegateAdd: function(store, record, index)
 	{
 		if(Array.isArray(record)) {
 			for(var i = 0, j = record.length; i < j; i++) {
@@ -218,14 +217,14 @@ Zarafa.common.delegates.ui.DelegatesPanel = Ext.extend(Ext.Panel, {
 	 * using the record.
 	 * @param {Zarafa.common.delegates.data.DelegateRecord} record delegate record which is added in grid
 	 */
-	openDelegatePermissions : function(record)
+	openDelegatePermissions: function(record)
 	{
 		if(!record.isOpened()) {
 			this.openDelegateRecord(record, this.openDelegatePermissions);
 			return;
 		}
 
-		this.delegatesGrid.openDelegatePermissions(record, { removeRecordOnCancel : true });
+		this.delegatesGrid.openDelegatePermissions(record, { removeRecordOnCancel: true });
 	},
 
 	/**
@@ -234,7 +233,7 @@ Zarafa.common.delegates.ui.DelegatesPanel = Ext.extend(Ext.Panel, {
 	 * @param {Zarafa.common.delegates.data.DelegateRecord} record delegate record for which we need to get existing folder permissions
 	 * @param {Ext.Function} callback callback function that will be called after successfully opening the delegate record.
 	 */
-	openDelegateRecord : function(record, callback)
+	openDelegateRecord: function(record, callback)
 	{
 		// show load mask till we fetch full data from server
 		this.showLoadMask();
@@ -279,7 +278,7 @@ Zarafa.common.delegates.ui.DelegatesPanel = Ext.extend(Ext.Panel, {
 	 * has been changed
 	 * @param {Ext.grid.RowSelectionModel} selectionModel selection model that fired the event
 	 */
-	onGridSelectionChange : function(selectionModel)
+	onGridSelectionChange: function(selectionModel)
 	{
 		var noSelection = (selectionModel.hasSelection() === false);
 
@@ -292,7 +291,7 @@ Zarafa.common.delegates.ui.DelegatesPanel = Ext.extend(Ext.Panel, {
 	 * this will remove currently selected delegate from delegates list.
 	 * @private
 	 */
-	onDelegateRemove : function()
+	onDelegateRemove: function()
 	{
 		this.delegatesGrid.removeDelegate();
 	},
@@ -303,7 +302,7 @@ Zarafa.common.delegates.ui.DelegatesPanel = Ext.extend(Ext.Panel, {
 	 * to show detailed permissions of delegate user.
 	 * @private
 	 */
-	onDelegatePermission : function()
+	onDelegatePermission: function()
 	{
 		this.delegatesGrid.openDelegatePermissions();
 	},
@@ -311,7 +310,7 @@ Zarafa.common.delegates.ui.DelegatesPanel = Ext.extend(Ext.Panel, {
 	/**
 	 * Function will be used to reload data in the {@link Zarafa.common.delegates.data.DelegateStore DelegateStore}.
 	 */
-	discardChanges : function()
+	discardChanges: function()
 	{
 		this.store.load();
 	},
@@ -319,7 +318,7 @@ Zarafa.common.delegates.ui.DelegatesPanel = Ext.extend(Ext.Panel, {
 	/**
 	 * Function will be used to save changes in the {@link Zarafa.common.delegates.data.DelegateStore DelegateStore}.
 	 */
-	saveChanges : function()
+	saveChanges: function()
 	{
 		this.store.save();
 	}

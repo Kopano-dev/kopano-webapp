@@ -9,13 +9,13 @@ Zarafa.common.CommonContext = Ext.extend(Zarafa.core.Context, {
 	 * @constructor
 	 * @param config
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			hasToolbar : false,
-			hasContentPanel : false
+			hasToolbar: false,
+			hasContentPanel: false
 		});
 
 		Zarafa.common.CommonContext.superclass.constructor.call(this, config);
@@ -24,6 +24,16 @@ Zarafa.common.CommonContext = Ext.extend(Zarafa.core.Context, {
 		this.registerInsertionPoint('context.settings.categories', this.createDelegateSettingsCategory, this);
 		this.registerInsertionPoint('context.settings.categories', this.createSendAsSettingsCategory, this);
 		this.registerInsertionPoint('context.settings.categories', this.createRuleSettingsCategory, this);
+		this.registerInsertionPoint('context.settings.categories', this.createNotificationSettingsCategory, this);
+
+		// Copyrights text for the viewer and pdf js.
+		this.registerInsertionPoint('context.settings.category.copyright', function() {
+			return {
+				xtype: 'zarafa.settingscopyrightwidget',
+				title: "File previewer",
+				about: Zarafa.common.previewer.ui.ABOUT
+			};
+		});
 
 		// Register common specific dialog types
 		Zarafa.core.data.SharedComponentType.addProperty('common.dialog.copymoverecords');
@@ -40,14 +50,16 @@ Zarafa.common.CommonContext = Ext.extend(Zarafa.core.Context, {
 		Zarafa.core.data.SharedComponentType.addProperty('common.contextmenu.freebusy');
 		Zarafa.core.data.SharedComponentType.addProperty('common.contextmenu.freebusy.timelinebody');
 		Zarafa.core.data.SharedComponentType.addProperty('common.contextmenu.freebusy.timelineheader');
-		Zarafa.core.data.SharedComponentType.addProperty('common.contextmenu.reminder.remindergrid');
+		Zarafa.core.data.SharedComponentType.addProperty('common.contextmenu.flags');
 		Zarafa.core.data.SharedComponentType.addProperty('common.printer.renderer');
 		Zarafa.core.data.SharedComponentType.addProperty('common.rules.dialog.ruleswordsedit');
 		Zarafa.core.data.SharedComponentType.addProperty('common.attachment.dialog.attachitem');
 		Zarafa.core.data.SharedComponentType.addProperty('common.attachment.dialog.mixattachitem');
 		Zarafa.core.data.SharedComponentType.addProperty('common.attachment.dialog.attachitem.columnmodel');
 		Zarafa.core.data.SharedComponentType.addProperty('common.attachment.dialog.attachitem.textrenderer');
+		Zarafa.core.data.SharedComponentType.addProperty('common.attachment.dialog.importtofolder');
 		Zarafa.core.data.SharedComponentType.addProperty('common.sendas.dialog.sendaseditcontentpanel');
+		Zarafa.core.data.SharedComponentType.addProperty('common.managecc.dialog.managecceditcontentpanel');
 		Zarafa.core.data.SharedComponentType.addProperty('common.categories.dialogs.newcategory');
 		Zarafa.core.data.SharedComponentType.addProperty('common.categories.dialogs.renamecategory');
 		Zarafa.core.data.SharedComponentType.addProperty('common.flags.dialogs.customflag');
@@ -74,6 +86,7 @@ Zarafa.common.CommonContext = Ext.extend(Zarafa.core.Context, {
 			case Zarafa.core.data.SharedComponentType['common.dialog.categories']:
 			case Zarafa.core.data.SharedComponentType['common.attachment.dialog.attachitem']:
 			case Zarafa.core.data.SharedComponentType['common.attachment.dialog.mixattachitem']:
+			case Zarafa.core.data.SharedComponentType['common.attachment.dialog.importtofolder']:
 			case Zarafa.core.data.SharedComponentType['common.dialog.widgets']:
 			case Zarafa.core.data.SharedComponentType['common.dialog.checknames']:
 			case Zarafa.core.data.SharedComponentType['common.dialog.restoreitems']:
@@ -83,10 +96,11 @@ Zarafa.common.CommonContext = Ext.extend(Zarafa.core.Context, {
 			case Zarafa.core.data.SharedComponentType['common.contextmenu.freebusy.timelineheader']:
 			case Zarafa.core.data.SharedComponentType['common.contextmenu.importance']:
 			case Zarafa.core.data.SharedComponentType['common.contextmenu.category']:
+			case Zarafa.core.data.SharedComponentType['common.contextmenu.flags']:
 			case Zarafa.core.data.SharedComponentType['common.contextmenu.categories']:
-			case Zarafa.core.data.SharedComponentType['common.contextmenu.reminder.remindergrid']:
 			case Zarafa.core.data.SharedComponentType['common.rules.dialog.ruleswordsedit']:
 			case Zarafa.core.data.SharedComponentType['common.sendas.dialog.sendaseditcontentpanel']:
+			case Zarafa.core.data.SharedComponentType['common.managecc.dialog.managecceditcontentpanel']:
 			case Zarafa.core.data.SharedComponentType['common.categories.dialogs.newcategory']:
 			case Zarafa.core.data.SharedComponentType['common.categories.dialogs.renamecategory']:
 			case Zarafa.core.data.SharedComponentType['common.flags.dialogs.customflag']:
@@ -98,7 +112,9 @@ Zarafa.common.CommonContext = Ext.extend(Zarafa.core.Context, {
 				}
 				break;
 			case Zarafa.core.data.SharedComponentType['common.contextmenu']:
-				if (record instanceof Zarafa.core.data.IPMRecipientRecord || record instanceof Zarafa.core.data.IPMAttachmentRecord) {
+				if (record instanceof Zarafa.core.data.IPMRecipientRecord ||
+					record instanceof Zarafa.core.data.IPMAttachmentRecord ||
+					record instanceof Zarafa.common.manageCc.data.IPMCcRecipientRecord) {
 					bid = 1;
 				}
 				break;
@@ -116,6 +132,11 @@ Zarafa.common.CommonContext = Ext.extend(Zarafa.core.Context, {
 					bid = 1;
 				} else if(record instanceof Zarafa.core.data.IPMAttachmentRecord) {
 					bid = 0;
+				}
+				break;
+			case Zarafa.core.data.SharedComponentType['common.hovercard']:
+				if (record instanceof Zarafa.core.data.IPMRecipientRecord) {
+					bid = 1;
 				}
 				break;
 		}
@@ -148,6 +169,9 @@ Zarafa.common.CommonContext = Ext.extend(Zarafa.core.Context, {
 			case Zarafa.core.data.SharedComponentType['common.attachment.dialog.mixattachitem']:
 				component = Zarafa.common.attachment.dialogs.MixAttachItemContentPanel;
 				break;
+			case Zarafa.core.data.SharedComponentType['common.attachment.dialog.importtofolder']:
+				component = Zarafa.common.attachment.dialogs.ImportToFolderContentPanel;
+				break;
 			case Zarafa.core.data.SharedComponentType['common.dialog.widgets']:
 				component = Zarafa.core.ui.widget.WidgetContentPanel;
 				break;
@@ -162,6 +186,9 @@ Zarafa.common.CommonContext = Ext.extend(Zarafa.core.Context, {
 				break;
 			case Zarafa.core.data.SharedComponentType['common.rules.dialog.ruleswordsedit']:
 				component = Zarafa.common.rules.dialogs.RulesWordsEditContentPanel;
+				break;
+			case Zarafa.core.data.SharedComponentType['common.managecc.dialog.managecceditcontentpanel']:
+				component = Zarafa.common.manageCc.dialogs.ManageCcEditContentPanel;
 				break;
 			case Zarafa.core.data.SharedComponentType['common.sendas.dialog.sendaseditcontentpanel']:
 				component = Zarafa.common.sendas.dialogs.SendAsEditContentPanel;
@@ -179,8 +206,12 @@ Zarafa.common.CommonContext = Ext.extend(Zarafa.core.Context, {
 			case Zarafa.core.data.SharedComponentType['common.view']:
 				if (record instanceof Zarafa.core.data.IPMRecipientRecord) {
 					component = Zarafa.common.recipientfield.ui.ViewRecipientContentPanel;
-				} else if (record instanceof Zarafa.core.data.IPMAttachmentRecord){
-					component = this;
+				} else if (record instanceof Zarafa.core.data.IPMAttachmentRecord) {
+					if (Zarafa.common.Actions.isSupportedDocument(record.get('name')) && Zarafa.common.Actions.isFilePreviewerEnabled()) {
+						component = Zarafa.common.previewer.ui.ViewerContainer;
+					} else {
+						component = this;
+					}
 				}
 				break;
 			case Zarafa.core.data.SharedComponentType['common.contextmenu.previewpanel.extrainfo']:
@@ -196,10 +227,11 @@ Zarafa.common.CommonContext = Ext.extend(Zarafa.core.Context, {
 				component = Zarafa.common.freebusy.ui.FreebusyTimelineHeaderContextMenu;
 				break;
 			case Zarafa.core.data.SharedComponentType['common.contextmenu']:
-				if (record instanceof Zarafa.core.data.IPMRecipientRecord) {
+				if(record instanceof Zarafa.common.manageCc.data.IPMCcRecipientRecord){
+					component = Zarafa.common.manageCc.ui.ManageCcGridContextMenu;
+				} else if (record instanceof Zarafa.core.data.IPMRecipientRecord) {
 					component = Zarafa.common.recipientfield.ui.RecipientContextMenu;
-				}
-				else if (record instanceof Zarafa.core.data.IPMAttachmentRecord){
+				} else if (record instanceof Zarafa.core.data.IPMAttachmentRecord) {
 					component = Zarafa.common.attachment.ui.AttachmentContextMenu;
 				}
 				break;
@@ -212,8 +244,8 @@ Zarafa.common.CommonContext = Ext.extend(Zarafa.core.Context, {
 			case Zarafa.core.data.SharedComponentType['common.contextmenu.categories']:
 				component = Zarafa.common.categories.ui.CategoriesContextMenu;
 				break;
-			case Zarafa.core.data.SharedComponentType['common.contextmenu.reminder.remindergrid']:
-				component = Zarafa.common.reminder.dialogs.ReminderGridContextMenu;
+			case Zarafa.core.data.SharedComponentType['common.contextmenu.flags']:
+				component = Zarafa.common.flags.ui.FlagsMenu;
 				break;
 			case Zarafa.core.data.SharedComponentType['common.categories.dialogs.newcategory']:
 				component = Zarafa.common.categories.dialogs.NewCategoryPanel;
@@ -223,6 +255,9 @@ Zarafa.common.CommonContext = Ext.extend(Zarafa.core.Context, {
 				break;
 			case Zarafa.core.data.SharedComponentType['common.flags.dialogs.customflag']:
 				component = Zarafa.common.flags.dialogs.CustomFlagContentPanel;
+				break;
+			case Zarafa.core.data.SharedComponentType['common.hovercard']:
+				component = Zarafa.common.recipientfield.ui.RecipientHoverCardView;
 				break;
 		}
 		return component;
@@ -251,11 +286,11 @@ Zarafa.common.CommonContext = Ext.extend(Zarafa.core.Context, {
 	 * @return {Array} configuration object for the categories to register
 	 * @private
 	 */
-	createDelegateSettingsCategory : function(insertionName, settingsMainPanel, settingsContext)
+	createDelegateSettingsCategory: function(insertionName, settingsMainPanel, settingsContext)
 	{
 		return {
-			xtype : 'zarafa.settingsdelegatecategory',
-			settingsContext : settingsContext
+			xtype: 'zarafa.settingsdelegatecategory',
+			settingsContext: settingsContext
 		};
 	},
 
@@ -272,11 +307,11 @@ Zarafa.common.CommonContext = Ext.extend(Zarafa.core.Context, {
 	 * @return {Array} configuration object for the categories to register
 	 * @private
 	 */
-	createSendAsSettingsCategory : function(insertionName, settingsMainPanel, settingsContext)
+	createSendAsSettingsCategory: function(insertionName, settingsMainPanel, settingsContext)
 	{
 		return {
-			xtype : 'zarafa.settingssendascategory',
-			settingsContext : settingsContext
+			xtype: 'zarafa.settingssendascategory',
+			settingsContext: settingsContext
 		};
 	},
 
@@ -293,19 +328,40 @@ Zarafa.common.CommonContext = Ext.extend(Zarafa.core.Context, {
 	 * @return {Array} configuration object for the categories to register
 	 * @private
 	 */
-	createRuleSettingsCategory : function(insertionName, settingsMainPanel, settingsContext)
+	createRuleSettingsCategory: function(insertionName, settingsMainPanel, settingsContext)
 	{
 		return {
-			xtype : 'zarafa.settingsrulecategory',
-			settingsContext : settingsContext
+			xtype: 'zarafa.settingsrulecategory',
+			settingsContext: settingsContext
 		};
+	},
+
+	/**
+	 * Create the Notification {@link Zarafa.settings.ui.SettingsCategory Settings Category}
+	 * to the {@link Zarafa.settings.SettingsContext}. This will create new
+	 * {@link Zarafa.settings.ui.SettingsCategoryTab tabs} for the
+	 * {@link Zarafa.common.settings.SettingsNotificationsCategory Notifications}
+	 * in the {@link Zarafa.settings.ui.SettingsCategoryWidgetPanel Widget Panel}.
+	 * @param {String} insertionName insertion point name that is currently populated
+	 * @param {Zarafa.settings.ui.SettingsMainPanel} settingsMainPanel settings main panel
+	 * which is populating this insertion point
+	 * @param {Zarafa.settings.SettingsContext} settingsContext settings context
+	 * @return {Array} configuration object for the categories to register
+	 * @private
+	 */
+	createNotificationSettingsCategory: function(insertionName, settingsMainPanel, settingsContext)
+	{
+		return {
+      xtype: 'zarafa.settingsnotificationscategory',
+      settingsContext: settingsContext
+    };
 	}
 });
 
 Zarafa.onReady(function() {
 	container.registerContext(new Zarafa.core.ContextMetaData({
-		name : 'default',
-		allowUserVisible : false,
-		pluginConstructor : Zarafa.common.CommonContext
+		name: 'default',
+		allowUserVisible: false,
+		pluginConstructor: Zarafa.common.CommonContext
 	}));
 });

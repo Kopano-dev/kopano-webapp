@@ -12,19 +12,19 @@ Zarafa.core.ui.widget.WidgetContentPanel = Ext.extend(Zarafa.core.ui.ContentPane
 	 * @cfg {Zarafa.core.ui.widget.WidgetPanel} widgetPanel The widget panel to which
 	 * the selected widget will be added.
 	 */
-	widgetPanel : undefined,
+	widgetPanel: undefined,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		var template = new Ext.XTemplate(
 			'<tpl for=".">',
-				'<div class="zarafa-widget-item" id="{name}">',
+				'<div class="k-widget-item {iconCls}" id="{name}">',
 					'<div class="thumb-wrap">',
 						'<img src="{icon}">',
 					'</div>',
@@ -37,40 +37,41 @@ Zarafa.core.ui.widget.WidgetContentPanel = Ext.extend(Zarafa.core.ui.ContentPane
 		var data = [];
 		var widgets = container.getWidgetsMetaData();
 		Ext.each(widgets, function(widget) {
-			data.push({ name : widget.getName(), display_name : widget.getDisplayName(), icon : widget.getIconPath() });
+			data.push({ name: widget.getName(), display_name: widget.getDisplayName(), icon: widget.getIconPath(), iconCls: widget.getIconCls() });
 		}, this);
-		
+
 		var store = {
-			xtype : 'jsonstore',
-			fields : [ 'name', 'display_name', 'icon' ],
-			data : data,
-			sortInfo : {
-				field : 'display_name',
-				direction : 'ASC'
+			xtype: 'jsonstore',
+			fields: [ 'name', 'display_name', 'icon', 'iconCls' ],
+			data: data,
+			sortInfo: {
+				field: 'display_name',
+				direction: 'ASC'
 			}
 		};
 
 		Ext.applyIf(config, {
-			layout : 'fit',
-			border : false,
-			width : 400,
-			height : 300,
-			title : _('Add widgets'),
-			items : [{
-				xtype : 'dataview',
+			layout: 'fit',
+			border: false,
+			width: 550,
+			height: 280,
+			modal: true,
+			title: _('Add widgets'),
+			items: [{
+				xtype: 'dataview',
 				store: store,
 				tpl: template,
-				autoScroll : true,
-				singleSelect : true,
-				multiSelect : false,
-				selectedClass : 'zarafa-widgets-selectedwidget',
-				overClass : 'zarafa-widgets-hoverwidget',
-				itemSelector : 'div.zarafa-widget-item',
+				autoScroll: true,
+				singleSelect: true,
+				multiSelect: false,
+				selectedClass: 'k-widgets-selectedwidget',
+				overClass: 'k-widgets-hoverwidget',
+				itemSelector: 'div.k-widget-item',
 				deferEmptyText: false,
-				emptyText : _('No widgets installed.'),
-				listeners : {
-					'dblclick' : this.onWidgetDblClick,
-					scope : this
+				emptyText: _('No widgets installed.'),
+				listeners: {
+					'dblclick': this.onWidgetDblClick,
+					scope: this
 				}
 			}]
 		});
@@ -86,7 +87,7 @@ Zarafa.core.ui.widget.WidgetContentPanel = Ext.extend(Zarafa.core.ui.ContentPane
 	 * @param {Ext.EventObject} event The event object
 	 * @private
 	 */
-	onWidgetDblClick : function(dataview, index, node, event)
+	onWidgetDblClick: function(dataview, index, node, event)
 	{
 		if (this.widgetPanel) {
 			this.widgetPanel.createWidget(dataview.getRecord(node).get('name'));

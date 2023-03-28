@@ -9,20 +9,20 @@ Zarafa.advancesearch.ui.SearchGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessag
 	/**
 	 * @cfg {Zarafa.advancesearch.AdvanceSearchContext} searchContext The searchContext to which this panel belongs
 	 */
-	searchContext : undefined,
+	searchContext: undefined,
 
 	/**
 	 * The {@link Zarafa.advancesearch.AdvanceSearchContextModel} which is obtained from the {@link #context}.
 	 * @property
 	 * @type Zarafa.advancesearch.AdvanceSearchContextModel
 	 */
-	model : undefined,
+	model: undefined,
 
 	/**
 	 * @constructor
 	 * @param config Configuration structure
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -42,7 +42,7 @@ Zarafa.advancesearch.ui.SearchGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessag
 				config.store = model.store;
 				model.pushStore(config.searchTabId , model.store);
 			} else {
-				config.store = config.model.createNewSearchStore({searchTabId : config.searchTabId});
+				config.store = config.model.createNewSearchStore({searchTabId: config.searchTabId});
 			}
 		}
 
@@ -57,28 +57,29 @@ Zarafa.advancesearch.ui.SearchGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessag
 		Ext.applyIf(config, {
 			xtype: 'zarafa.searchgrid',
 			cls: 'zarafa-searchgrid',
-			border : false,
+			border: false,
 			// Don't make the search grid stateful. By default we always want Kopano Core to sort new search results on relevance.
-			stateful : false,
-			statefulRelativeDimensions : false,
-			loadMask : this.initLoadMask(),
-			sm : this.initSelectionModel(),
-			cm : new Zarafa.advancesearch.ui.SearchGridColumnModel({
+			stateful: false,
+			statefulRelativeDimensions: false,
+			loadMask: this.initLoadMask(),
+			sm: this.initSelectionModel(),
+			cm: new Zarafa.advancesearch.ui.SearchGridColumnModel({
 				grid: this,
-				folder : config.model.getDefaultFolder()
+				folder: config.model.getDefaultFolder()
 			}),
-			enableDragDrop : true,
-			ddGroup : 'dd.mapiitem',
-			viewConfig : this.initViewConfig(),
+			enableDragDrop: true,
+			ddGroup: 'dd.mapiitem',
+			viewConfig: this.initViewConfig(),
 			enableColumnHide: false,
 			enableColumnMove: false,
 			enableColumnResize: false,
 			enableHdMenu: false,
-			autoExpandMin : 200,
+			supportLiveScroll: true,
+			autoExpandMin: 200,
 			// The maximum number of records that the store can hold and still be sortable
 			//TODO: This value should probably be configurable, but let's not do that until we are absolutely sure
 			// about doing the sorting this way.
-			sortableRecordsMax : 500
+			sortableRecordsMax: 500
 		});
 
 		Zarafa.advancesearch.ui.SearchGrid.superclass.constructor.call(this, config);
@@ -88,16 +89,17 @@ Zarafa.advancesearch.ui.SearchGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessag
 	 * Initialize event handlers
 	 * @private
 	 */
-	initEvents : function()
+	initEvents: function()
 	{
 		Zarafa.advancesearch.ui.SearchGrid.superclass.initEvents.call(this);
 
 		this.on({
 			'headerclick': this.onHeaderClick,
 			'cellclick': this.onCellClick,
+			'rowclick': this.onRowClick,
 			'rowcontextmenu': this.onRowContextMenu,
 			'rowdblclick': this.onRowDblClick,
-			scope : this
+			scope: this
 		});
 
 		this.mon(this.getView(), 'livescrollstart', this.onLiveScrollStart, this);
@@ -107,14 +109,17 @@ Zarafa.advancesearch.ui.SearchGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessag
 		// is removed from the store. However removing of records isn't performed in batches. This means
 		// that we need to offload the event handlers attached to removing of records in case that
 		// a large batch of records is being removed.
-		this.mon(this.getSelectionModel(), 'rowselect', this.onRowSelect, this, { buffer : 1 });
-		this.mon(this.getSelectionModel(), 'selectionchange', this.onSelectionChange, this, { buffer : 1 });
+		this.mon(this.getSelectionModel(), 'rowselect', this.onRowSelect, this, { buffer: 1 });
+		this.mon(this.getSelectionModel(), 'selectionchange', this.onSelectionChange, this, { buffer: 1 });
 
 		this.mon(this.model, 'searchstop', this.onSearchStop, this);
 
 		this.mon(this.searchContext, 'viewchange', this.onContextViewChange, this);
 
 		this.store.on('beforeupdatesearch', this.onBeforeUpdateSearch, this);
+
+		this.mon(this.searchContext, 'viewmodechange', this.onContextViewModeChange, this);
+		this.onContextViewModeChange(this.searchContext, this.searchContext.getCurrentViewMode());
 	},
 
 	/**
@@ -123,10 +128,10 @@ Zarafa.advancesearch.ui.SearchGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessag
 	 * @return {Ext.LoadMask} The configuration object for {@link Ext.LoadMask}
 	 * @private
 	 */
-	initLoadMask : function()
+	initLoadMask: function()
 	{
 		return {
-			msg : _('Loading Search results') + '...'
+			msg: _('Loading Search results') + '...'
 		};
 	},
 
@@ -136,10 +141,10 @@ Zarafa.advancesearch.ui.SearchGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessag
 	 * @return {Ext.grid.RowSelectionModel} The subclass of {@link Ext.grid.AbstractSelectionModel}
 	 * @private
 	 */
-	initSelectionModel : function()
+	initSelectionModel: function()
 	{
 		return new Zarafa.advancesearch.ui.AdvanceSearchRowSelectionModel({
-			singleSelect : false
+			singleSelect: false
 		});
 	},
 
@@ -149,14 +154,16 @@ Zarafa.advancesearch.ui.SearchGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessag
 	 * @return {Ext.grid.GridView} The configuration object for {@link Ext.grid.GridView}
 	 * @private
 	 */
-	initViewConfig : function()
+	initViewConfig: function()
 	{
 		return {
-			getRowClass : this.viewConfigGetRowClass,
-
+			getRowClass: this.viewConfigGetRowClass,
+			enableRowBody: true,
+			getBodyCell: this.getBodyCell,
+			getSubjectCell: this.getSubjectCell,
 			// We need a rowselector depth of 15 because of the nested
 			// table in the rowBody.
-			rowSelectorDepth : 15
+			rowSelectorDepth: 15
 		};
 	},
 
@@ -174,11 +181,96 @@ Zarafa.advancesearch.ui.SearchGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessag
 	 * @return {String} a CSS class name to add to the row
 	 * @private
 	 */
-	viewConfigGetRowClass : function(record, rowIndex, rowParams, store)
+	viewConfigGetRowClass: function (record, rowIndex, rowParams, store)
 	{
 		var cssClass = (Ext.isFunction(record.isRead) && !record.isRead() ? 'mail_unread' : 'mail_read');
 
+		if (this.enableRowBody) {
+			rowParams.body = '<div class="zarafa-grid-body-container">';
+
+			// Render the folder location
+			var folder = container.getHierarchyStore().getFolder(record.get('parent_entryid'));
+			var folderName = folder.getDisplayName();
+
+			var folderLocation= String.format('<div class="k-folder-location-container">' +
+				'<div class="k-folder-location" ext:qtip="{0}" ext:qwidth="100%">' +
+					'<span class="k-folder-name">{1}</span>' +
+				'</div></div>', folderName, Ext.util.Format.ellipsis(folderName, 17));
+
+			cssClass += ' with-categories';
+			var categories = Zarafa.common.categories.Util.getCategories(record);
+			var categoriesHtml = Zarafa.common.categories.Util.getCategoriesHtml(categories);
+			var category = '<div class="k-category"><div class="k-category-add-container"><span class="k-category-add"></span></div><div class="k-category-container">' + categoriesHtml + '</div></div>';
+
+			// Get the subject cell content
+			var subject = this.getSubjectCell(record);
+
+			// Get the body cell content
+			var body = this.getBodyCell(record);
+
+			// Render subject, category
+			if (!Ext.isEmpty(subject)) {
+				rowParams.body += folderLocation + subject + category;
+			} else {
+				rowParams.body += '<div class="k-right-column"><div class="k-folder-location-row">' + folderLocation + '</div>' + category + '</div>';
+				cssClass += ' with-no-subject';
+			}
+
+			// Render body
+			rowParams.body += body + '</div>';
+			return 'x-grid3-row-expanded ' + cssClass;
+		}
+
 		return 'x-grid3-row-collapsed ' + cssClass;
+	},
+
+	/**
+	 * Apply custom style and content for the body cell
+	 *
+	 * @param {Ext.data.Record} record The {@link Ext.data.Record Record} corresponding to the current row.
+	 * @returns {string} an html content string
+	 */
+	getBodyCell: function (record)
+	{
+		var meta = {};
+		var body = '';
+		var messageClass = record.get('message_class');
+		switch (messageClass) {
+			case 'IPM.Contact':
+				body = Ext.util.Format.htmlEncode(record.get('email_address_1'));
+				break;
+			case 'IPM.Task':
+			case 'IPM.TaskRequest':
+				body = Zarafa.common.ui.grid.Renderers.percentage(record.get('percent_complete'), meta, record);
+				break;
+			default:
+				body = Ext.util.Format.htmlEncode(record.get('body'));
+		}
+
+		return String.format('<div class="grid_compact grid_compact_left grid_compact_body {0}">{1}</div>', meta.css, body);
+	},
+
+	/**
+	 * Apply custom style and content for the subject cell
+	 *
+	 * @param {Ext.data.Record} record The {@link Ext.data.Record Record} corresponding to the current row.
+	 * @returns {string} an html content string
+	 */
+	getSubjectCell: function (record)
+	{
+		var subject = '';
+		var meta = {};
+		if (record.isMessageClass('IPM.Contact')) {
+			subject = Zarafa.advancesearch.ui.SearchGridRenderers.phoneNumber(record.get('home_telephone_number'), meta, record);
+		} else if (!record.isMessageClass('IPM.StickyNote')) {
+			subject = Zarafa.common.ui.grid.Renderers.subject(record.get('subject'), meta, record);
+		}
+
+		if (!Ext.isEmpty(subject)) {
+			subject = String.format('<div class="grid_compact grid_compact_left grid_compact_subject {0}">{1}</div>', meta.css, subject);
+		}
+
+		return subject;
 	},
 
 	/**
@@ -191,7 +283,7 @@ Zarafa.advancesearch.ui.SearchGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessag
 	 * @param {Zarafa.common.data.Views} newView The ID of the selected view.
 	 * @param {Zarafa.common.data.Views} oldView The ID of the previously selected view.
 	 */
-	onContextViewChange : function(context, newView, oldView)
+	onContextViewChange: function(context, newView, oldView)
 	{
 		if(oldView === Zarafa.common.data.Views.LIVESCROLL) {
 			this.getView().resetScroll();
@@ -221,36 +313,46 @@ Zarafa.advancesearch.ui.SearchGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessag
 
 	/**
 	 * Raw click event handler for the entire grid.
-	 * Toggles the unread/read status when a user clicks on the
-	 * mail icon of a message.
+	 * Toggles the unread/read status when a user clicks on the mail icon of a message.
+	 * Toggles the flag menu when a user clicks on the flag icon of a message.
 	 *
 	 * @param {Zarafa.advancesearch.ui.SearchGrid} grid the grid
 	 * @param {Number} rowIndex The index of the clicked row
 	 * @param {Number} columnIndex The column index of the clicked row
 	 * @param {Ext.EventObject} e The click eventobject
 	 */
-	onCellClick : function(grid, rowIndex, columnIndex, e)
+	onCellClick: function(grid, rowIndex, columnIndex, e)
 	{
 		var record = this.store.getAt(rowIndex);
-		if (!Ext.isDefined(record) || record.get('message_class') != 'IPM.Note'){
+		if (!Ext.isDefined(record)) {
 			return;
 		}
 
-		// Because we render a cell with lots of data, we must calculate ourself
-		// if the click was on the icon cell.
-		var clickX = e.xy[0];
-		var iconCell = e.target;
-		if ( !iconCell.classList.contains('icon') ){
-			iconCell = iconCell.querySelector('td.icon');
-			if ( iconCell === null ){
-				return;
-			}
-		}
-		var iconCellX = iconCell.getBoundingClientRect().left;
-		var iconCellWidth = iconCell.getBoundingClientRect().width;
-
-		if ( clickX >= iconCellX && clickX <= iconCellX+iconCellWidth ){
+		var cm = this.getColumnModel();
+		var dataIndex = cm.getDataIndex(columnIndex);
+		if (dataIndex === 'icon_index') {
 			Zarafa.common.Actions.markAsRead(record, !record.isRead());
+		} else if (dataIndex === 'flag_due_by') {
+			Zarafa.common.Actions.openFlagsMenu(record, e.getXY(), false);
+		}
+	},
+
+	/**
+	 * Event handler that opens the categories dialog when the user clicks on the
+	 * add category icon.
+	 *
+	 * @param {Zarafa.mail.ui.MailGrid} grid The grid which was right clicked
+	 * @param {Number} rowIndex The index number of the row which was right clicked
+	 * @param {Ext.EventObject} event The event structure
+	 * @private
+	 */
+	onRowClick: function(grid, rowIndex, event)
+	{
+		if ( Ext.get(event.target).hasClass('k-category-add') ){
+			// Get the record from the rowIndex
+			var record = this.store.getAt(rowIndex);
+
+			Zarafa.common.Actions.openCategoriesMenu([record], event.getXY());
 		}
 	},
 
@@ -270,7 +372,7 @@ Zarafa.advancesearch.ui.SearchGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessag
 	 * @param {Ext.EventObject} event The event structure
 	 * @private
 	 */
-	onRowContextMenu : function(grid, rowIndex, event)
+	onRowContextMenu: function(grid, rowIndex, event)
 	{
 		var sm = this.getSelectionModel();
 
@@ -290,7 +392,7 @@ Zarafa.advancesearch.ui.SearchGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessag
 
 		var records = sm.getSelections();
 
-		Zarafa.core.data.UIFactory.openDefaultContextMenu(records, { position : event.getXY(), context : this.searchContext });
+		Zarafa.core.data.UIFactory.openDefaultContextMenu(records, { position: event.getXY(), context: this.searchContext, shadowEdit: false });
 	},
 
 	/**
@@ -302,7 +404,7 @@ Zarafa.advancesearch.ui.SearchGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessag
 	 * @param {Ext.EventObject} e The event object
 	 * @private
 	 */
-	onRowDblClick : function(grid, rowIndex, e)
+	onRowDblClick: function(grid, rowIndex, e)
 	{
 		Zarafa.common.Actions.openMessageContent(this.getSelectionModel().getSelected());
 	},
@@ -317,7 +419,7 @@ Zarafa.advancesearch.ui.SearchGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessag
 	 * @param {Ext.data.Record} record The record which is selected for preview.
 	 * @private
 	 */
-	onRowSelect : function(selectionModel, rowNumber, record)
+	onRowSelect: function(selectionModel, rowNumber, record)
 	{
 		var count = selectionModel.getCount();
 
@@ -336,7 +438,7 @@ Zarafa.advancesearch.ui.SearchGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessag
 	 * @param {Ext.grid.RowSelectionModel} selectionModel The selection model used by the grid.
 	 * @private
 	 */
-	onSelectionChange : function(selectionModel)
+	onSelectionChange: function(selectionModel)
 	{
 		var selections = selectionModel.getSelections();
 
@@ -355,7 +457,7 @@ Zarafa.advancesearch.ui.SearchGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessag
 	 * @param {Number} cursor the cursor contains the last index of record in grid.
 	 * @private
 	 */
-	onLiveScrollStart : function(cursor)
+	onLiveScrollStart: function(cursor)
 	{
 		this.model.startLiveScroll(cursor);
 	},
@@ -367,18 +469,20 @@ Zarafa.advancesearch.ui.SearchGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessag
 	 * @param {Ext.grid.GridView} gridView The GridView of the grid panel
 	 * @private
 	 */
-	onBeforeSort : function(gridView)
+	onBeforeSort: function(gridView)
 	{
-		// Only check when sorting on the second row, because the first row does not have sorting enabled
-		if ( gridView.activeHdIndex === 1 ){
+		var cm = this.getColumnModel();
+		var dataIndex = cm.getDataIndex(gridView.activeHdIndex);
+		// Apply sorting only on search date column, Because other columns doesn't support sorting.
+		if (dataIndex === 'searchdate') {
 
 			// Check if the total number of results is less then the maximum for which we will enable sorting
 			var store = this.getStore();
 			var recordTotalCount = store.getTotalCount();
 			if ( recordTotalCount >= this.sortableRecordsMax ){
 				Zarafa.common.dialogs.MessageBox.alert(
-					_('Sorting not possible'),
-					String.format(_('The search results could not be sorted because the number of items is higher than {0}. Narrow down your results by specifying your input.'), this.sortableRecordsMax));
+					_('Sorting tip'),
+					_('You can sort by date if you narrow down your search results. Enable filters or adjust your input.'));
 				return false;
 			}
 
@@ -388,10 +492,6 @@ Zarafa.advancesearch.ui.SearchGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessag
 			// Because we are sorting on the searchdate property and this property is added in the frontend
 			// we cannot do remote sorting and will change to local sorting
 			store.remoteSort = false;
-
-			// Reset the page size so the pagination toolbar (if shown) will show all results in one page.
-			var pagesToolbar = this.dialog.findByType('zarafa.paging')[0];
-			pagesToolbar.pageSize = this.sortableRecordsMax;
 
 			var loadedRecordCount = store.getCount();
 
@@ -406,7 +506,7 @@ Zarafa.advancesearch.ui.SearchGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessag
 
 				// Set the options for the load request
 				var options = {
-					actionType : Zarafa.core.Actions['list'],
+					actionType: Zarafa.core.Actions['list'],
 					folder: this.model.getFolders()[0],
 					params: {
 						restriction: {
@@ -430,7 +530,7 @@ Zarafa.advancesearch.ui.SearchGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessag
 	 * @param {Zarafa.core.ContextModel} model The model which fired the event
 	 * @private
 	 */
-	onSearchStop : function(model)
+	onSearchStop: function(model)
 	{
 		this.loadMask.hide();
 	},
@@ -456,8 +556,27 @@ Zarafa.advancesearch.ui.SearchGrid = Ext.extend(Zarafa.common.ui.grid.MapiMessag
 				cm.setColumnTooltip(0, _('Did you mean') + ' ' + encodedSuggestion);
 			}
 		}
-	}
+	},
 
+	/**
+	 * Event handler which is fired when the {@link Zarafa.core.Context} fires the
+	 * {@link Zarafa.core.Context#viewmodechange viewmodechange} event. This will check
+	 * where the preview panel is located, and if needed change the
+	 * {@link Ext.grid.Column columns} inside the {@link Ext.grid.ColumnModel ColumnModel}
+	 * of the {@link Zarafa.mail.ui.MailGrid MailGrid}. Either use the extended (and more flexible)
+	 * set or the more compact set.
+	 *
+	 * @param {Zarafa.core.Context} context The context which fired the event
+	 * @param {Zarafa.mail.data.ViewModes} newViewMode The new active mode
+	 * @param {Zarafa.mail.data.ViewModes} oldViewMode The previous mode
+	 * @private
+	 */
+	onContextViewModeChange: function(context, newViewMode, oldViewMode)
+	{
+		var compact = newViewMode === Zarafa.mail.data.ViewModes.RIGHT_PREVIEW;
+		this.getView().enableRowBody = compact;
+		this.getColumnModel().setCompactView(compact);
+	}
 });
 
 Ext.reg('zarafa.searchgrid', Zarafa.advancesearch.ui.SearchGrid);

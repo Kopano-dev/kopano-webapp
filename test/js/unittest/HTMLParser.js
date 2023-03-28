@@ -78,7 +78,7 @@ describe('HTMLParser', function() {
 			});
 
 			it('can block src attribute links with quotes', function() {
-				expect(blockExternalContent('<img alt=\'text\' src=\'http://www.google.com/images/icon.gif\' width=\'120\' height=\'500\' />')).toEqual('<img alt=\'text\' src=\'\' width=\'120\' height=\'500\' />');
+				expect(blockExternalContent('<img alt=\'text\' src=\'http://www.google.com/images/icon.gif\' width=\'120\' height=\'500\' />')).toEqual('<img alt=\'text\' src=\"\" width=\'120\' height=\'500\' />');
 			});
 
 			it('can block src attribute links with double quotes', function() {
@@ -293,6 +293,32 @@ describe('HTMLParser', function() {
 				const url = Zarafa.core.HTMLParser.inlineImgZarafaToOutlook('<img src="https://www.google.co.in/images/srpr/logo4w.png" title="" alt="" align="" border="0" height="50" hspace="0" vspace="0" width="50" />');
 				expect(url).toEqual('<img src="https://www.google.co.in/images/srpr/logo4w.png" title="" alt="" align="" border="0" height="50" hspace="0" vspace="0" width="50" />');
 			});
+		});
+	});
+
+	describe('Umlaut conversion to plaintext', function() {
+		it('can convert &agrave to à', function() {
+			expect(Zarafa.core.HTMLParser.convertHTMLToPlain('&agrave;')).toEqual('à');
+			expect(Zarafa.core.HTMLParser.convertHTMLToPlain('&#224;')).toEqual('à');
+		});
+
+		it('can convert &Auml to Ä', function() {
+			expect(Zarafa.core.HTMLParser.convertHTMLToPlain('&Auml;')).toEqual('Ä');
+			expect(Zarafa.core.HTMLParser.convertHTMLToPlain('&#196;')).toEqual('Ä');
+		});
+
+		it('can convert &Ouml to Ö', function() {
+			expect(Zarafa.core.HTMLParser.convertHTMLToPlain('&Ouml;')).toEqual('Ö');
+			expect(Zarafa.core.HTMLParser.convertHTMLToPlain('&#214;')).toEqual('Ö');
+		});
+
+		it('can convert &auml to ä', function() {
+			expect(Zarafa.core.HTMLParser.convertHTMLToPlain('&auml;')).toEqual('ä');
+			expect(Zarafa.core.HTMLParser.convertHTMLToPlain('&#228;')).toEqual('ä');
+		});
+
+		it('can convert &#039 to \'', function() {
+			expect(Zarafa.core.HTMLParser.convertHTMLToPlain('&#039;')).toEqual('\'');
 		});
 	});
 });

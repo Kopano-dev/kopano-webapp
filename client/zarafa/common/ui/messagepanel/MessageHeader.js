@@ -19,7 +19,7 @@ Zarafa.common.ui.messagepanel.MessageHeader = Ext.extend(Ext.Panel, {
 	 * has been {@link #update updated}. The arguments of this template will be the
 	 * {@link Zarafa.core.data.IPMRecord#data record.data} field.
 	 */
-	headerTemplate :
+	headerTemplate:
 		'<div class="preview-header-titlebox">' +
 			'<img src="' + Ext.BLANK_IMAGE_URL + '" class="preview-header-collapse preview-header-collapse-minus"/>' +
 			'<tpl if="!Ext.isEmpty(values.subject)">' +
@@ -33,7 +33,7 @@ Zarafa.common.ui.messagepanel.MessageHeader = Ext.extend(Ext.Panel, {
 	 * @property
 	 * @type Ext.Element
 	 */
-	collapseElement : undefined,
+	collapseElement: undefined,
 
 	/**
 	 * Used by {@link #onCollapseClick} to determine if a {@link #collapse} or {@link #expand} event is
@@ -42,13 +42,13 @@ Zarafa.common.ui.messagepanel.MessageHeader = Ext.extend(Ext.Panel, {
 	 * @property
 	 * @type Boolean
 	 */
-	sliding : false,
+	sliding: false,
 
 	/**
 	 * @constructor
 	 * @param {Object} config configuration object.
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -58,17 +58,17 @@ Zarafa.common.ui.messagepanel.MessageHeader = Ext.extend(Ext.Panel, {
 		config = Ext.applyIf(config, {
 			xtype: 'zarafa.messageheader',
 			autoScroll:true,
-			anchor : '100%',
-			cls : 'preview-header',
-			border : false,
+			anchor: '100%',
+			cls: 'preview-header',
+			border: false,
 			autoHeight: true,
-			collapsible : true,
-			hideCollapseTool : true,
-			header :  true,
-			headerCfg : {
-				cls : 'preview-header-title'
+			collapsible: true,
+			hideCollapseTool: true,
+			header: true,
+			headerCfg: {
+				cls: 'preview-header-title'
 			},
-			items : this.createHeaderInfo(config)
+			items: this.createHeaderInfo(config)
 		});
 
 		Zarafa.common.ui.messagepanel.MessageHeader.superclass.constructor.call(this, config);
@@ -89,46 +89,47 @@ Zarafa.common.ui.messagepanel.MessageHeader = Ext.extend(Ext.Panel, {
 	 * @param {Object} config configuration object.
 	 * @return {Array} an array of configuration objects.
 	 */
-	createHeaderInfo : function (config)
+	createHeaderInfo: function (config)
 	{
 		var items = [{
-			xtype : 'zarafa.extrainfolinks'
+			xtype: 'zarafa.extrainfolinks'
 		}];
 
 		// if owner component is "zarafa.taskpreviewpanel", which indicate that we have to
 		// load the task request record in preview panel so prepare header accordingly.
 		if (config.ownerCt.isXType('zarafa.taskpreviewpanel')) {
 			items.push({
-				xtype : 'zarafa.taskinfo'
+				xtype: 'zarafa.taskinfo'
 			});
 		} else {
+
 			items.push({
-					xtype : 'zarafa.sentinfolinks'
+					xtype: 'zarafa.sentinfolinks'
 				},{
-					xtype : 'zarafa.recipientlinks',
-					plugins : [ 'zarafa.recordcomponentupdaterplugin' ],
-					fieldLabel    : pgettext('mail.previewpanel', 'To'),
-					recipientType : Zarafa.core.mapi.RecipientType.MAPI_TO
+					xtype: 'zarafa.recipientlinks',
+					plugins: [ 'zarafa.recordcomponentupdaterplugin' ],
+					fieldLabel : pgettext('mail.previewpanel', 'To'),
+					recipientType: Zarafa.core.mapi.RecipientType.MAPI_TO
 				},{
-					xtype : 'zarafa.recipientlinks',
-					plugins : [ 'zarafa.recordcomponentupdaterplugin' ],
-					fieldLabel    : pgettext('mail.previewpanel', 'Cc'),
-					recipientType : Zarafa.core.mapi.RecipientType.MAPI_CC
+					xtype: 'zarafa.recipientlinks',
+					plugins: [ 'zarafa.recordcomponentupdaterplugin' ],
+					fieldLabel : pgettext('mail.previewpanel', 'Cc'),
+					recipientType: Zarafa.core.mapi.RecipientType.MAPI_CC
 				},{
-					xtype : 'zarafa.recipientlinks',
-					plugins : [ 'zarafa.recordcomponentupdaterplugin' ],
-					fieldLabel    : pgettext('mail.previewpanel', 'Bcc'),
-					recipientType : Zarafa.core.mapi.RecipientType.MAPI_BCC
+					xtype: 'zarafa.recipientlinks',
+					plugins: [ 'zarafa.recordcomponentupdaterplugin' ],
+					fieldLabel : pgettext('mail.previewpanel', 'Bcc'),
+					recipientType: Zarafa.core.mapi.RecipientType.MAPI_BCC,
 				});
 		}
 		items.push({
-			xtype : 'zarafa.attachmentlinks',
-			plugins : [ 'zarafa.recordcomponentupdaterplugin' ],
-			fieldLabel    : pgettext('mail.previewpanel', 'Attachments')
+			xtype: 'zarafa.attachmentlinks',
+			plugins: [ 'zarafa.recordcomponentupdaterplugin' ],
+			fieldLabel : pgettext('mail.previewpanel', 'Attachments')
 		},{
-			xtype : 'zarafa.categorylinks',
-			plugins : [ 'zarafa.recordcomponentupdaterplugin' ],
-			fieldLabel    : pgettext('mail.previewpanel', 'Categories')
+			xtype: 'zarafa.categorylinks',
+			plugins: [ 'zarafa.recordcomponentupdaterplugin' ],
+			fieldLabel : pgettext('mail.previewpanel', 'Categories')
 		}, container.populateInsertionPoint('previewpanel.toolbar.detaillinks', this));
 		return items;
 	},
@@ -137,7 +138,7 @@ Zarafa.common.ui.messagepanel.MessageHeader = Ext.extend(Ext.Panel, {
 	 * Called when the container is being rendered.
 	 * @private
 	 */
-	onRender : function()
+	onRender: function()
 	{
 		Zarafa.common.ui.messagepanel.MessageHeader.superclass.onRender.apply(this, arguments);
 
@@ -158,7 +159,7 @@ Zarafa.common.ui.messagepanel.MessageHeader = Ext.extend(Ext.Panel, {
 	 */
 	update: function(record, contentReset)
 	{
-		if (Ext.isDefined(this.header)) {
+		if (Ext.isDefined(this.header) && Ext.isDefined(this.header.dom)) {
 			// If this is the initial load, then we must ensure that the panel is expanded.
 			if (contentReset === true && this.collapseElement && (this.collapsed === true || this.sliding === true)) {
 				// When we are currently sliding, we cannot call the expand function now,
@@ -201,7 +202,7 @@ Zarafa.common.ui.messagepanel.MessageHeader = Ext.extend(Ext.Panel, {
 	 * @param {Ext.Event} event The event object
 	 * @private
 	 */
-	onCollapseClick : function(event)
+	onCollapseClick: function(event)
 	{
 		// Make sure the event was triggered for the collapseEvent which we want
 		// to listen to. Should always be true, but better be safe...
@@ -227,7 +228,7 @@ Zarafa.common.ui.messagepanel.MessageHeader = Ext.extend(Ext.Panel, {
 	 * {@link #sliding} boolean to allow for new animations to be fired.
 	 * @private
 	 */
-	onAfterSlide : function()
+	onAfterSlide: function()
 	{
 		this.sliding = false;
 	}

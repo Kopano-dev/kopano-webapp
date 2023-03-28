@@ -45,16 +45,32 @@
 		return $favicon;
 	}
 
+	if (isset($_GET['deskapp'])) {
+		include('server/includes/templates/deskapp.php');
+		die();
+	}
+
+	if (isset($_GET['oidc-silent-refresh'])) {
+		include('server/includes/templates/oidc-silent-refresh.php');
+		die();
+	}
+
+	// Add extra header for deskapp to indicate that OIDC settings are configured.
+	if (OIDC_ISS !== "") {
+		header("X-Kopano-OIDCAuth:true");
+	}
+
 	// If the user wants to logout (and is not using single-signon)
 	// then destroy the session and redirect to this page, so the login page
 	// will be shown
-	if ( isset($_GET['logout']) && !WebAppAuthentication::isUsingSingleSignOn() ){
+	if ( isset($_GET['logout']) && !WebAppAuthentication::isUsingSingleSignOn() ) {
 
 		// GET variable user will be set when the user was logged out because of session timeout
 		// or because he logged out in another window.
 		$username = sanitizeGetValue('user', '', USERNAME_REGEX);
 		$webappSession->destroy();
-		header('Location: ' . dirname($_SERVER['PHP_SELF']) . ($username?'?user='.rawurlencode($username):''), true, 303);
+		$location =  rtrim(dirname($_SERVER['PHP_SELF']), '/').'/';
+		header('Location: ' . $location . ($username?'?user='.rawurlencode($username):''), true, 303);
 		die();
 	}
 
@@ -72,17 +88,26 @@
 		$_SESSION['continue'] = $_GET['continue'];
 	}
 
+	$webappTitle = defined('WEBAPP_TITLE') && WEBAPP_TITLE ? WEBAPP_TITLE : 'Kopano WebApp';
+
+	if ( isset($_GET['oidclogin']) ) {
+		$theme = Theming::getActiveTheme();
+		$favicon = getFavicon($theme);
+		// Redirect to interactive sign in page.
+		include(BASE_PATH . 'server/includes/templates/oidc-login.php');
+		die();
+	}
+
 	// Try to authenticate the user
 	WebAppAuthentication::authenticate();
 
-	$webappTitle = defined('WEBAPP_TITLE') && WEBAPP_TITLE ? WEBAPP_TITLE : 'Kopano WebApp';
-
 	// If we could not authenticate the user, we will show the login page
-	if ( !WebAppAuthentication::isAuthenticated() ){
+	if ( !WebAppAuthentication::isAuthenticated() ) {
 
 		// Get language from the cookie, or from the language that is set by the admin
 		$Language = new Language();
 		$lang = isset($_COOKIE['lang']) ? $_COOKIE['lang'] : LANG;
+		$lang = $Language->resolveLanguage($lang);
 		$Language->setLanguage($lang);
 
 		// If GET parameter 'load' is defined, we defer handling to the load.php script
@@ -94,15 +119,20 @@
 		// Set some template variables for the login page
 		$branch = DEBUG_LOADER===LOAD_SOURCE ? gitversion() : '';
 		$version = 'WebApp ' . trim(file_get_contents('version'));
-		$zcpversion = 'Kopano Core' . ' ' . phpversion('mapi');
 		$user = sanitizeGetValue('user', '', USERNAME_REGEX);
 
 		$url = '?logon';
 
-		if ( isset($_GET["logout"]) && $_GET["logout"]=="auto" ){
+		if ( isset($_GET["logout"]) && $_GET["logout"]=="auto" ) {
 			$error = _("You have been automatically logged out");
 		} else {
 			$error = WebAppAuthentication::getErrorMessage();
+			if(empty($error) && useSecureCookies() && getRequestProtocol() == 'http') {
+				header("HTTP/1.0 400 Bad Request");
+				include(BASE_PATH . 'server/includes/templates/BadRequest.php');
+				error_log("Rejected insecure request as configuration for 'SECURE_COOKIES' is true.");
+				die();
+			}
 		}
 
 		// If a username was passed as GET parameter we will prefill the username input
@@ -110,7 +140,7 @@
 		$user = isset($_GET['user']) ? htmlentities($_GET['user']) : '';
 
 		// Lets add a header when login failed (DeskApp needs it to identify failed login attempts)
-		if ( WebAppAuthentication::getErrorCode() !== NOERROR ){
+		if ( WebAppAuthentication::getErrorCode() !== NOERROR ) {
 			header("X-Zarafa-Hresult: " . get_mapi_error_name(WebAppAuthentication::getErrorCode()));
 		}
 
@@ -119,7 +149,11 @@
 		$favicon = getFavicon(Theming::getActiveTheme());
 
 		// Include the login template
-		include(BASE_PATH . 'server/includes/templates/login.php');
+		if (OIDC_ISS === "") {
+			include(BASE_PATH . 'server/includes/templates/login.php');
+		} else {
+			include(BASE_PATH . 'server/includes/templates/oidc.php');
+		}
 		die();
 	}
 
@@ -127,15 +161,15 @@
 
 	// Check if we need to redirect the user after login (e.g. when using the WebApp
 	// to login to another application with OIDC).
-	if ( isset($_SESSION['continue']) ){
+	if ( isset($_SESSION['continue']) ) {
 		$continue = $_SESSION['continue'];
 		unset($_SESSION['continue']);
 
-		if ( isContinueRedirectAllowed($continue) ){
+		if ( isContinueRedirectAllowed($continue) ) {
 			// Add the parameter 'wacontinue' to make sure we will not keep redirecting
 			// to ourself.
 			$continue = explode('#', $continue);
-			if ( strpos($continue[0], '?') === false ){
+			if ( strpos($continue[0], '?') === false ) {
 				$continue[0] .= '?';
 			} else {
 				$continue[0] .= '&';
@@ -152,8 +186,9 @@
 	// we will redirect to make sure that a browser refresh will not post
 	// the credentials again, and that the url data is taken away from the
 	// url in the address bar (so a browser refresh will not pass them again)
-	if ( WebAppAuthentication::isUsingLoginForm() || isset($_GET['action']) && !empty($_GET['action']) ){
-		header('Location: ' . dirname($_SERVER['PHP_SELF']) , true, 303);
+	if ( WebAppAuthentication::isUsingLoginForm() || isset($_GET['action']) && !empty($_GET['action']) ) {
+		$location =  rtrim(dirname($_SERVER['PHP_SELF']), '/').'/';
+		header('Location: ' . $location , true, 303);
 		die();
 	}
 
@@ -165,7 +200,13 @@
 	// Instantiate Plugin Manager and init the plugins (btw: globals suck)
 	$GLOBALS['PluginManager'] = new PluginManager(ENABLE_PLUGINS);
 	$GLOBALS['PluginManager']->detectPlugins(DISABLED_PLUGINS_LIST);
+
+	// Initialize plugins and prevent any output which might be written as
+	// plugins might be uncleanly output white-space and other stuff. We must
+	// not allow this here as it can destroy the response data.
+	ob_start();
 	$GLOBALS['PluginManager']->initPlugins(DEBUG_LOADER);
+	ob_end_clean();
 
 	$Language = new Language();
 
@@ -175,10 +216,43 @@
 	// Create global operations object
 	$GLOBALS["operations"] = new Operations();
 
+	// When OIDC is configured, check default store is
+	// accessible by the available session object. In case
+	// of failure redirect to oidc.php template page. for more
+	// refer KW-3598.
+	if (OIDC_ISS !== "") {
+		if (WebAppAuthentication::isDefaultStoreAccessible() === false) {
+			include(BASE_PATH . 'server/includes/templates/oidc.php');
+			die();
+		}
+	}
+
+	// If webapp feature is not enabled for the user,
+	// we will show the login page with appropriated error message.
+	if($GLOBALS['mapisession']->isWebappDisableAsFeature()) {
+		header("X-Zarafa-Hresult: " . get_mapi_error_name(MAPI_E_WEBAPP_FEATURE_DISABLED));
+
+		$error = _("Sorry, access to WebApp is not available with this user account. Please contact your system administrator.");
+		// Set some template variables for the login page
+		$user = sanitizeGetValue('user', '', USERNAME_REGEX);
+
+		$url = '?logon';
+		// Set a template variable for the favicon of the login, welcome, and webclient page
+		$theme = Theming::getActiveTheme();
+		$favicon = getFavicon(Theming::getActiveTheme());
+		$webappSession->destroy();
+		// Include the login template
+		include(BASE_PATH . 'server/includes/templates/login.php');
+		die();
+	}
+
 	// Set session settings (language & style)
-	foreach($GLOBALS["settings"]->getSessionSettings($Language) as $key=>$value){
+	foreach($GLOBALS["settings"]->getSessionSettings($Language) as $key=>$value) {
 		$_SESSION[$key] = $value;
 	}
+
+	// close the PHP session, to not block other requests going through index.php
+	session_write_close();
 
 	// Get language from the request, or the session, or the user settings, or the config
 	if (isset($_REQUEST["language"]) && $Language->is_language($_REQUEST["language"])) {
@@ -196,7 +270,7 @@
 	}
 
 	$Language->setLanguage($lang);
-	setcookie('lang', $lang, 0, '/', '', isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] ? true : false);
+	setcookie('lang', $lang, 0, '/', '', getRequestProtocol() === 'https');
 
 	// add extra header
 	header("X-Zarafa: " . trim(file_get_contents('version')));
@@ -204,6 +278,9 @@
 	// Set a template variable for the favicon of the login, welcome, and webclient page
 	$theme = Theming::getActiveTheme();
 	$favicon = getFavicon(Theming::getActiveTheme());
+	$hideFavorites = $GLOBALS["settings"]->get("zarafa/v1/contexts/hierarchy/hide_favorites") ? 'hideFavorites' : '';
+	$scrollFavorites = $GLOBALS["settings"]->get("zarafa/v1/contexts/hierarchy/scroll_favorites") ? 'scrollFavorites' : '';
+	$unreadBorders = $GLOBALS["settings"]->get("zarafa/v1/main/unread_borders") ? 'k-unreadborders' : '';
 
 	// If GET parameter 'load' is defined, we defer handling to the load.php script
 	if ( isset($_GET['load']) ) {
@@ -211,7 +288,7 @@
 		die();
 	}
 
-	if (!DISABLE_WELCOME_SCREEN && $GLOBALS["settings"]->get("zarafa/v1/main/show_welcome") !== false) {
+	if (ENABLE_WELCOME_SCREEN && $GLOBALS["settings"]->get("zarafa/v1/main/show_welcome") !== false) {
 
 		// These hooks are defined twice (also when there is a "load" argument supplied)
 		$GLOBALS['PluginManager']->triggerHook("server.index.load.welcome.before");
@@ -219,8 +296,8 @@
 		$GLOBALS['PluginManager']->triggerHook("server.index.load.welcome.after");
 	} else {
 
-		// Set the show_welcome to true, so that when the admin is changing the
-		// DISABLE_WELCOME_SCREEN option to false after some time, the users who are already
+		// Set the show_welcome to false, so that when the admin is changing the
+		// ENABLE_WELCOME_SCREEN option to false after some time, the users who are already
 		// using the WebApp are not bothered with the Welcome Screen.
 		$GLOBALS["settings"]->set("zarafa/v1/main/show_welcome", false);
 
@@ -235,7 +312,7 @@
 		// Fetch the hierarchy state cache for unread counters notifications for subfolders
 		$counterState = new State('counters_sessiondata');
 		$counterState->open();
-		$counterState->write("sessionData", update_hierarchy_counters());
+		$counterState->write("sessionData", updateHierarchyCounters());
 		$counterState->close();
 
 		// clean search folders

@@ -2,7 +2,7 @@
 	var checkPerc = /^(100?|\d?\d)?%?$/;
 	var checkNaturalInteger = /^[1-9]\d*$/i;
 	// Override regex to allow TLD with max length of 10 characters
-	var email = /^(\w+)([\-+.\'][\w]+)*@(\w[\-\w]*\.){1,5}([A-Za-z]){2,10}$/;
+	var email = /^(\w+)([\-+.\']+[\w]+)*@(\w[\-\w]*\.){1,5}([A-Za-z]){2,10}$/;
 
 	/**
 	 * @class Ext.form.VTypes
@@ -18,7 +18,7 @@
 		 * @return {Boolean} return true if given percentage value matches
 		 * with regular expression else return false.
 		 */
-		percentage : function(perc) {
+		percentage: function(perc) {
 			return checkPerc.test(perc);
 		},
 
@@ -50,7 +50,7 @@
 		 * @param {String} value The email address
 		 * @return {Boolean} true if the RegExp test passed, and false if not.
 		 */
-		'email' : function(v){
+		'email': function(v) {
 		    return email.test(v);
 		}
 	});

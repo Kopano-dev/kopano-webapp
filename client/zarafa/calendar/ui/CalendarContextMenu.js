@@ -37,7 +37,7 @@ Zarafa.calendar.ui.CalendarContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditio
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -69,83 +69,83 @@ Zarafa.calendar.ui.CalendarContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditio
 	 * @return {Zarafa.core.ui.menu.ConditionalItem[]} The list of Action context menu items
 	 * @private
 	 */
-	createContextActionItems : function()
+	createContextActionItems: function()
 	{
 		return [{
-			xtype : 'zarafa.conditionalitem',
-			iconCls : 'icon_create_appointment',
-			text : _('New Appointment'),
-			beforeShow : this.beforeShowPhantom,
+			xtype: 'zarafa.conditionalitem',
+			iconCls: 'icon_new_appointment',
+			text: _('New Appointment'),
+			beforeShow: this.beforeShowPhantom,
 			meetingRequest: false,
-			handler : this.onCreate,
+			handler: this.onCreate,
 			scope: this
 		},{
-			xtype : 'zarafa.conditionalitem',
-			iconCls : 'icon_create_meeting_request',
-			text : _('New Meeting Request'),
-			beforeShow : this.beforeShowPhantom,
+			xtype: 'zarafa.conditionalitem',
+			iconCls: 'icon_new_meeting_request',
+			text: _('New Meeting Request'),
+			beforeShow: this.beforeShowPhantom,
 			meetingRequest: true,
-			handler : this.onCreate,
+			handler: this.onCreate,
 			scope: this
 		},{
-			xtype : 'zarafa.conditionalitem',
-			iconCls : 'icon_open',
-			text : _('Open'),
-			beforeShow : this.beforeShowNonPhantom,
-			handler : this.onOpen,
+			xtype: 'zarafa.conditionalitem',
+			iconCls: 'icon_open',
+			text: _('Open'),
+			beforeShow: this.beforeShowNonPhantom,
+			handler: this.onOpen,
 			scope: this
 		},{
-			xtype : 'zarafa.conditionalitem',
-			text : _('Copy/Move'),
-			iconCls : 'icon_copy',
-			beforeShow : this.beforeShowNonPhantom,
-			hideOnDisabled : false,
+			xtype: 'zarafa.conditionalitem',
+			text: _('Copy/Move'),
+			iconCls: 'icon_copy',
+			beforeShow: this.beforeShowNonPhantom,
+			hideOnDisabled: false,
 			handler: this.onCopyMove,
 			scope: this
 		},{
-			xtype : 'zarafa.conditionalitem',
-			iconCls : 'icon_delete',
-			text : _('Delete'),
-			beforeShow : this.beforeShowNonPhantom,
-			handler : this.onDelete,
+			xtype: 'zarafa.conditionalitem',
+			iconCls: 'icon_delete',
+			text: _('Delete'),
+			beforeShow: this.beforeShowNonPhantom,
+			handler: this.onDelete,
 			scope: this
 		},{
 			xtype: 'menuseparator'
 		},{
-			xtype : 'zarafa.conditionalitem',
-			ref : 'acceptButton',
+			xtype: 'zarafa.conditionalitem',
+			ref: 'acceptButton',
 			text: _('Accept'),
-			hidden : true,
+			hidden: true,
 			iconCls: 'icon_calendar_appt_accept',
-			beforeShow : this.beforeShowOnMeeting,
-			responseStatus : Zarafa.core.mapi.ResponseStatus.RESPONSE_ACCEPTED,
+			beforeShow: this.beforeShowOnMeeting,
+			responseStatus: Zarafa.core.mapi.ResponseStatus.RESPONSE_ACCEPTED,
 			scope: this
 		},{
-			xtype : 'zarafa.conditionalitem',
-			ref : 'tentativeButton',
-			text : _('Tentative'),
-			hidden : true,
-			iconCls : 'icon_appt_meeting_tentative',
-			beforeShow : this.beforeShowOnMeeting,
-			responseStatus : Zarafa.core.mapi.ResponseStatus.RESPONSE_TENTATIVE,
+			xtype: 'zarafa.conditionalitem',
+			ref: 'tentativeButton',
+			text: _('Tentative'),
+			hidden: true,
+			iconCls: 'icon_calendar_appt_tentative',
+			beforeShow: this.beforeShowOnMeeting,
+			responseStatus: Zarafa.core.mapi.ResponseStatus.RESPONSE_TENTATIVE,
 			scope: this
 		},{
-			xtype : 'zarafa.conditionalitem',
-			ref : 'declineButton',
-			text : _('Decline'),
+			xtype: 'zarafa.conditionalitem',
+			ref: 'declineButton',
+			text: _('Decline'),
 			iconCls: 'icon_calendar_appt_cancelled',
-			hidden : true,
-			beforeShow : this.beforeShowOnMeeting,
-			responseStatus : Zarafa.core.mapi.ResponseStatus.RESPONSE_DECLINED,
+			hidden: true,
+			beforeShow: this.beforeShowOnMeeting,
+			responseStatus: Zarafa.core.mapi.ResponseStatus.RESPONSE_DECLINED,
 			scope: this
 		},{
-			xtype : 'zarafa.conditionalitem',
-			ref : 'proposeNewTimeButton',
-			text : _('Propose New Time'),
-			proposeNewTime : true,
-			hidden : true,
-			iconCls : 'icon_calendar_appt_newtime',
-			beforeShow : this.beforeShowOnMeeting,
+			xtype: 'zarafa.conditionalitem',
+			ref: 'proposeNewTimeButton',
+			text: _('Propose New Time'),
+			proposeNewTime: true,
+			hidden: true,
+			iconCls: 'icon_calendar_appt_newtime',
+			beforeShow: this.beforeShowOnMeeting,
 			scope: this
 		}];
 	},
@@ -156,29 +156,63 @@ Zarafa.calendar.ui.CalendarContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditio
 	 * @return {Zarafa.core.ui.menu.ConditionalItem[]} The list of Option context menu items
 	 * @private
 	 */
-	createContextOptionsItems : function(records)
+	createContextOptionsItems: function(records)
 	{
 		return [{
-			xtype : 'zarafa.conditionalitem',
+			xtype: 'zarafa.conditionalitem',
 			cls: 'k-unclickable',
-			iconCls : 'icon_categories',
-			text : _('Categories'),
+			iconCls: 'icon_categories',
+			text: _('Categories'),
 			hideOnClick: false,
-			beforeShow : this.beforeShowNonPhantom,
-			menu: {
-				xtype: 'zarafa.categoriescontextmenu',
-				records: records
-			}
+			beforeShow: this.beforeShowNonPhantom,
+			menu: this.createSubCategories(records)
 		},{
-			xtype : 'zarafa.conditionalitem',
-			iconCls : 'icon_busystatus',
-			text : _('Show as'),
-			beforeShow : this.beforeShowNonPhantom,
-			menu : {
+			xtype: 'zarafa.conditionalitem',
+			iconCls: 'icon_busystatus',
+			text: _('Show as'),
+			beforeShow: this.beforeShowNonPhantom,
+			menu: {
 				xtype: 'zarafa.conditionalmenu',
 				items: this.createBusyStatusItems()
 			}
+		},{
+			xtype: 'zarafa.conditionalitem',
+			text: _('Send to...'),
+			iconCls: 'icon_embedded_attachment',
+			singleSelectOnly: true,
+			beforeShow: this.beforeShowItem,
+			responseMode: Zarafa.mail.data.ActionTypes.FORWARD_ATTACH,
+			handler: this.onContextItemResponse,
+			scope: this
+		},{
+			xtype: 'zarafa.conditionalitem',
+			text: _('Export as'),
+			cls: 'k-unclickable',
+			iconCls: 'icon_export',
+			hideOnClick: false,
+			beforeShow: this.beforeShowItem,
+			scope: this,
+			menu: {
+				xtype: 'zarafa.exportitemcontextmenu',
+				records: records
+			}
 		}];
+	},
+
+	/**
+	 * Create the sub context menu items for categories only if records are supplied.
+	 * @param {Zarafa.core.data.IPMRecord[]} records The records on which this menu acts
+	 * @return {Object} The object of Options containing {@link Zarafa.common.categories.ui.CategoriesContextMenu}
+	 * @private
+	 */
+	createSubCategories: function(records)
+	{
+		if (records) {
+			return {
+				xtype: 'zarafa.categoriescontextmenu',
+				records: records
+			};
+		}
 	},
 
 	/**
@@ -186,35 +220,35 @@ Zarafa.calendar.ui.CalendarContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditio
 	 * @return {Zarafa.core.ui.menu.ConditionalItem[]} The list of Busy status context submenu items
 	 * @private
 	 */
-	createBusyStatusItems : function()
+	createBusyStatusItems: function()
 	{
 		return [{
-			xtype : 'zarafa.conditionalitem',
-			iconCls : 'icon_busystatus_free',
-			text : Zarafa.core.mapi.BusyStatus.getDisplayName(Zarafa.core.mapi.BusyStatus.FREE),
-			busyStatus : Zarafa.core.mapi.BusyStatus.FREE,
-			handler : this.onSetBusyStatus,
+			xtype: 'zarafa.conditionalitem',
+			iconCls: 'icon_busystatus_free',
+			text: Zarafa.core.mapi.BusyStatus.getDisplayName(Zarafa.core.mapi.BusyStatus.FREE),
+			busyStatus: Zarafa.core.mapi.BusyStatus.FREE,
+			handler: this.onSetBusyStatus,
 			scope: this
 		},{
-			xtype : 'zarafa.conditionalitem',
-			iconCls : 'icon_busystatus_tentative',
-			text : Zarafa.core.mapi.BusyStatus.getDisplayName(Zarafa.core.mapi.BusyStatus.TENTATIVE),
+			xtype: 'zarafa.conditionalitem',
+			iconCls: 'icon_busystatus_tentative',
+			text: Zarafa.core.mapi.BusyStatus.getDisplayName(Zarafa.core.mapi.BusyStatus.TENTATIVE),
 			busyStatus: Zarafa.core.mapi.BusyStatus.TENTATIVE,
-			handler : this.onSetBusyStatus,
+			handler: this.onSetBusyStatus,
 			scope: this
 		},{
-			xtype : 'zarafa.conditionalitem',
-			iconCls : 'icon_busystatus_busy',
-			text : Zarafa.core.mapi.BusyStatus.getDisplayName(Zarafa.core.mapi.BusyStatus.BUSY),
+			xtype: 'zarafa.conditionalitem',
+			iconCls: 'icon_busystatus_busy',
+			text: Zarafa.core.mapi.BusyStatus.getDisplayName(Zarafa.core.mapi.BusyStatus.BUSY),
 			busyStatus: Zarafa.core.mapi.BusyStatus.BUSY,
-			handler : this.onSetBusyStatus,
+			handler: this.onSetBusyStatus,
 			scope: this
 		},{
-			xtype : 'zarafa.conditionalitem',
-			iconCls : 'icon_busystatus_outofoffice',
-			text : Zarafa.core.mapi.BusyStatus.getDisplayName(Zarafa.core.mapi.BusyStatus.OUTOFOFFICE),
+			xtype: 'zarafa.conditionalitem',
+			iconCls: 'icon_busystatus_outofoffice',
+			text: Zarafa.core.mapi.BusyStatus.getDisplayName(Zarafa.core.mapi.BusyStatus.OUTOFOFFICE),
 			busyStatus: Zarafa.core.mapi.BusyStatus.OUTOFOFFICE,
-			handler : this.onSetBusyStatus,
+			handler: this.onSetBusyStatus,
 			scope: this
 		}];
 	},
@@ -224,7 +258,7 @@ Zarafa.calendar.ui.CalendarContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditio
 	 * or moving the currently selected appointment/meeting requests.
 	 * @private
 	 */
-	onCopyMove : function()
+	onCopyMove: function()
 	{
 		Zarafa.common.Actions.openCopyMoveContent(this.records);
 	},
@@ -236,12 +270,14 @@ Zarafa.calendar.ui.CalendarContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditio
 	 * menu is operating.
 	 * @private
 	 */
-	beforeShowPhantom : function(item, records)
+	beforeShowPhantom: function(item, records)
 	{
 		var hasNonPhantoms = false;
-		for (var i = 0, len = records.length; i < len; i++) {
-			if (records[i].phantom === false) {
-				hasNonPhantoms = true;
+		if (records) {
+			for (var i = 0, len = records.length; i < len; i++) {
+				if (records[i].phantom === false) {
+					hasNonPhantoms = true;
+				}
 			}
 		}
 		item.setVisible(!hasNonPhantoms);
@@ -254,15 +290,35 @@ Zarafa.calendar.ui.CalendarContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditio
 	 * menu is operating.
 	 * @private
 	 */
-	beforeShowNonPhantom : function(item, records)
+	beforeShowNonPhantom: function(item, records)
 	{
-		var hasPhantoms = false;
-		for (var i = 0, len = records.length; i < len; i++) {
-			if (records[i].phantom === true) {
-				hasPhantoms = true;
-			}
+		if (!Ext.isEmpty(records)) {
+			item.setVisible(!records.some(function (record) {
+				return record.phantom === true;
+			}));
+		} else {
+			item.setVisible(false);
 		}
-		item.setVisible(!hasPhantoms);
+	},
+
+	/**
+	 * Makes the given menuitem invisible when any of the records has read
+	 * only access or is a phantom record.
+	 *
+	 * @param {Zarafa.core.ui.menu.MenuItem} item The item which is being tested
+	 * @param {Zarafa.core.data.MAPIRecord[]} records The records on which this context
+	 * menu is operating.
+	 * @private
+	 */
+	beforeShowItem: function(item, records)
+	{
+		if(!Ext.isEmpty(records)) {
+			item.setVisible(!records.some(function (record) {
+				return record.get('access') === Zarafa.core.mapi.Access.ACCESS_READ || record.phantom === true;
+			}));
+		} else {
+			item.setVisible(false);
+		}
 	},
 
 	/**
@@ -272,10 +328,10 @@ Zarafa.calendar.ui.CalendarContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditio
 	 * menu is operating.
 	 * @private
 	 */
-	beforeShowOnMeeting : function(item, records)
+	beforeShowOnMeeting: function(item, records)
 	{
 		// If user has select more then one record then we should not have to show the menu items.
-		if(records.length > 1){
+		if(!records || records.length > 1){
 			return;
 		}
 
@@ -303,33 +359,33 @@ Zarafa.calendar.ui.CalendarContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditio
 			// of recurring meeting request.
 			item.menu = new Ext.menu.Menu({
 				items: [{
-					xtype : 'zarafa.conditionalitem',
-					text : item.text +' '+ _('Occurrence'),
-					responseStatus : item.responseStatus,
-					beforeShow : function(item, records) {
+					xtype: 'zarafa.conditionalitem',
+					text: item.text +' '+ _('Occurrence'),
+					responseStatus: item.responseStatus,
+					beforeShow: function(item, records) {
 						if(isProposeButton) {
 							item.setHandler(this.openProposeNewTimeContent, this);
 						} else {
 							item.setHandler(this.openSendConfirmationContent, this);
 						}
 					},
-					scope : this
+					scope: this
 				},{
-					xtype : 'zarafa.conditionalitem',
-					text : item.text +' '+ _('Series'),
-					name : 'recurring',
-					beforeShow : function(item, records) {
+					xtype: 'zarafa.conditionalitem',
+					text: item.text +' '+ _('Series'),
+					name: 'recurring',
+					beforeShow: function(item, records) {
 						if(isProposeButton) {
 							item.setVisible(false);
 						} else {
 							item.setHandler(this.openSendConfirmationContent, this);
 						}
 					},
-					responseStatus : item.responseStatus,
-					isProposeButton : isProposeButton,
-					scope : this
+					responseStatus: item.responseStatus,
+					isProposeButton: isProposeButton,
+					scope: this
 				}],
-				scope : this
+				scope: this
 			});
 		}
 	},
@@ -338,7 +394,7 @@ Zarafa.calendar.ui.CalendarContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditio
 	 * Event handler for the mouseover event of this menu. Will make sure that any
 	 * open tooltip is closed.
 	 */
-	onMouseover : function()
+	onMouseover: function()
 	{
 		// In the list view there is no calendarPanel (and no tooltip)
 		if ( this.calendarPanel ){
@@ -352,7 +408,7 @@ Zarafa.calendar.ui.CalendarContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditio
 	 * @param {EventObject} eventObject The click event object
 	 * @private
 	 */
-	openProposeNewTimeContent : function(button, eventObject)
+	openProposeNewTimeContent: function(button, eventObject)
 	{
 		var record;
 		if(Array.isArray(this.records)) {
@@ -361,9 +417,9 @@ Zarafa.calendar.ui.CalendarContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditio
 
 		if (record.get('appointment_not_found')) {
 			Ext.MessageBox.show({
-				title: _('Kopano WebApp'),
-				msg :_('This appointment has been moved or deleted, do you want to continue?'),
-				icon: Ext.MessageBox.WARNING,
+				title: _('Appointment not found'),
+				msg:_('This appointment has been moved or deleted, do you want to continue?'),
+				cls: Ext.MessageBox.WARNING_CLS,
 				record: record,
 				fn: this.onProposeNewTimeAppointmentNotFoundConfirmation.createDelegate(this, [record], 1),
 				scope: this,
@@ -381,7 +437,7 @@ Zarafa.calendar.ui.CalendarContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditio
 	 * @param {Zarafa.core.data.MAPIRecord} record The record on which this context
 	 * @private
 	 */
-	onProposeNewTimeAppointmentNotFoundConfirmation : function(button, record)
+	onProposeNewTimeAppointmentNotFoundConfirmation: function(button, record)
 	{
 		if (button === 'yes') {
 			Zarafa.calendar.Actions.openProposeNewTimeContent(record);
@@ -395,7 +451,7 @@ Zarafa.calendar.ui.CalendarContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditio
 	 * @param {EventObject} eventObject The click event object.
 	 * @private
 	 */
-	openSendConfirmationContent : function(button, eventObject)
+	openSendConfirmationContent: function(button, eventObject)
 	{
 		var record;
 		if(Array.isArray(this.records)) {
@@ -406,9 +462,9 @@ Zarafa.calendar.ui.CalendarContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditio
 
 		if (record.get('appointment_not_found')) {
 			Ext.MessageBox.show({
-				title: _('Kopano WebApp'),
-				msg :_('This appointment has been moved or deleted, do you want to continue?'),
-				icon: Ext.MessageBox.WARNING,
+				title: _('Appointment not found'),
+				msg:_('This appointment has been moved or deleted, do you want to continue?'),
+				cls: Ext.MessageBox.WARNING_CLS,
 				record: record,
 				fn: this.onRespondAppointmentNotFoundConfirmation.createDelegate(this, [ button.responseStatus, record ], 1),
 				scope: this,
@@ -416,8 +472,8 @@ Zarafa.calendar.ui.CalendarContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditio
 			});
 		} else {
 			Zarafa.calendar.Actions.openSendConfirmationContent(record, {
-					responseType : button.responseStatus,
-					buttonName : button.name
+					responseType: button.responseStatus,
+					buttonName: button.name
 			});
 		}
 	},
@@ -430,10 +486,10 @@ Zarafa.calendar.ui.CalendarContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditio
 	 * @param {Zarafa.core.data.MAPIRecord} record The record on which this context
 	 * @private
 	 */
-	onRespondAppointmentNotFoundConfirmation : function(button, responseType, record)
+	onRespondAppointmentNotFoundConfirmation: function(button, responseType, record)
 	{
 		if (button === 'yes') {
-			Zarafa.calendar.Actions.openSendConfirmationContent(record, { responseType : responseType });
+			Zarafa.calendar.Actions.openSendConfirmationContent(record, { responseType: responseType });
 		}
 	},
 
@@ -441,7 +497,7 @@ Zarafa.calendar.ui.CalendarContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditio
 	 * Open the categories dialog for all selected records
 	 * @param {Zarafa.core.ui.menu.ConditionalItem} button The selected menuitem
 	 */
-	onCategories : function(button)
+	onCategories: function(button)
 	{
 		Zarafa.common.Actions.openCategoriesContent(this.records);
 	},
@@ -450,7 +506,7 @@ Zarafa.calendar.ui.CalendarContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditio
 	 * Set the busy state for all selected records
 	 * @param {Zarafa.core.ui.menu.ConditionalItem} button The selected menuitem
 	 */
-	onSetBusyStatus : function(button)
+	onSetBusyStatus: function(button)
 	{
 		var store;
 		var records = this.records;
@@ -467,7 +523,7 @@ Zarafa.calendar.ui.CalendarContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditio
 	 * Open the selected record
 	 * @param {Zarafa.core.ui.menu.ConditionalItem} button The selected menuitem
 	 */
-	onOpen : function(open)
+	onOpen: function(open)
 	{
 		Zarafa.calendar.Actions.openAppointmentContent(this.records);
 	},
@@ -476,7 +532,7 @@ Zarafa.calendar.ui.CalendarContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditio
 	 * Delete all selected records
 	 * @param {Zarafa.core.ui.menu.ConditionalItem} button The selected menuitem
 	 */
-	onDelete : function(button)
+	onDelete: function(button)
 	{
 		Zarafa.common.Actions.deleteRecords(this.records);
 	},
@@ -485,21 +541,52 @@ Zarafa.calendar.ui.CalendarContextMenu = Ext.extend(Zarafa.core.ui.menu.Conditio
 	 * Create a new appointment / meeting request
 	 * @param {Zarafa.core.ui.menu.ConditionalItem} button The selected menuitem
 	 */
-	onCreate : function(button)
+	onCreate: function(button)
+	{
+		if (!this.records) {
+			var model = this.calendarPanel.model;
+			var calendarView = this.calendarPanel.getView();
+			var activeCalendar = calendarView.rangeSelectionModel.calendarView;
+			var rangeModel = this.calendarPanel.getRangeSelectionModel();
+
+			model.createRecord(function(record){
+				this.openContent(button, [record]);
+			}.createDelegate(this, [button], true), activeCalendar.getSelectedFolder(), rangeModel.dateRange);
+		} else {
+			this.openContent(button, this.records);
+		}
+	},
+
+	/**
+	 * Helper function to open dialog for new appointment / meeting request.
+	 * @param {Zarafa.core.ui.menu.ConditionalItem} button The selected menuitem
+	 * @param {Zarafa.core.data.MAPIRecord[]} records The records on which this contextmenu gets opened
+	 */
+	openContent: function(button, records)
 	{
 		if (button.meetingRequest) {
-			for (var i = 0, len = this.records.length; i < len; i++) {
-				var record = this.records[i];
-
+			for (var i = 0, len = records.length; i < len; i++) {
+				var record = records[i];
 				// Change meeting status only if it is not a meeting, otherwise leave as it is (in order not to overwrite old meeting status)
 				if (record.get('meeting') === Zarafa.core.mapi.MeetingStatus.NONMEETING) {
 					record.convertToMeeting();
 				}
 			}
-			Zarafa.calendar.Actions.openMeetingRequestContent(this.records);
+			Zarafa.calendar.Actions.openMeetingRequestContent(records);
 		} else {
-			Zarafa.calendar.Actions.openAppointmentContent(this.records);
+			Zarafa.calendar.Actions.openAppointmentContent(records);
 		}
+	},
+
+	/**
+	 * Called when one of the "Send to" menuitems are clicked.
+	 * @param {Ext.Button} button The button which was clicked
+	 * @private
+	 */
+	onContextItemResponse: function(button)
+	{
+		var mailModel = container.getContextByName('mail').getModel();
+		Zarafa.mail.Actions.openCreateMailResponseContent(this.records, mailModel, button.responseMode, {"attachAsIcs":true});
 	}
 });
 

@@ -1,7 +1,7 @@
 /* import the base */
 @import 'base/_colors';
-
 @import 'base/_sizes';
+@import 'base/_fonts';
 
 /* The animation for the spinner */
 @keyframes rotate {
@@ -23,6 +23,30 @@ body.zarafa-welcome {
 	padding: 0;
 	background: url(../../images/loginbg_daybreak.jpg) no-repeat center center;
 	background-size: cover;
+}
+
+body.login.theme-basic:after,
+body.theme-basic #loading-mask:after,
+body.theme-basic #bg:after,
+body.theme-basic.zarafa-welcome:after,
+body.login.theme-highcontrast:after,
+body.theme-highcontrast #loading-mask:after,
+body.theme-highcontrast #bg:after,
+body.theme-highcontrast.zarafa-welcome:after,
+body.login.theme-dark:after,
+body.theme-dark #loading-mask:after,
+body.theme-dark #bg:after,
+body.theme-dark.zarafa-welcome:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	background: url(../../images/background.svg) center/cover no-repeat;
+	z-index: -1;
 }
 
 #loading-mask {
@@ -92,62 +116,15 @@ body.login,
 			font-weight: normal;
 			text-align: right;
 		}
-		h2.zcp-version {
-			color: transparent;
-		}
 
 		#logo {
-			background: url(../../images/kopano-logo_220x52.png) no-repeat right center;
+			background: url(../../images/kopano-logo.svg) no-repeat right center;
+			background-size: 220px 52px;
 			width: 100%;
 			height: 61px;
 			margin: 71px 0 15px;
 		}
-
-		label {
-			display: block;
-			margin-bottom: 0.5em;
-		}
-		input[type="text"],
-		input[type="password"] {
-			display: block;
-			width: 245 - 2* $padding-medium - 2;
-			background: white !important;
-			border: 1px solid $grey;
-			padding: 0 $padding-medium;
-			margin-bottom: 15px;
-			height: 24px;
-		}
-		input:-webkit-autofill {
-			-webkit-box-shadow: 0 0 0px 1000px white inset;
-		}
-
-		#password {
-			margin-bottom: 8px;
-		}
-
-		#error {
-			color: #e40023;
-		}
-
-		#submitbutton {
-			background: $kopano-blue;
-			color: white;
-			height: 24px;
-			line-height: 24px;
-			border: none;
-			padding: 0 $padding-large;
-			min-width: 84px;
-			margin: 12px 0 0;
-			box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.35);
-		}
-		#submitbutton:hover {
-			background-color: $kopano-blue-hover;
-		}
-		#submitbutton:click {
-			background-color: $kopano-blue-active;
-		}
 	}
-
 
 	#form-container.loading {
 		visibility: visible;
@@ -159,19 +136,160 @@ body.login,
 			background: url(../../images/loading_m.png) no-repeat center center;
 			animation: rotate 1.3s 0s infinite ease;
 		}
-
-
 	}
 }
 
-/* IE9 supports blur filter in a different way */
-body.login.MSIE9 #bg{
-	filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='100');
+
+body.login > #form-container {
+	label {
+		display: block;
+		margin-bottom: 0.5em;
+	}
+	input[type="text"],
+	input[type="password"] {
+		display: block;
+		width: 245 - 2* $padding-medium - 2;
+		background: $white !important;
+		border: 1px solid $grey;
+		padding: 0 $padding-medium;
+		margin-bottom: 15px;
+		height: 24px;
+	}
+
+	input:-webkit-autofill {
+		-webkit-box-shadow: 0 0 0px 1000px $white inset;
+	}
+
+	input:focus {
+		outline:0;
+		border-color: $sky-blue;
+	}
+
+	#password {
+		margin-bottom: 8px;
+	}
+
+	#error {
+		color: #e40023;
+	}
+
+	#submitbutton {
+		background: $kopano-blue;
+		color: $white;
+		height: 24px;
+		line-height: 24px;
+		border: 1px solid transparent;
+		padding: 0 $padding-large;
+		min-width: 84px;
+		margin: 12px 0 0;
+		box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.35);
+	}
+	#submitbutton:hover {
+		background-color: $kopano-blue-hover;
+	}
+	#submitbutton:click {
+		background-color: $kopano-blue-active;
+	}
+	#submitbutton:focus {
+		box-shadow: 0 0 0 1px $white inset;
+	}
 }
+
+// Interactive login page.
+body.login > .container {
+	height: inherit;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.form-container{
+		background-color: $white;
+		padding: 20px;
+		width: 400px;
+		height: 350px;
+		box-shadow: #000 1px 7px 14px 0px;
+		border-radius: 3px;
+		display: flex;
+		justify-content: space-evenly;
+		align-items: center;
+		flex-flow: column;
+
+		#logo {
+			background: url(../../images/kopano-webapp-icon.svg) no-repeat center;
+			width: 100%;
+			height: 150px;
+		}
+
+		#signin-btn{
+			padding: 10px;
+			outline: none;
+			border: 1px solid $grey5;
+			border-radius: 3px;
+			background-color: $white;
+			font-size: 14px;
+			font-family: sans-serif;
+			cursor: pointer;
+		}
+
+		#signin-btn:hover{
+			box-shadow: 1px 3px 7px -1px $grey6;
+		}
+	}
+
+}
+
+#oidc-error-msgBox {
+  margin: 0px auto;
+  width: 30%;
+  background-color: #FFFFFF;
+  border-radius: 3px;
+  position: relative;
+  top: 10px;
+  font-size: 14px;
+  box-shadow: 0px 0px 10px 1px #9f9f9f;
+
+  .oidc-msg-container {
+    .title {
+      font-size: $font-size-extra-large;
+      font-weight: bold;
+      padding: $padding-extra-large;
+    }
+
+    .body {
+      padding: $padding-extra-large;
+    }
+
+    .button-container {
+      padding: 5px;
+      display: flex;
+      justify-content: flex-end;
+
+      .btn {
+        background: $kopano-blue;
+        color: $white;
+        line-height: $button-small-height;
+        border: 1px solid transparent;
+        padding: 0 $padding-large;
+        margin: 5px;
+        cursor: pointer;
+        box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.35);
+      }
+      .btn:hover {
+        background-color: $kopano-blue-hover;
+      }
+      .btn:click {
+        background-color: $kopano-blue-active;
+      }
+      .btn:focus {
+        box-shadow: 0 0 0 1px $white inset;
+      }
+    }
+  }
+}
+
 /* IE10 and IE11 don't support filters, so we load a blurred copy of the background image
  * and use that  */
 body.login.MSIE10 #bg,
 body.login.MSIE11 #bg{
 	background-image: url(../../images/loginbg_daybreak_blurred.jpg);
 }
-

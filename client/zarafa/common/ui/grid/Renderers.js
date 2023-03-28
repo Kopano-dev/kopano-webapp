@@ -15,7 +15,7 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	importance : function(value, p, record)
+	importance: function(value, p, record)
 	{
 		if (value >= 0) {
 			p.css = Zarafa.core.mapi.Importance.getClassName(value);
@@ -35,14 +35,33 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	icon : function(value, p, record)
+	icon: function(value, p, record)
 	{
-		p.css = Zarafa.common.ui.IconClass.getIconClass(record);
+		var conversationCount = record.get('conversation_count');
+		var depth = record.get('depth');
+		var cssClass = '';
+		var counterCls = "k-conversation-count";
+		var result = '';
+
+		if (conversationCount > 0 && depth === 0) {
+			cssClass = 'k-conversation_header';
+			if (conversationCount > 9) {
+				counterCls += " k-two-digit-counter";
+				if (conversationCount > 99) {
+					conversationCount = '99+';
+				}
+			}
+			result = '<span unselectable="on" class= "' + counterCls + '">' + conversationCount + '</span>';
+		} else if (depth !== 1) {
+			cssClass = Zarafa.common.ui.IconClass.getIconClass(record);
+		}
 
 		// add extra css class for empty cell
-		p.css += ' zarafa-grid-empty-cell';
+		cssClass += ' zarafa-grid-empty-cell';
 
-		return '';
+		p.css = cssClass;
+
+		return result;
 	},
 
 	/**
@@ -53,13 +72,18 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	attachment : function(value, p, record)
+	attachment: function(value, p, record)
 	{
 		if (Ext.isDefined(record) && record.get('hide_attachments') === true) {
 			return '';
 		}
 
-		p.css = (value === true) ? 'icon_attachment' : 'icon_noattachment';
+		var isHeaderRecord = Ext.isFunction(record.isConversationHeaderRecord) && record.isConversationHeaderRecord(record);
+		if (isHeaderRecord) {
+			value = Zarafa.common.ui.grid.Renderers.conversationHasAttachement(record);
+		}
+
+		p.css = (value === true) ? 'icon_paperclip' : 'icon_noattachment';
 
 		// add extra css class for empty cell
 		p.css += ' zarafa-grid-empty-cell';
@@ -67,6 +91,19 @@ Zarafa.common.ui.grid.Renderers = {
 		return '';
 	},
 
+
+	/**
+	 * Helper function that finds if there is a conversation record that has an attachment
+	 *
+	 * @param {Zarafa.core.data.MessageRecord} headerRecord The header record of a conversation
+	 * @return {Boolean} True if a record with an attachment was found, false otherwise
+	 */
+	conversationHasAttachement(headerRecord) {
+		var conversationRecords = headerRecord.store.getConversationItemsFromHeaderRecord(headerRecord);
+		return conversationRecords.some(function(r) {
+			return r.get('hasattach') && r.get('hide_attachments') !== true;
+		});
+	},
 	/**
 	 * Render the cell as Recurrence
 	 *
@@ -75,9 +112,9 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	recurrence : function(value, p, record)
+	recurrence: function(value, p, record)
 	{
-		p.css = value ? 'icon_recurring' : 'zarafa-grid-empty-cell';
+		p.css = value ? 'icon_recurrence' : 'zarafa-grid-empty-cell';
 		return '';
 	},
 
@@ -89,12 +126,12 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	reminder : function (value, p, record)
+	reminder: function (value, p, record)
 	{
 		p.css = value ? 'icon_reminder' : 'zarafa-grid-empty-cell';
 		if (Ext.isDefined(record) && !Ext.isEmpty(record.get('reminder_time'))) {
 			var reminderTime = record.get('reminder_time');
-			var tooltip = String.format(_('Reminder is set on: {0}, {1}'), reminderTime.format(_('d-m-Y')), reminderTime.format(_('G:i')));
+			var tooltip = String.format(_('Reminder is set on: {0}, {1}'), reminderTime.format(_('d-m-Y')), reminderTime.formatDefaultTime());
 			p.attr = 'ext:qtip=\"'+Ext.util.Format.htmlEncode(tooltip)+'\"';
 		}
 		return '';
@@ -108,7 +145,7 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	categories : function(value, p, record)
+	categories: function(value, p, record)
 	{
 		// Render the categories
 		var categories = Zarafa.common.categories.Util.getCategories(record);
@@ -123,7 +160,7 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	name : function(value, p, record)
+	name: function(value, p, record)
 	{
 		p.css = 'mail_from';
 
@@ -143,15 +180,10 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	displayName : function(value, p, record)
+	displayName: function(value, p, record)
 	{
-		var user = Zarafa.core.data.UserIdObjectFactory.createFromRecord(record);
-		var presenceStatus = Zarafa.core.PresenceManager.getPresenceStatusForUser(user);
-
-		return '<span class="zarafa-presence-status '+Zarafa.core.data.PresenceStatus.getCssClass(presenceStatus)+'">' +
-				'<span class="zarafa-presence-status-icon"></span>' +
-				Zarafa.common.ui.grid.Renderers.name(value, p, record) +
-				'</span>';
+		var userName = Zarafa.common.ui.grid.Renderers.name(value, p, record);
+		return Zarafa.common.ui.grid.Renderers.presenceStatus(userName, p, record);
 	},
 
 	/**
@@ -162,10 +194,41 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	sender : function(value, p, record)
+	sender: function(value, p, record)
 	{
+		var retVal = '';
 		var userRecord = false;
-		var presenceStatus = Zarafa.core.data.PresenceStatus.UNKNOWN;
+		var conversationCount = record.get('conversation_count');
+		var depth = record.get('depth');
+
+		if (conversationCount > 0 && depth === 0) {
+			// find the records of the conversation
+			var store = record.getStore();
+			var records = store.getConversationItemsFromHeaderRecord(record);
+
+			// Collect all first names of the senders in this conversation
+			return records.filter(function(val, index) {
+				for (let i=0; i<index; i++) {
+					// We will use the value of sent_representing_name to find unique senders.
+					// This means that two persons with the same name in a conversation will be
+					// shown as a single name in the header. Checking with email addresses would
+					// be better, but this changes for ZARAFA users from the username to the
+					// smtp address when a record is opened.
+					if (val.get('sent_representing_name') === records[i].get('sent_representing_name')) {
+						return false;
+					}
+				}
+				return true;
+			}).map(function(val) {
+				if (!val) {
+					return '';
+				}
+				return val.get('sent_representing_name').split(' ')[0];
+			}).join(', ');
+		} else if (depth > 0) {
+			retVal = '<span class="k-icon ' + Zarafa.common.ui.IconClass.getIconClass(record) + '"></span>';
+		}
+
 		// Check which of the 2 properties must be used
 		// FIXME: sent representing seems to be always set...
 		value = record.get('sent_representing_name');
@@ -175,16 +238,9 @@ Zarafa.common.ui.grid.Renderers = {
 		} else if (Ext.isFunction(record.getSentRepresenting)) {
 			userRecord = record.getSentRepresenting();
 		}
+		var userName = Zarafa.common.ui.grid.Renderers.name(value, p, record);
 
-		if (userRecord !== false) {
-			var user = Zarafa.core.data.UserIdObjectFactory.createFromRecord(userRecord);
-			presenceStatus = Zarafa.core.PresenceManager.getPresenceStatusForUser(user);
-		}
-
-		return '<span class="zarafa-presence-status '+Zarafa.core.data.PresenceStatus.getCssClass(presenceStatus)+'">' +
-					'<span class="zarafa-presence-status-icon"></span>' +
-					Zarafa.common.ui.grid.Renderers.name(value, p, record) +
-				'</span>';
+		return retVal + Zarafa.common.ui.grid.Renderers.presenceStatus(userName, p, userRecord);
 	},
 
 	/**
@@ -195,7 +251,7 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	organizer : function(value, p, record)
+	organizer: function(value, p, record)
 	{
 		// Only render the cell as non-empty if the
 		// record is actually a meeting.
@@ -216,13 +272,57 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	subject : function(value, p, record)
+	subject: function(value, p, record)
 	{
 		p.css = 'mail_subject';
 
 		if(Ext.isEmpty(value)) {
 			// if value is empty then add extra css class for empty cell
 			p.css += ' zarafa-grid-empty-cell';
+		}
+
+		if (Ext.isDefined(record) && record.get('conversation_count') > 0){
+			value = record.get('normalized_subject');
+		}
+
+		return Ext.util.Format.htmlEncode(value);
+	},
+
+	/**
+	 * Renders the cell as Body for conversation item and for header it will render 'normalized_subject'.
+	 * Apart from that it will render default value given in the param.
+	 *
+	 * @param {Object} value The data value for the cell.
+	 * @param {Object} p An object with metadata
+	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
+	 * @return {String} The formatted string
+	 */
+	body: function(value, p, record)
+	{
+		/**
+		 * @FIXME: value must always be record.get('body').
+		 * Currently we are getting subject as a value for mailGrid in non compact view
+		 * because the dataIndex will remain same for the 'subject' column.
+		 * If the record is non-conversation item then this will return
+		 * default value which is in param.
+		 */
+		p.css = 'mail_body';
+		if(Ext.isEmpty(value)) {
+			// if value is empty then add extra css class for empty cell
+			p.css += ' zarafa-grid-empty-cell';
+		}
+
+		if (Ext.isDefined(record)) {
+			// If header record then display normalized_subject
+			if (record.get('conversation_count') > 0) {
+				value = record.get('normalized_subject');
+			} else if (record.get('depth') > 0) {
+				value = record.get('body');
+				var indexOfRepliedMail = value.indexOf("-----" + _('Original message') + "-----");
+				if (indexOfRepliedMail > 0) {
+					value = value.substring(0, indexOfRepliedMail);
+				}
+			}
 		}
 
 		return Ext.util.Format.htmlEncode(value);
@@ -236,7 +336,7 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	text : function(value, p, record)
+	text: function(value, p, record)
 	{
 		if(Ext.isEmpty(value)) {
 			// if value is empty then add extra css class for empty cell
@@ -254,7 +354,7 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	to : function(value, p, record)
+	to: function(value, p, record)
 	{
 		p.css = 'mail_to';
 
@@ -274,7 +374,7 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	size : function(value, p, record)
+	size: function(value, p, record)
 	{
 		p.css = 'mail_size';
 
@@ -294,18 +394,18 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	percentage : function (value, p, record)
+	percentage: function (value, p, record)
 	{
 		p.css = 'task_percentage';
 		if ( isNaN(value) ){
 			// 'value' will not be available as there is no 'complete' property while
 			// rendering this column for mail record, using 'flag_status' instead.
 			if ( record.get('flag_status') === Zarafa.core.mapi.FlagStatus.completed ) {
-				return Ext.util.Format.percentage(1);
+				return Ext.util.Format.percentage(1, 0);
 			}
 			return '';
 		}
-		return Ext.util.Format.percentage(value);
+		return Ext.util.Format.percentage(value, 0);
 	},
 
 	/**
@@ -316,7 +416,7 @@ Zarafa.common.ui.grid.Renderers = {
 	 *
 	 * @return {String} The formatted string
 	 */
-	date : function(value, p)
+	date: function(value, p)
 	{
 		p.css = 'mail_date';
 
@@ -339,13 +439,13 @@ Zarafa.common.ui.grid.Renderers = {
 
 	 * @return {String} The formatted string
 	 */
-	utcdate : function(value, p)
+	utcdate: function(value, p)
 	{
 		if ( Ext.isDate(value) ){
 			value = value.toUTC();
 		}
 
-		return this.date(value, p);
+		return Zarafa.common.ui.grid.Renderers.date(value, p);
 	},
 
 	/**
@@ -362,12 +462,29 @@ Zarafa.common.ui.grid.Renderers = {
 	 *
 	 * @return {String} The formatted string
 	 */
-	datetime : function(value, p, record, row, column, store, meta)
+	datetime: function(value, p, record, row, column, store, meta)
 	{
 		p.css = 'mail_date';
 
 		if ( meta && meta.css ){
 			p.css += ' ' + meta.css;
+		}
+
+		// Don't show dates for conversation headers
+		if (record.get('depth') === 0 && record.get('conversation_count') > 0) {
+			return '';
+		}
+
+		var isConversationEnabled = container.isEnabledConversation();
+		// TODO: Ugly hack. We shouldn't use the css property for this
+		if (meta && meta.css === 'mail-received' && isConversationEnabled && record.get('folder_name') === 'sent_items') {
+			p.css += ' k-from-other-folder';
+
+			// TODO: Above condition should only true when conversation is enabled and record is not belongs to the
+			// inbox folder which means it is sent items folder record, as of now we only support conversation in Inbox.
+			// We can't use folder.getDisplayName() because when user open the only shared store inbox in conversation view
+			// it will throw an error due to unable to find the folder in shared store.
+			return _('Sent Items');
 		}
 
 		if ( !Ext.isDate(value) ){
@@ -381,7 +498,7 @@ Zarafa.common.ui.grid.Renderers = {
 
 			return value.getNiceFormat();
 		} else {
-			return value.format(_('l d/m/Y G:i'));
+			return value.formatDefaultTime(_('l d/m/Y {0}'));
 		}
 	},
 
@@ -395,7 +512,7 @@ Zarafa.common.ui.grid.Renderers = {
 	 *
 	 * @return {String} The formatted string
 	 */
-	dateWithTime : function(value, p)
+	dateWithTime: function(value, p)
 	{
 		p.css = '';
 
@@ -407,9 +524,9 @@ Zarafa.common.ui.grid.Renderers = {
 			// Add one class that the tooltip can use to recognize a 'nice' date.
 			// Add one class so the tooltip can easily get the timestamp of the date.
 			p.css += ' k-date-nice k-ts-'+value.getTime();
-			return value.format(_('d-m-Y G:i'));
+			return value.formatDefaultTime(_('d-m-Y {0}'));
 		} else {
-			return value.format(_('l d/m/Y G:i'));
+			return value.formatDefaultTime(_('l d/m/Y {0}'));
 		}
 	},
 
@@ -421,7 +538,7 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	duration : function(value, p, record)
+	duration: function(value, p, record)
 	{
 		p.css = 'mail_duration';
 
@@ -436,7 +553,7 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	durationHours : function(value, p, record)
+	durationHours: function(value, p, record)
 	{
 		p.css = 'mail_duration';
 		if ( !Ext.isDefined(value) ){
@@ -454,7 +571,7 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	folder : function(value, p, record)
+	folder: function(value, p, record)
 	{
 		var folder = container.getHierarchyStore().getFolder(value);
 		if (folder) {
@@ -472,7 +589,7 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	busystatus : function(value, p, record)
+	busystatus: function(value, p, record)
 	{
 		return Zarafa.core.mapi.BusyStatus.getDisplayName(value);
 	},
@@ -485,7 +602,7 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	label : function(value, p, record)
+	label: function(value, p, record)
 	{
 		return Zarafa.core.mapi.AppointmentLabels.getDisplayName(value);
 	},
@@ -498,7 +615,7 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	sensitivity : function(value, p, record)
+	sensitivity: function(value, p, record)
 	{
 		return Zarafa.core.mapi.Sensitivity.getDisplayName(value);
 	},
@@ -511,7 +628,7 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	meetingstatus : function(value, p, record)
+	meetingstatus: function(value, p, record)
 	{
 		return Zarafa.core.mapi.MeetingStatus.getDisplayName(value);
 	},
@@ -524,7 +641,7 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	recipienttype : function(value, p, record)
+	recipienttype: function(value, p, record)
 	{
 		switch (value) {
 			case Zarafa.core.mapi.RecipientType.MAPI_TO:
@@ -550,7 +667,7 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	responsestatus : function(value, p, record)
+	responsestatus: function(value, p, record)
 	{
 		return Zarafa.core.mapi.ResponseStatus.getDisplayName(value);
 	},
@@ -563,25 +680,32 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	flag : function(value, p, record)
+	flag: function(value, p, record)
 	{
-		var flagStatus = record.get('flag_status');
-
 		// add extra css class for empty cell
 		p.css += 'zarafa-grid-empty-cell';
+
+		var isHeaderRecord = Ext.isFunction(record.isConversationHeaderRecord) && record.isConversationHeaderRecord(record);
+		var flagStatus = record.get('flag_status');
+		var dueDate = record.get('duedate');
+		if (isHeaderRecord) {
+			dueDate = Zarafa.common.ui.grid.Renderers.getConversationDueDate(record);
+		}
 
 		if ( flagStatus === Zarafa.core.mapi.FlagStatus.completed ){
 			p.css += ' icon_flag_complete';
 			return '';
 		}
 
-		if ( !record.isMessageClass('IPM.Task') && flagStatus!==Zarafa.core.mapi.FlagStatus.flagged ){
+		if (
+			(isHeaderRecord && Ext.isEmpty(dueDate)) ||
+			(!isHeaderRecord && !record.isMessageClass('IPM.Task') && flagStatus!==Zarafa.core.mapi.FlagStatus.flagged)
+		){
 			p.css += ' icon_flag';
 			return '<div class="k-followup-flag"></div>';
 		}
 
 		// Now find the color we must show
-		var dueDate = record.get('duedate');
 
 		if ( !dueDate ){
 			p.css += ' icon_flag_red';
@@ -623,6 +747,30 @@ Zarafa.common.ui.grid.Renderers = {
 	},
 
 	/**
+	 * Helper function that finds the first (in time) due date of all records in a conversation
+	 *
+	 * @param {Zarafa.core.data.MessageRecord} headerRecord The header record of a conversation
+	 * @return {Date} The due date of the conversation
+	 */
+	getConversationDueDate(headerRecord) {
+		var conversationDueDate = null;
+		var conversationRecords = headerRecord.store.getConversationItemsFromHeaderRecord(headerRecord);
+		conversationRecords.forEach(function(r) {
+			var flagStatus = r.get('flag_status');
+			if (!r.isMessageClass('IPM.Task') && flagStatus !== Zarafa.core.mapi.FlagStatus.flagged) {
+				return;
+			}
+
+			var dueDate = r.get('duedate');
+			if (Ext.isEmpty(conversationDueDate) || dueDate < conversationDueDate) {
+				conversationDueDate = dueDate;
+			}
+		});
+
+		return conversationDueDate;
+	},
+
+	/**
 	 * Render the dueby field
 	 *
 	 * @param {Object} value The data value for the cell.
@@ -630,7 +778,7 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	dueBy : function(value, p, record)
+	dueBy: function(value, p, record)
 	{
 		var result = '';
 
@@ -676,7 +824,7 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	taskstatus : function(value, p, record)
+	taskstatus: function(value, p, record)
 	{
 		return Zarafa.core.mapi.TaskStatus.getDisplayName(value);
 	},
@@ -689,88 +837,27 @@ Zarafa.common.ui.grid.Renderers = {
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	colorTextValue : function(value, p, record)
+	colorTextValue: function(value, p, record)
 	{
 		return Zarafa.core.mapi.NoteColor.getColorText(value);
 	},
 
 	/**
-	 * Render the name, subject and body information of record
+	 * Render the presence status of user along with user name.
 	 *
 	 * @param {Object} value The data value for the cell.
 	 * @param {Object} p An object with metadata
 	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
 	 * @return {String} The formatted string
 	 */
-	dataColumn : function(value, p, record)
+	presenceStatus: function (value, p, record)
 	{
-		p.css = 'search-data';
-
-		if(Ext.isEmpty(value)) {
-			// if value is empty then add extra css class for empty cell
-			p.css += ' zarafa-grid-empty-cell';
+		var presenceStatus = Zarafa.core.data.PresenceStatus.UNKNOWN;
+		if (record !== false) {
+			var user = Zarafa.core.data.UserIdObjectFactory.createFromRecord(record);
+			presenceStatus = Zarafa.core.PresenceManager.getPresenceStatusForUser(user);
 		}
-
-		var messageClass = record.get('message_class');
-		//TODO: give these variables better names
-		var name = '';
-		var subject = '';
-		var body = '';
-
-		switch (messageClass) {
-			case 'IPM.Contact':
-			case 'IPM.DistList':
-				name = Ext.util.Format.htmlEncode(record.get('display_name'));
-				subject = Ext.util.Format.htmlEncode(record.get('fileas'));
-				//TODO: try to get an emailadress from other fields if this field is empty
-				body = Ext.util.Format.htmlEncode(record.get('email_address_1'));
-				break;
-			case 'IPM.Task':
-				name = Ext.util.Format.htmlEncode(record.get('subject'));
-				body = Ext.util.Format.htmlEncode(record.get('body'));
-				break;
-			case 'IPM.StickyNote':
-				name = Ext.util.Format.htmlEncode(record.get('subject'));
-				subject = Ext.util.Format.htmlEncode(record.get('body'));
-				break;
-			default:
-			//case 'IPM.Note':
-			//case 'IPM.Appointment':
-			//case 'IPM.Schedule':
-				name = Zarafa.common.ui.grid.Renderers.sender(value, p, record);
-				subject = Ext.util.Format.htmlEncode(record.get('subject'));
-				body = Ext.util.Format.htmlEncode(record.get('body'));
-				break;
-		}
-		return ''+
-			'<table cellpadding=0 cellspacing=0 style="width:100%" class="messageclass-data mc-'+messageClass.toLowerCase().replace('.', '')+'">' +
-				'<tr>' +
-					'<td class="x-grid3-col x-grid3-cell x-grid3-td-0 icon ' + Zarafa.common.ui.IconClass.getIconClass(record) + '"></td>' +
-					'<td class="name"><div class="padding">' + name + '</div></td>' +
-					'<td class="subject-body"><div class="padding">' + ( subject ? '<span class="subject">'+subject+'</span>' : '' ) + ( body ? '<span class="body">'+body+'</span>' : '' ) + '</div></td>' +
-				'</tr>' +
-			'</table>';
-	},
-
-	/**
-	 * Render the date field and attachment icon if record contains attachment.
-	 *
-	 * @param {Object} value The data value for the cell.
-	 * @param {Object} p An object with metadata
-	 * @param {Ext.data.record} record The {Ext.data.Record} from which the data was extracted.
-	 * @return {String} The formatted string
-	 */
-	dateColumn : function(value, p, record)
-	{
-		p.css = 'search-date';
-
-		// # TRANSLATORS: See http://docs.sencha.com/ext-js/3-4/#!/api/Date for the meaning of these formatting instructions
-		var date = Ext.isDate(value) ? value.format(_('d/m/Y')) : '';
-
-		// TODO: make insertionpoint for other icons (reuse mail grid insertionpoint???)
-		return '<table cellpadding=0 cellspacing=0 style="width:100%"><tr>' +
-					'<td class="date"><div>' + date + '</div></td>' +
-					( record.get('hasattach') ? '<td class="icon_attachment" style="width:22px"></td>' : '' ) +
-				'</tr></table>';
+		return '<span class="zarafa-presence-status ' + Zarafa.core.data.PresenceStatus.getCssClass(presenceStatus) + '">' +
+			'<span class="zarafa-presence-status-icon"></span>' + value + '</span>';
 	}
 };

@@ -28,9 +28,8 @@
 
 		/**
 		 * @var string The entryid (binary) of the default store
-		 * FIXME:  public since class.hierarchynotifier re-opens the store which needs to be fixed.
 		 */
-		public $defaultstore;
+		private $defaultStore;
 
 		/**
 		 * @var string The entryid (binary) of the public store
@@ -47,6 +46,10 @@
 		 */
 		private $userstores;
 
+		/**
+		 * @var array Cache for userentryid -> archive properties
+		 */
+		private $archivePropsCache;
 
 		/**
 		 * @var int Makes sure retrieveUserData is called only once
@@ -56,11 +59,12 @@
 		function __construct()
 		{
 			$this->stores = array();
-			$this->defaultstore = 0;
-			$this->publicStore = 0;
+			$this->defaultStore = null;
+			$this->publicStore = null;
 			$this->session = false;
 			$this->ab = false;
 			$this->userstores = array();
+			$this->archivePropsCache = array();
 			$this->userDataRetrieved = false;
 		}
 
@@ -75,19 +79,21 @@
 		 * @param string $server the server address
 		 * @param string $sslcert_file the optional ssl certificate file
 		 * @param string $sslcert_pass the optional ssl certificate password
+		 * @param string $flags the optional logon flags
 		 * @result int 0 on no error, otherwise a MAPI error code
 		 */
-		function logon($username = NULL, $password = NULL, $server = DEFAULT_SERVER, $sslcert_file = NULL, $sslcert_pass = NULL, $notifications = 1)
+		function logon($username = NULL, $password = NULL, $server = DEFAULT_SERVER, $sslcert_file = NULL, $sslcert_pass = NULL, $flags = 0)
 		{
 			$result = NOERROR;
 			$username = (string) $username;
 			$password = (string) $password;
+			$flags |= 1; // Always disable notifications
 
 			try {
-				$webapp_version = 'WebApp-'.trim(file_get_contents(BASE_PATH . 'version'));
+				$webapp_version = 'WebApp-'.getWebappVersion();
 				$browser_version = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
 				$this->session = mapi_logon_zarafa($username, $password, $server, $sslcert_file,
-								   $sslcert_pass, 1, $webapp_version, $browser_version);
+								   $sslcert_pass, $flags, $webapp_version, $browser_version);
 				if ($this->session !== false){
 					$this->session_info["username"] = $username;
 				}
@@ -96,6 +102,22 @@
 			}
 
 			return $result;
+		}
+
+		/**
+		 * Get the user MAPI Object
+		 *
+		 * @param string $userEntryid The user entryid which is going to open. default is false.
+		 * @return object An user MAPI object.
+		 */
+		function getUser($userEntryid = false){
+			if($userEntryid === false) {
+				// get user entryid
+				$store_props = mapi_getprops($this->getDefaultMessageStore(), array(PR_USER_ENTRYID));
+				$userEntryid = $store_props[PR_USER_ENTRYID];
+			}
+			// open the user entry
+			return mapi_ab_openentry($this->getAddressbook(true), $userEntryid);
 		}
 
 		/**
@@ -120,15 +142,11 @@
 			$result = NOERROR;
 
 			try {
-				// get user entryid
 				$store_props = mapi_getprops($this->getDefaultMessageStore(), array(PR_USER_ENTRYID));
-
-				// open the user entry
-				$user = mapi_ab_openentry($this->getAddressbook(true), $store_props[PR_USER_ENTRYID]);
+				$user = $this->getUser($store_props[PR_USER_ENTRYID]);
 
 				// receive userdata
-				// TODO: 0x8C9E0102 represents an LDAP jpegPhoto and should get a named property PR_EMS_AB_THUMBNAIL_PHOTO
-				$user_props = array(PR_DISPLAY_NAME, PR_SMTP_ADDRESS, PR_EMAIL_ADDRESS, PR_SEARCH_KEY, 0x8C9E0102, PR_ASSISTANT_TELEPHONE_NUMBER);
+				$user_props = array(PR_DISPLAY_NAME, PR_SMTP_ADDRESS, PR_EMAIL_ADDRESS, PR_SEARCH_KEY, PR_EMS_AB_THUMBNAIL_PHOTO, PR_ASSISTANT_TELEPHONE_NUMBER);
 				$properties = new properties();
 				$user_props = array_merge($user_props, $properties->getAddressBookItemMailuserProperties());
 
@@ -140,7 +158,7 @@
 					$this->session_info["smtpaddress"] = $user_props[PR_SMTP_ADDRESS];
 					$this->session_info["emailaddress"] = $user_props[PR_EMAIL_ADDRESS];
 					$this->session_info["searchkey"] = $user_props[PR_SEARCH_KEY];
-					$this->session_info["userimage"] = isset($user_props[-1935802110]) ? base64_encode($user_props[-1935802110]) : "";
+					$this->session_info["userimage"] = isset($user_props[PR_EMS_AB_THUMBNAIL_PHOTO]) ? base64_encode($user_props[PR_EMS_AB_THUMBNAIL_PHOTO]) : "";
 					$this->session_info["userimage"] = strlen($this->session_info["userimage"]) > 0 ? "data:image/png;base64," . $this->session_info["userimage"] : "" ;
 
 					$this->session_info["given_name"] = isset($user_props[PR_GIVEN_NAME]) ? $user_props[PR_GIVEN_NAME] : '';
@@ -282,7 +300,7 @@
 		function getUserName()
 		{
 			$encryptionStore = EncryptionStore::getInstance();
-			return $encryptionStore->get('username') ? $encryptionStore->get('username'): '';
+			return $encryptionStore->get('username') ? $encryptionStore->get('username') : '';
 		}
 
 		/**
@@ -326,7 +344,25 @@
 		{
 			$this->retrieveUserData();
 
-			return array_key_exists("userimage",$this->session_info)? $this->session_info["userimage"]:false;
+			return array_key_exists("userimage",$this->session_info)? $this->session_info["userimage"] : false;
+		}
+
+		/**
+		 * Get currently disabled features for the user
+		 * @return array An disabled features list.
+		 */
+		function getDisabledFeatures()
+		{
+			$userProps = mapi_getprops($this->getUser(), array(PR_EC_DISABLED_FEATURES));
+			return isset($userProps[PR_EC_DISABLED_FEATURES]) ? $userProps[PR_EC_DISABLED_FEATURES] : [];
+		}
+
+		/**
+		 * @return boolean True if webapp is disabled feature else return false.
+		 */
+		function isWebappDisableAsFeature()
+		{
+			return array_search('webapp', $this->getDisabledFeatures()) !== false;
 		}
 
 		 /**
@@ -343,15 +379,19 @@
 		 public function __call($methodName, $arguments)
 		 {
 		 	if ( !preg_match('/^get(.+)$/', $methodName, $matches) ){
-		 		// We don't know this function, so let's throw an error
-		 		throw new Exception('Method ' . $methodName . ' does not exist');
-		 	}else{
+				// This function is unknown. log the error and return an empty string as a value.
+				error_log('Method ' . $methodName . ' does not exist');
+				Log::Write(LOGLEVEL_ERROR, 'Method ' . $methodName . ' does not exist');
+				return "";
+		 	} else {
 		 		$this->retrieveUserData();
 		 		$propertyName = strtolower(preg_replace('/([^A-Z])([A-Z])/', '$1_$2', $matches[1]));
 				if ( !array_key_exists($propertyName, $this->session_info) ){
-			 		// We don't know this function, so let's throw an error
-			 		throw new Exception('Method ' . $methodName . ' does not exist '.$propertyName);
-				}else{
+					// This function is unknown. log the error and return an empty string as a value.
+					error_log('Method ' . $methodName . ' does not exist '.$propertyName);
+					Log::Write(LOGLEVEL_ERROR, 'Method ' . $methodName . ' does not exist '.$propertyName);
+					return "";
+				} else {
 					return $this->session_info[$propertyName];
 				}
 		 	}
@@ -413,21 +453,17 @@
 		 */
 		function loadMessageStoresFromSession()
 		{
-			if(!$this->defaultstore && !$this->publicStore){
-				$storestables = mapi_getmsgstorestable($this->session);
-				$rows = mapi_table_queryallrows($storestables, array(PR_ENTRYID, PR_DEFAULT_STORE, PR_MDB_PROVIDER));
-				foreach($rows as $row) {
-					$name = '';
-					if($row[PR_ENTRYID]){
-						if(isset($row[PR_DEFAULT_STORE]) && $row[PR_DEFAULT_STORE] == true) {
-							$this->defaultstore = $row[PR_ENTRYID];
-							$name = 'Default store';
-						}elseif($row[PR_MDB_PROVIDER] == ZARAFA_STORE_PUBLIC_GUID){
-							$this->publicStore = $row[PR_ENTRYID];
-							$name = 'Public store';
-						}
-					}
-					$this->openMessageStore($row[PR_ENTRYID], $name);
+			$storestables = mapi_getmsgstorestable($this->session);
+			$rows = mapi_table_queryallrows($storestables, array(PR_ENTRYID, PR_DEFAULT_STORE, PR_MDB_PROVIDER));
+			foreach($rows as $row) {
+				if (!$row[PR_ENTRYID]) {
+					continue;
+				}
+
+				if (isset($row[PR_DEFAULT_STORE]) && $row[PR_DEFAULT_STORE] == true) {
+					$this->defaultStore = $row[PR_ENTRYID];
+				} elseif ($row[PR_MDB_PROVIDER] == ZARAFA_STORE_PUBLIC_GUID) {
+					$this->publicStore = $row[PR_ENTRYID];
 				}
 			}
 		}
@@ -436,18 +472,31 @@
 		 * Get the current user's default message store
 		 *
 		 * The store is opened only once, subsequent calls will return the previous store object
+		 * @param boolean reopen force re-open
 		 * @return mapistore User's default message store object
 		 */
-		function getDefaultMessageStore()
+		function getDefaultMessageStore($reopen = False)
 		{
-			$this->loadMessageStoresFromSession();
-
 			// Return cached default store if we have one
-			if(isset($this->defaultstore) && isset($this->stores[$this->defaultstore])) {
-				return $this->stores[$this->defaultstore];
-			}else{
-				return false;
+			if (!$reopen && isset($this->defaultStore) && isset($this->stores[$this->defaultStore])) {
+				return $this->stores[$this->defaultStore];
 			}
+
+			$this->loadMessageStoresFromSession();
+			return $this->openMessageStore($this->defaultStore, 'Default store');
+		}
+
+		/**
+		 * The default messagestore entryid
+		 * @return string the entryid of the default messagestore
+		 */
+		function getDefaultMessageStoreEntryId()
+		{
+			if (!isset($this->defaultStore)) {
+				$this->loadMessageStoresFromSession();
+			}
+
+			return bin2hex($this->defaultStore);
 		}
 
 		/**
@@ -458,7 +507,7 @@
 		 * It is mapped to username, If folder_type is 'all' (i.e. Open Entire Inbox)
 		 * then we will open full store and it's archived stores.
 		 * @param String $username The username
-		 * @return Array storeArray The array of stores containg user's store and archived stores
+		 * @return Array storeArray The array of stores containing user's store and archived stores
 		 */
 		function getSingleMessageStores($store, $storeOptions, $username)
 		{
@@ -487,14 +536,16 @@
 		 */
 		function getPublicMessageStore()
 		{
-			$this->loadMessageStoresFromSession();
-
 			// Return cached public store if we have one
 			if(isset($this->publicStore) && isset($this->stores[$this->publicStore])) {
 				return $this->stores[$this->publicStore];
-			}else{
+			}
+
+			$this->loadMessageStoresFromSession();
+			if(!isset($this->publicStore)) {
 				return false;
 			}
+			return $this->openMessageStore($this->publicStore, 'Public store');
 		}
 
 		/**
@@ -504,7 +555,8 @@
 		 */
 		function getAllMessageStores()
 		{
-			$this->loadMessageStoresFromSession();
+			$this->getDefaultMessageStore();
+			$this->getPublicMessageStore();
 			$this->getArchivedStores($this->getUserEntryID());
 			// The cache now contains all the stores in our profile. Next, add the stores
 			// for other users.
@@ -537,13 +589,13 @@
 				// Cache the store for later use
 				$this->stores[$entryid] = $store;
 			} catch (MAPIException $e) {
-				error_log('Failed to open store with entryid ' . $entryid . ($name ? " ($name)":''));
+				error_log('Failed to open store with entryid ' . bin2hex($entryid) . ($name ? " ($name)" : ''));
 				error_log($e);
 				return $e->getCode();
 			} catch (Exception $e ) {
 				// mapi_openmsgstore seems to throw another exception than MAPIException
 				// sometimes, so we add a safety net.
-				error_log('Failed to open store with entryid ' . $entryid . ($name ? " ($name)":''));
+				error_log('Failed to open store with entryid ' . bin2hex($entryid) . ($name ? " ($name)" : ''));
 				error_log($e);
 				return $e->getCode();
 			}
@@ -561,9 +613,11 @@
 		 */
 		function getArchivedStores($userEntryid)
 		{
-			$ab = $this->getAddressbook();
-			$abitem = mapi_ab_openentry($ab, $userEntryid);
-			$userData = mapi_getprops($abitem, Array(PR_ACCOUNT, PR_EC_ARCHIVE_SERVERS));
+			if (!isset($this->archivePropsCache[$userEntryid])) {
+				$this->archivePropsCache[$userEntryid] = $this->getArchiveProps($userEntryid);
+			}
+
+			$userData = $this->archivePropsCache[$userEntryid];
 
 			$archiveStores = Array();
 			if(isset($userData[PR_EC_ARCHIVE_SERVERS]) && count($userData[PR_EC_ARCHIVE_SERVERS]) > 0){
@@ -596,6 +650,16 @@
 		}
 
 		/**
+		 * @param String $userEntryid binary entryid of the user
+		 * @return Array Address Archive Properties of the user.
+		 */
+		private function getArchiveProps($userEntryid) {
+			$ab = $this->getAddressbook();
+			$abitem = mapi_ab_openentry($ab, $userEntryid);
+			return mapi_getprops($abitem, Array(PR_ACCOUNT, PR_EC_ARCHIVE_SERVERS));
+		}
+
+		/**
 		 * Get all the available shared stores
 		 *
 		 * The store is opened only once, subsequent calls will return the previous store object
@@ -603,35 +667,44 @@
 		function getOtherUserStore()
 		{
 			$otherusers = $this->retrieveOtherUsersFromSettings();
-			if(is_array($otherusers)) {
-				foreach($otherusers as $username=>$folder) {
-					if(is_array($folder) && !empty($folder)) {
-						try {
-							$user_entryid = mapi_msgstore_createentryid($this->getDefaultMessageStore(), $username);
+			$otheUsersStores = Array();
 
-							$this->openMessageStore($user_entryid, $username);
-							$this->userstores[$username] = $user_entryid;
+			foreach($otherusers as $username=>$folder) {
+				if (isset($this->userstores[$username])) {
+					continue;
+				}
 
-							// Check if an entire store will be loaded, if so load the archive store as well
-							if(isset($folder['all']) && $folder['all']['folder_type'] == 'all'){
-								$this->getArchivedStores($this->resolveStrictUserName($username));
-							}
-						} catch (MAPIException $e) {
-							if ($e->getCode() == MAPI_E_NOT_FOUND) {
-								// The user or the corresponding store couldn't be found,
-								// print an error to the log, and remove the user from the settings.
-								dump('Failed to load store for user ' . $username . ', user was not found. Removing it from settings.');
-								$GLOBALS["settings"]->delete("zarafa/v1/contexts/hierarchy/shared_stores/" . $username, true);
-							} else {
-								// That is odd, something else went wrong. Lets not be hasty and preserve
-								// the user in the settings, but do print something to the log to indicate
-								// something happened...
-								dump('Failed to load store for user ' . $username . '. ' . $e->getDisplayMessage());
-							}
+				if(is_array($folder) && !empty($folder)) {
+					try {
+						$user_entryid = mapi_msgstore_createentryid($this->getDefaultMessageStore(), $username);
+
+						$sharedStore =  $this->openMessageStore($user_entryid, $username);
+						if($sharedStore !== false) {
+							array_push($otheUsersStores ,$sharedStore);
+						}
+
+						$this->userstores[$username] = $user_entryid;
+
+						// Check if an entire store will be loaded, if so load the archive store as well
+						if(isset($folder['all']) && $folder['all']['folder_type'] == 'all'){
+							$this->getArchivedStores($this->resolveStrictUserName($username));
+						}
+					} catch (MAPIException $e) {
+						if ($e->getCode() == MAPI_E_NOT_FOUND) {
+							// The user or the corresponding store couldn't be found,
+							// print an error to the log, and remove the user from the settings.
+							dump('Failed to load store for user ' . $username . ', user was not found. Removing it from settings.');
+							$GLOBALS["settings"]->delete("zarafa/v1/contexts/hierarchy/shared_stores/" . $username, true);
+						} else {
+							// That is odd, something else went wrong. Lets not be hasty and preserve
+							// the user in the settings, but do print something to the log to indicate
+							// something happened...
+							dump('Failed to load store for user ' . $username . '. ' . $e->getDisplayMessage());
 						}
 					}
 				}
 			}
+			return $otheUsersStores;
 		}
 
 		/**
@@ -644,7 +717,7 @@
 		function resolveStrictUserName($username)
 		{
 			$storeEntryid = mapi_msgstore_createentryid($this->getDefaultMessageStore(), $username);
-			$store = mapi_openmsgstore($this->getSession(), $storeEntryid);
+			$store = $this->openMessageStore($storeEntryid, $username);
 			$storeProps = mapi_getprops($store, Array(PR_MAILBOX_OWNER_ENTRYID));
 			return $storeProps[PR_MAILBOX_OWNER_ENTRYID];
 		}
@@ -656,37 +729,53 @@
 		 */
 		function retrieveOtherUsersFromSettings()
 		{
-			$result = false;
-			$other_users = $GLOBALS["settings"]->get("zarafa/v1/contexts/hierarchy/shared_stores",null);
+			$other_users = $GLOBALS["settings"]->get("zarafa/v1/contexts/hierarchy/shared_stores", []);
 
-			if (is_array($other_users)){
-				$result = Array();
-				// Due to a previous bug you were able to open folders from both user_a and USER_A
-				// so we have to filter that here. We do that by making everything lower-case
-				foreach($other_users as $username=>$folders) {
-					// No folders are being shared, the store has probably been closed by the user,
-					// but the username is still lingering in the settings...
-					if (!isset($folders) || empty($folders)) {
-						continue;
-					}
+			$uppercaseUsers = array_filter(array_keys($other_users), function($string) {
+				return (bool) preg_match('/[A-Z]/', $string);
+			});
 
-					$username = strtolower($username);
-					if(!isset($result[$username])) {
-						$result[$username] = Array();
-					}
+			if ($uppercaseUsers) {
+				return $this->convertUpperCaseOtherUsersSettings($other_users);
+			}
 
-					foreach($folders as $type => $folder) {
-						if(is_array($folder)) {
-							$result[$username][$folder["folder_type"]] = Array();
-							$result[$username][$folder["folder_type"]]["folder_type"] = $folder["folder_type"];
-							$result[$username][$folder["folder_type"]]["show_subfolders"] = $folder["show_subfolders"];
-						}
-					}
+			return $other_users;
+		}
+
+
+		/*
+		 * Convert old settings to new settings format. Due to a
+		 * previous bug you were able to open folders from both user_a
+		 * and USER_A so we have to filter that here. We do that by
+		 * making everything lower-case
+		 * @param array $other_users the shared_stores settings
+		 * @return array Array of usernames of delegate stores
+		 */
+		private function convertUpperCaseOtherUsersSettings($other_users) {
+			$result = [];
+
+			foreach($other_users as $username=>$folders) {
+				// No folders are being shared, the store has probably been closed by the user,
+				// but the username is still lingering in the settings...
+				if (!isset($folders) || empty($folders)) {
+					continue;
 				}
 
-				$GLOBALS["settings"]->set("zarafa/v1/contexts/hierarchy/shared_stores", $result);
+				$username = strtolower($username);
+				if(!isset($result[$username])) {
+					$result[$username] = Array();
+				}
+
+				foreach($folders as $type => $folder) {
+					if(is_array($folder)) {
+						$result[$username][$folder["folder_type"]] = Array();
+						$result[$username][$folder["folder_type"]]["folder_type"] = $folder["folder_type"];
+						$result[$username][$folder["folder_type"]]["show_subfolders"] = $folder["show_subfolders"];
+					}
+				}
 			}
-			return $result;
+
+			$GLOBALS["settings"]->set("zarafa/v1/contexts/hierarchy/shared_stores", $result);
 		}
 
 		/**
@@ -737,6 +826,20 @@
 		}
 
 		/**
+		 * Get the username of the user store
+		 *
+		 * @param string $username The loginname of whom we want to full name.
+		 * @return string the display name of the user.
+		 */
+		function getDisplayNameofUser($username)
+		{
+			$user_entryid = $this->getStoreEntryIdOfUser($username);
+			$store = $this->openMessageStore($user_entryid, $username);
+			$props = mapi_getprops($store, array(PR_DISPLAY_NAME));
+			return str_replace('Inbox - ', '', $props[PR_DISPLAY_NAME]);
+		}
+
+		/**
 		 * Get the username of the owner of the specified store
 		 *
 		 * The store must have been previously added via addUserStores.
@@ -781,8 +884,8 @@
 				$defaultStore = $this->getDefaultMessageStore();
 				$contactFolders = $this->getContactFoldersForABContactProvider($defaultStore);
 
-				// include shared contact folders in addressbook if shared contact folders are not disabled
-				if (!DISABLE_SHARED_CONTACT_FOLDERS && $loadSharedContactsProvider) {
+				// include shared contact folders in addressbook if shared contact folders are enabled
+				if (ENABLE_SHARED_CONTACT_FOLDERS && $loadSharedContactsProvider) {
 					if (empty($this->userstores)) {
 						$this->getOtherUserStore();
 					}
@@ -810,7 +913,7 @@
 							$defaultContactFolder = array(
 								PR_STORE_ENTRYID => $storeEntryID,
 								PR_ENTRYID       => $rootProps[PR_IPM_CONTACT_ENTRYID],
-								PR_DISPLAY_NAME  => dgettext("zarafa", "Contacts")
+								PR_DISPLAY_NAME  => _("Contacts")
 							);
 							array_push($userContactFolders, $defaultContactFolder);
 
@@ -834,8 +937,8 @@
 					}
 				}
 
-				// include public contact folders in addressbook if public folders are enabled, and Public contact folders is not disabled
-				if (!DISABLE_PUBLIC_CONTACT_FOLDERS && ENABLE_PUBLIC_FOLDERS) {
+				// Include public contact folders in addressbook if public folders and public contacts folders are enabled
+				if (ENABLE_PUBLIC_CONTACT_FOLDERS && ENABLE_PUBLIC_FOLDERS) {
 					$publicStore = $this->getPublicMessageStore();
 					if($publicStore !== false) {
 						$contactFolders = array_merge($contactFolders, $this->getContactFoldersForABContactProvider($publicStore));
@@ -876,22 +979,24 @@
 		{
 			$storeProps = mapi_getprops($store, array(PR_ENTRYID, PR_MDB_PROVIDER, PR_IPM_SUBTREE_ENTRYID, PR_IPM_PUBLIC_FOLDERS_ENTRYID));
 
+			$isPublicStore = $storeProps[PR_MDB_PROVIDER] == ZARAFA_STORE_PUBLIC_GUID;
 			// For the public store we need to use the PR_IPM_PUBLIC_FOLDERS_ENTRYID instead of the
 			// PR_IPM_SUBTREE_ENTRYID that can be used on your own and delegate stores.
-			if($storeProps[PR_MDB_PROVIDER] == ZARAFA_STORE_PUBLIC_GUID){
-				$subtreeEntryid = $storeProps[PR_IPM_PUBLIC_FOLDERS_ENTRYID];
-			}else{
-				$subtreeEntryid = $storeProps[PR_IPM_SUBTREE_ENTRYID];
+			$subtreeEntryid = $isPublicStore ? $storeProps[PR_IPM_PUBLIC_FOLDERS_ENTRYID] : $storeProps[PR_IPM_SUBTREE_ENTRYID];
+
+			$contactFolders = array();
+			try{
+				// Search contact folder in more then one level.
+				$contactFolders = $this->getContactFolders($store, $subtreeEntryid, true, $isPublicStore);
+			}catch (Exception $e) {
+				return $contactFolders;
 			}
 
-			// Only searches one level deep, otherwise deleted contact folders will also be included.
-			$contactFolders = array();
-			$contactFolders = $this->getContactFolders($store, $subtreeEntryid, false);
 			// Need to search all the contact-subfolders within first level contact folders.
 			$firstLevelHierarchyNodes = $contactFolders;
 			foreach ($firstLevelHierarchyNodes as $key => $firstLevelNode) {
 				// To search for multiple levels CONVENIENT_DEPTH needs to be passed as well.
-				$contactFolders = array_merge($contactFolders, $this->getContactFolders($store, $firstLevelNode[PR_ENTRYID], true));
+				$contactFolders = array_merge($contactFolders, $this->getContactFolders($store, $firstLevelNode[PR_ENTRYID], true, $isPublicStore));
 			}
 			return $contactFolders;
 		}
@@ -908,9 +1013,10 @@
 		 * @param mapiStore $store The mapi store of the user
 		 * @param string $folderEntryid EntryID of the folder to look for contact folders in
 		 * @param int $depthSearch flag to search into all the folder levels
+		 * @param boolean $isPublicStore flag to indicate given store is public store.
 		 * @return Array an array in which founded contact-folders will be pushed
 		 */
-		function getContactFolders($store, $folderEntryid, $depthSearch)
+		function getContactFolders($store, $folderEntryid, $depthSearch, $isPublicStore = false)
 		{
 			$restriction = array(RES_CONTENT,
 				array(
@@ -930,13 +1036,79 @@
 				$depthFlag |= CONVENIENT_DEPTH;
 			}
 
-			$hierarchyFolder = mapi_msgstore_openentry($store, $folderEntryid);
+			// Public store does not have Deleted items(PR_IPM_WASTEBASKET_ENTRYID) folder so
+			// no need to execute below code.
+			if (!$isPublicStore) {
+				// Get all the deleted contact folder entryids.
+				$deletedContactFoldersEntryIDs = $this->getDeletedContactFolderEntryids($store, $restriction);
 
-			// Filter-out contact folders only
-			$contactFolderTable = mapi_folder_gethierarchytable($hierarchyFolder, $depthFlag);
-			mapi_table_restrict($contactFolderTable, $restriction, TBL_BATCH);
+				// Create a restriction which skeep the deleted conftact folder in final result.
+				if (!empty($deletedContactFoldersEntryIDs)) {
+					$deletedItems = array();
+					foreach($deletedContactFoldersEntryIDs as $key => $entryid) {
+						array_push($deletedItems, array(RES_PROPERTY,
+								array(
+									RELOP => RELOP_NE,
+									ULPROPTAG => PR_ENTRYID,
+									VALUE => array(PR_ENTRYID => $entryid)
+								)
+							)
+						);
+					}
 
-			return mapi_table_queryallrows($contactFolderTable, array(PR_STORE_ENTRYID, PR_ENTRYID, PR_DISPLAY_NAME));
+					$restriction = Array(RES_AND,
+						Array(
+							array(RES_PROPERTY,
+								array(
+									RELOP => RELOP_EQ,
+									ULPROPTAG => PR_CONTAINER_CLASS,
+									VALUE => array(PR_CONTAINER_CLASS => "IPF.Contact")
+								)
+							),
+							Array(RES_OR, $deletedItems)
+						)
+					);
+				}
+			}
+
+			$folder = mapi_msgstore_openentry($store, $folderEntryid);
+			$hierarchyTable = mapi_folder_gethierarchytable($folder, $depthFlag);
+			mapi_table_restrict($hierarchyTable, $restriction, TBL_BATCH);
+
+			return mapi_table_queryallrows($hierarchyTable, array(PR_STORE_ENTRYID, PR_ENTRYID, PR_DISPLAY_NAME));
+		}
+
+		/**
+		 * Function is used to get the deleted contact folders.
+		 * 
+		 * @param mapiStore $store The mapi store of the user
+		 * @param Array $restriction The search restriction to get only deleted contact folders.
+		 * 
+		 * @return Array an array of deleted contact folders entryids if any else return empty array.
+		 */
+		private function getDeletedContactFolderEntryids($store, $restriction)
+		{
+			$props = mapi_getprops($store, array(PR_IPM_WASTEBASKET_ENTRYID));
+			$deleteFolder = mapi_msgstore_openentry($store, $props[PR_IPM_WASTEBASKET_ENTRYID]);
+			$hierarchyTable = mapi_folder_gethierarchytable($deleteFolder, MAPI_DEFERRED_ERRORS | CONVENIENT_DEPTH);
+
+			mapi_table_restrict($hierarchyTable, $restriction, TBL_BATCH);
+			$deletedContactFolders = mapi_table_queryallrows($hierarchyTable, array(PR_ENTRYID));
+
+			$deletedContactFoldersEntryIDs = array_column($deletedContactFolders, PR_ENTRYID);
+			return !is_null($deletedContactFoldersEntryIDs) ? $deletedContactFoldersEntryIDs : [];
+		}
+
+		/**
+		 * Obtains server version from the PR_EC_SERVER_VERSION property.
+		 */
+		public function getServerVersion()
+		{
+			$props = mapi_getprops($this->getDefaultMessageStore(), array(PR_EC_SERVER_VERSION));
+			if (propIsError(PR_EC_SERVER_VERSION, $props) === MAPI_E_NOT_FOUND) {
+				return '';
+			}
+			return $props[PR_EC_SERVER_VERSION];
 		}
 	}
 ?>

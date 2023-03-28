@@ -9,7 +9,7 @@
 
 class Plugingmaps extends Plugin {
 
-	function __construct(){}
+	function __construct() {}
 
 	/**
 	 * Function initializes the Plugin and registers all hooks
@@ -30,10 +30,10 @@ class Plugingmaps extends Plugin {
 	 */
 	function execute($eventID, &$data) {
 		switch($eventID) {
-			case 'server.core.settings.init.before' :
+			case 'server.core.settings.init.before':
 				$this->injectPluginSettings($data);
 				break;
-			case 'server.main.include.jsfiles' :
+			case 'server.main.include.jsfiles':
 				$this->addGmapsJsFile($data);
 				break;
 		}

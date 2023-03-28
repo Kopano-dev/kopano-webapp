@@ -13,7 +13,7 @@ Zarafa.advancesearch.dialogs.SearchToolbarPanel = Ext.extend(Ext.Panel, {
 	 * @constructor
 	 * @param {Object} config configuration object.
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -22,71 +22,75 @@ Zarafa.advancesearch.dialogs.SearchToolbarPanel = Ext.extend(Ext.Panel, {
 		}
 
 		Ext.applyIf(config, {
-			xtype : 'zarafa.searchtoolbarpanel',
+			xtype: 'zarafa.searchtoolbarpanel',
 			layout: 'hbox',
-			ref : 'searchToolbar',
-			cls : 'k-search-toolbar-panel',
-			border : false,
-			plugins : [{
-				ptype : 'zarafa.recordcomponentplugin',
+			ref: 'searchToolbar',
+			cls: 'k-search-toolbar-panel',
+			border: false,
+			plugins: [{
+				ptype: 'zarafa.recordcomponentplugin',
 				enableOpenLoadTask: true,
 				autoOpenLoadTaskDefer: 250
 			},{
-				ptype : 'zarafa.recordcomponentupdaterplugin'
+				ptype: 'zarafa.recordcomponentupdaterplugin'
 			}],
-			height : 35,
-			items : [{
-				xtype: 'zarafa.searchpaneltoolbar',
-				style: 'border-style : none',
-				searchText : config.searchText,
+			height: 35,
+			items: [{
+				xtype: 'zarafa.contextmainpaneltoolbar',
+				style: 'border-style: none',
+				searchText: config.searchText,
 				context: config.searchContext
 			},{
-				xtype : 'zarafa.toolbar',
-				style : 'border-style : none; margin-left:5px;',
+				xtype: 'zarafa.toolbar',
+				style: 'border-style: none; margin-left:5px;',
 				cls: 'zarafa-previewpanel-toolbar zarafa-search-previewpanel-toolbar zarafa-context-mainpanel', // change the css class name
-				ref : 'rightSearchToolbar',
-				hidden : true,
-				items : [container.populateInsertionPoint('previewpanel.toolbar.left',  {scope : this, model : config.model}), {
-					xtype: 'tbfill'
-				},
-				container.populateInsertionPoint('previewpanel.toolbar.right.first', {scope : this, model : config.model}),
+				ref: 'rightSearchToolbar',
+				hidden: true,
+				items: [container.populateInsertionPoint('previewpanel.toolbar.left', {scope: this, model: config.model}),
 				{
 					xtype: 'button',
 					tooltip: _('Reply') + ' (Ctrl + R)',
 					overflowText: _('Reply'),
-					iconCls: 'icon_replyEmail',
+					text: _('Reply'),
+					iconCls: 'icon_reply',
 					ref: 'replyBtn',
 					responseMode: Zarafa.mail.data.ActionTypes.REPLY,
 					handler: this.onResponse,
-					scope : this
+					scope: this
 				},{
 					xtype: 'button',
 					tooltip: _('Reply All') + ' (Ctrl + Alt + R)',
 					overflowText: _('Reply All'),
-					iconCls: 'icon_replyAllEmail',
+					text: _('Reply All'),
+					iconCls: 'icon_reply_all',
 					ref: 'replyAllBtn',
 					responseMode: Zarafa.mail.data.ActionTypes.REPLYALL,
 					handler: this.onResponse,
-					scope : this
+					scope: this
 				},{
 					xtype: 'button',
 					tooltip: _('Forward') + ' (Ctrl + F)',
 					overflowText: _('Forward'),
-					iconCls: 'icon_forwardEmail',
+					text: _('Forward'),
+					iconCls: 'icon_forward',
 					ref: 'forwardBtn',
 					responseMode: Zarafa.mail.data.ActionTypes.FORWARD,
 					handler: this.onResponse,
-					scope : this
+					scope: this
 				},{
+					xtype: 'tbfill'
+				},
+				container.populateInsertionPoint('previewpanel.toolbar.right.first', {scope: this, model: config.model}),
+				{
 					xtype: 'button',
-					tooltip: _('Edit as New Message') + ' (Ctrl + E)',
-					overflowText: _('Edit as New Message'),
-					iconCls: 'icon_editAsNewEmail',
+					tooltip: _('Edit as New') + ' (Ctrl + E)',
+					overflowText: _('Edit as New'),
+					iconCls: 'icon_edit_as_new_mail',
 					ref: 'editAsNewBtn',
 					responseMode: Zarafa.mail.data.ActionTypes.EDIT_AS_NEW,
 					handler: this.onResponse,
-					scope : this
-				},container.populateInsertionPoint('previewpanel.toolbar.right', {scope : this, model : config.model})]
+					scope: this
+				},container.populateInsertionPoint('previewpanel.toolbar.right', {scope: this, model: config.model})]
 			}]
 		});
 
@@ -98,7 +102,7 @@ Zarafa.advancesearch.dialogs.SearchToolbarPanel = Ext.extend(Ext.Panel, {
 	 *
 	 * @return {Zarafa.common.searchfield.ui.SearchFieldContainer} Search field container.
 	 */
-	getSearchFieldContainer : function()
+	getSearchFieldContainer: function()
 	{
 		return this.contextMainPanelToolbar.searchFieldContainer;
 	},
@@ -107,7 +111,7 @@ Zarafa.advancesearch.dialogs.SearchToolbarPanel = Ext.extend(Ext.Panel, {
 	 * Function is used to retrieve the {@link Zarafa.common.searchfield.ui.SearchTextField SearchTextField}.
 	 * @return {Zarafa.common.searchfield.ui.SearchTextField} Search text field.
 	 */
-	getAdvanceSearchField : function()
+	getAdvanceSearchField: function()
 	{
 		return this.getSearchFieldContainer().searchTextField;
 	},
@@ -116,7 +120,7 @@ Zarafa.advancesearch.dialogs.SearchToolbarPanel = Ext.extend(Ext.Panel, {
 	 * Function is used to retrieve the {@link Zarafa.common.searchfield.ui.SearchFolderCombo SearchFolderCombo}.
 	 * @return {Zarafa.common.searchfield.ui.SearchFolderCombo} Search folder combo
 	 */
-	getSearchFolderCombo : function()
+	getSearchFolderCombo: function()
 	{
 		return this.getSearchFieldContainer().searchFolderCombo;
 	},
@@ -128,7 +132,7 @@ Zarafa.advancesearch.dialogs.SearchToolbarPanel = Ext.extend(Ext.Panel, {
 	 * @param {Boolean} contentReset force the component to perform a full update of the data.
 	 * @private
 	 */
-	update : function(record , contentReset)
+	update: function(record , contentReset)
 	{
 		this.record = record;
 	},
@@ -137,18 +141,18 @@ Zarafa.advancesearch.dialogs.SearchToolbarPanel = Ext.extend(Ext.Panel, {
 	 * Function was used to get the right search toolbar.
 	 * @returns {Object} return right search tool bar
 	 */
-	getRightSearchToolbar : function()
+	getRightSearchToolbar: function()
 	{
 		return this.rightSearchToolbar;
 	},
 
 	/**
-	 * Called when one of the "Reply"/"Reply All"/"Forward"/"Edit as New Message" menuitems are clicked from
+	 * Called when one of the "Reply"/"Reply All"/"Forward"/"Edit as New" menuitems are clicked from
 	 * right toolbar of search tool bar.
 	 * @param {Ext.Button} button The button which was clicked
 	 * @private
 	 */
-	onResponse : function(button)
+	onResponse: function(button)
 	{
 		var mailContextModel = container.getContextByName('mail').getModel();
 		Zarafa.mail.Actions.openCreateMailResponseContent(this.record, mailContextModel, button.responseMode);

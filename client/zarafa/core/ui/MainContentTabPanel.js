@@ -10,14 +10,22 @@ Ext.namespace('Zarafa.core.ui');
 Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 
 	/**
-	 * Overriden to modify the tab depending on whether the record has been edited or not
+	 * The list of opened tab. It contains the list with the entryid and tab id.
+	 * @property
+	 * @type Ext.util.MixedCollection
+	 * @private
+	 */
+	openedTabs: new Ext.util.MixedCollection(),
+
+	/**
+	 * Overridden to modify the tab depending on whether the record has been edited or not
 	 * This method is called when a contained component fires the 'titlechange' event
 	 * @param {Component} item
 	 * @param {String} title
 	 * @override
 	 * @private
 	 */
-	onItemTitleChanged : function(item, title, oldTitle)
+	onItemTitleChanged: function(item, title, oldTitle)
 	{
 		var el = this.getTabEl(item);
 		if (el) {
@@ -38,7 +46,7 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 	 * @param {String} oldCls The previous icon class
 	 * @private
 	 */
-	onItemIconChanged : function(item, iconCls, oldCls)
+	onItemIconChanged: function(item, iconCls, oldCls)
 	{
 		var tabEl = this.getTabEl(item);
 		if (!Ext.isEmpty(tabEl)) {
@@ -67,7 +75,7 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 	 * @param {Boolean} changed True if the item has been changed by the user
 	 * @private
 	 */
-	onItemUserUpdateRecord : function(item, record, changed)
+	onItemUserUpdateRecord: function(item, record, changed)
 	{
 		var el = this.getTabEl(item);
 		if (el) {
@@ -78,16 +86,21 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 				tab.removeClass('zarafa-tab-edited');
 			}
 		}
+
+		// If record get saved then add record id
+		if (!record.phantom && !this.getOpenedTab(record)) {
+			this.registeredOpenTab(record, item.getId());
+		}
 	},
 
 	/**
-	 * Overriden in order to listen to close event of child component
+	 * Overridden in order to listen to close event of child component
 	 * @param {Component} item
 	 * @param {Number} index
 	 * @override
 	 * @private
 	 */
-	initTab : function(item, index)
+	initTab: function(item, index)
 	{
 		var title = item.title;
 		if(!Ext.isEmpty(title)) {
@@ -100,11 +113,11 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 		Zarafa.core.ui.MainContentTabPanel.superclass.initTab.call(this, item, index);
 
 		item.on({
-			scope : this,
-			render : this.applyTooltip,
-			iconchange : this.onItemIconChanged,
-			userupdaterecord : this.onItemUserUpdateRecord,
-			close : this.onTabClose
+			scope: this,
+			render: this.applyTooltip,
+			iconchange: this.onItemIconChanged,
+			userupdaterecord: this.onItemUserUpdateRecord,
+			close: this.onTabClose
 		});
 	},
 
@@ -112,7 +125,7 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 	 * This will apply tooltip on close button ('X') of {@link Ext.Panel Panel}.
 	 * @param {Component} item.
 	 */
-	applyTooltip : function(item)
+	applyTooltip: function(item)
 	{
 		var el = item.tabEl;
 		var closeTab = Ext.get(el).child('.x-tab-strip-close', true);
@@ -126,10 +139,13 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 	 * For instance when a mail is sent, the MailCreateContentPanel needs to be closed
 	 * @param {Component} tab
 	 */
-	onTabClose : function(tab)
+	onTabClose: function(tab)
 	{
 		if (this.fireEvent('beforeclose', tab)!==false) {
 			this.remove(tab);
+			this.openedTabs = this.openedTabs.filterBy(function (item) {
+				return item !== tab.getId();
+			});
 			this.fireEvent('close', tab);
 		}
 	},
@@ -141,7 +157,7 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 	 * @param {Element} t Event target
 	 * @param {Object} o Configuration object
 	 */
-	onTabAddClick : function(e, t, o)
+	onTabAddClick: function(e, t, o)
 	{
 		var model = container.getCurrentContext().getModel();
 
@@ -153,26 +169,40 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 				model = button.scope.model;
 			}
 
-			var record = model.createRecord();
-			if (!record) {
-				//if unable to create record from the current context model, invoke the handler of the first item in the 'new' menu
-				var button = container.getMainPanel().mainToolbar.newButton;
-				button.handler.call(button.scope);
-				return;
+			if (model.checkCreateRights === Ext.emptyFn) {
+				var record = model.createRecord();
+				if (!record) {
+					//if unable to create record from the current context model, invoke the handler of the first item in the 'new' menu
+					var button = container.getMainPanel().mainToolbar.newButton;
+					button.handler.call(button.scope);
+					return;
+				} else {
+					// This will always use tab layer only, no matter what layer is configured in settings
+					Zarafa.core.data.UIFactory.openCreateRecord(record, {layerType: 'tab'});
+				}
 			} else {
-				// This will always use tab layer only, no matter what layer is configured in settings
-				Zarafa.core.data.UIFactory.openCreateRecord(record, {layerType : 'tab'});
+				model.createRecord(function(record){
+					if (!record) {
+						//if unable to create record from the current context model, invoke the handler of the first item in the 'new' menu
+						var button = container.getMainPanel().mainToolbar.newButton;
+						button.handler.call(button.scope);
+						return;
+					} else {
+						// This will always use tab layer only, no matter what layer is configured in settings
+						Zarafa.core.data.UIFactory.openCreateRecord(record, {layerType: 'tab'});
+					}
+				}.createDelegate(this));
 			}
 		}
 	},
 
 	/**
-	 * Overriden in order to add the '+' button to the edge of the tabstrip
+	 * Overridden in order to add the '+' button to the edge of the tabstrip
 	 * @param {Ext.Element} ct Container in which the panel is created
 	 * @param {Element} position Element at which the panel is created (relative to its position)
 	 * @override
 	 */
-	onRender : function(ct, position)
+	onRender: function(ct, position)
 	{
 		Zarafa.core.ui.MainContentTabPanel.superclass.onRender.call(this, ct, position);
 
@@ -186,13 +216,13 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 	},
 
 	/**
-	 * Overriden in order to call close() on the item, instead of removing it immediately
+	 * Overridden in order to call close() on the item, instead of removing it immediately
 	 * This allows the contained panel to fire a confirmation dialog
 	 * @param {Ext.EventObjectImpl} e Event
 	 * @private
 	 * @override
 	 */
-	onStripMouseDown : function(e)
+	onStripMouseDown: function(e)
 	{
 		if (e.button !== 0) {
 			return;
@@ -210,13 +240,88 @@ Zarafa.core.ui.MainContentTabPanel = Ext.extend(Ext.TabPanel, {
 	},
 
 	/**
-	 * Overriden so that '+' sign for adding tabs remains visible when there are scroll buttons
+	 * Overridden so that '+' sign for adding tabs remains visible when there are scroll buttons
 	 * @private
 	 * @override
 	 */
-	getScrollWidth : function()
+	getScrollWidth: function()
 	{
 		return this.edge.getOffsetsTo(this.stripWrap)[0] + this.getScrollPos() + this.edge.getWidth();
+	},
+
+	/**
+	 * Fires before Ext.Component is added or inserted into the Zarafa.core.ui.MainContentTabPanel
+	 * It will verify if the record is already opened in tab. If yes then moved focus on that tab,
+	 * Otherwise add tab id into openedTabs.
+	 * @param {Component} tab
+	 */
+	onBeforeAdd: function (tab)
+	{
+		if (tab.name === "main.content" || !tab.dialog) {
+			return;
+		}
+
+		var record = tab.dialog.record;
+		if (!Ext.isEmpty(record) && !Ext.isEmpty(record.get("entryid"))) {
+			var openedTab = this.getOpenedTab(record);
+			if (openedTab) {
+				container.getTabPanel().setActiveTab(openedTab);
+				return false;
+			} else {
+				this.registeredOpenTab(record,tab.getId());
+			}
+		}
+	},
+
+	/**
+	 * Register a newly created tab with the {@link #openedTabs}.
+	 * If record is {@link Zarafa.core.data.AppointmentRecord AppointmentRecord} recurring occurrence appointment then
+	 * append basedate with entryid.
+	 *
+	 * @param {Ext.data.Record} record
+	 * @param {String} tabId id of tab component.
+	 */
+	registeredOpenTab: function (record, tabId)
+	{
+		var entryid = record.get("entryid");
+
+		// If record is attachment record then take id instead of entryid because
+		// Attachment record id contains entryid with attach_num
+		if (Array.isArray(record.get('attach_num'))) {
+			entryid = record.id;
+		} else if (!Ext.isEmpty(record.get("basedate"))) {
+			entryid += "_" + record.get('basedate').getTime();
+		}
+		this.openedTabs.add(entryid, tabId);
+	},
+
+	/**
+	 * Function which is use to find tab id of given record.
+	 * @param {Zarafa.core.data.MAPIRecord} record
+	 * @returns {String | Boolean} Tab id if record is already opened, false otherwise.
+	 */
+	getOpenedTab: function (record)
+	{
+		return this.openedTabs.find(function (key, item) {
+			if (!Ext.isEmpty(record.get("basedate"))) {
+				if (item.indexOf(record.get("basedate").getTime()) > -1) {
+					item = item.split("_")[0];
+				} else {
+					item = false;
+				}
+			}
+			var entryid = record.get("entryid");
+
+			// If record is attachment record then take id instead of entryid because
+			// Attachment record id contains entryid with attach_num
+			if (Array.isArray(record.get('attach_num'))) {
+				entryid = record.id;
+			}
+
+			if (Zarafa.core.EntryId.compareEntryIds(item, entryid)) {
+				return true;
+			}
+		});
 	}
 });
 

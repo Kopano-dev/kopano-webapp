@@ -771,6 +771,9 @@ define('PR_EC_OUTOFOFFICE_SUBJECT'                    ,mapi_prop_tag(PT_STRING8,
 define('PR_EC_OUTOFOFFICE_FROM'                       ,mapi_prop_tag(PT_SYSTIME,     PR_EC_BASE+0x63));
 define('PR_EC_OUTOFOFFICE_UNTIL'                         ,mapi_prop_tag(PT_SYSTIME,     PR_EC_BASE+0x64));
 
+/* Server version */
+define('PR_EC_SERVER_VERSION'                        ,mapi_prop_tag(PT_STRING8,     PR_EC_BASE+0x16));
+
 /* quota support */
 define('PR_QUOTA_WARNING_THRESHOLD'                   ,mapi_prop_tag(PT_LONG,        PR_EC_BASE+0x21));
 define('PR_QUOTA_SEND_THRESHOLD'                      ,mapi_prop_tag(PT_LONG,        PR_EC_BASE+0x22));
@@ -784,7 +787,7 @@ define('PR_EC_RECIPIENT_HISTORY'                      ,mapi_prop_tag(PT_STRING8,
 define('PR_EC_WEBACCESS_SETTINGS_JSON'                ,mapi_prop_tag(PT_STRING8,     PR_EC_BASE+0x72));
 define('PR_EC_RECIPIENT_HISTORY_JSON'                 ,mapi_prop_tag(PT_STRING8,     PR_EC_BASE+0x73));
 
-/* The peristent settings are settings that will not be touched when the settings are reset */
+/* The persistent settings are settings that will not be touched when the settings are reset */
 define('PR_EC_WEBAPP_PERSISTENT_SETTINGS_JSON'        ,mapi_prop_tag(PT_STRING8,     PR_EC_BASE+0x74));
 
 /* statistics properties */
@@ -805,6 +808,7 @@ define('PR_EC_COMPANY_NAME', mapi_prop_tag(PT_STRING8,	PR_EC_BASE+0x48));
 
 /* WA properties */
 define('PR_EC_WA_ATTACHMENT_HIDDEN_OVERRIDE', mapi_prop_tag(PT_BOOLEAN, PR_EC_BASE+0xE0));
+define('PR_EC_WA_ATTACHMENT_ID', mapi_prop_tag(PT_STRING8, PR_EC_BASE+0xE1));
 
 // edkmdb, rules properties
 #define pidSpecialMin                                   0x6670
@@ -819,6 +823,13 @@ define('PR_RULE_PROVIDER'                             ,mapi_prop_tag(PT_STRING8,
 define('PR_RULE_NAME'                                 ,mapi_prop_tag(PT_TSTRING,     0x6670+0x12));
 define('PR_RULE_LEVEL'                                ,mapi_prop_tag(PT_LONG,        0x6670+0x13));
 define('PR_RULE_PROVIDER_DATA'                        ,mapi_prop_tag(PT_BINARY,      0x6670+0x14));
+
+//custom properties to hold size units
+define('PR_RULE_ATLEAST_MESSAGE_SIZEUNIT'             ,mapi_prop_tag(PT_STRING8,     PR_EC_BASE+0x15));
+define('PR_RULE_ATMOST_MESSAGE_SIZEUNIT'              ,mapi_prop_tag(PT_STRING8,     PR_EC_BASE+0x17));
+//custom properties which holds size units for exceptions
+define('PR_RULE_EXCEPTION_ATLEAST_MESSAGE_SIZEUNIT'   ,mapi_prop_tag(PT_STRING8,     PR_EC_BASE+0x18));
+define('PR_RULE_EXCEPTION_ATMOST_MESSAGE_SIZEUNIT'    ,mapi_prop_tag(PT_STRING8,     PR_EC_BASE+0x19));
 
 // edkmdb, ICS properties
 define('PR_SOURCE_KEY'								  ,mapi_prop_tag(PT_BINARY, 	0x65E0+0x00));
@@ -871,7 +882,7 @@ define('PR_EMS_AB_IS_MEMBER_OF_DL'            ,mapi_prop_tag(PT_MV_BINARY,  0x80
 define('PR_EMS_AB_OWNER'                      ,mapi_prop_tag(PT_BINARY,     0x800C));
 define('PR_EMS_AB_ROOM_CAPACITY'	      ,mapi_prop_tag(PT_LONG,	    0x0807));
 define('PR_EMS_AB_TAGGED_X509_CERT'           ,mapi_prop_tag(PT_MV_BINARY,  0x8C6A));
-define('PR_EMS_AB_THUMBNAIL_PHOTO'            ,mapi_prop_tag(PT_MV_BINARY,     0x8C9E));
+define('PR_EMS_AB_THUMBNAIL_PHOTO'            ,mapi_prop_tag(PT_BINARY,     0x8C9E));
 
 
 define('PR_EC_ARCHIVE_SERVERS'                ,mapi_prop_tag(PT_MV_TSTRING,	0x67c4));
@@ -901,6 +912,11 @@ define('PR_WLINK_RECKEY'                     ,mapi_prop_tag(PT_BINARY,     0x684
 define('PR_WB_SF_ID'                         ,mapi_prop_tag(PT_BINARY,     0x6842));
 
 /* Search folder properties */
-define('PR_EC_SUGGESTION'					,mapi_prop_tag(PT_TSTRING, 0x6707));
+define('PR_EC_SUGGESTION'                    ,mapi_prop_tag(PT_TSTRING, 0x6707));
 
+define('PR_EC_ENABLED_FEATURES'              ,mapi_prop_tag(PT_MV_TSTRING, PR_EC_BASE+0xB3));
+define('PR_EC_DISABLED_FEATURES'             ,mapi_prop_tag(PT_MV_TSTRING, 0x67B4));
+
+define('PR_PROPOSEDNEWTIME_START', PR_PROPOSENEWTIME_START);
+define('PR_PROPOSEDNEWTIME_END', PR_PROPOSENEWTIME_END);
 ?>

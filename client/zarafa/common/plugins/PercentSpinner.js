@@ -17,13 +17,13 @@ Zarafa.common.plugins.PercentSpinner = Ext.extend(Zarafa.common.plugins.NumberSp
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			allowDecimals : true,
-			decimalPrecision : 4
+			allowDecimals: true,
+			decimalPrecision: 4
 		});
 
 		Zarafa.common.plugins.PercentSpinner.superclass.constructor.call(this, config);
@@ -34,7 +34,7 @@ Zarafa.common.plugins.PercentSpinner = Ext.extend(Zarafa.common.plugins.NumberSp
 	 * this plugin has been hooked.
 	 * @param {Zarafa.common.ui.SpinnerField} The parent field to which this component is connected
 	 */
-	init : function(field)
+	init: function(field)
 	{
 		// The superClass will call parseFloat() on the defaultValue, minValue and
 		// maxValue when those values are written in Strings. We however expect a string
@@ -66,15 +66,13 @@ Zarafa.common.plugins.PercentSpinner = Ext.extend(Zarafa.common.plugins.NumberSp
 	 * @return {Float} The float value representing the string
 	 * @protected
 	 */
-	stringToFloat : function(value)
+	stringToFloat: function(value)
 	{
-		var isPercent;
-
 		if (Ext.isEmpty(value)) {
-			return undefined;
+			return;
 		}
 
-		isPercent = value.indexOf('%');
+		var isPercent = value.indexOf('%');
 
 		value = parseFloat(value);
 		if (isPercent) {
@@ -90,13 +88,11 @@ Zarafa.common.plugins.PercentSpinner = Ext.extend(Zarafa.common.plugins.NumberSp
 	 * @return {String} The stringified value represented as percentage
 	 * @protected
 	 */
-	floatToString : function(value)
+	floatToString: function(value)
 	{
-		if (!Ext.isDefined(value)) {
-			return undefined;
+		if (Ext.isDefined(value)) {
+			return (value * 100) + '%';
 		}
-
-		return (value * 100) + '%';
 	},
 
 	/**
@@ -105,7 +101,7 @@ Zarafa.common.plugins.PercentSpinner = Ext.extend(Zarafa.common.plugins.NumberSp
 	 * @param {Number/String} value The value to set
 	 * @private
 	 */
-	setValue : function(value)
+	setValue: function(value)
 	{
 		if (!Ext.isEmpty(value) && Ext.isString(value)) {
 			value = parseFloat(value) / 100;

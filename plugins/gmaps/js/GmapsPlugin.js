@@ -12,7 +12,7 @@ Zarafa.plugins.gmaps.GmapsPlugin = Ext.extend(Zarafa.core.Plugin, {
 	 * Initialize the plugin by calling {@link #registerInsertionPoint}.
 	 * @protected
 	 */
-	initPlugin : function()
+	initPlugin: function()
 	{
 		Zarafa.plugins.gmaps.GmapsPlugin.superclass.initPlugin.apply(this, arguments);
 
@@ -46,8 +46,8 @@ Zarafa.plugins.gmaps.GmapsPlugin = Ext.extend(Zarafa.core.Plugin, {
 
 Zarafa.onReady(function() {
 	container.registerPlugin(new Zarafa.core.PluginMetaData({
-		name : 'gmaps',
-		displayName : _('Google Maps'),
-		pluginConstructor : Zarafa.plugins.gmaps.GmapsPlugin
+		name: 'gmaps',
+		displayName: _('Google Maps'),
+		pluginConstructor: Zarafa.plugins.gmaps.GmapsPlugin
 	}));
 });

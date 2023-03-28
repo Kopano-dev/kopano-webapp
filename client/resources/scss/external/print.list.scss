@@ -1,0 +1,45 @@
+@import 'base/_colors';
+
+#k-listview {
+        font-family: arial, tahoma, helvetica, sans-serif;
+}
+
+#k-name {
+	font-size: 16px;
+	padding: 15px 0 15px 15px;
+}
+
+#k-printlist {
+
+	width: 100%;
+	border-collapse: collapse;
+
+	/* Table header */
+	th {
+		border: 1px solid #ddd;
+		padding: 8px;
+		font-size: 13px;
+		background-color: $whiteSmoke;
+		text-align: left;
+		color: $dark-grey2;
+	}
+
+	td {
+		padding: 8px;
+		font-size: 11px;
+		color: $dark-grey2;
+		border: 1px solid #ddd;
+	}
+
+	tr:nth-child(odd) {
+		background-color: $whiteSmoke;
+	}
+}
+
+#k-printlistbottom {
+	width: 100%;
+	padding-top: 5px;
+	color: $dark-grey2;
+	font-size: 12px;
+}
+

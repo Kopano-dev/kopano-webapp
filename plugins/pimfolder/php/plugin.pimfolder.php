@@ -6,7 +6,7 @@
  */
 class PluginPimFolder extends Plugin {
 
-	function __constructor(){}
+	function __constructor() {}
 
 	/**
 	 * Function initializes the Plugin and registers all hooks
@@ -26,7 +26,7 @@ class PluginPimFolder extends Plugin {
 	 */
 	function execute($eventID, &$data) {
 		switch($eventID) {
-			case 'server.core.settings.init.before' :
+			case 'server.core.settings.init.before':
 				$this->injectPluginSettings($data);
 				break;
 		}
