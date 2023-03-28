@@ -6,16 +6,6 @@
 
 	.k-store-picker {
 		padding: 0 $padding-medium $padding-medium;
-		border-bottom: 1px solid $grey;
-
-		.x-form-item {
-			margin-bottom: 0;
-		}
-
-		label {
-			width: auto;
-			border: 1px solid transparent; /* to align the text with the text in the combo */
-		}
 	}
 }
 
@@ -27,30 +17,27 @@
 	.x-btn-noicon .x-btn-small {
 		margin-right: $padding-medium;
 	}
+
+	.x-panel-body {
+		padding: $padding-medium*2 !important;
+	}
 }
 
-/* Specify word or phrases */
-.x-btn-text.zarafa-rules-add {
-	background-image: sprite-url($icons);
-	background-position: sprite-position($icons, 'plus', $offset_x: 6px, $offset_y: 7px);
-}
+/* Rules edit panel (called "Inbox Rule" */
 
-.x-btn-text.zarafa-rules-sequence-up {
-	background-image: sprite-url($iconsmap);
-	background-position: sprite-position($iconsmap, 'arrow_up_l', $offset_y: 9px, $offset_x: 7px);
-}
+.k-ruleseditpanel {
+	.zarafa-folder-link, .zarafa-user-link, .zarafa-word-link {
+        	text-decoration: underline;
+	        padding: 4px 0px 0px 5px;
+	        cursor:pointer;
+	        overflow: hidden;
+        	text-overflow: ellipsis;
+	        white-space: nowrap;
+	        font-weight: bold;
+	}
+	
+	 .zarafa-compositefield {
+		padding-top: $padding-medium;
+	}	
 
-.x-btn-text.zarafa-rules-sequence-down {
-	background-image: sprite-url($iconsmap);
-	background-position: sprite-position($iconsmap, 'arrow_down_l', $offset_y: 9px, $offset_x: 7px);
-}
-
-.zarafa-folder-link, .zarafa-user-link, .zarafa-word-link {
-	text-decoration: underline;
-	padding: 4px 0px 0px 5px;
-	cursor:pointer;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	font-weight: bold;
 }

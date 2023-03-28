@@ -26,7 +26,7 @@ Zarafa.contact.ContactContext = Ext.extend(Zarafa.core.Context, {
 	 * @type Mixed
 	 * @private
 	 */
-	oldView : undefined,
+	oldView: undefined,
 
 	/**
 	 * When searching, this property marks the {@link Zarafa.core.Context#getCurrentViewMode viewmode}
@@ -36,18 +36,18 @@ Zarafa.contact.ContactContext = Ext.extend(Zarafa.core.Context, {
 	 * @type Mixed
 	 * @private
 	 */
-	oldViewMode : undefined,
+	oldViewMode: undefined,
 
 	/*
 	 * @constructor
 	 * @param {Object} config configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 		Ext.applyIf(config, {
-			current_view : Zarafa.contact.data.Views.LIST,
-			current_view_mode : Zarafa.contact.data.ViewModes.NORMAL
+			current_view: Zarafa.contact.data.Views.LIST,
+			current_view_mode: Zarafa.contact.data.ViewModes.NORMAL
 		});
 
 		// The "New contact" and "New distribution list" buttons which are available in all contexts
@@ -57,6 +57,8 @@ Zarafa.contact.ContactContext = Ext.extend(Zarafa.core.Context, {
 		// Context menu button to add a recipient as contact
 		this.registerInsertionPoint('context.common.recipientfield.contextmenu.actions', this.createContactFromRecipientButton, this);
 
+		// Recipient hover card button to add a recipient as contact
+		this.registerInsertionPoint('context.common.recipientfield.hovercardview.actions', this.createContactFromHoverCardRecipientButton, this);
 		// The tab in the top tabbar
 		this.registerInsertionPoint('main.maintabbar.left', this.createMainTab, this);
 
@@ -89,14 +91,14 @@ Zarafa.contact.ContactContext = Ext.extend(Zarafa.core.Context, {
 	/**
 	 * @return {Zarafa.contact.ContactContextModel} the contact context model
 	 */
-	getModel : function()
+	getModel: function()
 	{
 		if (!Ext.isDefined(this.model)) {
 			this.model = new Zarafa.contact.ContactContextModel();
 			this.model.on({
-				'searchstart' : this.onModelSearchStart,
-				'searchstop' : this.onModelSearchStop,
-				scope : this
+				'searchstart': this.onModelSearchStart,
+				'searchstop': this.onModelSearchStop,
+				scope: this
 			});
 		}
 		return this.model;
@@ -110,7 +112,7 @@ Zarafa.contact.ContactContext = Ext.extend(Zarafa.core.Context, {
 	 * @param {Zarafa.core.ContextModel} model The model which fired the event
 	 * @private
 	 */
-	onModelSearchStart : function(model)
+	onModelSearchStart: function(model)
 	{
 		if(this.getCurrentView() !== Zarafa.contact.data.Views.SEARCH && this.getCurrentViewMode() !== Zarafa.contact.data.ViewModes.SEARCH){
 			this.oldView = this.getCurrentView();
@@ -125,7 +127,7 @@ Zarafa.contact.ContactContext = Ext.extend(Zarafa.core.Context, {
 	 * @param {Zarafa.core.ContextModel} model The model which fired the event
 	 * @private
 	 */
-	onModelSearchStop : function(model)
+	onModelSearchStop: function(model)
 	{
 		this.switchView(this.oldView, this.oldViewMode);
 		delete this.oldView;
@@ -153,8 +155,8 @@ Zarafa.contact.ContactContext = Ext.extend(Zarafa.core.Context, {
 			case Zarafa.core.data.SharedComponentType['common.preview']:
 				if (record instanceof Zarafa.core.data.IPMRecord && record.isMessageClass([ 'IPM.Contact', 'IPM.DistList' ], true)) {
 					bid = 1;
-				// If the guid of the entryid indicates this record comes from the Contact Provider 
-				// then we also want this record. This happens when opening an Addressbook record. 
+				// If the guid of the entryid indicates this record comes from the Contact Provider
+				// then we also want this record. This happens when opening an Addressbook record.
 				} else if (record instanceof Zarafa.core.data.MAPIRecord) {
 					var entryid = record.get('entryid');
 					if(entryid && Zarafa.core.EntryId.hasContactProviderGUID(entryid)) {
@@ -224,7 +226,7 @@ Zarafa.contact.ContactContext = Ext.extend(Zarafa.core.Context, {
 						component = Zarafa.contact.dialogs.ContactContentPanel;
 					} else if (record.isMessageClass('IPM.DistList', true)) {
 						component = Zarafa.contact.dialogs.DistlistContentPanel;
-					} 
+					}
 				} else if (record instanceof Zarafa.core.data.MAPIRecord) {
 					var entryid = record.get('entryid');
 					if (entryid && Zarafa.core.EntryId.hasContactProviderGUID(entryid)) {
@@ -232,7 +234,7 @@ Zarafa.contact.ContactContext = Ext.extend(Zarafa.core.Context, {
 							component = Zarafa.contact.dialogs.ContactContentPanel;
 						} else if (record.get('object_type') === Zarafa.core.mapi.ObjectType.MAPI_DISTLIST) {
 							component = Zarafa.contact.dialogs.DistlistContentPanel;
-						} 
+						}
 					}
 				}
 				break;
@@ -291,28 +293,28 @@ Zarafa.contact.ContactContext = Ext.extend(Zarafa.core.Context, {
 	 * button panel. It shows a tree of available contact folders that can be checked and unchecked.
 	 * @private
 	 */
-	createContactNavigationPanel : function()
+	createContactNavigationPanel: function()
 	{
 		return {
-			xtype : 'zarafa.contextnavigation',
-			context : this,
-			items : [{
-				xtype : 'panel',
+			xtype: 'zarafa.contextnavigation',
+			context: this,
+			items: [{
+				xtype: 'panel',
 				id: 'zarafa-navigationpanel-contacts-navigation',
 				cls: 'zarafa-context-navigation-block',
 				layout: 'fit',
-				items : [{
-					xtype : 'zarafa.hierarchytreepanel',
+				items: [{
+					xtype: 'zarafa.hierarchytreepanel',
 					id: 'zarafa-navigationpanel-contacts-navigation-tree',
-					model : this.getModel(),
-					IPMFilter : 'IPF.Contact',
-					hideDeletedFolders : true,
-					enableDD : true,
-					enableItemDrop : true,
-					deferredLoading : true,
+					model: this.getModel(),
+					IPMFilter: 'IPF.Contact',
+					hideDeletedFolders: true,
+					enableDD: true,
+					enableItemDrop: true,
+					deferredLoading: true,
 					bbarConfig: {
 						defaultSelectedSharedFolderType: Zarafa.hierarchy.data.SharedFolderTypes['CONTACT'],
-						buttonText : _('Open Shared Contacts')
+						buttonText: _('Open Shared Contacts')
 					}
 				}]
 			}]
@@ -325,7 +327,7 @@ Zarafa.contact.ContactContext = Ext.extend(Zarafa.core.Context, {
 	 * @return {Number} returns a number which is used for bidding for a folder, highest bidder
 	 * will be allowed to show the contents
 	 */
-	bid : function(folder)
+	bid: function(folder)
 	{
 		// the folder contains items of type IPF.Contact, return 1
 		if (folder.isContainerClass('IPF.Contact', true)) {
@@ -340,59 +342,59 @@ Zarafa.contact.ContactContext = Ext.extend(Zarafa.core.Context, {
 	 * this will create a content panel, which is a container for all the views
 	 * @return {Object} configuration object to create {@link Zarafa.contact.ui.ContactMainPanel ContactMainPanel}
 	 */
-	createContentPanel : function()
+	createContentPanel: function()
 	{
 		// create object of ContactMainPanel that will create the views
 		return {
-			xtype : 'zarafa.contactmainpanel',
+			xtype: 'zarafa.contactmainpanel',
 			id: 'zarafa-mainpanel-contentpanel-contacts',
-			context : this
+			context: this
 		};
 	},
 
 	/**
-	 * Returns the buttons for the dropdown list of the VIEW-button in the main toolbar. It will use the 
+	 * Returns the buttons for the dropdown list of the VIEW-button in the main toolbar. It will use the
 	 * main.maintoolbar.view.contact insertion point to allow other plugins to add their items at the end.
-	 * 
+	 *
 	 * @return {Ext.Component[]} an array of components
 	 */
-	getMainToolbarViewButtons : function()
+	getMainToolbarViewButtons: function()
 	{
 		var items = container.populateInsertionPoint('main.maintoolbar.view.contact', this) || [];
-		
+
 		var defaultItems = [{
 			id: 'zarafa-maintoolbar-view-contacts-businesscards',
 			text: _('Business Cards'),
 			overflowText: _('Business Cards'),
 			iconCls: 'icon_contact_card_view',
-			valueView : Zarafa.contact.data.Views.ICON,
-			valueViewMode : Zarafa.contact.data.ViewModes.BUSINESS,
-			valueDataMode : Zarafa.contact.data.DataModes.CHARACTER_RESTRICT,
-			handler : this.onContextSelectView,
-			scope : this
+			valueView: Zarafa.contact.data.Views.ICON,
+			valueViewMode: Zarafa.contact.data.ViewModes.BUSINESS,
+			valueDataMode: Zarafa.contact.data.DataModes.CHARACTER_RESTRICT,
+			handler: this.onContextSelectView,
+			scope: this
 		},{
 			id: 'zarafa-maintoolbar-view-contacts-phonlist',
 			text: _('Phone List'),
 			overflowText: _('Phone List'),
 			iconCls: 'icon_contact_list',
-			valueView : Zarafa.contact.data.Views.LIST,
-			valueViewMode : Zarafa.contact.data.ViewModes.NORMAL,
-			valueDataMode : Zarafa.contact.data.DataModes.ALL,
-			handler : this.onContextSelectView,
-			scope : this
+			valueView: Zarafa.contact.data.Views.LIST,
+			valueViewMode: Zarafa.contact.data.ViewModes.NORMAL,
+			valueDataMode: Zarafa.contact.data.DataModes.ALL,
+			handler: this.onContextSelectView,
+			scope: this
 		}];
 
 		return defaultItems.concat(items);
 	},
 
-	/** 
-	 * Event handler which is fired when one of the View buttons 
-	 * has been pressed. This will call {@link Zarafa.contact.ContactContext#setView setView} 
-	 * to update the view. 
-	 * @param {Ext.Button} button The button which was pressed 
-	 * @private 
-	 */ 
-	onContextSelectView : function(button)
+	/**
+	 * Event handler which is fired when one of the View buttons
+	 * has been pressed. This will call {@link Zarafa.contact.ContactContext#setView setView}
+	 * to update the view.
+	 * @param {Ext.Button} button The button which was pressed
+	 * @private
+	 */
+	onContextSelectView: function(button)
 	{
 		this.getModel().setDataMode(button.valueDataMode);
 		this.switchView(button.valueView, button.valueViewMode);
@@ -402,26 +404,26 @@ Zarafa.contact.ContactContext = Ext.extend(Zarafa.core.Context, {
 	 * Create "New Contact" {@link Ext.menu.MenuItem item} for the "New item"
 	 * {@link Ext.menu.Menu menu} in the {@link Zarafa.core.ui.MainToolbar MainToolbar}.
 	 * This button should be shown in all {@link Zarafa.core.Context contexts} and
-	 * is used to create a new contact. 
+	 * is used to create a new contact.
 	 *
 	 * @return {Object} The menu item for creating a new contact item
 	 * @static
 	 */
-	createNewContactButton : function()
+	createNewContactButton: function()
 	{
 		return {
-			xtype : 'menuitem',
+			xtype: 'menuitem',
 			id: 'zarafa-maintoolbar-newitem-contact',
-			text : _('Contact'),
-			tooltip : _('Contact')+' (Ctrl + Alt + C)',
-			plugins : 'zarafa.menuitemtooltipplugin',
-			handler : function()
+			text: _('Contact'),
+			tooltip: _('Contact') + ' (Ctrl + Alt + C)',
+			plugins: 'zarafa.menuitemtooltipplugin',
+			handler: function()
 			{
 				Zarafa.contact.Actions.openCreateContactContent(this.getModel());
 			},
-			scope : this,
-			iconCls : 'icon_createContact',
-			newMenuIndex : 3,
+			scope: this,
+			iconCls: 'icon_new_contact',
+			newMenuIndex: 3,
 			context: 'contact'
 		};
 	},
@@ -435,13 +437,33 @@ Zarafa.contact.ContactContext = Ext.extend(Zarafa.core.Context, {
 	 * @return {Object} The menu item for creating a new context menu contact item
 	 * @static
 	 */
-	createContactFromRecipientButton : function(insertionPoint, contextMenu)
+	createContactFromRecipientButton: function(insertionPoint, contextMenu)
 	{
 		return {
 			xtype: 'zarafa.conditionalitem',
 			text: _('Add to contacts'),
 			iconCls: 'icon_new_contact',
-			handler : Zarafa.contact.Actions.openRecipientContactContent,
+			handler: Zarafa.contact.Actions.openRecipientContactContent,
+			scope: this
+		};
+	},
+
+	/**
+	 * Create "Add to contact list" item for {@link Zarafa.common.recipientfield.ui.RecipientHoverCardView recipienthovercardview}
+	 * in when opening a recipienthovercard
+	 *
+	 * @param {String} insertionPoint The name of the insertion point
+	 * @param {Zarafa.common.recipientfield.ui.RecipientHoverCardView} recipienthovercardview
+	 * @return {Object} The button for creating a new {@link Zarafa.common.recipientfield.ui.RecipientHoverCardButton recipienthovercardbutton}
+	 * @static
+	 */
+	createContactFromHoverCardRecipientButton: function(insertionPoint, recipienthovercardview)
+	{
+		return {
+			xtype: 'zarafa.recipienthovercardbutton',
+			iconCls: 'icon_new_contact',
+			tooltip: _('Add to contacts'),
+			handler: Zarafa.contact.Actions.openRecipientContactContent,
 			scope: this
 		};
 	},
@@ -450,40 +472,25 @@ Zarafa.contact.ContactContext = Ext.extend(Zarafa.core.Context, {
 	 * Populates the View button in the main toolbar
 	 * @return {Array} items The menu items available for printing in this context
 	 */
-	getMainToolbarPrintButtons : function()
+	getMainToolbarPrintButtons: function()
 	{
 		var items = container.populateInsertionPoint('main.toolbar.print.contact', this) || [];
-		
+
 		var defaultItems = [{
 			xtype:'zarafa.conditionalitem',
 			id: 'zarafa-maintoolbar-print-selectedcontact',
 			overflowText: _('Print selected contact'),
-			iconCls: 'icon_print_single_contact',
-			tooltip : _('Print selected contact') + ' (Ctrl + P)',
-			plugins : 'zarafa.menuitemtooltipplugin',
+			iconCls: 'icon_print_contact',
+			tooltip: _('Print selected contact') + ' (Ctrl + P)',
+			plugins: 'zarafa.menuitemtooltipplugin',
 			text: _('Print selected contact'),
 			hideOnDisabled: false,
 			singleSelectOnly: true,
-			handler: this.onPrintSingle,
+			handler: this.onPrintSelected.createDelegate(this, [_('No contact selected')], 2),
 			scope: this
 		}];
 
 		return defaultItems.concat(items);
-	},
-
-	/**
-	 * Handler for printing the selected {@link Zarafa.core.data.MAPIRecord} record. Menu item is disabled if there is no record selected.
-	 * Calls {@link Zarafa.common.Actions.openPrintDialog} openPrintDialog with the selected record.
-	 * @private
-	 */
-	onPrintSingle : function()
-	{
-		var records = this.getModel().getSelectedRecords();
-		if (Ext.isEmpty(records)) {
-			Ext.MessageBox.alert(_('Print'), _('No contact selected'));
-			return;
-		}
-		Zarafa.common.Actions.openPrintDialog(records);
 	},
 
 	/**
@@ -495,21 +502,21 @@ Zarafa.contact.ContactContext = Ext.extend(Zarafa.core.Context, {
 	 * @return {Object} The menu item for creating a new distribution item
 	 * @static
 	 */
-	createNewDistributionListButton : function(context)
+	createNewDistributionListButton: function(context)
 	{
 		//create new Distribution list buttton, as we don't want support create Distribution list function in Milestone 6 launch
 		return {
 			xtype: 'menuitem',
 			id: 'zarafa-maintoolbar-newitem-distlist',
-			tooltip : _('Distribution list')+' (Ctrl + Alt + D)',
-			plugins : 'zarafa.menuitemtooltipplugin',
+			tooltip: _('Distribution list') + ' (Ctrl + Alt + D)',
+			plugins: 'zarafa.menuitemtooltipplugin',
 			text: _('Distribution list'),
 			handler: function()
 			{
 				Zarafa.contact.Actions.openCreateDistlistContent(this.getModel());
 			},
 			scope: this,
-			iconCls: 'icon_createDistributionList',
+			iconCls: 'icon_new_distlist',
 			newMenuIndex: 3,
 			context: 'contact'
 		};
@@ -517,7 +524,7 @@ Zarafa.contact.ContactContext = Ext.extend(Zarafa.core.Context, {
 
 	/**
 	 * Adds a button to the top tab bar for this context.
-	 * @return {Object} The button for the top tabbar 
+	 * @return {Object} The button for the top tabbar
 	 * @private
 	 */
 	createMainTab: function()
@@ -541,12 +548,12 @@ Zarafa.contact.ContactContext = Ext.extend(Zarafa.core.Context, {
 	 * @param {Mixed} oldViewMode The previously selected View Mode.
 	 * @private
 	 */
-	onViewModeChange : function(context, newViewMode, oldViewMode)
+	onViewModeChange: function(context, newViewMode, oldViewMode)
 	{
 		var model = this.getModel();
 
 		switch (newViewMode) {
-			case Zarafa.contact.data.ViewModes.SEARCH: 
+			case Zarafa.contact.data.ViewModes.SEARCH:
 			case Zarafa.contact.data.ViewModes.NORMAL:
 				model.clearGrouping();
 				break;
@@ -565,9 +572,9 @@ Zarafa.contact.ContactContext = Ext.extend(Zarafa.core.Context, {
 
 Zarafa.onReady(function() {
 	container.registerContext(new Zarafa.core.ContextMetaData({
-		name : 'contact',
-		displayName : _('Contacts'),
-		allowUserVisible : false,
-		pluginConstructor : Zarafa.contact.ContactContext
+		name: 'contact',
+		displayName: _('Contacts'),
+		allowUserVisible: false,
+		pluginConstructor: Zarafa.contact.ContactContext
 	}));
 });

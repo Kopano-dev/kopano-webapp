@@ -14,19 +14,18 @@
 		*/
 		function __construct($id, $data)
 		{
-			$this->properties = $GLOBALS["properties"]->getReminderProperties();
-
 			parent::__construct($id, $data);
 
-			$store = $GLOBALS["mapisession"]->getDefaultMessageStore();
-			$this->reminderEntryId = $this->getReminderFolderEntryId($store);
+			$this->properties = $GLOBALS["properties"]->getReminderProperties();		
 		}
 
 		function execute()
 		{
-			$store = $GLOBALS["mapisession"]->getDefaultMessageStore();
 			foreach($this->data as $actionType => $action)
 			{
+				$store = $GLOBALS["mapisession"]->getDefaultMessageStore();
+				$this->reminderEntryId = $this->getReminderFolderEntryId($store);
+
 				if(isset($actionType)) {
 					try {
 						switch($actionType)
@@ -38,7 +37,7 @@
 								$this->handleUnknownActionType($actionType);
 						}
 					} catch (MAPIException $e) {
-						$this->processException($e, $actionType, $store, null, $entryid, $action);
+						$this->processException($e, $actionType, $store, null, null, $action);
 					}
 				}
 			}
@@ -234,8 +233,9 @@
 			mapi_table_restrict($remindertable, $restriction, TBL_BATCH);
 			mapi_table_sort($remindertable, array($this->properties["flagdueby"] => TABLE_SORT_DESCEND), TBL_BATCH);
 
-			$rows = mapi_table_queryallrows($remindertable, $this->properties);
-
+			// reminder store hold only 99 records as
+			// we show 99 notification on client side.
+			$rows = mapi_table_queryrows($remindertable, $this->properties, 0, MAX_NUM_REMINDERS);
 			$data["item"] = array();
 
 			foreach($rows as $row) {
@@ -277,9 +277,6 @@
 				// Add the non-bogus rows
 				 array_push($data["item"], Conversion::mapMAPI2XML($this->properties, $row));
 			}
-
-			// Generate this handy MD5 so that the client can easily detect changes
-			$data["rowchecksum"] = md5(serialize($data["item"]));
 
 			$this->addActionData("list", $data);
 			$GLOBALS["bus"]->addData($this->getResponseData());

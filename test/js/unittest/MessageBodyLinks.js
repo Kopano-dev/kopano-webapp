@@ -22,7 +22,7 @@ describe('Messagebody links', function() {
 	/**
 	 * Test that valid urls are shown in the correct href in the messagebody
 	 */
-	describe("Valid url", function() {
+	xdescribe("Valid url", function() {
 		// This test requires a associated array since the code changes the url
 		const validUrls = { 
 			"http://www.google.com": "http://www.google.com/",

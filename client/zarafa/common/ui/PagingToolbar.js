@@ -18,18 +18,18 @@ Zarafa.common.ui.PagingToolbar = Ext.extend(Ext.PagingToolbar, {
 	 * @cfg {Boolean} displayInfo
 	 * <tt>true</tt> to display the paging information (defaults to <tt>false</tt>)
 	 */
-	displayInfo : false,
+	displayInfo: false,
 
 	/**
 	 * Initialises the paging component.
 	 * This will build the paging component listen to some exents
 	 * @private
 	 */
-	initComponent : function()
+	initComponent: function()
 	{
 		this.cls = 'zarafa-paging-toolbar';
-		
-		var pagingItems = [this.first = new  Ext.Toolbar.Button({
+
+		var pagingItems = [this.first = new Ext.Toolbar.Button({
 			tooltip: this.firstText,
 			overflowText: this.firstText,
 			iconCls: 'x-tbar-page-first',
@@ -43,7 +43,7 @@ Zarafa.common.ui.PagingToolbar = Ext.extend(Ext.PagingToolbar, {
 			disabled: true,
 			handler: this.movePrevious,
 			scope: this
-		}), 
+		}),
 		this.beforePageText,
 		this.inputItem = new Ext.form.NumberField({
 			cls: 'x-tbar-page-number',
@@ -81,7 +81,7 @@ Zarafa.common.ui.PagingToolbar = Ext.extend(Ext.PagingToolbar, {
 		var userItems = this.items || this.buttons || [];
 		if (this.prependButtons) {
 			this.items = userItems.concat(pagingItems);
-		}else{
+		} else {
 			this.items = pagingItems.concat(userItems);
 		}
 		delete this.buttons;
@@ -113,10 +113,10 @@ Zarafa.common.ui.PagingToolbar = Ext.extend(Ext.PagingToolbar, {
 			 * Fires after the active page has been changed.
 			 * @param {Ext.PagingToolbar} this
 			 * @param {Object} pageData An object that has these properties:<ul>
-			 * <li><code>total</code> : Number <div class="sub-desc">The total number of records in the dataset as
+			 * <li><code>total</code>: Number <div class="sub-desc">The total number of records in the dataset as
 			 * returned by the server</div></li>
-			 * <li><code>activePage</code> : Number <div class="sub-desc">The current page number</div></li>
-			 * <li><code>pages</code> : Number <div class="sub-desc">The total number of pages (calculated from
+			 * <li><code>activePage</code>: Number <div class="sub-desc">The current page number</div></li>
+			 * <li><code>pages</code>: Number <div class="sub-desc">The total number of pages (calculated from
 			 * the total number of records in the dataset as returned by the server and the current {@link #pageSize})</div></li>
 			 * </ul>
 			 */
@@ -128,9 +128,9 @@ Zarafa.common.ui.PagingToolbar = Ext.extend(Ext.PagingToolbar, {
 			 * @param {Ext.PagingToolbar} this
 			 * @param {Object} params An object hash of the parameters which the PagingToolbar will send when
 			 * loading the required page. This will contain:<ul>
-			 * <li><code>start</code> : Number <div class="sub-desc">The starting row number for the next page of records to
+			 * <li><code>start</code>: Number <div class="sub-desc">The starting row number for the next page of records to
 			 * be retrieved from the server</div></li>
-			 * <li><code>limit</code> : Number <div class="sub-desc">The number of records to be retrieved from the server</div></li>
+			 * <li><code>limit</code>: Number <div class="sub-desc">The number of records to be retrieved from the server</div></li>
 			 * </ul>
 			 * <p>(note: the names of the <b>start</b> and <b>limit</b> properties are determined
 			 * by the store's {@link Ext.data.Store#paramNames paramNames} property.)</p>
@@ -140,7 +140,11 @@ Zarafa.common.ui.PagingToolbar = Ext.extend(Ext.PagingToolbar, {
 		);
 
 		this.on('afterlayout', this.onFirstLayout, this, {single: true});
-		this.cursor = 0;
+
+		if (!Ext.isDefined(this.cursor)) {
+			this.cursor = 0;
+		}
+
 		this.bindStore(this.store, true);
 	},
 
@@ -149,7 +153,7 @@ Zarafa.common.ui.PagingToolbar = Ext.extend(Ext.PagingToolbar, {
 	 * @param {Store} store The store to bind to this toolbar
 	 * @param {Boolean} initial (Optional) true to not remove listeners
 	 */
-	bindStore : function(store, initial){
+	bindStore: function(store, initial){
 		Zarafa.common.ui.PagingToolbar.superclass.bindStore.apply(this, arguments);
 
 		if(this.store) {
@@ -158,7 +162,7 @@ Zarafa.common.ui.PagingToolbar = Ext.extend(Ext.PagingToolbar, {
 				// It might have changed when the user sorted the search results.
 				this.pageSize = container.getSettingsModel().get('zarafa/v1/main/page_size');
 			}, this);
-			
+
 			this.mon(this.store, 'beforeupdatesearch', this.updateInfo, this);
 		} else {
 			this.mun(this.store, 'beforeupdatesearch', this.updateInfo, this);
@@ -171,12 +175,12 @@ Zarafa.common.ui.PagingToolbar = Ext.extend(Ext.PagingToolbar, {
 	 * {@link Zarafa.core.data.IPMStore#load onLoad}
 	 * @private
 	 */
-	updateInfo : function()
+	updateInfo: function()
 	{
 		if(this.displayItem){
 			var count = this.store.getCount();
 			var msg = count === 0 ?
-				this.emptyMsg :
+				this.emptyMsg:
 				String.format(
 					this.displayMsg,
 					this.cursor+1, this.cursor+count, this.store.getTotalCount()
@@ -194,14 +198,21 @@ Zarafa.common.ui.PagingToolbar = Ext.extend(Ext.PagingToolbar, {
 	 * @param {Object} parameters object containing user parameters such as range (pagination) information, sorting information, etc.
 	 * @private
 	 */
-	onLoad : function(store, r, o)
+	onLoad: function(store, r, o)
 	{
 		if(!this.rendered){
 			this.dsLoaded = [store, r, o];
 			return;
 		}
 		var p = this.getParams();
-		this.cursor = (o.params && o.params.restriction && o.params.restriction[p.restriction.start]) ? o.params.restriction[p.restriction.start] : 0;
+		if (o.params && o.params.restriction) {
+			if (!Ext.isEmpty(o.params.restriction[p.restriction.start])) {
+				this.cursor = o.params.restriction[p.restriction.start];
+			} else if(this.cursor !== 0) {
+				this.cursor = 0;
+			}
+		}
+
 		var d = this.getPageData(), ap = d.activePage, ps = d.pages;
 
 		this.afterTextItem.setText(String.format(this.afterPageText, d.pages));
@@ -222,7 +233,7 @@ Zarafa.common.ui.PagingToolbar = Ext.extend(Ext.PagingToolbar, {
 	 * Error handler which is fired when the 'load' action on the store failed.
 	 * @private
 	 */
-	onLoadError : function()
+	onLoadError: function()
 	{
 		if (!this.rendered) {
 			return;
@@ -233,14 +244,14 @@ Zarafa.common.ui.PagingToolbar = Ext.extend(Ext.PagingToolbar, {
 	},
 
 	/**
-	 * This will get parameters  such as range (pagination) information, etc from the
+	 * This will get parameters such as range (pagination) information, etc from the
 	 * {@link Zarafa.core.data.IPMStore store} which is used for mapping Object for load calls.
 	 * @private
 	 */
-	getParams : function()
+	getParams: function()
 	{
 		// retain backwards compat, allow params on the toolbar itself, if they exist.
-		var parameters =  this.paramNames || this.store.paramNames;
+		var parameters = this.paramNames || this.store.paramNames;
 
 		// Extjs puts the pagination into the parameters, move it into the restriction
 		if (Ext.isDefined(parameters.start)) {
@@ -264,7 +275,7 @@ Zarafa.common.ui.PagingToolbar = Ext.extend(Ext.PagingToolbar, {
 	 * @param {Ext.Number} start start range from where the items should be displayed
 	 * @private
 	 */
-	doLoad : function(start)
+	doLoad: function(start)
 	{
 		var o = {
 			restriction: {}
@@ -275,8 +286,12 @@ Zarafa.common.ui.PagingToolbar = Ext.extend(Ext.PagingToolbar, {
 		o.restriction[pn.restriction.start] = start;
 		o.restriction[pn.restriction.limit] = this.pageSize;
 		if(this.fireEvent('beforechange', this, o) !== false){
+			if (this.store.hasFilterApplied) {
+				o.restriction["filter"] = this.store.getFilterRestriction(Zarafa.common.data.Filters.UNREAD);
+				this.cursor = 0;
+			}
 			this.store.load({
-				folder : this.store.lastOptions.folder,
+				folder: this.store.lastOptions.folder,
 				params: o
 			});
 		}

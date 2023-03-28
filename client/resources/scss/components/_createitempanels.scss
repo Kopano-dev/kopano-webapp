@@ -8,6 +8,7 @@
 			padding: $padding-medium 0;
 
 			.zarafa-mailcreatepanel-field-from,
+			.zarafa-mailcreatepanel-field-from-large,
 			.zarafa-mailcreatepanel-field-to,
 			.zarafa-mailcreatepanel-field-cc,
 			.zarafa-mailcreatepanel-field-bcc,
@@ -81,7 +82,6 @@
 		div {
 			padding: $padding-medium;
 			background: $light-blue;
-			border: 1px solid $grey5;
 		}
 	}
 
@@ -96,6 +96,7 @@
 	}
 
 	.k-subject-panel,
+	.k-createin-panel,
 	.k-location-panel {
 		padding: $padding-medium;
 		border-bottom: 1px solid $grey;
@@ -163,11 +164,10 @@
 	.k-reminder-panel,
 	.k-taskrequestsettings {
 		padding: $padding-medium;
-		padding-left: 2 * $padding-medium;
+		padding-left: $trigger-width - $padding-small;
 
 		.x-form-check-wrap {
 			line-height: $font-default-line-height;
-			padding-top: ($button-small-height - $font-default-line-height)/2;
 		}
 	}
 
@@ -209,6 +209,22 @@
 	}
 }
 
+.k-createin-combo {
+	text-indent: 20px;
+	background-position-x: 6px;
+	background-position-y: 4px;
+	background-repeat: no-repeat;
+}
+
+.k-createin-combo-list-svg {
+	.x-combo-list-inner .x-combo-list-item svg {
+		position:relative;
+		top:2px;
+		right:5px;
+	}
+}
+
+
 .k-taskdetailtab {
 	> .x-panel-bwrap {
 		padding: $padding-medium;
@@ -216,7 +232,8 @@
 
 	.k-datepanel,
 	.k-workpanel,
-	.k-companypanel {
+	.k-companypanel,
+	.k-updatelistpanel {
 		padding: $padding-medium;
 	}
 
@@ -225,9 +242,11 @@
 			padding-left: $padding-extra-extra-large;
 		}
 	}
-
-	.k-updatelistpanel .x-form-item {
-		padding: $padding-medium;
+	
+	.k-updatelistpanel {
+		.x-btn {
+			padding-top: $padding-medium;
+		}	
 	}
 }
 

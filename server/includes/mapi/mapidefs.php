@@ -286,7 +286,7 @@ define('IMPORTANCE_LOW'                          ,0);
 define('IMPORTANCE_NORMAL'                       ,1);
 define('IMPORTANCE_HIGH'                         ,2);
 
-/* Stream interace values */
+/* Stream interface values */
 define('STREAM_SEEK_SET'                         ,0);
 define('STREAM_SEEK_CUR'                         ,1);
 define('STREAM_SEEK_END'                         ,2);
@@ -482,6 +482,7 @@ define('ecRightsFolderAccess'                    ,0x00000100);
 define('ecRightsFolderVisible'                   ,0x00000400);
 
 define('ecRightsAll'                             ,ecRightsReadAny | ecRightsCreate | ecRightsEditOwned | ecRightsDeleteOwned | ecRightsEditAny | ecRightsDeleteAny | ecRightsCreateSubfolder | ecRightsFolderAccess | ecRightsFolderVisible);
+define('ecRightsSecretary'                       ,ecRightsReadAny | ecRightsCreate | ecRightsEditOwned | ecRightsDeleteOwned | ecRightsEditAny | ecRightsDeleteAny | ecRightsFolderVisible);
 define('ecRightsFullControl'                     ,ecRightsReadAny | ecRightsCreate | ecRightsEditOwned | ecRightsDeleteOwned | ecRightsEditAny | ecRightsDeleteAny | ecRightsCreateSubfolder | ecRightsFolderVisible);
 define('ecRightsDefault'                         ,ecRightsNone | ecRightsFolderVisible);
 define('ecRightsDefaultPublic'                   ,ecRightsReadAny | ecRightsFolderVisible);
@@ -631,4 +632,9 @@ define('ELEMENT_SENTINEL',                0x0000);
 define('RSF_ELID_ENTRYID',                0x0001);
 define('RSF_ELID_HEADER',                 0x0002);
 
+/* IStream Flags */
+define('STGM_TRANSACTED',         0x00010000);
+
+/* Logon Flags */
+define('EC_PROFILE_FLAGS_OIDC', 0x0004000);
 ?>

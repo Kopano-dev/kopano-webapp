@@ -1,30 +1,55 @@
 .ext-el-mask {
-	background-color: #ffffff;
+	background-color: $white;
 }
 
 /* Override EXtJS's CSS when dragging an popup */
 .x-panel-ghost > ul {
 	border-color: transparent;
 }
-.x-panel-ghost {
-	background-color: #f2f2f2;
+.x-panel-ghost, .x-panel-ghost .x-window-tl {
+	background-color: #f8f8ff;
 	border-color: transparent;
 }
 .x-panel-ghost .x-window-tl {
-	border-color:transparent;
+	border-color: transparent;
 }
 
+.x-panel-ghost .x-window-tl {
+	background: #f8f8ff !important;
+}
 
-// FIXME: generalize case for x-panel-ghost so that we do not generate a gazzillion CSS rules
+.x-panel-ghost .x-window-header-text {
+	color: $dark-grey !important;
+}
+
+// Error and warning dialog border colors
+.x-window.k-error-dialog {
+	border-left: 2px solid #DC3023;
+}
+
+.x-window.k-warning-dialog {
+	border-left: 2px solid #E08A1E;
+}
+
+.x-window .ext-mb-text {
+	color: #5f6368;
+}
+
+.x-window .x-panel-header {
+	font-weight: bold;
+	border-bottom: 1px solid lightgrey;
+	background: $white;
+}
+
+// x-window and x-panel-ghost items
 .x-window,
 .x-panel-ghost {
-	border: 1px solid $grey5;
-	box-shadow: rgba(0, 0, 0, 0.45) 0px 3px 5px 0;
+	box-shadow: rgba(0, 0, 0, 0.45) 0px 1px 5px 0;
 
 	/* header */
 	.x-window-tl {
 		padding-left: $padding-large;
-		background: $grey;
+		background: $white;
 
 		.x-window-tr {
 			padding-right: 0;
@@ -40,57 +65,42 @@
 					.x-tool {
 						position: relative;
 						z-index: 10;
+						opacity: 0.6;
+					}
+
+					.x-tool:hover {
+						opacity: 1;
 					}
 
 					.x-tool-close {
-						@extend .icon_cross;
-						background-position: sprite-position($icons, 'icon_cross_large', $offset_y: ($header-height - 10px)/2, $offset_x: $padding-medium);
 						width: 2 * $padding-large + 7px;
 						height: $header-height;
 					}
 
 					.x-tool-minimize {
-						@extend .minimize_button;
-						background-position: sprite-position($icons, 'minimize_button', $offset_y: ($header-height - 3px)/2, $offset_x: $padding-medium);
 						width: 2 * $padding-large + 7px;
 						height: $header-height;
 					}
 
 					.x-window-header-text {
-						color: $font-default-color;
+						color: $dark-grey2;
 						font-weight: normal;
 						line-height: $header-height;
 						display: block;
 						left: $padding-large;
 						height: $header-height;
-						position: absolute;
 						overflow: hidden;
+						font-size: $font-size-large;
+						text-overflow: ellipsis;
+						white-space: nowrap;
 					}
 
-					/* this element is used to fade out the text when the window is too short */
-					.fade {
-						display: block;
-						width: 70px;
-						height: $header-height;
-						top: 0;
-						right: 0px;
-						position: absolute;
-						background: linear-gradient( to right, rgba($grey, 0) 0%, rgba($grey, 1.0) 50%, rgba($grey, 1.0) 100%);
-					}
 				}
-				.x-window-header.x-window-draggable {
-					.fade {
-						cursor: move;
-					}
-				}
-
 				.x-window-header.icon_favorites {
 					background-image: none !important;
 
 					.x-window-header-text {
 						padding-right: 16px + $padding-medium;
-						@extend .icon_favorites;
-						background-position: sprite-position($iconsmap, icon_favorites, $offset_y: 10 , $offset_x: 0);
 						background-position-x: right;
 					}
 				}
@@ -186,6 +196,10 @@
 
 			.x-window-bc {
 				background: none;
+
+				.x-window-footer {
+					padding-top: 20px;
+				}
 			}
 		}
 	}
@@ -268,19 +282,12 @@
 							padding-bottom: ($header-height - 1 - $font-default-line-height) / 2;
 							padding-left: (16 + $padding-medium);
 							line-height: $font-default-line-height;
-							background-position: 0 ($header-height - 1 - 13)/2;
+							background-position: 0 ($header-height - 1 - 17)/2 !important;
 							background-repeat: no-repeat;
 							font-weight: bold;
 							font-size: $font-size-large !important;
 						}
 
-					    @each $img in sprite-names($iconsmap) {
-					    	.display-name.#{$img} {
-						        background-image: sprite-url($iconsmap);
-						        background-repeat: no-repeat;
-					    		background-position: sprite-position($iconsmap, $img, $offset-y: ($header-height - 1 - 15)/2, $offset-x: 0);
-					    	}
-					    }
 
 					    .description-panel {
 					    	> .x-panel-bwrap > .x-panel-body {
@@ -403,12 +410,9 @@
 		}
 
 		/* search button */
-		.icon_search {
+		.icon_magnifier {
 			background-color: transparent;
 			width: $button-small-height;
-			background-image: sprite-url($icons) !important;
-			background-repeat: no-repeat;
-			background-position: sprite-position($icons, icon_magnifier, $offset-x: 4px, $offset-y: 4px) !important;
 		}
 	}
 }
@@ -457,4 +461,60 @@
   }
 }
 
+.k-recipient-card-view {
+
+	padding: 10px 5px 5px 5px;
+	background-color: $white;
+
+	.k-hover-card-recipient-detail-panel {
+		padding-top: 2px;
+	}
+
+	/* Initials */
+	.preview-header-sender-initial {
+		width: 55px;
+		height: 55px;
+		line-height: 55px;
+		font-size: 24px;
+	}
+
+	.preview-header-sender-image {
+		min-height : 55px;
+		width: 55px;
+	}
+
+	/* Display name */
+	.x-form-display-field.x-form-item.x-box-item {
+		font-size: 18px;
+		max-width: 95%;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+
+	/* Email address */
+	.k-hover-card-email-text {
+		font-size: 14px;
+		max-width: 70%;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		color: $preview-panel-timestamp;
+	}
+}
+
+/* Custom message box with show more details  */
+.x-window.k-show-more-details {
+	.x-dlg-icon {
+		display: flex;
+		align-items: center;
+	}
+
+	.k-show-more-details-textarea {
+		margin-top: 10px;
+	}
+}
+
+.x-window.k-show-more-details .x-dlg-icon .ext-mb-content {
+	margin-left: 0 !important;
+}
 

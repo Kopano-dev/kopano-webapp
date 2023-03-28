@@ -12,23 +12,33 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 	 * @cfg {Zarafa.core.data.IPMRecord} record The record(s) which are being
 	 * edited through this panel
 	 */
-	record : undefined,
+	record: undefined,
 	/**
 	 * @cfg {String} categorySeparator The string which must be used to separate the
 	 * various categories.
 	 */
-	categorySeparator : ';',
+	categorySeparator: ';',
+
+	/**
+	 * @cfg {Boolean} hideActionButtons If it is true then it will hide all row action button in CategoriesGrid.
+	 */
+	hideActionButtons: false,
+
 	/**
 	 * @constructor
-	 * @param config Configuration structure
+	 * @param {Object} config Configuration structure
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
+		if (config.hideActionButtons) {
+			this.hideActionButtons = config.hideActionButtons;
+		}
+
 		Ext.applyIf(config, {
 			// Override from Ext.Component
-			xtype : 'zarafa.categoriespanel',
+			xtype: 'zarafa.categoriespanel',
 			layout: 'fit',
 			border: false,
 			items: [
@@ -46,7 +56,7 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 	 * @return {Object} The configuration object for the grid panel.
 	 * @private
 	 */
-	createCategoriesGrid : function(records)
+	createCategoriesGrid: function(records)
 	{
 		var store = new Zarafa.common.categories.data.CategoriesStore();
 		store.addCategoriesFromMapiRecords(records);
@@ -80,9 +90,9 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 				cellclick: this.onCellClick,
 				rowclick: this.onRowClick,
 				validateedit: this.onValidateEdit,
-				afteredit : this.onAfterEdit
+				afteredit: this.onAfterEdit
 			},
-			onCellDblClick : Ext.emptyFn
+			onCellDblClick: Ext.emptyFn
 		};
 	},
 
@@ -91,10 +101,10 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 	 *
 	 * @return {Ext.grid.CheckboxSelectionModel} The selection model
 	 */
-	createSelectionModel : function()
+	createSelectionModel: function()
 	{
 		return new Ext.grid.CheckboxSelectionModel({
-			checkOnly : true,
+			checkOnly: true,
 			moveEditorOnEnter: false
 		});
 	},
@@ -106,7 +116,7 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 	 * the categories grid.
 	 * @return {Ext.grid.ColumnModel} The column model
 	 */
-	createColumnModel : function(selectionModel)
+	createColumnModel: function(selectionModel)
 	{
 		return new Ext.grid.ColumnModel({
 			columns: [
@@ -124,7 +134,7 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 					editor		: new Ext.form.TextField({
 						allowBlank: false,
 						enableKeyEvents: true,
-						listeners : {
+						listeners: {
 							scope: this,
 							keydown: function(field, e){
 								var key = e.browserEvent.key;
@@ -135,6 +145,7 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 						}
 					}),
 					sortable	: false,
+					hideActionButtons: this.hideActionButtons,
 					renderer 	: this.categoryNameRenderer
 				}
 			]
@@ -152,7 +163,7 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 	 * which this cell is rendered.
 	 * @return {String} The html that will be used to render the cell.
 	 */
-	categoryColorRenderer : function(color, metaData, record)
+	categoryColorRenderer: function(color, metaData, record)
 	{
 		var html = Zarafa.common.categories.Util.getCategoryIconSVG(color);
 
@@ -173,10 +184,18 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 	 * which this cell is rendered.
 	 * @return {String} The html that will be used to render the cell.
 	 */
-	categoryNameRenderer : function(value, metaData, record)
+	categoryNameRenderer: function(value, metaData, record)
 	{
 		var cls = record.get('quickAccess') ? ' zarafa-pinned' : '';
 		cls += Ext.isNumber(record.get('standardIndex')) ? ' k-category-fixed' : '';
+		if ( record.get('additional') ) {
+			cls += ' k-category-additional';
+		}
+
+		if(this.hideActionButtons) {
+			return Ext.util.Format.htmlEncode(value);
+		}
+
 		return Ext.util.Format.htmlEncode(value) +
 			'<div class="zarafa-grid-button-container' + cls + '">' +
 				'<div class="zarafa-grid-button k-grid-button-edit"></div>' +
@@ -193,7 +212,7 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 	 * @param {Ext.grid.EditorGridPanel} grid The grid with all the categories
 	 * @private
 	 */
-	onAfterRender : function(grid)
+	onAfterRender: function(grid)
 	{
 		grid.getSelectionModel().suspendEvents(false);
 		var records = this.getAvailableCategories();
@@ -222,7 +241,7 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 	 * Adds a {@link Zarafa.common.ui.ColorPicker} to every color cell.
 	 * @param {Ext.grid.GridView} view The view of the categories grid
 	 */
-	addColorPickers : function(view)
+	addColorPickers: function(view)
 	{
 		this.categoriesGrid.store.each(function(record, index){
 			var el = Ext.get(view.getCell(index, 1).querySelector('.k-colorpicker-ct'));
@@ -248,7 +267,7 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 	 * {@link Zarafa.common.categories.data.CategoriesStore CategoriesStore}
 	 * for which the row was updated.
 	 */
-	onRowUpdated : function(view, rowIndex, record)
+	onRowUpdated: function(view, rowIndex, record)
 	{
 		// Rerender the colorPicker
 		if ( record.colorPicker ){
@@ -268,7 +287,7 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 	 * @param {Zarafa.common.ui.ColorPicker} colorPicker the color picker that
 	 * fired the event.
 	 */
-	onColorPickerShowMenu : function(menu, colorPicker)
+	onColorPickerShowMenu: function(menu, colorPicker)
 	{
 		var cellEl = colorPicker.el.up('div').up('div');
 		cellEl.addClass('k-menu-visible');
@@ -282,7 +301,7 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 	 * @param {Zarafa.common.ui.ColorPicker} colorPicker the color picker that
 	 * fired the event.
 	 */
-	onColorPickerHideMenu : function(menu, colorPicker)
+	onColorPickerHideMenu: function(menu, colorPicker)
 	{
 		var cellEl = colorPicker.el.up('div').up('div');
 		cellEl.removeClass('k-menu-visible');
@@ -298,7 +317,7 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 	 * @param {Ext.data.Record} record The category record that this menu will
 	 * act on.
 	 */
-	onSelectColor : function(colorPicker, color, record)
+	onSelectColor: function(colorPicker, color, record)
 	{
 		record.set('color', '#' + color);
 	},
@@ -312,7 +331,7 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 	 * @param {Number} columnIndex The index of the column that was clicked.
 	 * @param {Ext.EventObject} event The event object of the cellclick event.
 	 */
-	onCellClick : function(grid, rowIndex, columnIndex, event)
+	onCellClick: function(grid, rowIndex, columnIndex, event)
 	{
 		var targetEl = Ext.get(event.target);
 
@@ -338,7 +357,7 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 	 * @param {Number} rowIndex The index of the row that was clicked.
 	 * @param {Ext.EventObject} event The event object of the rowclick event.
 	 */
-	onRowClick : function(grid, rowIndex, event)
+	onRowClick: function(grid, rowIndex, event)
 	{
 		// Make sure the grid will not scroll to the row that was focussed
 		// before the click by putting the focus on the clicked row.
@@ -365,9 +384,9 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 			if(category.get('used') === false) {
 				Zarafa.common.Actions.openRenameCategoryContent({
 					store: grid.getStore(),
-					isCategoryGrid : true,
-					categoryName : category.get('category'),
-					color : category.get('color')
+					isCategoryGrid: true,
+					categoryName: category.get('category'),
+					color: category.get('color')
 				});
 			}
 		}
@@ -379,7 +398,7 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 	 * @param {Number} rowIndex The index of the row in which the pin icon
 	 * was clicked.
 	 */
-	toggleCategoryPin : function(rowIndex)
+	toggleCategoryPin: function(rowIndex)
 	{
 		var categoryRecord = this.categoriesGrid.getStore().getAt(rowIndex);
 		categoryRecord.set('quickAccess', !categoryRecord.get('quickAccess'));
@@ -391,7 +410,7 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 	 * @param {Number} rowIndex The index of the row in which the pin icon
 	 * was clicked.
 	 */
-	editCategoryName : function(rowIndex)
+	editCategoryName: function(rowIndex)
 	{
 		this.categoriesGrid.startEditing(rowIndex, 2);
 	},
@@ -404,7 +423,7 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 	 * @param {Number} rowIndex The number of the row in the grid that shows
 	 * the category that must be deleted.
 	 */
-	deleteCategory : function(rowIndex)
+	deleteCategory: function(rowIndex)
 	{
 		var store = this.categoriesGrid.getStore();
 		var categoryRecord = store.getAt(rowIndex);
@@ -412,19 +431,18 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 		Zarafa.common.dialogs.MessageBox.addCustomButtons({
 			width: 400,
 			title: _('Delete Category'),
-			msg : String.format(_('Are you sure you want to delete the category "{0}"? Items already assigned this category won\'t be affected.'), categoryName),
-			icon: Ext.MessageBox.QUESTION,
-			fn : function(buttonName){
+			msg: String.format(_('Are you sure you want to delete the category "{0}"? Other items keep this category, but lose the assigned color.'), categoryName),
+			fn: function(buttonName){
 				if ( buttonName === 'delete' ){
 					var categoryStore = this.categoriesGrid.getStore();
 					categoryStore.removeAt(rowIndex);
 				}
 			},
 			customButton: [{
-				name : 'delete',
+				name: 'delete',
 				text: _('Delete')
 			}, {
-				name : 'cancel',
+				name: 'cancel',
 				text: _('Cancel')
 			}],
 			scope: this
@@ -437,7 +455,7 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 	 *
 	 * @param {Object} event The {@link Ext.grid.EditorGridPanelView.validateedit event object}
 	 */
-	onValidateEdit : function(event)
+	onValidateEdit: function(event)
 	{
 		var categoryStore = event.grid.getStore();
 		var categoryExists = false;
@@ -473,7 +491,7 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 	 *
 	 * @param {Object} event The {@link Ext.grid.EditorGridPanelView.afteredit event object}
 	 */
-	onAfterEdit : function(event)
+	onAfterEdit: function(event)
 	{
 		if ( event.value !== event.originalValue ){
 			event.record.set('stored', true);
@@ -485,7 +503,7 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 	 * @return {Array} of {@link Ext.data.Record Records}
 	 * @private
 	 */
-	getAvailableCategories : function()
+	getAvailableCategories: function()
 	{
 		var activeAvailableCategories = [];
 		var categoriesGrid = this.categoriesGrid;
@@ -506,7 +524,7 @@ Zarafa.common.categories.dialogs.CategoriesPanel = Ext.extend(Ext.Panel, {
 	 * Returns an array with the names of all selected categories.
 	 * @return {Array} An array with the names of the selected categories
 	 */
-	getSelectedCategories : function()
+	getSelectedCategories: function()
 	{
 		var records = this.categoriesGrid.getSelectionModel().getSelections();
 		return records.map(function(record) {

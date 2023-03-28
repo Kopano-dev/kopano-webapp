@@ -3,6 +3,11 @@ body.Safari input[type="radio"] {
 	margin-left: 1px;
 }
 
+/* Firefox hack to get rid of orange borders */
+body.Firefox input:focus {
+	outline: none;
+}
+
 .x-form-item {
 	margin-bottom: $padding-small;
 }
@@ -22,12 +27,23 @@ body.Safari input[type="radio"] {
 
 /* inputs and textareas */
 .x-form-text, textarea.x-form-field {
-	background: white;
+	background: $white;
 	border: 1px solid $grey;
 	padding: $padding-medium;
 }
 .x-form-text {
 	padding: 0 $padding-medium;
+}
+.x-form-text.x-form-focus:not(.x-trigger-noedit) {
+	border-color: $sky-blue !important;
+}
+
+.x-form-field-wrap.x-trigger-wrap-focus:not(.x-freebusy-userlist-container) {
+	border-color: $sky-blue;
+
+	input.x-form-text.x-form-field.x-form-focus {
+		border-color: $sky-blue !important;
+	}
 }
 
 .x-form-text:not(.x-zarafa-boxfield):not(.x-zarafa-boxfield-input),
@@ -53,24 +69,13 @@ body.Safari input[type="radio"] {
 		width: $trigger-width;
 		border: 1px solid $grey;
 		border-left: none;
-		background-color: $grey3;
-        background-image: 		sprite-url($iconsmap);
-        background-repeat: 		no-repeat;
-        background-position: 	sprite-position($iconsmap, arrow_down_s, $offset-y: ($button-small-height - 2 - 3)/2, $offset-x: ($trigger-width - 5)/2) !important;
+		background-color: $grey3 !important;
 	}
 	.x-form-trigger-over,
 	.x-form-spinner-trigger-over {
-		background-color: $grey4;
+		background-color: $grey4 !important;
 	}
 
-	.x-form-spinner-trigger {
-        background-image: 		sprite-url($iconsmap),
-        						sprite-url($iconsmap);
-        background-repeat: 		no-repeat,
-        						no-repeat;
-        background-position: 	sprite-position($iconsmap, arrow_up_s, $offset-y: (($button-small-height - 2)/2 - 3)/2, $offset-x: ($trigger-width - 5)/2),
-        						sprite-position($iconsmap, arrow_down_s, $offset-y: (3*($button-small-height - 2)/2 - 3)/2, $offset-x: ($trigger-width - 5)/2) !important;
-	}
 	.x-form-spinner-splitter {
 		display: none !important;
 	}
@@ -81,7 +86,7 @@ body.Safari input[type="radio"] {
 	border-color: #b6b6b6;
 }
 
-.x-combo-list-inner{
+.x-combo-list-inner {
 	padding: $padding-small 0;
 
 	.x-combo-list-item {
@@ -108,6 +113,10 @@ body.Safari input[type="radio"] {
 	background: transparent;
 	border-color: transparent !important;
 	cursor: default;
+}
+
+.k-addressbook-combo-list, .k-addressbook-combo-list .x-combo-list-inner {
+	max-width: 400px;
 }
 
 /* fieldsets */
@@ -180,4 +189,32 @@ body.Safari input[type="radio"] {
 .ext-gecko3.ext-linux .zarafa-delayeddeliverypanel-displayfield {
 	@extend .zarafa-delayeddeliverypanel-fields;
 	margin-left: 32px !important;
+}
+
+.k-fieldset {
+  min-height: 162px;
+  margin: 5px;
+  border: none;
+  .contact_photo_box_ct {
+    width: 94px !important;
+    height: 94px !important;
+    background: $dark-grey2;
+    box-shadow: inset 0px 0px 0px $padding-small $white;
+    border : 1px solid $grey;
+    padding: $padding-small;
+    user-select: none;
+  }
+  .contact_photo_box {
+    margin: $padding-small 0 0 $padding-small;
+    width: 94px;
+    height: 94px;
+    cursor: pointer;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-color: $white;
+  }
+  .default_contact_photo {
+    background: url(../images/default_contact_profile.png) no-repeat center center;
+  }
 }

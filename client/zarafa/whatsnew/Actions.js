@@ -8,10 +8,16 @@ Ext.namespace('Zarafa.whatsnew');
 Zarafa.whatsnew.Actions = {
 	/**
 	 * Opens the "What's New" dialog when information on new features is available
-	 * and the user has not chosen to not show the dialog again.
+	 * and the admin or user has not chosen to not show the dialog.
 	 */
-	openWhatsNewDialog : function()
+	openWhatsNewDialog: function()
 	{
+		// Don't show new features if the admin has disabled the dialog
+		var serverConfig = container.getServerConfig();
+		if ( serverConfig.isWhatsNewDialogDisabled() ) {
+			return;
+		}
+
 		// Don't show new features if the user once checked the "Don't show me new features again." checkbox
 		var sm = container.getSettingsModel();
 		if ( sm.get('zarafa/v1/main/new_features_dialog/show') === false ){
@@ -43,7 +49,7 @@ Zarafa.whatsnew.Actions = {
 	 * @return {Array} An array of objects that describe the new features
 	 * @private
 	 */
-	getNewWebAppFeatures : function()
+	getNewWebAppFeatures: function()
 	{
 		var sm = container.getSettingsModel();
 
@@ -73,7 +79,7 @@ Zarafa.whatsnew.Actions = {
 	 * @return {Array} An array of objects that describe the new features
 	 * @private
 	 */
-	getNewPluginsFeatures : function()
+	getNewPluginsFeatures: function()
 	{
 		var featuresByPlugin = [];
 		var sm = container.getSettingsModel();
@@ -118,7 +124,7 @@ Zarafa.whatsnew.Actions = {
 	 * @return {Boolean} False if the WhatsNew data is not valid, true otherwise
 	 * @private
 	 */
-	validateWhatsNewData : function(unit, unitVersion) {
+	validateWhatsNewData: function(unit, unitVersion) {
 		if ( !this.whatsNewSettings ){
 			this.whatsNewSettings = container.getSettingsModel().get('zarafa/v1/main/new_features_dialog', true);
 		}
@@ -172,7 +178,7 @@ Zarafa.whatsnew.Actions = {
 	 * to the plugin)
 	 * @private
 	 */
-	sortPluginFeatures : function(featuresByPlugin)
+	sortPluginFeatures: function(featuresByPlugin)
 	{
 		var sortedFeatures = [];
 
@@ -183,7 +189,7 @@ Zarafa.whatsnew.Actions = {
 		featuresByPlugin = featuresByPlugin.sort(function(a, b){
 			var posA = pluginOrder.indexOf(a.name);
 			var posB = pluginOrder.indexOf(b.name);
-			if ( (posA==-1 && posB>-1) || (posA>-1 && posB==1) ){
+			if ( (posA==-1 && posB>-1) || (posA>-1 && posB==-1) ){
 				return posB - posA;
 			}
 			return posA - posB;

@@ -2,13 +2,12 @@
 include(BASE_PATH . 'server/includes/loader.php');
 
 $loader = new FileLoader();
-$version = trim(file_get_contents('version'));
 
 ?><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
 	<head>
-		<meta name="Generator" content="Kopano WebApp v<?php echo $version?>">
+		<meta name="Generator" content="Kopano WebApp v<?php echo getWebappVersion()?>">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<title><?php echo $webappTitle; ?></title>
@@ -17,15 +16,31 @@ $version = trim(file_get_contents('version'));
 
 		<?php
 			$loader->cssOrder();
+			echo Theming::getStyles($theme);
+			$iconsetStylesheet = Iconsets::getActiveStylesheet();
 		?>
 	</head>
 
-	<body>
+	<body class="theme-<?php echo strtolower($theme ? $theme : 'basic') ?>">
 		<?php
 			$jsTemplate = "\t\t<script type=\"text/javascript\" src=\"{file}\"></script>";
-			$extjsFiles[] = "client/tinymce/tinymce.js";
+            $selectedEditor = $GLOBALS["settings"]->get('zarafa/v1/contexts/mail/html_editor');
+
+			if ($selectedEditor === 'quill') {
+                $extjsFiles[] = "plugins/htmleditor-quill/lib/quill.js";
+            } else if ($selectedEditor === 'jodit') {
+				// TODO: Change when minified jodit files are added
+				$extjsFiles[] = "plugins/htmleditor-jodit/lib/jodit.js";
+			} else {
+                if (DEBUG_LOADER === LOAD_RELEASE) {
+                    $extjsFiles[] = "client/tinymce/tinymce.min.js";
+                } else {
+                    $extjsFiles[] = "client/tinymce/tinymce.js";
+                }
+            }
 			$loader->printFiles($extjsFiles, $jsTemplate);
 		?>
+		<link id="kopano-iconset-stylesheet" rel="stylesheet" href="<?php echo $iconsetStylesheet; ?>" >
 		<script>
 
 			/**
@@ -46,7 +61,7 @@ $version = trim(file_get_contents('version'));
 				var browserWindowManager = window.opener.Zarafa.core.BrowserWindowMgr;
 				browserWindowManager.createUI(window);
 			};
-			
+
 		</script>
 	</body>
 </html>

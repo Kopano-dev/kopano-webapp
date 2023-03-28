@@ -6,18 +6,22 @@
 	text-align : left;
 	display: table;
 	width: 100%;
-	box-shadow : 0 1px 1px white;
+	box-shadow : 0 1px 1px $white;
 	border-style : solid;
 	border-color : #ccc;
 
 	.left {
-		width: 40px;
 		display: table-cell;
+		width: 40px;
+		padding: 5px;
+		box-sizing: border-box;
 		vertical-align: middle;
 	}
 
 	.right {
-		padding: 10px 10px 10px 0;
+		display: table-cell;
+		text-align: left;
+		padding: 10px 10px 10px 0px;
 	}
 }
 
@@ -36,7 +40,6 @@
 .zarafa-notifier-popup-item-title
 {
 	font-weight : bold;
-	font-size : 1.3em;
 }
 .zarafa-notifier-container
 {
@@ -48,35 +51,27 @@
 .zarafa-slide-notifier-icon
 {
 	height: 30px;
-	background-image: sprite-url($iconsmap);
-	background-repeat: no-repeat;
+}
+
+.zarafa-slide-notifier-info,
+.zarafa-slide-notifier-warning,
+.zarafa-slide-notifier-error {
+	.icon {
+		height: 30px;
+		width: 30px;
+	}
 }
 
 .zarafa-slide-notifier-error {
 	background-color : #f4eaea;
-
-	.icon {
-		@extend .zarafa-slide-notifier-icon;
-		background-position: sprite-position($iconsmap, 'icon_notification_error', $offset_x: 10px, $offset_y: 5px);
-	}
 }
 
 .zarafa-slide-notifier-warning {
 	background-color : #f4eac0;
-
-	.icon {
-		@extend .zarafa-slide-notifier-icon;
-		background-position: sprite-position($iconsmap, 'icon_notification_warning', $offset_x: 10px, $offset_y: 5px);
-	}
 }
 
 .zarafa-slide-notifier-info {
 	background-color : #eaf4ea;
-
-	.icon {
-		@extend .zarafa-slide-notifier-icon;
-		background-position: sprite-position($iconsmap, 'icon_notification_info', $offset_x: 10px, $offset_y: 5px);
-	}
 }
 
 /* Create a normal formatted list in the Missing Default Folder notifier */

@@ -11,19 +11,19 @@ Zarafa.common.ui.messagepanel.MessageBody = Ext.extend(Ext.Container, {
 	 * for the contents of the {@link #iframe} when the record has been opened, and it contains a plain-text
 	 * body. The data passed to this template will be the 'body' field which must be loaded as body.
 	 */
-	plaintextTemplate : '<html><body><pre>{body}</pre></body></html>',
+	plaintextTemplate: '<html><body><pre>{body}</pre></body></html>',
 
 	/**
 	 * The {RegExp} of emailPattern, this regular expression finds mailto links or email address
 	 * inside string.
 	 */
-	emailPattern : /((mailto:)[\w@,;.?=&%:///+ ]+)|([\w-\._\+%]+@(?:[\w-]+\.)+[\w]*)/gi,
+	emailPattern: /((mailto:)[\w-@,;.?=&%:///+ ]+)|([\w-\._\+%]+@(?:[\w-]+\.)+[\w]*)/gi,
 
 	/**
 	 * The {RegExp} of linkPattern, this regular expression finds urls inside string.
 	 * Urls like http, https, ftp or www.
 	 */
-	linkPattern : /((?:http|ftp)s?:\/\/|www.)([\w\.\-]+)\.(\w{2,6})([\w\/\-\_\+\.\,\?\=\&\!\:\;\%\#\|]+)*/gi,
+	linkPattern: /((?:http|ftp)s?:\/\/|www.)([\w\.\-]+)\.(\w{2,6})([\w\/\-\_\+\.\,\?\=\&\!\:\;\%\#\|]+)*/gi,
 
 	/**
 	 * The scroll position of the document in the iframe that holds the message body
@@ -32,13 +32,13 @@ Zarafa.common.ui.messagepanel.MessageBody = Ext.extend(Ext.Container, {
 	 * @property
 	 * @type {Object}
 	 */
-	scrollPos : null,
+	scrollPos: null,
 
 	/**
 	 * @constructor
 	 * @param {Object} config configuration object.
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -48,15 +48,15 @@ Zarafa.common.ui.messagepanel.MessageBody = Ext.extend(Ext.Container, {
 		config = Ext.applyIf(config, {
 			xtype: 'zarafa.messagebody',
 			autoScroll:true,
-			anchor : '100%',
+			anchor: '100%',
 			layout: 'fit',
-			autoEl : {
+			autoEl: {
 				tag: 'iframe',
 				cls: 'preview-iframe',
 				frameborder: 0,
 				src: Ext.SSL_SECURE_URL
 			},
-			border : false,
+			border: false,
 			listeners: {
 				scope: this,
 				render: this.onRenderMessageBody
@@ -77,7 +77,7 @@ Zarafa.common.ui.messagepanel.MessageBody = Ext.extend(Ext.Container, {
 	 * {@link Zarafa.core.ui.MainContentTabPanel.beforetabchange} event if the MessageBody
 	 * is rendered inside a tab panel of the {@link Zarafa.core.ui.MainContentTabPanel}.
 	 */
-	onRenderMessageBody : function()
+	onRenderMessageBody: function()
 	{
 		// Make sure we are inside the Zarafa.core.ui.MainContentTabPanel before
 		// we set the listener.
@@ -96,7 +96,7 @@ Zarafa.common.ui.messagepanel.MessageBody = Ext.extend(Ext.Container, {
 	 * @param {Ext.Panel} newTab The tab (panel) that will be activated
 	 * @param {Ext.Panel} currentTab The tab (panel) that is currently active
 	 */
-	onBeforeTabChange : function(mainContentTabPanel, newTab, currentTab)
+	onBeforeTabChange: function(mainContentTabPanel, newTab, currentTab)
 	{
 		// Store the scroll position of the iframe that holds the message body
 		if ( currentTab === this.ownerCt.ownerCt ){
@@ -113,22 +113,44 @@ Zarafa.common.ui.messagepanel.MessageBody = Ext.extend(Ext.Container, {
 	 * event when the user performs click within iframe.
 	 * @private
 	 */
-	setRelayEventListeners : function()
+	setRelayEventListeners: function()
 	{
 		var iframeWindow = this.getEl().dom.contentWindow;
 		var iframeDocument = iframeWindow.document;
+		var eventsToRelay = ['mousedown'];
+		if (Zarafa.isDeskApp) {
+			eventsToRelay.push('wheel', 'keydown');
+		}
 
-		iframeDocument.addEventListener('mousedown', this.onMouseDown.createDelegate(this), true);
+		// mousedown needs to be relayed to hide contextmenu.
+		// keydown and wheel needs to be relayed to perform zoom functionality in DeskApp.
+		this.relayIframeEvent(iframeDocument, eventsToRelay);
 	},
 
 	/**
-	 * Function is called when mouse is clicked in the editor.
-	 * iframe mousedown event needs to be relayed for the document element of WebApp page,
-	 * to hide the context-menu.
+	 * Helper function to add event listeners to the given iframe element for given
+	 * events with common handler.
+	 * @param {HTMLElement} iframeElement The iframe node to which given events needs
+	 * to be listened.
+	 * @param {Array} events The set of events for which listeners should be attached
+	 * to given iframe.
 	 */
-	onMouseDown : function()
+	relayIframeEvent: function(iframeElement, events)
 	{
-		Ext.getDoc().fireEvent('mousedown');
+		events.forEach(function(event){
+			iframeElement.addEventListener(event, this.relayEventHandlers.createDelegate(this), true);
+		}, this);
+	},
+
+	/**
+	 * Function is called when specified events performed in the iframe.
+	 * Basically this function relay those events to document element
+	 * belongs to WebApp window.
+	 * @param {Object} event The event object
+	 */
+	relayEventHandlers: function(event)
+	{
+		Ext.getDoc().fireEvent(event.type, event);
 	},
 
 	/**
@@ -137,7 +159,7 @@ Zarafa.common.ui.messagepanel.MessageBody = Ext.extend(Ext.Container, {
 	 * an action in the iframe (i.e. click, mousemove, keydown)
 	 * @private
 	 */
-	setIdleTimeEventListeners : function()
+	setIdleTimeEventListeners: function()
 	{
 		var iframeWindow = this.getEl().dom.contentWindow;
 		var iframeDocument = iframeWindow.document;
@@ -170,6 +192,10 @@ Zarafa.common.ui.messagepanel.MessageBody = Ext.extend(Ext.Container, {
 	 */
 	update: function(record)
 	{
+		if ( !this.getEl().dom ) {
+			return;
+		}
+
 		var iframeWindow = this.getEl().dom.contentWindow;
 		var iframeDocument = iframeWindow.document;
 		var iframeDocumentElement = new Ext.Element(iframeDocument);
@@ -186,20 +212,24 @@ Zarafa.common.ui.messagepanel.MessageBody = Ext.extend(Ext.Container, {
 			// otherwise we have to surround it with HTML tags for displaying plain-text.
 			html = record.get('isHTML');
 			body = record.getBody(html);
+			if (html && container.getServerConfig().getDOMPurifyEnabled()) {
+				body = DOMPurify.sanitize(body, {USE_PROFILES: {html: true}});
+			}
 
 			if (!body) {
 				body = '';
-			} else  if (html === false) {
+			} else if (html === false) {
 				body = this.plaintextTemplate.applyTemplate({ body: Ext.util.Format.htmlEncode(body) });
 			}
 		}
 
-		// the open method clears the document if it has contents
-		iframeDocument.open();
-		iframeDocument.write('<!DOCTYPE html><html><body>');
-		iframeDocument.write(body);
-		iframeDocument.write('</body></html>');
-		iframeDocument.close();
+		// In Firefox, the frame's content seems to not be recognized when no initial content has been set.
+		if (Ext.isGecko) {
+			iframeDocument.open();
+			iframeDocument.close();
+		}
+		var htmlBody = iframeDocument.getElementsByTagName('body')[0];
+		htmlBody.innerHTML = body;
 
 		// Restore the scroll position if the tab panel was deactivated
 		if ( this.scrollPos ){
@@ -218,7 +248,9 @@ Zarafa.common.ui.messagepanel.MessageBody = Ext.extend(Ext.Container, {
 		// so the text can be styled.
 		this.addCSSText(iframeDocument);
 
-		this.scanDOMForLinks(iframeDocument);
+		// Add listener to enlarge image
+		this.setImageClickHandler(iframeDocument);
+
 		this.handleMailToLinks(iframeDocumentElement);
 
 		var rootContainer = this.recordComponentUpdaterPlugin.rootContainer;
@@ -232,37 +264,12 @@ Zarafa.common.ui.messagepanel.MessageBody = Ext.extend(Ext.Container, {
 	},
 
 	/**
-	 * Funtion recursively scans dom to get text nodes which contain email addresses or URLs so we can
-	 * replace them with an anchor tag.
-	 * @param {HTMLElement} node The parent node that will be examined to find the child text nodes
-	 * @private
-	 */
-	scanDOMForLinks : function(node)
-	{
-		for(var i = 0; i < node.childNodes.length; i++) {
-			var cnode = node.childNodes[i];
-			if(cnode.nodeType == 1) { // Tag-node
-				if(cnode.nodeName != 'A') { // Igonre Anchor-node as they are already linified
-					this.scanDOMForLinks(cnode);
-				}
-			} else if(cnode.nodeType == 3) { // Text-node
-				if(cnode.nodeValue.trim().length > 0) {
-					// check if this text node is HTML link or email address
-					if(cnode.nodeValue.search(this.emailPattern) != -1 || cnode.nodeValue.search(this.linkPattern) != -1) {
-						this.linkifyDOMNode(cnode, node);
-					}
-				}
-			}
-		}
-	},
-
-	/**
 	 * Function will replace text nodes with element nodes which contains anchor tag.
 	 * @param {HTMLElement} node The node that has to be examined for links or emails
 	 * @parem {HTMLElement} parentNode The parent of the passed node
 	 * @private
 	 */
-	linkifyDOMNode : function(node, parentNode)
+	linkifyDOMNode: function(node, parentNode)
 	{
 		var str = node.nodeValue;
 
@@ -277,14 +284,14 @@ Zarafa.common.ui.messagepanel.MessageBody = Ext.extend(Ext.Container, {
 				// Split the pieces up based on whether they contain a link
 				var tmpParts = Zarafa.core.Util.splitStringByPattern(lookupParts[i], this.emailPattern);
 				parts.push.apply(parts, tmpParts);
-			}else{
+			} else {
 				parts.push(lookupParts[i]);
 			}
 		}
 
 		// Create a container node to append all the textnodes and anchor nodes to
 		var containerNode = Ext.DomHelper.createDom({
-			tag : 'span'
+			tag: 'span'
 		});
 		for(var i=0;i<parts.length;i++){
 			// Create the node for a normal link
@@ -298,15 +305,15 @@ Zarafa.common.ui.messagepanel.MessageBody = Ext.extend(Ext.Container, {
 				}
 				anchorNode.setAttribute('href', link);
 				anchorNode.setAttribute('target', '_blank');
-			}else if(parts[i].search(this.emailPattern) != -1){
-				// Create a new anchor-node for making an e-mail address clickable.
+			} else if(parts[i].search(this.emailPattern) != -1){
+				// Create a new anchor-node for making an email address clickable.
 				var anchorNode = Ext.DomHelper.append(containerNode, {tag: 'a', html: parts[i]});
 				var link = parts[i];
 				if(link.indexOf('mailto:') !== 0){
 					link = 'mailto:' + link;
 				}
 				anchorNode.setAttribute('href', link);
-			}else{
+			} else {
 				Ext.DomHelper.append(containerNode, Ext.util.Format.htmlEncode(parts[i]));
 			}
 		}
@@ -326,7 +333,7 @@ Zarafa.common.ui.messagepanel.MessageBody = Ext.extend(Ext.Container, {
 	 * @param {Ext.Element} iframeDocumentElement The document element of iframe
 	 * @private
 	 */
-	handleMailToLinks : function(iframeDocumentElement)
+	handleMailToLinks: function(iframeDocumentElement)
 	{
 		var mailtoElements = iframeDocumentElement.query('a[href^="mailto:"]');
 
@@ -345,14 +352,14 @@ Zarafa.common.ui.messagepanel.MessageBody = Ext.extend(Ext.Container, {
 	 * @param {HTMLElement} element The element which was focussed
 	 * @private
 	 */
-	onMailtoClick : function(event, element)
+	onMailtoClick: function(event, element)
 	{
 		// Prevent the browsers default handling of the event.
 		// i.e. opening mailto handler for the link
 		event.preventDefault();
 
 		var href = this.href || element.href;
-		Zarafa.core.URLActionMgr.execute({mailto : href});
+		Zarafa.core.URLActionMgr.execute({mailto: href});
 	},
 
 	/**
@@ -362,16 +369,29 @@ Zarafa.common.ui.messagepanel.MessageBody = Ext.extend(Ext.Container, {
 	 * @param {Document} doc The document to which the link should be added
 	 * @private
 	 */
-	addCSSText : function(doc)
+	addCSSText: function(doc)
 	{
 		var head = doc.getElementsByTagName('head')[0];
+		if (head.childElementCount != 0) {
+			return;
+		}
+
 		var css = doc.createElement('style');
 		css.setAttribute('type', 'text/css');
 		css.appendChild(document.createTextNode('body { margin: 0; padding: 9px; } ' +
 			// Make the blockquote element not use the default right margin of 40px
 			'blockquote { margin-right: 0px; }' +
 			// Make text in pre tags wrapped if too long for a line
-			'pre { white-space: pre-wrap; margin: 0; font-family:monospace; }'
+			'pre { white-space: pre-wrap; margin: 0; font-family:monospace; }' +
+
+			// Scale images
+			'p > span > img, div > img, p > img { max-width: 100%; height: auto !important; }' +
+			'@media screen and (max-width: 250px) { p > span > img, div > img, p > img { max-width: 250px; } }' +
+
+			// Elements that should not have the max-width style
+			// k-original: class that we set on img click
+			// table img: all images in tables. Often used in newsletters
+			'.k-original, table img { max-width: none !important; }'
 		));
 
 		// Add a wingdings compatible font (only the smilies)
@@ -398,6 +418,28 @@ Zarafa.common.ui.messagepanel.MessageBody = Ext.extend(Ext.Container, {
 	},
 
 	/**
+	 * Sets an event listener for img clicks inside an iframe
+	 * @param {Document} iframeDocument The iframe document in which the event listeners are added
+	 */
+	setImageClickHandler: function(iframeDocument)
+	{
+		var images = iframeDocument.body.querySelectorAll('img');
+		for (let i=0; i < images.length; i++) {
+			images[i].removeEventListener('click', this.onImageClick);
+			images[i].addEventListener('click', this.onImageClick);
+		}
+	},
+
+	/**
+	 * Toggle the k-original class when an image is clicked in an iframe
+	 * @param {Event} event The click event
+	 */
+	onImageClick: function(event)
+	{
+		event.target.classList.toggle('k-original');
+	},
+
+	/**
 	 * Called when this component is being rendered into a container.
 	 * This will create a {@link #wrap} element around the iframe for
 	 * better organize the scrolling.
@@ -408,7 +450,7 @@ Zarafa.common.ui.messagepanel.MessageBody = Ext.extend(Ext.Container, {
 	 * @param {Number} position The position inside the container where this component is being rendered
 	 * @private
 	 */
-	onRender : function(ct, position)
+	onRender: function(ct, position)
 	{
 		Zarafa.common.ui.messagepanel.MessageBody.superclass.onRender.call(this, ct, position);
 

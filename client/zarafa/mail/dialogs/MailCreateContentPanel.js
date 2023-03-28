@@ -11,27 +11,27 @@ Zarafa.mail.dialogs.MailCreateContentPanel = Ext.extend(Zarafa.core.ui.MessageCo
 	 * @property
 	 * @type Zarafa.mail.MailContextModel
 	 */
-	model : undefined,
+	model: undefined,
 
 	/**
 	 * True if the BCC field should be shown.
 	 * @property
 	 * @type Boolean
 	 */
-	showbcc : false,
+	showbcc: false,
 
 	/**
-	 * @cfg {Boolean} use_html_editor True to enable the HTML editor in this panel
+	 * @cfg {Boolean} useHtml True to enable the HTML editor in this panel
 	 * If not provided, the value will be obtained from the {@link Zarafa.settings.SettingsModel}.
 	 */
-	use_html_editor : false,
+	useHtml: false,
 
 	/**
 	 * True if the From field should be shown.
 	 * @property
 	 * @type Boolean
 	 */
-	showfrom : false,
+	showfrom: false,
 
 	/**
 	 * The queue containing callback functions which can be used to validate the
@@ -41,44 +41,50 @@ Zarafa.mail.dialogs.MailCreateContentPanel = Ext.extend(Zarafa.core.ui.MessageCo
 	 * @type Zarafa.core.data.CallbackQueue
 	 * @protected
 	 */
-	sendLaterValidationQueue : undefined,
+	sendLaterValidationQueue: undefined,
+
+	/**
+	 * @cfg {Zarafa.addressbook.dialogs.AddressBookContentPanel} ABDialog only available when
+	 * user select "Send email" address book context menu item.
+	 */
+	ABDialog: undefined,
 
 	/**
 	 * @constructor
 	 * @param config Configuration structure
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
-		if (!Ext.isDefined(config.use_html_editor)) {
-			config.use_html_editor = container.getSettingsModel().get('zarafa/v1/contexts/mail/dialogs/mailcreate/use_html_editor');
+		if (!Ext.isDefined(config.useHtml)) {
+			config.useHtml = container.getSettingsModel().get('zarafa/v1/contexts/mail/dialogs/mailcreate/use_html_editor');
 		}
 
 		config.plugins = Ext.value(config.plugins, []);
 		if (container.getSettingsModel().get('zarafa/v1/contexts/mail/autosave_enable') === true) {
 			config.plugins.push({
-				ptype : 'zarafa.autosavemessageplugin'
+				ptype: 'zarafa.autosavemessageplugin'
 			});
 		}
 
 		// Add in some standard configuration data.
 		Ext.applyIf(config, {
 			// Override from Ext.Component
-			xtype : 'zarafa.mailcreatecontentpanel',
+			xtype: 'zarafa.mailcreatecontentpanel',
 			// Override from Ext.Component
-			layout : 'fit',
-			title : _('E-Mail'),
-			recordComponentPluginConfig : Ext.applyIf(config.recordComponentPluginConfig || {}, {
-				allowWrite : true
+			layout: 'fit',
+			title: _('Email'),
+			recordComponentPluginConfig: Ext.applyIf(config.recordComponentPluginConfig || {}, {
+				allowWrite: true
 			}),
-			closeOnSend : true,
-			confirmClose : true,
+			closeOnSend: true,
+			confirmClose: true,
 			items: [{
 				xtype: 'zarafa.mailcreatepanel',
 				ref: 'mainPanel',
-				use_html_editor : config.use_html_editor,
-				tbar :{
+				useHtml: config.useHtml,
+				tbar:{
 					xtype: 'zarafa.mailcreatetoolbar'
 				}
 			}]
@@ -114,7 +120,7 @@ Zarafa.mail.dialogs.MailCreateContentPanel = Ext.extend(Zarafa.core.ui.MessageCo
 	 * @protected
 	 * @overridden
 	 */
-	displayInfoMask : function()
+	displayInfoMask: function()
 	{
 		if (this.showInfoMask === false) {
 			return;
@@ -122,7 +128,7 @@ Zarafa.mail.dialogs.MailCreateContentPanel = Ext.extend(Zarafa.core.ui.MessageCo
 
 		if (this.isSaving && !this.isSending) {
 			this.savingEl = container.getNotifier().notify('info.mailsaving', _('Saving...'), {
-				toolbar : this.mainPanel.getTopToolbar()
+				toolbar: this.mainPanel.getTopToolbar()
 			});
 		} else {
 			Zarafa.mail.dialogs.MailCreateContentPanel.superclass.displayInfoMask.apply(this, arguments);
@@ -131,32 +137,44 @@ Zarafa.mail.dialogs.MailCreateContentPanel = Ext.extend(Zarafa.core.ui.MessageCo
 
 	/**
 	 * If {@link #showInfoMask} is enabled, and {@link #displayInfoMask} has been called, this
-	 * will remove the saving notification. When saving has been successfull, a new notification
+	 * will remove the saving notification. When saving has been successful, a new notification
 	 * will be shown to display the {@link #savingDoneText} with timestamp.
 	 * @param {Boolean} success false to disable the display of {@link #savingDoneText}.
 	 * @protected
 	 * @overridden
 	 */
-	hideInfoMask : function(success)
+	hideInfoMask: function(success)
 	{
 		if (this.showInfoMask === false) {
 			return;
 		}
 
-		// If there isn't any message action set on the record then it is just save mail action.
+		// If there isn't any message action set on the record, then it's just the save mail action.
 		if (this.isSaving && !this.isSending) {
-			var message;
-			if (success === false) {
-				message = _('Message saving failed.');
-			} else {
-				message = String.format(_('Message Saved at {0}.'), this.record.get('last_modification_time').format(_('g:i A')));
-			}
-
+			var message = (success) ? String.format(_('Saved at {0}'), this.record.get('last_modification_time').formatDefaultTime()) : _('Saving failed');
 			container.getNotifier().notify('info.mailsaved', message, {
-				toolbar : this.mainPanel.getTopToolbar()
+				toolbar: this.mainPanel.getTopToolbar()
 			});
 		} else {
 			Zarafa.mail.dialogs.MailCreateContentPanel.superclass.hideInfoMask.apply(this, arguments);
+		}
+	},
+
+	/**
+	 * Event which is fired when the {@link #record} has been completely loaded.
+	 * This will close the {@link Zarafa.addressbook.dialogs.AddressBookContentPanel AddressBookContentPanel} if
+	 * it is open.
+	 *
+	 * @param {Ext.Container} panel The panel to which the record was set
+	 * @param {Zarafa.core.data.MAPIRecord} record The record which was updated
+	 * @private
+	 */
+	onLoadRecord: function(panel, record)
+	{
+		Zarafa.mail.dialogs.MailCreateContentPanel.superclass.onLoadRecord.apply(this, arguments);
+
+		if (Ext.isDefined(this.ABDialog)) {
+			this.ABDialog.close();
 		}
 	},
 
@@ -166,7 +184,7 @@ Zarafa.mail.dialogs.MailCreateContentPanel = Ext.extend(Zarafa.core.ui.MessageCo
 	 * @param {Zarafa.core.data.IPMRecord} record The record to load
 	 * @param {Boolean} contentReset force the component to perform a full update of the data.
 	 */
-	update : function(record, contentReset)
+	update: function(record, contentReset)
 	{
 		var hasFrom = false;
 		var hasBcc = false;
@@ -180,22 +198,17 @@ Zarafa.mail.dialogs.MailCreateContentPanel = Ext.extend(Zarafa.core.ui.MessageCo
 		 * 2) When record has set delegator in sent_representing_* info.
 		 */
 		if (contentReset) {
+			var delegatorFieldStore = this.mainPanel.fromRecipientField.getBoxStore();
 			if(!record.userIsStoreOwner()) {
 				var delegator = container.getHierarchyStore().getById(record.get('store_entryid'));
 				record.setDelegatorInfo(delegator);
 			}
+			
+			// Get the recipeint for the from field.
+			var delegatorRecord = record.getDefaultFromRecipeint();
 
-			if(record.get('sent_representing_email_address')) {
+			if(Ext.isDefined(delegatorRecord) && delegatorRecord) {
 				hasFrom = true;
-				var delegatorFieldStore = this.mainPanel.fromRecipientField.getBoxStore();
-
-				var delegatorRecord = Zarafa.core.data.RecordFactory.createRecordObjectByCustomType(Zarafa.core.data.RecordCustomObjectType.ZARAFA_RECIPIENT, {
-					display_name : record.get('sent_representing_name'),
-					email_address : record.get('sent_representing_email_address'),
-					address_type : record.get('sent_representing_address_type'),
-					entryid : record.get('sent_representing_entryid')
-				});
-
 				// We need to maintain that in from field there should be only one user,
 				// So remove earlier added user.
 				delegatorFieldStore.removeAll();
@@ -247,7 +260,7 @@ Zarafa.mail.dialogs.MailCreateContentPanel = Ext.extend(Zarafa.core.ui.MessageCo
 	 * @param {Zarafa.core.data.MAPIRecord} record The record bound to this component
 	 * @private
 	 */
-	updateIconFromRecord : function(record)
+	updateIconFromRecord: function(record)
 	{
 		//TODO: create a new icon mapping for tabs
 		var iconCls = Zarafa.common.ui.IconClass.getIconClass(record);
@@ -260,7 +273,7 @@ Zarafa.mail.dialogs.MailCreateContentPanel = Ext.extend(Zarafa.core.ui.MessageCo
 	 * Calls {@link #setTitle} this.setTitle in order to update
 	 * @param {Zarafa.core.data.MAPIRecord} record The record that has been updated
 	 */
-	updateTitleFromRecord : function(record)
+	updateTitleFromRecord: function(record)
 	{
 		var subject = record.get('subject');
 		if(!Ext.isEmpty(subject)){
@@ -274,7 +287,7 @@ Zarafa.mail.dialogs.MailCreateContentPanel = Ext.extend(Zarafa.core.ui.MessageCo
 	 * Register the {@link #stateEvents state events} to the {@link #saveState} callback function.
 	 * @private
 	 */
-	initStateEvents : function()
+	initStateEvents: function()
 	{
 		Zarafa.mail.dialogs.MailCreateContentPanel.superclass.initStateEvents.call(this);
 
@@ -291,7 +304,7 @@ Zarafa.mail.dialogs.MailCreateContentPanel = Ext.extend(Zarafa.core.ui.MessageCo
 	 * @param {Boolean} visible visiblity of button
 	 * @param {Boolean} saveState save the state of the button.
 	 */
-	saveState : function(panel, visible, saveState)
+	saveState: function(panel, visible, saveState)
 	{
 		if(saveState){
 			Zarafa.mail.dialogs.MailCreateContentPanel.superclass.saveState.call(this);
@@ -304,17 +317,17 @@ Zarafa.mail.dialogs.MailCreateContentPanel = Ext.extend(Zarafa.core.ui.MessageCo
 	 * @return {Object} The state object
 	 * @protected
 	 */
-	getState : function()
+	getState: function()
 	{
 		var state = Zarafa.mail.dialogs.MailCreateContentPanel.superclass.getState.apply(this, arguments);
-		return Ext.apply(state || {}, { showbcc : this.showbcc, showfrom : this.showfrom });
+		return Ext.apply(state || {}, { showbcc: this.showbcc, showfrom: this.showfrom });
 	},
 
 	/**
 	 * Saves bcc field's state into settings and fires 'bcctoggle' event to update UI
 	 * @param {Boolean} true, if Bcc field is visible else false
 	 */
-	toggleBccState : function(showBcc)
+	toggleBccState: function(showBcc)
 	{
 		this.showbcc = showBcc;
 		this.fireEvent('bcctoggle', this, showBcc, true);
@@ -324,7 +337,7 @@ Zarafa.mail.dialogs.MailCreateContentPanel = Ext.extend(Zarafa.core.ui.MessageCo
 	 * Saves from field's state into settings and fires 'fromtoggle' event to update UI
 	 * @param {Boolean} true, if From field is visible else false
 	 */
-	toggleFromState : function(showFrom)
+	toggleFromState: function(showFrom)
 	{
 		this.showfrom = showFrom;
 		this.fireEvent('fromtoggle', this, showFrom, true);
@@ -335,7 +348,7 @@ Zarafa.mail.dialogs.MailCreateContentPanel = Ext.extend(Zarafa.core.ui.MessageCo
 	 * {@link Zarafa.mail.MailContext MailContext}.
 	 * @return {Zarafa.mail.MailContextModel} Mail context model
 	 */
-	getContextModel : function()
+	getContextModel: function()
 	{
 		if(!this.model) {
 			var parentFolder = this.get('parent_entryid');
@@ -369,7 +382,7 @@ Zarafa.mail.dialogs.MailCreateContentPanel = Ext.extend(Zarafa.core.ui.MessageCo
 	 * which must be executed to determine if the message has valid recipients.
 	 * @protected
 	 */
-	createSendLaterValidationQueue : function ()
+	createSendLaterValidationQueue: function ()
 	{
 		this.sendLaterValidationQueue = new Zarafa.core.data.CallbackQueue();
 

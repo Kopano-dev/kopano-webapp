@@ -9,13 +9,13 @@ Zarafa.settings.SettingsContext = Ext.extend(Zarafa.core.Context, {
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
-	 */ 
-	constructor : function(config)
-	{   
+	 */
+	constructor: function(config)
+	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			stateful : false
+			stateful: false
 		});
 
 		Zarafa.settings.SettingsContext.superclass.constructor.call(this, config);
@@ -33,12 +33,16 @@ Zarafa.settings.SettingsContext = Ext.extend(Zarafa.core.Context, {
 			 */
 			'afterrequiredreload'
 		);
+
+		// Add a listener to the contextswitch event to collapse the navigation panel
+		// when we switch to the settings context
+		container.on('contextswitch', this.onContextSwitch);
 	},
 
 	/**
 	 * @return {Zarafa.settings.SettingsContextModel} the settings context model
 	 */
-	getModel : function()
+	getModel: function()
 	{
 		if (!Ext.isDefined(this.model)) {
 			this.model = new Zarafa.settings.SettingsContextModel();
@@ -55,16 +59,15 @@ Zarafa.settings.SettingsContext = Ext.extend(Zarafa.core.Context, {
 	 *
 	 * @param {Mixed} viewId The view identification
 	 */
-	setView : function(viewId)
+	setView: function(viewId)
 	{
 		if (this.current_view != viewId) {
 			var model = this.getModel();
 
 			if (model.hasChanges()) {
 				Ext.MessageBox.show({
-					title: _('Kopano WebApp'),
-					msg : _('Do you wish to apply the changes?'),
-					icon: Ext.MessageBox.QUESTION,
+					title: _('Apply changes'),
+					msg: _('Do you wish to apply the changes?'),
 					fn: this.applyChanges.createDelegate(this, [ viewId ], 1),
 					buttons: Ext.MessageBox.YESNOCANCEL
 				});
@@ -76,15 +79,15 @@ Zarafa.settings.SettingsContext = Ext.extend(Zarafa.core.Context, {
 
 	/**
 	 * Sets the current view mode from the available view modes.
-	 * 
+	 *
 	 * Compared to the {@link Zarafa.core.Context superclass} this function
 	 * will always fire the viewmode change event regardless if the same value
-	 * has been provided or not. 
+	 * has been provided or not.
 	 *
 	 * Fires the {@link #viewmodechange} event.
 	 * @param {Number} mode view mode (context should define modes and its numeric values).
 	 */
-	setViewMode : function(mode)
+	setViewMode: function(mode)
 	{
 		var oldMode = this.current_view_mode;
 		this.current_view_mode = mode;
@@ -96,18 +99,18 @@ Zarafa.settings.SettingsContext = Ext.extend(Zarafa.core.Context, {
 	 * wishes to cancel the {@link #setView} action, or wishes to either
 	 * {@link Zarafa.settings.SettingsContextModel#applyChanges apply} or
 	 * {@link Zarafa.settings.SettingsContextModel#discardChanges discard}
-	 * all changes. 
+	 * all changes.
 	 * @param {String} btn The button which the user pressed
 	 * @param {Mixed} viewId the viewId argument from {@link #setView}.
 	 * @private
 	 */
-	applyChanges : function(btn, viewId)
+	applyChanges: function(btn, viewId)
 	{
 		// The user cancels the switch to a different category
 		if (btn === 'cancel') {
 			return;
 		}
-		
+
 		// Check if the user wishes to save or discard all changes
 		var model = this.getModel();
 		if (btn === 'yes') {
@@ -124,21 +127,28 @@ Zarafa.settings.SettingsContext = Ext.extend(Zarafa.core.Context, {
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder MAPI folder to show.
 	 * @param {Boolean} suspended True to enable the ContextModel {@link Zarafa.core.ContextModel#suspendLoading suspended}
 	 */
-	enable : function(folder, suspended)
+	enable: function(folder, suspended)
 	{
 		Zarafa.settings.SettingsContext.superclass.enable.apply(this, arguments);
 
 		container.on('beforecontextswitch', this.onBeforeContextSwitch, this);
 		this.getModel().getRealSettingsModel().on('save', this.onSaveSettings, this);
-		container.getNavigationBar().collapse();
 	},
 
 	/**
 	 * Called before the context is switched out.
-	 */	
-	disable : function()
+	 */
+	disable: function()
 	{
-		container.getNavigationBar().expand();
+		// Get the state of the navigation panel so we know if we must expand it again.
+		// By default the navigation bar is expanded, but the state setting is not set (undefined).
+		// Expand the navigation bar when the state is 1) undefined, 2) true and collapsed.
+		// Ref KW-2961.
+		var navState = Ext.state.Manager.get(container.getNavigationBar().stateId);
+		if ((!Ext.isDefined(navState)) || (navState && !navState.collapsed)) {
+			container.getNavigationBar().expand();
+		}
+
 		container.un('beforecontextswitch', this.onBeforeContextSwitch, this);
 
 		Zarafa.settings.SettingsContext.superclass.disable.apply(this, arguments);
@@ -151,24 +161,23 @@ Zarafa.settings.SettingsContext = Ext.extend(Zarafa.core.Context, {
 	 * @param {Object} param The key-value object containing the action and the corresponding
 	 * settings which were saved to the server.
 	 */
-	onSaveSettings : function(model, param)
+	onSaveSettings: function(model, param)
 	{
 		if(param.requiresReload) {
-			var message = _('In order for the changes to take effect, please reload WebApp.') +'<br>'+ _('NOTE: Any unsaved changes will be lost.');
+			var message = _('You must reload WebApp for the changes to take effect. Unsaved changes will be lost.');
 
 			Zarafa.common.dialogs.MessageBox.addCustomButtons({
-				title: _('Kopano WebApp'),
-				msg : message,
-				icon : Ext.MessageBox.QUESTION,
-				fn : this.reloadWebapp,
-				customButton : [{
-					text : _('Reload'),
-					name : 'reload'
+				title: _('Reload WebApp'),
+				msg: message,
+				fn: this.reloadWebapp,
+				customButton: [{
+					text: _('Reload'),
+					name: 'reload'
 				}, {
-					text : _('Cancel'),
-					name : 'cancel'
+					text: _('Cancel'),
+					name: 'cancel'
 				}],
-				scope : this
+				scope: this
 			});
 		}
 	},
@@ -179,7 +188,7 @@ Zarafa.settings.SettingsContext = Ext.extend(Zarafa.core.Context, {
 	 * @param {String} button The button which the user pressed
 	 * @private
 	 */
-	reloadWebapp : function(button)
+	reloadWebapp: function(button)
 	{
 		if(button === 'reload') {
 			this.getModel().getRealSettingsModel().un('save', this.onSaveSettings, this);
@@ -199,7 +208,7 @@ Zarafa.settings.SettingsContext = Ext.extend(Zarafa.core.Context, {
 		var bid = -1;
 
 		if (Array.isArray(record)) {
-			record = record[0];  
+			record = record[0];
 		}
 
 		switch (type) {
@@ -241,23 +250,23 @@ Zarafa.settings.SettingsContext = Ext.extend(Zarafa.core.Context, {
 	 * @return {Zarafa.settings.ui.SetingsMainPanel} The main panel which should
 	 * be used within the {@link Zarafa.core.Context context}
 	 */
-	createContentPanel : function()
+	createContentPanel: function()
 	{
 		return {
-			xtype : 'zarafa.settingsmainpanel',
+			xtype: 'zarafa.settingsmainpanel',
 			id: 'zarafa-mainpanel-contentpanel-settings',
-			title : this.getDisplayName(),
+			title: this.getDisplayName(),
 			context: this
 		};
 	},
 
 	/**
 	 * Adds a button to the top tab bar for the settings.
-	 * @return {Object} The button for the top tabbar 
+	 * @return {Object} The button for the top tabbar
 	 * @private
 	 */
 	createSettingsMainTab: function()
-	{   
+	{
 		return {
 			text: this.getDisplayName(),
 			tabOrderIndex: 1,
@@ -281,33 +290,33 @@ Zarafa.settings.SettingsContext = Ext.extend(Zarafa.core.Context, {
 	createSettingCategories: function()
 	{
 		var categories = [{
-			xtype : 'zarafa.settingsgeneralcategory',
-			settingsContext : this
+			xtype: 'zarafa.settingsgeneralcategory',
+			settingsContext: this
 		}];
 
 		// disable plugin settings if sysadmin wants it
 		if (container.getServerConfig().isPluginsEnabled()) {
 			categories.push({
-				xtype : 'zarafa.settingspluginscategory',
-				settingsContext : this
+				xtype: 'zarafa.settingspluginscategory',
+				settingsContext: this
 			});
 		}
 
 		// disable advanced settings if sysadmin wants it
 		if (container.getServerConfig().isAdvancedSettingsEnabled()) {
 			categories.push({
-				xtype : 'zarafa.settingsadvancedcategory',
-				settingsContext : this
+				xtype: 'zarafa.settingsadvancedcategory',
+				settingsContext: this
 			});
 		}
-		
+
 		categories = categories.concat([
 		{
-			xtype : 'zarafa.settingskeyshortcutcategory',
-			settingsContext : this
+			xtype: 'zarafa.settingskeyshortcutcategory',
+			settingsContext: this
 		},{
-			xtype : 'zarafa.settingscopyrightcategory',
-			settingsContext : this
+			xtype: 'zarafa.settingscopyrightcategory',
+			settingsContext: this
 		}]);
 
 		return categories;
@@ -323,13 +332,12 @@ Zarafa.settings.SettingsContext = Ext.extend(Zarafa.core.Context, {
 	 * @return {Boolean} False to prevent the context from being switched
 	 * @private
 	 */
-	onBeforeContextSwitch : function(folder, oldContext, newContext)
+	onBeforeContextSwitch: function(folder, oldContext, newContext)
 	{
 		if (this.getModel().hasChanges()) {
 			Ext.MessageBox.show({
-				title: _('Kopano WebApp'),
-				msg : _('Do you wish to apply the changes?'),
-				icon: Ext.MessageBox.QUESTION,
+				title: _('Apply changes'),
+				msg: _('Do you wish to apply the changes?'),
 				fn: this.applyChangesContext.createDelegate(this, [ folder, newContext ], 1),
 				buttons: Ext.MessageBox.YESNOCANCEL
 			});
@@ -345,20 +353,20 @@ Zarafa.settings.SettingsContext = Ext.extend(Zarafa.core.Context, {
 	 * wishes to cancel the {@link #setView} action, or wishes to either
 	 * {@link Zarafa.settings.SettingsContextModel#applyChanges apply} or
 	 * {@link Zarafa.settings.SettingsContextModel#discardChanges discard}
-	 * all changes. 
+	 * all changes.
 	 * @param {String} btn The button which the user pressed
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder The folder to which to
 	 * switch when the user is wishes to switch context.
 	 * @param {Zarafa.core.Context} newContext The context to which to switch
 	 * @private
 	 */
-	applyChangesContext : function(btn, folder, newContext)
+	applyChangesContext: function(btn, folder, newContext)
 	{
 		// The user cancels the switch to a different category
 		if (btn === 'cancel') {
 			return;
 		}
-		
+
 		// Check if the user wishes to save or discard all changes
 		var model = this.getModel();
 		if (btn === 'yes') {
@@ -368,21 +376,37 @@ Zarafa.settings.SettingsContext = Ext.extend(Zarafa.core.Context, {
 		}
 
 		/*
-		 * if requiresReload config was true then don't directly switch the context 
-		 * register the afterrequiredreload event and then switch the context based on the 
+		 * if requiresReload config was true then don't directly switch the context
+		 * register the afterrequiredreload event and then switch the context based on the
 		 * button pressed by the user from required reload message box.
 		 */
 		if(model.getRealSettingsModel().requiresReload) {
-			this.on('afterrequiredreload', this.onAfterRequiredReload.createDelegate(this, [ folder, newContext ],1), this, {single : true});
+			this.on('afterrequiredreload', this.onAfterRequiredReload.createDelegate(this, [ folder, newContext ],1), this, {single: true});
 		} else {
 			container.switchContext(newContext, folder);
 		}
 	},
 
 	/**
-	 * Function is used to switch the context if cancel button was pressed from 
+	 * Event handler for the {@link Zarafa.core.Container.contextswitch contextswitch}
+	 * event of the {@link Zarafa.core.Container Container} Will collapse the
+	 * {@link Zarafa.core.ui.NavigationPanel NavigationPanel} when we swithch
+	 * to the SettingContext.
+	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder folder that is loaded for the new context
+	 * @param {Zarafa.core.Context} oldContext context that was switched out
+	 * @param {Zarafa.core.Context} newContext new context that was switched
+	 */
+	onContextSwitch: function(folder, oldContext, newContext)
+	{
+		if ( newContext.getName() === 'settings' ) {
+			container.getNavigationBar().collapse();
+		}
+	},
+
+	/**
+	 * Function is used to switch the context if cancel button was pressed from
 	 * required reload message box.
-	 * 
+	 *
 	 * @param {Zarafa.core.Context} currentContext The current context.
 	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder The folder to which to
 	 * switch when the user is wishes to switch context.
@@ -390,7 +414,7 @@ Zarafa.settings.SettingsContext = Ext.extend(Zarafa.core.Context, {
 	 * @param {String} button The button which the user pressed from required reload message box
 	 * @private
 	 */
-	onAfterRequiredReload : function(currentContext, newContextFolder, newContext, button)
+	onAfterRequiredReload: function(currentContext, newContextFolder, newContext, button)
 	{
 		if(button === 'cancel') {
 			container.switchContext(newContext, newContextFolder);
@@ -400,9 +424,9 @@ Zarafa.settings.SettingsContext = Ext.extend(Zarafa.core.Context, {
 
 Zarafa.onReady(function() {
 	container.registerContext(new Zarafa.core.ContextMetaData({
-		name : 'settings',
-		displayName : _('Settings'),
-		allowUserVisible : false,
-		pluginConstructor : Zarafa.settings.SettingsContext
+		name: 'settings',
+		displayName: _('Settings'),
+		allowUserVisible: false,
+		pluginConstructor: Zarafa.settings.SettingsContext
 	}));
 });

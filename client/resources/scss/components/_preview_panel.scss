@@ -1,10 +1,39 @@
 .preview-header {
-	padding: 0 ($padding-large - 5px) 0 $padding-large;
 	border-bottom: 1px solid $grey;
+
 }
+
+.preview-header,
+.x-plain {
+	.preview-header-title,
+	.preview-header-sentinfo,
+	.preview-header-recipients,
+	.k-preview-header-categories,
+	.preview-header-meeting,
+	.preview-header-task,
+	.preview-header-attachmentbox {
+		padding: 0 ($padding-large - 5px) 0 $padding-large;
+	}
+}
+
 .preview-header .x-panel-body {
 	/* we cannot set this padding on the .preview-header because it will fuck up the collapse/expand animation */
 	padding-bottom: $padding-medium;
+}
+
+/******************************************************************************
+ * Message Loading Failure
+ ******************************************************************************/
+ #zarafa-main-content-mail-preview .x-mask-error {
+	border : none;
+	background-color : $white;
+
+	div {
+		border : none;
+		color: $grey6;
+		background-color : $white;
+		font-size : $font-size-large;
+	}
 }
 
 /***************************************
@@ -14,9 +43,10 @@
 	width: 15px;
 	height: 15px;
 }
+
 .preview-header ::-webkit-scrollbar-button:vertical {
-	border: 1px solid #fff;
-	background-color: #fff;
+	border: 1px solid $white;
+	background-color: $white;
 	background-repeat: no-repeat;
 	height: 15px;
 	border-radius: 2px;
@@ -24,13 +54,21 @@
 .preview-header ::-webkit-scrollbar-button:vertical:hover {
 	border: 1px solid $grey2;
 }
-.preview-header ::-webkit-scrollbar-button:vertical:decrement {
-	background-image: $iconsmap;
-	@include sprite-background-position($iconsmap, arrow_up_s, $offset-x: 4, $offset-y: 5);
-}
 .preview-header ::-webkit-scrollbar-button:vertical:increment {
-	background-image: $iconsmap;
-	@include sprite-background-position($iconsmap, arrow_down_s, $offset-x: 4, $offset-y: 5);
+	/* this is the arrow_down_s.png icon */
+	/* putting this webkit rule in app-icons.extensions.json would break the rule on IE11 */
+	/* so we're cheating a little and adding this one here */
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAYAAABbNsX4AAAAHElEQVR4AWMKDAz8j46ZGBgYGBlQASMTjIFMAwD7JAnFXwG1BAAAAABJRU5ErkJggg==);
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.preview-header ::-webkit-scrollbar-button:vertical:decrement {
+	/* this is the arrow_up_s.png icon */
+	/* putting this webkit rule in app-icons.extensions.json would break the rule on IE11 */
+	/* so we're cheating a little and adding this one here */
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAYAAABbNsX4AAAAGElEQVR4AWMIDAyE4f8wNkIAgRnAAugYAIFDFzUC5hyIAAAAAElFTkSuQmCC);
+	background-repeat: no-repeat;
+	background-position: center center;
 }
 .preview-header ::-webkit-scrollbar-button:vertical:increment:disabled {
 	background-color: red;
@@ -59,29 +97,20 @@
 /* the expand/collapse button */
 $preview-header-collapse-button-width	: $font-line-height-large;
 $preview-header-collapse-button-height	: $preview-header-collapse-button-width;
-$preview-header-collapse-icon-width		: 9;
+$preview-header-collapse-icon-width	: 9;
 $preview-header-collapse-icon-height	: 5;
 
 .preview-header-collapse {
 	float: right;
 	width: $preview-header-collapse-button-width;
 	height: $preview-header-collapse-button-height;
-	margin: (-$padding-large) (-$padding-large) 0 $padding-large; /* pulling it to the top and the right to be able to create a larger click area */
+	padding: $padding-small;
+	margin-top: (-$padding-small);
 	cursor: pointer;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-}
-.preview-header-collapse-minus {
-	@extend .arrow_up_l;
-	/* when setting the background position, remember we pulled the image to the top and the right */
-	background-position: sprite-position($iconsmap, arrow_up_l, $offset-y: $padding-large, $offset-x: $preview-header-collapse-button-width - $preview-header-collapse-icon-width - $padding-large);
-}
-.preview-header-collapse-plus {
-	@extend .arrow_down_l;
-	/* when setting the background position, remember we pulled the image to the top and the right */
-	background-position: sprite-position($iconsmap, arrow_down_l, $offset-y: $padding-large, $offset-x: $preview-header-collapse-button-width - $preview-header-collapse-icon-width - $padding-large);
 }
 
 .preview-header-titlebox,
@@ -97,40 +126,81 @@ $preview-header-collapse-icon-height	: 5;
 	font-weight: bold;
 }
 
-.preview-header-titlebox{
+.preview-header-titlebox {
 	padding: ($header-height - $font-line-height-large )/2 0;
 }
-.preview-header-senderbox .preview-from{
+.preview-header-senderbox .preview-from {
 	display: block;
 	padding-bottom: $padding-medium;
 }
 .preview-header-recipients, .preview-header-meeting, .preview-header-attachments {
 	display: block;
 	margin-top: $padding-medium;
-
 }
 
 .preview-header-recipients .preview-recipient-title,
-.preview-header-attachments .preview-attachment-title
-{
-	float:left;
+.preview-header-attachments .preview-attachment-title {
+	float: left;
 }
 
+.preview-attachment-title.icon_paperclip {
+	width: 15px;
+	height: 17px;
+}
 
-.preview-header-sentinfo .preview-timestamp-title,
 .preview-header-recipients .preview-recipient-title,
 .preview-header-attachments .preview-attachment-title,
 .preview-header-meeting .preview-when .preview-when-title,
 .preview-header-meeting .preview-proposed .preview-proposed-title,
 .preview-header-meeting .preview-location .preview-location-title {
 	display: inline-block;
-	min-width: 36px;
-	font-weight: normal;
+	font-weight: bold;
 	padding-right: $padding-medium;
 }
 
-.preview-recipient-data{
-	line-height: 16px;
+.preview-header-sentinfo .preview-from {
+	font-size: 16px;
+}
+
+.preview-from .zarafa-emailaddress-link {
+	display: inline-block;
+	margin-top: 1px;
+}
+
+.preview-header-sentinfo .preview-timestamp {
+	font-size: $font-default-size;
+	color: $preview-panel-timestamp;
+}
+
+/* Todo sassify me */
+.preview-header-sender-initial {
+	border: 1px solid;
+	color: $kopano-blue;
+	border-radius: 50%;
+	-moz-border-radius: 50%;
+	display: inline-block;
+	line-height: 40px;
+	margin-right: 7px;
+	text-align: center;
+	width: 40px;
+	height: 40px;
+	@include basefont($font-size-extra-large);
+	float: left;
+	user-select: none;
+}
+
+.preview-header-sender-image {
+	background-size: cover;
+    background-position: center;
+	background-repeat: no-repeat;
+	border-radius: 50%;
+	-moz-border-radius: 50%;
+	display: inline-block;
+	min-height: 40px;
+	margin-right: 7px;
+	text-align: center;
+	width: 40px;
+	float: left;
 }
 
 .preview-body {
@@ -139,14 +209,12 @@ $preview-header-collapse-icon-height	: 5;
 
 /* Overflow for recipients / attachments */
 .preview-header-recipients .preview-recipient-data,
-.preview-header-attachments .preview-attachment-data
-{
+.preview-header-attachments .preview-attachment-data {
 	overflow-y: auto;
 }
 
 /* Attachments: */
-.preview-header-attachmentbox
-{
+.preview-header-attachmentbox {
 	line-height:18px;
 	padding-top:2px;
 }
@@ -159,23 +227,15 @@ $preview-header-collapse-icon-height	: 5;
 
 /* Top header infobox  */
 .preview-header-extrainfobox {
-	// FIXME: SASS Color
-	background-color: #D2E0F0;
-	color: #000000;
-	padding: 2px 0px;
+	background-color: $light-blue;
+	margin-bottom: $padding-medium;
+	padding: $padding-medium $padding-large $padding-medium $padding-large;
+	margin-top: $padding-small;
 }
 
 /* Corrupt message case */
 .preview-header-extrainfobox-item-over {
-	// FIXME: SASS Color
-	background-color: #FFBD69;
-	cursor : pointer;
-}
-
-.preview-header-extrainfobox-item {
-	padding: 0px 8px;
-	// FIXME: SASS Color
-	color: #15428B;
+	cursor: pointer;
 }
 
 /* Preview header email address */
@@ -190,43 +250,39 @@ span.zarafa-emailaddress-link:hover {
 }
 
 .preview-title-hr {
-	margin : 2px 0;
+	margin: 2px 0;
 }
 
 .preview-recipient-data {
 	word-wrap: break-word;
 }
 
-.preview-header-attachments .zarafa-attachment-link
-{
+.preview-header-attachments .zarafa-attachment-link {
 	// FIXME: sassify
-	border-radius: 4px;
-	border: 1px solid #d3d2d2;
 	background-color: #ebeaeb;
-	color: #00a;
-	padding: 1px 5px;
+	padding: 2px 5px;
 	margin: 1px;
-	box-shadow: 0 0 1px #ddd inset;
 	cursor: pointer;
+	border-radius: 1px;
 }
 
-.preview-header-attachments .zarafa-attachment-link-over
-{
+.preview-header-attachments .zarafa-attachment-link-over {
 	// FIXME: sassify
 	background-color: #ddd;
 }
 
 .preview-header-task .preview-from {
-	td {
-		min-width: 80px;
-		&.minwidth50{
-			min-width: 50px;
-		}
-		&.minwidth120{
-			min-width: 120px;
-		}
-		&.table-label{
-			color: #7F7F7F;
+	.task-info-container {
+		span {
+			min-width: 80px;
+			padding-top: 5px;
+			display: inline-block;
+			&.minwidth120{
+				min-width: 120px;
+			}
+			&.label{
+				color: #7F7F7F;
+			}
 		}
 	}
 
@@ -245,5 +301,117 @@ span.zarafa-emailaddress-link:hover {
 	}
 	.preview-header-attachments {
 		margin-top: 0px;
+	}
+}
+
+/* x-plain preview used for e.g. displaying appointments in search preview */
+
+.x-plain {
+
+	.zarafa-search-previewpanel-toolbar {
+		border-bottom: none;
+	}
+
+	.preview-body .x-plain {
+
+		.x-plain-body {
+
+			.x-fieldset {
+				padding: 10px;
+				border: none;
+			}
+
+			.x-form-item-label {
+				text-align: left;
+				font-weight: bold;
+			}
+		}
+	}
+}
+
+/********************
+ * Conversation view
+ *******************/
+.zarafa-mailconversationpanel {
+	.x-panel-header{
+		background: $white;
+		font-size: $font-size-large;
+		font-weight: bold;
+	}
+
+	> .x-panel-bwrap > .x-panel-body {
+		/* background: $grey !important; */
+		padding: $padding-medium;
+
+
+		.k-conversation-item {
+			margin-bottom: $padding-large;
+			margin-right: 3*$padding-extra-extra-large;
+
+			.x-panel-tbar {
+				border-left: 1px solid $grey;
+				border-right: 1px solid $grey;
+				width: auto !important;
+
+				.x-toolbar {
+					width: auto !important;
+				}
+			}
+
+			.x-panel-tbar .x-toolbar,
+			.x-panel-header,
+			.x-panel-body {
+					background: #fcfcfc !important;
+			}
+			.x-panel-header{
+				border-top-left-radius: $padding-large;
+				border-top-right-radius: $padding-large;
+				border-bottom: none;
+			}
+			&.x-panel-collapsed {
+				border-bottom: 1px solid $grey;
+			}
+			.x-panel-body{
+				border-bottom-left-radius: $padding-large;
+				border-bottom-right-radius: $padding-large;
+			}
+			.x-panel-header-text {
+				display: flex;
+
+				.k-avatar {
+					background: red;
+					color: $white;
+					font-size: $font-size-large + 1;
+					font-weight: bold;
+					border-radius: $font-line-height-extra-large / 2;
+					width: $font-line-height-extra-large;
+					height: $font-line-height-extra-large;
+					text-align: center;
+					line-height: $font-line-height-extra-large;
+					margin-right: $padding-large;
+				}
+				.k-sender {
+					flex: 1;
+					line-height: $font-line-height-extra-large;
+					font-size: $font-size-large - 1;
+					font-weight: bold;
+				}
+				.k-date {
+					color: $grey;
+					line-height: $font-line-height-extra-large;
+				}
+			}
+		}
+
+		.k-conversation-item.k-own-message {
+			margin-right: 0;
+			margin-left: 3*$padding-extra-extra-large;
+
+			.x-panel-tbar .x-toolbar,
+			.x-panel-header,
+			.x-panel-body {
+				background: #fafffa !important;
+			}
+		}
 	}
 }

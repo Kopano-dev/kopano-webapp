@@ -42,7 +42,7 @@
 					require_once($path);
 					$module = new $moduleName($id, $data);
 				} else {
-					throw new DispatcherException(sprintf(_("Unknown module '%s' with id '%s'"), $moduleName, $id), 0, null, _("Server encountered some problem, so it was not able to handle the request."));
+					throw new DispatcherException(sprintf(_("Unknown module '%s' with id '%s'"), $moduleName, $id), 0, null, _("We encountered a problem. This might be caused by upgrading a plugin. Please re-login to resolve the issue."));
 				}
 			}
 			return $module;
@@ -67,12 +67,13 @@
 				require_once($path);
 				$notifier = new $notifierName();
 			} else {
-				$path = $GLOBALS['PluginManager']->getNotifierFilePath($moduleName);
+				$path = $GLOBALS['PluginManager']->getNotifierFilePath($notifierName);
+
 				if (is_file($path)) {
 					require_once($path);
 					$notifier = new $notifierName();
 				} else {
-					throw new DispatcherException(sprintf(_("Unknown notifier '%s'"), $moduleName), 0, null, _("Server encountered some problem, so it was not able to handle the request."));
+					throw new DispatcherException(sprintf(_("Unknown notifier '%s'"), $notifierName), 0, null, _("We encountered a problem. This might be caused by upgrading a plugin. Please re-login to resolve the issue."));
 				}
 			}
 			return $notifier;

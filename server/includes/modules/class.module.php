@@ -57,6 +57,13 @@
 			$this->sessionData = false;
 
 			$this->createNotifiers();
+
+			// Get the store from $data and set it to properties class.
+			// It is requires for multi server environment where namespace differes.
+			// e.g. 'categories' => -2062020578, 'categories' => -2062610402,
+			if (isset($GLOBALS['properties'])) {
+				$GLOBALS['properties']->setStore($this->getActionStore($this->getActionData($data)));
+			}
 		}
 
 		/**
@@ -79,7 +86,7 @@
 		/**
 		 * This will call $handleException of updating the MAPIException based in the module data.
 		 * When this is done, $sendFeedback will be called to send the message to the client.
-		 * 
+		 *
 		 * @param object $e Exception object.
 		 * @param string $actionType the action type, sent by the client.
 		 * @param MAPIobject $store Store object of the store.
@@ -97,7 +104,7 @@
 		 * Function does customization of MAPIException based on module data.
 		 * like, here it will generate display message based on actionType
 		 * for particular exception.
-		 * 
+		 *
 		 * @param object $e Exception object.
 		 * @param string $actionType the action type, sent by the client.
 		 * @param MAPIobject $store Store object of the message.
@@ -115,6 +122,7 @@
 							$e->setDisplayMessage(_("You have insufficient privileges to save this message."));
 						else
 							$e->setDisplayMessage(_("Could not save message."));
+							$e->allowToShowDetailMessage = true;
 						break;
 
 					case "delete":
@@ -165,12 +173,17 @@
 						$e->setDisplayMessage(_("Error in distribution list expansion."));
 						break;
 				}
+				Log::Write(
+					LOGLEVEL_ERROR,
+					"Module::handleException():". $actionType . ": " . $e->displayMessage,
+					$e,
+					$action);
 			}
 		}
 
 		/**
 		 * Get quota information of user store and check for over qouta restrictions,
-		 * if any qouta (softquota/hardquota) limit is exceeded then it will simply 
+		 * if any qouta (softquota/hardquota) limit is exceeded then it will simply
 		 * return appropriate message string according to quota type(hardquota/softquota).
 		 * @param MAPIobject $store Store object of the store
 		 * @param string $actionType the action type, sent by the client
@@ -192,7 +205,7 @@
 				'quota_soft' => $storeProps[PR_QUOTA_SEND_THRESHOLD],
 				'quota_hard' => $storeProps[PR_QUOTA_RECEIVE_THRESHOLD]
 			);
-	
+
 			if($quotaDetails['quota_hard'] !== 0 && $quotaDetails['store_size'] > $quotaDetails['quota_hard']) {
 				return _('The message store has exceeded its hard quota limit.') . '<br/>' .
 						_('To reduce the amount of data in this message store, select some items that you no longer need, delete them and cleanup your Deleted Items folder.');
@@ -236,25 +249,32 @@
 			if(!$exception->isHandled) {
 				if($exception instanceof MAPIException) {
 					$exception->setHandled();
-					return array(
+					$mapiError = array(
 						"type" => ERROR_MAPI,
 						"info" => array(
 							"hresult" => $exception->getCode(),
+							"title" => $exception->getTitle(),
 							"hresult_name" => get_mapi_error_name($exception->getCode()),
 							"file" => $exception->getFileLine(),
-							"display_message" => $exception->getDisplayMessage()
+							"display_message" => $exception->getDisplayMessage(),
+							"details_message" => $exception->getDetailsMessage(),
+							"notification_type" => $exception->getNotifiactionType()
 						)
 					);
+					return $mapiError;
+
 				} else if($exception instanceof ZarafaException) {
 					$exception->setHandled();
-					return array(
+					$kopanoError = array(
 						"type" => ERROR_ZARAFA,
 						"info" => array(
 							"file" => $exception->getFileLine(),
+							"title" => $exception->getTitle(),
 							"display_message" => $exception->getDisplayMessage(),
 							"original_message" => $exception->getMessage()
 						)
 					);
+					return $kopanoError;
 				}
 			}
 
@@ -312,7 +332,7 @@
 		 * Function which returns MAPI Message Store Object. It
 		 * searches in the variable $action for a storeid.
 		 * @param array $action the XML data retrieved from the client
-		 * @return object MAPI Message Store Object, false if storeid is not found in the $action variable 
+		 * @return object|array|boolean MAPI Message Store Object or array of MAPI Message Store Objects, false if storeid is not found in the $action variable
 		 */
 		function getActionStore($action)
 		{
@@ -336,7 +356,7 @@
 		 * Function which returns a parent entryid. It
 		 * searches in the variable $action for a parententryid.
 		 * @param array $action the XML data retrieved from the client
-		 * @return object MAPI Message Store Object, false if parententryid is not found in the $action variable 
+		 * @return object MAPI Message Store Object, false if parententryid is not found in the $action variable
 		 */
 		function getActionParentEntryID($action)
 		{
@@ -352,7 +372,7 @@
 		/**
 		 * Function which returns an entryid. It
 		 * searches in the variable $action for an entryid.
-		 * @param array $action the XML data retrieved from the client
+		 * @param array $action the json data retrieved from the client
 		 * @return object MAPI Message Store Object, false if entryid is not found in the $action variable 
 		 */
 		function getActionEntryID($action)
@@ -375,6 +395,25 @@
 		}
 
 		/**
+		 * Helper function which used to get the action data from request.
+		 *
+		 * @param array $data list of all actions.
+		 * @return array $action the json data retrieved from the client
+		 */
+		function getActionData($data) 
+		{
+			$actionData = false;
+			foreach($data as $actionType => $action)
+			{
+				if(isset($actionType)) {
+					$actionData = $action;
+				}
+			}
+
+			return $actionData;
+		}
+
+		/**
 		 * Function which adds action data to module, so later it can be retrieved to send.
 		 * @param string $actionType type of action that response data corresponds.
 		 * @return array data object.
@@ -389,7 +428,7 @@
 		/**
 		 * Function which returns response data that will be sent to client. If there isn't any data added
 		 * to response data then it will return a blank array.
-		 * @return object response data.
+		 * @return array response data.
 		 */
 		function getResponseData()
 		{
@@ -429,6 +468,11 @@
 						)
 				)
 			);
+			Log::Write(
+				LOGLEVEL_ERROR,
+				"Module::handleUnknownActionType(): ERROR_ZARAFA : " . _("Could not process request data properly."),
+				sprintf(_("Unknown action type specified - %s"), $actionType)
+			);
 		}
 
 		/**
@@ -441,7 +485,7 @@
 		}
 
 		/**
-		 * Saves sessiondata of the module to the state file on disk. 
+		 * Saves sessiondata of the module to the state file on disk.
 		 */
 		function saveSessionData() {
 			if ($this->sessionData !== false) {

@@ -11,39 +11,47 @@ Ext.namespace('Zarafa.mail.settings');
 Zarafa.mail.settings.SettingsComposeWidget = Ext.extend(Zarafa.settings.ui.SettingsWidget, {
 
 	/**
+	 * The editor which is currently active in the interface
+	 * @property
+	 * @type String
+	 * @private
+	 */
+	selectedEditor: '',
+
+	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		var composerStore = {
-			xtype : 'jsonstore',
-			autoDestroy : true,
-			fields : ['name', 'value'],
-			data : [{
-				'name' : _('HTML'),
-				'value' : 'html'
+			xtype: 'jsonstore',
+			autoDestroy: true,
+			fields: ['name', 'value'],
+			data: [{
+				'name': _('HTML'),
+				'value': 'html'
 			},{
-				'name' : _('Plain Text'),
-				'value' : 'plain'
+				'name': _('Plain Text'),
+				'value': 'plain'
 			}]
 		};
 
 		var fontFamilies = Zarafa.common.ui.htmleditor.Fonts.getFontFamilies();
 		var fontData = fontFamilies.split(";").map(function(font) {
 			return {
-				'name' : font.split("=")[0],
-				'value' : font.split("=")[1].toLowerCase()
+				'name': font.split("=")[0],
+				'value': font.split("=")[1].toLowerCase()
 			};
 		});
 
 		var fontStore = {
-			xtype : 'jsonstore',
-			autoDestroy : true,
-			fields : ['name', 'value'],
-			data : fontData
+			xtype: 'jsonstore',
+			autoDestroy: true,
+			fields: ['name', 'value'],
+			data: fontData
 		};
 
 		var fontSizes = Zarafa.common.ui.htmleditor.Fonts.getFonts();
@@ -52,26 +60,26 @@ Zarafa.mail.settings.SettingsComposeWidget = Ext.extend(Zarafa.settings.ui.Setti
 		var fontSizesKeys = Object.keys(fontSizes).sort();
 		var fontSizeData = [];
 		Ext.each(fontSizesKeys, function(key){
-			fontSizeData.push({'name' : fontSizes[key] + 'pt', 'value' : key });
+			fontSizeData.push({'name': fontSizes[key] + 'pt', 'value': key });
 		});
 
 		var fontSizeStore = {
-			xtype : 'jsonstore',
-			autoDestroy : true,
-			fields : ['name', 'value'],
-			data : fontSizeData
+			xtype: 'jsonstore',
+			autoDestroy: true,
+			fields: ['name', 'value'],
+			data: fontSizeData
 		};
 
 		Ext.applyIf(config, {
-			title : _('Compose mail settings'),
-			layout : 'form',
-			items : [{
-				xtype : 'combo',
-				name : 'zarafa/v1/contexts/mail/dialogs/mailcreate/use_html_editor',
-				ref : 'composerCombo',
-				fieldLabel : _('Compose mail in this format'),
-				width : 200,
-				store : composerStore,
+			title: _('Compose mail settings'),
+			layout: 'form',
+			items: [{
+				xtype: 'combo',
+				name: 'zarafa/v1/contexts/mail/dialogs/mailcreate/use_html_editor',
+				ref: 'composerCombo',
+				fieldLabel: _('Compose mail in this format'),
+				width: 200,
+				store: composerStore,
 				mode: 'local',
 				triggerAction: 'all',
 				displayField: 'name',
@@ -80,62 +88,83 @@ Zarafa.mail.settings.SettingsComposeWidget = Ext.extend(Zarafa.settings.ui.Setti
 				forceSelection: true,
 				editable: false,
 				autoSelect: true,
-				listeners : {
-					select : this.onComposerSelect,
-					scope : this
+				listeners: {
+					select: this.onComposerSelect,
+					scope: this
 				}
 			},{
-				xtype : 'combo',
-				name : 'zarafa/v1/main/default_font',
+				xtype: 'combo',
+				name: 'zarafa/v1/contexts/mail/html_editor',
+				fieldLabel: _('Editor'),
+				ref: 'editorCombo',
+				width: 200,
+				store: this.createEditorStore(),
+				mode: 'local',
+				allowBlank: false,
+				triggerAction: 'all',
+				displayField: 'name',
+				valueField: 'value',
+				lazyInit: false,
+				forceSelection: true,
+				editable: false,
+				autoSelect: true,
+				listeners: {
+					select: this.onSelectComboItem,
+					scope: this
+				}
+			},{
+				xtype: 'combo',
+				name: 'zarafa/v1/main/default_font',
 				cls:'x-font-select',
-				fieldLabel : _('Default font'),
-				width : 200,
-				ref : 'fontCombo',
-				store : fontStore,
-				triggerAction : 'all',
-				mode : 'local',
-				displayField : 'name',
-				valueField : 'value',
-				editable : false,
-				autoSelect : true,
-				forceSelection : true,
-				lazyInit : false,
-				listeners : {
-					select : this.onFontSelect,
-					scope : this
+				fieldLabel: _('Default font'),
+				width: 200,
+				ref: 'fontCombo',
+				store: fontStore,
+				triggerAction: 'all',
+				mode: 'local',
+				displayField: 'name',
+				valueField: 'value',
+				editable: false,
+				autoSelect: true,
+				forceSelection: true,
+				lazyInit: false,
+				listeners: {
+					select: this.onSelectComboItem,
+					scope: this
 				}
 			},{
-				xtype : 'combo',
-				name : 'zarafa/v1/main/default_font_size',
+				xtype: 'combo',
+				name: 'zarafa/v1/main/default_font_size',
 				cls:'x-font-select',
-				fieldLabel : _('Default font size'),
-				width : 200,
-				ref : 'fontSizeCombo',
-				store : fontSizeStore,
-				triggerAction : 'all',
-				mode : 'local',
-				displayField : 'name',
-				valueField : 'value',
-				editable : false,
-				autoSelect : true,
-				forceSelection : true,
-				lazyInit : false,
-				listeners : {
-					select : this.onFontSelect,
-					scope : this
+				fieldLabel: _('Default font size'),
+				width: 200,
+				ref: 'fontSizeCombo',
+				store: fontSizeStore,
+				triggerAction: 'all',
+				mode: 'local',
+				displayField: 'name',
+				valueField: 'value',
+				editable: false,
+				autoSelect: true,
+				forceSelection: true,
+				lazyInit: false,
+				listeners: {
+					select: this.onSelectComboItem,
+					scope: this
 				}
 			},{
-				xtype : 'checkbox',
-				name : 'zarafa/v1/contexts/mail/always_request_readreceipt',
-				ref : 'readBox',
-				boxLabel : _('Always request a read receipt'),
-				hideLabel : true,
-				listeners : {
-					check : this.onFieldChange,
-					scope : this
+				xtype: 'checkbox',
+				name: 'zarafa/v1/contexts/mail/always_request_readreceipt',
+				ref: 'readBox',
+				boxLabel: _('Always request a read receipt'),
+				hideLabel: true,
+				listeners: {
+					check: this.onFieldChange,
+					scope: this
 				}
 			},{
 				xtype: 'zarafa.compositefield',
+				defaultMargins: '0 0 0 0',
 				plugins: [ 'zarafa.splitfieldlabeler' ],
 				// # TRANSLATORS: The {A} _must_ always be at the start of the translation
 				// # The '{B}' represents the number of minutes which the user will type in.
@@ -143,27 +172,27 @@ Zarafa.mail.settings.SettingsComposeWidget = Ext.extend(Zarafa.settings.ui.Setti
 				labelWidth: 250,
 				combineErrors: false,
 				items: [{
-					xtype : 'checkbox',
+					xtype: 'checkbox',
 					labelSplitter: '{A}',
-					name : 'zarafa/v1/contexts/mail/autosave_enable',
-					ref : '../autoSaveBox',
-					boxLabel : '',
-					hideLabel : true,
-					checked : true,
-					listeners : {
-						check : this.onAutoSaveCheckBoxChange,
-						change : this.onFieldChange,
-						scope : this
+					name: 'zarafa/v1/contexts/mail/autosave_enable',
+					ref: '../autoSaveBox',
+					boxLabel: '',
+					hideLabel: true,
+					checked: true,
+					listeners: {
+						check: this.onAutoSaveCheckBoxChange,
+						change: this.onFieldChange,
+						scope: this
 					}
 				},{
 					xtype: 'zarafa.spinnerfield',
 					labelSplitter: '{B}',
 					vtype: 'naturalInteger',
-					name : 'zarafa/v1/contexts/mail/autosave_time',
-					ref : '../autoSaveTimeSpinner',
+					name: 'zarafa/v1/contexts/mail/autosave_time',
+					ref: '../autoSaveTimeSpinner',
 					incrementValue: 1,
 					defaultValue: 1,
-					minValue : 1,
+					minValue: 1,
 					allowBlank: false,
 					allowDecimals: false,
 					allowNegative: false,
@@ -173,10 +202,50 @@ Zarafa.mail.settings.SettingsComposeWidget = Ext.extend(Zarafa.settings.ui.Setti
 					},
 					plugins: ['zarafa.numberspinner']
 				}]
+			},{
+				xtype: 'zarafa.manageccpanel',
+				ref: 'manageCcPanel',
+				settingsContext: config.settingsContext
 			}]
 		});
 
 		Zarafa.mail.settings.SettingsComposeWidget.superclass.constructor.call(this, config);
+	},
+
+	/**
+	 * Create {@link Ext.data.JsonStore JsonStore} which contains the
+	 * editor plugins info.
+	 *
+	 * @returns {Ext.data.JsonStore} JsonStore which contains editor plugins info.
+	 */
+	createEditorStore: function()
+	{
+		return new Ext.data.JsonStore({
+			autoDestroy: true,
+			fields: ['name', 'value'],
+			data: [{
+				name: 'TinyMCE Editor',
+				value: 'full_tinymce'
+			}].concat(this.getHTMLEditorPlugins().map(function(e) {
+				return {
+					name: e.getDisplayName(),
+					value: e.getName()
+				};
+			}))
+		});
+	},
+
+	/**
+	 * Function which is used to get the editor plugins which are
+	 * enabled in webapp.
+	 *
+	 * @return {Array} array of editor plugins.
+	 */
+	getHTMLEditorPlugins: function()
+	{
+		return container.getPlugins().filter(function (htmlEditorPlguin)  {
+			return htmlEditorPlguin instanceof Zarafa.core.HtmlEditorPlugin;
+		});
 	},
 
 	/**
@@ -186,7 +255,7 @@ Zarafa.mail.settings.SettingsComposeWidget = Ext.extend(Zarafa.settings.ui.Setti
 	 * {@link Zarafa.settings.SettingsModel} into the UI of this category.
 	 * @param {Zarafa.settings.SettingsModel} settingsModel The settings to load
 	 */
-	update : function(settingsModel)
+	update: function(settingsModel)
 	{
 		this.model = settingsModel;
 
@@ -194,6 +263,14 @@ Zarafa.mail.settings.SettingsComposeWidget = Ext.extend(Zarafa.settings.ui.Setti
 		var useHtml = settingsModel.get(this.composerCombo.name);
 
 		this.composerCombo.setValue(useHtml ? 'html' : 'plain');
+
+		var editorName = settingsModel.get(this.editorCombo.name);
+		var isExistEditor = this.getHTMLEditorPlugins().some(function (editor){
+			return editor.getName() === editorName;
+		});
+		this.selectedEditor = isExistEditor ? editorName : 'full_tinymce';
+		this.editorCombo.setValue(this.selectedEditor);
+		this.editorCombo.setDisabled(useHtml !== true);
 
 		this.fontCombo.setValue(settingsModel.get(this.fontCombo.name));
 		this.fontSizeCombo.setValue(settingsModel.get(this.fontSizeCombo.name));
@@ -210,6 +287,7 @@ Zarafa.mail.settings.SettingsComposeWidget = Ext.extend(Zarafa.settings.ui.Setti
 		this.autoSaveBox.setValue(enabled);
 		this.autoSaveTimeSpinner.setValue(settingsModel.get(this.autoSaveTimeSpinner.name) / 60);
 
+		this.manageCcPanel.update(settingsModel);
 	},
 
 	/**
@@ -218,7 +296,7 @@ Zarafa.mail.settings.SettingsComposeWidget = Ext.extend(Zarafa.settings.ui.Setti
 	 * This is used to update the settings from the UI into the {@link Zarafa.settings.SettingsModel settings model}.
 	 * @param {Zarafa.settings.SettingsModel} settingsModel The settings to update
 	 */
-	updateSettings : function(settingsModel)
+	updateSettings: function(settingsModel)
 	{
 		var spinnerValue = this.autoSaveTimeSpinner.getValue();
 
@@ -230,9 +308,12 @@ Zarafa.mail.settings.SettingsComposeWidget = Ext.extend(Zarafa.settings.ui.Setti
 		}
 		settingsModel.beginEdit();
 		settingsModel.set(this.composerCombo.name, this.composerCombo.getValue() === 'html');
+		settingsModel.set(this.editorCombo.name, this.editorCombo.getValue());
 		settingsModel.set(this.readBox.name, this.readBox.getValue());
 		settingsModel.set(this.autoSaveTimeSpinner.name, spinnerValue);
 		settingsModel.endEdit();
+
+		this.manageCcPanel.updateSettings(settingsModel);
 	},
 
 	/**
@@ -241,7 +322,7 @@ Zarafa.mail.settings.SettingsComposeWidget = Ext.extend(Zarafa.settings.ui.Setti
 	 * @param {Ext.form.ComboBox} field The field which fired the event
 	 * @param {Ext.data.Record} record The selected record
 	 */
-	onComposerSelect : function(field, record)
+	onComposerSelect: function(field, record)
 	{
 		if (this.model) {
 			var set = record.get(field.valueField);
@@ -255,6 +336,7 @@ Zarafa.mail.settings.SettingsComposeWidget = Ext.extend(Zarafa.settings.ui.Setti
 			// disable font and font size combos for plain text compose option
 			this.fontCombo.setDisabled(set !== 'html');
 			this.fontSizeCombo.setDisabled(set !== 'html');
+			this.editorCombo.setDisabled(set !== 'html');
 		}
 	},
 
@@ -265,7 +347,7 @@ Zarafa.mail.settings.SettingsComposeWidget = Ext.extend(Zarafa.settings.ui.Setti
 	 * @param {String} value The new value
 	 * @private
 	 */
-	onFieldChange : function(field, value)
+	onFieldChange: function(field, value)
 	{
 		if (this.model) {
 			// FIXME: The settings model should be able to detect if
@@ -282,7 +364,7 @@ Zarafa.mail.settings.SettingsComposeWidget = Ext.extend(Zarafa.settings.ui.Setti
 	 * @param {Boolean} check True if the checkbox is currently checked
 	 * @private
 	 */
-	onAutoSaveCheckBoxChange : function(checkbox, check)
+	onAutoSaveCheckBoxChange: function(checkbox, check)
 	{
 		// Checkbox's check event doesn't fire change event on element in
 		// chrome and IE browser, so calling onFieldChange event manually.
@@ -292,11 +374,11 @@ Zarafa.mail.settings.SettingsComposeWidget = Ext.extend(Zarafa.settings.ui.Setti
 
 	/**
 	 * Event handler which is called when a selection has been made in the
-	 * Font selection {@link Ext.form.ComboBox combobox}.
+	 * Font or editor selection {@link Ext.form.ComboBox combobox}.
 	 * @param {Ext.form.ComboBox} field The field which fired the event
 	 * @param {Ext.data.Record} record The selected record
 	 */
-	onFontSelect : function(field, record)
+	onSelectComboItem: function(field, record)
 	{
 		if (this.model) {
 			var value = record.get(field.valueField);

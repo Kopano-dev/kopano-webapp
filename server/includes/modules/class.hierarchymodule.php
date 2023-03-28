@@ -1,5 +1,6 @@
 <?php
-	/**
+
+/**
 	 * Hierarchy Module
 	 *
 	 * @todo
@@ -32,7 +33,7 @@
 			$GLOBALS["bus"]->registerNotifier('hierarchynotifier', REQUEST_ENTRYID);
 			$GLOBALS["bus"]->registerNotifier('newmailnotifier', REQUEST_ENTRYID);
 		}
-		
+
 		/**
 		 * Function which returns a list of entryids, which is used to register this module. It
 		 * returns the ipm_subtree entryids of every message store.
@@ -46,10 +47,10 @@
 			foreach ($storelist as $entryid => $store) {
 				$entryids[] = bin2hex($entryid);
 			}
-			
+
 			return $entryids;
 		}
-		
+
 		/**
 		 * Executes all the actions in the $data variable.
 		 * @return boolean true on success or false on fialure.
@@ -129,14 +130,17 @@
 
 										if (isset($action["message_action"]["isSearchFolder"])
 											&& $action["message_action"]["isSearchFolder"]) {
-											$this->deleteSearchFolder($store, $parententryid, $entryid, $action);
+											$result = $this->deleteSearchFolder($store, $parententryid, $entryid, $action);
+											dump($result, '$result');
+											if ($result) {
+												$this->sendFeedback(true);
+											}
 										} else {
 											$this->removeFromFavorite($entryid);
 										}
 									} else {
 										$this->deleteFolder($store, $parententryid, $entryid, $action);
 									}
-
 								}
 								break;
 
@@ -240,7 +244,7 @@
 													sleep(1);
 													$this->createLinkedSearchFolder($newSearchFolder);
 												}
-											}else {
+											} else {
 												$this->addFolder($store, $parententryid, $action["props"]["display_name"], $action["props"]["container_class"]);
 											}
 										if($action["props"]["container_class"] === "IPF.Contact"){
@@ -249,7 +253,7 @@
 									}
 								}
 								break;
-							
+
 							case "closesharedfolder":
 								if (isset($action["folder_type"]) && $action["folder_type"] != "all") {
 									// We're closing a Shared folder, check if we still have other
@@ -260,12 +264,15 @@
 										$entryid = $GLOBALS["mapisession"]->removeUserStore($action["user_name"]);
 									} else {
 										$entryid = $GLOBALS["mapisession"]->getStoreEntryIdOfUser($action["user_name"]);
-										$this->removeFromFavorite(hex2bin($action["entryid"]), PR_WLINK_ENTRYID, false);
+										$this->removeFromFavorite(hex2bin($action["entryid"]), $store, PR_WLINK_ENTRYID, false);
 									}
 								} else {
 									// We're closing a Shared Store, simply remove it from the session.
 									$entryid = $GLOBALS["mapisession"]->removeUserStore($action["user_name"]);
-									$this->removeFromFavorite(hex2bin($action["store_entryid"]), PR_WLINK_STORE_ENTRYID, false);
+
+									if (isset($action["remove_favorites"]) && $action["remove_favorites"]) {
+										$this->removeFromFavorite(hex2bin($action["store_entryid"]), $store, PR_WLINK_STORE_ENTRYID, false);
+									}
 								}
 
 								$data = array();
@@ -278,30 +285,58 @@
 								$GLOBALS["bus"]->addData($this->getResponseData());
 								$GLOBALS["bus"]->notify(ADDRESSBOOK_ENTRYID,OBJECT_SAVE);
 								break;
-							
+
 							case "opensharedfolder":
 								$username = strtolower($action["user_name"]);
 								$store = $GLOBALS["mapisession"]->addUserStore($username);
-								if ($store) {
-									$options = array( $username => array( $action["folder_type"] => $action ));
-									$data = $GLOBALS["operations"]->getHierarchyList($this->list_properties, HIERARCHY_GET_ONE, $store, $options, $username);
-
-									// Check if we have obtained a store, and if that store has read access
-									if (!empty($data["item"][0]["folders"]["item"]) &&
-										// We expect multiple folders, as it should always return the IPM_SUBTREE 
-										// besides the actual opened folder
-										count($data["item"][0]["folders"]["item"]) > 1 && 
-										// Check the second folder as the first one is the IPM_SUBTREE
-										$data["item"][0]["folders"]["item"][1]["props"]["access"] !== 0) {
-										$this->addActionData("list", $data);
-									} else {
-										// Throw an exception that we couldn't open the shared store,
-										// lets have processException() fill in our error message.
-										throw new MAPIException(null, MAPI_E_NO_ACCESS);
-									}
-									$GLOBALS["bus"]->addData($this->getResponseData());
-									$GLOBALS["bus"]->notify(ADDRESSBOOK_ENTRYID,OBJECT_SAVE);
+								if (!$store) {
+									break;
 								}
+
+								$options = array( $username => array( $action["folder_type"] => $action ));
+								$data = $GLOBALS["operations"]->getHierarchyList($this->list_properties, HIERARCHY_GET_ONE, $store, $options, $username);
+
+								if (empty($data["item"][0]["folders"]["item"])) {
+									throw new MAPIException(null, MAPI_E_NO_ACCESS);
+								}
+
+								$folders = count($data["item"][0]["folders"]["item"]);
+								if ($folders === 0) {
+									throw new MAPIException(null, MAPI_E_NO_ACCESS);
+								}
+
+								$noPermissionFolders = array_filter($data['item'][0]['folders']['item'], function($item) {
+									return $item['props']['access'] === 0;
+								});
+								if (count($noPermissionFolders) >= $folders) {
+									// Throw an exception that we couldn't open the shared store,
+									// lets have processException() fill in our error message.
+									throw new MAPIException(null, MAPI_E_NO_ACCESS);
+								}
+
+								$this->addActionData("list", $data);
+								$GLOBALS["bus"]->addData($this->getResponseData());
+								$GLOBALS["bus"]->notify(ADDRESSBOOK_ENTRYID,OBJECT_SAVE);
+								break;
+							case "sharedstoreupdate":
+								$supported_types = ['inbox' => 1, 'all' => 1];
+								$users = $GLOBALS["settings"]->get("zarafa/v1/contexts/hierarchy/shared_stores", []);
+
+								foreach($users as $username => $data) {
+									$key = array_keys($data)[0];
+									$folder_type = $data[$key]['folder_type'];
+
+									if (!isset($supported_types[$folder_type])) {
+										continue;
+									}
+
+									$GLOBALS["bus"]->notify(REQUEST_ENTRYID, HIERARCHY_UPDATE, array($username, $folder_type));
+								}
+
+								$this->sendFeedback(true);
+								break;
+							case "ensure":
+								$this->ensureLicense($action);
 								break;
 							default:
 								$this->handleUnknownActionType($actionType);
@@ -317,7 +352,7 @@
 		 * Function does customization of exception based on module data.
 		 * like, here it will generate display message based on actionType
 		 * for particular exception, and send feedback to the client.
-		 * 
+		 *
 		 * @param object $e Exception object
 		 * @param string $actionType the action type, sent by the client
 		 * @param MAPIobject $store Store object of the folder.
@@ -444,7 +479,7 @@
 
 			parent::handleException($e, $actionType, $store, $parententryid, $entryid, $action);
 		}
-		
+
 		/**
 		 * Generates the hierarchy list. All folders and subfolders are added to response data.
 		 */
@@ -470,7 +505,7 @@
 			$data = $GLOBALS["operations"]->setFolder($folderProps);
 			$this->addActionData($actionType, $data);
 		}
-		
+
 		/**
 		 * Adds a folder to the hierarchylist.
 		 * @param object $store Message Store Object.
@@ -495,10 +530,10 @@
 				$props[PR_ENTRYID] = $parententryid;
 				$GLOBALS["bus"]->notify(bin2hex($parententryid), OBJECT_SAVE, $props);
 			}
-			
+
 			return $result;
 		}
-		
+
 		/**
 		* returns properties of a folder, used by the properties dialog
 		*/
@@ -530,7 +565,7 @@
 			if (!isset($data["props"]["message_size"])){
 				$data["props"]["message_size"] = round($GLOBALS["operations"]->calcFolderMessageSize($folder, false));
 			}
-			
+
 			// retrieving folder permissions
 			$data["permissions"] = array(
 				"item" => $this->getFolderPermissions($folder)
@@ -616,7 +651,7 @@
 			if (isset($action["permissions"])){
 				$this->setFolderPermissions($folder, $action["permissions"]);
 			}
-			
+
 			mapi_savechanges($folder);
 		}
 
@@ -628,7 +663,7 @@
 
 			$store = $GLOBALS["mapisession"]->openMessageStore($folderProps[PR_STORE_ENTRYID]);
 			if ($folderProps[PR_DISPLAY_NAME] == "IPM_SUBTREE"){
-				$folder = $store; 
+				$folder = $store;
 			}
 
 			$grants = mapi_zarafa_getpermissionrules($folder, ACCESS_TYPE_GRANT);
@@ -649,7 +684,7 @@
 			}
 
 			$result = $grants;
-			return $result;			
+			return $result;
 		}
 
 		function setFolderPermissions($folder, $permissions)
@@ -661,11 +696,9 @@
 			// check if the folder is the default calendar, if so we also need to set the same permissions on the freebusy folder
 			$root = mapi_msgstore_openentry($store, null);
 			if($root) {
-				$rootProps = mapi_getprops($root, array(PR_IPM_APPOINTMENT_ENTRYID, PR_FREEBUSY_ENTRYIDS));
+				$rootProps = mapi_getprops($root, array(PR_IPM_APPOINTMENT_ENTRYID));
 				if ($folderProps[PR_ENTRYID] == $rootProps[PR_IPM_APPOINTMENT_ENTRYID]){
-					if(isset($rootProps[PR_FREEBUSY_ENTRYIDS]) && isset($rootProps[PR_FREEBUSY_ENTRYIDS][3])){
-						$freebusy = mapi_msgstore_openentry($store, $rootProps[PR_FREEBUSY_ENTRYIDS][3]);
-					}
+					$freebusy = freebusy::getLocalFreeBusyFolder($store);
 				}
 			}
 
@@ -674,7 +707,7 @@
 				$folder = $store;
 			}
 
-			// first, get the current permissions because we need to delete all current acl's 
+			// first, get the current permissions because we need to delete all current acl's
 			$curAcls = mapi_zarafa_getpermissionrules($folder, ACCESS_TYPE_GRANT);
 
 			// First check which permissions should be removed from the existing list
@@ -718,7 +751,7 @@
 					);
 				}
 				unset($addAcl);
-			}			
+			}
 
 			if (!empty($curAcls)) {
 				mapi_zarafa_setpermissionrules($folder, $curAcls);
@@ -777,40 +810,67 @@
 
 		/**
 		 * Remove favorites link message from associated contains table of IPM_COMMON_VIEWS.
+		 * It will also remove favorites search folders of given store.
 		 *
 		 * @param String $entryid entryid of the folder.
+		 * @param object $store MAPI object of the store
 		 * @param String $prop property which is used to find record from associated contains table of
 		 * IPM_COMMON_VIEWS folder.
 		 * @param Boolean $doNotify true to notify the IPM_COMMO_VIEWS folder on client side.
 		 */
-		function removeFromFavorite($entryid, $prop = PR_WLINK_ENTRYID, $doNotify = true)
+		function removeFromFavorite($entryid, $store = false, $prop = PR_WLINK_ENTRYID, $doNotify = true)
 		{
 			$commonViewsFolder = $this->getCommonViewsFolder();
 			$associatedTable = mapi_folder_getcontentstable($commonViewsFolder, MAPI_ASSOCIATED);
 
-			$restriction = array(RES_PROPERTY,
-				array(
-					RELOP => RELOP_EQ,
-					ULPROPTAG => PR_MESSAGE_CLASS,
-					VALUE => array(PR_MESSAGE_CLASS => "IPM.Microsoft.WunderBar.Link")
-				),
+			$restriction = Array(RES_OR,
+				Array(
+					array(RES_PROPERTY,
+						array(
+							RELOP => RELOP_EQ,
+							ULPROPTAG => PR_MESSAGE_CLASS,
+							VALUE => array(PR_MESSAGE_CLASS => "IPM.Microsoft.WunderBar.Link")
+						)
+					),
+					array(RES_PROPERTY,
+						array(
+							RELOP => RELOP_EQ,
+							ULPROPTAG => PR_MESSAGE_CLASS,
+							VALUE => array(PR_MESSAGE_CLASS => "IPM.Microsoft.WunderBar.SFInfo")
+						)
+					)
+				)
 			);
+			$finderHierarchyTables = array();
+			if (!empty($store)) {
+				$props = mapi_getprops($store, array(PR_FINDER_ENTRYID));
+				$finderFolder = mapi_msgstore_openentry($store, $props[PR_FINDER_ENTRYID]);
+				$hierarchyTable = mapi_folder_gethierarchytable($finderFolder, MAPI_DEFERRED_ERRORS);
+				$finderHierarchyTables[$props[PR_FINDER_ENTRYID]] = $hierarchyTable;
+			}
 
-			$messages = mapi_table_queryallrows($associatedTable, array(PR_ENTRYID, PR_WLINK_ENTRYID, PR_WLINK_STORE_ENTRYID, PR_PARENT_ENTRYID, PR_STORE_ENTRYID), $restriction);
+			$messages = mapi_table_queryallrows($associatedTable, array(PR_ENTRYID, PR_MESSAGE_CLASS, PR_WB_SF_ID, PR_WLINK_ENTRYID, PR_WLINK_STORE_ENTRYID, PR_PARENT_ENTRYID, PR_STORE_ENTRYID), $restriction);
 
 			if (!empty($messages)) {
 				foreach ($messages as $message) {
-					if ($GLOBALS['entryid']->compareEntryIds($message[$prop], $entryid)) {
-						mapi_folder_deletemessages($commonViewsFolder, array($message[PR_ENTRYID]));
-						if($doNotify) {
-							$GLOBALS["bus"]->notify(bin2hex($message[PR_ENTRYID]), OBJECT_SAVE, $message);
+					if ($message[PR_MESSAGE_CLASS] === "IPM.Microsoft.WunderBar.SFInfo" && !empty($finderHierarchyTables)) {
+						$props = $GLOBALS["operations"]->getFavoritesLinkedSearchFolderProps($message[PR_WB_SF_ID], $finderHierarchyTables);
+						if (!empty($props)) {
+							$this->deleteSearchFolder($store, $props[PR_PARENT_ENTRYID], $props[PR_ENTRYID], array());
 						}
-					} else {
-						$storeObj = $GLOBALS["mapisession"]->openMessageStore($message[PR_WLINK_STORE_ENTRYID]);
-						$storeProps = mapi_getprops($storeObj, array(PR_ENTRYID));
-						if ($GLOBALS['entryid']->compareEntryIds($message[PR_WLINK_ENTRYID], $storeProps[PR_ENTRYID])){
+					} else if ($message[PR_MESSAGE_CLASS] === "IPM.Microsoft.WunderBar.Link") {
+						if ($GLOBALS['entryid']->compareEntryIds($message[$prop], $entryid)) {
 							mapi_folder_deletemessages($commonViewsFolder, array($message[PR_ENTRYID]));
-							$this->sendFeedback(true);
+							if ($doNotify) {
+								$GLOBALS["bus"]->notify(bin2hex($message[PR_ENTRYID]), OBJECT_SAVE, $message);
+							}
+						} else {
+							$storeObj = $GLOBALS["mapisession"]->openMessageStore($message[PR_WLINK_STORE_ENTRYID]);
+							$storeProps = mapi_getprops($storeObj, array(PR_ENTRYID));
+							if ($GLOBALS['entryid']->compareEntryIds($message[PR_WLINK_ENTRYID], $storeProps[PR_ENTRYID])) {
+								mapi_folder_deletemessages($commonViewsFolder, array($message[PR_ENTRYID]));
+								$this->sendFeedback(true);
+							}
 						}
 					}
 				}
@@ -853,7 +913,6 @@
 				foreach ($messages as $message) {
 					if (bin2hex($message[PR_WB_SF_ID]) === $searchFolderId) {
 						mapi_folder_deletemessages($commonViewsFolder, array($message[PR_ENTRYID]));
-						$this->sendFeedback(true);
 					}
 				}
 			}
@@ -905,7 +964,7 @@
             // This flag indicates there is currently an open search tab which uses this search folder.
             if (!isset($action["message_action"]["keepSearchFolder"])) {
                 $finderFolder = mapi_msgstore_openentry($store, $parententryid);
-                mapi_folder_deletefolder($finderFolder, $entryid);
+                return mapi_folder_deletefolder($finderFolder, $entryid , DEL_FOLDERS | DEL_MESSAGES | DELETE_HARD_DELETE);
             } else {
                 // Rename search folder to default search folder name otherwise,
                 // It will not be picked up by our search folder cleanup logic.
@@ -913,7 +972,7 @@
                 $props = array();
                 $folder = mapi_msgstore_openentry($store, $storeProps[PR_FINDER_ENTRYID]);
                 $folderName = $GLOBALS["operations"]->checkFolderNameConflict($store, $folder, "WebApp Search Folder");
-                $GLOBALS["operations"]->renameFolder($store, $entryid, $folderName, $props);
+	            return $GLOBALS["operations"]->renameFolder($store, $entryid, $folderName, $props);
             }
 		}
 
@@ -966,7 +1025,7 @@
 				$GLOBALS["bus"]->notify(bin2hex($props[PR_ENTRYID]), OBJECT_SAVE, $props);
 			}
 		}
-		
+
 		/**
 		 * Deletes a folder in the hierarchylist.
 		 * @param object $store Message Store Object.
@@ -1023,7 +1082,7 @@
 				}
 			}
 		}
-		
+
 		/**
 		 * Deletes all messages in a folder.
 		 * @param object $store Message Store Object.
@@ -1033,7 +1092,36 @@
 		function emptyFolder($store, $entryid)
 		{
 			$props = array();
-			$result = $GLOBALS["operations"]->emptyFolder($store, $entryid, $props);
+
+			$result = false;
+
+			// False will only remove the message of
+			// selected folder only and can't remove the
+			// child folders.
+			$emptySubFolders = false;
+			$storeProps = mapi_getprops($store, array(PR_IPM_WASTEBASKET_ENTRYID));
+			// Check that selected folder is Waste basket or Junk folder then empty folder by removing
+			// the child folders.
+			if(isset($storeProps[PR_IPM_WASTEBASKET_ENTRYID]) && $storeProps[PR_IPM_WASTEBASKET_ENTRYID] === $entryid) {
+				$emptySubFolders = true;
+			} else {
+				$root = mapi_msgstore_openentry($store, null);
+				$rootProps = mapi_getprops($root, array(PR_ADDITIONAL_REN_ENTRYIDS));
+				// check if selected folder is junk folder then make junk folder empty with
+				// it's child folder and it's contains.
+				if(isset($rootProps[PR_ADDITIONAL_REN_ENTRYIDS]) && is_array($rootProps[PR_ADDITIONAL_REN_ENTRYIDS])) {
+					// Checking if folder is junk folder or not.
+					$emptySubFolders = $GLOBALS['entryid']->compareEntryIds($rootProps[PR_ADDITIONAL_REN_ENTRYIDS][4], $entryid);
+				}
+
+				if($emptySubFolders === false) {
+					$folder = mapi_msgstore_openentry($store, $entryid);
+					$folderProps = mapi_getprops($folder, array(PR_SUBFOLDERS));
+					$emptySubFolders = $folderProps[PR_SUBFOLDERS] === false;
+				}
+			}
+
+			$result = $GLOBALS["operations"]->emptyFolder($store, $entryid, $props, false, $emptySubFolders);
 
 			if($result && isset($props[PR_ENTRYID])) {
 				$this->addFolderToResponseData($store, $entryid, "folders");
@@ -1042,7 +1130,7 @@
 				$GLOBALS["bus"]->addData($this->getResponseData());
 			}
 		}
-		
+
 		/**
 		 * Copies of moves a folder in the hierarchylist.
 		 * @param object $store Message Store Object.
@@ -1095,7 +1183,7 @@
 				// Update subfolders of copy/move folder
 				$folder = mapi_msgstore_openentry($deststore, $destfolderentryid);
 				$hierarchyTable = mapi_folder_gethierarchytable($folder, CONVENIENT_DEPTH | MAPI_DEFERRED_ERRORS);
-				mapi_table_sort($hierarchyTable, array(PR_DISPLAY_NAME => TABLE_SORT_ASCEND), TBL_BATCH);
+				mapi_table_sort($hierarchyTable, array(PR_CREATION_TIME => TABLE_SORT_ASCEND), TBL_BATCH);
 
 				/**
 				 * remove hidden folders, folders with PR_ATTR_HIDDEN property set
@@ -1126,7 +1214,7 @@
 
 				if (is_array($subfolders)) {
 					foreach($subfolders as $subfolder) {
-						$folderObject = mapi_msgstore_openentry($deststore, $subfolder[PR_ENTRYID]); 
+						$folderObject = mapi_msgstore_openentry($deststore, $subfolder[PR_ENTRYID]);
 						$folderProps = mapi_getprops($folderObject, array(PR_ENTRYID, PR_STORE_ENTRYID));
 						$GLOBALS["bus"]->notify(bin2hex($subfolder[PR_ENTRYID]), OBJECT_SAVE, $folderProps);
 					}
@@ -1144,7 +1232,7 @@
 				}
 			}
 		}
-		
+
 		/**
 		 * Set all messages read.
 		 * @param object $store Message Store Object.
@@ -1172,6 +1260,69 @@
 				// Add all response data to Bus
 				$GLOBALS["bus"]->addData($this->getResponseData());
 			}
+		}
+
+		/**
+		 * Function used to ensure the license claims for supported(kopano one) webapp.
+		 * @param array $action The action data sent by the client.
+		 */
+		function ensureLicense($action)
+		{
+			$stateData = EnsureLicense::retrieveCache();
+			$allowUpdate = $this->isRequiredUpdate($stateData, $action);
+			$data = array();
+
+			// No need to update the cache just reuse the
+			// 'status' from cached data.
+			if ($allowUpdate === false) {
+				$data["status"] = $stateData["status"];
+
+				$this->addActionData("ensure", $data);
+				$GLOBALS["bus"]->addData($this->getResponseData());
+				return;
+			}
+
+			try {
+				$ok = EnsureLicense::ensureOK("groupware");
+				$data["status"] = $ok !== false ? $ok["err"] : 0;
+			} catch (KUSTOMER\NumericException $e) {
+				error_log($e->getMessage());
+				$data["status"] = $e->getCode();
+			}
+
+			$data["hasPayPerUse"] = is_null(EnsureLicense::$isPayPerUse) ? false : EnsureLicense::$isPayPerUse;
+			EnsureLicense::updateCache(array(
+				"last_ensured_time"=>time(),
+				"status"=> $data["status"],
+				"hasPayPerUse" => $data["hasPayPerUse"],
+			));
+
+			$this->addActionData("ensure", $data);
+			$GLOBALS["bus"]->addData($this->getResponseData());
+		}
+
+		/**
+		 * Function used to check ensure license cache data
+		 * needs to update or not.
+		 *
+		 * @param array $stateData The cached data of ensured license.
+		 * @param array $action The action data sent by the client.
+		 * @return bool true to update the cache else false.
+		 */
+		function isRequiredUpdate($stateData, $action)
+		{
+			if ($stateData === false || $action["init"] === true) {
+				return true;
+			}
+
+			if (isset($stateData["last_ensured_time"])) {
+				$interval = time() - $stateData["last_ensured_time"];
+				// If interval is more then 10 minuet then update the
+				// ensure license cache.
+				return $interval >= 10 * 60;
+			}
+
+			return true;
 		}
 	}
 ?>

@@ -2,11 +2,11 @@ Ext.namespace('Zarafa.common.ui');
 
 /**
  * @class Zarafa.common.ui.IconClass
- * 
+ *
  * Class returns icon class for different records, like folder and message records,
  * based on it's properties like container_class/message_class, distlist_type,
  * display_type, icon_index.
- * 
+ *
  * @singleton
  */
 Zarafa.common.ui.IconClass = {
@@ -19,7 +19,7 @@ Zarafa.common.ui.IconClass = {
 	 * @param {Zarafa.core.data.MAPIRecord} record The record for which we need to find iconClass.
 	 * @return {String} icon class.
 	 */
-	getIconClass : function(record)
+	getIconClass: function(record)
 	{
 		var iconIndex = record.get('icon_index');
 		var objectType = record.get('object_type');
@@ -32,7 +32,7 @@ Zarafa.common.ui.IconClass = {
 		// do need to read the message class.
 		if(!Ext.isEmpty(iconIndex)) {
 			if ((iconIndex !== Zarafa.core.mapi.IconIndex['appt_recurring'] &&
-				 iconIndex !== Zarafa.core.mapi.IconIndex['appt_appointment']  ) ||
+				 iconIndex !== Zarafa.core.mapi.IconIndex['appt_appointment'] ) ||
 				!Zarafa.core.MessageClass.isClass(record.get('message_class'), ['IPM.Schedule.Meeting'], true)) {
 				iconCls = Zarafa.core.mapi.IconIndex.getClassName(iconIndex, 'icon');
 			}
@@ -52,7 +52,7 @@ Zarafa.common.ui.IconClass = {
 				if(record.isTaskDeclined()) {
 					iconCls = 'icon_task_declined';
 				} else if (record.isTaskAccepted()) {
-					iconCls = 'icon_task_assigner';
+					iconCls = 'icon_task_assigned';
 				}
 			}
 		}
@@ -85,15 +85,13 @@ Zarafa.common.ui.IconClass = {
 		}
 
 		// Add special class in case the message was unread
-		if (objectType === Zarafa.core.mapi.ObjectType.MAPI_MESSAGE) {
-			if (Ext.isFunction(record.isRead) && !record.isRead()) {
-				iconCls += ' icon_message_unread';
-			} else {
-				iconCls += ' icon_message_read';
-			}
-
-			if (Ext.isFunction(record.isRecurring) && record.isRecurring()) {
-				iconCls += ' icon_message_recurring';
+		if ( iconCls === 'icon_mail') {
+			if (objectType === Zarafa.core.mapi.ObjectType.MAPI_MESSAGE) {
+				if (Ext.isFunction(record.isRead) && !record.isRead()) {
+					iconCls = 'icon_mail_unread';
+				} else {
+					iconCls = 'icon_mail_read';
+				}
 			}
 		}
 
@@ -101,7 +99,7 @@ Zarafa.common.ui.IconClass = {
 	},
 
 	/**
-	 * Convenience method for getting the icon class for the 
+	 * Convenience method for getting the icon class for the
 	 * {@link Zarafa.core.data.IPFRecord IPFRecord}.
 	 *
 	 * Function will first check whether folder is IPM_Subtree then return store icon,
@@ -113,7 +111,7 @@ Zarafa.common.ui.IconClass = {
 	 * if not provided, the container_class property from the folder will be used.
 	 * @return {String} icon class.
 	 */
-	getIconClassFromContainerClass : function(folder, containerClass)
+	getIconClassFromContainerClass: function(folder, containerClass)
 	{
 		if (folder) {
 			if (Ext.isFunction(folder.isFavoritesFolder) && folder.isFavoritesFolder()) {
@@ -143,12 +141,12 @@ Zarafa.common.ui.IconClass = {
 					return 'icon_folder_public_store';
 				} else {
 					// Private store
-					return 'icon_folder_store';
+					return 'icon_inbox';
 				}
 			} else if (Ext.isFunction(folder.isFavoritesFolder) && folder.isFavoritesRootFolder()) {
-				return 'icon_folder_favorites';
+				return 'icon_favorites';
 			}
-		
+
 			// check if the folder is a default folder
 			var defaultKey = folder.getDefaultFolderKey();
 			if (defaultKey) {
@@ -174,17 +172,18 @@ Zarafa.common.ui.IconClass = {
 	 * Function will first check for icon from icon_index, if icon_index is not found
 	 * It will generate icon_class from the message_class and will return it.
 	 * @param {Zarafa.core.data.IPMRecord} message The mapi message record.
-	 * @param {String} messageClass (optional) The message class for the message,
 	 * if not provided, the message_class property from the record will be used.
-	 * @param {Object} options (optional) The options which contains optional information
-	 * about given record.
 	 * @return {String} icon class.
+	 * @private
 	 */
-	getIconClassFromMessageClass : function(record, messageClass, options)
+	getIconClassFromMessageClass: function(record)
 	{
 		var recurring = false;
 		var counter_proposal = false;
 		var declinedTask = false;
+		var messageClass = record.get('message_class') || '';
+		messageClass = messageClass.toUpperCase();
+
 		if (record) {
 			// If the message is a stub, then we always return the stubbed
 			// icon regardless of the actual type of the message.
@@ -195,72 +194,52 @@ Zarafa.common.ui.IconClass = {
 			// Check if the message is recurring.
 			recurring = Ext.isFunction(record.isRecurring) && record.isRecurring();
 			counter_proposal = record.get('counter_proposal');
-			// Check if the message class was provided,
-			// use the message_class property otherwise.
-			messageClass = messageClass || record.get('message_class');
 
 			// If Assigner sent task request using older webapp version then KW-1283
 			// and assignee declined task from latest webapp version in that case
 			// mail icon shows instead of decline task icon to avoid this we add below code.
-			// Note : In future we can remove this check.
-			if (messageClass.toUpperCase() === 'IPM.TASK' && !Ext.isEmpty(record.get('icon_index'))) {
+			// Note: In future we can remove this check.
+			if (messageClass === 'IPM.TASK' && !Ext.isEmpty(record.get('icon_index'))) {
 				declinedTask = record.isTaskOrganized() && record.isTaskDeclined();
 			}
-		} else if (Ext.isObject(options)) {
-			messageClass = messageClass.toUpperCase();
-			if (messageClass === 'IPM.TASK') {
-				var iconCls = Zarafa.core.mapi.IconIndex.getClassName(options.icon_index);
-				if (!Ext.isEmpty(iconCls)) {
-					return iconCls;
-				}
-			}
-
-			if (messageClass === 'IPM.NOTE' && Ext.isDefined(options.reminderRecord)) {
-				return 'icon_mail_read';
-			}
 		}
 
-		if (messageClass) {
-			// Ensure case-insensitive comparison
-			messageClass = messageClass.toUpperCase();
+		var mapping = {
+			'IPM.APPOINTMENT'					: 'icon_appt_appointment',
+			'IPM.TASK'							: declinedTask ? 'icon_task_declined' : 'icon_task',
+			'IPM.TASKREQUEST'					: 'icon_task_request',
+			'IPM.TASKREQUEST.DECLINE'			: 'icon_task_declined',
+			'IPM.TASKREQUEST.ACCEPT'			: 'icon_task_accepted',
+			'IPM.STICKYNOTE'					: 'icon_note_yellow',
+			'IPM.CONTACT'						: 'icon_contact_user',
+			'IPM.DISTLIST'						: 'icon_contact_distlist',
+			'IPM.DISTLIST.ORGANIZATION'			: 'icon_contact_distlist_organization',
+			'IPM.SCHEDULE.MEETING.REQUEST'		: recurring ? 'icon_appt_meeting_recurring' : 'icon_calendar_mr',
+			'IPM.SCHEDULE.MEETING.RESP.POS'		: 'icon_calendar_appt_accept',
+			'IPM.SCHEDULE.MEETING.RESP.TENT'	: counter_proposal ? 'icon_appt_meeting_newtime' : 'icon_calendar_appt_tentative',
+			'IPM.SCHEDULE.MEETING.RESP.NEG'		: 'icon_calendar_appt_cancelled',
+			'IPM.SCHEDULE.MEETING.CANCELED'		: 'icon_appt_meeting_cancel',
+			'IPM.NOTE'							: 'icon_mail',
+			'REPORT.IPM.NOTE.IPNRN'				: 'icon_mail_read_receipt',
+			'REPORT.IPM.NOTE.IPNNRN'			: 'icon_mail_nonread_receipt',
+			'REPORT.IPM.NOTE.DR'				: 'icon_mail_delivery_receipt',
+			'REPORT.IPM.NOTE.NDR'				: 'icon_mail_report_ndr',
+			'IPM.NOTE.STORAGEQUOTAWARNING'		: 'icon_mail icon_mail_unread'
+		};
 
-			var mapping = {
-				'IPM.APPOINTMENT'			: 'icon_appt_appointment',
-				'IPM.TASK'                  : declinedTask ? 'icon_task_declined' : 'icon_task_normal',
-				'IPM.TASKREQUEST'			: 'icon_task_request',
-				'IPM.TASKREQUEST.DECLINE'	: 'icon_task_declined',
-				'IPM.TASKREQUEST.ACCEPT'	: 'icon_task_accepted',
-				'IPM.STICKYNOTE'			: 'icon_note_yellow',
-				'IPM.CONTACT'				: 'icon_contact_user',
-				'IPM.DISTLIST'				: 'icon_contact_distlist',
-				'IPM.DISTLIST.ORGANIZATION'		: 'icon_contact_distlist_organization',
-				'IPM.SCHEDULE.MEETING.REQUEST'		: recurring ? 'icon_appt_meeting_recurring' : 'icon_appt_meeting_single',
-				'IPM.SCHEDULE.MEETING.RESP.POS'		: 'icon_appt_meeting_accept',
-				'IPM.SCHEDULE.MEETING.RESP.TENT'	: counter_proposal ? 'icon_appt_meeting_newtime' : 'icon_appt_meeting_tentative',
-				'IPM.SCHEDULE.MEETING.RESP.NEG'		: 'icon_appt_meeting_decline',
-				'IPM.SCHEDULE.MEETING.CANCELED'		: 'icon_appt_meeting_cancel',
-				'IPM.NOTE'				: 'icon_mail',
-				'REPORT.IPM.NOTE.IPNRN'			: 'icon_mail_read_receipt',
-				'REPORT.IPM.NOTE.IPNNRN'		: 'icon_mail_nonread_receipt',
-				'REPORT.IPM.NOTE.DR'			: 'icon_mail_delivery_receipt',
-				'REPORT.IPM.NOTE.NDR'			: 'icon_mail_nondelivery_receipt',
-				'IPM.NOTE.STORAGEQUOTAWARNING'		: 'icon_mail icon_message_unread'
-			};
+		do {
+			var iconClass = mapping[messageClass];
+			if (!Ext.isEmpty(iconClass)) {
+				return iconClass;
+			}
 
-			do {
-				var iconClass = mapping[messageClass];
-				if (!Ext.isEmpty(iconClass)) {
-					return iconClass;
-				}
+			var index = messageClass.lastIndexOf('.');
+			if (index <= 0) {
+				break;
+			}
 
-				var index = messageClass.lastIndexOf('.');
-				if (index <= 0) {
-					break;
-				}
-
-				messageClass = messageClass.substr(0, index);
-			} while (true);
-		}
+			messageClass = messageClass.substr(0, index);
+		} while (true);
 
 		// No, or unknown, messageClass defined, return default icon.
 		return 'icon_message';
@@ -273,7 +252,7 @@ Zarafa.common.ui.IconClass = {
 	 * if not provided, the distlist_type property from the record will be used.
 	 * @return {String} icon class.
 	 */
-	getIconClassFromDistlistType : function(record, distlistType)
+	getIconClassFromDistlistType: function(record, distlistType)
 	{
 		if (record) {
 			// Check if the distlist type was provided,
@@ -302,7 +281,7 @@ Zarafa.common.ui.IconClass = {
 	 * if not provided, the display_type property from the record will be used.
 	 * @return {String} icon class.
 	 */
-	getIconClassFromDisplayType : function(record, displayType)
+	getIconClassFromDisplayType: function(record, displayType)
 	{
 		if (record) {
 			// Check if the display type was provided,
@@ -321,7 +300,7 @@ Zarafa.common.ui.IconClass = {
 			case Zarafa.core.mapi.DisplayTypeEx.DT_SEC_DISTLIST:
 				return 'icon_contact_distlist';
 			case Zarafa.core.mapi.DisplayType.DT_REMOTE_MAILUSER:
-				return 'icon_contact_gab_user';
+				return 'icon_contact_smtp';
 			case Zarafa.core.mapi.DisplayTypeEx.DT_ROOM:
 				return 'icon_contact_room';
 			case Zarafa.core.mapi.DisplayTypeEx.DT_EQUIPMENT:
@@ -338,12 +317,43 @@ Zarafa.common.ui.IconClass = {
 	 * @param {Zarafa.core.data.IPMAttachmentRecord} record The mapi attachment record.
 	 * @return {String} icon class.
 	 */
-	getIconClassFromAttachMethod : function(record)
+	getIconClassFromAttachMethod: function(record)
 	{
 		if(record.isEmbeddedMessage()) {
 			return 'icon_embed_attachment';
 		} else {
-			return 'icon_attachment';
+			return 'icon_paperclip';
 		}
+	},
+
+	/**
+	 * Obtain reminder icon in svg format.
+	 * @param {String} color The icon color.
+	 * @return {String} The reminder icon
+	 */
+	getReminderSvgIcon: function(counter)
+	{
+		return 'data:image/svg+xml;charset=utf8,' + encodeURIComponent(this.getReminderSvgStructure(counter));
+	},
+
+	/**
+	 * Obtain svg structure for reminder icon.
+	 * @param {Number} counter The number of reminders in {@link Zarafa.common.reminder.data.ReminderStore ReminderStore}.
+	 * @return {String} The svg structure of reminder icon
+	 */
+	getReminderSvgStructure: function(counter)
+	{
+		var hasCounter = (counter !== 0 && Ext.isDefined(counter));
+		var svg = '<svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="-40 -51 100 120">' +
+			'<g>' +
+				'<path style="fill:#FFF;" d="M7.3846154 18C8.4 18 9.2307692 17.169231 9.2307692 16.153846l-3.6923077 0C5.5384615 17.169231 6.36 18 7.3846154 18l0 0zm5.5384616 -5.538461l0 -4.6153851C12.923077 5.0123077 11.409231 2.64 8.7692308 2.0123077l0 -0.6276923C8.7692308 0.61846154 8.1507692 0 7.3846154 0 6.6184615 0 6 0.61846154 6 1.3846154L6 2.0123077C3.3507692 2.64 1.8461539 5.0030769 1.8461539 7.8461539l0 4.6153851L0 14.307692l0 0.923077 14.769231 0 0 -0.923077 -1.846154 -1.846153 0 0z"/>' +
+			'</g>';
+
+		if (hasCounter) {
+			svg +='<circle fill="#ee162d" cx="16" cy="2.5" r="8"/>' +
+				'<text x="16" y="5.5" id="counter" style="fill:#FFF; font-weight: bold; font-family: arial, tahoma, helvetica, sans-serif;font-size: 10px;" text-anchor="middle">'+counter+'</text>';
+		}
+		svg += '</svg>';
+		return svg;
 	}
 };

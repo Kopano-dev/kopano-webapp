@@ -22,3 +22,8 @@ tools/tools.jar
 # Test output
 test/js/result
 test/js/coverage
+test/php/htmlcov/
+# NPM modules
+node_modules
+# Stupid macos files
+.DS_Store

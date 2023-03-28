@@ -27,13 +27,13 @@ Zarafa.task.ui.TaskContextMenu = Ext.extend(Zarafa.core.ui.menu.ConditionalMenu,
 	 * @cfg {Boolean} actsOnTodoListFolder when this context menu used by To-do list
 	 * folder this config will be true. default is false.
 	 */
-	actsOnTodoListFolder : false,
+	actsOnTodoListFolder: false,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -43,11 +43,11 @@ Zarafa.task.ui.TaskContextMenu = Ext.extend(Zarafa.core.ui.menu.ConditionalMenu,
 
 		this.records = config.records;
 		Ext.applyIf(config, {
-			items : [
+			items: [
 				this.createContextActionItems(),
-				{ xtype : 'menuseparator' },
+				{ xtype: 'menuseparator' },
 				container.populateInsertionPoint('context.task.contextmenu.actions', this),
-				{ xtype : 'menuseparator' },
+				{ xtype: 'menuseparator' },
 				this.createContextOptionsItems(),
 				{ xtype: 'menuseparator' },
 				container.populateInsertionPoint('context.task.contextmenu.options', this)
@@ -62,24 +62,24 @@ Zarafa.task.ui.TaskContextMenu = Ext.extend(Zarafa.core.ui.menu.ConditionalMenu,
 	 * @return {Zarafa.core.ui.menu.ConditionalItem[]} The list of Action context menu items
 	 * @private
 	 */
-	createContextActionItems : function()
+	createContextActionItems: function()
 	{
 		return [{
 			xtype: 'zarafa.conditionalitem',
-			text : _('Open'),
-			iconCls : 'icon_open',
+			text: _('Open'),
+			iconCls: 'icon_open',
 			singleSelectOnly: true,
 			handler: this.onOpenTask,
 			scope: this
 		},{
 			xtype: 'zarafa.conditionalitem',
-			text : _('Follow up'),
-			iconCls : 'icon_mail_flag_red',
+			text: _('Follow up'),
+			iconCls: 'icon_flag_red',
 			cls: 'k-unclickable',
-			beforeShow: this.onFollowUpItemBeforeShow,
 			hideOnClick: false,
-			menu : {
-				xtype: 'zarafa.flagsmenu',
+			beforeShow: this.onBeforeShowFollowUp,
+			menu: {
+				xtype: 'zarafa.taskflagsmenu',
 				records: this.records
 			},
 			scope: this
@@ -100,8 +100,8 @@ Zarafa.task.ui.TaskContextMenu = Ext.extend(Zarafa.core.ui.menu.ConditionalMenu,
 			handler: this.onMarkCompleteItemClick,
 			scope: this
 		},{
-			text : _('Copy/Move'),
-			iconCls : 'icon_copy',
+			text: _('Copy/Move'),
+			iconCls: 'icon_copy',
 			handler: this.onCopyMove,
 			scope: this
 		}];
@@ -113,13 +113,13 @@ Zarafa.task.ui.TaskContextMenu = Ext.extend(Zarafa.core.ui.menu.ConditionalMenu,
 	 * @return {Zarafa.core.ui.menu.ConditionalItem[]} The list of Option context menu items
 	 * @private
 	 */
-	createContextOptionsItems : function()
+	createContextOptionsItems: function()
 	{
 		return [{
 			xtype: 'zarafa.conditionalitem',
-			text : _('Categories'),
+			text: _('Categories'),
 			cls: 'k-unclickable',
-			iconCls : 'icon_categories',
+			iconCls: 'icon_categories',
 			hideOnClick: false,
 			menu: {
 				xtype: 'zarafa.categoriescontextmenu',
@@ -127,21 +127,73 @@ Zarafa.task.ui.TaskContextMenu = Ext.extend(Zarafa.core.ui.menu.ConditionalMenu,
 			}
 		},{
 			xtype: 'zarafa.conditionalitem',
-			text : _('Delete'),
-			iconCls : 'icon_delete',
-			nonEmptySelectOnly:  true,
+			text: _('Delete'),
+			iconCls: 'icon_delete',
+			nonEmptySelectOnly: true,
 			handler: this.onContextItemDelete,
 			scope: this
+		},{
+			xtype: 'zarafa.conditionalitem',
+			text: _('Remove from To-Do List'),
+			iconCls: 'icon_cross_large',
+			beforeShow: this.onBeforeShowRemoveTodo,
+			handler: this.onContextRemoveTodo,
+			scope: this
 		}];
+	},
+
+	/**
+	 * Event handler triggers before the item shows. Disable the
+	 * item If the selected record(s) has an organizer task copy
+	 * or received task which was not yet accepted.
+	 *
+	 * @param {Zarafa.core.ui.menu.ConditionalItem} item The item to enable/disable
+	 * @param {Zarafa.core.data.IPMRecord[]} records The records which must be checked
+	 * to see if the item must be enabled or disabled.
+	 * @private
+	 */
+	onBeforeShowRemoveTodo: function (item, records)
+	{
+		if(!Array.isArray(records)) {
+			records = [records];
+		}
+		var hierarchyStore = container.getHierarchyStore();
+		var isDisabled = records.some(function (record) {
+			var recordFolderEntryid = record.getStore().entryId;
+			var folder = hierarchyStore.getFolder(recordFolderEntryid);
+			return record.isMessageClass('IPM.Task', true) || !folder.isTodoListFolder();
+		});
+		item.setDisabled(isDisabled);
+	},
+
+	/**
+	 * Event handler triggers before the item shows. Disable the
+	 * item If the selected record(s) has an organizer task copy
+	 * or received task which was not yet accepted.
+	 *
+	 * @param {Zarafa.core.ui.menu.ConditionalItem} item The item to enable/disable
+	 * @param {Zarafa.core.data.IPMRecord[]} records The records which must be checked
+	 * to see if the item must be enabled or disabled.
+	 * @private
+	 */
+	onBeforeShowFollowUp: function (item,records)
+	{
+		if(!Array.isArray(records)) {
+			records = [records];
+		}
+		var isDisabled = records.some(function (record) {
+			return record.isMessageClass('IPM.Task', true) && (record.isTaskOrganized() || record.isTaskNotResponded());
+		});
+		item.setDisabled(isDisabled);
 	},
 
 	/**
 	 * Event handler called when the user clicks the 'open' button
 	 * @private
 	 */
-	onOpenTask : function()
+	onOpenTask: function()
 	{
-		Zarafa.task.Actions.openTaskContent(this.records);
+		Zarafa.common.Actions.openMessageContent(this.records);
 	},
 
 	/**
@@ -149,7 +201,7 @@ Zarafa.task.ui.TaskContextMenu = Ext.extend(Zarafa.core.ui.menu.ConditionalMenu,
 	 * or moving the currently selected tasks/task requests.
 	 * @private
 	 */
-	onCopyMove : function()
+	onCopyMove: function()
 	{
 		Zarafa.common.Actions.openCopyMoveContent(this.records);
 	},
@@ -159,9 +211,29 @@ Zarafa.task.ui.TaskContextMenu = Ext.extend(Zarafa.core.ui.menu.ConditionalMenu,
 	 * item in the context menu. This will delete all selected records.
 	 * @private
 	 */
-	onContextItemDelete : function()
+	onContextItemDelete: function()
 	{
 		Zarafa.common.Actions.deleteRecords(this.records);
+	},
+
+	/**
+	 * Event handler which is called when the user selects the 'Remove from To-Do List'
+	 * item in the context menu. This will remove the flag from all selected records.
+	 * @private
+	 */
+	onContextRemoveTodo: function()
+	{
+		const flagProperties = Zarafa.common.flags.Util.getFlagBaseProperties();
+		Ext.apply(flagProperties, Zarafa.common.flags.Util.getFlagPropertiesRemoveFlag());
+
+		this.records.forEach(function(record){
+			record.beginEdit();
+			for (var property in flagProperties) {
+				record.set(property, flagProperties[property]);
+			}
+			record.endEdit();
+			record.save();
+		}, this);
 	},
 
 	/**
@@ -180,6 +252,10 @@ Zarafa.task.ui.TaskContextMenu = Ext.extend(Zarafa.core.ui.menu.ConditionalMenu,
 			record.set('percent_complete', complete);
 			record.set('status', complete ? Zarafa.core.mapi.TaskStatus.COMPLETE : Zarafa.core.mapi.TaskStatus.NOT_STARTED);
 			record.set('date_completed', complete ? new Date() : null);
+			record.set('flag_icon', complete ? Zarafa.core.mapi.FlagIcon.clear : Zarafa.core.mapi.FlagIcon.red);
+			record.set('flag_complete_time', complete ? new Date() : null);
+			record.set('flag_request', complete ? '' : 'Follow up');
+			record.set('flag_status', complete ? Zarafa.core.mapi.FlagStatus.completed : Zarafa.core.mapi.FlagStatus.flagged);
 			record.endEdit();
 
 			if (!record.isNormalTask()) {
@@ -193,9 +269,8 @@ Zarafa.task.ui.TaskContextMenu = Ext.extend(Zarafa.core.ui.menu.ConditionalMenu,
 
 		if (showWarning) {
 			Ext.MessageBox.show({
-				title: _('Kopano WebApp'),
-				msg :_('Please note that assigned task(s) will be overwritten when the assignee makes changes.'),
-				icon: Ext.MessageBox.WARNING,
+				title: _('Changes to assigned task'),
+				msg:_('Please note that assigned task(s) will be overwritten when the assignee makes changes.'),
 				buttons: Ext.MessageBox.OK
 			});
 		}
@@ -204,48 +279,27 @@ Zarafa.task.ui.TaskContextMenu = Ext.extend(Zarafa.core.ui.menu.ConditionalMenu,
 		}
 	},
 
-	/**
-	 * Event handler which triggered before showing
-	 * follow-up context menu item. this context menu item
-	 * is disabled only when selected record is task record
-	 * and record belongs to To-do list folder.
-	 *
-	 * @param {Zarafa.core.ui.menu.ConditionalItem} item The item to enable/disable
-	 * @param {Zarafa.core.data.IPMRecord[]} records The records which must be checked
-	 * to see if the item must be enabled or disabled.
-	 * @private
-	 */
-	onFollowUpItemBeforeShow : function (item, records)
-	{
-		var hasTaskRecord = records.some(function (record) {
-			return record.isMessageClass('IPM.Task');
-		});
-		item.setDisabled(this.actsOnTodoListFolder ? hasTaskRecord : true);
-	},
-
-    /**
-     * Function will loop through all given {@link Zarafa.core.data.IPMRecord records}
-     * and will determine if this button can be applied to any of the records.
-     * For example, Selected task is marked completed then 'Mark Incomplete' button enabled,
+  /**
+   * Function will loop through all given {@link Zarafa.core.data.IPMRecord records}
+   * and will determine if this button can be applied to any of the records.
+   * For example, Selected task is marked completed then 'Mark Incomplete' button enabled,
 	 * if selected task is incomplete then 'Mark complete' button enabled.
-     *
-     * @param {Zarafa.core.ui.menu.ConditionalItem} item The item to enable/disable
-     * @param {Zarafa.core.data.IPMRecord[]} records The records which must be checked
-     * to see if the item must be enabled or disabled.
-     * @private
-     */
-    onMarkCompleteItemBeforeShow: function (item, records)
+   *
+   * @param {Zarafa.core.ui.menu.ConditionalItem} item The item to enable/disable
+   * @param {Zarafa.core.data.IPMRecord[]} records The records which must be checked
+   * to see if the item must be enabled or disabled.
+   * @private
+   */
+  onMarkCompleteItemBeforeShow: function (item, records)
 	{
-        var isDisabled = true;
-
+		var isDisabled = true;
 		if(this.actsOnTodoListFolder !== true) {
 			isDisabled = !records.some(function (record) {
 				return record.get('complete') !== item.isMarkComplete;
 			});
 		}
-
-        item.setDisabled(isDisabled);
-    }
+		item.setDisabled(isDisabled);
+  }
 });
 
 Ext.reg('zarafa.taskcontextmenu', Zarafa.task.ui.TaskContextMenu);

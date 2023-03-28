@@ -18,13 +18,13 @@ Zarafa.common.freebusy.ui.FreebusyContextMenu = Ext.extend(Zarafa.core.ui.menu.C
 	/**
 	 * @cfg {Boolean} editable Allow the record to be edited
 	 */
-	editable : true,
+	editable: true,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -40,46 +40,50 @@ Zarafa.common.freebusy.ui.FreebusyContextMenu = Ext.extend(Zarafa.core.ui.menu.C
 		}
 
 		Ext.applyIf(config, {
-			items : [{
+			items: [{
 				xtype: 'zarafa.conditionalitem',
 				text: _('Edit recipient'),
-				hidden : !editable || resolved,
+				hidden: !editable || resolved,
 				handler: this.onContextMenuEditRecipientClick,
 				scope: this
 			},{
 				xtype: 'zarafa.conditionalitem',
 				text: _('Show Details'),
-				hidden : !resolved,
+				hidden: !resolved,
 				handler: this.openDetailsContent,
+				scope: this
+			},{
+				xtype: 'zarafa.conditionalitem',
+				text: _('Copy email address'),
+				iconCls: 'icon_copy',
+				hidden: !resolved,
+				handler: this.copyEmail,
 				scope: this
 			},'-',{
 				xtype: 'zarafa.conditionalitem',
-				text: _('Required Attendee'),
-				iconCls: 'x-freebusy-userlist-recipienttype-required',
-				hidden : !editable || organizer, 
-				recipientType : Zarafa.core.mapi.RecipientType.MAPI_TO,
-				handler : this.onRecipientTypeChange,
+				text: _('Set as required'),
+				hidden: !editable || organizer,
+				recipientType: Zarafa.core.mapi.RecipientType.MAPI_TO,
+				handler: this.onRecipientTypeChange,
 				scope: this
-			},{   
+			},{
 				xtype: 'zarafa.conditionalitem',
-				text: _('Optional Attendee'),
-				iconCls: 'x-freebusy-userlist-recipienttype-optional',
-				hidden : !editable || organizer, 
-				recipientType : Zarafa.core.mapi.RecipientType.MAPI_CC,
-				handler : this.onRecipientTypeChange,
+				text: _('Set as optional'),
+				hidden: !editable || organizer,
+				recipientType: Zarafa.core.mapi.RecipientType.MAPI_CC,
+				handler: this.onRecipientTypeChange,
 				scope: this
-			},{   
+			},{
 				xtype: 'zarafa.conditionalitem',
-				text: _('Resource'),
-				iconCls: 'x-freebusy-userlist-recipienttype-resource',
-				hidden : !editable || organizer, 
-				recipientType : Zarafa.core.mapi.RecipientType.MAPI_BCC,
-				handler : this.onRecipientTypeChange,
+				text: _('Set as resource'),
+				hidden: !editable || organizer,
+				recipientType: Zarafa.core.mapi.RecipientType.MAPI_BCC,
+				handler: this.onRecipientTypeChange,
 				scope: this
 			},
 			// Add insertion points
 			container.populateInsertionPoint('context.freebusy.userlist.contextmenu', this)
-			]	
+			]
 		});
 
 		Zarafa.common.freebusy.ui.FreebusyContextMenu.superclass.constructor.call(this, config);
@@ -103,8 +107,8 @@ Zarafa.common.freebusy.ui.FreebusyContextMenu = Ext.extend(Zarafa.core.ui.menu.C
 	 *
 	 * @private
 	 */
-	openDetailsContent : function()
-	{   
+	openDetailsContent: function()
+	{
 		Zarafa.common.Actions.openViewRecipientContent(this.records);
 	},
 
@@ -116,6 +120,15 @@ Zarafa.common.freebusy.ui.FreebusyContextMenu = Ext.extend(Zarafa.core.ui.menu.C
 	onRecipientTypeChange: function(item)
 	{
 		this.records.set('recipient_type', item.recipientType);
+	},
+
+	/**
+	 * Handler for the "Copy email address" option. This will
+	 * copy email address of the resolved recipient.
+	 */
+	copyEmail: function ()
+	{
+		Zarafa.common.Actions.copyEmailAddress(this.records);
 	}
 });
 

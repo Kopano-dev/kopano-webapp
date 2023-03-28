@@ -43,30 +43,30 @@ Zarafa.contact.ui.ContactMainPanel = Ext.extend(Zarafa.common.ui.ContextMainPane
 	 * @property
 	 * @type Zarafa.core.ui.SwitchViewContentContainer
 	 */
-	viewPanel : undefined,
+	viewPanel: undefined,
 
 	/**
 	 * @constructor
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
 		Ext.applyIf(config, {
-			xtype : 'zarafa.contactmainpanel',
+			xtype: 'zarafa.contactmainpanel',
 			layout: 'fit',
 			items: [{
 				xtype: 'zarafa.switchviewcontentcontainer',
 				ref: 'viewPanel',
-				layout : 'card',
-				lazyItems : this.initViews(config.context)
+				layout: 'card',
+				lazyItems: this.initViews(config.context)
 			}],
-			tbar : {
+			tbar: {
 				xtype: 'zarafa.contextmainpaneltoolbar',
-				defaultTitle : _('Contacts'),
-				paging : container.populateInsertionPoint('context.contact.toolbar.paging', this),
-				items : container.populateInsertionPoint('context.contact.toolbar.item', this),
-				context : config.context
+				defaultTitle: _('Contacts'),
+				paging: container.populateInsertionPoint('context.contact.toolbar.paging', this),
+				items: container.populateInsertionPoint('context.contact.toolbar.item', this),
+				context: config.context
 			}
 		});
 
@@ -80,17 +80,17 @@ Zarafa.contact.ui.ContactMainPanel = Ext.extend(Zarafa.common.ui.ContextMainPane
 	 * @return {Array} array of config objects of different views
 	 * @private
 	 */
-	initViews : function(context)
+	initViews: function(context)
 	{
 		// add the standard available views
 		var allViews = [{
-			xtype : 'zarafa.contactgrid',
-			id    : 'contact-gridview',
-			context : context
+			xtype: 'zarafa.contactgrid',
+			id  : 'contact-gridview',
+			context: context
 		}, {
-			xtype : 'zarafa.contactcardpanel',
-			id    : 'contact-cardview',
-			context : context
+			xtype: 'zarafa.contactcardpanel',
+			id  : 'contact-cardview',
+			context: context
 		}];
 
 		var additionalViewItems = container.populateInsertionPoint('context.contact.views', this, context);
@@ -104,37 +104,12 @@ Zarafa.contact.ui.ContactMainPanel = Ext.extend(Zarafa.common.ui.ContextMainPane
 	 * At this time all events can be registered.
 	 * @private
 	 */
-	initEvents : function()
+	initEvents: function()
 	{
 		if (Ext.isDefined(this.context)) {
 			this.mon(this.context, 'viewchange', this.onViewChange, this);
-			this.topToolbar.mon(this.topToolbar.pagesToolbar, 'beforechange', this.onBeforeChange, this);
-
 			this.onViewChange(this.context, this.context.getCurrentView());
 		}
-	},
-
-	/**
-	 * Event handler triggered when navigational buttons of {@link Zarafa.common.ui.PagingToolbar PagingToolbar}
-	 * was clicked. function is used to append the search restriction in params object if it was
-	 * added during the last load.
-	 *
-	 * @param {Zarafa.common.ui.PagingToolbar} pagesToolbar which trigger this event.
-	 * @param {Object} params The params contains restriction related information also it may
-	 * contains search restriction which used to retrieve next batch of records from server.
-	 * @return {boolean} return true
-	 */
-	onBeforeChange : function (pagesToolbar, params)
-	{
-		var store = pagesToolbar.store;
-		var restriction = store.lastOptions.params.restriction;
-
-		if(restriction.search) {
-			Ext.applyIf(params.restriction, {
-				search : restriction.search
-			});
-		}
-		return true;
 	},
 
 	/**
@@ -148,7 +123,7 @@ Zarafa.contact.ui.ContactMainPanel = Ext.extend(Zarafa.common.ui.ContextMainPane
 	 * @param {Zarafa.contact.data.Views} oldView The ID of the previously selected view
 	 * @private
 	 */
-	onViewChange : function(context, newView, oldView)
+	onViewChange: function(context, newView, oldView)
 	{
 		switch(newView) {
 			case Zarafa.contact.data.Views.ICON:

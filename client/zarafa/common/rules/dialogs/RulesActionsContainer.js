@@ -17,13 +17,13 @@ Zarafa.common.rules.dialogs.RulesActionsContainer = Ext.extend(Ext.Container, {
 	 * @type Number
 	 * @private
 	 */
-	actionCount : 0,
+	actionCount: 0,
 
 	/**
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -31,23 +31,23 @@ Zarafa.common.rules.dialogs.RulesActionsContainer = Ext.extend(Ext.Container, {
 		config.plugins.push('zarafa.recordcomponentupdaterplugin');
 
 		Ext.applyIf(config, {
-			layout : 'form',
+			layout: 'form',
 			autoHeight: true,
-			items : [{
-				xtype : 'zarafa.compositefield',
-				hideLabel : true,
-				items : [{
-					xtype : 'button',
-					ref : '../addActionBtn',
-					text : _('Add action'),
-					handler : this.addActionBox,
-					scope : this
+			items: [{
+				xtype: 'zarafa.compositefield',
+				hideLabel: true,
+				items: [{
+					xtype: 'button',
+					ref: '../addActionBtn',
+					text: _('Add action'),
+					handler: this.addActionBox,
+					scope: this
 				},{
-					xtype : 'button',
-					ref : '../removeActionBtn',
-					text : _('Remove action'),
-					handler : this.removeActionBox,
-					scope : this
+					xtype: 'button',
+					ref: '../removeActionBtn',
+					text: _('Remove action'),
+					handler: this.removeActionBox,
+					scope: this
 				}]
 			}]
 		});
@@ -63,50 +63,50 @@ Zarafa.common.rules.dialogs.RulesActionsContainer = Ext.extend(Ext.Container, {
 	 * @return {Object} config object to create a {@link Ext.Container}.
 	 * @private
 	 */
-	createActionBox : function(index)
+	createActionBox: function(index)
 	{
-		var id =  'rule-action-' + String(index);
+		var id = 'rule-action-' + String(index);
 		var profileStore = {
-			xtype : 'jsonstore',
-			fields : [
-				{ name : 'name' },
-				{ name : 'value', type : 'int' }
+			xtype: 'jsonstore',
+			fields: [
+				{ name: 'name' },
+				{ name: 'value', type: 'int' }
 			],
-			data : Zarafa.common.rules.data.ActionProfiles
+			data: Zarafa.common.rules.data.ActionProfiles
 		};
 
 		return {
-			xtype : 'container',
-			id : id,
-			flex : 1,
-			height : 25,
-			layout : {
-				type : 'hbox',
-				align : 'stretch',
-				defaultMargins : '0 5 0 0'
+			xtype: 'container',
+			id: id,
+			flex: 1,
+			height: 25,
+			layout: {
+				type: 'hbox',
+				align: 'stretch',
+				defaultMargins: '0 5 0 0'
 			},
-			items : [{
-				xtype : 'combo',
-				width : 300,
-				store : profileStore,
-				mode : 'local',
-				triggerAction : 'all',
-				displayField : 'name',
-				valueField : 'value',
-				lazyInit : false,
-				forceSelection : true,
-				editable : false,
-				value : _('Select one...'),
-				listeners : {
-					'select' : this.onActionComboSelect,
-					'scope' : this
+			items: [{
+				xtype: 'combo',
+				width: 300,
+				store: profileStore,
+				mode: 'local',
+				triggerAction: 'all',
+				displayField: 'name',
+				valueField: 'value',
+				lazyInit: false,
+				forceSelection: true,
+				editable: false,
+				value: _('Select one...'),
+				listeners: {
+					'select': this.onActionComboSelect,
+					'scope': this
 				}
 			}, {
-				xtype : 'container',
-				flex : 1,
-				layout : 'card',
-				activeItem : 0,
-				items : this.createActionContentPanels(id)
+				xtype: 'container',
+				flex: 1,
+				layout: 'card',
+				activeItem: 0,
+				items: this.createActionContentPanels(id)
 			}]
 		};
 	},
@@ -122,21 +122,25 @@ Zarafa.common.rules.dialogs.RulesActionsContainer = Ext.extend(Ext.Container, {
 	 * @return {Array} Array of config objects to create a {@link Ext.Container}.
 	 * @private
 	 */
-	createActionContentPanels : function(baseId)
+	createActionContentPanels: function(baseId)
 	{
 		return [{
-			xtype : 'container',
-			id : baseId + '-empty'
+			xtype: 'container',
+			id: baseId + '-empty'
 		},{
-			xtype : 'zarafa.folderselectionlink',
-			id : baseId + '-folder'
+			xtype: 'zarafa.folderselectionlink',
+			id: baseId + '-folder',
+			storeEntryId: this.storeEntryId,
 		},{
-			xtype : 'zarafa.deletelink',
-			id : baseId + '-delete',
+			xtype: 'zarafa.deletelink',
+			id: baseId + '-delete',
 			storeEntryId: this.storeEntryId
 		},{
-			xtype : 'zarafa.userselectionlink',
-			id : baseId + '-to'
+			xtype: 'zarafa.userselectionlink',
+			id: baseId + '-to'
+		},{
+			xtype: 'zarafa.markasreadlink',
+			id: baseId + '-markasread',
 		}];
 	},
 
@@ -145,7 +149,7 @@ Zarafa.common.rules.dialogs.RulesActionsContainer = Ext.extend(Ext.Container, {
 	 * @return {Ext.Container} The Action Box which was inserted
 	 * @private
 	 */
-	addActionBox : function()
+	addActionBox: function()
 	{
 		this.actionCount++;
 
@@ -165,7 +169,7 @@ Zarafa.common.rules.dialogs.RulesActionsContainer = Ext.extend(Ext.Container, {
 	 * This will always remove the last action.
 	 * @private
 	 */
-	removeActionBox : function()
+	removeActionBox: function()
 	{
 		if (this.actionCount > 1) {
 			// Don't remove the last item, as that is the container
@@ -187,7 +191,7 @@ Zarafa.common.rules.dialogs.RulesActionsContainer = Ext.extend(Ext.Container, {
 	 * @param {Number} count The desired number of action boxes
 	 * @private
 	 */
-	setActionBoxCount : function(count)
+	setActionBoxCount: function(count)
 	{
 		while (count < this.actionCount) {
 			this.removeActionBox();
@@ -202,7 +206,7 @@ Zarafa.common.rules.dialogs.RulesActionsContainer = Ext.extend(Ext.Container, {
 	 * @param {Zarafa.common.rules.data.RulesRecord} record The record update the panel with.
 	 * @param {Boolean} contentReset force the component to perform a full update of the data.
 	 */
-	update : function(record, contentReset)
+	update: function(record, contentReset)
 	{
 		this.record = record;
 
@@ -236,7 +240,7 @@ Zarafa.common.rules.dialogs.RulesActionsContainer = Ext.extend(Ext.Container, {
 	 * the values from this {@link Ext.Panel panel}.
 	 * @param {Zarafa.core.data.IPMRecord} record The record to update
 	 */
-	updateRecord : function(record)
+	updateRecord: function(record)
 	{
 		var actions = [];
 		var actionsValid = true;
@@ -257,9 +261,19 @@ Zarafa.common.rules.dialogs.RulesActionsContainer = Ext.extend(Ext.Container, {
 			if (!action) {
 				panel.get(0).markInvalid();
 				actionsValid = false;
+				break;
 			}
 
-			actions.push(action);
+			// If the Action is 'Mark as read', We need to shift it first in actions list.
+			// Because it will not work if we keep it later after other actions.
+			// i.e. for actions like Move/copy , delete the entry id of the message changes,
+			// So if we add action after these actions it will not find the required message.
+ 			if (action.action === Zarafa.core.mapi.RuleActions.OP_MARK_AS_READ) {
+				actions.unshift(action);
+			} else {
+				actions.push(action);
+			}
+
 		}
 
 		record.set('rule_actions', actions);
@@ -268,12 +282,12 @@ Zarafa.common.rules.dialogs.RulesActionsContainer = Ext.extend(Ext.Container, {
 
 	/**
 	 * Load an Action from a {@Link Zarafa.common.rules.data.RulesRecord} and apply it
-	 * onto the {@link Ext.Container} which was created by {@link #addActionBox}. 
+	 * onto the {@link Ext.Container} which was created by {@link #addActionBox}.
 	 * @param {Ext.Container} panel The container on which the action will be loaded
 	 * @param {Object} action The action which should be loaded
 	 * @private
 	 */
-	applyAction : function(panel, action)
+	applyAction: function(panel, action)
 	{
 		var actionFlag = this.getActionFlagFromAction(action);
 		var combo = panel.get(0);
@@ -305,6 +319,7 @@ Zarafa.common.rules.dialogs.RulesActionsContainer = Ext.extend(Ext.Container, {
 			case Zarafa.common.rules.data.ActionFlags.REDIRECT:
 			case Zarafa.common.rules.data.ActionFlags.FORWARD:
 			case Zarafa.common.rules.data.ActionFlags.FORWARD_ATTACH:
+			case Zarafa.common.rules.data.ActionFlags.MARK_AS_READ:
 				layout.activeItem.setAction(actionFlag, action);
 				break;
 		}
@@ -318,7 +333,7 @@ Zarafa.common.rules.dialogs.RulesActionsContainer = Ext.extend(Ext.Container, {
 	 * @return {Zarafa.common.rules.data.ActionFlags} The Action Flag
 	 * @private
 	 */
-	getActionFlagFromAction : function(action)
+	getActionFlagFromAction: function(action)
 	{
 		switch (action.action) {
 			case Zarafa.core.mapi.RuleActions.OP_MOVE:
@@ -328,7 +343,7 @@ Zarafa.common.rules.dialogs.RulesActionsContainer = Ext.extend(Ext.Container, {
 				// the "Deleted Items" folder, and if the rule_state
 				// property has the ST_EXIT_LEVEL flag.
 				var RulesStates = Zarafa.core.mapi.RuleStates;
-				if (this.record.get('rule_state') & RulesStates.ST_EXIT_LEVEL === RulesStates.ST_EXIT_LEVEL) {
+				if ((this.record.get('rule_state') & RulesStates.ST_EXIT_LEVEL) === RulesStates.ST_EXIT_LEVEL) {
 					var deletedItems = container.getHierarchyStore().getDefaultFolder('wastebasket');
 					if (deletedItems && Zarafa.core.EntryId.compareEntryIds(deletedItems.get('entryid'), action.folderentryid)) {
 						return Zarafa.common.rules.data.ActionFlags.DELETE;
@@ -351,6 +366,8 @@ Zarafa.common.rules.dialogs.RulesActionsContainer = Ext.extend(Ext.Container, {
 					default:
 						return Zarafa.common.rules.data.ActionFlags.UNKNOWN;
 				}
+			case Zarafa.core.mapi.RuleActions.OP_MARK_AS_READ:
+				return Zarafa.common.rules.data.ActionFlags.MARK_AS_READ;
 				/* falls through */
 			default:
 				// Any other RuleAction is not supported
@@ -368,7 +385,7 @@ Zarafa.common.rules.dialogs.RulesActionsContainer = Ext.extend(Ext.Container, {
 	 * @param {Number} index The selected index from the combobox list
 	 * @private
 	 */
-	onActionComboSelect : function(combo, record, index)
+	onActionComboSelect: function(combo, record, index)
 	{
 		var panel = combo.ownerCt;
 		var content = panel.get(1);
@@ -398,6 +415,10 @@ Zarafa.common.rules.dialogs.RulesActionsContainer = Ext.extend(Ext.Container, {
 			case Zarafa.common.rules.data.ActionFlags.FORWARD:
 			case Zarafa.common.rules.data.ActionFlags.FORWARD_ATTACH:
 				layout.setActiveItem(panel.id + '-to');
+				layout.activeItem.setAction(value);
+				break;
+			case Zarafa.common.rules.data.ActionFlags.MARK_AS_READ:
+				layout.setActiveItem(panel.id + '-markasread');
 				layout.activeItem.setAction(value);
 				break;
 		}

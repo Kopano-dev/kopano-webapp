@@ -13,7 +13,7 @@ Zarafa.common.ui.grid.DateTooltip = Ext.extend(Ext.ToolTip, {
 	 * @constructor
 	 * @param {Object} config Configuration object.
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -38,19 +38,19 @@ Zarafa.common.ui.grid.DateTooltip = Ext.extend(Ext.ToolTip, {
 	 * the contents of the tooltip
 	 * @param (Ext.ToolTip) tooltip The category tooltip
 	 */
-	onBeforeshow : function(tooltip)
+	onBeforeshow: function(tooltip)
 	{
 		// Get the timestamp from the 'k-ts-' class
 		var timestamp;
-		tooltip.anchorTarget.classList.forEach(function(cls){
+		tooltip.anchorTarget.getAttribute('class').split(' ').forEach(function(cls){
 			if ( cls.substr(0, 5) === 'k-ts-' ){
 				timestamp = parseInt(cls.substr(5));
 			}
 		});
 
-		var dateString = (new Date(timestamp)).format(_('D, d-m-Y, G:i'));
+		var dateString = (new Date(timestamp)).formatDefaultTime(_('D, d-m-Y, {0}'));
 
-        tooltip.body.dom.innerHTML = Ext.util.Format.htmlEncode(dateString);
+    tooltip.body.dom.innerHTML = Ext.util.Format.htmlEncode(dateString);
 	}
 });
 

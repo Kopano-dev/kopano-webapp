@@ -33,19 +33,19 @@ Zarafa.hierarchy.ui.TreeSorter = Ext.extend(Ext.tree.TreeSorter, {
 	 * @cfg {String} folderProperty The property from the {@link Zarafa.hierarchy.data.MAPIFolderRecord folder}
 	 * which must be used in the comparison between 2 {@link Zarafa.hierarchy.data.MAPIFolderRecord folders}.
 	 */
-	folderProperty : 'display_name',
+	folderProperty: 'display_name',
 
 	/**
 	 * @cfg {String} storeProperty The property from the {@link Zarafa.hierarchy.data.MAPIStoreRecord store}
 	 * which must be used in the comparison between 2 {@link Zarafa.hierarchy.data.MAPIStoreRecord stores}.
 	 */
-	storeProperty : 'mailbox_owner_name',
+	storeProperty: 'mailbox_owner_name',
 
 	/**
 	 * @cfg {String[]} folderOrder The predefined order for the folders in the hierarchy. It contains default
 	 * folder keys and container classes.
 	 */
-	folderOrder : [
+	folderOrder: [
 		'inbox',
 		'drafts',
 		'outbox',
@@ -72,7 +72,7 @@ Zarafa.hierarchy.ui.TreeSorter = Ext.extend(Ext.tree.TreeSorter, {
 	 * @param {Ext.tree.Tree} tree The tree which this sorter is being applied on
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(tree, config)
+	constructor: function(tree, config)
 	{
 		Zarafa.hierarchy.ui.TreeSorter.superclass.constructor.apply(this, arguments);
 
@@ -88,7 +88,7 @@ Zarafa.hierarchy.ui.TreeSorter = Ext.extend(Ext.tree.TreeSorter, {
 	 * @param {Ext.tree.Node} node2 The second node to be compared
 	 * @private
 	 */
-	hierarchySort : function(node1, node2)
+	hierarchySort: function(node1, node2)
 	{
 		var folder1 = node1.attributes.folder;
 		var folder2 = node2.attributes.folder;
@@ -167,11 +167,33 @@ Zarafa.hierarchy.ui.TreeSorter = Ext.extend(Ext.tree.TreeSorter, {
 	 * @return {Integer} +1 if record1 should be placed before record 2 in the order, -1 otherwise
 	 * @private
 	 */
-	compareRecordProp : function(record1, record2, property, descending, caseSensitive)
+	compareRecordProp: function(record1, record2, property, descending, caseSensitive)
 	{
-		// First look at the folders types, because they have a predefined order
-		var folderKey1 = record1.getDefaultFolderKey();
-		var folderKey2 = record2.getDefaultFolderKey();
+		var	folderKey1;
+		var	folderKey2;
+
+		var isRecord1Store = record1.get('object_type') === Zarafa.core.mapi.ObjectType.MAPI_STORE;
+		var isRecord2Store = record2.get('object_type') === Zarafa.core.mapi.ObjectType.MAPI_STORE;
+		var bothRecordsStore = isRecord1Store && isRecord2Store;
+
+		// First look at the folders Order, because they have a predefined order
+		// For the sorting of folders of Favorites, get the oroginal records which helps getting FullyQualifiedName later.
+		// Escape getting the oroginal records for search type folders.
+		// Escape getting default folder key for Shared type folders. For the store records and other than favorites records,
+    // directly get the default folder key.
+		if(!bothRecordsStore && record1.isFavoritesFolder() && record2.isFavoritesFolder()) {
+			record1 = !record1.isSearchFolder() ? record1.getOriginalRecordFromFavoritesRecord() : record1;
+			record2 = !record2.isSearchFolder() ? record2.getOriginalRecordFromFavoritesRecord() : record2;
+
+			var isRecord1Shared = record1.getMAPIStore().isSharedStore();
+			var isRecord2Shared = record2.getMAPIStore().isSharedStore();
+
+			folderKey1 = !isRecord1Shared ? record1.getDefaultFolderKey() : undefined;
+			folderKey2 = !isRecord2Shared ? record2.getDefaultFolderKey() : undefined;
+		} else {
+			folderKey1 = record1.getDefaultFolderKey();
+			folderKey2 = record2.getDefaultFolderKey();
+		}
 
 		// If the folder is not a default folder, we will sort it by its container class
 		if ( !folderKey1 ){
@@ -188,20 +210,23 @@ Zarafa.hierarchy.ui.TreeSorter = Ext.extend(Ext.tree.TreeSorter, {
 		if ( index1 > -1 ){
 			if ( index2===-1 || index1<index2 ){
 				return descending ? +1 : -1;
-			}else if ( index1 > index2 ) {
+			} else if ( index1 > index2 ) {
 				return descending ? -1 : +1;
 			}
-		}else if ( index2 > -1 ){
+		} else if ( index2 > -1 ){
 			return descending ? -1 : +1;
 		}
 
 		// Folders that have the same type will now be sorted based on the passed property
 
+		// When sorting on display name, we will use the 'fully qualified display name', so
+		// we will use 'Calendar of Hank Bla' instead of just 'Calendar' to sort.
+		var v1 = property == 'display_name' && record1.getFullyQualifiedDisplayName ? record1.getFullyQualifiedDisplayName() : record1.get(property);
+		var v2 = property == 'display_name' && record2.getFullyQualifiedDisplayName ? record2.getFullyQualifiedDisplayName() : record2.get(property);
+
 		// For case insensitive sorting, convert to lowercase, this will correctly position
 		// folders which start with '_' to be sorted first (when converting to uppercase, those
 		// folders are otherwise sorted last.
-		var v1 = record1.get(property);
-		var v2 = record2.get(property);
 		if (!caseSensitive) {
 			v1 = !Ext.isEmpty(v1) ? v1.toLowerCase() : v1;
 			v2 = !Ext.isEmpty(v2) ? v2.toLowerCase() : v2;

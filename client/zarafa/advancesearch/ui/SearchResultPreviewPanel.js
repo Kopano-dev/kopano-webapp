@@ -30,47 +30,47 @@ Zarafa.advancesearch.ui.SearchResultPreviewPanel = Ext.extend(Zarafa.core.ui.Pre
 			width: 600,
 			height: 400,
 			/*
-			 * TODO : make this code common for the Zarafa.advancesearch.ui.SearchResultPreviewPanel,
+			 * TODO: make this code common for the Zarafa.advancesearch.ui.SearchResultPreviewPanel,
 			 * Zarafa.mail.ui.MailPreviewPanel and Zarafa.advancesearch.dialogs.SearchToolbarPanel
 			 */
-			tbar : {
-				height : 33,
-				items : [{
+			tbar: {
+				height: 33,
+				items: [{
 					xtype: 'button',
 					tooltip: _('Reply') + ' (Ctrl + R)',
 					overflowText: _('Reply'),
-					iconCls: 'icon_replyEmail',
+					iconCls: 'icon_reply',
 					ref: 'replyBtn',
 					responseMode: Zarafa.mail.data.ActionTypes.REPLY,
 					handler: this.onResponse,
-					scope : this
+					scope: this
 				},{
 					xtype: 'button',
 					tooltip: _('Reply All') + ' (Ctrl + Alt + R)',
 					overflowText: _('Reply All'),
-					iconCls: 'icon_replyAllEmail',
+					iconCls: 'icon_reply_all',
 					ref: 'replyAllBtn',
 					responseMode: Zarafa.mail.data.ActionTypes.REPLYALL,
 					handler: this.onResponse,
-					scope : this
+					scope: this
 				},{
 					xtype: 'button',
 					tooltip: _('Forward') + ' (Ctrl + F)',
 					overflowText: _('Forward'),
-					iconCls: 'icon_forwardEmail',
+					iconCls: 'icon_forward',
 					ref: 'forwardBtn',
 					responseMode: Zarafa.mail.data.ActionTypes.FORWARD,
 					handler: this.onResponse,
-					scope : this
+					scope: this
 				},{
 					xtype: 'button',
-					tooltip: _('Edit as New Message') + ' (Ctrl + E)',
-					overflowText: _('Edit as New Message'),
-					iconCls: 'icon_editAsNewEmail',
+					tooltip: _('Edit as New') + ' (Ctrl + E)',
+					overflowText: _('Edit as New'),
+					iconCls: 'icon_edit_as_new_mail',
 					ref: 'editAsNewBtn',
 					responseMode: Zarafa.mail.data.ActionTypes.EDIT_AS_NEW,
 					handler: this.onResponse,
-					scope : this
+					scope: this
 				}]
 			}
 		});
@@ -129,7 +129,7 @@ Zarafa.advancesearch.ui.SearchResultPreviewPanel = Ext.extend(Zarafa.core.ui.Pre
 				toolbar.popoutBtn.setVisible(isSupportPopout);
 			}
 
-			// Only show the "Edit as New Message" button in the toolbar when the item is in the Sent folder
+			// Only show the "Edit as New" button in the toolbar when the item is in the Sent folder
 			var defaultFolder = this.model.getDefaultFolder();
 			toolbar.editAsNewBtn.setVisible(defaultFolder.getDefaultFolderKey()==='sent' && !isFaultyMessage && isMessageReplyable);
 		}
@@ -141,7 +141,7 @@ Zarafa.advancesearch.ui.SearchResultPreviewPanel = Ext.extend(Zarafa.core.ui.Pre
 	 *
 	 * @param {Zarafa.core.data.MAPIRecord} record The record to set
 	 */
-	setRecord : function(record)
+	setRecord: function(record)
 	{
 		for (var i = 0; i < this.toolbars.length; i++) {
 			if(this.searchContext.getCurrentViewMode() === Zarafa.common.data.ViewModes.RIGHT_PREVIEW) {
@@ -163,7 +163,7 @@ Zarafa.advancesearch.ui.SearchResultPreviewPanel = Ext.extend(Zarafa.core.ui.Pre
 	 * @param {Zarafa.core.data.MAPIRecord} record
 	 * @private
 	 */
-	showRecordInPanel : function(record)
+	showRecordInPanel: function(record)
 	{
 		if(this.model.store.getSearchStoreUniqueId() !== this.dialog.name) {
 			return;
@@ -173,11 +173,11 @@ Zarafa.advancesearch.ui.SearchResultPreviewPanel = Ext.extend(Zarafa.core.ui.Pre
 	},
 
 	/**
-	 * Called when one of the "Reply"/"Reply All"/"Forward"/"Edit as New Message" menuitems are clicked.
+	 * Called when one of the "Reply"/"Reply All"/"Forward"/"Edit as New" menuitems are clicked.
 	 * @param {Ext.Button} button The button which was clicked
 	 * @private
 	 */
-	onResponse : function(button)
+	onResponse: function(button)
 	{
 		var mailContextModel = container.getContextByName('mail').getModel();
 		Zarafa.mail.Actions.openCreateMailResponseContent(this.record, mailContextModel, button.responseMode);

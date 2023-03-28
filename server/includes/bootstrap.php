@@ -22,6 +22,7 @@
 	if ( !file_exists( BASE_PATH . 'config.php') ){
 		die("<strong>config.php is missing!</strong>");
 	}
+	require_once(BASE_PATH . 'server/includes/core/constants.php');
 	require_once(BASE_PATH . 'config.php');
 	require_once(BASE_PATH . 'defaults.php');
 
@@ -39,18 +40,19 @@
 	require_once(BASE_PATH . 'server/includes/mapi/mapidefs.php');
 	require_once(BASE_PATH . 'server/includes/mapi/mapitags.php');
 	require_once(BASE_PATH . 'server/includes/mapi/mapiguid.php');
-	require_once(BASE_PATH . 'server/includes/mapi/class.baseexception.php');
-	require_once(BASE_PATH . 'server/includes/mapi/class.mapiexception.php');
 
+	require_once(BASE_PATH . 'server/includes/exceptions/class.baseexception.php');
+	require_once(BASE_PATH . 'server/includes/exceptions/class.mapiexception.php');
 	require_once(BASE_PATH . 'server/includes/exceptions/class.ZarafaException.php');
 	require_once(BASE_PATH . 'server/includes/exceptions/class.ZarafaErrorException.php');
 	require_once(BASE_PATH . 'server/includes/util.php');
 	require_once(BASE_PATH . 'server/includes/gettext.php');
 
-	require_once(BASE_PATH . 'server/includes/core/constants.php');
 	require_once(BASE_PATH . 'server/includes/core/class.conversion.php');
 	require_once(BASE_PATH . 'server/includes/core/class.mapisession.php');
 	require_once(BASE_PATH . 'server/includes/core/class.properties.php');
+	require_once(BASE_PATH . 'server/includes/core/class.ensurelicense.php');
+
 	require_once(BASE_PATH . 'server/includes/core/class.operations.php');
 	require_once(BASE_PATH . 'server/includes/core/class.entryid.php');
 
@@ -68,10 +70,17 @@
 
 	require_once(BASE_PATH . 'server/includes/core/class.todolist.php');
 
+	require_once(BASE_PATH . 'server/includes/core/class.freebusy.php');
+
 	require_once(BASE_PATH . 'server/includes/core/class.theming.php');
+	require_once(BASE_PATH . 'server/includes/core/class.iconsets.php');
+
+	require_once(BASE_PATH . 'server/includes/core/class.log.php');
+	require_once(BASE_PATH . 'server/includes/logger/class.baselogger.php');
+	require_once(BASE_PATH . 'server/includes/logger/class.filelog.php');
 
 	ob_start();
-	setlocale(LC_CTYPE, "en_US.UTF-8");
+	setlocale(LC_CTYPE, Language::resolveLanguage(LANG));
 
 	// Start a new session
 	$webappSession = WebAppSession::getInstance();

@@ -13,7 +13,7 @@ Zarafa.common.recurrence.dialogs.RecurrenceContentPanel = Ext.extend(Zarafa.core
 	 * @type Boolean
 	 * @private
 	 */
-	editRecurrence : false,
+	editRecurrence: false,
 
 	/**
 	 * True when recurring item is being created by pasting. When this is true,
@@ -23,51 +23,51 @@ Zarafa.common.recurrence.dialogs.RecurrenceContentPanel = Ext.extend(Zarafa.core
 	 * @type Boolean
 	 * @private
 	 */
-	pasteItem : false,
+	pasteItem: false,
 
 	/**
 	 * @constructor
 	 * @param config Configuration structure
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		// Add in some standard configuration data.
 		config = config || {};
 
 		config = Ext.applyIf(config, {
 			// Override from Ext.Component
-			xtype : 'zarafa.recurrencecontentpanel',
+			xtype: 'zarafa.recurrencecontentpanel',
 			// Override from Ext.Component
-			layout : 'fit',
-			title : _('Appointment Recurrence'),
-			recordComponentPluginConfig : Ext.applyIf(config.recordComponentPluginConfig || {}, {
-				allowWrite : true
+			layout: 'fit',
+			title: _('Appointment Recurrence'),
+			recordComponentPluginConfig: Ext.applyIf(config.recordComponentPluginConfig || {}, {
+				allowWrite: true
 			}),
 			border: false,
 			defaults: {
 				bodyStyle: 'padding-top: 5px; padding-left: 6px; padding-right: 5px; background-color: inherit;',
 				border: false
 			},
-			autoSave : false,
+			autoSave: false,
 			width: 600,
 			height: 500,
 			items: [{
 				xtype: 'zarafa.recurrencepanel',
 				ref: 'recurrencePanel',
-				buttons : [{
-					text : config.pasteItem ? _('Create') : _('Ok'),
-					handler : this.onOk,
-					scope : this,
-					ref : '../../okBtn'
-				},{
-					text : _('Cancel'),
-					scope : this,
-					handler : this.onCancel
-				},{
-					text : _('Remove Recurrence'),
-					handler : this.onRemoveRecurrence,
+				buttons: [{
+					text: config.pasteItem ? _('Create') : _('Ok'),
+					handler: this.onOk,
 					scope: this,
-					ref : '../../removeReccurrenceBtn'
+					ref: '../../okBtn'
+				},{
+					text: _('Cancel'),
+					scope: this,
+					handler: this.onCancel
+				},{
+					text: _('Remove Recurrence'),
+					handler: this.onRemoveRecurrence,
+					scope: this,
+					ref: '../../removeReccurrenceBtn'
 				}]
 			}]
 		});
@@ -89,7 +89,7 @@ Zarafa.common.recurrence.dialogs.RecurrenceContentPanel = Ext.extend(Zarafa.core
 	 * @param {Zarafa.core.data.IPMRecord} oldrecord The oldrecord which was previously set
 	 * @private
 	 */
-	onBeforeSetRecord : function(contentpanel, record, oldrecord)
+	onBeforeSetRecord: function(contentpanel, record, oldrecord)
 	{
 		if (!record.get('recurring')) {
 			var startDate = record.get('startdate') || new Date();
@@ -151,22 +151,24 @@ Zarafa.common.recurrence.dialogs.RecurrenceContentPanel = Ext.extend(Zarafa.core
 	 * previously created exceptions.
 	 * This will call {@link #saveRecord} with the {@link #autoSave} argument.
 	 */
-	onOk : function()
+	onOk: function()
 	{
 		// When this was already an existing recurring series, then we must warn the user that all previously
 		// created exceptions will be discarded. When this is a new series, then we can directly start
 		// creating the new recurrence.
 		if (this.record.phantom !== true && this.editRecurrence === true && this.record.hasRecurringExceptions()) {
-			Ext.MessageBox.confirm(
-				_('Kopano WebApp'),
-				_('This will discard any exceptions which might have been made for this recurring series. Do you wish to continue?'),
-				function(button) {
+			Ext.MessageBox.show({
+				title: _('Reset recurring'),
+				msg: _('This will reset every exception. Do you want to continue?'),
+				cls: Ext.MessageBox.WARNING_CLS,
+				buttons: Ext.MessageBox.YESNO,
+				fn: function(button) {
 					if (button === 'yes') {
 						Zarafa.common.recurrence.dialogs.RecurrenceContentPanel.superclass.onOk.apply(this, arguments);
 					}
 				},
-				this
-			);
+				scope: this
+			});
 		} else {
 			// If we are adding recurrence for the first time, we have set properties in onBeforeSetRecord(). We must
 			// make sure these properties will be put in the modified property of the record or they will not be
@@ -183,6 +185,13 @@ Zarafa.common.recurrence.dialogs.RecurrenceContentPanel = Ext.extend(Zarafa.core
 				this.record.modified['recurrence_endocc'] = this.record.data['recurrence_endocc'];
 				this.record.modified['recurrence_everyn'] = this.record.data['recurrence_everyn'];
 				this.record.modified['recurrence_weekdays'] = this.record.data['recurrence_weekdays'];
+
+				// remove basedate from idProperties and update the
+				// opened and openedSeries
+				this.record.removeIdProp('basedate');
+				this.modalRecord.removeIdProp('basedate');
+				this.modalRecord.opened = !this.record.isRecurring();
+				this.modalRecord.openedSeries = !this.modalRecord.opened;
 			}
 
 			if(this.pasteItem) {
@@ -201,7 +210,7 @@ Zarafa.common.recurrence.dialogs.RecurrenceContentPanel = Ext.extend(Zarafa.core
 	 * @param {Zarafa.core.data.IPMRecord} record The record which is being saved.
 	 * @private
 	 */
-	onSaveRecord : function(contentpanel, record)
+	onSaveRecord: function(contentpanel, record)
 	{
 		// Do not set recurring_reset to true while pasting recurring meeting/appointment
 		// because we are creating recurring item and not resetting recurring item.
@@ -230,7 +239,7 @@ Zarafa.common.recurrence.dialogs.RecurrenceContentPanel = Ext.extend(Zarafa.core
 	 * @param {Zarafa.core.data.IPMRecord} record The record to update the panel with
 	 * @param {Boolean} contentReset force the component to perform a full update of the data.
 	 */
-	update : function(record, contentReset)
+	update: function(record, contentReset)
 	{
 		this.updateTitleFromRecord(record);
 
@@ -254,7 +263,7 @@ Zarafa.common.recurrence.dialogs.RecurrenceContentPanel = Ext.extend(Zarafa.core
 	 * Calls {@link #setTitle} this.setTitle in order to update
 	 * @param {Zarafa.core.data.MAPIRecord} record The record that has been updated
 	 */
-	updateTitleFromRecord : function(record)
+	updateTitleFromRecord: function(record)
 	{
 		if (!Ext.isDefined(record)) {
 			this.setTitle(this.initialConfig.title);
@@ -274,7 +283,7 @@ Zarafa.common.recurrence.dialogs.RecurrenceContentPanel = Ext.extend(Zarafa.core
 	 * @override
 	 * @private
 	 */
-	onSetRecord : function(contentpanel, record, oldrecord)
+	onSetRecord: function(contentpanel, record, oldrecord)
 	{
 		Zarafa.common.recurrence.dialogs.RecurrenceContentPanel.superclass.onSetRecord.call(this, contentpanel, record, oldrecord);
 		this.updateTitleFromRecord(record);
@@ -285,7 +294,7 @@ Zarafa.common.recurrence.dialogs.RecurrenceContentPanel = Ext.extend(Zarafa.core
 	 * This will delete any recurring information and closes the window.
 	 * @private
 	 */
-	onRemoveRecurrence : function()
+	onRemoveRecurrence: function()
 	{
 		this.record.beginEdit();
 		this.record.set('recurring', false);

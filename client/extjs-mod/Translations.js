@@ -5,7 +5,7 @@ Ext.namespace('Zarafa.util');
 // well as the WebApp core.
 
 /**
- * @class Zarafa.util.Translations
+ * @class Zarafa.util.Translations
  * @extends Object
  * Utility class containing utility functions for creating
  * translation strings.
@@ -29,24 +29,28 @@ Zarafa.util.Translations = {
 	 * which comes after the 'split'. Note that 'split' itself is not within the result.
 	 * @static
 	 */
-	SplitTranslation : function(translation, split)
+	SplitTranslation: function(translation, split)
 	{
-		if (!Ext.isDefined(split))
+		if (!Ext.isDefined(split)) {
 			return translation;
+		}
 
 		var index = translation.indexOf(split);
-		if (index == -1)
+		if (index == -1) {
 			return translation;
+		}
 
 		// Find the last non-space character before the split-string
 		var endFirst = index - 1;
-		while (translation[endFirst] == ' ' && endFirst >= 0)
+		while (translation[endFirst] == ' ' && endFirst >= 0) {
 			endFirst--;
+		}
 
 		// Find the first non-space character after the split-string
 		var startSecond = index + split.length;
-		while (translation[startSecond] == ' ' && startSecond < translation.length)
+		while (translation[startSecond] == ' ' && startSecond < translation.length) {
 			startSecond++;
+		}
 
 		return [
 			translation.substr(0, endFirst + 1),
@@ -70,11 +74,12 @@ Zarafa.util.Translations = {
 	 * [ 'Every', 'X', 'Y', 'of every', 'Z', 'month(s)' ].
 	 * @static
 	 */
-	MultiSplitTranslation : function(translation, split)
+	MultiSplitTranslation: function(translation, split)
 	{
 		// Split must always be an array
-		if (!Ext.isArray(split))
+		if (!Ext.isArray(split)) {
 			split = [ split ];
+		}
 
 		// Prepare our translated pieces, by default the
 		// main translation string is our piece
@@ -92,8 +97,9 @@ Zarafa.util.Translations = {
 				// split string is inside this piece. If it isn't then it will
 				// return a single string.
 				var splitPiece = Zarafa.util.Translations.SplitTranslation(piece, split[i]);
-				if (!Ext.isArray(splitPiece))
+				if (!Ext.isArray(splitPiece)) {
 					return true;
+				}
 
 				// Remove the old piece, we are replacing it with
 				// the new pieces.
@@ -131,7 +137,7 @@ Zarafa.util.Translations = {
 // the strings within an ExtJs component.
 (function() {
 	Ext.apply(Date, {
-		dayNames : [
+		dayNames: [
 			_('Sunday'),
 			_('Monday'),
 			_('Tuesday'),
@@ -141,7 +147,20 @@ Zarafa.util.Translations = {
 			_('Saturday')
 		],
 
-		monthNames : [
+		// The shortDayNames are not defined in Ext and thus technically shouldn't
+		// be part of this file. But since they are so connected to the dayNames,
+		// it seems most logical to place them here.
+		shortDayNames: [
+			_('Sun'),
+			_('Mon'),
+			_('Tue'),
+			_('Wed'),
+			_('Thu'),
+			_('Fri'),
+			_('Sat')
+		],
+
+		monthNames: [
 			_('January'),
 			_('February'),
 			_('March'),
@@ -159,48 +178,48 @@ Zarafa.util.Translations = {
 
 	Ext.PagingToolbar.tmpPageText = Zarafa.util.Translations.SplitTranslation(_('Page {A} of {0}'), '{A}');
 	Ext.override(Ext.PagingToolbar, {
-		displayMsg : _('Displaying messages {0} - {1} of {2}'),
-		emptyMsg : _('No messages to display'),
-		beforePageText : Ext.PagingToolbar.tmpPageText[0],
-		afterPageText : Ext.PagingToolbar.tmpPageText[1],
-		firstText : _('First Page'),
-		prevText : _('Previous Page'),
-		nextText : _('Next Page'),
-		lastText : _('Last Page'),
-		refreshText : _('Refresh')
+		displayMsg: _('Displaying messages {0} - {1} of {2}'),
+		emptyMsg: _('No messages to display'),
+		beforePageText: Ext.PagingToolbar.tmpPageText[0],
+		afterPageText: Ext.PagingToolbar.tmpPageText[1],
+		firstText: _('First Page'),
+		prevText: _('Previous Page'),
+		nextText: _('Next Page'),
+		lastText: _('Last Page'),
+		refreshText: _('Refresh')
 	});
 	delete Ext.PagingToolbar.tmpPageText;
 
 	Ext.override(Ext.DatePicker, {
-		todayText : _('Today'),
-		okText : '&nbsp;' + _('OK') + '&nbsp;',
-		cancelText : _('Cancel'),
-		todayTip : _('{0} (Spacebar)'),
-		minText : _('This date is before the minimum date'),
-		maxText : _('This date is after the maximum date'),
-		// # TRANSLATORS: See http://docs.sencha.com/ext-js/3-4/#!/api/Date for the meaning of these formatting instructions
-		format : _('d/m/Y'),
-		disabledDaysText : _('Disabled'),
-		disabledDatesText : _('Disabled'),
-		nextText : _('Next Month (Control+Right)'),
-		prevText : _('Previous Month (Control+Left)'),
-		monthYearText : _('Choose a month (Control+Up/Down to move years)'),
+		todayText: _('Today'),
+		okText: '&nbsp;' + _('OK') + '&nbsp;',
+		cancelText: _('Cancel'),
+		todayTip: _('{0} (Spacebar)'),
+		minText: _('This date is before the minimum date'),
+		maxText: _('This date is after the maximum date'),
+		// # TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+		format: _('d/m/Y'),
+		disabledDaysText: _('Disabled'),
+		disabledDatesText: _('Disabled'),
+		nextText: _('Next Month (Control+Right)'),
+		prevText: _('Previous Month (Control+Left)'),
+		monthYearText: _('Choose a month (Control+Up/Down to move years)'),
 		// DatePicker prototype has copied the Date.monthNames and Date.dayNames,
 		// since we just translated that, we need to copy it here again.
-		monthNames : Date.monthNames,
-		dayNames : Date.dayNames
+		monthNames: Date.monthNames,
+		dayNames: Date.dayNames
 	});
 
 	Ext.override(Ext.grid.GridView, {
-		sortAscText : _('Sort Ascending'),
+		sortAscText: _('Sort Ascending'),
 		sortDescText: _('Sort Descending'),
 		columnsText: _('Columns')
 	});
 
 	Ext.override(Ext.grid.GroupingView, {
-		groupByText : _('Group By This Field'),
-		showGroupsText : _('Show in Groups'),
-		emptyGroupText : _('(None)')
+		groupByText: _('Group By This Field'),
+		showGroupsText: _('Show in Groups'),
+		emptyGroupText: _('(None)')
 	});
 
 	Ext.MessageBox.buttonText.ok = _('Ok');
@@ -209,74 +228,74 @@ Zarafa.util.Translations = {
 	Ext.MessageBox.buttonText.no = _('No');
 
 	Ext.override(Ext.LoadMask, {
-		msg : _('Loading') + '...'
+		msg: _('Loading') + '...'
 	});
 
 	Ext.override(Ext.form.ComboBox, {
-		loadingText : _('Loading') + '...'
+		loadingText: _('Loading') + '...'
 	});
 
 	Ext.override(Ext.form.Field, {
-		invalidText : _('The value in this field is invalid')
+		invalidText: _('The value in this field is invalid')
 	});
 
 	Ext.override(Ext.form.TextField, {
-		minLengthText : _('The minimum length for this field is {0}'),
-		maxLengthText : _('The maximum length for this field is {0}'),
-		blankText : _('This field is required')
+		minLengthText: _('The minimum length for this field is {0}'),
+		maxLengthText: _('The maximum length for this field is {0}'),
+		blankText: _('This field is required')
 	});
 
 	Ext.override(Ext.form.NumberField, {
-		minText : _('The minimum value for this field is {0}'),
-		maxText : _('The maximum value for this field is {0}'),
-		nanText : _('{0} is not a valid number')
+		minText: _('The minimum value for this field is {0}'),
+		maxText: _('The maximum value for this field is {0}'),
+		nanText: _('{0} is not a valid number')
 	});
 
 	Ext.override(Ext.form.DateField, {
-		// # TRANSLATORS: See http://docs.sencha.com/ext-js/3-4/#!/api/Date for the meaning of these formatting instructions
-		format : _('d/m/Y'),
-		disabledDaysText : _('Disabled'),
-		disabledDatesText : _('Disabled'),
-		minText : _('The date in this field must be equal to or after {0}'),
-		maxText : _('The date in this field must be equal to or before {0}'),
-		invalidText : _('{0} is not a valid date - it must be in the format {1}')
+		// # TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+		format: _('d/m/Y'),
+		disabledDaysText: _('Disabled'),
+		disabledDatesText: _('Disabled'),
+		minText: _('The date in this field must be equal to or after {0}'),
+		maxText: _('The date in this field must be equal to or before {0}'),
+		invalidText: _('{0} is not a valid date - it must be in the format {1}')
 	});
 
 	Ext.override(Ext.form.CheckboxGroup, {
-		blankText : _('You must select at least one item in this group')
+		blankText: _('You must select at least one item in this group')
 	});
 
 	Ext.override(Ext.form.RadioGroup, {
-		blankText : _('You must select one item in this group')
+		blankText: _('You must select one item in this group')
 	});
 
 	Ext.override(Ext.form.TimeField, {
-		minText : _('The time in this field must be equal to or after {0}'),
-		maxText : _('The time in this field must be equal to or before {0}'),
-		invalidText : _('{0} is not a valid time'),
-		// # TRANSLATORS: See http://docs.sencha.com/ext-js/3-4/#!/api/Date for the meaning of these formatting instructions
-		format : _('G:i')
+		minText: _('The time in this field must be equal to or after {0}'),
+		maxText: _('The time in this field must be equal to or before {0}'),
+		invalidText: _('{0} is not a valid time'),
+		// # TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+		format: _('G:i')
 	});
 
 	Ext.override(Ext.grid.GridView, {
-		sortAscText : _('Sort Ascending'),
-		sortDescText : _('Sort Descending'),
-		columnsText : _('Columns')
+		sortAscText: _('Sort Ascending'),
+		sortDescText: _('Sort Descending'),
+		columnsText: _('Columns')
 	});
 
 	Ext.override(Ext.grid.PropertyColumnModel, {
-		nameText : _('Name'),
-		valueText : _('Value'),
-		// # TRANSLATORS: See http://docs.sencha.com/ext-js/3-4/#!/api/Date for the meaning of these formatting instructions
-		dateFormat : _('d/m/Y'),
+		nameText: _('Name'),
+		valueText: _('Value'),
+		// # TRANSLATORS: See http://docs.sencha.com/extjs/3.4.0/#!/api/Date for the meaning of these formatting instructions
+		dateFormat: _('d/m/Y'),
 		trueText: _('true'),
 		falseText: _('false')
 	});
 
 	Ext.apply(Ext.form.VTypes, {
-		emailText : _('This field should be an e-mail address in the format "user@example.com"'),
-		urlText : String.format(_('This field should be a URL in the format "{0}"'),  'http:/' + '/www.example.com'),
-		alphaText : _('This field should only contain letters and _'),
-		alphanumText : _('This field should only contain letters, numbers and _')
+		emailText: _('This field should be an e-mail address in the format "user@example.com"'),
+		urlText: String.format(_('This field should be a URL in the format "{0}"'),  'http:/' + '/www.example.com'),
+		alphaText: _('This field should only contain letters and _'),
+		alphanumText: _('This field should only contain letters, numbers and _')
 	});
 })();

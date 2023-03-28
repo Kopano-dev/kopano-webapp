@@ -23,9 +23,9 @@
 		 */
 		function __construct($id, $data)
 		{
-			$this->properties = $GLOBALS["properties"]->getAppointmentListProperties();
-
 			parent::__construct($id, $data);
+
+			$this->properties = $GLOBALS["properties"]->getAppointmentListProperties();
 
 			$this->startdate = false;
 			$this->enddate = false;
@@ -73,6 +73,9 @@
 								$this->handleUnknownActionType($actionType);
 						}
 					} catch (MAPIException $e) {
+						if (isset($action['suppress_exception']) && $action['suppress_exception'] === true) {
+							$e->setNotificationType('console');
+						}
 						$this->processException($e, $actionType);
 					}
 				}
@@ -111,6 +114,15 @@
 						$data["item"] = array();
 						for($index = 0, $index2 = count($entryid); $index < $index2; $index++) {
 							$this->getDelegateFolderInfo($store[$index]);
+
+							// Set the active store in properties class and get the props based on active store.
+							// we need to do this because of multi server env where shared store belongs to the different server.
+							// Here name space is different per server. e.g. There is user A and user B and both are belongs to
+							// different server and user B is shared store of user A because of that user A has 'categories' => -2062020578
+							// and user B 'categories' => -2062610402,
+							$GLOBALS["properties"]->setActiveStore($store[$index]);
+							$this->properties = $GLOBALS["properties"]->getAppointmentListProperties();
+
 							$data["item"] = array_merge($data["item"], $this->getCalendarItems($store[$index], $entryid[$index], $this->startdate, $this->enddate));
 						}
 					} else {
@@ -143,7 +155,7 @@
 			$restriction =
 				// OR
 				//  - Either we want all appointments which fall within the given range
-				//	- Or we want all recurring items which we manually check if an occurence
+				//	- Or we want all recurring items which we manually check if an occurrence
 				//	  exists which will fall inside the range
 				Array(RES_OR,
 					Array(
@@ -207,7 +219,7 @@
 							Array(RELOP => RELOP_EQ,
 								ULPROPTAG => $this->properties["recurring"],
 								VALUE => true
-							)
+							),
 						)
 					)
 			);// global OR
@@ -232,19 +244,20 @@
 		{
 			$items = Array();
 			$openedMessages = Array();
+			$proptags = $GLOBALS["properties"]->getRecurrenceProperties();
 
 			foreach($calendaritems as $calendaritem)
 			{
 				$item = null;
 				if (isset($calendaritem[$this->properties["recurring"]]) && $calendaritem[$this->properties["recurring"]]) {
-					$recurrence = new Recurrence($store, $calendaritem);
+					$recurrence = new Recurrence($store, $calendaritem, $proptags);
 					$recuritems = $recurrence->getItems($start, $end);
 
 					foreach($recuritems as $recuritem)
 					{
 						$item = Conversion::mapMAPI2XML($this->properties, $recuritem);
 
-						// Single occurences are never recurring
+						// Single occurrences are never recurring
 						$item['props']['recurring'] = false;
 
 						if(isset($recuritem["exception"])) {
@@ -271,7 +284,7 @@
 							}
 							// Now create a Recurrence object with the mapi message (instead of the message props)
 							// so we can open the attachments
-							$recurrence = new Recurrence($store, $message);
+							$recurrence = new Recurrence($store, $message, $proptags);
 							$exceptionatt = $recurrence->getExceptionAttachment($recuritem["basedate"]);
 							if($exceptionatt) {
 								// Existing exception (open existing item, which includes basedate)
@@ -324,6 +337,8 @@
 					$item['props']['reminder'] = 0;
 					$item['props']['access'] = 0;
 					$item['props']['sent_representing_name'] = '';
+					$item['props']['display_to'] = '';
+					$item['props']['display_cc'] = '';
 					$item['props']['sender_name'] = '';
 
 					return $item;

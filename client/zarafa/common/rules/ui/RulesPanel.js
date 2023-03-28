@@ -10,13 +10,13 @@ Zarafa.common.rules.ui.RulesPanel = Ext.extend(Ext.Container, {
 	/**
 	 * @cfg {Zarafa.common.rules.data.RulesStore} store store to use for loading rules
 	 */
-	store : undefined,
+	store: undefined,
 
 	/**
 	 * @constructor
 	 * @param config Configuration structure
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -28,10 +28,10 @@ Zarafa.common.rules.ui.RulesPanel = Ext.extend(Ext.Container, {
 
 		Ext.applyIf(config, {
 			// Override from Ext.Component
-			xtype : 'zarafa.rulespanel',
-			border : false,
-			layout : 'fit',
-			items : this.createPanelItems(config)
+			xtype: 'zarafa.rulespanel',
+			border: false,
+			layout: 'fit',
+			items: this.createPanelItems(config)
 		});
 
 		Zarafa.common.rules.ui.RulesPanel.superclass.constructor.call(this, config);
@@ -43,7 +43,7 @@ Zarafa.common.rules.ui.RulesPanel = Ext.extend(Ext.Container, {
 	 * @return {Object} array which contains the jsonstore.
 	 * @private
 	 */
-	createComboboxStore : function()
+	createComboboxStore: function()
 	{
 		var hierarchyStore = container.getHierarchyStore();
 		var data = [{name: _('myself'), value: hierarchyStore.getDefaultStore().get('store_entryid') }];
@@ -55,15 +55,18 @@ Zarafa.common.rules.ui.RulesPanel = Ext.extend(Ext.Container, {
 				continue;
 			}
 
-			hierarchyStore.getStores().forEach(function(store){
-				if ( store.get('user_name') === user ){
+			hierarchyStore.getStores().forEach(function(store) {
+				if (store.get('user_name') === user) {
 					// Saving rules only works with owner permissions on the full store.
 					// Note: Rules are stored on the default received folder (inbox). The WebApp backend will
 					// not check the rights and allows saving rules when the user has folder rights on the
 					// inbox (because that's what Kopano Core needs).
 					var subtree = store.getSubtreeFolder();
 					var inbox = store.getDefaultFolder('inbox');
-					if ( (subtree.get('rights') & Zarafa.core.mapi.Rights.RIGHTS_OWNER) === Zarafa.core.mapi.Rights.RIGHTS_OWNER && (inbox.get('rights') & Zarafa.core.mapi.Rights.RIGHTS_FOLDER_ACCESS) ) {
+					if (
+						(subtree.get('rights') & Zarafa.core.mapi.Rights.RIGHTS_OWNER) === Zarafa.core.mapi.Rights.RIGHTS_OWNER &&
+						(inbox && inbox.get('rights') & Zarafa.core.mapi.Rights.RIGHTS_FOLDER_ACCESS)
+					) {
 						data = data.concat({name: store.get('mailbox_owner_name'), value: store.get('store_entryid') });
 					}
 				}
@@ -84,16 +87,18 @@ Zarafa.common.rules.ui.RulesPanel = Ext.extend(Ext.Container, {
 	 * @return {Array} array of items that should be added to panel.
 	 * @private
 	 */
-	createPanelItems : function(config)
+	createPanelItems: function(config)
 	{
-		var comboStore = this.createComboboxStore();
 		var items = [];
-		if ( container.getServerConfig().isSharedRulesEnabled() ){
+		// Only create the combolist when the setting is enabled in config.php
+		if (container.getServerConfig().isSharedRulesEnabled()) {
+			var comboStore = this.createComboboxStore();
 			items.push({
 				xtype: 'container',
 				cls: 'k-store-picker',
 				border: false,
 				layout: 'form',
+				hidden: !Ext.isDefined(comboStore.data[1]),
 				labelWidth: '-', // Anything but a number to make sure Ext does not set a width
 				items: {
 					xtype: 'combo',
@@ -107,30 +112,30 @@ Zarafa.common.rules.ui.RulesPanel = Ext.extend(Ext.Container, {
 					forceSelection: true,
 					value: comboStore.data[0].value,
 					editable: false,
-					listeners : {
-						beforeselect : this.onBeforeUserSelect,
-						select : this.onUserSelect,
-						scope : this
+					listeners: {
+						beforeselect: this.onBeforeUserSelect,
+						select: this.onUserSelect,
+						scope: this
 					}
 				}
 			});
 		}
 
 		items.push({
-			xtype : 'zarafa.rulesgrid',
-			ref : '../rulesGrid',
-			flex : 1,
-			store : config.store
+			xtype: 'zarafa.rulesgrid',
+			ref: '../rulesGrid',
+			flex: 1,
+			store: config.store
 		});
 
 		return [{
-			xtype : 'container',
-			layout : {
-				type : 'vbox',
-				align : 'stretch',
-				pack  : 'start'
+			xtype: 'container',
+			layout: {
+				type: 'vbox',
+				align: 'stretch',
+				pack: 'start'
 			},
-			items : items
+			items: items
 		}];
 	},
 
@@ -148,15 +153,14 @@ Zarafa.common.rules.ui.RulesPanel = Ext.extend(Ext.Container, {
 	 * @return {Mixed} False if there are pending changes. The selecting will then be
 	 * handled by {#applyChanges}. Undefined otherwise.
 	 */
-	onBeforeUserSelect : function(field, record, index)
+	onBeforeUserSelect: function(field, record, index)
 	{
 		var context = container.getContextByName('settings');
 		var model = context.getModel();
 		if (model.dirty) {
 			Ext.MessageBox.show({
-				title: _('Kopano WebApp'),
-				msg : _('Do you wish to apply the changes?'),
-				icon: Ext.MessageBox.QUESTION,
+				title: _('Apply changes'),
+				msg: _('Do you wish to apply the changes?'),
 				fn: this.applyChanges.createDelegate(this, [ model, field, record ], 1),
 				buttons: Ext.MessageBox.YESNOCANCEL
 			});
@@ -173,7 +177,7 @@ Zarafa.common.rules.ui.RulesPanel = Ext.extend(Ext.Container, {
 	 *
 	 * @param {Ext.form.ComboBox} field The combobox which was selected
 	 */
-	onUserSelect : function(field)
+	onUserSelect: function(field)
 	{
 		this.loadUserStore(field.getValue());
 	},
@@ -186,7 +190,7 @@ Zarafa.common.rules.ui.RulesPanel = Ext.extend(Ext.Container, {
 	 * @param {Zarafa.settings.SettingsContextModel} model the settings model
 	 * @param {Ext.form.ComboBox} field the user selection combobox.
 	 */
-	applyChanges : function(btn, model, field, record)
+	applyChanges: function(btn, model, field, record)
 	{
 		// The user cancels the switch to a different category
 		if (btn === 'cancel') {
@@ -212,7 +216,7 @@ Zarafa.common.rules.ui.RulesPanel = Ext.extend(Ext.Container, {
 	 *
 	 * @param {String} entryId the netryid of the store to be used for reading and writing the rules.
 	 */
-	loadUserStore : function(entryId)
+	loadUserStore: function(entryId)
 	{
 		this.store.storeEntryId = entryId;
 		this.store.load();
@@ -221,7 +225,7 @@ Zarafa.common.rules.ui.RulesPanel = Ext.extend(Ext.Container, {
 	/**
 	 * Function will be used to reload data in the {@link Zarafa.common.rules.data.RulesStore RulesStore}.
 	 */
-	discardChanges : function()
+	discardChanges: function()
 	{
 		this.store.load();
 	},
@@ -229,7 +233,7 @@ Zarafa.common.rules.ui.RulesPanel = Ext.extend(Ext.Container, {
 	/**
 	 * Function will be used to save changes in the {@link Zarafa.common.rules.data.RulesStore RulesStore}.
 	 */
-	saveChanges : function()
+	saveChanges: function()
 	{
 		this.store.save();
 	}

@@ -43,11 +43,11 @@
 		var $searchResults;
 
 		/**
-		 * @var MAPIFolder resource of the freebusy folder which holds
+		 * @var MAPIMessage resource of the freebusy message which holds
 		 * information regarding delegation details, this variable will
 		 * only be populated when user is a delegate
 		 */
-		var $localFreeBusyFolder;
+		var $localFreeBusyMessage;
 
 		/**
 		 * @var BinString binary string of PR_MDB_PROVIDER property
@@ -66,7 +66,7 @@
 
 			$this->restriction = false;
 			$this->searchFolderList = false;
-			$this->localFreeBusyFolder = false;
+			$this->localFreeBusyMessage = false;
 			$this->storeProviderGuid = false;
 
 			$this->sort = array();
@@ -135,6 +135,8 @@
 			parent::handleException($e, $actionType, $store, $parententryid, $entryid, $action);
 		}
 
+		function updateMessageListData(&$data, $store, $folderEntryid, $action, $actionType){}
+
 		/**
 		 * Function which retrieves a list of messages in a folder
 		 * @param object $store MAPI Message Store Object
@@ -157,6 +159,8 @@
 				$limit = false;
 				if(isset($action['restriction']['limit'])){
 					$limit = $action['restriction']['limit'];
+				} else {
+					$limit = $GLOBALS['settings']->get('zarafa/v1/main/page_size', 50);
 				}
 
 				$isSearchFolder = isset($action['search_folder_entryid']);
@@ -164,7 +168,6 @@
 
 				// Get the table and merge the arrays
 				$data = $GLOBALS["operations"]->getTable($store, $entryid, $this->properties, $this->sort, $this->start, $limit, $this->restriction);
-
 
 				// If the request come from search folder then no need to send folder information
 				if (!$isSearchFolder) {
@@ -183,15 +186,7 @@
 					}
 				}
 
-				// Disable private items
-				for($index = 0, $len = count($data["item"]); $index < $len; $index++) {
-					$data["item"][$index] = $this->processPrivateItem($data["item"][$index]);
-
-					if(empty($data["item"][$index])) {
-						// remove empty results from data
-						unset($data["item"][$index]);
-					}
-				}
+				$data = $this->filterPrivateItems($data);
 
 				// Allowing to hook in just before the data sent away to be sent to the client
 				$GLOBALS['PluginManager']->triggerHook('server.module.listmodule.list.after', array(
@@ -199,12 +194,13 @@
 					'store' => $store,
 					'entryid' => $entryid,
 					'action' => $action,
-					'data' =>& $data
+					'data' =>& $data,
 				));
 
 				// unset will remove the value but will not regenerate array keys, so we need to
 				// do it here
 				$data["item"] = array_values($data["item"]);
+
 				$this->addActionData($actionType, $data);
 				$GLOBALS["bus"]->addData($this->getResponseData());
 			}
@@ -370,6 +366,9 @@
 			$table = $GLOBALS["operations"]->getTable($store, hex2bin($searchFolderEntryId), $this->properties, $this->sort, $this->start);
 			$data = array_merge($data, $table);
 
+			$this->getDelegateFolderInfo($store);
+			$data = $this->filterPrivateItems($data);
+
 			// remember which entryid's are send to the client
 			$searchResults = array();
 			foreach($table["item"] as $item) {
@@ -408,7 +407,7 @@
 		/**
 		 *	Function will check for the status of the search on server
 		 *	and it will also send intermediate results of search, so we don't have to wait
-		 *	untill search is finished on server to send results
+		 *	until search is finished on server to send results
 		 *	@param		object		$store		MAPI Message Store Object
 		 *	@param		hexString	$entryid	entryid of the folder
 		 *	@param		object		$action		the action data, sent by the client
@@ -651,7 +650,7 @@
 
 				return $searchFolder;
 			} catch (MAPIException $e) {
-				// don't propogate the event to higher level exception handlers
+				// don't propagate the event to higher level exception handlers
 				$e->setHandled();
 			}
 
@@ -680,7 +679,7 @@
 			} catch (MAPIException $e) {
 				$msg ="Unable to open FINDER_ROOT for store: %s. Run kopano-search-upgrade-findroots.py to resolve the permission issue";
 				error_log(sprintf($msg, $storeProps[PR_DISPLAY_NAME]));
-				// don't propogate the event to higher level exception handlers
+				// don't propagate the event to higher level exception handlers
 				$e->setHandled();
 			}
 
@@ -688,7 +687,7 @@
 		}
 
 		/**
-		 *	Function will send error message to client if any error has occured in search
+		 *	Function will send error message to client if any error has occurred in search
 		 *	@param		object		$store		MAPI Message Store Object
 		 *	@param		hexString	$entryid	entryid of the folder
 		 *	@param		object		$action		the action data, sent by the client
@@ -728,6 +727,7 @@
 								$props = array_merge($this->properties, array('body' => PR_BODY));
 							case "task":
 							case "note":
+							case "filter":
 								$this->restriction = Conversion::json2restriction($props, $value);
 								break;
 						}
@@ -808,13 +808,13 @@
 		}
 
 		/**
-		 * Function which gets the delegation details from localfreebusy folder to use in
+		 * Function which gets the delegation details from localfreebusy message to use in
 		 * processPrivateItems function.
 		 * @param {MAPIStore} $store MAPI Message Store Object
 		 */
 		function getDelegateFolderInfo($store)
 		{
-			$this->localFreeBusyFolder = false;
+			$this->localFreeBusyMessage = false;
 			$this->storeProviderGuid = false;
 
 			try {
@@ -826,33 +826,43 @@
 					return;
 				}
 
-				// open localfreebusy folder for delegate permissions
-				$rootFolder = mapi_msgstore_openentry($store, null);
-				$rootFolderProps = mapi_getprops($rootFolder, array(PR_FREEBUSY_ENTRYIDS));
-
-				/**
-				 *	PR_FREEBUSY_ENTRYIDS contains 4 entryids
-				 *	PR_FREEBUSY_ENTRYIDS[0] gives associated freebusy folder in calendar
-				 *	PR_FREEBUSY_ENTRYIDS[1] Localfreebusy (used for delegate properties)
-				 *	PR_FREEBUSY_ENTRYIDS[2] global Freebusydata in public store
-				 *	PR_FREEBUSY_ENTRYIDS[3] Freebusydata in IPM_SUBTREE
-				 */
-				// get localfreebusy folder
-				$this->localFreeBusyFolder = mapi_msgstore_openentry($store, $rootFolderProps[PR_FREEBUSY_ENTRYIDS][1]);
+				// get localfreebusy message
+				$this->localFreeBusyMessage = freebusy::getLocalFreeBusyMessage($store);
 			} catch(MAPIException $e) {
 				// we got some error, but we don't care about that error instead just continue
 				$e->setHandled();
 
-				$this->localFreeBusyFolder = false;
+				$this->localFreeBusyMessage = false;
 				$this->storeProviderGuid = false;
 			}
+		}
+
+		/**
+		 * Helper function which loop through each item and filter out
+		 * private items, if any.
+		 * @param {array} array structure with row search data
+		 * @return {array} array structure with row search data
+		 */
+		function filterPrivateItems($data)
+		{
+			// Disable private items
+			for($index = 0, $len = count($data["item"]); $index < $len; $index++) {
+				$data["item"][$index] = $this->processPrivateItem($data["item"][$index]);
+
+				if(empty($data["item"][$index])) {
+					// remove empty results from data
+					unset($data["item"][$index]);
+				}
+			}
+
+			return $data;
 		}
 
 		/**
 		 * Function will be used to process private items in a list response, modules can
 		 * can decide what to do with the private items, remove the entire row or just
 		 * hide the data. This function will entirely remove the private message but
-		 * if any child class needs different behavior then this can be overriden.
+		 * if any child class needs different behavior then this can be overridden.
 		 * @param {Object} $item item properties
 		 * @return {Object} item properties if its non private item otherwise empty array
 		 */
@@ -890,21 +900,21 @@
 					$private = true;
 
 					// find delegate properties
-					if($this->localFreeBusyFolder !== false) {
+					if($this->localFreeBusyMessage !== false) {
 						try {
-							$localFreeBusyFolderProps = mapi_getprops($this->localFreeBusyFolder, array(PR_SCHDINFO_DELEGATE_ENTRYIDS, PR_DELEGATES_SEE_PRIVATE));
+							$localFreeBusyMessageProps = mapi_getprops($this->localFreeBusyMessage, array(PR_SCHDINFO_DELEGATE_ENTRYIDS, PR_DELEGATES_SEE_PRIVATE));
 
-							if(isset($localFreeBusyFolderProps[PR_SCHDINFO_DELEGATE_ENTRYIDS]) && isset($localFreeBusyFolderProps[PR_DELEGATES_SEE_PRIVATE])) {
+							if(isset($localFreeBusyMessageProps[PR_SCHDINFO_DELEGATE_ENTRYIDS]) && isset($localFreeBusyMessageProps[PR_DELEGATES_SEE_PRIVATE])) {
 								// if more then one delegates info is stored then find index of
 								// current user
 								$userEntryId = $GLOBALS['mapisession']->getUserEntryID();
 
 								$userFound = false;
 								$seePrivate = false;
-								foreach($localFreeBusyFolderProps[PR_SCHDINFO_DELEGATE_ENTRYIDS] as $key => $entryId) {
+								foreach($localFreeBusyMessageProps[PR_SCHDINFO_DELEGATE_ENTRYIDS] as $key => $entryId) {
 									if ($GLOBALS['entryid']->compareABEntryIds(bin2hex($userEntryId), bin2hex($entryId))) {
 										$userFound = true;
-										$seePrivate = $localFreeBusyFolderProps[PR_DELEGATES_SEE_PRIVATE][$key];
+										$seePrivate = $localFreeBusyMessageProps[PR_DELEGATES_SEE_PRIVATE][$key];
 										break;
 									}
 								}

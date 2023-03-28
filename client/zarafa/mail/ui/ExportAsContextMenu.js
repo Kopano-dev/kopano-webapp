@@ -35,13 +35,13 @@ Zarafa.mail.ui.ExportAsContextMenu = Ext.extend(Zarafa.core.ui.menu.ConditionalM
 			cls: 'k-categories',
 			items: [{
 				text: _('EML file(s)'),
-				iconCls: 'icon_saveaseml',
+				iconCls: 'icon_download',
 				handler: this.onContextItemEml,
 				scope: this
 			}, {
 				text: _('ZIP file'),
 				hideOnDisabled: false,
-				iconCls: 'icon_saveemlaszip',
+				iconCls: 'icon_download_zip',
 				beforeShow: this.onZipMenuItemBeforeShow,
 				handler: this.onContextItemEmlZip,
 				scope: this
@@ -76,7 +76,7 @@ Zarafa.mail.ui.ExportAsContextMenu = Ext.extend(Zarafa.core.ui.menu.ConditionalM
 	/**
 	 * Event handler which is called when the user selects the 'Download as files'
 	 * item in the context menu. This will request to download selected message
-	 * as file (RFC822-formatted e-mail stream) with eml extension.
+	 * as file (RFC822-formatted email stream) with eml extension.
 	 * @private
 	 */
 	onContextItemEml: function ()
@@ -87,7 +87,7 @@ Zarafa.mail.ui.ExportAsContextMenu = Ext.extend(Zarafa.core.ui.menu.ConditionalM
 	/**
 	 * Event handler which is called when the user selects the 'Download as ZIP'
 	 * item in the context menu. This will request to download selected message
-	 * as file (RFC822-formatted e-mail stream) with eml extension included in a ZIP archive.
+	 * as file (RFC822-formatted email stream) with eml extension included in a ZIP archive.
 	 * @private
 	 */
 	onContextItemEmlZip: function ()

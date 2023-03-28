@@ -12,11 +12,11 @@ Zarafa.mail.Actions = {
 	 * further edited.
 	 *
 	 * @param {Zarafa.mail.MailContextModel} model Context Model object that will be used
-	 * to {@link Zarafa.mail.MailContextModel#createRecord create} the E-Mail.
+	 * to {@link Zarafa.mail.MailContextModel#createRecord create} the email.
 	 * @param {Object} config (optional) Configuration object used to create
 	 * the Content Panel.
 	 */
-	openCreateMailContent : function(model, config)
+	openCreateMailContent: function(model, config)
 	{
 		var record = model.createRecord();
 		Zarafa.core.data.UIFactory.openCreateRecord(record, config);
@@ -32,7 +32,7 @@ Zarafa.mail.Actions = {
 	 * @param {Object} config (optional) Configuration object used to create
 	 * the Content Panel.
 	 */
-	openCreateMailContentForContacts : function(model, contacts, config)
+	openCreateMailContentForContacts: function(model, contacts, config)
 	{
 		var mailRecord = model.createRecord();
 		var recipientStore = mailRecord.getRecipientStore();
@@ -55,8 +55,8 @@ Zarafa.mail.Actions = {
 					* reference changes and without this encapsulation it will change the contact in
 					* all the previously added task functions as well.
 					*/
-					fn : function(){
-						// This contactRecord becomes a private variable, not changable outside.
+					fn: function(){
+						// This contactRecord becomes a private variable, not changeable outside.
 						var contactRecord = contact;
 						return function(panel, record, task, callback) {
 							var fn = function(store, record) {
@@ -78,12 +78,42 @@ Zarafa.mail.Actions = {
 		}
 
 		config = Ext.applyIf(config || {}, {
-			recordComponentPluginConfig : {
-				loadTasks : tasks
+			recordComponentPluginConfig: {
+				loadTasks: tasks
 			}
 		});
 
 		Zarafa.core.data.UIFactory.openCreateRecord(mailRecord, config);
+	},
+
+	/**
+	 * Function will close a conversation when there's single record selected in mail grid
+	 * and that record is a part of that conversation. This will also select a row above this conversation
+	 * and if there's no row above then it'll select a row below it.
+	 *
+	 * @param {Zarafa.mail.ui.MailGrid} mailGrid The grid in which we need to close the conversation.
+	 */
+	closeSelectedConversation: function(mailGrid)
+	{
+		var selModel = mailGrid.getSelectionModel();
+		var selections = selModel.getSelections();
+
+		if (selections.length === 1 && selections[0].isConversationRecord()) {
+			var record = selections.pop();
+			var store = record.getStore();
+			var headerRecord = store.getHeaderRecordFromItem(record);
+
+			if (headerRecord) {
+				store.toggleConversation(headerRecord);
+
+				// Select previous row of this conversation headerRecord.
+				// If its not available then select Next row of it.
+				var rowIndex = store.indexOf(headerRecord);
+				if (!selModel.selectPrevious(false, rowIndex)) {
+					selModel.selectNext(false, rowIndex);
+				}
+			}
+		}
 	},
 
 	/**
@@ -98,7 +128,7 @@ Zarafa.mail.Actions = {
 	 * @param {Object} config (optional) Configuration object used to create
 	 * the Content Panel.
 	 */
-	openCreateMailResponseContent : function(records, model, actionType, config)
+	openCreateMailResponseContent: function(records, model, actionType, config)
 	{
 		if (!Array.isArray(records)) {
 			records = [records];
@@ -115,7 +145,7 @@ Zarafa.mail.Actions = {
 			}
 
 			if (actionType === Zarafa.mail.data.ActionTypes.FORWARD_ATTACH) {
-				response = model.createResponseRecord(record, actionType, response);
+				response = model.createResponseRecord(record, actionType, response, config);
 			} else {
 				var openHandler = function(store, record) {
 					// This function will called in the scope of the record for
@@ -125,7 +155,7 @@ Zarafa.mail.Actions = {
 					}
 
 					if (actionType === Zarafa.mail.data.ActionTypes.FORWARD_ATTACH) {
-						response = model.createResponseRecord(record, actionType, response);
+						response = model.createResponseRecord(record, actionType, response, config);
 					} else {
 						response = model.createResponseRecord(record, actionType);
 						Zarafa.core.data.UIFactory.openCreateRecord(response, config);
@@ -156,14 +186,14 @@ Zarafa.mail.Actions = {
 	 * @param {Object} config (optional) Configuration object used to create
 	 * the Content Panel.
 	 */
-	openMailOptionsContent : function(records, config)
+	openMailOptionsContent: function(records, config)
 	{
 		if (Array.isArray(records) && !Ext.isEmpty(records)) {
 			records = records[0];
 		}
 
 		config = Ext.applyIf(config || {}, {
-			modal : true
+			modal: true
 		});
 
 		var componentType = Zarafa.core.data.SharedComponentType['mail.dialog.options'];
@@ -179,7 +209,7 @@ Zarafa.mail.Actions = {
 	 * @param {Object} config (optional) Configuration object used to create
 	 * the Content Panel.
 	 */
-	openRecipientSelectionContent : function(records, config)
+	openRecipientSelectionContent: function(records, config)
 	{
 		if (Array.isArray(records) && !Ext.isEmpty(records)) {
 			records = records[0];
@@ -191,47 +221,47 @@ Zarafa.mail.Actions = {
 		var store = copy.getSubStore('recipients');
 		copy.isModalDialogRecord = true;
 		Zarafa.common.Actions.openABUserMultiSelectionContent({
-			callback : function() {
+			callback: function() {
 				records.applyData(copy);
 			},
-			convert : function(user, field) {
+			convert: function(user, field) {
 				return user.convertToRecipient(field ? field.defaultRecipientType : config.defaultRecipientType);
 			},
-			store : store,
-			selectionCfg : [{
-				xtype : 'zarafa.recipientfield',
-				fieldLabel : _('To') + ':',
-				boxStore : store,
+			store: store,
+			selectionCfg: [{
+				xtype: 'zarafa.recipientfield',
+				fieldLabel: _('To') + ':',
+				boxStore: store,
 				filterRecipientType: Zarafa.core.mapi.RecipientType.MAPI_TO,
 				defaultRecipientType: Zarafa.core.mapi.RecipientType.MAPI_TO,
-				flex : 1
+				flex: 1
 			},{
-				xtype : 'zarafa.recipientfield',
-				fieldLabel : _('CC') + ':',
-				boxStore : store,
+				xtype: 'zarafa.recipientfield',
+				fieldLabel: _('CC') + ':',
+				boxStore: store,
 				filterRecipientType: Zarafa.core.mapi.RecipientType.MAPI_CC,
 				defaultRecipientType: Zarafa.core.mapi.RecipientType.MAPI_CC,
-				flex : 1
+				flex: 1
 			},{
-				xtype : 'zarafa.recipientfield',
-				fieldLabel : _('BCC') + ':',
-				boxStore : store,
+				xtype: 'zarafa.recipientfield',
+				fieldLabel: _('BCC') + ':',
+				boxStore: store,
 				filterRecipientType: Zarafa.core.mapi.RecipientType.MAPI_BCC,
 				defaultRecipientType: Zarafa.core.mapi.RecipientType.MAPI_BCC,
-				flex : 1
+				flex: 1
 			}]
 		});
 	},
 
 	/**
 	 * Open a Panel in which the {@link Zarafa.core.data.IPMRecord record}
-	 * can be viewed, or further edited with pre-choosen layer as separateWindows..
+	 * can be viewed, or further edited with pre-chosen layer as separateWindows..
 	 * Prepare record instance based on original record.
 	 *
 	 * @param {Zarafa.core.data.IPMRecord} records The records to open
 	 * @param {Zarafa.core.ui.MessageContentPanel} dialog which contains the record.
 	 */
-	popoutMailContent : function(record, dialog) {
+	popoutMailContent: function(record, dialog) {
 		var copy;
 
 		// First create the exact same copy of record avoiding cheap copy.
@@ -247,8 +277,8 @@ Zarafa.mail.Actions = {
 		copy.getAttachmentStore().setId(attachmentStoreId);
 
 		var configObj = {
-			layerType : 'separateWindows',
-			isRecordChangeByUser : dialog.recordComponentPlugin.isChangedByUser
+			layerType: 'separateWindows',
+			isRecordChangeByUser: dialog.recordComponentPlugin.isChangedByUser
 		};
 
 		if(!record.phantom){
@@ -258,7 +288,7 @@ Zarafa.mail.Actions = {
 
 			// Prevent that RecordComponentPlugin's setRecord adds the record into the shadow store again
 			// as we already add the record into shadow store in the line above.
-			configObj.recordComponentPluginConfig = { useShadowStore : false };
+			configObj.recordComponentPluginConfig = { useShadowStore: false };
 		}
 
 		// Close the existing tab for which a new separate browser window is created
@@ -285,5 +315,29 @@ Zarafa.mail.Actions = {
             resizable: false,
             scope: this
         });
-    }
+	},
+
+	/**
+	 * Function will redirect to signature widget which belongs to {@link Zarafa.mail.settings.SettingsSignaturesWidget SettingsSignaturesWidget}.
+	 */
+	redirectToSignatureWidget: function()
+	{
+		if (Zarafa.core.BrowserWindowMgr.isMainWindowActive() === false){
+			Zarafa.core.BrowserWindowMgr.switchFocusToMainWindow();
+		}
+
+		var context = container.getCurrentContext();
+		if (context.getName() === "settings") {
+			var tabPanel = container.getTabPanel();
+			context.defaultActiveTab = 1;
+			context.scrollToSignatureWidget = true;
+			tabPanel.setActiveTab("zarafa-mainpanel-content");
+		} else {
+			context = container.getContextByName('settings');
+			// defaultActiveTab = 1 is mail tab
+			context.defaultActiveTab = 1;
+			context.scrollToSignatureWidget = true;
+			container.switchContext(context);
+		}
+	}
 };

@@ -4,12 +4,29 @@
 	.zarafa-settings-category-panel {
 		border-right: 1px solid $grey;
 		padding-top: $padding-medium;
+		z-index: 1;
+		overflow: hidden !important;
+
+		&:hover {
+			overflow : auto !important;
+		}
 
 		.zarafa-settings-category-tab {
-			padding: ($settings-category-tab-height - $font-default-line-height)/2 $padding-medium;
-			padding-left: $settings-category-tab-icon-strip-width;
+			padding: ($settings-category-tab-height - $font-default-line-height) $padding-medium;
+			padding-left: 4px;
 			line-height: $font-default-line-height;
-			cursor:pointer;
+			cursor: pointer;
+			background-position: ($settings-category-tab-icon-strip-width - 16px)/2 center !important;
+		}
+		.zarafa-settings-category-tab.k-with-icon {
+			img.k-settings-category-icon {
+				width: 20px;
+				height: 20px;
+				float: left;
+				background-position: center center !important;
+				background-repeat: no-repeat;
+				margin-right: $padding-medium - 1px;
+			}
 		}
 		.zarafa-settings-category-tab-over {
 			background-color: $grey2;
@@ -21,20 +38,45 @@
 
 	/* The main settings panel that contains all settings widgets */
 	.zarafa-settings-category-widget-panel {
-		padding: $padding-medium $padding-small;
+		padding: $padding-medium 0 0 0;
+
+		.x-panel .x-panel-header, .x-panel-ghost .x-panel-header {
+			background: transparent;
+			font-size: $font-size-large;
+			font-weight: bold;
+		}
 
 		.zarafa-settings-widget {
 			margin-bottom: $padding-medium;
 
 			.x-panel-header {
-				padding: ($settings-category-tab-height - $font-default-line-height)/2 $padding-medium;
+				padding: ($settings-category-tab-height - $font-default-line-height)/2 $padding-medium*2;
 				line-height: $font-default-line-height;
-				border-top: none;
-				border-bottom: none;
+				border: none;
 			}
 
 			.x-panel-body {
-				padding: $padding-medium;
+				padding: $padding-medium*2;
+				border-left: none;
+				border-right: none;
+			}
+
+			.x-panel-body .x-panel .x-panel-header {
+				font-weight: normal;
+				padding: 15px 0 15px 0;
+			}
+
+			.x-panel-body .x-panel .x-panel-body {
+				border-bottom: none;
+				padding: 0;
+			}
+
+			.x-panel-body .x-panel .x-grid3-header {
+				border-bottom: none;
+			}
+
+			.x-panel-body .x-panel .x-grid3-scroller {
+				border: 1px solid $grey;
 			}
 
 			.zarafa-quotabar {
@@ -101,7 +143,7 @@
 
 			a {
 				background: $kopano-blue;
-				color: white;
+				color: $white;
 				padding: $padding-small;
 				text-decoration: none;
 			}
@@ -110,7 +152,20 @@
 			}
 		}
 
+		/* Advanced category */
+		.k-settings-category-advanced-container {
+			.k-settings-search-field {
+				height: 30px !important;
+				font-size: medium;
+			}
+		}
+
 	}
+}
+
+/* Widget info text */
+.zarafa-settings-widget-extrainfo {
+	padding: 0 0 $padding-large 0;
 }
 
 /* Loading of "address book -> select default folder" */
@@ -120,106 +175,30 @@
 }
 
 /* Settings icons in the settingstab */
-.zarafa-settings-category-tab, .zarafa-settings-favorite-tab
-{
+.zarafa-settings-category-tab, .zarafa-settings-favorite-tab {
 	background-position: 2px center;
 	background-repeat: no-repeat;
-}
-
-.zarafa-settings-category-general
-{
-	background-position: sprite-position($icons, icon_cogwheel, $offset-x: 4, $offset-y: 5);
-	background-image: sprite-url($icons);
-}
-
-.zarafa-settings-category-mail
-{
-	background-position: sprite-position($icons, icon_unread_mail, $offset-x: 6, $offset-y: 9);
-	background-image: sprite-url($icons)
-}
-
-.zarafa-settings-category-oof
-{
-	background-position: sprite-position($iconsmap, icon_oof, $offset-x: 2, $offset-y: 3);
-	background-image: sprite-url($iconsmap)
-}
-
-.zarafa-settings-category-rules
-{
-	background-position: sprite-position($iconsmap, icon_funnel, $offset-x: 3, $offset-y: 5);
-	background-image: sprite-url($iconsmap)
-}
-
-.zarafa-settings-category-calendar
-{
-	background-position: sprite-position($iconsmap, icon_calendar, $offset-x: 6, $offset-y: 8);
-	background-image: sprite-url($iconsmap)
-}
-
-.zarafa-settings-category-delegate
-{
-	background-position: sprite-position($iconsmap, delegates_s, $offset-x: 3, $offset-y: 5);
-	background-image: sprite-url($iconsmap)
-}
-
-.zarafa-settings-category-sendas {
-	background-position: sprite-position($iconsmap, icon_sendas, $offset-x: 3, $offset-y: 6);
-	background-image: sprite-url($iconsmap)
-}
-
-.zarafa-settings-category-plugins {
-	background-position: sprite-position($iconsmap, icon_plug, $offset-x: 3, $offset-y: 4);
-	background-image: sprite-url($iconsmap)
-}
-
-.zarafa-settings-category-keyshortcut {
-	background-position: sprite-position($iconsmap, icon_shortcuts, $offset-x: 3, $offset-y: 5);
-	background-image: sprite-url($iconsmap)
-}
-
-.zarafa-settings-category-advanced {
-	background-position: sprite-position($iconsmap, icon_spanner, $offset-x: 3, $offset-y: 4);
-	background-image: sprite-url($iconsmap)
-}
-
-.zarafa-settings-category-copyright {
-	background-position: sprite-position($iconsmap, icon_seal, $offset-x: 3, $offset-y: 6);
-	background-image: sprite-url($iconsmap)
-}
-
-/* OOF and Signature icon in Mail settings and OOF setting tab */
-.zarafa-settings-favorite-oof
-{
-	background-position: sprite-position($iconsmap, icon_oof, $offset-x: 0, $offset-y: -2);
-	background-image: sprite-url($iconsmap)
-}
-
-.zarafa-settings-favorite-signatures
-{
-	background-position: sprite-position($icons, icon_signature, $offset-x: 0, $offset-y: -4);
-	background-image: sprite-url($icons)
-}
-
-.x-panel-inline-icon.zarafa-settings-favorite-oof, .x-panel-inline-icon.zarafa-settings-favorite-signatures
-{
-	width: 20px;
-	height: 20px;
 }
 
 .zarafa-settings-signatures {
 	margin-right: $padding-large;
 
- 	.x-grid3-row {
- 		border-top: 1px solid $grey;
- 		margin-bottom: -1px;
-	 }
- }
- .k-signature-editor textarea {
+	.x-panel-body-noheader {
+		border-top: none;
+	}
+}
+
+.k-signature-name, .zarafa-settings-oof-subject input {
+	padding: $padding-medium $padding-medium $padding-medium 2*$padding-medium;
+	font-size: $font-size-large !important;
+}
+
+.k-signature-editor textarea {
 	padding: $padding-extra-large;
 	font-family: monospace !important;
- }
+}
 
-.k-signature-editor{
+.k-signature-editor {
 	.mce-panel.mce-tinymce {
 		width: auto !important;
 	}
@@ -232,26 +211,24 @@
 	line-height: $font-line-height-large;
 	border: solid 1px $grey;
 	border-radius: 2px;
-	background-color: white;
-	display: inline-block;
-}
-
-.keyboard-desc {
+	background-color: $white;
 	display: inline-block;
 }
 
 /* Out of office Category */
-.zarafa-settings-oof-invalid
-{
-	color: $red ;
+.zarafa-settings-oof-invalid {
+	color: $red;
 }
+
 .zarafa-settings-oof-table-cellalign {
 	text-align: right;
 }
+
 .zarafa-settings-oof-table-cellpadding {
 	padding: $padding-medium $padding-medium $padding-medium 0;
 }
-.zarafa-settings-oof-subject .label-subject{
+
+.zarafa-settings-oof-subject .label-subject {
 	line-height: $button-small-height;
 	padding-right: $padding-medium;
 }
@@ -261,19 +238,38 @@
 }
 
 /* Plugin list */
-.zarafa-settings-pluginavailable {
-	.zarafa-settings-widget-extrainfo {
-		margin: 0;
-	}
-	.k-settings-plugingrid {
-		padding-top: $padding-extra-large;
+.k-settings-pluginpanel {
+
+	.x-panel-body {
+		padding: 0;
+		border: none;
 	}
 
-	.zarafa-settings-pluginavailable-fixed {
-		.x-grid3-col-display_name {
-			span {
-				font-style: italic;
-				color: $grey6;
+	.x-panel-header {
+		border: none;
+	}
+
+	.zarafa-settings-pluginavailable {
+
+		.x-panel-body {
+			border-top: none;
+			padding: 0 !important;
+		}
+
+		.k-settings-plugingrid .x-grid3-scroller {
+			border: none !important;
+		}
+
+		.k-settings-plugingrid .x-grid3-row .x-grid3-check-col-td, .x-grid3-row .x-grid3-td-checker {
+			padding-left: 10px;
+		}
+
+		.zarafa-settings-pluginavailable-fixed {
+			.x-grid3-col-display_name {
+				span {
+					font-style: italic;
+					color: $grey6;
+				}
 			}
 		}
 	}

@@ -92,7 +92,7 @@ class WebAppAuthentication
 			case MAPI_E_NETWORK_ERROR:
 				return _('Cannot connect to Kopano Core.');
 			case MAPI_E_INVALID_WORKSTATION_ACCOUNT:
-				return _('Logon failed, another session already exists.');
+				return _('Login did not work due to a duplicate session. The issue was automatically resolved, please log in again.');
 			case MAPI_E_END_OF_SESSION:
 				return '';
 			default:
@@ -171,11 +171,14 @@ class WebAppAuthentication
 			);
 
 			if (WebAppAuthentication::$_errorCode === NOERROR ) {
+				if (LOG_SUCCESSFUL_LOGINS) {
+					error_log('Kopano WebApp - ' . $username . ': authentication successful at MAPI');
+				}
 				WebAppAuthentication::$_authenticated = true;
 				WebAppAuthentication::_storeMAPISession(WebAppAuthentication::$_mapiSession->getSession());
 			} elseif ( WebAppAuthentication::$_errorCode == MAPI_E_LOGON_FAILED || WebAppAuthentication::$_errorCode == MAPI_E_UNCONFIGURED ) {
 				// Print error message to error_log of webserver
-				error_log('Kopano WebApp user: ' . $username . ': authentication failure at MAPI');
+				error_log('Kopano WebApp user: ' . $username . ': authentication failure at MAPI. IP: ' . getClientIPAddress());
 			}
 		}
 
@@ -204,7 +207,7 @@ class WebAppAuthentication
 	/**
 	 * Restore a MAPISession from the serialized with kc_session_restore.
 	 *
-	 * @return boolean true if session has been restored succesfully
+	 * @return boolean true if session has been restored successfully
 	 */
 	private static function _restoreMAPISession() {
 		$encryptionStore = EncryptionStore::getInstance();
@@ -240,13 +243,13 @@ class WebAppAuthentication
 	 */
 	public static function isUsingSingleSignOn() {
 		// First check if the admin disabled using SSO on SSO systems
-		if ( DISABLE_REMOTE_USER_LOGIN ){
+		if (!ENABLE_REMOTE_USER_LOGIN){
 			return false;
 		}
 
 		// REMOTE_USER is set when apache has authenticated the user,
 		// meaning Single Sign-on environment is in effect.
-		return isset($_SERVER['REMOTE_USER']);
+		return isset($_SERVER['REMOTE_USER']) && !empty($_SERVER['REMOTE_USER']);
 	}
 
 	/**
@@ -276,7 +279,7 @@ class WebAppAuthentication
 
 		WebAppAuthentication::login($username, '');
 
-		// Store the username in the session if logging in was succesful
+		// Store the username in the session if logging in was successful
 		if ( WebAppAuthentication::$_errorCode === NOERROR ){
 			WebAppAuthentication::_storeCredentialsInSession($username, '');
 		}
@@ -306,14 +309,20 @@ class WebAppAuthentication
 	 */
 	public static function authenticateWithPostedCredentials() {
 
+		if (empty($_POST['username']) || empty($_POST['password'])) {
+			WebAppAuthentication::$_errorCode = MAPI_E_LOGON_FAILED;
+			return WebAppAuthentication::getErrorCode();
+		}
+
 		// Check if a session is already running and if the credentials match
 		$encryptionStore = EncryptionStore::getInstance();
 		$username = $encryptionStore->get('username');
 		$password = $encryptionStore->get('password');
 
 		if ( !is_null($username) && !is_null($password) ){
-			if ( $username!=$_POST['username'] || $password!=$_POST['password'] ){
+			if ( $username!=$_POST['username'] || $password!=$_POST['password'] ) {
 				WebAppAuthentication::$_errorCode = MAPI_E_INVALID_WORKSTATION_ACCOUNT;
+				WebAppAuthentication::$_phpSession->destroy();
 				return WebAppAuthentication::getErrorCode();
 			}
 		} else {
@@ -330,6 +339,69 @@ class WebAppAuthentication
 		// Store the credentials in the session if logging in was succesfull
 		if ( WebAppAuthentication::$_errorCode === NOERROR ){
 			WebAppAuthentication::_storeCredentialsInSession($_POST['username'], $_POST['password']);
+		}
+
+		return WebAppAuthentication::getErrorCode();
+	}
+
+	/**
+	 * Function which try to open the default store using existing mapi session.
+	 * 
+	 * @return {Boolean} true if default store open else false.
+	 */
+	public static function isDefaultStoreAccessible(){
+		$mapiSession = WebAppAuthentication::getMapiSession();
+		$storeEntryID = $mapiSession->getDefaultMessageStoreEntryId();
+		try {
+			mapi_openmsgstore($mapiSession->getSession(), hex2bin($storeEntryID));
+		} catch (MAPIException $e) {
+			error_log('OIDC access token is expired therefore failed to open the default store with entryid ' . $storeEntryID);
+			return false;
+		}
+		return true;
+	} 
+
+	/**
+	 * Logs the user in with a given username and token in $_POST and logs
+	 * in with the special flag for token authentication enabled. If $new
+	 * is true it's assumed that a session does not exists and there will
+	 * be a new one generated and fingerprint stored in session which is
+	 * later compared after logon. After successful logon the session is stored.
+	 *
+	 * @param Boolean $new true if user has no session yet.
+	 * @return integer|void
+	 */
+	public static function authenticateWithToken($new=True) {
+		$sslcert_file = defined('SSLCERT_FILE') ? SSLCERT_FILE : null;
+		$sslcert_pass = defined('SSLCERT_PASS') ? SSLCERT_PASS : null;
+
+		if (empty($_POST['token'])) {
+			WebAppAuthentication::$_errorCode = MAPI_E_LOGON_FAILED;
+			return WebAppAuthentication::getErrorCode();
+		}
+
+		if ($new) {
+			// If no session is currently running, then store a fingerprint of the requester
+			// in the session.
+			$_SESSION['fingerprint'] = BrowserFingerprint::getFingerprint();
+
+			// Give the session a new id
+			session_regenerate_id();
+		}
+
+		WebAppAuthentication::$_errorCode = WebAppAuthentication::getMapiSession()->logon(
+			$_POST['username'],
+			$_POST['token'],
+			DEFAULT_SERVER,
+			$sslcert_file,
+			$sslcert_pass,
+			EC_PROFILE_FLAGS_OIDC
+		);
+
+		// Store the credentials in the session if logging in was succesfull
+		if ( WebAppAuthentication::$_errorCode === NOERROR ){
+			WebAppAuthentication::_storeCredentialsInSession($_POST['username'], $_POST['token']);
+			WebAppAuthentication::_storeMAPISession(WebAppAuthentication::$_mapiSession->getSession());
 		}
 
 		return WebAppAuthentication::getErrorCode();

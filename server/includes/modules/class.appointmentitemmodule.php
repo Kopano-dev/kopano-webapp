@@ -1,9 +1,9 @@
 <?php
 	require_once(BASE_PATH . 'server/includes/mapi/class.recurrence.php');
-	
+
 	/**
 	 * Appointment ItemModule
-	 * Module which openes, creates, saves and deletes an item. It 
+	 * Module which openes, creates, saves and deletes an item. It
 	 * extends the Module class.
 	 */
 	class AppointmentItemModule extends ItemModule
@@ -15,9 +15,9 @@
 		 */
 		function __construct($id, $data)
 		{
-			$this->properties = $GLOBALS['properties']->getAppointmentProperties();
-
 			parent::__construct($id, $data);
+
+			$this->properties = $GLOBALS['properties']->getAppointmentProperties();
 
 			$this->plaintext = true;
 			$this->skipCopyProperties = array(
@@ -27,7 +27,7 @@
 				PR_OWNER_APPT_ID
 			);
 		}
-		
+
 		function open($store, $entryid, $action)
 		{
 			if($store && $entryid) {
@@ -52,21 +52,21 @@
 
 					$data['item'] = $GLOBALS['operations']->getEmbeddedMessageProps($store, $message, $this->properties, $parentMessage, $attachNum);
 				} else {
-					// add all standard properties from the series/normal message 
+					// add all standard properties from the series/normal message
 					$data['item'] = $GLOBALS['operations']->getMessageProps($store, $message, $this->properties, $this->plaintext);
 				}
 
-				// if appointment is recurring then only we should get properties of occurence if basedate is supplied
+				// if appointment is recurring then only we should get properties of occurrence if basedate is supplied
 				if($data['item']['props']['recurring'] === true) {
 					if(!empty($action['basedate'])) {
-						// check for occurence/exception
+						// check for occurrence/exception
 						$basedate = $action['basedate'];
 
 						$recur = new Recurrence($store, $message);
 
 						$exceptionatt = $recur->getExceptionAttachment($basedate);
 
-						// Single occurences are never recurring
+						// Single occurrences are never recurring
 						$data['item']['props']['recurring'] = false;
 
 						if($exceptionatt) {
@@ -136,7 +136,7 @@
 							);
 							return;
 						} else {
-							// opening an occurence of a recurring series (same as normal open, but add basedate, startdate and enddate)
+							// opening an occurrence of a recurring series (same as normal open, but add basedate, startdate and enddate)
 							$data['item']['props']['basedate'] = $basedate;
 							$data['item']['props']['startdate'] = $recur->getOccurrenceStart($basedate);
 							$data['item']['props']['duedate'] = $recur->getOccurrenceEnd($basedate);
@@ -180,7 +180,54 @@
 				$GLOBALS['bus']->addData($this->getResponseData());
 			}
 		}
-		
+
+		/**
+		 * Function does customization of exception based on module data.
+		 * like, here it will generate display message based on actionType
+		 * for particular exception.
+		 *
+		 * @param object $e Exception object
+		 * @param string $actionType the action type, sent by the client
+		 * @param MAPIobject $store Store object of message.
+		 * @param string $parententryid parent entryid of the message.
+		 * @param string $entryid entryid of the message.
+		 * @param array $action the action data, sent by the client
+		 */
+		function handleException(&$e, $actionType = null, $store = null, $parententryid = null, $entryid = null, $action = null)
+		{
+			if (is_null($e->displayMessage)) {
+				switch ($actionType) {
+					case "save":
+						if ($e->getCode() == MAPI_E_NO_ACCESS) {
+							$message = mapi_msgstore_openentry($store, $entryid);
+							$messageProps = mapi_getprops($message, array(PR_MESSAGE_CLASS, PR_ENTRYID, PR_PARENT_ENTRYID, PR_STORE_ENTRYID));
+							$messageClass = $messageProps[PR_MESSAGE_CLASS];
+
+							$text = $messageClass !== "IPM.Appointment" ? _('a meeting request') : _('an appointment');
+							$msg = _('You have insufficient privileges to move ' . $text .' in this calendar. The calendar owner can set these using the \'permissions\'-tab of the folder properties (right click the calendar folder > properties > permissions)');
+
+							$e->setDisplayMessage($msg);
+							$e->setTitle(_('Insufficient privileges'));
+
+							// Need this notification to refresh the calender.
+							$GLOBALS['bus']->notify(bin2hex($parententryid), TABLE_DELETE, $messageProps);
+						}
+						break;
+				}
+			}
+			parent::handleException($e, $actionType, $store, $parententryid, $entryid, $action);
+		}
+
+
+		/**
+		 * Save the give appointment or meeting request to the calendar.
+		 *
+		 * @param mapistore $store MAPI store of the message
+		 * @param string $parententryid Parent entryid of the message (folder entryid, NOT message entryid)
+		 * @param string $entryid entryid of the message
+		 * @param array $action Action array containing json request
+		 * @param string $actionType The action type which triggered this action
+		 */
 		function save($store, $parententryid, $entryid, $action, $actionType = 'save')
 		{
 			$result = false;
@@ -198,12 +245,12 @@
 			$errorMsg = false;
 			if(!$result && isset($messageProps['remindertimeerror']) && !$messageProps['remindertimeerror']){
 				$errorMsg = _('Cannot set a reminder to appear before the previous occurrence. Reset reminder to save the change');
-			}else if (isset($messageProps['isexceptionallowed']) && $messageProps['isexceptionallowed'] === false){
+			} else if (isset($messageProps['isexceptionallowed']) && $messageProps['isexceptionallowed'] === false){
 				$errorMsg = _('Two occurrences cannot occur on the same day');
-			}elseif(is_array($messageProps) && isset($messageProps['error'])){
+			} elseif(is_array($messageProps) && isset($messageProps['error'])){
 				switch($messageProps['error']){
 					case 1:
-						$errorMsg = sprintf(_('You marked \'%s\' as a resource. You cannot schedule a meeting with \'%s\' because you do not have the appropiate permissions for that account. Either enter the name as a required or optional attendee or talk to your administrator about giving you permission to schedule \'%s\'.'), $messageProps['displayname'], $messageProps['displayname'], $messageProps['displayname']);
+						$errorMsg = sprintf(_('You marked \'%s\' as a resource. You cannot schedule a meeting with \'%s\' because you do not have the appropriate permissions for that account. Either enter the name as a required or optional attendee or talk to your administrator about giving you permission to schedule \'%s\'.'), $messageProps['displayname'], $messageProps['displayname'], $messageProps['displayname']);
 						break;
 					case 2:
 						$errorMsg = sprintf(_('\'%s\' has declined your meeting because \'%s\' does not automatically accept meeting requests.'), $messageProps['displayname'], $messageProps['displayname']);
@@ -218,7 +265,7 @@
 						$errorMsg = _('Meeting was not scheduled.');
 						break;
 				}
-			}else{
+			} else {
 				// Recurring but non-existing exception (same as normal open, but add basedate, startdate and enddate)
 				$data = array();
 				if ($result) {
@@ -236,6 +283,17 @@
 						}
 					}
 
+					// Get attachments information from the saved appointment to update client side
+					// according to the latest attachments related changes only if changes requested from client.
+					if (!empty($action['attachments'])) {
+						$attachments = $GLOBALS["operations"]->getAttachmentsInfo($savedAppointment);
+						if (!empty($attachments)) {
+							$data["attachments"] = array(
+								"item" => $attachments
+							);
+						}
+					}
+
 					$data['action_response'] = Array(
 						'resources_booked' => $this->directBookingMeetingRequest
 					);
@@ -247,7 +305,7 @@
 				} else {
 					if(!empty($action['message_action']['send'])){
 						$errorMsg = _('Meeting could not be sent.');
-					}else{
+					} else {
 						$errorMsg = _('Meeting could not be saved.');
 					}
 				}

@@ -11,86 +11,86 @@ Zarafa.common.printer.renderers.BaseRenderer = Ext.extend(Object, {
 	 * @constructor
 	 * @param {Object} config Configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		Ext.apply(this, config);
 	},
 
 	/**
 	 * Prints the component
-	 * @param {Ext.Component} component The component to print
+	 * @param {Zarafa.core.data.MAPIRecord|Zarafa.core.Context} objectToPrint The record(s)
+	 * that will be printed, or the context for which the items in the store will be printed.
 	 */
-	print: function(component) {
-		var name = component && component.getXType
-			? String.format("print_{0}_{1}", component.getXType(), component.id.replace(/-/g, '_'))
-			: "print";
-             
-		var win = window.open('', name);
-		if (win) {
-			win.document.write(this.generateHTML(component));
-			win.document.close();
-			this.postRender(window.document, win.document, component);
+	print: function(objectToPrint) {
+		// The WebKit browsers (Chrome, Safari, and Edge (which is also recognized as WebKit))
+		// show a print preview, so we can use an hidden iframe to create our print.
+		// IE and FireFox don't have a print preview when printing from an iframe, so
+		// we will open a new window in which we will create our print. This window will
+		// also function as a print preview
+		if ( Ext.isWebKit ) {
 
-			this.doPrintOnStylesheetLoad.defer(10, this, [win]);
-		}
-	},
+			// Needed for popouts
+			var activeWindow = Zarafa.core.BrowserWindowMgr.getActive();
+			var activeDocument = activeWindow.document;
+			var printFrame = activeDocument.createElement('iframe');
+			printFrame.style.cssText = "height: 0px; width: 0px; position: absolute;";
+			activeDocument.body.appendChild(printFrame);
 
-	/**
-	 * check if style is loaded and do print afterwards
-	 * 
-	 * @param {window} win
-	 */
-	doPrintOnStylesheetLoad: function(win)
-	{
-		if (win) {
-			// Search for the images, if they are not loaded yet, reschedule
-			var images = win.document.getElementsByTagName('img');
-			for (var i = 0, len = images.length; i < len; i++) {
-				var image = images[i];
-				if (image.complete !== true || image.src && image.width + image.height === 0 ) {
-					this.doPrintOnStylesheetLoad.defer(10, this, [win]);
-					return;
-				}
+			printFrame.onload = function () {
+				// Remove the iframe after printing.
+				printFrame.contentWindow.onafterprint = function() {
+					activeDocument.body.removeChild(printFrame);
+				};
+
+				printFrame.contentWindow.print();
+			};
+			var printDocument = printFrame.contentDocument;
+			printDocument.write(this.generateHTML(objectToPrint));
+			printDocument.close();
+			this.postRender(printDocument, objectToPrint);
+
+
+		} else {
+			var win = window.open('', 'name'+(new Date().getTime()));
+			if (win) {
+				win.document.write(this.generateHTML(objectToPrint));
+				win.document.close();
+				this.postRender(win.document, objectToPrint);
+
+				// Show print dialog when window has loaded all resources.
+				win.onload = function() {
+					win.print();
+					win.close();
+				};
 			}
-
-			// Search for the CSS, if it is not available yet, reschedule
-			var el = win.document.getElementById('csscheck'),
-			comp = el.currentStyle || win.getComputedStyle(el, null);
-			if (comp.display !== "none") {
-				this.doPrintOnStylesheetLoad.defer(10, this, [win]);
-				return;
-			}
-			win.print();
-			win.close();
 		}
 	},
 
 	/**
 	 * Generates the HTML Markup which wraps whatever this.generateBodyTemplate produces
-	 * @param {Ext.Component} component The component to generate HTML for
+	 * @param {Zarafa.core.data.MAPIRecord|Zarafa.core.Context} objectToPrint The record(s)
+	 * that will be printed, or the context for which the items in the store will be printed.
 	 * @return {String} An HTML fragment to be placed inside the print window
 	 */
-	generateHTML: function(component) {
+	generateHTML: function(objectToPrint) {
+
 		return new Ext.XTemplate(
 			this.cleanTemplate(
 				// no doctype, quicks mode works better for printing, especially in chrome.
 				'<html>\n' +
 				'<head>\n' +
 					'<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />\n' +
-					this.generateHeadTemplate(component) +
-					'<title>' + this.getTitle(component) + '</title>\n' +
+					this.generateHeadTemplate(objectToPrint) +
+					'<title>' + container.getServerConfig().getWebappTitle() + '</title>\n' +
 				'</head>\n' +
 				'<body>\n' +
-					'<div id="csscheck"></div>\n' +
 					'<div id="pagemargin">\n' +
-						this.generateBodyTemplate(component) +
+						this.generateBodyTemplate(objectToPrint) +
 					'</div>\n' +
 				'</body>\n' +
 				'</html>'
-			),{
-				disableFormats: true
-			}
-		).apply(this.prepareData(component));
+			)
+		).apply(this.prepareData(objectToPrint));
 	},
 
 	/**
@@ -99,7 +99,7 @@ Zarafa.common.printer.renderers.BaseRenderer = Ext.extend(Object, {
 	 * @return {String} The clean template
 	 * @private
 	 */
-	cleanTemplate : function(template)
+	cleanTemplate: function(template)
 	{
 		// Conversions:
 		// - \r is an illegal character which cannot be present in a string
@@ -109,49 +109,33 @@ Zarafa.common.printer.renderers.BaseRenderer = Ext.extend(Object, {
 
 	/**
 	 * Returns the HTML that will be placed into the <head> part of the print window.
-	 * @param {Ext.Component} component The component to render
+	 * @param {Zarafa.core.data.MAPIRecord|Zarafa.core.Context} objectToPrint The record(s)
+	 * that will be printed, or the context for which the items in the store will be printed.
 	 * @return {String} The HTML fragment to place inside the print window's <head> element
 	 */
-	generateHeadTemplate: function(record) {
-		if (!Ext.isEmpty(this.customStylesheetPath)) {
-			if (Array.isArray(this.customStylesheetPath)) {
-				var all = '';
-				for (var i=0, l=this.customStylesheetPath.length; i<l; i++) {
-					all += '<link href="' + this.customStylesheetPath[i] + '?' + new Date().getTime() + '" rel="stylesheet" type="text/css" media="screen,print" />\n';
-				}
-				return all;
-			} else {
-				return '<link href="' + this.customStylesheetPath + '?' + new Date().getTime() + '" rel="stylesheet" type="text/css" media="screen,print" />';
-			}
+	generateHeadTemplate: function(objectToPrint) {
+		if ( !Ext.isString(this.customStylesheetPath) || Ext.isEmpty(this.customStylesheetPath) ) {
+			return '';
 		}
-		return '';
+
+		return '<link href="' +this.customStylesheetPath + '?' + new Date().getTime() + '" rel="stylesheet" type="text/css" media="screen,print" />\n';
 	},
 
 	/**
 	 * Returns the HTML that will be placed into the <body> part of the print window.
-	 * @param {Ext.Component} component The component to render
+	 * @param {Zarafa.core.data.MAPIRecord|Zarafa.core.Context} objectToPrint The record(s)
+	 * that will be printed, or the context for which the items in the store will be printed.
 	 * @return {String} The HTML fragment to place inside the print window's <body> element
 	 */
 	generateBodyTemplate: Ext.emptyFn,
 
 	/**
-	 * Prepares data suitable for use in an XTemplate from the component 
-	 * @param {Ext.Component} component The component to acquire data from
+	 * Prepares data suitable for use in an XTemplate from the component
+	 * @param {Zarafa.core.data.MAPIRecord} record The record(s)
+	 * that will be printed, or the context for which the items in the store will be printed.
 	 * @return {Array} An empty array (override this to prepare your own data)
 	 */
-	prepareData: function(record) {
-		// copy all properties
-		var data = Ext.apply({}, record.data);
-		data['fullname'] = container.getUser().getDisplayName();
-
-		// HTML Escape all data
-		for (var key in data) {
-			if(Ext.isString(data[key])) {
-				data[key] = Ext.util.Format.htmlEncode(data[key]);
-			}
-		}
-		return data;
-	},
+	prepareData: Ext.emptyFn,
 
 	/**
 	 * Passes the newly created DOM tree to add more rendering of Ext components in.
@@ -159,14 +143,5 @@ Zarafa.common.printer.renderers.BaseRenderer = Ext.extend(Object, {
 	 * @param {Document} printDOM DOM containing processed print template
 	 * @param {Object} obj the object for the renderer
 	 */
-	postRender: Ext.emptyFn,
-  
-	/**
-	 * Returns the title to give to the print window
-	 * @param {Ext.Component} component The component to be printed
-	 * @return {String} The window title
-	 */
-	getTitle: function(component) {
-		return typeof component.getTitle == 'function' ? component.getTitle() : (component.title || "Printing");
-	}
+	postRender: Ext.emptyFn
 });

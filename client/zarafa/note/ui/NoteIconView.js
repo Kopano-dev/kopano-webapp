@@ -9,7 +9,7 @@ Zarafa.note.ui.NoteIconView = Ext.extend(Zarafa.common.ui.DraggableDataView, {
 	/**
 	 * @cfg {Zarafa.note.NoteContext} context The context to which this panel belongs
 	 */
-	context : undefined,
+	context: undefined,
 
 	/**
 	 * The {@link Zarafa.note.NoteContextModel} which is obtained from
@@ -18,13 +18,13 @@ Zarafa.note.ui.NoteIconView = Ext.extend(Zarafa.common.ui.DraggableDataView, {
 	 * @property
 	 * @type Zarafa.note.NoteContextModel
 	 */
-	model : undefined,
+	model: undefined,
 
 	/**
 	 * @constructor
 	 * @param {object} configuration object
 	 */
-	constructor : function(config)
+	constructor: function(config)
 	{
 		config = config || {};
 
@@ -42,9 +42,9 @@ Zarafa.note.ui.NoteIconView = Ext.extend(Zarafa.common.ui.DraggableDataView, {
 
 		Ext.applyIf(config, {
 			xtype		:'zarafa.noteiconview',
-			id : 'note-iconview',
-			cls : 'zarafa-note-iconview',
-			loadingText : _('Loading notes') + '...',
+			id: 'note-iconview',
+			cls: 'zarafa-note-iconview',
+			loadingText: _('Loading notes') + '...',
 			deferEmptyText: false,
 			emptyText	: '<div class="emptytext">' + _('There are no items to show in this list') + '</div>',
 			overClass	:'zarafa-note-iconview-over',
@@ -52,8 +52,8 @@ Zarafa.note.ui.NoteIconView = Ext.extend(Zarafa.common.ui.DraggableDataView, {
 			multiSelect	: true,
 			selectedClass:'zarafa-note-iconview-selected',
 			itemSelector:'div.zarafa-note-iconview-thumb',
-			enableDrag : true,
-			ddGroup : 'dd.mapiitem'
+			enableDrag: true,
+			ddGroup: 'dd.mapiitem'
 		});
 
 		Zarafa.note.ui.NoteIconView.superclass.constructor.call(this, config);
@@ -65,7 +65,7 @@ Zarafa.note.ui.NoteIconView = Ext.extend(Zarafa.common.ui.DraggableDataView, {
 	 * Initialize html template by seting color icon and note subject
 	 * @private
 	 */
-	initTemplate : function()
+	initTemplate: function()
 	{
 		return new Ext.XTemplate(
 			'<div style="height: 100%; width: 100%; overflow: auto;">',
@@ -77,7 +77,7 @@ Zarafa.note.ui.NoteIconView = Ext.extend(Zarafa.common.ui.DraggableDataView, {
 				'</tpl>',
 			'</div>',
 			{
-				getTheme : function(iconIndex)
+				getTheme: function(iconIndex)
 				{
 					switch (iconIndex) {
 						case 768:
@@ -94,7 +94,7 @@ Zarafa.note.ui.NoteIconView = Ext.extend(Zarafa.common.ui.DraggableDataView, {
 							return 'icon_note_yellow_large';
 					}
 				},
-				encodeSubject : function(subject)
+				encodeSubject: function(subject)
 				{
 					// the subject of notes is already 'ellipsed' but since the 2015 redesign
 					// this subject is too large to fit (because of the increased font-size)
@@ -106,25 +106,30 @@ Zarafa.note.ui.NoteIconView = Ext.extend(Zarafa.common.ui.DraggableDataView, {
 	},
 
 	/**
-	 * Returns {@link Zarafa.note.ui.NoteMainPanel NoteMainPanel} object which instantiated all the views
-	 * @return {Zarafa.note.ui.NoteMainPanel} note main panel
-	 */
-	getMainPanel : function()
-	{
-		return this.ownerCt;
-	},
-
-	/**
 	 * initialize events for the grid panel
 	 * @private
 	 */
-	initEvents : function()
+	initEvents: function()
 	{
 		this.on({
 			'contextmenu': this.onNoteIconContextMenu,
 			'dblclick': this.onIconDblClick,
 			'selectionchange': this.onSelectionChange,
-			scope : this
+			'afterrender': this.onAfterRender,
+			scope: this
+		});
+
+	},
+
+	/**
+	 * Event handler called when note icon view rendered properly.
+	 */
+	onAfterRender: function()
+	{
+		this.getEl().on({
+			'mouseenter': this.onMouseEnter,
+			'mouseleave': this.onMouseLeave,
+			scope: this
 		});
 	},
 
@@ -143,7 +148,7 @@ Zarafa.note.ui.NoteIconView = Ext.extend(Zarafa.common.ui.DraggableDataView, {
 			dataview.select(node);
 		}
 
-		Zarafa.core.data.UIFactory.openDefaultContextMenu(dataview.getSelectedRecords(), { position : eventObj.getXY() });
+		Zarafa.core.data.UIFactory.openDefaultContextMenu(dataview.getSelectedRecords(), { position: eventObj.getXY() });
 	},
 
 	/**
@@ -168,7 +173,7 @@ Zarafa.note.ui.NoteIconView = Ext.extend(Zarafa.common.ui.DraggableDataView, {
 	 * @param {HTMLElement[]} selection Array of selected nodes.
 	 * @private
 	 */
-	onSelectionChange : function(dataView, selections)
+	onSelectionChange: function(dataView, selections)
 	{
 		this.model.setSelectedRecords(dataView.getSelectedRecords());
 	}

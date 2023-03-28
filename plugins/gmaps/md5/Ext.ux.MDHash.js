@@ -1,46 +1,46 @@
 Ext.namespace('Ext.ux');
 
 /*
- Source from :  http://www.sencha.com/forum/showthread.php?28460-Ext.util.MD5
+ Source from:  http://www.sencha.com/forum/showthread.php?28460-Ext.util.MD5
  */
 
 Ext.ux.MDHash = function(s,raw,hexcase,chrsz) {
-	raw = raw || false;	
+	raw = raw || false;
 	hexcase = hexcase || false;
 	chrsz = chrsz || 8;
 
-	function safe_add(x, y){
+	function safe_add(x, y) {
 		var lsw = (x & 0xFFFF) + (y & 0xFFFF);
 		var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
 		return (msw << 16) | (lsw & 0xFFFF);
 	}
-	function bit_rol(num, cnt){
+	function bit_rol(num, cnt) {
 		return (num << cnt) | (num >>> (32 - cnt));
 	}
-	function md5_cmn(q, a, b, x, s, t){
+	function md5_cmn(q, a, b, x, s, t) {
 		return safe_add(bit_rol(safe_add(safe_add(a, q), safe_add(x, t)), s),b);
 	}
-	function md5_ff(a, b, c, d, x, s, t){
+	function md5_ff(a, b, c, d, x, s, t) {
 		return md5_cmn((b & c) | ((~b) & d), a, b, x, s, t);
 	}
-	function md5_gg(a, b, c, d, x, s, t){
+	function md5_gg(a, b, c, d, x, s, t) {
 		return md5_cmn((b & d) | (c & (~d)), a, b, x, s, t);
 	}
-	function md5_hh(a, b, c, d, x, s, t){
+	function md5_hh(a, b, c, d, x, s, t) {
 		return md5_cmn(b ^ c ^ d, a, b, x, s, t);
 	}
-	function md5_ii(a, b, c, d, x, s, t){
+	function md5_ii(a, b, c, d, x, s, t) {
 		return md5_cmn(c ^ (b | (~d)), a, b, x, s, t);
 	}
 
-	function core_md5(x, len){
+	function core_md5(x, len) {
 		x[len >> 5] |= 0x80 << ((len) % 32);
 		x[(((len + 64) >>> 9) << 4) + 14] = len;
 		var a =  1732584193;
 		var b = -271733879;
 		var c = -1732584194;
 		var d =  271733878;
-		for(var i = 0; i < x.length; i += 16){
+		for(var i = 0; i < x.length; i += 16) {
 			var olda = a;
 			var oldb = b;
 			var oldc = c;
@@ -116,7 +116,7 @@ Ext.ux.MDHash = function(s,raw,hexcase,chrsz) {
 		}
 		return [a, b, c, d];
 	}
-	function str2binl(str){
+	function str2binl(str) {
 		var bin = [];
 		var mask = (1 << chrsz) - 1;
 		for(var i = 0; i < str.length * chrsz; i += chrsz) {
@@ -124,7 +124,7 @@ Ext.ux.MDHash = function(s,raw,hexcase,chrsz) {
 		}
 		return bin;
 	}
-	function binl2str(bin){
+	function binl2str(bin) {
 		var str = "";
 		var mask = (1 << chrsz) - 1;
 		for(var i = 0; i < bin.length * 32; i += chrsz) {
@@ -132,8 +132,8 @@ Ext.ux.MDHash = function(s,raw,hexcase,chrsz) {
 		}
 		return str;
 	}
-	
-	function binl2hex(binarray){
+
+	function binl2hex(binarray) {
 		var hex_tab = hexcase ? "0123456789ABCDEF" : "0123456789abcdef";
 		var str = "";
 		for(var i = 0; i < binarray.length * 4; i++) {
