@@ -3432,20 +3432,6 @@
 						}
 					}
 
-					/**
-					 * if message is reply/reply all or forward and format of message is HTML but
-					 * - inline attachments are not downloaded from external source
-					 * - sender of original message is not safe sender
-					 * - domain of sender is not part of safe sender list
-					 * then ignore inline attachments from original message.
-					 *
-					 * NOTE : blockStatus is only generated when user has download inline image from external source.
-					 * it should remains empty if user add the sender in to safe sender list.
-					 */
-					if(!$plainText && $isInlineAttachment && empty($blockStatus) && !$isSafeSender) {
-						continue;
-					}
-
 					$new = mapi_message_createattach($message);
 					mapi_copyto($old, array(), array(), $new, 0);
 					mapi_savechanges($new);
