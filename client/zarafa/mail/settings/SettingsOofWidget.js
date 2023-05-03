@@ -29,7 +29,7 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 		config = config || {};
 
 		if(Ext.isEmpty(config.store)) {
-			config.store = new Zarafa.common.outofoffice.data.OofStore();
+			config.store = container.getOutOfOfficeStore();
 		}
 
 		Ext.applyIf(config, {
@@ -372,6 +372,10 @@ Zarafa.mail.settings.SettingsOofWidget = Ext.extend(Zarafa.settings.ui.SettingsW
 			this.filterUserFromDropDown();
 		} else {
 			this.record = this.getOofStore().getAt(0);
+		}
+
+		if (Ext.isEmpty(this.record)) {
+			return;
 		}
 
 		var record = this.record;
