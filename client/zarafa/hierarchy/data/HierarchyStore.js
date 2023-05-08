@@ -1147,6 +1147,29 @@ Zarafa.hierarchy.data.HierarchyStore = Ext.extend(Zarafa.core.data.IPFStore, {
 				);
 			}
 		}
+	},
+
+	/**
+	 * Function which check given folder entryid is 'sent items' or it's child folder entryid.
+	 *
+	 * @param {Zarafa.hierarchy.data.MAPIFolderRecord} folder The folder to check it's belongs to sent folder or not.
+	 * @returns {Boolean} true if entryid is 'sent items' or it's child folder entryid else false.
+	 */
+	isParentFolderIsSentItemFolder: function(folder)
+	{
+		if (Ext.isEmpty(folder)) {
+			return false;
+		}
+
+		if (folder.isIPMSubTree()) {
+			return false;
+		}
+
+		if (folder.getDefaultFolderKey() === "sent") {
+			return true;
+		}
+
+		return this.isParentFolderIsSentItemFolder(folder.getParentFolder());
 	}
 });
 
