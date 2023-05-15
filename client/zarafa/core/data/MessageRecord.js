@@ -157,7 +157,30 @@ Zarafa.core.data.MessageRecord = Ext.extend(Zarafa.core.data.IPMRecord, {
 	*/
 	convertToAppointment: function(folder)
 	{
-		return this.convertRecord(folder, 'IPM.Appointment');
+		var appointmentRecord = this.convertRecord(folder, 'IPM.Appointment');
+		appointmentRecord.convertToMeeting();
+		appointmentRecord.set("startdate", new Date().add(Date.MINUTE, 0));
+		appointmentRecord.set("duedate", new Date().add(Date.MINUTE, 30));
+
+		var hierarchyStore = container.getHierarchyStore();
+		// If selected item is belogns to 'Sent Items' folder or it's child folder then use
+		// recipient store to add attendies into create appointment else use 'reply-to' receipient.
+		var isParentFolderIsSentItem = hierarchyStore.isParentFolderIsSentItemFolder(hierarchyStore.getFolder(this.get("parent_entryid")));
+		var attendiesStore = isParentFolderIsSentItem ? this.getRecipientStore() : this.getSubStore('reply-to');
+
+		attendiesStore.getRange().forEach(function (recipient) {
+			var recipientCopy = recipient.copy();
+			// Following changes are required to mark the
+			// recipient to dirty and phantom so it can
+			// save by the server.
+			recipientCopy.id = Ext.id();
+			recipientCopy.phantom = true;
+			recipientCopy.dirty = true;
+			recipientCopy.data.rowid = "";
+			appointmentRecord.getRecipientStore().add(recipientCopy);
+		}, this);
+
+		return appointmentRecord;
 	},
 
 	/**
