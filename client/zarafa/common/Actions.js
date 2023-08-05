@@ -1390,7 +1390,23 @@ Zarafa.common.Actions = {
 			});
 
 			record.opened = false;
-			Zarafa.core.data.UIFactory.openViewRecord(record);
+			container.getShadowStore().add(record);
+
+			var openHandler = function (store, record) {
+				// This function will called in the scope of the record for
+				// whom the event handler was registered.
+				if (this !== record) {
+					return;
+				}
+
+				var model = container.getCurrentContext().getModel();
+				var response = model.createResponseRecord(record, Zarafa.mail.data.ActionTypes.REPLY);
+				Zarafa.core.data.UIFactory.openCreateRecord(response);
+				store.un('open', openHandler, record);
+			};
+
+			record.getStore().on('open', openHandler, record);
+			record.open();
 		}
 	},
 
