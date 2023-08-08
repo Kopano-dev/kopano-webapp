@@ -537,23 +537,25 @@ Zarafa.core.data.MessageRecord = Ext.extend(Zarafa.core.data.IPMRecord, {
 			entryid: this.get('sent_representing_entryid')
 		};
 		
-		// Check whether the sent_representing_* properties had been set by 'from addresses' functionality.
-		// If so then get that recipient details from the 'sendas' settings and create config object accordingly.
-		var recipient = defaultFromRecipients.find(function (recipient) {
-			var sentRepresentingEmail = this.get('sent_representing_email_address');
-			return sentRepresentingEmail === recipient['email_address'] || sentRepresentingEmail === recipient['smtp_address'];
-		}, this);
+		if (!Ext.isEmpty(defaultFromRecipients)) {
+			// Check whether the sent_representing_* properties had been set by 'from addresses' functionality.
+			// If so then get that recipient details from the 'sendas' settings and create config object accordingly.
+			var recipient = defaultFromRecipients.find(function (recipient) {
+				var sentRepresentingEmail = this.get('sent_representing_email_address');
+				return sentRepresentingEmail === recipient['email_address'] || sentRepresentingEmail === recipient['smtp_address'];
+			}, this);
 
-		if (Ext.isDefined(recipient)) {
-			Ext.apply(recipeintConfig, {
-				display_name: recipient['display_name'],
-				email_address: recipient['email_address'] || recipient['smtp_address'],
-				address_type: recipient['address_type'],
-				entryid: recipient['entryid'],
-				object_type: recipient['object_type'],
-				display_type: recipient['display_type'],
-				display_type_ex: recipient['display_type_ex']
-			});
+			if (Ext.isDefined(recipient)) {
+				Ext.apply(recipeintConfig, {
+					display_name: recipient['display_name'],
+					email_address: recipient['email_address'] || recipient['smtp_address'],
+					address_type: recipient['address_type'],
+					entryid: recipient['entryid'],
+					object_type: recipient['object_type'],
+					display_type: recipient['display_type'],
+					display_type_ex: recipient['display_type_ex']
+				});
+			}
 		}
 
 		return Zarafa.core.data.RecordFactory.createRecordObjectByCustomType(Zarafa.core.data.RecordCustomObjectType.ZARAFA_RECIPIENT, recipeintConfig);

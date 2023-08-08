@@ -596,7 +596,16 @@ class UploadAttachment
 		$ok = mapi_inetmapi_imtomapi($GLOBALS['mapisession']->getSession(), $this->store, $addrBook, $newMessage, $attachmentStream, array());
 
 		if($ok === true) {
-			mapi_message_savechanges($newMessage);
+			$rootFolder = mapi_msgstore_openentry($this->store, null);
+			$rootFolderProps = mapi_getprops($rootFolder, array(PR_IPM_DRAFTS_ENTRYID));
+			$storeProps = mapi_getprops($this->store, array(PR_IPM_SUBTREE_ENTRYID));
+			$folderProps = $rootFolderProps + $storeProps;
+
+			if (isset($folderProps[PR_IPM_DRAFTS_ENTRYID], $folderProps[PR_IPM_SUBTREE_ENTRYID])) {
+				if ($this->isFolderTypeIsDraft($folderProps, $this->destinationFolder)) {
+					mapi_setprops($newMessage, array(PR_MESSAGE_FLAGS => MSGFLAG_UNSENT | MSGFLAG_READ));
+				}
+			}
 			return bin2hex(mapi_getprops($newMessage, array(PR_ENTRYID))[PR_ENTRYID]);
 		}
 
@@ -619,6 +628,33 @@ class UploadAttachment
 			$destinationFolder = mapi_msgstore_openentry($GLOBALS['operations']->getOtherStoreFromEntryid($this->destinationFolderId), hex2bin($this->destinationFolderId));
 		}
 		return $destinationFolder;
+	}
+
+	/**
+	 * Check given destination folder entryid is Draft folder or subfolder of 
+	 * the Draft folder.
+	 * 
+	 * @param Array $folderProps The possible parent entryid of given destination folder
+	 * @param Object $destinationFolder The Folder object need to check is Draft folder or not.
+	 * 
+	 * @return Boolean return true if folder is Draft or sub folder of Draft folder else false.
+	 */
+	function isFolderTypeIsDraft($folderProps, $destinationFolder)
+	{
+		$props = mapi_getprops($destinationFolder, array(PR_ENTRYID, PR_PARENT_ENTRYID));
+
+		if (isset($props[PR_ENTRYID], $props[PR_PARENT_ENTRYID])) {
+			if ($folderProps[PR_IPM_DRAFTS_ENTRYID] === $props[PR_ENTRYID] || $folderProps[PR_IPM_DRAFTS_ENTRYID] === $props[PR_PARENT_ENTRYID]) {
+				return true;
+			}
+
+			if ($folderProps[PR_IPM_SUBTREE_ENTRYID] === $props[PR_ENTRYID] || $folderProps[PR_IPM_SUBTREE_ENTRYID] === $props[PR_PARENT_ENTRYID]) {
+				return false;
+			}
+		}
+
+		$destinationFolder = mapi_msgstore_openentry($this->store, $props[PR_PARENT_ENTRYID]);
+		return $this->isFolderTypeIsDraft($folderProps, $destinationFolder);
 	}
 
 	/**
