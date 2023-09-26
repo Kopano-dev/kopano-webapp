@@ -1400,7 +1400,7 @@ Zarafa.common.Actions = {
 				}
 
 				var model = container.getCurrentContext().getModel();
-				var response = model.createResponseRecord(record, Zarafa.mail.data.ActionTypes.REPLY);
+				var response = model.createResponseRecord(record, Zarafa.mail.data.ActionTypes.EDIT_AS_NEW);
 				Zarafa.core.data.UIFactory.openCreateRecord(response);
 				store.un('open', openHandler, record);
 			};
