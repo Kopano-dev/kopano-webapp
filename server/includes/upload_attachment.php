@@ -606,6 +606,7 @@ class UploadAttachment
 					mapi_setprops($newMessage, array(PR_MESSAGE_FLAGS => MSGFLAG_UNSENT | MSGFLAG_READ));
 				}
 			}
+			mapi_message_savechanges($newMessage);
 			return bin2hex(mapi_getprops($newMessage, array(PR_ENTRYID))[PR_ENTRYID]);
 		}
 
